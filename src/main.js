@@ -2,8 +2,8 @@
 import './style.css';
 import CesiumViewer from "./components/map/map.js";
 import * as Cesium from 'cesium';
-import layers from './layers.json';
-import bikeLayers from './bike.json';
+import aqueductLayers from './json/aqueduct-layers.json';
+import bicycleLaneLayers from './json/bicycle-lane-layers.json';
 
 // Import web components
 import './components/map/map.js';
@@ -21,7 +21,7 @@ const parameters = {
   transparent: true
 }
 
-for (let layer of layers) {
+for (let layer of aqueductLayers) {
   viewer.addLayer(url, layer.layer, parameters);
 }
 
@@ -33,7 +33,7 @@ viewer.setCamera();
 
 // Checkbox list
 const checkboxList = document.querySelector('app-checkbox-list');
-checkboxList.setAttribute('data', JSON.stringify(layers));
+checkboxList.setAttribute('input', JSON.stringify(aqueductLayers));
 
 checkboxList.addEventListener('checkboxListChanged', (event) => {
   const toRemove = [...viewer.viewer.imageryLayers._layers].splice(1);
@@ -75,4 +75,10 @@ closeIcon.addEventListener('click', (event) => {
 
 checkboxList.addEventListener('click', (event) => {
   infoBox.classList.remove('visible');
+});
+
+// Radio
+const radio = document.querySelector('app-radio');
+radio.addEventListener('selectedMapChanged', event => {
+  checkboxList.setAttribute('input', event.detail.newValue);
 });

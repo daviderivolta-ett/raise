@@ -14,17 +14,17 @@ export class Radio extends HTMLElement {
         this.shadow.innerHTML =
             `
             <div>
-                <input type="radio" name="choosen-map" id="acquedotto" value="acquedotto" checked>
+                <input type="radio" name="choosen-map" id="acquedotto" value='[ { "name": "Acquedotto storico", "layer": "CULTURA:V_ACQ_STORICO" }, { "name": "Manufatti storici", "layer": "CULTURA:V_ACQ_MANU_STORICI" }, { "name": "Area di sosta", "layer": "CULTURA:V_ACQ_AREA_SOSTA" }, { "name": "Punti di accesso", "layer": "V_ACQ_PTI_ACCESSO" }, { "name": "Punti di interesse storico", "layer": "CULTURA:V_ACQ_PTI_INT_STORICO" }, { "name": "Pannelli informativi", "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI" }, { "name": "Fonti acqua potabile", "layer": "SITGEO:V_ACQUA_POTABILE" } ]' checked>
                 <label for="acquedotto">Acquedotto di genova</label>
             </div>
             <div>
-                <input type="radio" name="choosen-map" id="ciclabile" value="ciclabile">
+                <input type="radio" name="choosen-map" id="ciclabile" value='[{ "name": "Parcheggi Bike Sharing", "layer": "SITGEO:V_MOB_PARKS_BIKESHARING" }, { "name": "Piste ciclabili", "layer": "SITGEO:V_MOB_PISTE_CICLABILI" }]'>
                 <label for="ciclabile">Piste ciclabili</label>
             </div>
             `
         ;
 
-        this.setAttribute('selected-map', 'acquedotto');
+        this.setAttribute('selected-map', '[ { "name": "Acquedotto storico", "layer": "CULTURA:V_ACQ_STORICO" }, { "name": "Manufatti storici", "layer": "CULTURA:V_ACQ_MANU_STORICI" }, { "name": "Area di sosta", "layer": "CULTURA:V_ACQ_AREA_SOSTA" }, { "name": "Punti di accesso", "layer": "V_ACQ_PTI_ACCESSO" }, { "name": "Punti di interesse storico", "layer": "CULTURA:V_ACQ_PTI_INT_STORICO" }, { "name": "Pannelli informativi", "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI" }, { "name": "Fonti acqua potabile", "layer": "SITGEO:V_ACQUA_POTABILE" } ]');
 
         // js
         this.radios = this.shadow.querySelectorAll('input');
@@ -36,12 +36,12 @@ export class Radio extends HTMLElement {
     }
 
     static observedAttributes = ['selected-map'];
-    attributeChangedCallback(name, oldValue, newvalue) {
+    attributeChangedCallback(name, oldValue, newValue) {
         const event = new CustomEvent('selectedMapChanged', {
-            detail: {name, oldValue, newvalue}
+            detail: {name, oldValue, newValue}
         });
 
-        if (newvalue != oldValue) {
+        if (newValue != oldValue) {
             this.dispatchEvent(event);
         }
     }
