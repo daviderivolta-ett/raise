@@ -1,0 +1,126 @@
+import * as Cesium from 'cesium';
+import "cesium/Build/Cesium/Widgets/widgets.css";
+
+export default class CesiumViewer {
+
+    constructor() {
+        const element = document.querySelector('app-map');
+
+        this.viewer = new Cesium.Viewer(element, {
+            //imageryProvider: CesiumViewer.getImageryProvider(),
+            baseLayerPicker: false,
+            geocoder: false,
+            timeline: false,
+            animation: false,
+            homeButton: false,
+            navigationInstructionsInitiallyVisible: true,
+            navigationHelpButton: false,
+            sceneModePicker: false,
+            fullscreenButton: false,
+            // infoBox: false
+            // terrain: Cesium.Terrain.fromWorldTerrain()
+        });
+
+        // this.viewer.imageryLayers.addImageryProvider(CesiumViewer.getImageryProvider());
+        this.toColor = false;
+        this.viewer.screenSpaceEventHandler.setInputAction(this.onClick.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
+    }
+
+    static getImageryProvider() {
+        return new Cesium.WebMapTileServiceImageryProvider({
+            // url: 'https://c.basemaps.cartocdn.com/light_nolabels/{TileMatrix}/{TileCol}/{TileRow}.png',
+            url: 'https://c.basemaps.cartocdn.com/rastertiles/voyager/{TileMatrix}/{TileCol}/{TileRow}.png',
+            layer: 'carto-light',
+            style: 'default',
+            format: 'image/jpeg',
+            maximumLevel: 19,
+            tileMatrixSetID: 'default',
+            credit: new Cesium.Credit('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>')
+        });
+    }
+
+    async onClick(windowPosition) {
+        const pickRay = this.viewer.camera.getPickRay(windowPosition);
+        const featuresPromise = this.viewer.imageryLayers.pickImageryLayerFeatures(pickRay, this.viewer.scene);
+
+        if (!Cesium.defined(featuresPromise)) {
+            console.log('No features picked.');
+            return null;
+
+        } else {
+
+            try {
+                const features = await Promise.resolve(featuresPromise);
+                console.log(`Number of features: ${features.length}`);
+
+                if (features.length > 0) {
+                    return features[0];
+                } else {
+                    console.log(null);
+                    return null;
+                }
+
+            } catch (error) {
+                console.error('Errore nella raccolta delle features:', error);
+                return null;
+            }
+        }
+    }
+
+
+    addLayer(wmsUrl, wmsLayerName, wmsParameters) {
+        const wmsImageryProvider = new Cesium.WebMapServiceImageryProvider({
+            url: wmsUrl,
+            layers: wmsLayerName,
+            parameters: wmsParameters
+        });
+
+        this.viewer.imageryLayers.addImageryProvider(wmsImageryProvider);
+    }
+
+    removeLayer(layerName) {
+        const imageryLayers = this.viewer.imageryLayers;
+        const numLayers = imageryLayers.length;
+
+        for (let i = 0; i < numLayers; i++) {
+            const layer = imageryLayers.get(i);
+
+            if (layer._imageryProvider._layers === layerName) {
+                imageryLayers.remove(layer);
+                return;
+            }
+        }
+    }
+
+    removeAllLayers() {
+        const imageryLayers = this.viewer.imageryLayers;
+        imageryLayers.removeAll();
+    }
+
+    getActiveLayers() {
+        const imageryLayers = this.viewer.imageryLayers._layers;
+        return imageryLayers;
+    }
+
+    setCamera() {
+        const initialPosition = Cesium.Cartesian3.fromDegrees(
+            8.97855653531951,
+            44.45379197602627,
+            3000
+        )
+
+        this.viewer.camera.flyTo({
+            destination: initialPosition,
+            orientation: {
+                heading: Cesium.Math.toRadians(0.0),
+                pitch: Cesium.Math.toRadians(-90.0),
+                roll: 0
+            }
+        })
+    }
+
+    async addBuilding() {
+        const buildingTileset = await Cesium.createOsmBuildingsAsync();
+        this.viewer.scene.primitives.add(buildingTileset);
+    }
+}
