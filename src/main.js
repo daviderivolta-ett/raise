@@ -2,16 +2,17 @@
 import './style.css';
 import CesiumViewer from "./components/map/map.js";
 import * as Cesium from 'cesium';
-import aqueductLayers from './json/aqueduct.json';
-
-// Import configs
-import './settings.js';
 
 // Import web components
 import './components/map/map.js';
 import './components/checkbox/checkbox.js';
 import './components/checkbox-list/checkbox-list.js';
 import './components/infobox/infobox.js';
+
+// Import configs
+import { fetchJsonData } from './settings.js';
+const pippo = await fetchJsonData();
+console.log(pippo);
 
 // Map
 const viewer = new CesiumViewer();
@@ -75,7 +76,15 @@ checkboxList.addEventListener('click', (event) => {
 });
 
 // Radio
-const radio = document.querySelector('app-radio');
-radio.addEventListener('selectedMapChanged', event => {
-  checkboxList.setAttribute('input', event.detail.newValue);
+// const radio = document.querySelector('app-radio');
+// radio.addEventListener('selectedMapChanged', event => {
+//   checkboxList.setAttribute('input', event.detail.newValue);
+// });
+
+// Dropdown
+const dropdownBtn = document.querySelector('.dropdown-btn');
+const dropdownSection = document.querySelector('.dropdown');
+
+dropdownBtn.addEventListener('click', () => {
+  dropdownSection.classList.toggle('show');
 });

@@ -2,7 +2,7 @@
 import jsonData from './json/categories.json';
 
 // Fetch data
-(async function print() {
+export async function fetchJsonData() {
     const categories = jsonData.categories;
 
     for (const category of categories) {
@@ -33,4 +33,6 @@ import jsonData from './json/categories.json';
             category.groups.push(item);
         })
     }
-})();
+
+    return jsonData;
+};
