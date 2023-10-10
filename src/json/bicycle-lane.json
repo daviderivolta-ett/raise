@@ -1,0 +1,13 @@
+{
+    "name": "Piste ciclabili",
+    "layers": [
+        {
+            "name": "Parcheggi Bike Sharing",
+            "layer": "SITGEO:V_MOB_PARKS_BIKESHARING"
+        },
+        {
+            "name": "Piste ciclabili",
+            "layer": "SITGEO:V_MOB_PISTE_CICLABILI"
+        }
+    ]
+}

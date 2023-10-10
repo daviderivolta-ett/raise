@@ -2,14 +2,16 @@
 import './style.css';
 import CesiumViewer from "./components/map/map.js";
 import * as Cesium from 'cesium';
-import aqueductLayers from './json/aqueduct-layers.json';
+import aqueductLayers from './json/aqueduct.json';
+
+// Import configs
+import './settings.js';
 
 // Import web components
 import './components/map/map.js';
 import './components/checkbox/checkbox.js';
 import './components/checkbox-list/checkbox-list.js';
 import './components/infobox/infobox.js';
-import './components/radio/radio.js';
 
 // Map
 const viewer = new CesiumViewer();
@@ -20,15 +22,15 @@ const parameters = {
   transparent: true
 }
 
-for (let layer of aqueductLayers) {
-  viewer.addLayer(url, layer.layer, parameters);
-}
+// for (let layer of aqueductLayers) {
+//   viewer.addLayer(url, layer.layer, parameters);
+// }
 
 viewer.setCamera();
 
 // Checkbox list
 const checkboxList = document.querySelector('app-checkbox-list');
-checkboxList.setAttribute('input', JSON.stringify(aqueductLayers));
+// checkboxList.setAttribute('input', JSON.stringify(aqueductLayers));
 
 checkboxList.addEventListener('checkboxListChanged', (event) => {
   const toRemove = [...viewer.viewer.imageryLayers._layers].splice(1);

@@ -1,0 +1,13 @@
+{
+    "name": "Parking Areas",
+    "layers": [
+        {
+            "name": "Blu area",
+            "layer": "SITGEO:V_MOB_BLUAREA"
+        },
+        {
+            "name": "ZTL e ambiente",
+            "layer": "SITGEO:V_MOB_ZTL_AMBIENTE"
+        }
+    ]
+}

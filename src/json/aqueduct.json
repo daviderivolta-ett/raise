@@ -1,0 +1,33 @@
+{
+    "name": "Acquedotto di Genova",
+    "layers": [
+        {
+            "name": "Acquedotto storico",
+            "layer": "CULTURA:V_ACQ_STORICO"
+        },
+        {
+            "name": "Manufatti storici",
+            "layer": "CULTURA:V_ACQ_MANU_STORICI"
+        },
+        {
+            "name": "Area di sosta",
+            "layer": "CULTURA:V_ACQ_AREA_SOSTA"
+        },
+        {
+            "name": "Punti di accesso",
+            "layer": "V_ACQ_PTI_ACCESSO"
+        },
+        {
+            "name": "Punti di interesse storico",
+            "layer": "CULTURA:V_ACQ_PTI_INT_STORICO"
+        },
+        {
+            "name": "Pannelli informativi",
+            "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI"
+        },
+        {
+            "name": "Fonti acqua potabile",
+            "layer": "SITGEO:V_ACQUA_POTABILE"
+        }
+    ]
+}

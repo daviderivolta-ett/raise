@@ -1,0 +1,25 @@
+{
+    "categories": [
+        {
+            "name": "Natura",
+            "groups": [
+                "./src/json/aqueduct.json",
+                "./src/json/parking-areas.json"
+            ]
+        },
+        {
+            "name": "Città",
+            "groups": [
+                "./src/json/bicycle-lane.json",
+                "./src/json/parking-areas.json"
+            ]
+        },
+        {
+            "name": "Cultura",
+            "groups": [
+                "./src/json/aqueduct.json",
+                "./src/json/parking-areas.json"
+            ]
+        }
+    ]
+}

@@ -22,7 +22,7 @@ export class Radio extends HTMLElement {
                 <label for="ciclabile">Piste ciclabili</label>
             </div>
             <div>
-                <input type="radio" name="choosen-map" id="ztl" value='[{ "name": "Blu area", "layer": "SITGEO:V_MOB_BLUAREA" }, { "name": "Zona a Traffico Limitato", "layer": "SITGEO:V_MOB_ZTL_AMBIENTE" }]'>
+                <input type="radio" name="choosen-map" id="ztl" value='[{ "name": "Blu area", "layer": "SITGEO:V_MOB_BLUAREA" }, { "name": "ZTL e ambiente", "layer": "SITGEO:V_MOB_ZTL_AMBIENTE" }]'>
                 <label for="ztl">ZTL e aree sosta</label>
             </div>
             `
