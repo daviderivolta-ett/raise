@@ -3,7 +3,6 @@ import './style.css';
 import CesiumViewer from "./components/map/map.js";
 import * as Cesium from 'cesium';
 import aqueductLayers from './json/aqueduct-layers.json';
-import bicycleLaneLayers from './json/bicycle-lane-layers.json';
 
 // Import web components
 import './components/map/map.js';
@@ -24,10 +23,6 @@ const parameters = {
 for (let layer of aqueductLayers) {
   viewer.addLayer(url, layer.layer, parameters);
 }
-
-// for (let layer of bikeLayers) {
-//   viewer.addLayer(url, layer.layer, parameters);
-// }
 
 viewer.setCamera();
 
