@@ -74,11 +74,3 @@ app-radio {
   padding: 24px;
   background-color: rgba(255, 255, 255, .8);
 }
-
-.dropdown {
-  display: none;
-}
-
-.show {
-  display: block;
-}

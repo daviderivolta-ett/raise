@@ -20,12 +20,18 @@ export class Checkbox extends HTMLElement {
             `
 
         this.checkbox = this.shadow.querySelector('input');
-        if (!this.hasAttribute('is-checked')) {
-            this.setAttribute('is-checked', "false");
-        }
+        // if (!this.hasAttribute('is-checked')) {
+        //     this.setAttribute('is-checked', "false");
+        // }
 
-        if (this.getAttribute('is-checked') === 'true') {
-            this.checkbox.checked = this.getAttribute('is-checked');
+        // if (this.getAttribute('is-checked') === 'true') {
+        //     this.checkbox.checked = this.getAttribute('is-checked');
+        // }
+
+        if (this.hasAttribute('is-checked')) {
+            this.setAttribute('is-checked', this.getAttribute('is-checked'))
+        } else {
+            this.setAttribute('is-checked', 'false');
         }
 
         this.label = this.shadow.querySelector('label');

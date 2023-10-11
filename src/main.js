@@ -8,11 +8,12 @@ import './components/map/map.js';
 import './components/checkbox/checkbox.js';
 import './components/checkbox-list/checkbox-list.js';
 import './components/infobox/infobox.js';
+import './components/accordion/accordion.js';
 
 // Import configs
 import { fetchJsonData } from './settings.js';
-const pippo = await fetchJsonData();
-console.log(pippo);
+const jsonData = await fetchJsonData();
+console.log(jsonData);
 
 // Map
 const viewer = new CesiumViewer();
@@ -30,19 +31,19 @@ const parameters = {
 viewer.setCamera();
 
 // Checkbox list
-const checkboxList = document.querySelector('app-checkbox-list');
-// checkboxList.setAttribute('input', JSON.stringify(aqueductLayers));
+const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
+allCheckboxLists.forEach(checkboxList => {
+  checkboxList.addEventListener('checkboxListChanged', (event) => {
+    const toRemove = [...viewer.viewer.imageryLayers._layers].splice(1);
+    toRemove.forEach(item => {
+      viewer.removeLayer(item._imageryProvider._layers);
+    });
 
-checkboxList.addEventListener('checkboxListChanged', (event) => {
-  const toRemove = [...viewer.viewer.imageryLayers._layers].splice(1);
-  toRemove.forEach(item => {
-    viewer.removeLayer(item._imageryProvider._layers);
+    const layersToLoad = JSON.parse(event.detail.newValue);
+    for (const layer of layersToLoad) {
+      viewer.addLayer(url, layer.layer, parameters);
+    }
   });
-
-  const layersToLoad = JSON.parse(event.detail.newValue);
-  for (const layer of layersToLoad) {
-    viewer.addLayer(url, layer.layer, parameters);
-  }
 });
 
 // Infobox
@@ -67,24 +68,11 @@ const handleFeatures = (features) => {
 }
 
 const closeIcon = infoBox.shadowRoot.querySelector('#close-icon');
-closeIcon.addEventListener('click', (event) => {
+closeIcon.addEventListener('click', () => {
   infoBox.classList.remove('visible');
 });
 
-checkboxList.addEventListener('click', (event) => {
+const drawer = document.querySelector('#drawer');
+drawer.addEventListener('click', () => {
   infoBox.classList.remove('visible');
-});
-
-// Radio
-// const radio = document.querySelector('app-radio');
-// radio.addEventListener('selectedMapChanged', event => {
-//   checkboxList.setAttribute('input', event.detail.newValue);
-// });
-
-// Dropdown
-const dropdownBtn = document.querySelector('.dropdown-btn');
-const dropdownSection = document.querySelector('.dropdown');
-
-dropdownBtn.addEventListener('click', () => {
-  dropdownSection.classList.toggle('show');
 });
