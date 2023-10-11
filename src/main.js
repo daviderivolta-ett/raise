@@ -58,6 +58,7 @@ populateDrawer();
 
 // Checkbox list
 const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
+console.log(allCheckboxLists);
 
 const activeLayers = [];
 
@@ -90,5 +91,13 @@ allCheckboxLists.forEach(checkboxList => {
       viewer.addLayer(url, layer.layer, parameters);
     }
 
+  });
+});
+
+// Accordion behaviour
+const allAccordion = document.querySelectorAll('app-accordion');
+
+allAccordion.forEach(item => {
+  item.addEventListener('accordionChanged', (event) => {
   });
 });
