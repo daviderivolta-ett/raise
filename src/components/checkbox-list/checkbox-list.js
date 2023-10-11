@@ -15,7 +15,7 @@ export class CheckboxList extends HTMLElement {
 
             // html
             this.input = JSON.parse(this.getAttribute('input'));
-            this.array = [];
+            this.data = [];
 
             const checkboxes = [];
 
@@ -33,19 +33,18 @@ export class CheckboxList extends HTMLElement {
             checkboxes.forEach(item => {
                 item.addEventListener('checkboxChanged', () => {
                     this.itemData = JSON.parse(item.getAttribute('data'));
-                    console.log(this.itemData);
 
-                    const isPresentIndex = this.array.findIndex(obj => {
+                    const isPresentIndex = this.data.findIndex(obj => {
                         return JSON.stringify(obj) === JSON.stringify(this.itemData);
                     });
 
                     if (isPresentIndex !== -1) {
-                        this.array.splice(isPresentIndex, 1);
+                        this.data.splice(isPresentIndex, 1);
                     } else {
-                        this.array.push(this.itemData);
+                        this.data.push(this.itemData);
                     }
 
-                    this.setAttribute('data', JSON.stringify(this.array));
+                    this.setAttribute('data', JSON.stringify(this.data));
                 });
             });
         });
@@ -54,7 +53,7 @@ export class CheckboxList extends HTMLElement {
     static observedAttributes = ['data'];
     attributeChangedCallback(name, oldValue, newValue) {
         const event = new CustomEvent('checkboxListChanged', {
-            detail: { name, oldValue, newValue }
+            detail: { name: 'data', oldValue, newValue, input: this.input }
         });
 
 
