@@ -18,15 +18,9 @@ export class Checkbox extends HTMLElement {
                 <label for="checkbox">Label</label>
             </div>
             `
+        ;
 
         this.checkbox = this.shadow.querySelector('input');
-        // if (!this.hasAttribute('is-checked')) {
-        //     this.setAttribute('is-checked', "false");
-        // }
-
-        // if (this.getAttribute('is-checked') === 'true') {
-        //     this.checkbox.checked = this.getAttribute('is-checked');
-        // }
 
         if (this.hasAttribute('is-checked')) {
             this.setAttribute('is-checked', this.getAttribute('is-checked'))
@@ -61,6 +55,7 @@ export class Checkbox extends HTMLElement {
 
         if (newValue != oldValue) {
             this.dispatchEvent(event);
+            this.render();
         }
     }
 }

@@ -2,17 +2,17 @@ export class Accordion extends HTMLElement {
 
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: 'closed' });
-
-        this.title = this.getAttribute('title');
+        this.shadow = this.attachShadow({ mode: 'closed' });        
     }
 
     render() {
-
-    }
-
-    connectedCallback() {
         //html
+        if (this.hasAttribute('title')) {
+            this.title = this.getAttribute('title');
+        } else {
+            this.title = 'Titolo dell\'accordion';
+        }
+
         this.shadow.innerHTML =
             `
             <div class="accordion-item">
@@ -24,7 +24,7 @@ export class Accordion extends HTMLElement {
                 </div>
             </div>
             `
-            ;
+        ;
 
         // css
         const style = document.createElement('link');
@@ -38,7 +38,16 @@ export class Accordion extends HTMLElement {
             this.accordionContent = this.accordionBtn.nextElementSibling;
             this.accordionContent.classList.toggle('accordion-show');
         });
+    }
 
+    connectedCallback() {
+    }
+
+    static observedAttributes = ['title'];
+    attributeChangedCallback(name, oldValue, NewValue) {
+        if (NewValue != oldValue) {
+            this.render();
+        }
     }
 
 }

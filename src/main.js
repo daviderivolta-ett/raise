@@ -24,14 +24,60 @@ const parameters = {
   transparent: true
 }
 
-// for (let layer of aqueductLayers) {
-//   viewer.addLayer(url, layer.layer, parameters);
-// }
-
 viewer.setCamera();
+
+// Infobox
+const infoBox = document.querySelector('app-infobox');
+
+viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
+  viewer.onClick(movement.position)
+    .then(features => {
+      console.log(features);
+      handleFeatures(features);
+    })
+}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+const handleFeatures = (features) => {
+
+  if (features != null) {
+    infoBox.setAttribute('data', JSON.stringify(features.properties));
+    infoBox.classList.add('visible');
+  } else {
+    infoBox.classList.remove('visible');
+  }
+}
+
+const closeIcon = infoBox.shadowRoot.querySelector('#close-icon');
+closeIcon.addEventListener('click', () => {
+  infoBox.classList.remove('visible');
+});
+
+const drawer = document.querySelector('#drawer');
+drawer.addEventListener('click', () => {
+  infoBox.classList.remove('visible');
+});
+
+// Accordion creation
+jsonData.categories.forEach(item => {
+  const categoryAcordion = document.createElement('app-accordion');
+  drawer.append(categoryAcordion);
+
+  categoryAcordion.setAttribute('title', item.name);
+
+  item.groups.forEach(item => {
+    const layerAccordion = document.createElement('app-accordion');
+    categoryAcordion.append(layerAccordion);
+    layerAccordion.setAttribute('title', item.name);
+
+    const checkboxList = document.createElement('app-checkbox-list');
+    checkboxList.setAttribute('input', JSON.stringify(item.layers));
+    layerAccordion.append(checkboxList);    
+  });
+});
 
 // Checkbox list
 const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
+console.log(allCheckboxLists);
 
 const activeLayers = [];
 
@@ -65,35 +111,4 @@ allCheckboxLists.forEach(checkboxList => {
     }
 
   });
-});
-
-// Infobox
-const infoBox = document.querySelector('app-infobox');
-
-viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
-  viewer.onClick(movement.position)
-    .then(features => {
-      console.log(features);
-      handleFeatures(features);
-    })
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-const handleFeatures = (features) => {
-
-  if (features != null) {
-    infoBox.setAttribute('data', JSON.stringify(features.properties));
-    infoBox.classList.add('visible');
-  } else {
-    infoBox.classList.remove('visible');
-  }
-}
-
-const closeIcon = infoBox.shadowRoot.querySelector('#close-icon');
-closeIcon.addEventListener('click', () => {
-  infoBox.classList.remove('visible');
-});
-
-const drawer = document.querySelector('#drawer');
-drawer.addEventListener('click', () => {
-  infoBox.classList.remove('visible');
 });
