@@ -1,4 +1,4 @@
-// Fetahc layers name from geoserver
+// Fetch layers name from geoserver
 const fetchLayers = () => {
     const wmsUrl = 'https://mappe.comune.genova.it/geoserver/wms';
 

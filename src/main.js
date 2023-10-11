@@ -2,6 +2,7 @@
 import './style.css';
 import CesiumViewer from "./components/map/map.js";
 import * as Cesium from 'cesium';
+import { populateDrawer } from './utils/drawer-population.js';
 
 // Import web components
 import './components/map/map.js';
@@ -9,11 +10,6 @@ import './components/checkbox/checkbox.js';
 import './components/checkbox-list/checkbox-list.js';
 import './components/infobox/infobox.js';
 import './components/accordion/accordion.js';
-
-// Import configs
-import { fetchJsonData } from './settings.js';
-const jsonData = await fetchJsonData();
-console.log(jsonData);
 
 // Map
 const viewer = new CesiumViewer();
@@ -58,26 +54,10 @@ drawer.addEventListener('click', () => {
 });
 
 // Accordion creation
-jsonData.categories.forEach(item => {
-  const categoryAcordion = document.createElement('app-accordion');
-  drawer.append(categoryAcordion);
-
-  categoryAcordion.setAttribute('title', item.name);
-
-  item.groups.forEach(item => {
-    const layerAccordion = document.createElement('app-accordion');
-    categoryAcordion.append(layerAccordion);
-    layerAccordion.setAttribute('title', item.name);
-
-    const checkboxList = document.createElement('app-checkbox-list');
-    checkboxList.setAttribute('input', JSON.stringify(item.layers));
-    layerAccordion.append(checkboxList);    
-  });
-});
+populateDrawer();
 
 // Checkbox list
 const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-console.log(allCheckboxLists);
 
 const activeLayers = [];
 
