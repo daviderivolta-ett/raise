@@ -23,6 +23,10 @@ export class Accordion extends HTMLElement {
                 this.accordionIcon.classList.remove('accordion-icon-active');
             }
         }
+
+        if (this.classList.contains('last-accordion')) {
+            this.accordionContent.classList.add('last-accordion');
+        }
     }
 
     connectedCallback() {
@@ -45,7 +49,7 @@ export class Accordion extends HTMLElement {
                 </div>
             </div>
             `
-            ;
+        ;
 
         // css
         const style = document.createElement('link');
