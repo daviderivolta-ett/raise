@@ -11,6 +11,7 @@ import './components/checkbox/checkbox.js';
 import './components/checkbox-list/checkbox-list.js';
 import './components/infobox/infobox.js';
 import './components/accordion/accordion.js';
+import './components/search/search.js';
 
 // Map initialization
 const viewer = new CesiumViewer();
@@ -70,7 +71,7 @@ allCheckboxLists.forEach(checkboxList => {
       activeLayers.push(layer);
     });
 
-    console.log(activeLayers);
+    // console.log(activeLayers);
 
     const toRemove = [...viewer.viewer.imageryLayers._layers].splice(1);
     toRemove.forEach(item => {

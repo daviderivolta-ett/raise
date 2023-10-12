@@ -1,6 +1,7 @@
 // Import configs
 import { fetchJsonData } from '../settings.js';
 const jsonData = await fetchJsonData();
+console.log(jsonData);
 
 // Generate drawer
 export const populateDrawer = () => {
