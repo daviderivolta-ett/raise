@@ -14,7 +14,7 @@ export class Searchbar extends HTMLElement {
             `
             <input type="search" name="search" id="search" placeholder="Cerca per livelli...">
             `
-            ;
+        ;
 
         // css
         const style = document.createElement('link');

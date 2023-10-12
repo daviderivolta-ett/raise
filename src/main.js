@@ -115,3 +115,5 @@ layerAccordion.forEach(item => {
 
   });
 });
+
+// Search bar
