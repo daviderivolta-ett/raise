@@ -3,22 +3,24 @@
         {
             "name": "Natura",
             "groups": [
-                "./src/json/aqueduct.json",
-                "./src/json/parking-areas.json"
+                "./src/json/geomorphology.json"
             ]
         },
         {
             "name": "Città",
             "groups": [
                 "./src/json/bicycle-lane.json",
-                "./src/json/parking-areas.json"
+                "./src/json/parking-areas.json",
+                "./src/json/acoustic-zoning.json",
+                "./src/json/municipi.json",
+                "./src/json/agid-requirements.json",
+                "./src/json/caruggi-map.json"
             ]
         },
         {
             "name": "Cultura",
             "groups": [
-                "./src/json/aqueduct.json",
-                "./src/json/parking-areas.json"
+                "./src/json/aqueduct.json"
             ]
         }
     ]

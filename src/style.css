@@ -20,23 +20,6 @@ main {
   height: 100%;
 }
 
-/* Checkbox list */
-/* #checkbox-list {
-  position: fixed;
-  min-width: 300px;
-  top: 40px;
-  left: 40px;
-  padding: 24px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-}
-
-#checkbox-list h3 {
-  margin: 0 0 16px 0;
-} */
-
 /* Drawer */
 #drawer {
   position: fixed;
@@ -47,12 +30,23 @@ main {
   padding: 24px;
   background-color: rgba(255, 255, 255, 1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: .2s ease-in-out;
+}
+
+/* #drawer:hover {
+  background-color: rgba(255, 255, 255, 1);
+  transition: .2s ease-in-out;
+} */
+
+#drawer h3 {
+  margin: 8px 0;
 }
 
 /* Search bar */
 #drawer #search {
   width: 100%;
   border: none;
+  background-color: transparent;
   border-bottom: 1px solid #DEDEDE;
   padding: 16px 8px;
   font-family: 'Roboto', sans-serif;

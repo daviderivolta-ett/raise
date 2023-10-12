@@ -1,0 +1,9 @@
+{
+    "name": "Municipi",
+    "layers": [
+        {
+            "name": "Confini",
+            "layer": "SITGEO:V_MUNICIPI"
+        }
+    ]
+}

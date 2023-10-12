@@ -1,0 +1,17 @@
+{
+    "name": "Geomorfologia",
+    "layers": [
+        {
+            "name": "Geomorfologia",
+            "layer": "SITGEO:V_GEOMORFOLOGIA"
+        },
+        {
+            "name": "Geomorfologia LIN",
+            "layer": "SITGEO:V_GEOMORFO_LIN"
+        },
+        {
+            "name": "Geomorfologia SOVRA",
+            "layer": "SITGEO:V_GEOMORFO_SOVRA"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Zonizzazione acustica",
+    "layers": [
+        {
+            "name": "Misure fonometriche",
+            "layer": "SITGEO:V_ZA_MISURE_FONOM"
+        },
+        {
+            "name": "Zone acustiche",
+            "layer": "SITGEO:V_ZA_ZONEACUSTICHE"
+        },
+        {
+            "name": "Auto",
+            "layer": "SITGEO:V_ZA_FR_AUTO"
+        },
+        {
+            "name": "Ferrovie",
+            "layer": "SITGEO:V_ZA_FR_FERR"
+        }
+    ]
+}

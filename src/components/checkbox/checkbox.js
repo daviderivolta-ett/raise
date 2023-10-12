@@ -55,7 +55,6 @@ export class Checkbox extends HTMLElement {
 
         if (newValue != oldValue) {
             this.dispatchEvent(event);
-            this.render();
         }
     }
 }

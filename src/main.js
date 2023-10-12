@@ -85,7 +85,6 @@ allCheckboxLists.forEach(checkboxList => {
 });
 
 // Accordion behaviour
-const allAccordion = document.querySelectorAll('app-accordion');
 const categoryAccordion = document.querySelectorAll('.category-accordion');
 const layerAccordion = document.querySelectorAll('.layer-accordion');
 

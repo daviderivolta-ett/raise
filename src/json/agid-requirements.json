@@ -1,0 +1,13 @@
+{
+    "name": "Requisiti AGID",
+    "layers": [
+        {
+            "name": "Prossimità fiumi",
+            "layer": "SITGEO:PROSSIMITA_FIUMI_MAG_90_4326"
+        },
+        {
+            "name": "Prossimità autostrada",
+            "layer": "SITGEO:PROSSIMITA_AUTOSTRADA_MAG_91_4326"
+        }
+    ]
+}
