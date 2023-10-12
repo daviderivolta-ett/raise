@@ -13,11 +13,14 @@ export class Accordion extends HTMLElement {
         }
 
         this.accordionContent = this.shadow.querySelector('.accordion-content');
+        this.accordionIcon = this.shadow.querySelector('.accordion-icon');
         if (this.accordionContent) {
             if (this.getAttribute('is-active') === 'true') {
                 this.accordionContent.classList.add('accordion-show');
+                this.accordionIcon.classList.add('accordion-icon-active');
             } else {
                 this.accordionContent.classList.remove('accordion-show');
+                this.accordionIcon.classList.remove('accordion-icon-active');
             }
         }
     }
@@ -30,7 +33,12 @@ export class Accordion extends HTMLElement {
             `
             <div class="accordion-item">
                 <button type="button" class="accordion-btn">
-                    <span class="accordion-title"></span><span class="accordion-icon"></span>
+                    <span class="accordion-title"></span>
+                    <span class="accordion-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </span>
                 </button>
                 <div class="accordion-content">
                     <slot></slot>

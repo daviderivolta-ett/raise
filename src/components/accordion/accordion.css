@@ -1,11 +1,14 @@
-.accordion-item {}
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: .9rem;
+    color: rgba(0, 0, 0, 0.87);
+}
 
 .accordion-item .accordion-btn {
     cursor: pointer;
     display: flex;
     align-items: center;
     position: relative;
-    display: block;
     text-align: left;
     width: 100%;
     padding: 1em 0;
@@ -14,55 +17,31 @@
     outline: none;
 }
 
-.accordion-item .accordion-title {
-    padding: 1em 1.5em 1em 0;
-    font-size: 1rem;
-}
-
 .accordion-item .accordion-icon {
-    display: inline-block;
     position: absolute;
     right: 0;
-    width: 22px;
-    height: 22px;
-    border: 1px solid;
-    border-radius: 22px;
+    margin: 8px 0 0 0;
+    transition: all .1s ease-in-out;
 }
 
-.accordion-item .accordion-icon::before {
-    display: block;
-    position: absolute;
-    content: '';
-    top: 9px;
-    left: 5px;
-    width: 10px;
-    height: 2px;
-    background: black;
-}
-
-.accordion-item .accordion-icon::after {
-    display: block;
-    position: absolute;
-    content: '';
-    top: 5px;
-    left: 9px;
-    width: 2px;
-    height: 10px;
-    background: black;
+.accordion-icon-active {
+    transform: rotate(180deg);
+    transform-origin: center 8px;
+    transition: all .1s ease-in-out;
 }
 
 .accordion-content {
-    opacity: 0;
-    display: none;
-    padding: 0 0 0 24px;
+    display: block;
+    opacity: 1;
+    padding: 0 0 0 16px;
     max-height: 0;
-    transition: all .2s ease-in-out;
+    overflow: hidden;
+    transition: max-height 0.1s linear, opacity 0.1s ease-in-out;
     font-size: 1rem;
+    border-bottom: 1px solid #DEDEDE;
 }
 
 .accordion-show {
-    opacity: 1;
-    display: block;
-    max-height: fit-content;
-    transition: all .2s ease-in-out;
+    max-height: 300px;
+    transition: max-height 0.1s linear, opacity 0.1s ease-in-out;
 }

@@ -21,7 +21,7 @@ export class CheckboxList extends HTMLElement {
 
             checkboxes.push(this.checkbox);
 
-            this.shadow.append(this.checkbox);
+            this.div.append(this.checkbox);
         }
 
         // js
@@ -45,6 +45,20 @@ export class CheckboxList extends HTMLElement {
     }
 
     connectedCallback() {
+        this.shadow.innerHTML =
+            `
+            <div></div>
+            `
+        ;
+
+        this.div = this.shadow.querySelector('div');
+
+        // css
+        const style = document.createElement('link');
+        style.setAttribute('rel', 'stylesheet');
+        style.setAttribute('href', 'src/components/checkbox-list/checkbox-list.css');
+        this.shadow.append(style);
+
         this.render();
     }
 
