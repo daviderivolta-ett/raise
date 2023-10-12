@@ -2,7 +2,8 @@
 import './style.css';
 import CesiumViewer from "./components/map/map.js";
 import * as Cesium from 'cesium';
-import { populateDrawer } from './utils/drawer-population.js';
+import { populateDrawer } from './utils/drawerPopulation.js';
+import { handleFeatures } from './utils/handleInfobox.js';
 
 // Import web components
 import './components/map/map.js';
@@ -11,7 +12,7 @@ import './components/checkbox-list/checkbox-list.js';
 import './components/infobox/infobox.js';
 import './components/accordion/accordion.js';
 
-// Map
+// Map initialization
 const viewer = new CesiumViewer();
 
 const url = 'https://mappe.comune.genova.it/geoserver/wms';
@@ -22,26 +23,19 @@ const parameters = {
 
 viewer.setCamera();
 
-// Infobox
+// Accordions creation
+populateDrawer();
+
+// Infobox behaviour
 const infoBox = document.querySelector('app-infobox');
 
 viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
   viewer.onClick(movement.position)
     .then(features => {
       console.log(features);
-      handleFeatures(features);
+      handleFeatures(features, infoBox);
     })
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-const handleFeatures = (features) => {
-
-  if (features != null) {
-    infoBox.setAttribute('data', JSON.stringify(features.properties));
-    infoBox.classList.add('visible');
-  } else {
-    infoBox.classList.remove('visible');
-  }
-}
 
 const closeIcon = infoBox.shadowRoot.querySelector('#close-icon');
 closeIcon.addEventListener('click', () => {
@@ -53,12 +47,8 @@ drawer.addEventListener('click', () => {
   infoBox.classList.remove('visible');
 });
 
-// Accordion creation
-populateDrawer();
-
-// Checkbox list
+// Checkbox list behaviour
 const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-console.log(allCheckboxLists);
 
 const activeLayers = [];
 
@@ -96,8 +86,32 @@ allCheckboxLists.forEach(checkboxList => {
 
 // Accordion behaviour
 const allAccordion = document.querySelectorAll('app-accordion');
+const categoryAccordion = document.querySelectorAll('.category-accordion');
+const layerAccordion = document.querySelectorAll('.layer-accordion');
 
-allAccordion.forEach(item => {
+categoryAccordion.forEach(item => {
   item.addEventListener('accordionChanged', (event) => {
+
+    categoryAccordion.forEach(item => {
+      if (item != event.target) {
+        item.setAttribute('is-active', 'false');
+      }
+    });
+
+    layerAccordion.forEach(item => {
+      item.setAttribute('is-active', 'false');
+    });
+  });
+});
+
+layerAccordion.forEach(item => {
+  item.addEventListener('accordionChanged', (event) => {
+
+    layerAccordion.forEach(item => {
+      if (item != event.target) {
+        item.setAttribute('is-active', 'false');
+      }
+    });
+
   });
 });

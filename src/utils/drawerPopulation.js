@@ -5,15 +5,18 @@ const jsonData = await fetchJsonData();
 // Generate drawer
 export const populateDrawer = () => {
     jsonData.categories.forEach(item => {
-        const categoryAcordion = document.createElement('app-accordion');
-        drawer.append(categoryAcordion);
+        const categoryAccordion = document.createElement('app-accordion');
+        drawer.append(categoryAccordion);
 
-        categoryAcordion.setAttribute('title', item.name);
+        categoryAccordion.setAttribute('title', item.name);
+        categoryAccordion.classList.add('category-accordion');
 
         item.groups.forEach(item => {
             const layerAccordion = document.createElement('app-accordion');
-            categoryAcordion.append(layerAccordion);
+            categoryAccordion.append(layerAccordion);
+
             layerAccordion.setAttribute('title', item.name);
+            layerAccordion.classList.add('layer-accordion');
 
             const checkboxList = document.createElement('app-checkbox-list');
             checkboxList.setAttribute('input', JSON.stringify(item.layers));

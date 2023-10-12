@@ -6,14 +6,19 @@ export class Accordion extends HTMLElement {
     }
 
     render() {
-        this.accordionTitle.textContent = this.title;
+        this.accordionTitle = this.shadow.querySelector('.accordion-title');
+
+        if (this.accordionTitle) {
+            this.accordionTitle.textContent = this.title;
+        }
 
         this.accordionContent = this.shadow.querySelector('.accordion-content');
-
-        if (this.getAttribute('is-active') === 'true') {
-            this.accordionContent.classList.add('accordion-show');
-        } else {
-            this.accordionContent.classList.remove('accordion-show');
+        if (this.accordionContent) {
+            if (this.getAttribute('is-active') === 'true') {
+                this.accordionContent.classList.add('accordion-show');
+            } else {
+                this.accordionContent.classList.remove('accordion-show');
+            }
         }
     }
 
@@ -25,16 +30,14 @@ export class Accordion extends HTMLElement {
             `
             <div class="accordion-item">
                 <button type="button" class="accordion-btn">
-                    <span class="accordion-title">${this.getAttribute('title')}</span><span class="accordion-icon"></span>
+                    <span class="accordion-title"></span><span class="accordion-icon"></span>
                 </button>
                 <div class="accordion-content">
                     <slot></slot>
                 </div>
             </div>
             `
-        ;
-
-        this.accordionTitle = this.shadow.querySelector('.accordion-title');
+            ;
 
         // css
         const style = document.createElement('link');
@@ -50,11 +53,19 @@ export class Accordion extends HTMLElement {
 
             if (this.getAttribute('is-active') === 'true') {
                 this.setAttribute('is-active', 'false');
-                // this.accordionContent.classList.add('accordion-show');
             } else {
                 this.setAttribute('is-active', 'true');
-                // this.accordionContent.classList.remove('accordion-show');
             }
+
+            const event = new CustomEvent('accordionChanged', {
+                detail: {
+                    name: 'is-active',
+                    oldValue: this.getAttribute('is-active'),
+                    newValue: this.getAttribute('is-active')
+                }
+            });
+
+            this.dispatchEvent(event);
         });
     }
 
@@ -65,12 +76,7 @@ export class Accordion extends HTMLElement {
         }
 
         if (name == 'is-active' && newValue != oldValue) {
-            const event = new CustomEvent('accordionChanged', {
-                detail: { name, oldValue, newValue }
-            });
-
             this.render();
-            this.dispatchEvent(event);
         }
     }
 }
