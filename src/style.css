@@ -1,5 +1,7 @@
+/* Import */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+/* General */
 * {
   box-sizing: border-box;
 }
@@ -18,7 +20,8 @@ main {
   height: 100%;
 }
 
-#checkbox-list {
+/* Checkbox list */
+/* #checkbox-list {
   position: fixed;
   min-width: 300px;
   top: 40px;
@@ -32,28 +35,9 @@ main {
 
 #checkbox-list h3 {
   margin: 0 0 16px 0;
-}
+} */
 
-app-infobox {
-  position: fixed;
-  width: 400px;
-  right: 40px;
-  bottom: 40px;
-  background-color: white;
-  padding: 24px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-  visibility: hidden;
-  display: none;
-}
-
-.visible {
-  visibility: visible;
-  display: block;
-  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-}
-
+/* Drawer */
 #drawer {
   position: fixed;
   top: 0;
@@ -65,11 +49,12 @@ app-infobox {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
+/* Search bar */
 #drawer #search {
   width: 100%;
   border: none;
   border-bottom: 1px solid #DEDEDE;
-  padding: 8px;
+  padding: 16px 8px;
   font-family: 'Roboto', sans-serif;
   margin: 0 0 16px 0;
 }
@@ -78,4 +63,25 @@ app-infobox {
 #drawer #search:focus {
   outline: none;
   background-color: #f1f1f1;
+}
+
+/* Infobox */
+app-infobox {
+  position: fixed;
+  width: 400px;
+  right: 40px;
+  bottom: 40px;
+  background-color: white;
+  padding: 24px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  visibility: hidden;
+  display: none;
+}
+
+.visible {
+  visibility: visible;
+  display: block;
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 }

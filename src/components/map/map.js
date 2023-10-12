@@ -104,9 +104,11 @@ export default class CesiumViewer {
 
     setCamera() {
         const initialPosition = Cesium.Cartesian3.fromDegrees(
-            8.97855653531951,
-            44.45379197602627,
-            3000
+            8.909041078781357,
+            44.410209942448475,
+            4000
+
+            // 44.410209942448475, 8.909041078781357
         )
 
         this.viewer.camera.flyTo({
