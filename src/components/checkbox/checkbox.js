@@ -2,7 +2,7 @@ export class Checkbox extends HTMLElement {
 
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: "closed" });
+        this.shadow = this.attachShadow({ mode: 'closed' });
     }
 
     render() {
@@ -46,7 +46,7 @@ export class Checkbox extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ["is-checked"];
+    static observedAttributes = ['is-checked'];
     attributeChangedCallback(name, oldValue, newValue) {
 
         const event = new CustomEvent('checkboxChanged', {

@@ -107,8 +107,6 @@ export default class CesiumViewer {
             8.909041078781357,
             44.410209942448475,
             4000
-
-            // 44.410209942448475, 8.909041078781357
         )
 
         this.viewer.camera.flyTo({

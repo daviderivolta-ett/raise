@@ -73,7 +73,6 @@ export class CheckboxList extends HTMLElement {
             }
         });
 
-
         if (newValue != oldValue) {
             this.dispatchEvent(event);
         }
