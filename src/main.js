@@ -21,6 +21,7 @@ import './components/checkbox-list/checkbox-list.js';
 import './components/infobox/infobox.js';
 import './components/accordion/accordion.js';
 import './components/search/search.js';
+import './components/drawer-toggle/drawer-toggle.js';
 
 // Map initialization
 const viewer = new CesiumViewer();
@@ -38,6 +39,13 @@ const jsonData = await fetchJsonData(jsonFile);
 const accordionsSection = document.querySelector('#categories-section');
 populateDrawer(jsonData, accordionsSection);
 
+// Toggle behaviour
+const drawerToggle = document.querySelector('app-drawer-toggle');
+const drawer = document.querySelector('#drawer');
+drawerToggle.addEventListener('drawerToggled', (event) => {
+  drawer.classList.toggle('drawer-open');
+});
+
 // Infobox behaviour
 const infoBox = document.querySelector('app-infobox');
 
@@ -54,14 +62,14 @@ closeIcon.addEventListener('click', () => {
   infoBox.classList.remove('visible');
 });
 
-const drawer = document.querySelector('#drawer');
 drawer.addEventListener('click', () => {
   infoBox.classList.remove('visible');
 });
 
 // Checkbox list behaviour
+const activeLayers = [];
 const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-activateLayers(allCheckboxLists, viewer, url, parameters);
+activateLayers(allCheckboxLists, activeLayers, viewer, url, parameters);
 
 // Accordion behaviour
 const categoryAccordion = document.querySelectorAll('.category-accordion');
@@ -89,7 +97,7 @@ searchBar.addEventListener('searchValueChanged', (event) => {
   }
 
   const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-  activateLayers(allCheckboxLists, viewer, url, parameters);
+  activateLayers(allCheckboxLists, activeLayers, viewer, url, parameters);
 
   const categoryAccordion = document.querySelectorAll('.category-accordion');
   const layerAccordion = document.querySelectorAll('.layer-accordion');

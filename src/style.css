@@ -24,7 +24,7 @@ main {
 #drawer {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -350px;
   height: 100vh;
   width: 350px;
   padding: 24px;
@@ -37,7 +37,12 @@ main {
   margin: 8px 0;
 }
 
-Search bar
+#drawer.drawer-open {
+  left: 0px;
+  transition: .2s ease-in-out;
+}
+
+/* Search bar */
 #drawer #search {
   width: 100%;
   border: none;

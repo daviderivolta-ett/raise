@@ -1,7 +1,7 @@
-export const activateLayers = (allCheckboxLists, viewer, url, parameters) => {
+export const activateLayers = (allCheckboxLists, activeLayers, viewer, url, parameters) => {
 
     allCheckboxLists.forEach(checkboxList => {
-        const activeLayers = [];
+        
         checkboxList.addEventListener('checkboxListChanged', (event) => {
 
             const checkboxListLayersToRemove = event.detail.input;
@@ -19,7 +19,8 @@ export const activateLayers = (allCheckboxLists, viewer, url, parameters) => {
                 activeLayers.push(layer);
             });
 
-            // console.log(activeLayers);
+            console.log('Active layers:');
+            console.log(activeLayers);
 
             const toRemove = [...viewer.viewer.imageryLayers._layers].splice(1);
             toRemove.forEach(item => {
