@@ -32,7 +32,7 @@ export class DrawerToggle extends HTMLElement {
 
         // js
         this.a.addEventListener('click', () => {
-            console.log(isOpen);
+            // console.log(isOpen);
             isOpen = this.getAttribute('is-open') === 'true';
             this.a.classList.toggle('nav-open');
             this.setAttribute('is-open', !isOpen + '');

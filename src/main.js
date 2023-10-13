@@ -5,10 +5,11 @@ import * as Cesium from 'cesium';
 // Import methods
 import { populateDrawer } from './utils/drawerPopulation.js';
 import { handleFeatures } from './utils/handleInfobox.js';
-import { filter } from './utils/searchFilter.js';
+import { filterLayer } from './utils/filterLayer.js';
 import { fetchJsonData } from './settings.js';
 import { activateLayers } from './utils/fetchLayers.js';
 import { accordionBehaviour } from './utils/accordionbehaviour.js';
+import { filterTag } from "./utils/filterTag.js";
 
 // Import data
 import jsonFile from './json/categories.json';
@@ -21,6 +22,7 @@ import './components/infobox/infobox.js';
 import './components/accordion/accordion.js';
 import './components/search/search.js';
 import './components/drawer-toggle/drawer-toggle.js';
+import './components/autocomplete/autocomplete.js';
 
 // Map initialization
 const viewer = new CesiumViewer();
@@ -78,6 +80,7 @@ accordionBehaviour(categoryAccordion, layerAccordion);
 // Search bar
 const searchBar = document.querySelector('app-searchbar');
 const drawerTitle = document.querySelector('#drawer-title');
+const autocomplete = document.querySelector('app-autocomplete');
 
 searchBar.addEventListener('searchValueChanged', (event) => {
   accordionsSection.innerHTML = ``;
@@ -86,7 +89,7 @@ searchBar.addEventListener('searchValueChanged', (event) => {
 
   let dataToFilter = JSON.parse(JSON.stringify(jsonData));
 
-  filter(dataToFilter, valueToSearch);
+  filterLayer(dataToFilter, valueToSearch);
 
   if (valueToSearch == '') {
     populateDrawer(jsonData, accordionsSection);
@@ -107,4 +110,18 @@ searchBar.addEventListener('searchValueChanged', (event) => {
   const categoryAccordion = document.querySelectorAll('.category-accordion');
   const layerAccordion = document.querySelectorAll('.layer-accordion');
   accordionBehaviour(categoryAccordion, layerAccordion);
+
+  if (valueToSearch.length >= 2) {
+    const foundTags = filterTag(jsonData, valueToSearch);
+    autocomplete.setAttribute('data', JSON.stringify(foundTags));
+  } else {
+    autocomplete.setAttribute('data', JSON.stringify(''));
+  }
+});
+
+autocomplete.addEventListener('autocompleteSelected', (event) => {
+  const choosenAutocomplete = event.detail.newValue;
+  console.log(choosenAutocomplete);
+  console.log(searchBar);
+  searchBar.setAttribute('value', choosenAutocomplete);
 });

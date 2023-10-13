@@ -1,4 +1,4 @@
-export const filter = (dataToFilter, value) => {
+export const filterLayer = (dataToFilter, value) => {
 
     dataToFilter.categories.forEach(category => {
 

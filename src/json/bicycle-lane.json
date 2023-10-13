@@ -11,6 +11,9 @@
                 "parcheggio",
                 "sharing",
                 "bike sharing"
+            ],
+            "components": [
+                "component-name"
             ]
         },
         {
