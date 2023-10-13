@@ -1,5 +1,4 @@
 // Import modules
-import './style.css';
 import CesiumViewer from "./components/map/map.js";
 import * as Cesium from 'cesium';
 
@@ -94,6 +93,12 @@ searchBar.addEventListener('searchValueChanged', (event) => {
     drawerTitle.textContent = 'Categorie';
   } else {
     populateDrawer(dataToFilter, accordionsSection);
+
+    if (!accordionsSection.innerHTML) {
+      const emptyMsg = document.createElement('p');
+      emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
+      accordionsSection.append(emptyMsg);
+    }
   }
 
   const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
