@@ -5,16 +5,21 @@ export class Searchbar extends HTMLElement {
     }
 
     render() {
-
+        if (this.input) {
+            this.input.setAttribute('value', this.getAttribute('value'));
+            this.input.value = this.getAttribute('value');
+        }
     }
 
     connectedCallback() {
         // html
         this.shadow.innerHTML =
             `
-            <input type="search" name="search" id="search" placeholder="Cerca per livelli...">
+            <input type="search" name="search" id="search" placeholder="Cerca per livelli..." value="">
             `
         ;
+
+        this.input = this.shadow.querySelector('input');
 
         // css
         const style = document.createElement('link');
@@ -23,7 +28,6 @@ export class Searchbar extends HTMLElement {
         this.shadow.append(style);
 
         // js
-        this.input = this.shadow.querySelector('input');
         this.input.addEventListener('input', () => {
             this.setAttribute('value', this.input.value);
         });
@@ -37,6 +41,7 @@ export class Searchbar extends HTMLElement {
 
         if (newValue != oldValue) {
             this.dispatchEvent(event);
+            this.render();
         }
     }
 }
