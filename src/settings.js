@@ -1,9 +1,6 @@
-// Import modules
-import jsonData from './json/categories.json';
-
 // Fetch data
-export async function fetchJsonData() {
-    const categories = jsonData.categories;
+export async function fetchJsonData(jsonFile) {
+    const categories = jsonFile.categories;
 
     for (const category of categories) {
         const promises = [];
@@ -34,5 +31,5 @@ export async function fetchJsonData() {
         })
     }
 
-    return jsonData;
+    return jsonFile;
 };

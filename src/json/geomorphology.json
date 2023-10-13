@@ -4,7 +4,7 @@
         {
             "name": "Geomorfologia",
             "layer": "SITGEO:V_GEOMORFOLOGIA",
-            "tag": [
+            "tags": [
                 "natura",
                 "geologia",
                 "morfologia"
@@ -13,19 +13,21 @@
         {
             "name": "Geomorfologia LIN",
             "layer": "SITGEO:V_GEOMORFO_LIN",
-            "tag": [
-                "natura",
-                "geologia",
-                "morfologia"
+            "tags": [
+                "naturali",
+                "geologie",
+                "morfologia",
+                "test"
             ]
         },
         {
             "name": "Geomorfologia SOVRA",
             "layer": "SITGEO:V_GEOMORFO_SOVRA",
-            "tag": [
+            "tags": [
                 "natura",
                 "geologia",
-                "morfologia"
+                "morfologia",
+                "playstation"
             ]
         }
     ]

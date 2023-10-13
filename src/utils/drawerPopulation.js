@@ -1,13 +1,8 @@
-// Import configs
-import { fetchJsonData } from '../settings.js';
-const jsonData = await fetchJsonData();
-console.log(jsonData);
-
 // Generate drawer
-export const populateDrawer = () => {
+export const populateDrawer = (jsonData, accordionsSection) => {
     jsonData.categories.forEach(item => {
         const categoryAccordion = document.createElement('app-accordion');
-        drawer.append(categoryAccordion);
+        accordionsSection.append(categoryAccordion);
 
         categoryAccordion.setAttribute('title', item.name);
         categoryAccordion.classList.add('category-accordion');

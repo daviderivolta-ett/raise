@@ -2,8 +2,17 @@
 import './style.css';
 import CesiumViewer from "./components/map/map.js";
 import * as Cesium from 'cesium';
+
+// Import methods
 import { populateDrawer } from './utils/drawerPopulation.js';
 import { handleFeatures } from './utils/handleInfobox.js';
+import { filter } from './utils/searchFilter.js';
+import { fetchJsonData } from './settings.js';
+import { activateLayers } from './utils/fetchLayers.js';
+import { accordionBehaviour } from './utils/accordionbehaviour.js';
+
+// Import data
+import jsonFile from './json/categories.json';
 
 // Import web components
 import './components/map/map.js';
@@ -25,7 +34,9 @@ const parameters = {
 viewer.setCamera();
 
 // Accordions creation
-populateDrawer();
+const jsonData = await fetchJsonData(jsonFile);
+const accordionsSection = document.querySelector('#categories-section');
+populateDrawer(jsonData, accordionsSection);
 
 // Infobox behaviour
 const infoBox = document.querySelector('app-infobox');
@@ -50,70 +61,30 @@ drawer.addEventListener('click', () => {
 
 // Checkbox list behaviour
 const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-
-const activeLayers = [];
-
-allCheckboxLists.forEach(checkboxList => {
-  checkboxList.addEventListener('checkboxListChanged', (event) => {
-
-    const checkboxListLayersToRemove = event.detail.input;
-
-    checkboxListLayersToRemove.forEach(layer => {
-      const layerToRemoveIndex = activeLayers.findIndex(item => item.layer === layer.layer);
-
-      if (layerToRemoveIndex !== -1) {
-        activeLayers.splice(layerToRemoveIndex, 1);
-      }
-    });
-
-    const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
-    checkboxListLayersToAdd.forEach(layer => {
-      activeLayers.push(layer);
-    });
-
-    // console.log(activeLayers);
-
-    const toRemove = [...viewer.viewer.imageryLayers._layers].splice(1);
-    toRemove.forEach(item => {
-      viewer.removeLayer(item._imageryProvider._layers);
-    });
-
-    for (const layer of activeLayers) {
-      viewer.addLayer(url, layer.layer, parameters);
-    }
-
-  });
-});
+activateLayers(allCheckboxLists, viewer, url, parameters);
 
 // Accordion behaviour
 const categoryAccordion = document.querySelectorAll('.category-accordion');
 const layerAccordion = document.querySelectorAll('.layer-accordion');
-
-categoryAccordion.forEach(item => {
-  item.addEventListener('accordionChanged', (event) => {
-
-    categoryAccordion.forEach(item => {
-      if (item != event.target) {
-        item.setAttribute('is-active', 'false');
-      }
-    });
-
-    layerAccordion.forEach(item => {
-      item.setAttribute('is-active', 'false');
-    });
-  });
-});
-
-layerAccordion.forEach(item => {
-  item.addEventListener('accordionChanged', (event) => {
-
-    layerAccordion.forEach(item => {
-      if (item != event.target) {
-        item.setAttribute('is-active', 'false');
-      }
-    });
-
-  });
-});
+accordionBehaviour(categoryAccordion, layerAccordion);
 
 // Search bar
+const searchBar = document.querySelector('app-searchbar');
+
+searchBar.addEventListener('searchValueChanged', (event) => {
+  accordionsSection.innerHTML = ``;
+  const valueToSearch = event.detail.newValue;
+
+  let dataToFilter = JSON.parse(JSON.stringify(jsonData));
+
+  filter(dataToFilter, valueToSearch);
+
+  if (valueToSearch == '') {
+    populateDrawer(jsonData, accordionsSection);
+  } else {
+    populateDrawer(dataToFilter, accordionsSection);
+  }
+
+  const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
+  activateLayers(allCheckboxLists, viewer, url, parameters);
+});
