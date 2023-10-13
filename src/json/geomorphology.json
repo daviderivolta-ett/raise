@@ -14,10 +14,9 @@
             "name": "Geomorfologia LIN",
             "layer": "SITGEO:V_GEOMORFO_LIN",
             "tags": [
-                "naturali",
-                "geologie",
-                "morfologia",
-                "test"
+                "natura",
+                "geologia",
+                "morfologia"
             ]
         },
         {
@@ -26,8 +25,7 @@
             "tags": [
                 "natura",
                 "geologia",
-                "morfologia",
-                "playstation"
+                "morfologia"
             ]
         }
     ]

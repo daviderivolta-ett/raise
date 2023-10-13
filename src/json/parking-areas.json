@@ -3,11 +3,22 @@
     "layers": [
         {
             "name": "Blu area",
-            "layer": "SITGEO:V_MOB_BLUAREA"
+            "layer": "SITGEO:V_MOB_BLUAREA",
+            "tags": [
+                "parcheggi",
+                "aree",
+                "area",
+                "blu"
+            ]
         },
         {
-            "name": "ZTL e ambiente",
-            "layer": "SITGEO:V_MOB_ZTL_AMBIENTE"
+            "name": "Zona inquinamento",
+            "layer": "SITGEO:V_MOB_ZTL_AMBIENTE",
+            "tags": [
+                "inquinamento",
+                "zona",
+                "ambiente"
+            ]
         }
     ]
 }

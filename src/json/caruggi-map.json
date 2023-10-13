@@ -3,7 +3,13 @@
     "layers": [
         {
             "name": "Bagni pubblici",
-            "layer": "SITGEO:V_BAGNI"
+            "layer": "SITGEO:V_BAGNI",
+            "tags": [
+                "bagno",
+                "pubblico",
+                "informazione",
+                "sosta"
+            ]
         }
     ]
 }

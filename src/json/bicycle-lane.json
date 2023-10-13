@@ -3,11 +3,28 @@
     "layers": [
         {
             "name": "Parcheggi Bike Sharing",
-            "layer": "SITGEO:V_MOB_PARKS_BIKESHARING"
+            "layer": "SITGEO:V_MOB_PARKS_BIKESHARING",
+            "tags": [
+                "bicicletta",
+                "ciclabile",
+                "pista",
+                "parcheggio",
+                "sharing",
+                "bike sharing"
+            ]
         },
         {
             "name": "Piste ciclabili",
-            "layer": "SITGEO:V_MOB_PISTE_CICLABILI"
+            "layer": "SITGEO:V_MOB_PISTE_CICLABILI",
+            "tags": [
+                "bicicletta",
+                "ciclabile",
+                "percorso",
+                "pista",
+                "sentiero",
+                "sharing",
+                "bike sharing"
+            ]
         }
     ]
 }

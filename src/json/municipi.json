@@ -3,7 +3,11 @@
     "layers": [
         {
             "name": "Confini",
-            "layer": "SITGEO:V_MUNICIPI"
+            "layer": "SITGEO:V_MUNICIPI",
+            "tags": [
+                "confini",
+                "municipio"
+            ]
         }
     ]
 }

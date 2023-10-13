@@ -70,10 +70,12 @@ accordionBehaviour(categoryAccordion, layerAccordion);
 
 // Search bar
 const searchBar = document.querySelector('app-searchbar');
+const drawerTitle = document.querySelector('#drawer-title');
 
 searchBar.addEventListener('searchValueChanged', (event) => {
   accordionsSection.innerHTML = ``;
   const valueToSearch = event.detail.newValue;
+  drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
 
   let dataToFilter = JSON.parse(JSON.stringify(jsonData));
 
@@ -81,10 +83,15 @@ searchBar.addEventListener('searchValueChanged', (event) => {
 
   if (valueToSearch == '') {
     populateDrawer(jsonData, accordionsSection);
+    drawerTitle.textContent = 'Categorie';
   } else {
     populateDrawer(dataToFilter, accordionsSection);
   }
 
   const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
   activateLayers(allCheckboxLists, viewer, url, parameters);
+
+  const categoryAccordion = document.querySelectorAll('.category-accordion');
+  const layerAccordion = document.querySelectorAll('.layer-accordion');
+  accordionBehaviour(categoryAccordion, layerAccordion);
 });
