@@ -5,9 +5,11 @@ export class Autocomplete extends HTMLElement {
     }
 
     render() {
+        // Empty list
         this.tags = JSON.parse(this.getAttribute('data'));
         this.div.innerHTML = '';
 
+        // Create list
         if (this.tags) {
             for (let i = 0; i < this.tags.length; i++) {
                 this.span = document.createElement('span');
@@ -18,7 +20,7 @@ export class Autocomplete extends HTMLElement {
             }
         }
 
-
+        // List element behaviour on click
         this.spans = this.shadow.querySelectorAll('span');
         this.spans.forEach(span => {
 
@@ -28,6 +30,7 @@ export class Autocomplete extends HTMLElement {
 
         });
 
+        // List element behaviour on key press
         if (this.getAttribute('last-key-pressed') == 'ArrowDown' || this.getAttribute('last-key-pressed') == 'ArrowUp') {
 
             if (this.getAttribute('last-key-pressed') == 'ArrowDown') {
@@ -47,8 +50,6 @@ export class Autocomplete extends HTMLElement {
         } else {
             this.selectedSpan = 0;
         }
-
-
     }
 
     connectedCallback() {

@@ -42,10 +42,9 @@
 }
 
 .accordion-show {
-    max-height: 500px;
-    transition: max-height 0.1s linear, opacity 0.1s ease-in-out;
+    max-height: fit-content;
 }
 
 .last-accordion {
-    border: none !important;
+    border: none;
 }

@@ -119,6 +119,7 @@ searchBar.addEventListener('searchValueChanged', (event) => {
   }
 });
 
+// Autocomplete behaviour
 autocomplete.addEventListener('autocompleteSelected', (event) => {
   const choosenAutocomplete = event.detail.newValue;
   searchBar.setAttribute('value', choosenAutocomplete);
