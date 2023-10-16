@@ -123,3 +123,7 @@ autocomplete.addEventListener('autocompleteSelected', (event) => {
   const choosenAutocomplete = event.detail.newValue;
   searchBar.setAttribute('value', choosenAutocomplete);
 });
+
+document.addEventListener('keydown', (event) => {
+    autocomplete.setAttribute('last-key-pressed', event.key);
+});

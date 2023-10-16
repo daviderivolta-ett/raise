@@ -17,7 +17,7 @@ export class Searchbar extends HTMLElement {
             `
             <input type="search" name="search" id="search" placeholder="Cerca per livelli..." value="">
             `
-        ;
+            ;
 
         this.input = this.shadow.querySelector('input');
 

@@ -7,23 +7,48 @@ export class Autocomplete extends HTMLElement {
     render() {
         this.tags = JSON.parse(this.getAttribute('data'));
         this.div.innerHTML = '';
-        // this.setAttribute('selected', '');
 
-        for (const tag of this.tags) {
-            this.span = document.createElement('span');
-            this.span.textContent = tag;
-            this.span.setAttribute('name', tag);
-            this.div.append(this.span);
+        if (this.tags) {
+            for (let i = 0; i < this.tags.length; i++) {
+                this.span = document.createElement('span');
+                this.span.textContent = this.tags[i];
+                this.span.setAttribute('name', this.tags[i]);
+                this.span.setAttribute('tabindex', i + 1);
+                this.div.append(this.span);
+            }
         }
+
 
         this.spans = this.shadow.querySelectorAll('span');
         this.spans.forEach(span => {
 
-            span.addEventListener('click', (event) => {
+            span.addEventListener('click', () => {
                 this.setAttribute('selected', span.getAttribute('name'));
             });
 
         });
+
+        if (this.getAttribute('last-key-pressed') == 'ArrowDown' || this.getAttribute('last-key-pressed') == 'ArrowUp') {
+
+            if (this.getAttribute('last-key-pressed') == 'ArrowDown') {
+                this.selectedSpan++;
+                if (this.selectedSpan == this.spans.length + 1) {
+                    this.selectedSpan = 1;
+                }
+                this.shadow.querySelector(`span[tabindex="${this.selectedSpan}"]`).focus();
+            } else {
+                this.selectedSpan--;
+                if (this.selectedSpan == 0) {
+                    this.selectedSpan = this.spans.length;
+                }
+                this.shadow.querySelector(`span[tabindex="${this.selectedSpan}"]`).focus();
+            }
+
+        } else {
+            this.selectedSpan = 0;
+        }
+
+
     }
 
     connectedCallback() {
@@ -33,6 +58,8 @@ export class Autocomplete extends HTMLElement {
             <div></div>
             `
             ;
+
+        this.selectedSpan = 0;
 
         this.div = this.shadow.querySelector('div');
         this.setAttribute('selected', '');
@@ -44,7 +71,7 @@ export class Autocomplete extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['data', 'selected'];
+    static observedAttributes = ['data', 'selected', 'last-key-pressed'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (name == 'data' && newValue != oldValue) {
             this.render();
@@ -56,6 +83,15 @@ export class Autocomplete extends HTMLElement {
             });
 
             this.dispatchEvent(event);
+            this.div.innerHTML = '';
+        }
+
+        if (name == 'last-key-pressed' && newValue != 'Enter') {
+            this.render();
+        }
+
+        if (name == 'last-key-pressed' && newValue == 'Enter') {
+            this.setAttribute('selected', this.shadow.activeElement.getAttribute('name'));
             this.div.innerHTML = '';
         }
     }
