@@ -23,6 +23,7 @@ import './components/accordion/accordion.js';
 import './components/search/search.js';
 import './components/drawer-toggle/drawer-toggle.js';
 import './components/autocomplete/autocomplete.js';
+import './components/tool/tool.js';
 
 // Map initialization
 const viewer = new CesiumViewer();
@@ -91,15 +92,15 @@ drawerToggle.addEventListener('click', () => {
 });
 
 // Autoclose drawer after 10 seconds
-let timer;
-drawer.addEventListener('click', () => {
-  if (timer) {
-    clearTimeout(timer);
-  }
-  timer = setTimeout(() => {
-    drawerToggle.setAttribute('is-open', 'false');
-  }, 10000);
-});
+// let timer;
+// drawer.addEventListener('click', () => {
+//   if (timer) {
+//     clearTimeout(timer);
+//   }
+//   timer = setTimeout(() => {
+//     drawerToggle.setAttribute('is-open', 'false');
+//   }, 10000);
+// });
 
 // Checkbox list behaviour
 const activeLayers = [];

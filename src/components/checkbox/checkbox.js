@@ -17,10 +17,17 @@ export class Checkbox extends HTMLElement {
                 <input type="checkbox" id="checkbox">
                 <label for="checkbox">Label</label>
             </div>
+
+            <details>
+                <summary style="cursor: pointer">Opzioni</summary>
+                <app-tool tool="range"></app-tool>
+            </details>
             `
         ;
 
         this.checkbox = this.shadow.querySelector('input');
+
+        this.tool = this.shadow.querySelector('app-tool');
 
         if (this.hasAttribute('is-checked')) {
             this.setAttribute('is-checked', this.getAttribute('is-checked'))
@@ -44,6 +51,8 @@ export class Checkbox extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', 'src/components/checkbox/checkbox.css');
         this.shadow.append(style);
+
+        this.render();
     }
 
     static observedAttributes = ['is-checked'];
@@ -53,7 +62,8 @@ export class Checkbox extends HTMLElement {
             detail: { name, oldValue, newValue }
         });
 
-        if (newValue != oldValue) {
+        if (oldValue !== null && newValue !== null && newValue !== oldValue) {
+            this.tool.setAttribute('is-enable', newValue);
             this.dispatchEvent(event);
         }
     }

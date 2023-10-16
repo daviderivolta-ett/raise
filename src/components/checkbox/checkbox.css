@@ -15,7 +15,7 @@ div {
     margin: 0 0 8px 0;
 }
 
-input {
+input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
