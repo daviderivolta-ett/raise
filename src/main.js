@@ -40,25 +40,44 @@ const jsonData = await fetchJsonData(jsonFile);
 const accordionsSection = document.querySelector('#categories-section');
 populateDrawer(jsonData, accordionsSection);
 
-// Toggle behaviour
+// DOM nodes
 const drawerToggle = document.querySelector('app-drawer-toggle');
 const drawer = document.querySelector('#drawer');
+const infoBox = document.querySelector('app-infobox');
+
+const closeIcon = infoBox.shadowRoot.querySelector('#close-icon');
+
+const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
+
+const categoryAccordion = document.querySelectorAll('.category-accordion');
+const layerAccordion = document.querySelectorAll('.layer-accordion');
+
+const searchBar = document.querySelector('app-searchbar');
+const drawerTitle = document.querySelector('#drawer-title');
+const autocomplete = document.querySelector('app-autocomplete');
+
+// Toggle drawer behaviour
 drawerToggle.addEventListener('drawerToggled', (event) => {
-  drawer.classList.toggle('drawer-open');
+  // drawer.classList.toggle('drawer-open');
+  if (event.detail.newValue == 'true') {
+    drawer.classList.add('drawer-open');
+
+  } else {
+    drawer.classList.remove('drawer-open');
+  }
 });
 
 // Infobox behaviour
-const infoBox = document.querySelector('app-infobox');
-
 viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
   viewer.onClick(movement.position)
     .then(features => {
       console.log(features);
+      drawerToggle.setAttribute('is-open', 'false');
       handleFeatures(features, infoBox);
     })
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
-const closeIcon = infoBox.shadowRoot.querySelector('#close-icon');
+
 closeIcon.addEventListener('click', () => {
   infoBox.classList.remove('visible');
 });
@@ -67,21 +86,29 @@ drawer.addEventListener('click', () => {
   infoBox.classList.remove('visible');
 });
 
+drawerToggle.addEventListener('click', () => {
+  infoBox.classList.remove('visible');
+});
+
+// Autoclose drawer after 10 seconds
+let timer;
+drawer.addEventListener('click', () => {
+  if (timer) {
+    clearTimeout(timer);
+  }
+  timer = setTimeout(() => {
+    drawerToggle.setAttribute('is-open', 'false');
+  }, 10000);
+});
+
 // Checkbox list behaviour
 const activeLayers = [];
-const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
 activateLayers(allCheckboxLists, activeLayers, viewer, url, parameters);
 
 // Accordion behaviour
-const categoryAccordion = document.querySelectorAll('.category-accordion');
-const layerAccordion = document.querySelectorAll('.layer-accordion');
 accordionBehaviour(categoryAccordion, layerAccordion);
 
 // Search bar
-const searchBar = document.querySelector('app-searchbar');
-const drawerTitle = document.querySelector('#drawer-title');
-const autocomplete = document.querySelector('app-autocomplete');
-
 searchBar.addEventListener('searchValueChanged', (event) => {
   accordionsSection.innerHTML = ``;
   const valueToSearch = event.detail.newValue;
@@ -126,5 +153,5 @@ autocomplete.addEventListener('autocompleteSelected', (event) => {
 });
 
 document.addEventListener('keydown', (event) => {
-    autocomplete.setAttribute('last-key-pressed', event.key);
+  autocomplete.setAttribute('last-key-pressed', event.key);
 });

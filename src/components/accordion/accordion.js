@@ -22,11 +22,13 @@ export class Accordion extends HTMLElement {
                 this.accordionContent.classList.remove('accordion-show');
                 this.accordionIcon.classList.remove('accordion-icon-active');
             }
+
+            if (this.classList.contains('last-accordion')) {
+                this.accordionContent.classList.add('last-accordion');
+            }
         }
 
-        if (this.classList.contains('last-accordion')) {
-            this.accordionContent.classList.add('last-accordion');
-        }
+        
     }
 
     connectedCallback() {

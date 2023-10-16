@@ -32,16 +32,23 @@ export class DrawerToggle extends HTMLElement {
 
         // js
         this.a.addEventListener('click', () => {
-            // console.log(isOpen);
             isOpen = this.getAttribute('is-open') === 'true';
-            this.a.classList.toggle('nav-open');
             this.setAttribute('is-open', !isOpen + '');
         });
     }
 
     static observedAttributes = ['is-open'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue) {
+        if (name === 'is-open') {
+            if (this.a) {
+                if (newValue === 'true') {
+                    this.a.classList.add('nav-open');
+                    
+                } else {
+                    this.a.classList.remove('nav-open');
+                }
+            }
+
             const event = new CustomEvent('drawerToggled', {
                 detail: { name, oldValue, newValue }
             });

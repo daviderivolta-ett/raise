@@ -13,7 +13,7 @@
 }
 
 .menu-toggle:hover {
-    color: #000;
+    color: rgba(0, 0, 0, 0.87);
 }
 
 .menu-toggle-bar {
@@ -25,7 +25,7 @@
     width: 16px;
     height: 1px;
     border-radius: 4px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.87);
     transition: all 0.3s ease;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .nav-open.menu-toggle {
-    transform: translateX(350px);
+    transform: translateX(276px);
     transition: .2s ease-in-out;
 }
 

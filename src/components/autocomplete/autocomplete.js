@@ -29,27 +29,6 @@ export class Autocomplete extends HTMLElement {
             });
 
         });
-
-        // List element behaviour on key press
-        if (this.getAttribute('last-key-pressed') == 'ArrowDown' || this.getAttribute('last-key-pressed') == 'ArrowUp') {
-
-            if (this.getAttribute('last-key-pressed') == 'ArrowDown') {
-                this.selectedSpan++;
-                if (this.selectedSpan == this.spans.length + 1) {
-                    this.selectedSpan = 1;
-                }
-                this.shadow.querySelector(`span[tabindex="${this.selectedSpan}"]`).focus();
-            } else {
-                this.selectedSpan--;
-                if (this.selectedSpan == 0) {
-                    this.selectedSpan = this.spans.length;
-                }
-                this.shadow.querySelector(`span[tabindex="${this.selectedSpan}"]`).focus();
-            }
-
-        } else {
-            this.selectedSpan = 0;
-        }
     }
 
     connectedCallback() {
@@ -87,8 +66,30 @@ export class Autocomplete extends HTMLElement {
             this.div.innerHTML = '';
         }
 
-        if (name == 'last-key-pressed' && newValue != 'Enter') {
+        if (name == 'last-key-pressed' && newValue != 'Enter' && newValue != 'ArrowDown' && newValue != 'ArrowUp') {
+            this.selectedSpan = 0;
             this.render();
+        }
+
+        if (name == 'last-key-pressed' && newValue == 'ArrowUp' || newValue == 'ArrowDown') {
+
+            if (newValue == 'ArrowDown') {
+                this.selectedSpan++;
+                if (this.selectedSpan == this.spans.length + 1) {
+                    this.selectedSpan = 1;
+                }
+
+                this.shadow.querySelector(`span[tabindex="${this.selectedSpan}"]`).focus();
+            }
+
+            if (newValue == 'ArrowUp') {
+                this.selectedSpan++;
+                if (this.selectedSpan == this.spans.length + 1) {
+                    this.selectedSpan = 1;
+                }
+
+                this.shadow.querySelector(`span[tabindex="${this.selectedSpan}"]`).focus();
+            }
         }
 
         if (name == 'last-key-pressed' && newValue == 'Enter') {
