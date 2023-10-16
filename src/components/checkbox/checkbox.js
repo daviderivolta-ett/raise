@@ -46,6 +46,10 @@ export class Checkbox extends HTMLElement {
             this.setAttribute('is-checked', isChecked + '');
         });
 
+        this.tool.addEventListener('toolParChanged', (event) => {
+            this.setAttribute('tool-par', event.detail.newValue);
+        });
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
@@ -55,16 +59,20 @@ export class Checkbox extends HTMLElement {
         this.render();
     }
 
-    static observedAttributes = ['is-checked'];
+    static observedAttributes = ['is-checked', 'tool-par'];
     attributeChangedCallback(name, oldValue, newValue) {
 
-        const event = new CustomEvent('checkboxChanged', {
-            detail: { name, oldValue, newValue }
-        });
+        if (name == 'is-checked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
+            const event = new CustomEvent('checkboxChanged', {
+                detail: { name, oldValue, newValue }
+            });
 
-        if (oldValue !== null && newValue !== null && newValue !== oldValue) {
             this.tool.setAttribute('is-enable', newValue);
             this.dispatchEvent(event);
+        }
+
+        if (name == 'tool-par' && oldValue !== null && newValue !== null && newValue !== oldValue) {
+            console.log(this.getAttribute('tool-par'));
         }
     }
 }
