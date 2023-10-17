@@ -28,20 +28,19 @@ export class Tool extends HTMLElement {
             this.input.setAttribute('min', 0);
             this.input.setAttribute('max', 1);
             this.input.setAttribute('step', 0.1);
-            this.input.setAttribute('value', 1);
             this.input.value = 1;
 
             this.input.addEventListener('change', () => {
-                this.setAttribute('tool-par', this.input.value);
+                this.setAttribute('opacity', this.input.value);
             });
         }
     }
 
-    static observedAttributes = ['is-enable', 'tool-par'];
+    static observedAttributes = ['is-enable', 'opacity'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'tool-par' && newValue != oldValue) {
+        if (name == 'opacity' && newValue != oldValue) {
 
-            const event = new CustomEvent('toolParChanged', {
+            const event = new CustomEvent('opacityChanged', {
                 detail: { name, oldValue, newValue }
             });
 

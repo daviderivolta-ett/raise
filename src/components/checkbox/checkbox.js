@@ -26,7 +26,6 @@ export class Checkbox extends HTMLElement {
         ;
 
         this.checkbox = this.shadow.querySelector('input');
-
         this.tool = this.shadow.querySelector('app-tool');
 
         if (this.hasAttribute('is-checked')) {
@@ -46,8 +45,8 @@ export class Checkbox extends HTMLElement {
             this.setAttribute('is-checked', isChecked + '');
         });
 
-        this.tool.addEventListener('toolParChanged', (event) => {
-            this.setAttribute('tool-par', event.detail.newValue);
+        this.tool.addEventListener('opacityChanged', (event) => {
+            this.setAttribute('opacity', event.detail.newValue);
         });
 
         // css
@@ -59,7 +58,7 @@ export class Checkbox extends HTMLElement {
         this.render();
     }
 
-    static observedAttributes = ['is-checked', 'tool-par'];
+    static observedAttributes = ['is-checked', 'opacity'];
     attributeChangedCallback(name, oldValue, newValue) {
 
         if (name == 'is-checked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
@@ -71,8 +70,12 @@ export class Checkbox extends HTMLElement {
             this.dispatchEvent(event);
         }
 
-        if (name == 'tool-par' && oldValue !== null && newValue !== null && newValue !== oldValue) {
-            console.log(this.getAttribute('tool-par'));
+        if (name == 'opacity' && newValue !== oldValue) {
+            const event = new CustomEvent('opacityChanged', {
+                detail: { name, oldValue, newValue }
+            });
+
+            this.dispatchEvent(event);
         }
     }
 }

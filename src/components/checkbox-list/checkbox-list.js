@@ -30,11 +30,31 @@ export class CheckboxList extends HTMLElement {
                 this.itemData = JSON.parse(item.getAttribute('data'));
 
                 const isPresentIndex = this.data.findIndex(obj => {
-                    return JSON.stringify(obj) === JSON.stringify(this.itemData);
+                    return obj.layer === this.itemData.layer;
                 });
 
                 if (isPresentIndex !== -1) {
                     this.data.splice(isPresentIndex, 1);
+                } else {
+                    this.data.push(this.itemData);
+                }
+
+                this.setAttribute('data', JSON.stringify(this.data));
+            });
+        });
+
+        checkboxes.forEach(item => {
+            item.addEventListener('opacityChanged', (event) => {
+                this.itemData = JSON.parse(item.getAttribute('data'));
+                this.itemData.opacity = event.detail.newValue;
+
+                const isPresentIndex = this.data.findIndex(obj => {
+                    return obj.layer === this.itemData.layer;
+                });
+
+                if (isPresentIndex !== -1) {
+                    this.data.splice(isPresentIndex, 1);
+                    this.data.push(this.itemData);
                 } else {
                     this.data.push(this.itemData);
                 }
@@ -49,7 +69,7 @@ export class CheckboxList extends HTMLElement {
             `
             <div></div>
             `
-        ;
+            ;
 
         this.div = this.shadow.querySelector('div');
 
