@@ -18,10 +18,7 @@ export class Checkbox extends HTMLElement {
                 <label for="checkbox">Label</label>
             </div>
 
-            <details>
-                <summary style="cursor: pointer">Opzioni</summary>
-                <app-tool tool="range"></app-tool>
-            </details>
+            <app-tool tool="range"></app-tool>
             `
         ;
 

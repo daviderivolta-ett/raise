@@ -19,9 +19,6 @@ export const activateLayers = (allCheckboxLists, activeLayers, viewer, url, para
                 activeLayers.push(layer);
             });
 
-            console.log('Active layers:');
-            console.log(activeLayers);
-
             const toRemove = [...viewer.viewer.imageryLayers._layers].splice(1);
             toRemove.forEach(item => {
                 viewer.removeLayer(item._imageryProvider._layers);
@@ -34,6 +31,9 @@ export const activateLayers = (allCheckboxLists, activeLayers, viewer, url, para
 
                 viewer.addLayer(url, layer.layer, parameters);
             }
+
+            console.log('Active layers:');
+            console.log(activeLayers);
 
         });
     });
