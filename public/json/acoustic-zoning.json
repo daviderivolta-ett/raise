@@ -15,9 +15,17 @@
                     "property_name": "DATA_RILIEVO",
                     "display_name": "Data rilievo",
                     "type": "string"
-
+                },
+                {
+                    "property_name": "LIVELLO_DB",
+                    "display_name": "Livello decibel (dB)",
+                    "type": "number"
+                },
+                {
+                    "property_name": "TEMPO_MISURA",
+                    "display_name": "Durata misurazione",
+                    "type": "string"
                 }
-                
             ]
         },
         {
@@ -28,10 +36,17 @@
                 "fonometria",
                 "acustica",
                 "zona"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "DESCRIZIONE",
+                    "display_name": "Descrizione",
+                    "type": "string"
+                }
             ]
         },
         {
-            "name": "Auto",
+            "name": "Vicinanza autostrada",
             "layer": "SITGEO:V_ZA_FR_AUTO",
             "tags": [
                 "misura",
@@ -40,10 +55,11 @@
                 "zona",
                 "auto",
                 "strada"
-            ]
+            ],
+            "relevant_properties": []
         },
         {
-            "name": "Ferrovie",
+            "name": "Vicinanza ferrovia",
             "layer": "SITGEO:V_ZA_FR_FERR",
             "tags": [
                 "misura",
@@ -52,7 +68,8 @@
                 "zona",
                 "ferrovia",
                 "treno"
-            ]
+            ],
+            "relevant_properties": []
         }
     ]
 }

@@ -79,9 +79,8 @@ fetchJsonData(CATEGORIES_URL)
     viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
       viewer.onClick(movement.position)
         .then(features => {
-          console.log(features);
           drawerToggle.setAttribute('is-open', 'false');
-          handleFeatures(features, infoBox);
+          handleFeatures(features, infoBox, jsonData);
         })
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
