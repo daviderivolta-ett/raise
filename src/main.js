@@ -14,6 +14,9 @@ import { filterTag } from "./utils/filterTagByName.js";
 // Import data
 const CATEGORIES_URL = '../json/categories.json';
 
+// Import sw
+import '../service-worker.js';
+
 // Import web components
 import './components/map/map.js';
 import './components/checkbox/checkbox.js';
