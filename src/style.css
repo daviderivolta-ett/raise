@@ -20,6 +20,20 @@ main {
   height: 100%;
 }
 
+/* Logo */
+.logo-section {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  padding: 24px;
+  width: 350px;
+  background-color: #1E233A;
+}
+
+#logo {
+  max-width: 120px;
+}
+
 /* Drawer */
 #drawer {
   position: fixed;
