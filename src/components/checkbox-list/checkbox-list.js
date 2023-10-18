@@ -76,7 +76,7 @@ export class CheckboxList extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', '../../../css/checkbox-list.css');
+        style.setAttribute('href', '../../../map/css/checkbox-list.css');
         this.shadow.append(style);
 
         this.render();

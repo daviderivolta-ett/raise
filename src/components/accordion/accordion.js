@@ -56,7 +56,7 @@ export class Accordion extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', '../../../css/accordion.css');
+        style.setAttribute('href', '../../../map/css/accordion.css');
         this.shadow.append(style);
 
         //js

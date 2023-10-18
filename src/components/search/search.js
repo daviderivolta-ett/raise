@@ -24,7 +24,7 @@ export class Searchbar extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', '../../../css/search.css');
+        style.setAttribute('href', '../../../map/css/search.css');
         this.shadow.append(style);
 
         // js
