@@ -47,7 +47,7 @@ export class Autocomplete extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', 'src/components/autocomplete/autocomplete.css');
+        style.setAttribute('href', '../../../css/autocomplete.css');
         this.shadow.append(style);
     }
 

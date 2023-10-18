@@ -49,7 +49,7 @@ export class Checkbox extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', 'src/components/checkbox/checkbox.css');
+        style.setAttribute('href', '../../../css/checkbox.css');
         this.shadow.append(style);
 
         this.render();

@@ -27,7 +27,7 @@ export class DrawerToggle extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', 'src/components/drawer-toggle/drawer-toggle.css');
+        style.setAttribute('href', '../../../css/drawer-toggle.css');
         this.shadow.append(style);
 
         // js

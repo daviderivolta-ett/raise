@@ -1,0 +1,57 @@
+.menu-toggle {
+    cursor: pointer;
+    position: absolute;
+    background-color: white;
+    padding: 6px;
+    border-radius: 50%;
+    left: 24px;
+    top: 24px;
+    height: 24px;
+    width: 24px;
+    z-index: 99;
+    transition: .2s ease-in-out;
+}
+
+.menu-toggle:hover {
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.menu-toggle-bar {
+    display: block;
+    position: absolute;
+    top: 52%;
+    left: 28%;
+    margin-top: -1px;
+    width: 16px;
+    height: 1px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.87);
+    transition: all 0.3s ease;
+}
+
+.menu-toggle-bar--top {
+    transform: translate(0, -6px);
+}
+
+/* .menu-toggle-bar--middle {} */
+
+.menu-toggle-bar--bottom {
+    transform: translate(0, 6px);
+}
+
+.nav-open.menu-toggle {
+    transform: translateX(276px);
+    transition: .2s ease-in-out;
+}
+
+.nav-open .menu-toggle-bar--top {
+    transform: translate(0, 0) rotate(45deg);
+}
+
+.nav-open .menu-toggle-bar--middle {
+    opacity: 0;
+}
+
+.nav-open .menu-toggle-bar--bottom {
+    transform: translate(0, 0) rotate(-45deg);
+}
