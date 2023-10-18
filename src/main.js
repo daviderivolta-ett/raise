@@ -12,7 +12,7 @@ import { accordionBehaviour } from './utils/accordionBehaviour.js';
 import { filterTag } from "./utils/filterTagByName.js";
 
 // Import data
-import jsonFile from './json/categories.json';
+
 
 // Import web components
 import './components/map/map.js';
@@ -24,6 +24,8 @@ import './components/search/search.js';
 import './components/drawer-toggle/drawer-toggle.js';
 import './components/autocomplete/autocomplete.js';
 import './components/tool/tool.js';
+
+const CATEGORIES_URL = '../json/categories.json';
 
 // Map initialization
 const viewer = new CesiumViewer();
@@ -41,7 +43,7 @@ viewer.setCamera();
 // const accordionsSection = document.querySelector('#categories-section');
 // populateDrawer(jsonData, accordionsSection);
 
-fetchJsonData(jsonFile)
+fetchJsonData(CATEGORIES_URL)
   .then(jsonData => {
     const accordionsSection = document.querySelector('#categories-section');
     populateDrawer(jsonData, accordionsSection);

@@ -1,5 +1,8 @@
 // Fetch data
-export async function fetchJsonData(jsonFile) {
+export async function fetchJsonData(categoriesUrl) {
+    const jsonFile = await fetch(categoriesUrl)
+        .then(res => res.json())
+
     const categories = jsonFile.categories;
 
     for (const category of categories) {
@@ -25,7 +28,7 @@ export async function fetchJsonData(jsonFile) {
             })
 
         category.groups.splice(0, category.groups.length);
-        
+
         result.forEach(item => {
             category.groups.push(item);
         })

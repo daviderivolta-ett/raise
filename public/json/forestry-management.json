@@ -1,0 +1,24 @@
+{
+    "name": "Assestamento forestale",
+    "layers": [
+        {
+            "name": "Tipi forestale",
+            "layer": "SITGEO:V_VE_PAF_TIPI",
+            "tags": [
+                "natura",
+                "foresta",
+                "gestione"
+            ]
+        },
+        {
+            "name": "Interventi",
+            "layer": "SITGEO:V_VE_PAF_INT",
+            "tags": [
+                "natura",
+                "foresta",
+                "gestione",
+                "interventi"
+            ]
+        }
+    ]
+}

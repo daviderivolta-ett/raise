@@ -1,0 +1,87 @@
+{
+    "name": "Acquedotto di Genova",
+    "layers": [
+        {
+            "name": "Acquedotto storico",
+            "layer": "CULTURA:V_ACQ_STORICO",
+            "tags": [
+                "acquedotto",
+                "percorso",
+                "sentiero",
+                "cultura",
+                "storia"
+            ]
+        },
+        {
+            "name": "Manufatti storici",
+            "layer": "CULTURA:V_ACQ_MANU_STORICI",
+            "tags": [
+                "acquedotto",
+                "cultura",
+                "storia",
+                "manufatto"
+            ]
+        },
+        {
+            "name": "Area di sosta",
+            "layer": "CULTURA:V_ACQ_AREA_SOSTA",
+            "tags": [
+                "acquedotto",
+                "percorso",
+                "sentiero",
+                "cultura",
+                "sosta",
+                "ristoro"
+            ]
+        },
+        {
+            "name": "Punti di accesso",
+            "layer": "V_ACQ_PTI_ACCESSO",
+            "tags": [
+                "acquedotto",
+                "percorso",
+                "sentiero",
+                "cultura",
+                "accesso"
+            ]
+        },
+        {
+            "name": "Punti di interesse storico",
+            "layer": "CULTURA:V_ACQ_PTI_INT_STORICO",
+            "tags": [
+                "acquedotto",
+                "percorso",
+                "sentiero",
+                "cultura",
+                "sosta",
+                "interesse"
+            ]
+        },
+        {
+            "name": "Pannelli informativi",
+            "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI",
+            "tags": [
+                "acquedotto",
+                "percorso",
+                "sentiero",
+                "cultura",
+                "sosta",
+                "pannello",
+                "informazione"
+            ]
+        },
+        {
+            "name": "Fonti acqua potabile",
+            "layer": "SITGEO:V_ACQUA_POTABILE",
+            "tags": [
+                "acquedotto",
+                "percorso",
+                "sentiero",
+                "cultura",
+                "sosta",
+                "ristoro",
+                "acqua"
+            ]
+        }
+    ]
+}

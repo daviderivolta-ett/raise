@@ -1,0 +1,15 @@
+{
+    "name": "Mappa caruggi",
+    "layers": [
+        {
+            "name": "Bagni pubblici",
+            "layer": "SITGEO:V_BAGNI",
+            "tags": [
+                "bagno",
+                "pubblico",
+                "informazione",
+                "sosta"
+            ]
+        }
+    ]
+}

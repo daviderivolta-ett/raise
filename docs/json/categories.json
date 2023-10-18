@@ -1,0 +1,29 @@
+{
+    "categories": [
+        {
+            "name": "Natura",
+            "groups": [
+                "../json/geomorphology.json",
+                "../json/forestry-management.json"
+            ]
+        },
+        {
+            "name": "Città",
+            "groups": [
+                "../json/bicycle-lane.json",
+                "../json/parking-areas.json",
+                "../json/acoustic-zoning.json",
+                "../json/municipi.json",
+                "../json/agid-requirements.json",
+                "../json/caruggi-map.json"
+            ]
+        },
+        {
+            "name": "Cultura",
+            "groups": [
+                "../json/aqueduct.json",
+                "../json/staglieno-monuments.json"
+            ]
+        }
+    ]
+}

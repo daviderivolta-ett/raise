@@ -1,0 +1,32 @@
+{
+    "name": "Geomorfologia",
+    "layers": [
+        {
+            "name": "Geomorfologia",
+            "layer": "SITGEO:V_GEOMORFOLOGIA",
+            "tags": [
+                "natura",
+                "geologia",
+                "morfologia"
+            ]
+        },
+        {
+            "name": "Geomorfologia LIN",
+            "layer": "SITGEO:V_GEOMORFO_LIN",
+            "tags": [
+                "natura",
+                "geologia",
+                "morfologia"
+            ]
+        },
+        {
+            "name": "Geomorfologia SOVRA",
+            "layer": "SITGEO:V_GEOMORFO_SOVRA",
+            "tags": [
+                "natura",
+                "geologia",
+                "morfologia"
+            ]
+        }
+    ]
+}
