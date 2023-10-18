@@ -37,122 +37,128 @@ const parameters = {
 viewer.setCamera();
 
 // Accordions creation
-const jsonData = await fetchJsonData(jsonFile);
-const accordionsSection = document.querySelector('#categories-section');
-populateDrawer(jsonData, accordionsSection);
+// const jsonData = await fetchJsonData(jsonFile);
+// const accordionsSection = document.querySelector('#categories-section');
+// populateDrawer(jsonData, accordionsSection);
 
-
-// DOM nodes
-const drawerToggle = document.querySelector('app-drawer-toggle');
-const drawer = document.querySelector('#drawer');
-const infoBox = document.querySelector('app-infobox');
-
-const closeIcon = infoBox.shadowRoot.querySelector('#close-icon');
-
-const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-
-const categoryAccordion = document.querySelectorAll('.category-accordion');
-const layerAccordion = document.querySelectorAll('.layer-accordion');
-
-const searchBar = document.querySelector('app-searchbar');
-const drawerTitle = document.querySelector('#drawer-title');
-const autocomplete = document.querySelector('app-autocomplete');
-
-// Toggle drawer behaviour
-drawerToggle.addEventListener('drawerToggled', (event) => {
-  if (event.detail.newValue == 'true') {
-    drawer.classList.add('drawer-open');
-
-  } else {
-    drawer.classList.remove('drawer-open');
-  }
-});
-
-// Infobox behaviour
-viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
-  viewer.onClick(movement.position)
-    .then(features => {
-      console.log(features);
-      drawerToggle.setAttribute('is-open', 'false');
-      handleFeatures(features, infoBox);
-    })
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-
-closeIcon.addEventListener('click', () => {
-  infoBox.classList.remove('visible');
-});
-
-drawer.addEventListener('click', () => {
-  infoBox.classList.remove('visible');
-});
-
-drawerToggle.addEventListener('click', () => {
-  infoBox.classList.remove('visible');
-});
-
-// Autoclose drawer after 10 seconds
-// let timer;
-// drawer.addEventListener('click', () => {
-//   if (timer) {
-//     clearTimeout(timer);
-//   }
-//   timer = setTimeout(() => {
-//     drawerToggle.setAttribute('is-open', 'false');
-//   }, 10000);
-// });
-
-// Checkbox list behaviour
-const activeLayers = [];
-activateLayers(allCheckboxLists, activeLayers, viewer, url, parameters);
-
-// Accordion behaviour
-accordionBehaviour(categoryAccordion, layerAccordion);
-
-// Search bar
-searchBar.addEventListener('searchValueChanged', (event) => {
-  accordionsSection.innerHTML = ``;
-  const valueToSearch = event.detail.newValue;
-  drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
-
-  let dataToFilter = JSON.parse(JSON.stringify(jsonData));
-
-  filterLayer(dataToFilter, valueToSearch);
-
-  if (valueToSearch == '') {
+fetchJsonData(jsonFile)
+  .then(jsonData => {
+    const accordionsSection = document.querySelector('#categories-section');
     populateDrawer(jsonData, accordionsSection);
-    drawerTitle.textContent = 'Categorie';
-  } else {
-    populateDrawer(dataToFilter, accordionsSection);
 
-    if (!accordionsSection.innerHTML) {
-      const emptyMsg = document.createElement('p');
-      emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
-      accordionsSection.append(emptyMsg);
-    }
-  }
+    // DOM nodes
+    const drawerToggle = document.querySelector('app-drawer-toggle');
+    const drawer = document.querySelector('#drawer');
+    const infoBox = document.querySelector('app-infobox');
 
-  const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-  activateLayers(allCheckboxLists, activeLayers, viewer, url, parameters);
+    const closeIcon = infoBox.shadowRoot.querySelector('#close-icon');
 
-  const categoryAccordion = document.querySelectorAll('.category-accordion');
-  const layerAccordion = document.querySelectorAll('.layer-accordion');
-  accordionBehaviour(categoryAccordion, layerAccordion);
+    const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
 
-  if (valueToSearch.length >= 2) {
-    const foundTags = filterTag(jsonData, valueToSearch);
-    autocomplete.setAttribute('data', JSON.stringify(foundTags));
-  } else {
-    autocomplete.setAttribute('data', JSON.stringify(''));
-  }
-});
+    const categoryAccordion = document.querySelectorAll('.category-accordion');
+    const layerAccordion = document.querySelectorAll('.layer-accordion');
 
-// Autocomplete behaviour
-autocomplete.addEventListener('autocompleteSelected', (event) => {
-  const choosenAutocomplete = event.detail.newValue;
-  searchBar.setAttribute('value', choosenAutocomplete);
-});
+    const searchBar = document.querySelector('app-searchbar');
+    const drawerTitle = document.querySelector('#drawer-title');
+    const autocomplete = document.querySelector('app-autocomplete');
 
-document.addEventListener('keydown', (event) => {
-  autocomplete.setAttribute('last-key-pressed', event.key);
-});
+    // Toggle drawer behaviour
+    drawerToggle.addEventListener('drawerToggled', (event) => {
+      if (event.detail.newValue == 'true') {
+        drawer.classList.add('drawer-open');
+
+      } else {
+        drawer.classList.remove('drawer-open');
+      }
+    });
+
+    // Infobox behaviour
+    viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
+      viewer.onClick(movement.position)
+        .then(features => {
+          console.log(features);
+          drawerToggle.setAttribute('is-open', 'false');
+          handleFeatures(features, infoBox);
+        })
+    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+
+    closeIcon.addEventListener('click', () => {
+      infoBox.classList.remove('visible');
+    });
+
+    drawer.addEventListener('click', () => {
+      infoBox.classList.remove('visible');
+    });
+
+    drawerToggle.addEventListener('click', () => {
+      infoBox.classList.remove('visible');
+    });
+
+    // Autoclose drawer after 10 seconds
+    // let timer;
+    // drawer.addEventListener('click', () => {
+    //   if (timer) {
+    //     clearTimeout(timer);
+    //   }
+    //   timer = setTimeout(() => {
+    //     drawerToggle.setAttribute('is-open', 'false');
+    //   }, 10000);
+    // });
+
+    // Checkbox list behaviour
+    const activeLayers = [];
+    activateLayers(allCheckboxLists, activeLayers, viewer, url, parameters);
+
+    // Accordion behaviour
+    accordionBehaviour(categoryAccordion, layerAccordion);
+
+    // Search bar
+    searchBar.addEventListener('searchValueChanged', (event) => {
+      accordionsSection.innerHTML = ``;
+      const valueToSearch = event.detail.newValue;
+      drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
+
+      let dataToFilter = JSON.parse(JSON.stringify(jsonData));
+
+      filterLayer(dataToFilter, valueToSearch);
+
+      if (valueToSearch == '') {
+        populateDrawer(jsonData, accordionsSection);
+        drawerTitle.textContent = 'Categorie';
+      } else {
+        populateDrawer(dataToFilter, accordionsSection);
+
+        if (!accordionsSection.innerHTML) {
+          const emptyMsg = document.createElement('p');
+          emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
+          accordionsSection.append(emptyMsg);
+        }
+      }
+
+      const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
+      activateLayers(allCheckboxLists, activeLayers, viewer, url, parameters);
+
+      const categoryAccordion = document.querySelectorAll('.category-accordion');
+      const layerAccordion = document.querySelectorAll('.layer-accordion');
+      accordionBehaviour(categoryAccordion, layerAccordion);
+
+      if (valueToSearch.length >= 2) {
+        const foundTags = filterTag(jsonData, valueToSearch);
+        autocomplete.setAttribute('data', JSON.stringify(foundTags));
+      } else {
+        autocomplete.setAttribute('data', JSON.stringify(''));
+      }
+    });
+
+    // Autocomplete behaviour
+    autocomplete.addEventListener('autocompleteSelected', (event) => {
+      const choosenAutocomplete = event.detail.newValue;
+      searchBar.setAttribute('value', choosenAutocomplete);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      autocomplete.setAttribute('last-key-pressed', event.key);
+    });
+  });
+

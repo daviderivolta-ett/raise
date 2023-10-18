@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/cesium/Widgets/widgets.css">
+  <script src="/cesium/Cesium.js"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoPortale Genova</title>
+
+  
+  <script type="module" crossorigin src="/assets/index-fd97c1db.js"></script>
+  <link rel="stylesheet" href="/assets/index-a884ff3b.css">
+</head>
+
+<body>
+
+  <main>
+    <app-drawer-toggle></app-drawer-toggle>
+    <app-map></app-map>
+
+    <div id="drawer">
+      <div>
+        <app-searchbar></app-searchbar>
+      </div>
+      <div>
+        <app-autocomplete></app-autocomplete>
+      </div>
+
+      <h3 id="drawer-title">Categorie</h3>
+      <div id="categories-section"></div>
+    </div>
+
+    <app-infobox></app-infobox>
+  </main>
+
+  
+</body>
+
+</html>
