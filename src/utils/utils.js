@@ -28,7 +28,4 @@ const fetchLayers = () => {
         });
 }
 
-// viewer.removeAllLayers();
-// viewer.viewer.imageryLayers.addImageryProvider(CesiumViewer.getImageryProvider());
-
 export { fetchLayers }

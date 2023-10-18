@@ -5,11 +5,11 @@ import * as Cesium from 'cesium';
 // Import methods
 import { populateDrawer } from './utils/drawerPopulation.js';
 import { handleFeatures } from './utils/handleInfobox.js';
-import { filterLayer } from './utils/filterLayer.js';
+import { filterLayer } from './utils/filterLayersByTag.js';
 import { fetchJsonData } from './settings.js';
-import { activateLayers } from './utils/fetchLayers.js';
-import { accordionBehaviour } from './utils/accordionbehaviour.js';
-import { filterTag } from "./utils/filterTag.js";
+import { activateLayers } from './utils/activateLayers.js';
+import { accordionBehaviour } from './utils/accordionBehaviour.js';
+import { filterTag } from "./utils/filterTagByName.js";
 
 // Import data
 import jsonFile from './json/categories.json';
@@ -59,7 +59,6 @@ const autocomplete = document.querySelector('app-autocomplete');
 
 // Toggle drawer behaviour
 drawerToggle.addEventListener('drawerToggled', (event) => {
-  // drawer.classList.toggle('drawer-open');
   if (event.detail.newValue == 'true') {
     drawer.classList.add('drawer-open');
 
