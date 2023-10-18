@@ -4,5 +4,6 @@ export default defineConfig({
   plugins: [cesium()],
   build: {
     outDir: 'docs'
-  }
+  },
+  base: '/map/'
 });
