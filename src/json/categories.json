@@ -3,7 +3,8 @@
         {
             "name": "Natura",
             "groups": [
-                "./src/json/geomorphology.json"
+                "./src/json/geomorphology.json",
+                "./src/json/forestry-management.json"
             ]
         },
         {
@@ -20,7 +21,8 @@
         {
             "name": "Cultura",
             "groups": [
-                "./src/json/aqueduct.json"
+                "./src/json/aqueduct.json",
+                "./src/json/staglieno-monuments.json"
             ]
         }
     ]

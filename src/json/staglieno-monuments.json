@@ -1,0 +1,15 @@
+{
+    "name": "Monumenti cimitero Staglieno",
+    "layers": [
+        {
+            "name": "Monumenti",
+            "layer": "CULTURA:V_STAG_SCULTURE",
+            "tags": [
+                "monumenti",
+                "arte",
+                "cimitero",
+                "staglieno"
+            ]
+        }
+    ]
+}
