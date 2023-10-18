@@ -16,9 +16,7 @@ export const populateDrawer = (jsonData, accordionsSection) => {
             categoryAccordion.append(layerAccordion);
 
             layerAccordion.setAttribute('title', item.name);
-            layerAccordion.classList.add('layer-accordion');
-
-            
+            layerAccordion.classList.add('layer-accordion');            
 
             const checkboxList = document.createElement('app-checkbox-list');
             checkboxList.setAttribute('input', JSON.stringify(item.layers));

@@ -37,9 +37,18 @@ const parameters = {
 viewer.setCamera();
 
 // Accordions creation
-const jsonData = await fetchJsonData(jsonFile);
-const accordionsSection = document.querySelector('#categories-section');
-populateDrawer(jsonData, accordionsSection);
+async function fetchDataAndProcess() {
+  const data = await fetchJsonData(jsonFile);
+  return data;
+}
+
+async function main() {
+  const jsonData = await fetchDataAndProcess();
+  const accordionsSection = document.querySelector('#categories-section');
+  populateDrawer(jsonData, accordionsSection);
+}
+
+main();
 
 // DOM nodes
 const drawerToggle = document.querySelector('app-drawer-toggle');
