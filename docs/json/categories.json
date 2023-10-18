@@ -3,26 +3,26 @@
         {
             "name": "Natura",
             "groups": [
-                "../json/geomorphology.json",
-                "../json/forestry-management.json"
+                "../map/json/geomorphology.json",
+                "../map/json/forestry-management.json"
             ]
         },
         {
             "name": "Città",
             "groups": [
-                "../json/bicycle-lane.json",
-                "../json/parking-areas.json",
-                "../json/acoustic-zoning.json",
-                "../json/municipi.json",
-                "../json/agid-requirements.json",
-                "../json/caruggi-map.json"
+                "../map/json/bicycle-lane.json",
+                "../map/json/parking-areas.json",
+                "../map/json/acoustic-zoning.json",
+                "../map/json/municipi.json",
+                "../map/json/agid-requirements.json",
+                "../map/json/caruggi-map.json"
             ]
         },
         {
             "name": "Cultura",
             "groups": [
-                "../json/aqueduct.json",
-                "../json/staglieno-monuments.json"
+                "../map/json/aqueduct.json",
+                "../map/json/staglieno-monuments.json"
             ]
         }
     ]
