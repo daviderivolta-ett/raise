@@ -9,6 +9,15 @@
                 "fonometria",
                 "acustica",
                 "zona"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "DATA_RILIEVO",
+                    "display_name": "Data rilievo",
+                    "type": "string"
+
+                }
+                
             ]
         },
         {
