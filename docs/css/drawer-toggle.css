@@ -1,10 +1,10 @@
 .menu-toggle {
     cursor: pointer;
-    position: absolute;
+    position: fixed;
     background-color: white;
     padding: 6px;
     border-radius: 50%;
-    left: 24px;
+    left: 300px;
     top: 24px;
     height: 24px;
     width: 24px;
@@ -40,7 +40,7 @@
 }
 
 .nav-open.menu-toggle {
-    transform: translateX(276px);
+    /* transform: translateX(276px); */
     transition: .2s ease-in-out;
 }
 

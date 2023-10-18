@@ -27,18 +27,19 @@ main {
   left: 0px;
   padding: 24px;
   width: 350px;
+  z-index: 98;
   background-color: #1E233A;
 }
 
 #logo {
-  max-width: 120px;
+  max-width: 100px;
 }
 
 /* Drawer */
 #drawer {
   position: fixed;
-  top: 0;
-  left: -350px;
+  top: -100vh;
+  left: 0;
   height: 100vh;
   width: 350px;
   padding: 72px 24px 24px 24px;
@@ -58,7 +59,7 @@ main {
 }
 
 #drawer.drawer-open {
-  left: 0px;
+  top: 0px;
   transition: .2s ease-in-out;
 }
 
