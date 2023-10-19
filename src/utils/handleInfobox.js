@@ -1,27 +1,25 @@
 export const handleFeatures = (features, infoBox, jsonData) => {
 
-    console.log(features);
-    console.log(jsonData);
-    // console.log(features.data.id);
-
-    const layerToFind = features.data.id.split('.')[0];
-
-    filterLayerByName(jsonData, layerToFind);
-
-
     if (features != null) {
-        infoBox.setAttribute('data', JSON.stringify(features.properties));
+
+        let layerToFind = '';
+
+        if (features.data.id.includes('.')) {
+            layerToFind = features.data.id.split('.')[0];
+        }
+
+        const foundLayer = filterLayerByName(jsonData, layerToFind);
+        const relevantProperties = foundLayer.relevant_properties;
+
+        const properties = getRelevantProperties(features.properties, relevantProperties);
+
+        infoBox.setAttribute('data', JSON.stringify(properties));
         infoBox.classList.add('visible');
+
     } else {
         infoBox.classList.remove('visible');
     }
 }
-
-
-
-
-
-
 
 function filterLayerByName(obj, layerToFind) {
     for (const key in obj) {
@@ -30,14 +28,30 @@ function filterLayerByName(obj, layerToFind) {
         if (Array.isArray(currentValue) || typeof currentValue === 'object') {
             const result = filterLayerByName(currentValue, layerToFind);
             if (result) {
-                console.log(result);
                 return result;
             }
-            
+
         } else if (typeof currentValue === 'string' && currentValue.includes(layerToFind)) {
             return obj;
         }
     }
 
     return null;
+}
+
+function getRelevantProperties(object, array) {
+    const risultati = {};
+
+    if (array) {
+        for (const obj of array) {
+            if (obj.property_name && object[obj.property_name]) {
+                risultati[obj.display_name] = object[obj.property_name];
+            }
+        }
+
+        return risultati;
+    }
+
+    return risultati;
+
 }

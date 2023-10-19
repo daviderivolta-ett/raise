@@ -79,8 +79,8 @@ fetchJsonData(CATEGORIES_URL)
     viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
       viewer.onClick(movement.position)
         .then(features => {
-          drawerToggle.setAttribute('is-open', 'false');
           handleFeatures(features, infoBox, jsonData);
+          drawerToggle.setAttribute('is-open', 'false');
         })
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
@@ -118,7 +118,7 @@ fetchJsonData(CATEGORIES_URL)
     // Search bar
     searchBar.addEventListener('searchValueChanged', (event) => {
       accordionsSection.innerHTML = ``;
-      const valueToSearch = event.detail.newValue;
+      const valueToSearch = event.detail.newValue.toLowerCase();
       drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
 
       let dataToFilter = JSON.parse(JSON.stringify(jsonData));
@@ -163,4 +163,3 @@ fetchJsonData(CATEGORIES_URL)
       autocomplete.setAttribute('last-key-pressed', event.key);
     });
   });
-

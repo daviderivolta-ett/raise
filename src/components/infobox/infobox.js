@@ -16,7 +16,9 @@ export class Infobox extends HTMLElement {
             const value = this.data[key];
             this.text = document.createElement('p');
             this.text.innerHTML =
-                `${key}: ${value}`;
+                `
+                <span class="info-key">${key}:</span> <span class="info-value">${value}</span>
+                `;
             this.div.append(this.text);
         });
     }
