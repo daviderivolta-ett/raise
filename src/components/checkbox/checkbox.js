@@ -28,8 +28,7 @@ export class Checkbox extends HTMLElement {
             `
         ;
 
-        this.checkbox = this.shadow.querySelector('input');
-        
+        this.checkbox = this.shadow.querySelector('input');        
 
         if (this.hasAttribute('is-checked')) {
             this.setAttribute('is-checked', this.getAttribute('is-checked'))
@@ -61,8 +60,7 @@ export class Checkbox extends HTMLElement {
             this.tool.addEventListener('opacityChanged', (event) => {
                 this.setAttribute('opacity', event.detail.newValue);
             });
-        }
-        
+        }        
 
         // css
         const style = document.createElement('link');

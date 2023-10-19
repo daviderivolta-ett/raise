@@ -5,6 +5,7 @@
             "name": "Acquedotto storico",
             "layer": "CULTURA:V_ACQ_STORICO",
             "tags": [
+                "cultura",
                 "acquedotto",
                 "percorso",
                 "sentiero",
@@ -22,12 +23,16 @@
                     "display_name": "Tracciato",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
             ]
         },
         {
             "name": "Manufatti storici",
             "layer": "CULTURA:V_ACQ_MANU_STORICI",
             "tags": [
+                "cultura",
                 "acquedotto",
                 "cultura",
                 "storia",
@@ -54,12 +59,16 @@
                     "display_name": "N. progressivo",
                     "type": "number"
                 }
+            ],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
             ]
         },
         {
             "name": "Area di sosta",
             "layer": "CULTURA:V_ACQ_AREA_SOSTA",
             "tags": [
+                "cultura",
                 "acquedotto",
                 "percorso",
                 "sentiero",
@@ -67,12 +76,16 @@
                 "sosta",
                 "ristoro"
             ],
-            "relevant_properties": []
+            "relevant_properties": [],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
+            ]
         },
         {
             "name": "Punti di accesso",
             "layer": "V_ACQ_PTI_ACCESSO",
             "tags": [
+                "cultura",
                 "acquedotto",
                 "percorso",
                 "sentiero",
@@ -90,12 +103,16 @@
                     "display_name": "Altezza civico",
                     "type": "number"
                 }
+            ],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
             ]
         },
         {
             "name": "Punti di interesse storico",
             "layer": "CULTURA:V_ACQ_PTI_INT_STORICO",
             "tags": [
+                "cultura",
                 "acquedotto",
                 "percorso",
                 "sentiero",
@@ -114,12 +131,16 @@
                     "display_name": "Descrizione",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
             ]
         },
         {
             "name": "Pannelli informativi",
             "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI",
             "tags": [
+                "cultura",
                 "acquedotto",
                 "percorso",
                 "sentiero",
@@ -128,12 +149,16 @@
                 "pannello",
                 "informazione"
             ],
-            "relevant_properties": []
+            "relevant_properties": [],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
+            ]
         },
         {
             "name": "Fonti acqua potabile",
             "layer": "SITGEO:V_ACQUA_POTABILE",
             "tags": [
+                "cultura",
                 "acquedotto",
                 "percorso",
                 "sentiero",
@@ -142,7 +167,10 @@
                 "ristoro",
                 "acqua"
             ],
-            "relevant_properties": []
+            "relevant_properties": [],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
+            ]
         }
     ]
 }

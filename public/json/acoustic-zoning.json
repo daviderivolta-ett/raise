@@ -5,6 +5,7 @@
             "name": "Misure fonometriche",
             "layer": "SITGEO:V_ZA_MISURE_FONOM",
             "tags": [
+                "città",
                 "misura",
                 "fonometria",
                 "acustica",
@@ -26,12 +27,16 @@
                     "display_name": "Durata misurazione",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
             ]
         },
         {
             "name": "Zone acustiche",
             "layer": "SITGEO:V_ZA_ZONEACUSTICHE",
             "tags": [
+                "città",
                 "misura",
                 "fonometria",
                 "acustica",
@@ -43,12 +48,16 @@
                     "display_name": "Descrizione",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
             ]
         },
         {
             "name": "Vicinanza autostrada",
             "layer": "SITGEO:V_ZA_FR_AUTO",
             "tags": [
+                "città",
                 "misura",
                 "fonometria",
                 "acustica",
@@ -56,12 +65,16 @@
                 "auto",
                 "strada"
             ],
-            "relevant_properties": []
+            "relevant_properties": [],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
+            ]
         },
         {
             "name": "Vicinanza ferrovia",
             "layer": "SITGEO:V_ZA_FR_FERR",
             "tags": [
+                "città",
                 "misura",
                 "fonometria",
                 "acustica",
@@ -69,7 +82,10 @@
                 "ferrovia",
                 "treno"
             ],
-            "relevant_properties": []
+            "relevant_properties": [],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
+            ]
         }
     ]
 }

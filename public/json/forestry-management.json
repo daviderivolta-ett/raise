@@ -20,6 +20,9 @@
                     "display_name": "Descrizione tipologia",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
             ]
         },
         {
@@ -47,6 +50,9 @@
                     "display_name": "Dimensione (ha)",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "<app-opacity-slider></app-opacity-slider>"
             ]
         }
     ]

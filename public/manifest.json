@@ -1,23 +1,23 @@
 {
-"name": "GeoPortale Genova",
-"short_name": "GeoPortale",
+"name": "RAISE Liguria",
+"short_name": "RAISE",
 "start_url": "https://sp1lu.github.io/map/",
 "display": "standalone",
-"description": "A description for your application",
-"lang": " The default language of your application",
+"description": "Mappa che mostra dati forniti dal geoserver della città di Genova",
+"lang": "it",
 "dir": "auto",
-"theme_color": "#000000",
-"background_color": "#000000",
+"theme_color": "#1e233a",
+"background_color": "#1e233a",
 "orientation": "any",
 "icons": [
     {
-        "src": "https://www.pwabuilder.com/assets/icons/icon_512.png",
+        "src": "./images/RAISE_pictogram_512x512.png",
         "sizes": "512x512",
         "type": "image/png",
         "purpose": "maskable"
     },
     {
-        "src": "https://www.pwabuilder.com/assets/icons/icon_192.png",
+        "src": "./images/RAISE_pictogram_192x192.png",
         "sizes": "192x192",
         "type": "image/png",
         "purpose": "any"
