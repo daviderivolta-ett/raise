@@ -54,6 +54,28 @@ input:checked {
     border-radius: 4px;
 }
 
-app-tool {
+details {
+    padding: 0 0 0 26px;
+    margin: 0 0 16px 0;
+}
+
+summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+summary::-webkit-details-marker {
     display: none;
+}
+
+svg {
+    transition: all .1s ease-in-out;
+}
+
+details[open] > summary svg {
+    transform: rotate(180deg);
+    transform-origin: center 8px;
+    transition: all .1s ease-in-out;
 }

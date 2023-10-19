@@ -20,6 +20,16 @@ main {
   height: 100%;
 }
 
+/* Pop up */
+#htmlOverlay {
+  background-color: white;
+  height: fit-content;
+  width: fit-content;
+  overflow: hidden;
+  padding: 8px;
+  border-radius: 8px;
+}
+
 /* Logo */
 .logo-section {
   position: fixed;
@@ -104,6 +114,7 @@ app-infobox {
 
 /* Media queries */
 @media screen and (max-width: 576px) {
+
   .logo-section,
   #drawer {
     width: 100%;

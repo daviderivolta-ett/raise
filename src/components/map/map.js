@@ -55,6 +55,7 @@ export default class CesiumViewer {
 
                 if (features.length > 0) {
                     return features[0];
+
                 } else {
                     console.log(null);
                     return null;

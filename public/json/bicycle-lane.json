@@ -19,9 +19,7 @@
                     "type": "string" 
                 }
             ],
-            "components": [
-                "component-name"
-            ]
+            "components": ["<app-opacity-slider></app-opacity-slider>"]
         },
         {
             "name": "Piste ciclabili",
@@ -51,7 +49,8 @@
                     "display_name": "Condizione",
                     "type": "string" 
                 }
-            ]
+            ],
+            "components": ["<app-opacity-slider></app-opacity-slider>"]
         }
     ]
 }
