@@ -5,7 +5,7 @@
     padding: 6px;
     border-radius: 50%;
     left: 300px;
-    top: 24px;
+    top: 21px;
     height: 24px;
     width: 24px;
     z-index: 99;
@@ -54,4 +54,12 @@
 
 .nav-open .menu-toggle-bar--bottom {
     transform: translate(0, 0) rotate(-45deg);
+}
+
+@media screen and (max-width: 576px) {
+    .menu-toggle {
+        left: auto;
+        right: 24px;
+        transition: .2s ease-in-out;
+    }
 }

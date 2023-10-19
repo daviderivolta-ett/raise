@@ -12,6 +12,13 @@
                 "sharing",
                 "bike sharing"
             ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME",
+                    "display_name": "Nome",
+                    "type": "string" 
+                }
+            ],
             "components": [
                 "component-name"
             ]
@@ -27,6 +34,23 @@
                 "sentiero",
                 "sharing",
                 "bike sharing"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME_TRATTA",
+                    "display_name": "Tratta",
+                    "type": "string" 
+                },
+                {
+                    "property_name": "TIPO",
+                    "display_name": "Tipologia",
+                    "type": "string" 
+                },
+                {
+                    "property_name": "STATO",
+                    "display_name": "Condizione",
+                    "type": "string" 
+                }
             ]
         }
     ]

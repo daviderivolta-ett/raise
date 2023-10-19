@@ -9,6 +9,33 @@
                 "pubblico",
                 "informazione",
                 "sosta"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "DATI",
+                    "display_name": "Posizione",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NOTE",
+                    "display_name": "Tipologia",
+                    "type": "number"
+                },
+                {
+                    "property_name": "ACCESSIBILE",
+                    "display_name": "Accessibile",
+                    "type": "string"
+                },
+                {
+                    "property_name": "AUTOPUL",
+                    "display_name": "Autopulente",
+                    "type": "string"
+                },
+                {
+                    "property_name": "OPERATIVO",
+                    "display_name": "Operatività",
+                    "type": "string"
+                }
             ]
         }
     ]

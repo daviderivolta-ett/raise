@@ -53,3 +53,7 @@ input:checked {
     border: 2px solid #007bff;
     border-radius: 4px;
 }
+
+app-tool {
+    display: none;
+}

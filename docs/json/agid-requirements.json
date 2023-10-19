@@ -12,7 +12,8 @@
                 "fiumi",
                 "torrenti",
                 "acqua"
-            ]
+            ],
+            "relevant_properties": []
         },
         {
             "name": "Prossimità autostrada",
@@ -24,7 +25,8 @@
                 "vicinanza",
                 "strada",
                 "autostrada"
-            ]
+            ],
+            "relevant_properties": []
         }
     ]
 }

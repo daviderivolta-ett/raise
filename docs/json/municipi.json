@@ -7,6 +7,18 @@
             "tags": [
                 "confini",
                 "municipio"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME_MUNICIPIO",
+                    "display_name": "Nome",
+                    "type": "string"
+                },
+                {
+                    "property_name": "CODICE_MUNICIPIO",
+                    "display_name": "Codice",
+                    "type": "string"
+                }
             ]
         }
     ]
