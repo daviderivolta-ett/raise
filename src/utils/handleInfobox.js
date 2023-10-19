@@ -8,13 +8,19 @@ export const handleFeatures = (features, infoBox, jsonData) => {
             layerToFind = features.data.id.split('.')[0];
         }
 
+        // console.log(features);
+
         const foundLayer = filterLayerByName(jsonData, layerToFind);
         const relevantProperties = foundLayer.relevant_properties;
 
         const properties = getRelevantProperties(features.properties, relevantProperties);
 
         infoBox.setAttribute('data', JSON.stringify(properties));
-        infoBox.classList.add('visible');
+
+
+        if (Object.keys(properties).length !== 0) {
+            infoBox.classList.add('visible');
+        }        
 
     } else {
         infoBox.classList.remove('visible');

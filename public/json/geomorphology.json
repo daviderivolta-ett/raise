@@ -8,6 +8,13 @@
                 "natura",
                 "geologia",
                 "morfologia"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "DESCRIZIONE",
+                    "display_name": "Descrizione",
+                    "type": "string"
+                }
             ]
         },
         {
@@ -17,6 +24,13 @@
                 "natura",
                 "geologia",
                 "morfologia"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "TIPO",
+                    "display_name": "Tipo",
+                    "type": "string"
+                }
             ]
         },
         {
@@ -26,6 +40,13 @@
                 "natura",
                 "geologia",
                 "morfologia"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "TIPO",
+                    "display_name": "Tipo",
+                    "type": "string"
+                }
             ]
         }
     ]

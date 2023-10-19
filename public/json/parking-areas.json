@@ -9,6 +9,18 @@
                 "aree",
                 "area",
                 "blu"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "DENOMINAZIONE",
+                    "display_name": "Nome area",
+                    "type": "string"
+                },
+                {
+                    "property_name": "CODICE_ZONA",
+                    "display_name": "Codice area",
+                    "type": "string"
+                }
             ]
         },
         {
@@ -18,6 +30,23 @@
                 "inquinamento",
                 "zona",
                 "ambiente"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "ZONA",
+                    "display_name": "Zona",
+                    "type": "string"
+                },
+                {
+                    "property_name": "DESCRIZIONE",
+                    "display_name": "Descrizione",
+                    "type": "string"
+                },
+                {
+                    "property_name": "TIPOLOGIA",
+                    "display_name": "Tipologia",
+                    "type": "string"
+                }
             ]
         }
     ]

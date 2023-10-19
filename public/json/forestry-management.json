@@ -8,6 +8,18 @@
                 "natura",
                 "foresta",
                 "gestione"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "DESCR_CAT",
+                    "display_name": "Descrizione categoria",
+                    "type": "string"
+                },
+                {
+                    "property_name": "DESCR_TIPO",
+                    "display_name": "Descrizione tipologia",
+                    "type": "string"
+                }
             ]
         },
         {
@@ -18,6 +30,23 @@
                 "foresta",
                 "gestione",
                 "interventi"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "INTERVENTI",
+                    "display_name": "Tipologia",
+                    "type": "string"
+                },
+                {
+                    "property_name": "LOCALIZZAZIONE",
+                    "display_name": "Località",
+                    "type": "string"
+                },
+                {
+                    "property_name": "HA_AREA",
+                    "display_name": "Dimensione (ha)",
+                    "type": "string"
+                }
             ]
         }
     ]

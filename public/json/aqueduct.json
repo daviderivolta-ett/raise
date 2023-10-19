@@ -10,6 +10,18 @@
                 "sentiero",
                 "cultura",
                 "storia"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "TIPO",
+                    "display_name": "Manufatto",
+                    "type": "string"
+                },
+                {
+                    "property_name": "TRACCIATO",
+                    "display_name": "Tracciato",
+                    "type": "string"
+                }
             ]
         },
         {
@@ -20,6 +32,28 @@
                 "cultura",
                 "storia",
                 "manufatto"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "DESCR1",
+                    "display_name": "Tipologia",
+                    "type": "string"
+                },
+                {
+                    "property_name": "DESCR3",
+                    "display_name": "Descrizione",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NOME",
+                    "display_name": "Nome",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NUMERAZIONE",
+                    "display_name": "N. progressivo",
+                    "type": "number"
+                }
             ]
         },
         {
@@ -32,7 +66,8 @@
                 "cultura",
                 "sosta",
                 "ristoro"
-            ]
+            ],
+            "relevant_properties": []
         },
         {
             "name": "Punti di accesso",
@@ -43,6 +78,18 @@
                 "sentiero",
                 "cultura",
                 "accesso"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME",
+                    "display_name": "Indirizzo",
+                    "type": "string"
+                },
+                {
+                    "property_name": "ETICHETTA",
+                    "display_name": "Altezza civico",
+                    "type": "number"
+                }
             ]
         },
         {
@@ -55,6 +102,18 @@
                 "cultura",
                 "sosta",
                 "interesse"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME",
+                    "display_name": "Nome",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NOTE",
+                    "display_name": "Descrizione",
+                    "type": "string"
+                }
             ]
         },
         {
@@ -68,7 +127,8 @@
                 "sosta",
                 "pannello",
                 "informazione"
-            ]
+            ],
+            "relevant_properties": []
         },
         {
             "name": "Fonti acqua potabile",
@@ -81,7 +141,8 @@
                 "sosta",
                 "ristoro",
                 "acqua"
-            ]
+            ],
+            "relevant_properties": []
         }
     ]
 }

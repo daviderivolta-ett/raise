@@ -9,6 +9,48 @@
                 "arte",
                 "cimitero",
                 "staglieno"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME",
+                    "display_name": "Nome",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NUMERO_MAPPA",
+                    "display_name": "Numero mappa",
+                    "type": "number"
+                },
+                {
+                    "property_name": "NUMERO_TOMBA",
+                    "display_name": "Numero tomba",
+                    "type": "string"
+                },
+                {
+                    "property_name": "PERCORSO",
+                    "display_name": "Percorso",
+                    "type": "string"
+                },
+                {
+                    "property_name": "POSIZIONE",
+                    "display_name": "Posizione",
+                    "type": "string"
+                },
+                {
+                    "property_name": "SCULTORE",
+                    "display_name": "Scultore",
+                    "type": "string"
+                },
+                {
+                    "property_name": "SETTORE",
+                    "display_name": "Settore",
+                    "type": "string"
+                },
+                {
+                    "property_name": "DESC_SETTORE",
+                    "display_name": "Descrizione settore",
+                    "type": "string"
+                }
             ]
         }
     ]
