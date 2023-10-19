@@ -98,15 +98,15 @@ fetchJsonData(CATEGORIES_URL)
     });
 
     // Autoclose drawer after 10 seconds
-    // let timer;
-    // drawer.addEventListener('click', () => {
-    //   if (timer) {
-    //     clearTimeout(timer);
-    //   }
-    //   timer = setTimeout(() => {
-    //     drawerToggle.setAttribute('is-open', 'false');
-    //   }, 10000);
-    // });
+    let timer;
+    drawer.addEventListener('click', () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        drawerToggle.setAttribute('is-open', 'false');
+      }, 10000);
+    });
 
     // Checkbox list behaviour
     const activeLayers = [];
@@ -162,97 +162,4 @@ fetchJsonData(CATEGORIES_URL)
     document.addEventListener('keydown', (event) => {
       autocomplete.setAttribute('last-key-pressed', event.key);
     });
-
-
-
-
-
-
-
-
-
-
-
-    const htmlOverlay = document.getElementById("htmlOverlay");
-    const scratch = new Cesium.Cartesian2();
-
-
-    viewer.viewer.screenSpaceEventHandler.setInputAction(
-      function (click) {
-        const position = viewer.viewer.scene.pickPosition(click.position);
-        console.log(position);
-
-        const canvasPosition = viewer.viewer.scene.cartesianToCanvasCoordinates(
-          position,
-          scratch
-        );
-
-        if (Cesium.defined(canvasPosition)) {
-          htmlOverlay.style.top = `${canvasPosition.y}px`;
-          htmlOverlay.style.left = `${canvasPosition.x}px`;
-        }
-      }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-
-    viewer.viewer.scene.preRender.addEventListener(function () {
-      const position = Cesium.Cartesian3.fromDegrees(-75.59777, 40.03883, 100);
-      const canvasPosition = viewer.viewer.scene.cartesianToCanvasCoordinates(
-        position,
-        scratch
-      );
-
-      if (Cesium.defined(canvasPosition)) {
-        htmlOverlay.style.top = `${canvasPosition.y}px`;
-        htmlOverlay.style.left = `${canvasPosition.x}px`;
-      }
-
-    });
-
-
-    // const htmlOverlay = document.getElementById("htmlOverlay");
-    // const scratch = new Cesium.Cartesian2();
-
-    // let currentCartesian = null;
-
-    // viewer.viewer.screenSpaceEventHandler.setInputAction(function (click) {
-    //   const cartesian = viewer.viewer.scene.pickPosition(click.position);
-
-    //   if (Cesium.defined(cartesian)) {
-    //     const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-    //     const longitude = Cesium.Math.toDegrees(cartographic.longitude).toFixed(5);
-    //     const latitude = Cesium.Math.toDegrees(cartographic.latitude).toFixed(5);
-
-    //     htmlOverlay.innerHTML = `<h1>Coordinate del Clic</h1><p>Longitudine: ${longitude}, Latitudine: ${latitude}</p>`;
-
-    //     const canvasPosition = viewer.viewer.scene.cartesianToCanvasCoordinates(
-    //       cartesian,
-    //       scratch
-    //     );
-
-    //     if (Cesium.defined(canvasPosition)) {
-    //       htmlOverlay.style.top = `${canvasPosition.y}px`;
-    //       htmlOverlay.style.left = `${canvasPosition.x}px`;
-    //       htmlOverlay.style.display = "block";
-    //       currentCartesian = cartesian;
-    //     }
-    //   }
-    // }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-    // // Imposta un gestore di eventi per la vista della mappa per riposizionare l'htmlOverlay
-    // viewer.viewer.scene.preRender.addEventListener(function () {
-    //   if (Cesium.defined(currentCartesian)) {
-    //     const canvasPosition = viewer.viewer.scene.cartesianToCanvasCoordinates(
-    //       currentCartesian,
-    //       scratch
-    //     );
-
-    //     if (Cesium.defined(canvasPosition)) {
-    //       htmlOverlay.style.top = `${canvasPosition.y}px`;
-    //       htmlOverlay.style.left = `${canvasPosition.x}px`;
-    //     }
-    //   }
-    // });
-
-
-
   });

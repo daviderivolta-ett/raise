@@ -8,8 +8,6 @@ export const handleFeatures = (features, infoBox, jsonData) => {
             layerToFind = features.data.id.split('.')[0];
         }
 
-        console.log(features);
-
         const foundLayer = filterLayerByName(jsonData, layerToFind);
         const foundLayerName = foundLayer.name;
         const relevantProperties = foundLayer.relevant_properties;
