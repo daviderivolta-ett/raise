@@ -8,12 +8,13 @@ export const handleFeatures = (features, infoBox, jsonData) => {
             layerToFind = features.data.id.split('.')[0];
         }
 
-        // console.log(features);
+        console.log(features);
 
         const foundLayer = filterLayerByName(jsonData, layerToFind);
+        const foundLayerName = foundLayer.name;
         const relevantProperties = foundLayer.relevant_properties;
 
-        const properties = getRelevantProperties(features.properties, relevantProperties);
+        const properties = getRelevantProperties(features.properties, relevantProperties, foundLayerName);
 
         infoBox.setAttribute('data', JSON.stringify(properties));
 
@@ -45,7 +46,7 @@ function filterLayerByName(obj, layerToFind) {
     return null;
 }
 
-function getRelevantProperties(object, array) {
+function getRelevantProperties(object, array, title) {
     const risultati = {};
 
     if (array) {
@@ -54,6 +55,8 @@ function getRelevantProperties(object, array) {
                 risultati[obj.display_name] = object[obj.property_name];
             }
         }
+
+        // risultati["title"] = title;
 
         return risultati;
     }
