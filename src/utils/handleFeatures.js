@@ -13,6 +13,7 @@ export const handleFeatures = (features, jsonData) => {
         const relevantProperties = foundLayer.relevant_properties;
 
         const properties = getRelevantProperties(features.properties, relevantProperties, foundLayerName);
+        console.log(properties);
 
         return properties;
     }

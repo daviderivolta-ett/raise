@@ -74,8 +74,12 @@ fetchJsonData(CATEGORIES_URL)
       viewer.onClick(movement.position)
         .then(features => {
           const infoContent = handleFeatures(features, jsonData);
+
           let allInfoBoxes = document.querySelectorAll('app-infobox');
-          createInfobox(allInfoBoxes, infoContent, main);
+
+          if (Object.keys(infoContent).length !== 0) {            
+            createInfobox(allInfoBoxes, infoContent, main);
+          }
 
           allInfoBoxes = document.querySelectorAll('app-infobox');
           handleInfoBox(allInfoBoxes, allInfoBoxesPosition);
