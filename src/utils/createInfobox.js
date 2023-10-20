@@ -1,5 +1,6 @@
-export const createInfobox = (allElements, info, div) => {
-    let elementsCounter = 0;
+let elementsCounter = 0;
+
+export function createInfobox(allElements, info, div) {
     let isElementPresent = false;
 
     allElements.forEach(element => {

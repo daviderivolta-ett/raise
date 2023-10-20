@@ -11,6 +11,7 @@ import { activateLayers } from './utils/activateLayers.js';
 import { accordionBehaviour } from './utils/accordionBehaviour.js';
 import { filterTag } from './utils/filterTagByName.js';
 import { createInfobox } from './utils/createInfobox.js';
+import { handleInfoBox } from './utils/handleInfobox.js';
 
 // Import data
 const CATEGORIES_URL = '../json/categories.json';
@@ -66,35 +67,40 @@ fetchJsonData(CATEGORIES_URL)
       }
     });
 
-    // Infoboxes creation   
+    // Infoboxes creation & handling
+    let allInfoBoxesPosition = [];
+
     viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
       viewer.onClick(movement.position)
         .then(features => {
           const infoContent = handleFeatures(features, jsonData);
-          const allInfoBoxes = document.querySelectorAll('app-infobox');
+          let allInfoBoxes = document.querySelectorAll('app-infobox');
           createInfobox(allInfoBoxes, infoContent, main);
+
+          allInfoBoxes = document.querySelectorAll('app-infobox');
+          handleInfoBox(allInfoBoxes, allInfoBoxesPosition);
+
+          allInfoBoxes.forEach(infoBox => {
+            infoBox.addEventListener('infoboxRemoved', (event) => {
+              allInfoBoxesPosition = allInfoBoxesPosition.filter(infoBoxPosition => event.detail.uuid !== infoBoxPosition.uuid);
+              console.log(allInfoBoxesPosition);
+            });
+          });
 
           drawerToggle.setAttribute('is-open', 'false');
         })
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
-    const infoBoxes = document.querySelectorAll('app-infobox');
-    infoBoxes.forEach(infoBox => {
-      infoBox.addEventListener('positionChanged', (event) => {
-        console.log(event.detail.newValue);
-      })
-    });
-
     // Autoclose drawer after 10 seconds
-    let timer;
-    drawer.addEventListener('click', () => {
-      if (timer) {
-        clearTimeout(timer);
-      }
-      timer = setTimeout(() => {
-        drawerToggle.setAttribute('is-open', 'false');
-      }, 10000);
-    });
+    // let timer;
+    // drawer.addEventListener('click', () => {
+    //   if (timer) {
+    //     clearTimeout(timer);
+    //   }
+    //   timer = setTimeout(() => {
+    //     drawerToggle.setAttribute('is-open', 'false');
+    //   }, 10000);
+    // });
 
     // Checkbox list behaviour
     const activeLayers = [];

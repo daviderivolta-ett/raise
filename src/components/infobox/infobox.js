@@ -53,14 +53,19 @@ export class Infobox extends HTMLElement {
         // js
         // close icon
         this.closeIcon = this.shadow.querySelector('#close-icon');
-        this.closeIcon.addEventListener('click', () => {
+        this.closeIcon.addEventListener('click', () => { 
+
+            const event = new CustomEvent('infoboxRemoved', {
+                detail: { uuid: this.getAttribute('uuid') }
+            });
+
+            this.dispatchEvent(event);
             this.remove();
         });
 
         // draggable
         this.div = this.shadow.querySelector('.infobox');
         this.dragHandler = this.shadow.querySelector('.drag-handler');
-        this.positions = [];
 
         const makeDraggable = (element) => {
             let isDragging = false;
@@ -82,24 +87,6 @@ export class Infobox extends HTMLElement {
             document.addEventListener('mouseup', () => {
                 isDragging = false;
                 this.setAttribute('position', JSON.stringify(element.getBoundingClientRect()));
-
-                ////////
-                // this.position = element.getBoundingClientRect();
-                // this.elementPosition = {
-                //     uuid: this.getAttribute('uuid'),
-                //     position: this.position
-                // }
-
-                // const existingIndex = this.positions.findIndex(item => item.uuid === this.elementPosition.uuid);
-                // if (existingIndex === -1) {
-                //     this.positions.push(this.elementPosition);
-                // } else {
-                //     this.positions[existingIndex].position = this.position;
-                // }
-
-
-                // console.log(element.getBoundingClientRect());
-                // console.log(this.positions);
             });
         }
 
