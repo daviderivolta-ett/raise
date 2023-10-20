@@ -5,6 +5,7 @@
             "name": "Blu area",
             "layer": "SITGEO:V_MOB_BLUAREA",
             "tags": [
+                "città",
                 "parcheggi",
                 "aree",
                 "area",
@@ -21,12 +22,16 @@
                     "display_name": "Codice area",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "app-opacity-slider"
             ]
         },
         {
             "name": "Zona inquinamento",
             "layer": "SITGEO:V_MOB_ZTL_AMBIENTE",
             "tags": [
+                "città",
                 "inquinamento",
                 "zona",
                 "ambiente"
@@ -47,6 +52,9 @@
                     "display_name": "Tipologia",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "app-opacity-slider"
             ]
         }
     ]

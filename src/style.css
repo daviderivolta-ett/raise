@@ -21,16 +21,6 @@ main {
   height: 100%;
 }
 
-/* Pop up */
-#htmlOverlay {
-  background-color: white;
-  height: fit-content;
-  width: fit-content;
-  overflow: hidden;
-  padding: 8px;
-  border-radius: 8px;
-}
-
 /* Logo */
 .logo-section {
   position: fixed;
@@ -72,24 +62,6 @@ main {
 #drawer.drawer-open {
   top: 0px;
   transition: .2s ease-in-out;
-}
-
-/* Search bar */
-#drawer #search {
-  width: 100%;
-  border: none;
-  background-color: transparent;
-  border-bottom: 1px solid #DEDEDE;
-  padding: 16px 8px;
-  font-family: 'Roboto', sans-serif;
-  font-size: .9rem;
-  margin: 0 0 16px 0;
-}
-
-#drawer #search:active,
-#drawer #search:focus {
-  outline: none;
-  background-color: #f1f1f1;
 }
 
 /* Media queries */

@@ -18,7 +18,7 @@ export default class CesiumViewer {
             sceneModePicker: false,
             fullscreenButton: false,
             // infoBox: false
-            // terrain: Cesium.Terrain.fromWorldTerrain()
+            terrain: Cesium.Terrain.fromWorldTerrain()
         });
 
         // this.viewer.imageryLayers.addImageryProvider(CesiumViewer.getImageryProvider());

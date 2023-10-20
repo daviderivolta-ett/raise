@@ -5,6 +5,7 @@
             "name": "Monumenti",
             "layer": "CULTURA:V_STAG_SCULTURE",
             "tags": [
+                "cultura",
                 "monumenti",
                 "arte",
                 "cimitero",
@@ -51,6 +52,9 @@
                     "display_name": "Descrizione settore",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "app-opacity-slider"
             ]
         }
     ]

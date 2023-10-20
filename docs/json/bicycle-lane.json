@@ -5,6 +5,7 @@
             "name": "Parcheggi Bike Sharing",
             "layer": "SITGEO:V_MOB_PARKS_BIKESHARING",
             "tags": [
+                "città",
                 "bicicletta",
                 "ciclabile",
                 "pista",
@@ -20,13 +21,14 @@
                 }
             ],
             "components": [
-                "component-name"
+                "app-opacity-slider"
             ]
         },
         {
             "name": "Piste ciclabili",
             "layer": "SITGEO:V_MOB_PISTE_CICLABILI",
             "tags": [
+                "città",
                 "bicicletta",
                 "ciclabile",
                 "percorso",
@@ -51,6 +53,9 @@
                     "display_name": "Condizione",
                     "type": "string" 
                 }
+            ],
+            "components": [
+                "app-opacity-slider"
             ]
         }
     ]

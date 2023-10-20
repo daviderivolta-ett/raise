@@ -59,6 +59,7 @@ fetchJsonData(CATEGORIES_URL)
     const drawerToggle = document.querySelector('app-drawer-toggle');
     const drawer = document.querySelector('#drawer');
     const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
+    const accordionsSection = document.querySelector('#categories-section');
     const categoryAccordion = document.querySelectorAll('.category-accordion');
     const layerAccordion = document.querySelectorAll('.layer-accordion');
     const searchBar = document.querySelector('app-searchbar');
@@ -76,19 +77,33 @@ fetchJsonData(CATEGORIES_URL)
     });
 
     // Infoboxes creation
+    let infoBoxCounter = 0;
+
     viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
       viewer.onClick(movement.position)
         .then(features => {
           const infoContent = handleFeatures(features, jsonData);
 
-          if (infoContent) {
+          const infoBoxes = document.querySelectorAll('app-infobox');
+          let isInfoBoxPresent = false;
+
+          infoBoxes.forEach(infoBox => {
+            if (infoBox.getAttribute('data') === JSON.stringify(infoContent)) {
+              isInfoBoxPresent = true;
+            }
+          });
+
+          if (!isInfoBoxPresent && infoContent) {
             const infoBox = document.createElement('app-infobox');
+
             infoBox.setAttribute('data', JSON.stringify(infoContent));
+            infoBoxCounter++;
+            infoBox.setAttribute('uuid', infoBoxCounter);
+
             main.append(infoBox);
 
             drawerToggle.setAttribute('is-open', 'false');
           }
-
         })
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 

@@ -27,8 +27,8 @@ export class Infobox extends HTMLElement {
                 <div class="info-content"></div>
             </div>
             `
-        ;
-        
+            ;
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
@@ -57,14 +57,16 @@ export class Infobox extends HTMLElement {
             this.remove();
         });
 
-        // drag
+        // draggable
         this.div = this.shadow.querySelector('.infobox');
+        this.dragHandler = this.shadow.querySelector('.drag-handler');
+        this.positions = [];
 
-        function makeDraggable(element) {
+        const makeDraggable = (element) => {
             let isDragging = false;
             let offsetX, offsetY;
 
-            element.addEventListener('mousedown', (e) => {
+            this.dragHandler.addEventListener('mousedown', (e) => {
                 isDragging = true;
                 offsetX = e.clientX - element.getBoundingClientRect().left;
                 offsetY = e.clientY - element.getBoundingClientRect().top;
@@ -79,6 +81,24 @@ export class Infobox extends HTMLElement {
 
             document.addEventListener('mouseup', () => {
                 isDragging = false;
+
+                ////////
+                // this.position = element.getBoundingClientRect();
+                // this.elementPosition = {
+                //     uuid: this.getAttribute('uuid'),
+                //     position: this.position
+                // }
+
+                // const existingIndex = this.positions.findIndex(item => item.uuid === this.elementPosition.uuid);
+                // if (existingIndex === -1) {
+                //     this.positions.push(this.elementPosition);
+                // } else {
+                //     this.positions[existingIndex].position = this.position;
+                // }
+
+
+                // console.log(element.getBoundingClientRect());
+                // console.log(this.positions);
             });
         }
 

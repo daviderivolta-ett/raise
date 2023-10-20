@@ -1,15 +1,42 @@
-div {
-    height: 93vh;
-    overflow-y: auto;
+.infobox {
+    position: fixed;
+    background-color: white;
+    top: 24px;
+    right: 24px;
+    width: 300px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: 8px;
 }
 
-svg {
+.visible {
+    visibility: visible;
+}
+
+#close-icon {
     cursor: pointer;
     width: 12px;
     height: 12px;
     position: absolute;
-    top: 24px;
-    right: 24px;
+    top: 10px;
+    right: 8px;
+    z-index: 99;
+}
+
+#grip-icon {
+    color: rgba(0, 0, 0, 0.87);
+}
+
+.info-content {
+    overflow-y: auto;
+    max-height: 500px;
+    padding: 24px;
+}
+
+.drag-handler {
+    cursor: grab;
+    height: 16px;
+    padding: 8px;
+    border-bottom: 1px solid #DEDEDE;
 }
 
 .info-key {

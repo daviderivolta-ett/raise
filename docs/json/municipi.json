@@ -5,6 +5,7 @@
             "name": "Confini",
             "layer": "SITGEO:V_MUNICIPI",
             "tags": [
+                "città",
                 "confini",
                 "municipio"
             ],
@@ -19,6 +20,9 @@
                     "display_name": "Codice",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "app-opacity-slider"
             ]
         }
     ]

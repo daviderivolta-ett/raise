@@ -5,6 +5,7 @@
             "name": "Bagni pubblici",
             "layer": "SITGEO:V_BAGNI",
             "tags": [
+                "città",
                 "bagno",
                 "pubblico",
                 "informazione",
@@ -36,6 +37,9 @@
                     "display_name": "Operatività",
                     "type": "string"
                 }
+            ],
+            "components": [
+                "app-opacity-slider"
             ]
         }
     ]
