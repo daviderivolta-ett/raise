@@ -1,4 +1,4 @@
-export const handleFeatures = (features, infoBox, jsonData) => {
+export const handleFeatures = (features, jsonData) => {
 
     if (features != null) {
 
@@ -14,15 +14,7 @@ export const handleFeatures = (features, infoBox, jsonData) => {
 
         const properties = getRelevantProperties(features.properties, relevantProperties, foundLayerName);
 
-        infoBox.setAttribute('data', JSON.stringify(properties));
-
-
-        if (Object.keys(properties).length !== 0) {
-            infoBox.classList.add('visible');
-        }        
-
-    } else {
-        infoBox.classList.remove('visible');
+        return properties;
     }
 }
 
@@ -60,5 +52,4 @@ function getRelevantProperties(object, array, title) {
     }
 
     return risultati;
-
 }

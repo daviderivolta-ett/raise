@@ -91,25 +91,6 @@ main {
   background-color: #f1f1f1;
 }
 
-/* Infobox */
-app-infobox {
-  z-index: 999;
-  width: 350px;
-  max-width: 100%;
-  height: fit-content;
-  max-height: 100vh;
-  
-  visibility: hidden;
-  font-size: .9rem;
-  overflow-y: auto;
-}
-
-.visible {
-  visibility: visible;
-  /* right: 0; */
-  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-}
-
 /* Media queries */
 @media screen and (max-width: 576px) {
 

@@ -45,22 +45,22 @@ viewer.setCamera();
 // populateDrawer(jsonData, accordionsSection);
 
 fetchJsonData(CATEGORIES_URL)
+
   .then(jsonData => {
+    // Accordions creation
     const accordionsSection = document.querySelector('#categories-section');
     populateDrawer(jsonData, accordionsSection);
+    return jsonData;
+  })
 
+  .then(jsonData => {
     // DOM nodes
+    const main = document.querySelector('main');
     const drawerToggle = document.querySelector('app-drawer-toggle');
     const drawer = document.querySelector('#drawer');
-    const infoBox = document.querySelector('app-infobox');
-
-    const closeIcon = infoBox.shadowRoot.querySelector('#close-icon');
-
     const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-
     const categoryAccordion = document.querySelectorAll('.category-accordion');
     const layerAccordion = document.querySelectorAll('.layer-accordion');
-
     const searchBar = document.querySelector('app-searchbar');
     const drawerTitle = document.querySelector('#drawer-title');
     const autocomplete = document.querySelector('app-autocomplete');
@@ -75,27 +75,22 @@ fetchJsonData(CATEGORIES_URL)
       }
     });
 
-    // Infobox behaviour
+    // Infoboxes creation
     viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
       viewer.onClick(movement.position)
         .then(features => {
-          handleFeatures(features, infoBox, jsonData);
-          drawerToggle.setAttribute('is-open', 'false');
+          const infoContent = handleFeatures(features, jsonData);
+
+          if (infoContent) {
+            const infoBox = document.createElement('app-infobox');
+            infoBox.setAttribute('data', JSON.stringify(infoContent));
+            main.append(infoBox);
+
+            drawerToggle.setAttribute('is-open', 'false');
+          }
+
         })
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-
-    closeIcon.addEventListener('click', () => {
-      infoBox.classList.remove('visible');
-    });
-
-    drawer.addEventListener('click', () => {
-      infoBox.classList.remove('visible');
-    });
-
-    drawerToggle.addEventListener('click', () => {
-      infoBox.classList.remove('visible');
-    });
 
     // Autoclose drawer after 10 seconds
     let timer;

@@ -45,7 +45,7 @@ export class Checkbox extends HTMLElement {
                 </summary>
                 `
             ;
-            // this.details = this.shadow.querySelector('details');
+
             for (const component of components) {
                 this.details.innerHTML += `<${component}></${component}>`;
             }
