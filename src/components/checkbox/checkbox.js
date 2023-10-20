@@ -15,16 +15,7 @@ export class Checkbox extends HTMLElement {
             <div>
                 <input type="checkbox" id="checkbox">
                 <label for="checkbox">Label</label>
-            </div>
-
-            <details>
-                <summary>
-                    Opzioni
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                    </svg>                
-                </summary>                
-            </details>            
+            </div>                      
             `
         ;
 
@@ -42,11 +33,24 @@ export class Checkbox extends HTMLElement {
         }
 
         const components = JSON.parse(this.getAttribute('data')).components;
-        if (components != undefined) {
-            this.details = this.shadow.querySelector('details');
+        if (components != undefined && components.length != 0) {
+            this.details = document.createElement('details');
+            this.details.innerHTML =
+                `
+                <summary>
+                    Opzioni
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                    </svg>                
+                </summary>
+                `
+            ;
+            // this.details = this.shadow.querySelector('details');
             for (const component of components) {
-                this.details.innerHTML += component;
+                this.details.innerHTML += `<${component}></${component}>`;
             }
+
+            this.shadow.append(this.details);
         } 
 
         // js
