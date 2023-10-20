@@ -1,15 +1,16 @@
 // Import modules
-import CesiumViewer from "./components/map/map.js";
+import CesiumViewer from './components/map/map.js';
 import * as Cesium from 'cesium';
 
 // Import methods
-import { populateDrawer } from './utils/drawerPopulation.js';
-import { handleFeatures } from './utils/handleInfobox.js';
-import { filterLayer } from './utils/filterLayersByTag.js';
+import { populateDrawer } from './utils/populateDrawer.js';
+import { handleFeatures } from './utils/handleFeatures.js';
+import { filterLayersByTag } from './utils/filterLayersByTag.js';
 import { fetchJsonData } from './settings.js';
 import { activateLayers } from './utils/activateLayers.js';
 import { accordionBehaviour } from './utils/accordionBehaviour.js';
-import { filterTag } from "./utils/filterTagByName.js";
+import { filterTag } from './utils/filterTagByName.js';
+import { createInfobox } from './utils/createInfobox.js';
 
 // Import data
 const CATEGORIES_URL = '../json/categories.json';
@@ -30,26 +31,16 @@ import './components/tools/opacity-slider.js';
 
 // Map initialization
 const viewer = new CesiumViewer();
-
-const url = 'https://mappe.comune.genova.it/geoserver/wms';
-const parameters = {
-  format: 'image/png',
-  transparent: true
-}
-
 viewer.setCamera();
 
 // Accordions creation
-// const jsonData = await fetchJsonData(jsonFile);
-// const accordionsSection = document.querySelector('#categories-section');
-// populateDrawer(jsonData, accordionsSection);
+const drawerContent = document.querySelector('#categories-section');
 
 fetchJsonData(CATEGORIES_URL)
 
   .then(jsonData => {
-    // Accordions creation
-    const accordionsSection = document.querySelector('#categories-section');
-    populateDrawer(jsonData, accordionsSection);
+    // Accordions creation    
+    populateDrawer(jsonData, drawerContent);
     return jsonData;
   })
 
@@ -59,9 +50,8 @@ fetchJsonData(CATEGORIES_URL)
     const drawerToggle = document.querySelector('app-drawer-toggle');
     const drawer = document.querySelector('#drawer');
     const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-    const accordionsSection = document.querySelector('#categories-section');
-    const categoryAccordion = document.querySelectorAll('.category-accordion');
-    const layerAccordion = document.querySelectorAll('.layer-accordion');
+    const allCategoryAccordions = document.querySelectorAll('.category-accordion');
+    const allLayerAccordions = document.querySelectorAll('.layer-accordion');
     const searchBar = document.querySelector('app-searchbar');
     const drawerTitle = document.querySelector('#drawer-title');
     const autocomplete = document.querySelector('app-autocomplete');
@@ -76,36 +66,24 @@ fetchJsonData(CATEGORIES_URL)
       }
     });
 
-    // Infoboxes creation
-    let infoBoxCounter = 0;
-
+    // Infoboxes creation   
     viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
       viewer.onClick(movement.position)
         .then(features => {
           const infoContent = handleFeatures(features, jsonData);
+          const allInfoBoxes = document.querySelectorAll('app-infobox');
+          createInfobox(allInfoBoxes, infoContent, main);
 
-          const infoBoxes = document.querySelectorAll('app-infobox');
-          let isInfoBoxPresent = false;
-
-          infoBoxes.forEach(infoBox => {
-            if (infoBox.getAttribute('data') === JSON.stringify(infoContent)) {
-              isInfoBoxPresent = true;
-            }
-          });
-
-          if (!isInfoBoxPresent && infoContent) {
-            const infoBox = document.createElement('app-infobox');
-
-            infoBox.setAttribute('data', JSON.stringify(infoContent));
-            infoBoxCounter++;
-            infoBox.setAttribute('uuid', infoBoxCounter);
-
-            main.append(infoBox);
-
-            drawerToggle.setAttribute('is-open', 'false');
-          }
+          drawerToggle.setAttribute('is-open', 'false');
         })
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+    const infoBoxes = document.querySelectorAll('app-infobox');
+    infoBoxes.forEach(infoBox => {
+      infoBox.addEventListener('positionChanged', (event) => {
+        console.log(event.detail.newValue);
+      })
+    });
 
     // Autoclose drawer after 10 seconds
     let timer;
@@ -120,40 +98,40 @@ fetchJsonData(CATEGORIES_URL)
 
     // Checkbox list behaviour
     const activeLayers = [];
-    activateLayers(allCheckboxLists, activeLayers, viewer, url, parameters);
+    activateLayers(allCheckboxLists, activeLayers, viewer);
 
     // Accordion behaviour
-    accordionBehaviour(categoryAccordion, layerAccordion);
+    accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
     // Search bar
     searchBar.addEventListener('searchValueChanged', (event) => {
-      accordionsSection.innerHTML = ``;
+      drawerContent.innerHTML = ``;
       const valueToSearch = event.detail.newValue.toLowerCase();
       drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
 
       let dataToFilter = JSON.parse(JSON.stringify(jsonData));
 
-      filterLayer(dataToFilter, valueToSearch);
+      filterLayersByTag(dataToFilter, valueToSearch);
 
       if (valueToSearch == '') {
-        populateDrawer(jsonData, accordionsSection);
+        populateDrawer(jsonData, drawerContent);
         drawerTitle.textContent = 'Categorie';
       } else {
-        populateDrawer(dataToFilter, accordionsSection);
+        populateDrawer(dataToFilter, drawerContent);
 
-        if (!accordionsSection.innerHTML) {
+        if (!drawerContent.innerHTML) {
           const emptyMsg = document.createElement('p');
           emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
-          accordionsSection.append(emptyMsg);
+          drawerContent.append(emptyMsg);
         }
       }
 
       const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-      activateLayers(allCheckboxLists, activeLayers, viewer, url, parameters);
+      activateLayers(allCheckboxLists, activeLayers, viewer);
 
-      const categoryAccordion = document.querySelectorAll('.category-accordion');
-      const layerAccordion = document.querySelectorAll('.layer-accordion');
-      accordionBehaviour(categoryAccordion, layerAccordion);
+      const allCategoryAccordions = document.querySelectorAll('.category-accordion');
+      const allLayerAccordions = document.querySelectorAll('.layer-accordion');
+      accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
       if (valueToSearch.length >= 2) {
         const foundTags = filterTag(jsonData, valueToSearch);

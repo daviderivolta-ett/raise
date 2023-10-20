@@ -1,23 +1,23 @@
-export const accordionBehaviour = (categoryAccordion, layerAccordion) => {
-    categoryAccordion.forEach(item => {
+export const accordionBehaviour = (allCategoryAccordions, allLayerAccordions) => {
+    allCategoryAccordions.forEach(item => {
         item.addEventListener('accordionChanged', (event) => {
 
-            categoryAccordion.forEach(item => {
+            allCategoryAccordions.forEach(item => {
                 if (item != event.target) {
                     item.setAttribute('is-active', 'false');
                 }
             });
 
-            layerAccordion.forEach(item => {
+            allLayerAccordions.forEach(item => {
                 item.setAttribute('is-active', 'false');
             });
         });
     });
 
-    layerAccordion.forEach(item => {
+    allLayerAccordions.forEach(item => {
         item.addEventListener('accordionChanged', (event) => {
 
-            layerAccordion.forEach(item => {
+            allLayerAccordions.forEach(item => {
                 if (item != event.target) {
                     item.setAttribute('is-active', 'false');
                 }

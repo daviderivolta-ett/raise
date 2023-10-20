@@ -81,6 +81,7 @@ export class Infobox extends HTMLElement {
 
             document.addEventListener('mouseup', () => {
                 isDragging = false;
+                this.setAttribute('position', JSON.stringify(element.getBoundingClientRect()));
 
                 ////////
                 // this.position = element.getBoundingClientRect();
@@ -105,8 +106,15 @@ export class Infobox extends HTMLElement {
         makeDraggable(this.div);
     }
 
-    static observedAttributes = [];
+    static observedAttributes = ['position'];
     attributeChangedCallback(name, oldValue, newValue) {
+        if (newValue != oldValue) {
+            const event = new CustomEvent('positionChanged', {
+                detail: { name, oldValue, newValue }
+            });
+
+            this.dispatchEvent(event);
+        }
     }
 }
 

@@ -1,7 +1,12 @@
-export const activateLayers = (allCheckboxLists, activeLayers, viewer, url, parameters) => {
+export const activateLayers = (allCheckboxLists, activeLayers, viewer) => {
+    const url = 'https://mappe.comune.genova.it/geoserver/wms';
+    const parameters = {
+        format: 'image/png',
+        transparent: true
+    }
 
     allCheckboxLists.forEach(checkboxList => {
-        
+
         checkboxList.addEventListener('checkboxListChanged', (event) => {
 
             const checkboxListLayersToRemove = event.detail.input;
