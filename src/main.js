@@ -83,7 +83,6 @@ fetchJsonData(CATEGORIES_URL)
           allInfoBoxes.forEach(infoBox => {
             infoBox.addEventListener('infoboxRemoved', (event) => {
               allInfoBoxesPosition = allInfoBoxesPosition.filter(infoBoxPosition => event.detail.uuid !== infoBoxPosition.uuid);
-              console.log(allInfoBoxesPosition);
             });
           });
 

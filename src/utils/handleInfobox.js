@@ -3,12 +3,11 @@ export const handleInfoBox = (infoBoxes, infoBoxesPosition) => {
     infoBoxes.forEach(infoBox => {
         infoBox.addEventListener('positionChanged', (event) => {
             registerPosition(infoBox, infoBoxesPosition, event);
+            infoBoxes.forEach(item => {
+                item.setAttribute('allPositions', JSON.stringify(infoBoxesPosition));
+            })
         });
     });
-}
-
-function isPresent() {
-
 }
 
 function registerPosition(infoBox, infoBoxesPosition, event) {
@@ -23,6 +22,4 @@ function registerPosition(infoBox, infoBoxesPosition, event) {
     } else {
         infoBoxesPosition[existingIndex].position = infoBoxPosition.position;
     }
-
-    console.log(infoBoxesPosition);
 }
