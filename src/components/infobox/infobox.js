@@ -27,7 +27,13 @@ export class Infobox extends HTMLElement {
                 <div class="info-content"></div>
             </div>
             `
-        ;        
+        ;
+        
+        // css
+        const style = document.createElement('link');
+        style.setAttribute('rel', 'stylesheet');
+        style.setAttribute('href', './css/infobox.css');
+        this.shadow.append(style);
 
         // Fill data
         this.info = this.shadow.querySelector('.info-content');
@@ -43,12 +49,6 @@ export class Infobox extends HTMLElement {
                 ;
             this.info.append(this.text);
         });
-
-        // css
-        const style = document.createElement('link');
-        style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/infobox.css');
-        this.shadow.append(style);
 
         // js
         // close icon

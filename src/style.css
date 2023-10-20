@@ -13,6 +13,7 @@ html {
   height: 100%;
   font-family: 'Roboto', sans-serif;
   color: rgba(0, 0, 0, 0.87);
+  overflow: hidden;
 }
 
 main {
