@@ -9,7 +9,7 @@ label {
     cursor: pointer;
 }
 
-div {
+div.checkbox {
     display: flex;
     align-items: center;
     margin: 0 0 8px 0;
@@ -52,6 +52,14 @@ input:focus {
 input:checked {
     border: 2px solid #007bff;
     border-radius: 4px;
+}
+
+.legend {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: yellow;
+    margin: 0 8px 0 0;
 }
 
 details {

@@ -12,12 +12,13 @@ export class Checkbox extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
-            <div>
+            <div class="checkbox">
                 <input type="checkbox" id="checkbox">
+                <div class="legend"></div>
                 <label for="checkbox">Label</label>
             </div>                      
             `
-            ;
+        ;
 
         this.checkbox = this.shadow.querySelector('input');
 
@@ -32,13 +33,18 @@ export class Checkbox extends HTMLElement {
             this.label.innerHTML = JSON.parse(this.getAttribute('data')).name;
         }
 
+        // legend
+        this.legend = this.shadow.querySelector('.legend');
+        const color = JSON.parse(this.getAttribute('data')).style.color;
+        this.legend.style.backgroundColor = color;
+
+        // components
         const components = JSON.parse(this.getAttribute('data')).components;
         if (components != undefined && components.length != 0) {
             this.details = document.createElement('details');
             this.details.innerHTML =
                 `
                 <summary>
-                    Opzioni
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                     </svg>                
