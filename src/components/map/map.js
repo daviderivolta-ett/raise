@@ -67,7 +67,13 @@ export default class CesiumViewer {
         //     }
         // }
 
-        console.log(this.viewer.scene.pick(windowPosition));
+        const pickedEntity = this.viewer.scene.pick(windowPosition);
+
+        if (pickedEntity) {
+            const features = pickedEntity.id;
+            console.log(features);
+            return features;
+        }
     }
 
     addLayerWMS(wmsUrl, wmsLayerName, wmsParameters) {
@@ -95,7 +101,6 @@ export default class CesiumViewer {
     }
 
     addLayersWFS(wfsUrl, layerName, style) {
-
         let strokeColor = 'YELLOW';
         let fillColor = 'YELLOW';
         let markerColor = 'YELLOW';

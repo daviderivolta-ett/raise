@@ -1,11 +1,11 @@
-export const handleFeatures = (features, jsonData) => {
+export const handleFeaturesWFS = (features, jsonData) => {
 
     if (features != null) {
 
         let layerToFind = '';
 
-        if (features.data.id.includes('.')) {
-            layerToFind = features.data.id.split('.')[0];
+        if (features._id.includes('.')) {
+            layerToFind = features._id.split('.')[0];
         }
 
         const foundLayer = filterLayerByName(jsonData, layerToFind);
@@ -13,7 +13,7 @@ export const handleFeatures = (features, jsonData) => {
         const relevantProperties = foundLayer.relevant_properties;
 
         const properties = getRelevantProperties(features.properties, relevantProperties, foundLayerName);
-        // console.log(properties);
+        console.log(properties);
 
         return properties;
     }
@@ -43,7 +43,7 @@ function getRelevantProperties(object, array, title) {
     if (array) {
         for (const obj of array) {
             if (obj.property_name && object[obj.property_name]) {
-                risultati[obj.display_name] = object[obj.property_name];
+                risultati[obj.display_name] = object[obj.property_name]._value;
             }
         }
 

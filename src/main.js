@@ -4,15 +4,17 @@ import * as Cesium from 'cesium';
 
 // Import methods
 import { populateDrawer } from './utils/populateDrawer.js';
-import { handleFeatures } from './utils/handleFeatures.js';
 import { filterLayersByTag } from './utils/filterLayersByTag.js';
 import { fetchJsonData } from './settings.js';
 import { activateLayersWMS } from './utils/activateLayersWMS.js';
+import { activateLayersWFS } from './utils/activateLayersWFS.js';
+import { handleFeaturesWMS } from './utils/handleFeaturesWMS.js';
+import { handleFeaturesWFS } from './utils/handleFeaturesWFS.js';
 import { accordionBehaviour } from './utils/accordionBehaviour.js';
 import { filterTag } from './utils/filterTagByName.js';
 import { createInfobox } from './utils/createInfobox.js';
 import { handleInfoBox } from './utils/handleInfobox.js';
-import { activateLayersWFS } from './utils/activateLayersWFS.js';
+
 
 // Import data
 const CATEGORIES_URL = '../json/categories.json';
@@ -72,7 +74,7 @@ fetchJsonData(CATEGORIES_URL)
     viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
       viewer.onClick(movement.position)
         .then(features => {
-          const infoContent = handleFeatures(features, jsonData);
+          const infoContent = handleFeaturesWFS(features, jsonData);
 
           let allInfoBoxes = document.querySelectorAll('app-infobox');
 
