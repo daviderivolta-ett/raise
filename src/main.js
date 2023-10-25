@@ -69,8 +69,6 @@ fetchJsonData(CATEGORIES_URL)
     });
 
     // Infoboxes creation & handling
-    let allInfoBoxesPosition = [];
-
     viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
       viewer.onClick(movement.position)
         .then(features => {
@@ -83,16 +81,6 @@ fetchJsonData(CATEGORIES_URL)
               createInfobox(allInfoBoxes, infoContent, main);
             }
           }
-          
-
-          // allInfoBoxes = document.querySelectorAll('app-infobox');
-          // handleInfoBox(allInfoBoxes, allInfoBoxesPosition);
-
-          // allInfoBoxes.forEach(infoBox => {
-          //   infoBox.addEventListener('infoboxRemoved', (event) => {
-          //     allInfoBoxesPosition = allInfoBoxesPosition.filter(infoBoxPosition => event.detail.uuid !== infoBoxPosition.uuid);
-          //   });
-          // });
 
           drawerToggle.setAttribute('is-open', 'false');
         })
@@ -166,6 +154,3 @@ fetchJsonData(CATEGORIES_URL)
       autocomplete.setAttribute('last-key-pressed', event.key);
     });
   });
-
-// activateLayersWFS(viewer);
-// console.log(viewer.viewer._dataSourceCollection._dataSources);

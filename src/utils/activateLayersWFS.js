@@ -1,5 +1,4 @@
 export const activateLayersWFS = (allCheckboxLists, activeLayers, viewer) => {
-    const url = 'https://mappe.comune.genova.it/geoserver/wfs';
 
     allCheckboxLists.forEach(checkboxList => {
 
@@ -27,7 +26,7 @@ export const activateLayersWFS = (allCheckboxLists, activeLayers, viewer) => {
                     parameters.opacity = layer.opacity;
                 }
 
-                viewer.addLayersWFS(url, layer.layer);
+                viewer.addLayersWFS(layer.layer_url_wfs, layer.layer, layer.style);
             }
 
             console.log('Active layers:');

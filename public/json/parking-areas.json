@@ -4,6 +4,10 @@
         {
             "name": "Blu area",
             "layer": "SITGEO:V_MOB_BLUAREA",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "città",
                 "parcheggi",
@@ -30,6 +34,10 @@
         {
             "name": "Zona inquinamento",
             "layer": "SITGEO:V_MOB_ZTL_AMBIENTE",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "città",
                 "inquinamento",

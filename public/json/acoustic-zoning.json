@@ -4,6 +4,10 @@
         {
             "name": "Misure fonometriche",
             "layer": "SITGEO:V_ZA_MISURE_FONOM",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "città",
                 "misura",
@@ -35,6 +39,10 @@
         {
             "name": "Zone acustiche",
             "layer": "SITGEO:V_ZA_ZONEACUSTICHE",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "città",
                 "misura",
@@ -56,6 +64,10 @@
         {
             "name": "Vicinanza autostrada",
             "layer": "SITGEO:V_ZA_FR_AUTO",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "città",
                 "misura",
@@ -73,6 +85,10 @@
         {
             "name": "Vicinanza ferrovia",
             "layer": "SITGEO:V_ZA_FR_FERR",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "città",
                 "misura",

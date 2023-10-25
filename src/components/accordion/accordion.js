@@ -38,8 +38,7 @@ export class Accordion extends HTMLElement {
         this.shadow.innerHTML =
             `
             <div class="accordion-item">
-                <div class="accordion-checkbox">
-                <input type="checkbox">
+
                 <button type="button" class="accordion-btn">
                     <span class="accordion-title"></span>
                     <span class="accordion-icon">
@@ -48,13 +47,17 @@ export class Accordion extends HTMLElement {
                         </svg>
                     </span>
                 </button>
-                </div>
+
                 <div class="accordion-content">
                     <slot></slot>
                 </div>
             </div>
             `
-            ;
+        ;
+
+        // <div class="accordion-checkbox">
+        // <input type="checkbox"></input>
+        // </div>
 
         // css
         const style = document.createElement('link');
@@ -87,17 +90,17 @@ export class Accordion extends HTMLElement {
         });
 
         // checkbox
-        this.checkbox = this.shadow.querySelector('input[type="checkbox"]');
-        if (this.getAttribute('all-active') == 'true') {
-            this.checkbox.checked = true;
-        } else {
-            this.checkbox.checked = false;
-        }
+        // this.checkbox = this.shadow.querySelector('input[type="checkbox"]');
+        // if (this.getAttribute('all-active') == 'true') {
+        //     this.checkbox.checked = true;
+        // } else {
+        //     this.checkbox.checked = false;
+        // }
 
-        this.checkbox.addEventListener('change', (event) => {
-            const isChecked = event.target.checked;
-            this.setAttribute('all-active', isChecked + '');
-        });
+        // this.checkbox.addEventListener('change', (event) => {
+        //     const isChecked = event.target.checked;
+        //     this.setAttribute('all-active', isChecked + '');
+        // });
     }
 
     static observedAttributes = ['title', 'is-active', 'all-active'];

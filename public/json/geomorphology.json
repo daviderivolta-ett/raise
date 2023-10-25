@@ -4,6 +4,10 @@
         {
             "name": "Geomorfologia",
             "layer": "SITGEO:V_GEOMORFOLOGIA",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "natura",
                 "geologia",
@@ -23,6 +27,10 @@
         {
             "name": "Geomorfologia LIN",
             "layer": "SITGEO:V_GEOMORFO_LIN",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "natura",
                 "geologia",
@@ -42,6 +50,10 @@
         {
             "name": "Geomorfologia SOVRA",
             "layer": "SITGEO:V_GEOMORFO_SOVRA",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "natura",
                 "geologia",

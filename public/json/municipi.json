@@ -4,6 +4,10 @@
         {
             "name": "Confini",
             "layer": "SITGEO:V_MUNICIPI",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "città",
                 "confini",

@@ -4,6 +4,10 @@
         {
             "name": "Monumenti",
             "layer": "CULTURA:V_STAG_SCULTURE",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "cultura",
                 "monumenti",

@@ -18,7 +18,7 @@ export default class CesiumViewer {
             sceneModePicker: false,
             fullscreenButton: false,
             // infoBox: false
-            terrain: Cesium.Terrain.fromWorldTerrain()
+            // terrain: Cesium.Terrain.fromWorldTerrain()
         });
 
         // this.viewer.imageryLayers.addImageryProvider(CesiumViewer.getImageryProvider());
@@ -40,34 +40,35 @@ export default class CesiumViewer {
     }
 
     async onClick(windowPosition) {
-        const pickRay = this.viewer.camera.getPickRay(windowPosition);
-        const featuresPromise = this.viewer.imageryLayers.pickImageryLayerFeatures(pickRay, this.viewer.scene);
+        // const pickRay = this.viewer.camera.getPickRay(windowPosition);
+        // const featuresPromise = this.viewer.imageryLayers.pickImageryLayerFeatures(pickRay, this.viewer.scene);
 
-        if (!Cesium.defined(featuresPromise)) {
-            console.log('No features picked.');
-            return null;
+        // if (!Cesium.defined(featuresPromise)) {
+        //     console.log('No features picked.');
+        //     return null;
 
-        } else {
+        // } else {
 
-            try {
-                const features = await Promise.resolve(featuresPromise);
-                console.log(`Number of features: ${features.length}`);
+        //     try {
+        //         const features = await Promise.resolve(featuresPromise);
+        //         console.log(`Number of features: ${features.length}`);
 
-                if (features.length > 0) {
-                    return features[0];
+        //         if (features.length > 0) {
+        //             return features[0];
 
-                } else {
-                    console.log(null);
-                    return null;
-                }
+        //         } else {
+        //             console.log(null);
+        //             return null;
+        //         }
 
-            } catch (error) {
-                console.error('Errore nella raccolta delle features:', error);
-                return null;
-            }
-        }
+        //     } catch (error) {
+        //         console.error('Errore nella raccolta delle features:', error);
+        //         return null;
+        //     }
+        // }
+
+        console.log(this.viewer.scene.pick(windowPosition));
     }
-
 
     addLayerWMS(wmsUrl, wmsLayerName, wmsParameters) {
         const wmsImageryProvider = new Cesium.WebMapServiceImageryProvider({
@@ -93,12 +94,28 @@ export default class CesiumViewer {
         }
     }
 
-    addLayersWFS(wfsUrl, layerName) {
+    addLayersWFS(wfsUrl, layerName, style) {
+
+        let strokeColor = 'YELLOW';
+        let fillColor = 'YELLOW';
+        let markerColor = 'YELLOW';
+
+        if (style && style.color) {
+            strokeColor = style.color.toUpperCase();
+            fillColor = style.color.toUpperCase();
+            markerColor = style.color.toUpperCase();
+        }
+
         const url = `${wfsUrl}?service=WFS&typeName=${layerName}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
         fetch(url)
             .then(response => response.json())
             .then(geoJson => {
-                const wfsImageryProvider = new Cesium.GeoJsonDataSource.load(geoJson);
+                const wfsImageryProvider = new Cesium.GeoJsonDataSource.load(geoJson, {
+                    stroke: Cesium.Color[strokeColor],
+                    strokeWidth: 1,
+                    fill: Cesium.Color[fillColor].withAlpha(0.5),
+                    markerColor: Cesium.Color[markerColor]
+                });
                 this.viewer.dataSources.add(wfsImageryProvider);
             })
     }

@@ -4,6 +4,10 @@
         {
             "name": "Acquedotto storico",
             "layer": "CULTURA:V_ACQ_STORICO",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "cultura",
                 "acquedotto",
@@ -31,6 +35,10 @@
         {
             "name": "Manufatti storici",
             "layer": "CULTURA:V_ACQ_MANU_STORICI",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "cultura",
                 "acquedotto",
@@ -67,6 +75,10 @@
         {
             "name": "Area di sosta",
             "layer": "CULTURA:V_ACQ_AREA_SOSTA",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "cultura",
                 "acquedotto",
@@ -84,6 +96,10 @@
         {
             "name": "Punti di accesso",
             "layer": "V_ACQ_PTI_ACCESSO",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "cultura",
                 "acquedotto",
@@ -111,6 +127,10 @@
         {
             "name": "Punti di interesse storico",
             "layer": "CULTURA:V_ACQ_PTI_INT_STORICO",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "cultura",
                 "acquedotto",
@@ -139,6 +159,10 @@
         {
             "name": "Pannelli informativi",
             "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "cultura",
                 "acquedotto",
@@ -157,6 +181,10 @@
         {
             "name": "Fonti acqua potabile",
             "layer": "SITGEO:V_ACQUA_POTABILE",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red"
+            },
             "tags": [
                 "cultura",
                 "acquedotto",
