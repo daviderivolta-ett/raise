@@ -28,16 +28,19 @@ export class Accordion extends HTMLElement {
             }
         }
 
-        
+
     }
 
     connectedCallback() {
         //html
         this.setAttribute('is-active', 'false');
+        this.setAttribute('all-active', 'false');
 
         this.shadow.innerHTML =
             `
             <div class="accordion-item">
+                <div class="accordion-checkbox">
+                <input type="checkbox">
                 <button type="button" class="accordion-btn">
                     <span class="accordion-title"></span>
                     <span class="accordion-icon">
@@ -46,12 +49,13 @@ export class Accordion extends HTMLElement {
                         </svg>
                     </span>
                 </button>
+                </div>
                 <div class="accordion-content">
                     <slot></slot>
                 </div>
             </div>
             `
-        ;
+            ;
 
         // css
         const style = document.createElement('link');
@@ -60,6 +64,7 @@ export class Accordion extends HTMLElement {
         this.shadow.append(style);
 
         //js
+        // accordion
         this.accordionBtn = this.shadow.querySelector('.accordion-btn');
         this.accordionBtn.addEventListener('click', () => {
             this.accordionContent = this.accordionBtn.nextElementSibling;
@@ -81,9 +86,22 @@ export class Accordion extends HTMLElement {
 
             this.dispatchEvent(event);
         });
+
+        // checkbox
+        this.checkbox = this.shadow.querySelector('input[type="checkbox"]');
+        if (this.getAttribute('all-active') == 'true') {
+            this.checkbox.checked = true;
+        } else {
+            this.checkbox.checked = false;
+        }
+
+        this.checkbox.addEventListener('change', (event) => {
+            const isChecked = event.target.checked;
+            this.setAttribute('all-active', isChecked + '');
+        });
     }
 
-    static observedAttributes = ['title', 'is-active'];
+    static observedAttributes = ['title', 'is-active', 'all-active'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (name == 'title' && newValue != oldValue) {
             this.render();
@@ -91,6 +109,14 @@ export class Accordion extends HTMLElement {
 
         if (name == 'is-active' && newValue != oldValue) {
             this.render();
+        }
+
+        if (name == 'all-active' && oldValue !== null && newValue !== null && newValue != oldValue) {
+            const event = new CustomEvent('allActiveChanged', {
+                detail: { name, oldValue, newValue }
+            });
+
+            this.dispatchEvent(event);
         }
     }
 }

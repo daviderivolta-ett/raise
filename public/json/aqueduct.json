@@ -24,7 +24,9 @@
                     "type": "string"
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Manufatti storici",
@@ -58,7 +60,9 @@
                     "type": "number"
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Area di sosta",
@@ -73,7 +77,9 @@
                 "ristoro"
             ],
             "relevant_properties": [],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Punti di accesso",
@@ -98,7 +104,9 @@
                     "type": "number"
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Punti di interesse storico",
@@ -124,7 +132,9 @@
                     "type": "string"
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Pannelli informativi",
@@ -140,7 +150,9 @@
                 "informazione"
             ],
             "relevant_properties": [],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Fonti acqua potabile",
@@ -156,7 +168,9 @@
                 "acqua"
             ],
             "relevant_properties": [],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         }
     ]
 }

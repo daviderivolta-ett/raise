@@ -16,7 +16,9 @@
                     "type": "string"
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Geomorfologia LIN",
@@ -33,7 +35,9 @@
                     "type": "string"
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Geomorfologia SOVRA",
@@ -50,7 +54,9 @@
                     "type": "string"
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         }
     ]
 }

@@ -15,7 +15,9 @@
                 "acqua"
             ],
             "relevant_properties": [],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Prossimità autostrada",
@@ -30,7 +32,9 @@
                 "autostrada"
             ],
             "relevant_properties": [],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         }
     ]
 }

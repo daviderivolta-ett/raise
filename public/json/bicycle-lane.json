@@ -20,7 +20,9 @@
                     "type": "string" 
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Piste ciclabili",
@@ -52,7 +54,9 @@
                     "type": "string" 
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         }
     ]
 }
