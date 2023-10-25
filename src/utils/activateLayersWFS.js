@@ -23,7 +23,7 @@ export const activateLayersWFS = (allCheckboxLists, activeLayers, viewer) => {
 
             for (const layer of activeLayers) {
                 if (layer.hasOwnProperty('opacity')) {
-                    parameters.opacity = layer.opacity;
+                    layer.style.opacity = layer.opacity;
                 }
 
                 viewer.addLayersWFS(layer.layer_url_wfs, layer.layer, layer.style);

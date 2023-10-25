@@ -58,7 +58,6 @@ input:checked {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: yellow;
     margin: 0 8px 0 0;
 }
 
@@ -68,6 +67,7 @@ details {
 }
 
 summary {
+    position: relative;
     cursor: pointer;
     list-style: none;
     display: flex;
@@ -79,6 +79,9 @@ summary::-webkit-details-marker {
 }
 
 svg {
+    position: absolute;
+    top: -24px;
+    right: 0;
     transition: all .1s ease-in-out;
 }
 

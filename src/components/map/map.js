@@ -71,7 +71,6 @@ export default class CesiumViewer {
 
         if (pickedEntity) {
             const features = pickedEntity.id;
-            console.log(features);
             return features;
         }
     }
@@ -104,11 +103,16 @@ export default class CesiumViewer {
         let strokeColor = 'YELLOW';
         let fillColor = 'YELLOW';
         let markerColor = 'YELLOW';
+        let opacity = 1;
 
         if (style && style.color) {
             strokeColor = style.color.toUpperCase();
             fillColor = style.color.toUpperCase();
-            markerColor = style.color.toUpperCase();
+            markerColor = style.color.toUpperCase();            
+        }
+
+        if (style && style.opacity) {
+            opacity = style.opacity;
         }
 
         const url = `${wfsUrl}?service=WFS&typeName=${layerName}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
@@ -117,8 +121,8 @@ export default class CesiumViewer {
             .then(geoJson => {
                 const wfsImageryProvider = new Cesium.GeoJsonDataSource.load(geoJson, {
                     stroke: Cesium.Color[strokeColor],
-                    strokeWidth: 1,
-                    fill: Cesium.Color[fillColor].withAlpha(0.5),
+                    strokeWidth: 2,
+                    fill: Cesium.Color[fillColor].withAlpha(parseFloat(opacity)),
                     markerColor: Cesium.Color[markerColor]
                 });
                 this.viewer.dataSources.add(wfsImageryProvider);

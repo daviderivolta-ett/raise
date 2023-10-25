@@ -50,7 +50,7 @@ export class Checkbox extends HTMLElement {
                     </svg>                
                 </summary>
                 `
-                ;
+            ;
 
             for (const component of components) {
                 this.details.innerHTML += `<${component}></${component}>`;
@@ -65,9 +65,9 @@ export class Checkbox extends HTMLElement {
             this.setAttribute('is-checked', isChecked + '');
         });
 
-        this.tool = this.shadow.querySelector('app-opacity-slider');
-        if (this.tool) {
-            this.tool.addEventListener('opacityChanged', (event) => {
+        this.toolOpacity = this.shadow.querySelector('app-opacity-slider');
+        if (this.toolOpacity) {
+            this.toolOpacity.addEventListener('opacityChanged', (event) => {
                 this.setAttribute('opacity', event.detail.newValue);
             });
         }
@@ -89,8 +89,8 @@ export class Checkbox extends HTMLElement {
                 detail: { name, oldValue, newValue }
             });
 
-            if (this.tool) {
-                this.tool.setAttribute('is-enable', newValue);
+            if (this.toolOpacity) {
+                this.toolOpacity.setAttribute('is-enable', newValue);
             }
 
             this.dispatchEvent(event);
