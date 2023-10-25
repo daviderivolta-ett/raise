@@ -103,7 +103,7 @@ export default class CesiumViewer {
         let strokeColor = 'YELLOW';
         let fillColor = 'YELLOW';
         let markerColor = 'YELLOW';
-        let opacity = 1;
+        let opacity = 0.5;
 
         if (style && style.color) {
             strokeColor = style.color.toUpperCase();
