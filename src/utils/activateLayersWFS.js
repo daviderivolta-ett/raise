@@ -1,9 +1,5 @@
-export const activateLayers = (allCheckboxLists, activeLayers, viewer) => {
-    const url = 'https://mappe.comune.genova.it/geoserver/wms';
-    const parameters = {
-        format: 'image/png',
-        transparent: true
-    }
+export const activateLayersWFS = (allCheckboxLists, activeLayers, viewer) => {
+    const url = 'https://mappe.comune.genova.it/geoserver/wfs';
 
     allCheckboxLists.forEach(checkboxList => {
 
@@ -24,17 +20,14 @@ export const activateLayers = (allCheckboxLists, activeLayers, viewer) => {
                 activeLayers.push(layer);
             });
 
-            const toRemove = [...viewer.viewer.imageryLayers._layers].splice(1);
-            toRemove.forEach(item => {
-                viewer.removeLayer(item._imageryProvider._layers);
-            });
+            viewer.viewer.dataSources.removeAll();
 
             for (const layer of activeLayers) {
                 if (layer.hasOwnProperty('opacity')) {
                     parameters.opacity = layer.opacity;
                 }
 
-                viewer.addLayer(url, layer.layer, parameters);
+                viewer.addLayersWFS(url, layer.layer);
             }
 
             console.log('Active layers:');
@@ -42,4 +35,7 @@ export const activateLayers = (allCheckboxLists, activeLayers, viewer) => {
 
         });
     });
+
+
+
 }

@@ -10,7 +10,7 @@ export class CheckboxList extends HTMLElement {
 
         // html
         this.input = JSON.parse(this.getAttribute('input'));
-        this.data = [];
+        this.data = [];        
 
         const checkboxes = [];
 
@@ -72,6 +72,7 @@ export class CheckboxList extends HTMLElement {
             ;
 
         this.div = this.shadow.querySelector('div');
+        this.setAttribute('all-active', 'false');
 
         // css
         const style = document.createElement('link');

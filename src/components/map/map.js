@@ -69,7 +69,7 @@ export default class CesiumViewer {
     }
 
 
-    addLayer(wmsUrl, wmsLayerName, wmsParameters) {
+    addLayerWMS(wmsUrl, wmsLayerName, wmsParameters) {
         const wmsImageryProvider = new Cesium.WebMapServiceImageryProvider({
             url: wmsUrl,
             layers: wmsLayerName,
@@ -79,8 +79,32 @@ export default class CesiumViewer {
         this.viewer.imageryLayers.addImageryProvider(wmsImageryProvider);
     }
 
-    removeLayer(layerName) {
+    removeLayerWMS(layerName) {
         const imageryLayers = this.viewer.imageryLayers;
+        const numLayers = imageryLayers.length;
+
+        for (let i = 0; i < numLayers; i++) {
+            const layer = imageryLayers.get(i);
+
+            if (layer._imageryProvider._layers === layerName) {
+                imageryLayers.remove(layer);
+                return;
+            }
+        }
+    }
+
+    addLayersWFS(wfsUrl, layerName) {
+        const url = `${wfsUrl}?service=WFS&typeName=${layerName}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
+        fetch(url)
+            .then(response => response.json())
+            .then(geoJson => {
+                const wfsImageryProvider = new Cesium.GeoJsonDataSource.load(geoJson);
+                this.viewer.dataSources.add(wfsImageryProvider);
+            })
+    }
+
+    removeLayerWFS(layerName) {
+        const imageryLayers = this.viewer._dataSourceCollection._dataSources;
         const numLayers = imageryLayers.length;
 
         for (let i = 0; i < numLayers; i++) {

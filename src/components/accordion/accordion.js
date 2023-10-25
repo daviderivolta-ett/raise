@@ -14,6 +14,7 @@ export class Accordion extends HTMLElement {
 
         this.accordionContent = this.shadow.querySelector('.accordion-content');
         this.accordionIcon = this.shadow.querySelector('.accordion-icon');
+
         if (this.accordionContent) {
             if (this.getAttribute('is-active') === 'true') {
                 this.accordionContent.classList.add('accordion-show');
@@ -25,10 +26,8 @@ export class Accordion extends HTMLElement {
 
             if (this.classList.contains('last-accordion')) {
                 this.accordionContent.classList.add('last-accordion');
-            }
+            }            
         }
-
-
     }
 
     connectedCallback() {
@@ -112,11 +111,7 @@ export class Accordion extends HTMLElement {
         }
 
         if (name == 'all-active' && oldValue !== null && newValue !== null && newValue != oldValue) {
-            const event = new CustomEvent('allActiveChanged', {
-                detail: { name, oldValue, newValue }
-            });
-
-            this.dispatchEvent(event);
+            this.render();
         }
     }
 }

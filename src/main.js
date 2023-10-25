@@ -7,11 +7,12 @@ import { populateDrawer } from './utils/populateDrawer.js';
 import { handleFeatures } from './utils/handleFeatures.js';
 import { filterLayersByTag } from './utils/filterLayersByTag.js';
 import { fetchJsonData } from './settings.js';
-import { activateLayers } from './utils/activateLayers.js';
+import { activateLayersWMS } from './utils/activateLayersWMS.js';
 import { accordionBehaviour } from './utils/accordionBehaviour.js';
 import { filterTag } from './utils/filterTagByName.js';
 import { createInfobox } from './utils/createInfobox.js';
 import { handleInfoBox } from './utils/handleInfobox.js';
+import { activateLayersWFS } from './utils/activateLayersWFS.js';
 
 // Import data
 const CATEGORIES_URL = '../json/categories.json';
@@ -77,9 +78,12 @@ fetchJsonData(CATEGORIES_URL)
 
           let allInfoBoxes = document.querySelectorAll('app-infobox');
 
-          if (Object.keys(infoContent).length !== 0) {            
-            createInfobox(allInfoBoxes, infoContent, main);
+          if (infoContent) {
+            if (Object.keys(infoContent).length !== 0) {            
+              createInfobox(allInfoBoxes, infoContent, main);
+            }
           }
+          
 
           // allInfoBoxes = document.querySelectorAll('app-infobox');
           // handleInfoBox(allInfoBoxes, allInfoBoxesPosition);
@@ -107,7 +111,8 @@ fetchJsonData(CATEGORIES_URL)
 
     // Checkbox list behaviour
     const activeLayers = [];
-    activateLayers(allCheckboxLists, activeLayers, viewer);
+    // activateLayersWMS(allCheckboxLists, activeLayers, viewer);
+    activateLayersWFS(allCheckboxLists, activeLayers, viewer);
 
     // Accordion behaviour
     accordionBehaviour(allCategoryAccordions, allLayerAccordions);
@@ -136,7 +141,8 @@ fetchJsonData(CATEGORIES_URL)
       }
 
       const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-      activateLayers(allCheckboxLists, activeLayers, viewer);
+      // activateLayersWMS(allCheckboxLists, activeLayers, viewer);
+      activateLayersWFS(allCheckboxLists, activeLayers, viewer);
 
       const allCategoryAccordions = document.querySelectorAll('.category-accordion');
       const allLayerAccordions = document.querySelectorAll('.layer-accordion');
@@ -160,3 +166,6 @@ fetchJsonData(CATEGORIES_URL)
       autocomplete.setAttribute('last-key-pressed', event.key);
     });
   });
+
+// activateLayersWFS(viewer);
+// console.log(viewer.viewer._dataSourceCollection._dataSources);
