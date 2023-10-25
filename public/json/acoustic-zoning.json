@@ -28,9 +28,7 @@
                     "type": "string"
                 }
             ],
-            "components": [
-                "app-opacity-slider"
-            ]
+            "components": []
         },
         {
             "name": "Zone acustiche",
@@ -49,9 +47,7 @@
                     "type": "string"
                 }
             ],
-            "components": [
-                "app-opacity-slider"
-            ]
+            "components": []
         },
         {
             "name": "Vicinanza autostrada",
@@ -66,9 +62,7 @@
                 "strada"
             ],
             "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
+            "components": []
         },
         {
             "name": "Vicinanza ferrovia",
@@ -83,9 +77,7 @@
                 "treno"
             ],
             "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
+            "components": []
         }
     ]
 }

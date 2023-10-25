@@ -38,9 +38,7 @@
                     "type": "string"
                 }
             ],
-            "components": [
-                "app-opacity-slider"
-            ]
+            "components": []
         }
     ]
 }

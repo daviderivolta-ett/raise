@@ -100,6 +100,7 @@ export class Infobox extends HTMLElement {
                 detail: { name, oldValue, newValue }
             });
 
+            console.log(JSON.parse(newValue));
             this.dispatchEvent(event);
         }
     }

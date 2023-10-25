@@ -5,7 +5,7 @@ export class Checkbox extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'closed' });
     }
 
-    render() {      
+    render() {
     }
 
     connectedCallback() {
@@ -17,9 +17,9 @@ export class Checkbox extends HTMLElement {
                 <label for="checkbox">Label</label>
             </div>                      
             `
-        ;
+            ;
 
-        this.checkbox = this.shadow.querySelector('input');        
+        this.checkbox = this.shadow.querySelector('input');
 
         if (this.hasAttribute('is-checked')) {
             this.setAttribute('is-checked', this.getAttribute('is-checked'))
@@ -44,14 +44,14 @@ export class Checkbox extends HTMLElement {
                     </svg>                
                 </summary>
                 `
-            ;
+                ;
 
             for (const component of components) {
                 this.details.innerHTML += `<${component}></${component}>`;
             }
 
             this.shadow.append(this.details);
-        } 
+        }
 
         // js
         this.checkbox.addEventListener('change', (event) => {
@@ -64,7 +64,7 @@ export class Checkbox extends HTMLElement {
             this.tool.addEventListener('opacityChanged', (event) => {
                 this.setAttribute('opacity', event.detail.newValue);
             });
-        }        
+        }
 
         // css
         const style = document.createElement('link');
@@ -83,8 +83,12 @@ export class Checkbox extends HTMLElement {
                 detail: { name, oldValue, newValue }
             });
 
-            this.tool.setAttribute('is-enable', newValue);
+            if (this.tool) {
+                this.tool.setAttribute('is-enable', newValue);
+            }
+
             this.dispatchEvent(event);
+
         }
 
         if (name == 'opacity' && newValue !== oldValue) {
