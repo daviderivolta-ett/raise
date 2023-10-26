@@ -39,6 +39,19 @@ export class Infobox extends HTMLElement {
         this.info = this.shadow.querySelector('.info-content');
         this.data = JSON.parse(this.getAttribute('data'));
 
+        const pippo = {
+            ["Title"]: this.data["Title"]
+        }
+
+        Object.keys(pippo).forEach((key) => {
+            const value = pippo[key];
+            const title = document.createElement('h3');
+            title.innerText = value;
+            this.info.append(title);
+        })
+
+        console.log(pippo);
+
         Object.keys(this.data).forEach((key) => {
             const value = this.data[key];
             this.text = document.createElement('p');
@@ -53,7 +66,7 @@ export class Infobox extends HTMLElement {
         // js
         // close icon
         this.closeIcon = this.shadow.querySelector('#close-icon');
-        this.closeIcon.addEventListener('click', () => { 
+        this.closeIcon.addEventListener('click', () => {
 
             const event = new CustomEvent('infoboxRemoved', {
                 detail: { uuid: this.getAttribute('uuid') }

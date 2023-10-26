@@ -47,7 +47,7 @@ function getRelevantProperties(object, array, title) {
             }
         }
 
-        // risultati["title"] = title;
+        risultati["Title"] = title;
 
         return risultati;
     }
