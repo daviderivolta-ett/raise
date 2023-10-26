@@ -1,3 +1,5 @@
+import componentCss from '/public/css/accordion.css?raw';
+
 export class Accordion extends HTMLElement {
 
     constructor() {
@@ -37,6 +39,9 @@ export class Accordion extends HTMLElement {
 
         this.shadow.innerHTML =
             `
+            <style>
+                ${componentCss}
+            </style>
             <div class="accordion-item">
 
                 <button type="button" class="accordion-btn">
@@ -60,10 +65,10 @@ export class Accordion extends HTMLElement {
         // </div>
 
         // css
-        const style = document.createElement('link');
-        style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/accordion.css');
-        this.shadow.append(style);
+        // const style = document.createElement('link');
+        // style.setAttribute('rel', 'stylesheet');
+        // style.setAttribute('href', './css/accordion.css');
+        // this.shadow.append(style);
 
         //js
         // accordion
