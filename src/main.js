@@ -4,14 +4,19 @@ import * as Cesium from 'cesium';
 
 // Import methods
 import { populateDrawer } from './utils/populateDrawer.js';
+
 import { filterLayersByTag } from './utils/filterLayersByTag.js';
 import { fetchJsonData } from './settings.js';
+
 import { activateLayersWMS } from './utils/activateLayersWMS.js';
 import { activateLayersWFS } from './utils/activateLayersWFS.js';
+
 import { handleFeaturesWMS } from './utils/handleFeaturesWMS.js';
 import { handleFeaturesWFS } from './utils/handleFeaturesWFS.js';
+
 import { accordionBehaviour } from './utils/accordionBehaviour.js';
 import { filterTag } from './utils/filterTagByName.js';
+
 import { createInfobox } from './utils/createInfobox.js';
 import { handleInfoBox } from './utils/handleInfobox.js';
 

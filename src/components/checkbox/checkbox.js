@@ -87,7 +87,7 @@ export class Checkbox extends HTMLElement {
         this.render();
     }
 
-    static observedAttributes = ['is-checked', 'opacity'];
+    static observedAttributes = ['is-checked', 'data'];
     attributeChangedCallback(name, oldValue, newValue) {
 
         if (name == 'is-checked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
@@ -103,7 +103,7 @@ export class Checkbox extends HTMLElement {
             this.dispatchEvent(event);
         }
 
-        if (name == 'opacity' && newValue !== oldValue) {
+        if (name == 'data' && newValue !== oldValue) {
             const event = new CustomEvent('opacityChanged', {
                 detail: { name, oldValue, newValue }
             });
