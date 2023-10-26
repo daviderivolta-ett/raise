@@ -131,7 +131,7 @@ export default class CesiumViewer {
                                 entity.point = new Cesium.PointGraphics({
                                     pixelSize: 18,
                                     color: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
-                                    outlineColor: Cesium.Color[markerColor],
+                                    outlineColor: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
                                     outlineWidth: 2
                                 })
                         })
