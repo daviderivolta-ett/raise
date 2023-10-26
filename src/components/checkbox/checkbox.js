@@ -60,7 +60,9 @@ export class Checkbox extends HTMLElement {
                     this.component.setAttribute('opacity', this.opacity);
 
                     this.component.addEventListener('opacityChanged', (event) => {
-                        this.setAttribute('opacity', event.detail.newValue);
+                        const data = JSON.parse(this.getAttribute('data'));
+                        data.style.opacity = event.detail.newValue;
+                        this.setAttribute('data', JSON.stringify(data));
                     });
 
                 }
