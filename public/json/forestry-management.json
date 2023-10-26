@@ -6,7 +6,8 @@
             "layer": "SITGEO:V_VE_PAF_TIPI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 0.5
             },
             "tags": [
                 "natura",
@@ -34,7 +35,8 @@
             "layer": "SITGEO:V_VE_PAF_INT",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 0.5
             },
             "tags": [
                 "natura",

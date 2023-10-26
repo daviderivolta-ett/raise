@@ -6,7 +6,8 @@
             "layer": "SITGEO:V_MUNICIPI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 0.5
             },
             "tags": [
                 "città",

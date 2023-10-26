@@ -6,7 +6,8 @@
             "layer": "SITGEO:V_GEOMORFOLOGIA",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 0.5
             },
             "tags": [
                 "natura",
@@ -29,7 +30,8 @@
             "layer": "SITGEO:V_GEOMORFO_LIN",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 0.5
             },
             "tags": [
                 "natura",
@@ -52,7 +54,8 @@
             "layer": "SITGEO:V_GEOMORFO_SOVRA",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 0.5
             },
             "tags": [
                 "natura",

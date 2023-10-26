@@ -18,7 +18,7 @@ export class Checkbox extends HTMLElement {
                 <label for="checkbox">Label</label>
             </div>                      
             `
-        ;
+            ;
 
         this.checkbox = this.shadow.querySelector('input');
 
@@ -50,12 +50,23 @@ export class Checkbox extends HTMLElement {
                     </svg>                
                 </summary>
                 `
-            ;
+                ;
 
             for (const component of components) {
-                this.details.innerHTML += `<${component}></${component}>`;
+                this.component = document.createElement(`${component}`);
+
+                if (component == 'app-opacity-slider') {
+                    this.opacity = JSON.parse(this.getAttribute('data')).style.opacity;
+                    this.component.setAttribute('opacity', this.opacity);
+
+                    this.component.addEventListener('opacityChanged', (event) => {
+                        this.setAttribute('opacity', event.detail.newValue);
+                    });
+
+                }
             }
 
+            this.details.append(this.component);
             this.shadow.append(this.details);
         }
 
@@ -64,13 +75,6 @@ export class Checkbox extends HTMLElement {
             const isChecked = event.target.checked;
             this.setAttribute('is-checked', isChecked + '');
         });
-
-        this.toolOpacity = this.shadow.querySelector('app-opacity-slider');
-        if (this.toolOpacity) {
-            this.toolOpacity.addEventListener('opacityChanged', (event) => {
-                this.setAttribute('opacity', event.detail.newValue);
-            });
-        }
 
         // css
         const style = document.createElement('link');
@@ -89,12 +93,12 @@ export class Checkbox extends HTMLElement {
                 detail: { name, oldValue, newValue }
             });
 
+            this.toolOpacity = this.shadow.querySelector('app-opacity-slider');
             if (this.toolOpacity) {
                 this.toolOpacity.setAttribute('is-enable', newValue);
             }
 
             this.dispatchEvent(event);
-
         }
 
         if (name == 'opacity' && newValue !== oldValue) {

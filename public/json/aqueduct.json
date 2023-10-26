@@ -6,7 +6,8 @@
             "layer": "CULTURA:V_ACQ_STORICO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 1
             },
             "tags": [
                 "cultura",
@@ -37,7 +38,8 @@
             "layer": "CULTURA:V_ACQ_MANU_STORICI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 1
             },
             "tags": [
                 "cultura",
@@ -77,7 +79,8 @@
             "layer": "CULTURA:V_ACQ_AREA_SOSTA",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 1
             },
             "tags": [
                 "cultura",
@@ -98,7 +101,8 @@
             "layer": "V_ACQ_PTI_ACCESSO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 1
             },
             "tags": [
                 "cultura",
@@ -129,7 +133,8 @@
             "layer": "CULTURA:V_ACQ_PTI_INT_STORICO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 1
             },
             "tags": [
                 "cultura",
@@ -161,7 +166,8 @@
             "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 1
             },
             "tags": [
                 "cultura",
@@ -183,7 +189,8 @@
             "layer": "SITGEO:V_ACQUA_POTABILE",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 1
             },
             "tags": [
                 "cultura",

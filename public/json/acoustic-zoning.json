@@ -6,7 +6,8 @@
             "layer": "SITGEO:V_ZA_MISURE_FONOM",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 1
             },
             "tags": [
                 "città",
@@ -41,7 +42,8 @@
             "layer": "SITGEO:V_ZA_ZONEACUSTICHE",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 0.5
             },
             "tags": [
                 "città",
@@ -66,7 +68,8 @@
             "layer": "SITGEO:V_ZA_FR_AUTO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 0.5
             },
             "tags": [
                 "città",
@@ -87,7 +90,8 @@
             "layer": "SITGEO:V_ZA_FR_FERR",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red"
+                "color": "red",
+                "opacity": 0.5
             },
             "tags": [
                 "città",

@@ -19,17 +19,17 @@ export class OpacitySlider extends HTMLElement {
             `
         ;
 
-        this.setAttribute('is-enable', 'false');
         this.input = this.shadow.querySelector('input');
 
-        if (this.getAttribute('is-enable') == 'false') {
+        if (!this.hasAttribute('is-enable')) {
+            this.setAttribute('is-enable', 'false');
             this.input.disabled = true;
         }
 
         this.input.setAttribute('min', 0);
         this.input.setAttribute('max', 1);
         this.input.setAttribute('step', 0.1);
-        this.input.value = 0.5;
+        this.input.value = this.getAttribute('opacity');
 
         this.input.addEventListener('change', () => {
             this.setAttribute('opacity', this.input.value);

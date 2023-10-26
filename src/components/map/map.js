@@ -108,7 +108,7 @@ export default class CesiumViewer {
         if (style && style.color) {
             strokeColor = style.color.toUpperCase();
             fillColor = style.color.toUpperCase();
-            markerColor = style.color.toUpperCase();            
+            markerColor = style.color.toUpperCase();
         }
 
         if (style && style.opacity) {
@@ -119,13 +119,23 @@ export default class CesiumViewer {
         fetch(url)
             .then(response => response.json())
             .then(geoJson => {
-                const wfsImageryProvider = new Cesium.GeoJsonDataSource.load(geoJson, {
-                    stroke: Cesium.Color[strokeColor],
+
+                const geoJsonLayer = this.viewer.dataSources.add(Cesium.GeoJsonDataSource.load(geoJson, {
+                    stroke: Cesium.Color[strokeColor].withAlpha(parseFloat(opacity)),
                     strokeWidth: 2,
                     fill: Cesium.Color[fillColor].withAlpha(parseFloat(opacity)),
-                    markerColor: Cesium.Color[markerColor]
-                });
-                this.viewer.dataSources.add(wfsImageryProvider);
+                }))
+                    .then(dataSource => {
+                        dataSource.entities.values.forEach(entity => {
+                            entity.billboard = undefined,
+                                entity.point = new Cesium.PointGraphics({
+                                    pixelSize: 18,
+                                    color: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
+                                    outlineColor: Cesium.Color[markerColor],
+                                    outlineWidth: 2
+                                })
+                        })
+                    })
             })
     }
 
