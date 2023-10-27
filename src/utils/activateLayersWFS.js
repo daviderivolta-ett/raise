@@ -1,9 +1,6 @@
-export const activateLayersWFS = (allCheckboxLists, activeLayers, viewer) => {
-
-    allCheckboxLists.forEach(checkboxList => {
-
-        checkboxList.addEventListener('checkboxListChanged', (event) => {
-
+export const activateLayersWFS = async (allCheckboxLists, activeLayers, viewer) => {
+    for (const checkboxList of allCheckboxLists) {
+        checkboxList.addEventListener('checkboxListChanged', async (event) => {
             const checkboxListLayersToRemove = event.detail.input;
 
             checkboxListLayersToRemove.forEach(layer => {
@@ -19,18 +16,11 @@ export const activateLayersWFS = (allCheckboxLists, activeLayers, viewer) => {
                 activeLayers.push(layer);
             });
 
-            viewer.viewer.dataSources.removeAll();
+            await viewer.viewer.dataSources.removeAll();
 
             for (const layer of activeLayers) {
-                viewer.addLayersWFS(layer.layer_url_wfs, layer.layer, layer.style);
+                await viewer.addLayersWFS(layer.layer_url_wfs, layer.layer, layer.style);
             }
-
-            console.log('Active layers:');
-            console.log(activeLayers);
-
         });
-    });
-
-
-
+    }
 }

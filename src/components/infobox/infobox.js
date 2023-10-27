@@ -39,21 +39,22 @@ export class Infobox extends HTMLElement {
         this.info = this.shadow.querySelector('.info-content');
         this.data = JSON.parse(this.getAttribute('data'));
 
-        const pippo = {
+        const infoTitle = {
             ["Title"]: this.data["Title"]
         }
 
-        Object.keys(pippo).forEach((key) => {
-            const value = pippo[key];
+        Object.keys(infoTitle).forEach((key) => {
+            const value = infoTitle[key];
             const title = document.createElement('h3');
             title.innerText = value;
             this.info.append(title);
         })
 
-        console.log(pippo);
+        const dataWithoutTitle = { ...this.data };
+        delete dataWithoutTitle["Title"];
 
-        Object.keys(this.data).forEach((key) => {
-            const value = this.data[key];
+        Object.keys(dataWithoutTitle).forEach((key) => {
+            const value = dataWithoutTitle[key];
             this.text = document.createElement('p');
             this.text.innerHTML =
                 `

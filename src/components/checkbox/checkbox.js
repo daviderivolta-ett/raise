@@ -22,10 +22,13 @@ export class Checkbox extends HTMLElement {
 
         this.checkbox = this.shadow.querySelector('input');
 
-        if (this.hasAttribute('is-checked')) {
-            this.setAttribute('is-checked', this.getAttribute('is-checked'))
+        // checkbox
+        if (this.hasAttribute('is-checked') && this.getAttribute('is-checked') == 'true') {
+            this.setAttribute('is-checked', this.getAttribute('is-checked'));
+            this.checkbox.checked = true;
         } else {
             this.setAttribute('is-checked', 'false');
+            this.checkbox.checked = false;
         }
 
         this.label = this.shadow.querySelector('label');
@@ -50,7 +53,7 @@ export class Checkbox extends HTMLElement {
                     </svg>                
                 </summary>
                 `
-                ;
+            ;
 
             for (const component of components) {
                 this.component = document.createElement(`${component}`);
@@ -83,14 +86,18 @@ export class Checkbox extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/checkbox.css');
         this.shadow.append(style);
-
-        this.render();
     }
 
     static observedAttributes = ['is-checked', 'data'];
     attributeChangedCallback(name, oldValue, newValue) {
 
         if (name == 'is-checked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
+            if (newValue == 'true') {
+                this.checkbox.checked = true;
+            } else {
+                this.checkbox.checked = false;
+            } 
+
             const event = new CustomEvent('checkboxChanged', {
                 detail: { name, oldValue, newValue }
             });

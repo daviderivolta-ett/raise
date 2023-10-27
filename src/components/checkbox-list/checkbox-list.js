@@ -6,26 +6,45 @@ export class CheckboxList extends HTMLElement {
     }
 
     render() {
+    }
+
+    connectedCallback() {
+        this.shadow.innerHTML =
+            `
+            <div></div>
+            `
+        ;
+
+        this.div = this.shadow.querySelector('div');
+        this.setAttribute('all-active', 'false');
+
+        // css
+        const style = document.createElement('link');
+        style.setAttribute('rel', 'stylesheet');
+        style.setAttribute('href', './css/checkbox-list.css');
+        this.shadow.append(style);
+
+
         if (!this.hasAttribute('input')) return;
 
         // html
         this.input = JSON.parse(this.getAttribute('input'));
-        this.data = [];        
+        this.data = [];
 
-        const checkboxes = [];
+        this.checkboxes = [];
 
         for (let i = 0; i < this.input.length; i++) {
             this.checkbox = document.createElement('app-checkbox');
             this.checkbox.setAttribute('is-checked', 'false');
             this.checkbox.setAttribute('data', JSON.stringify(this.input[i]));
 
-            checkboxes.push(this.checkbox);
+            this.checkboxes.push(this.checkbox);
 
             this.div.append(this.checkbox);
         }
 
         // js
-        checkboxes.forEach(item => {
+        this.checkboxes.forEach(item => {
             item.addEventListener('checkboxChanged', () => {
                 this.itemData = JSON.parse(item.getAttribute('data'));
 
@@ -43,7 +62,7 @@ export class CheckboxList extends HTMLElement {
             });
         });
 
-        checkboxes.forEach(item => {
+        this.checkboxes.forEach(item => {
             item.addEventListener('opacityChanged', (event) => {
                 this.itemData = JSON.parse(item.getAttribute('data'));
                 this.itemData.opacity = event.detail.newValue;
@@ -64,38 +83,26 @@ export class CheckboxList extends HTMLElement {
         });
     }
 
-    connectedCallback() {
-        this.shadow.innerHTML =
-            `
-            <div></div>
-            `
-            ;
-
-        this.div = this.shadow.querySelector('div');
-        this.setAttribute('all-active', 'false');
-
-        // css
-        const style = document.createElement('link');
-        style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/checkbox-list.css');
-        this.shadow.append(style);
-
-        this.render();
-    }
-
-    static observedAttributes = ['data'];
+    static observedAttributes = ['data', 'all-active'];
     attributeChangedCallback(name, oldValue, newValue) {
-        const event = new CustomEvent('checkboxListChanged', {
-            detail: {
-                name: 'data',
-                oldValue: oldValue,
-                newValue: newValue,
-                input: this.input
-            }
-        });
 
-        if (newValue != oldValue) {
+        if (name == 'data' && newValue != oldValue) {
+            const event = new CustomEvent('checkboxListChanged', {
+                detail: {
+                    name: 'data',
+                    oldValue: oldValue,
+                    newValue: newValue,
+                    input: this.input
+                }
+            });
+
             this.dispatchEvent(event);
+        }
+
+        if (name == 'all-active' && oldValue != null && newValue != null && newValue != oldValue) {
+            this.checkboxes.forEach(item => {
+                item.setAttribute('is-checked', this.getAttribute('all-active'));
+            })
         }
     }
 }

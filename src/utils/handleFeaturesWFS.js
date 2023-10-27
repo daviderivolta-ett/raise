@@ -4,8 +4,8 @@ export const handleFeaturesWFS = (features, jsonData) => {
 
         let layerToFind = '';
 
-        if (features._id.includes('.')) {
-            layerToFind = features._id.split('.')[0];
+        if (features.id.includes('.')) {
+            layerToFind = features.id.split('.')[0];
         }
 
         const foundLayer = filterLayerByName(jsonData, layerToFind);
@@ -13,7 +13,7 @@ export const handleFeaturesWFS = (features, jsonData) => {
         const relevantProperties = foundLayer.relevant_properties;
 
         const properties = getRelevantProperties(features.properties, relevantProperties, foundLayerName);
-        console.log(properties);
+        // console.log(properties);
 
         return properties;
     }
