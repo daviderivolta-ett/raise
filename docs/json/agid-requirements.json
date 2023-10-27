@@ -4,6 +4,11 @@
         {
             "name": "Prossimità fiumi",
             "layer": "SITGEO:PROSSIMITA_FIUMI_MAG_90_4326",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 0.5
+            },
             "tags": [
                 "città",
                 "agid",
@@ -15,11 +20,18 @@
                 "acqua"
             ],
             "relevant_properties": [],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Prossimità autostrada",
             "layer": "SITGEO:PROSSIMITA_AUTOSTRADA_MAG_91_4326",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 0.5
+            },
             "tags": [
                 "città",
                 "agid",
@@ -30,7 +42,9 @@
                 "autostrada"
             ],
             "relevant_properties": [],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         }
     ]
 }

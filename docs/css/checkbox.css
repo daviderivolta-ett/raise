@@ -9,7 +9,7 @@ label {
     cursor: pointer;
 }
 
-div {
+div.checkbox {
     display: flex;
     align-items: center;
     margin: 0 0 8px 0;
@@ -54,12 +54,20 @@ input:checked {
     border-radius: 4px;
 }
 
+.legend {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin: 0 8px 0 0;
+}
+
 details {
     padding: 0 0 0 26px;
     margin: 0 0 16px 0;
 }
 
 summary {
+    position: relative;
     cursor: pointer;
     list-style: none;
     display: flex;
@@ -71,6 +79,9 @@ summary::-webkit-details-marker {
 }
 
 svg {
+    position: absolute;
+    top: -24px;
+    right: 0;
     transition: all .1s ease-in-out;
 }
 

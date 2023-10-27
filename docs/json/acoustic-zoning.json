@@ -4,6 +4,11 @@
         {
             "name": "Misure fonometriche",
             "layer": "SITGEO:V_ZA_MISURE_FONOM",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
             "tags": [
                 "città",
                 "misura",
@@ -28,11 +33,18 @@
                     "type": "string"
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Zone acustiche",
             "layer": "SITGEO:V_ZA_ZONEACUSTICHE",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 0.5
+            },
             "tags": [
                 "città",
                 "misura",
@@ -47,11 +59,18 @@
                     "type": "string"
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Vicinanza autostrada",
             "layer": "SITGEO:V_ZA_FR_AUTO",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 0.5
+            },
             "tags": [
                 "città",
                 "misura",
@@ -62,11 +81,18 @@
                 "strada"
             ],
             "relevant_properties": [],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         },
         {
             "name": "Vicinanza ferrovia",
             "layer": "SITGEO:V_ZA_FR_FERR",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 0.5
+            },
             "tags": [
                 "città",
                 "misura",
@@ -77,7 +103,9 @@
                 "treno"
             ],
             "relevant_properties": [],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         }
     ]
 }

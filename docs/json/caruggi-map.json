@@ -4,6 +4,11 @@
         {
             "name": "Bagni pubblici",
             "layer": "SITGEO:V_BAGNI",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
             "tags": [
                 "città",
                 "bagno",
@@ -38,7 +43,9 @@
                     "type": "string"
                 }
             ],
-            "components": []
+            "components": [
+                "app-opacity-slider"
+            ]
         }
     ]
 }
