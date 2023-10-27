@@ -53,7 +53,7 @@ export class Checkbox extends HTMLElement {
                     </svg>                
                 </summary>
                 `
-            ;
+                ;
 
             for (const component of components) {
                 this.component = document.createElement(`${component}`);
@@ -73,6 +73,7 @@ export class Checkbox extends HTMLElement {
 
             this.details.append(this.component);
             this.shadow.append(this.details);
+            this.setAttribute('is-details-open', 'false');
         }
 
         // js
@@ -81,6 +82,22 @@ export class Checkbox extends HTMLElement {
             this.setAttribute('is-checked', isChecked + '');
         });
 
+        if (this.details) {
+            this.details.addEventListener('toggle', (event) => {
+                if (event.target.open) {
+                    this.setAttribute('is-details-open', 'true');
+                } else {
+                    this.setAttribute('is-details-open', 'false');
+                }
+            })
+
+            // if (this.getAttribute('is-details-open') == 'true') {
+            //     this.details.setAttribute('open', '')
+            // } else {
+            //     this.details.removeAttribute('open');
+            // }
+        }
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
@@ -88,7 +105,7 @@ export class Checkbox extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-checked', 'data'];
+    static observedAttributes = ['is-checked', 'data', 'is-details-open'];
     attributeChangedCallback(name, oldValue, newValue) {
 
         if (name == 'is-checked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
@@ -96,7 +113,7 @@ export class Checkbox extends HTMLElement {
                 this.checkbox.checked = true;
             } else {
                 this.checkbox.checked = false;
-            } 
+            }
 
             const event = new CustomEvent('checkboxChanged', {
                 detail: { name, oldValue, newValue }
@@ -116,6 +133,20 @@ export class Checkbox extends HTMLElement {
             });
 
             this.dispatchEvent(event);
+        }
+
+        if (name == 'is-details-open' && oldValue != null && newValue != null && newValue != oldValue) {
+            const event = new CustomEvent('detailStatusChanged', {
+                detail: { name, oldValue, newValue }
+            });
+
+            this.dispatchEvent(event);
+            
+            if (this.getAttribute('is-details-open') == 'true') {
+                this.details.setAttribute('open', '')
+            } else {
+                this.details.removeAttribute('open');
+            }
         }
     }
 }

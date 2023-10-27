@@ -13,7 +13,7 @@ export class CheckboxList extends HTMLElement {
             `
             <div></div>
             `
-        ;
+            ;
 
         this.div = this.shadow.querySelector('div');
         this.setAttribute('all-active', 'false');
@@ -45,6 +45,7 @@ export class CheckboxList extends HTMLElement {
 
         // js
         this.checkboxes.forEach(item => {
+
             item.addEventListener('checkboxChanged', () => {
                 this.itemData = JSON.parse(item.getAttribute('data'));
 
@@ -59,10 +60,14 @@ export class CheckboxList extends HTMLElement {
                 }
 
                 this.setAttribute('data', JSON.stringify(this.data));
-            });
-        });
 
-        this.checkboxes.forEach(item => {
+                // if (this.checkboxes.length === JSON.parse(this.getAttribute('data')).length) {
+                //     this.setAttribute('all-active', 'true');
+                // } else {
+                //     this.setAttribute('all-active', 'false');
+                // }
+            });
+
             item.addEventListener('opacityChanged', (event) => {
                 this.itemData = JSON.parse(item.getAttribute('data'));
                 this.itemData.opacity = event.detail.newValue;
@@ -80,6 +85,17 @@ export class CheckboxList extends HTMLElement {
 
                 this.setAttribute('data', JSON.stringify(this.data));
             });
+
+            item.addEventListener('detailStatusChanged', (event) => {
+                if (event.detail.newValue == 'true') {
+                    this.checkboxes.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.setAttribute('is-details-open', 'false');
+                        }
+                    });
+                }
+            })
+
         });
     }
 

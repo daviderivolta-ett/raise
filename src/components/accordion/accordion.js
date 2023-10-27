@@ -9,8 +9,6 @@ export class Accordion extends HTMLElement {
 
     render() {
         // Checkbox
-        this.slots = this.shadow.querySelectorAll('slot');
-
         this.slots.forEach(slot => {
             const assignedNodes = slot.assignedNodes();
             assignedNodes.forEach(node => {
@@ -119,6 +117,9 @@ export class Accordion extends HTMLElement {
             const isChecked = event.target.checked;
             this.setAttribute('all-active', isChecked + '');
         });
+
+        // slot
+        this.slots = this.shadow.querySelectorAll('slot');
     }
 
     static observedAttributes = ['is-active', 'all-active'];
