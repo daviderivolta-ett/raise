@@ -79,6 +79,7 @@ fetchJsonData(CATEGORIES_URL)
     viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
       viewer.onClick(movement.position)
         .then(features => {
+          console.log(features);
           const infoContent = handleFeaturesWFS(features, jsonData);
 
           let allInfoBoxes = document.querySelectorAll('app-infobox');
