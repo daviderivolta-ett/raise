@@ -164,17 +164,17 @@ export default class CesiumViewer {
                                     cluster.point.pixelSize = 48;
 
                                     if (clusteredEntities.length >= 50) {
-                                        cluster.point.color = Cesium.Color.RED;
+                                        cluster.point.color = Cesium.Color.RED.withAlpha(parseFloat(opacity));
                                     } else if (clusteredEntities.length >= 40) {
-                                        cluster.point.color = Cesium.Color.ORANGE;
+                                        cluster.point.color = Cesium.Color.ORANGE.withAlpha(parseFloat(opacity));
                                     } else if (clusteredEntities.length >= 30) {
-                                        cluster.point.color = Cesium.Color.YELLOW;
+                                        cluster.point.color = Cesium.Color.YELLOW.withAlpha(parseFloat(opacity));
                                     } else if (clusteredEntities.length >= 20) {
-                                        cluster.point.color = Cesium.Color.GREEN;
+                                        cluster.point.color = Cesium.Color.GREEN.withAlpha(parseFloat(opacity));
                                     } else if (clusteredEntities.length >= 10) {
-                                        cluster.point.color = Cesium.Color.BLUE;
+                                        cluster.point.color = Cesium.Color.BLUE.withAlpha(parseFloat(opacity));
                                     } else {
-                                        cluster.point.color = Cesium.Color.VIOLET;
+                                        cluster.point.color = Cesium.Color.VIOLET.withAlpha(parseFloat(opacity));
                                     }
 
                                     // Labels
