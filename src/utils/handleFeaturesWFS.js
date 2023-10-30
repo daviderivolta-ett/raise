@@ -1,7 +1,7 @@
 export const handleFeaturesWFS = (features, jsonData) => {
 
     if (features != null) {
-
+        
         let layerToFind = '';
 
         if (features.id.includes('.')) {

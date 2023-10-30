@@ -79,18 +79,22 @@ fetchJsonData(CATEGORIES_URL)
     viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
       viewer.onClick(movement.position)
         .then(features => {
-          console.log(features);
-          const infoContent = handleFeaturesWFS(features, jsonData);
+          // console.log(features);
 
-          let allInfoBoxes = document.querySelectorAll('app-infobox');
+          if (typeof features === 'object' && !Array.isArray(features)) {
+            const infoContent = handleFeaturesWFS(features, jsonData);
 
-          if (infoContent) {
-            if (Object.keys(infoContent).length !== 0) {            
-              createInfobox(allInfoBoxes, infoContent, main);
+            let allInfoBoxes = document.querySelectorAll('app-infobox');
+
+            if (infoContent) {
+              if (Object.keys(infoContent).length !== 0) {
+                createInfobox(allInfoBoxes, infoContent, main);
+              }
             }
+
+            drawerToggle.setAttribute('is-open', 'false');
           }
 
-          drawerToggle.setAttribute('is-open', 'false');
         })
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
