@@ -141,7 +141,7 @@ export default class CesiumViewer {
                         })
 
                         // Clustering
-                        const pixelRange = 50;
+                        const pixelRange = 25;
                         const minimumClusterSize = 3;
                         const enabled = true;
 
@@ -157,7 +157,7 @@ export default class CesiumViewer {
                         } else {
                             removeListener = dataSource.clustering.clusterEvent.addEventListener(
                                 function (clusteredEntities, cluster) {
-                                    
+
                                     // Points
                                     cluster.billboard.show = false;
                                     cluster.point.show = true;
@@ -182,6 +182,8 @@ export default class CesiumViewer {
                                     cluster.label.text = clusteredEntities.length.toLocaleString();
                                     cluster.label.verticalOrigin = Cesium.VerticalOrigin.CENTER;
                                     cluster.label.horizontalOrigin = Cesium.HorizontalOrigin.CENTER;
+                                    cluster.label.pixelOffset = new Cesium.Cartesian2(0.0, 0.0);
+                                    cluster.label.pixelOffsetScaleByDistance = undefined;
                                     cluster.label.position.z += 1;
                                 }
                             );
