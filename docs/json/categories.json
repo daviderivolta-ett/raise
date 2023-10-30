@@ -14,10 +14,11 @@
                 "./json/parking-areas.json",
                 "./json/acoustic-zoning.json",
                 "./json/municipi.json",
-                "./json/agid-requirements.json",
                 "./json/caruggi-map.json",
                 "./json/amt-bus-stop.json",
-                "./json/metro.json"
+                "./json/metro.json",
+                "./json/architectural-barriers.json",
+                "./json/car-parks.json"
             ]
         },
         {
