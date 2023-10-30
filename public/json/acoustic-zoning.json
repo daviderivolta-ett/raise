@@ -38,32 +38,6 @@
             ]
         },
         {
-            "name": "Zone acustiche",
-            "layer": "SITGEO:V_ZA_ZONEACUSTICHE",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "red",
-                "opacity": 0.5
-            },
-            "tags": [
-                "città",
-                "misura",
-                "fonometria",
-                "acustica",
-                "zona"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DESCRIZIONE",
-                    "display_name": "Descrizione",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
             "name": "Vicinanza autostrada",
             "layer": "SITGEO:V_ZA_FR_AUTO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
