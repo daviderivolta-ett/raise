@@ -20,6 +20,8 @@ import { filterTag } from './utils/filterTagByName.js';
 import { createInfobox } from './utils/createInfobox.js';
 import { handleInfoBox } from './utils/handleInfobox.js';
 
+import { getAllTags } from './utils/getAllTags.js';
+
 
 // Import data
 const CATEGORIES_URL = '../json/categories.json';
