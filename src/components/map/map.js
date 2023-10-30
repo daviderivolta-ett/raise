@@ -141,7 +141,7 @@ export default class CesiumViewer {
                         })
 
                         // Clustering
-                        const pixelRange = 25;
+                        const pixelRange = 100;
                         const minimumClusterSize = 3;
                         const enabled = true;
 
@@ -165,16 +165,22 @@ export default class CesiumViewer {
 
                                     if (clusteredEntities.length >= 50) {
                                         cluster.point.color = Cesium.Color.RED.withAlpha(parseFloat(opacity));
+                                        cluster.point.outlineColor = Cesium.Color.RED;
                                     } else if (clusteredEntities.length >= 40) {
                                         cluster.point.color = Cesium.Color.ORANGE.withAlpha(parseFloat(opacity));
+                                        cluster.point.outlineColor = Cesium.Color.ORANGE;
                                     } else if (clusteredEntities.length >= 30) {
                                         cluster.point.color = Cesium.Color.YELLOW.withAlpha(parseFloat(opacity));
+                                        cluster.point.outlineColor = Cesium.Color.YELLOW;
                                     } else if (clusteredEntities.length >= 20) {
                                         cluster.point.color = Cesium.Color.GREEN.withAlpha(parseFloat(opacity));
+                                        cluster.point.outlineColor = Cesium.Color.GREEN;
                                     } else if (clusteredEntities.length >= 10) {
                                         cluster.point.color = Cesium.Color.BLUE.withAlpha(parseFloat(opacity));
+                                        cluster.point.outlineColor = Cesium.Color.BLUE;
                                     } else {
                                         cluster.point.color = Cesium.Color.VIOLET.withAlpha(parseFloat(opacity));
+                                        cluster.point.outlineColor = Cesium.Color.VIOLET;
                                     }
 
                                     // Labels
@@ -184,7 +190,7 @@ export default class CesiumViewer {
                                     cluster.label.horizontalOrigin = Cesium.HorizontalOrigin.CENTER;
                                     cluster.label.pixelOffset = new Cesium.Cartesian2(0.0, 0.0);
                                     cluster.label.pixelOffsetScaleByDistance = undefined;
-                                    cluster.label.position.z += 1;
+                                    cluster.label.position.z += 5;
                                 }
                             );
                         }

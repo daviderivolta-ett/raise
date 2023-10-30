@@ -1,0 +1,90 @@
+{
+    "name": "Barriere architettoniche",
+    "layers": [
+        {
+            "name": "Barriere architettoniche",
+            "layer": "SITGEO:V_PEBA_OGGETTI_FUNZ",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 0.5
+            },
+            "tags": [
+                "città",
+                "disabili",
+                "barriere",
+                "architettoniche"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "TIPO_OGGETTO",
+                    "display_name": "Tipologia",
+                    "type": "string"
+                },
+                {
+                    "property_name": "CATEGORIA_FUNZIONE",
+                    "display_name": "Categoria",
+                    "type": "string"
+                },
+                {
+                    "property_name": "DESC_FUNZIONE",
+                    "display_name": "Funzione",
+                    "type": "string"
+                },
+                {
+                    "property_name": "INDIRIZZO",
+                    "display_name": "Indirizzo",
+                    "type": "string"
+                },
+                {
+                    "property_name": "CRIT_MOTORIA",
+                    "display_name": "Criticità motoria",
+                    "type": "string"
+                },
+                {
+                    "property_name": "GRADO_ACC_MOTORIA",
+                    "display_name": "Grado di accessibilità motoria",
+                    "type": "string"
+                },
+                {
+                    "property_name": "CRIT_SENSORIALE",
+                    "display_name": "Criticità sensoriale",
+                    "type": "string"
+                },
+                {
+                    "property_name": "GRADO_ACC_SENSORIALE",
+                    "display_name": "Grado di accessibilità sensoriale",
+                    "type": "string"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
+            "name": "Interventi eliminazione",
+            "layer": "SITGEO:V_PEBA_PERCORSI_CS",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "disabili",
+                "barriere",
+                "architettoniche"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "TIPOLOGIA",
+                    "display_name": "Tipologia",
+                    "type": "string"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        }
+    ]
+}

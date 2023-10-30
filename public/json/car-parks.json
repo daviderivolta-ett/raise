@@ -1,0 +1,63 @@
+{
+    "name": "Aree parcheggio",
+    "layers": [
+        {
+            "name": "Parcheggi Car Sharing",
+            "layer": "V_MOB_PARKS_CARSHARING",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "parcheggi",
+                "car sharing"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME",
+                    "display_name": "Nome",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NUMERO_STALLI",
+                    "display_name": "Numero stalli",
+                    "type": "string"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
+            "name": "Parcheggi di interscambio",
+            "layer": "V_MOB_PARKS_INTERSCAMBIO",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "parcheggi",
+                "interscambio"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME",
+                    "display_name": "Nome",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NUMERO_STALLI",
+                    "display_name": "Numero stalli",
+                    "type": "string"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        }
+    ]
+}
