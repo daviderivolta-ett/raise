@@ -21,6 +21,7 @@ import { createInfobox } from './utils/createInfobox.js';
 import { handleInfoBox } from './utils/handleInfobox.js';
 
 import { getAllTags } from './utils/getAllTags.js';
+import { filterLayersByTagsArray } from './utils/filterLayersByTagsArray.js';
 
 
 // Import data
@@ -56,13 +57,17 @@ if (mapContainer) {
 
     .then(jsonData => {
       if (localStorage.length != 0) {
-        console.log(localStorage);
-        console.log(JSON.parse(localStorage.selectedTags));
+        let dataToFilter = JSON.parse(JSON.stringify(jsonData));        
+        filterLayersByTagsArray(dataToFilter, JSON.parse(localStorage.selectedTags));
+
+        populateDrawer(dataToFilter, drawerContent);
+        return dataToFilter;
+
+      } else {
+        // Accordions creation    
+        populateDrawer(jsonData, drawerContent);
+        return jsonData;
       }
-      
-      // Accordions creation    
-      populateDrawer(jsonData, drawerContent);
-      return jsonData;
     })
 
     .then(jsonData => {
