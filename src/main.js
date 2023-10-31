@@ -42,6 +42,7 @@ import './components/autocomplete/autocomplete.js';
 import './components/tools/opacity-slider.js';
 import './components/chip/chip.js';
 import './components/button/button.js';
+import './components/icon/icon.js';
 
 const mapContainer = document.querySelector('app-map');
 if (mapContainer) {
