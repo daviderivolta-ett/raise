@@ -1,4 +1,4 @@
-export const filterLayersByTagsArray = (dataToFilter, array) => {
+export const filterLayersBySelectedTags = (dataToFilter, array) => {
     dataToFilter.categories.forEach(category => {
         category.groups.forEach(group => {
             group.layers = group.layers.filter(layer => {

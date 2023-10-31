@@ -13,6 +13,7 @@ export class Button extends HTMLElement {
     }
 
     connectedCallback() {
+        // html
         this.shadow.innerHTML =
             `
             <button type="submit">Submit</button>
@@ -21,6 +22,7 @@ export class Button extends HTMLElement {
 
         this.btn = this.shadow.querySelector('button');
 
+        // js
         if (!this.hasAttribute('tags')) {
             this.btn.disabled = true;    
         }
@@ -29,6 +31,12 @@ export class Button extends HTMLElement {
             localStorage.setItem('selectedTags', this.getAttribute('tags'));
             window.open('/', '_blank');
         });
+
+        // css
+        const style = document.createElement('link');
+        style.setAttribute('rel', 'stylesheet');
+        style.setAttribute('href', './css/button.css');
+        this.shadow.append(style);
     }
 
     static observedAttributes = ['tags'];

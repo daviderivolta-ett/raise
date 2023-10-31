@@ -5,7 +5,7 @@ import * as Cesium from 'cesium';
 // Import methods
 import { populateDrawer } from './utils/populateDrawer.js';
 
-import { filterLayersByTag } from './utils/filterLayersByTag.js';
+import { filterLayersByTagName } from './utils/filterLayersByTagName.js';
 import { fetchJsonData } from './settings.js';
 
 import { activateLayersWMS } from './utils/activateLayersWMS.js';
@@ -21,7 +21,7 @@ import { createInfobox } from './utils/createInfobox.js';
 import { handleInfoBox } from './utils/handleInfobox.js';
 
 import { getAllTags } from './utils/getAllTags.js';
-import { filterLayersByTagsArray } from './utils/filterLayersByTagsArray.js';
+import { filterLayersBySelectedTags } from './utils/filterLayersBySelectedTags.js';
 
 
 // Import data
@@ -58,7 +58,7 @@ if (mapContainer) {
     .then(jsonData => {
       if (localStorage.length != 0) {
         let dataToFilter = JSON.parse(JSON.stringify(jsonData));        
-        filterLayersByTagsArray(dataToFilter, JSON.parse(localStorage.selectedTags));
+        filterLayersBySelectedTags(dataToFilter, JSON.parse(localStorage.selectedTags));
 
         populateDrawer(dataToFilter, drawerContent);
         return dataToFilter;
@@ -142,7 +142,7 @@ if (mapContainer) {
 
         let dataToFilter = JSON.parse(JSON.stringify(jsonData));
 
-        filterLayersByTag(dataToFilter, valueToSearch);
+        filterLayersByTagName(dataToFilter, valueToSearch);
 
         if (valueToSearch == '') {
           populateDrawer(jsonData, drawerContent);

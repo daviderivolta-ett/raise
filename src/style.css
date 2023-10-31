@@ -73,3 +73,15 @@ main {
     transition: .2s ease-in-out;
   }
 }
+
+/* Onboard */
+main#onboard {
+  max-width: 800px;
+  margin: auto;
+  padding: 0 4%;
+}
+
+main#onboard h1 {
+  text-align: center;
+  font-size: 1.6rem;
+}
