@@ -7,8 +7,10 @@ export class Chip extends HTMLElement {
     render() {
         if (this.getAttribute('is-selected') == 'true') {
             this.chip.classList.add('selected');
+            this.checkbox.checked = true;
         } else {
             this.chip.classList.remove('selected');
+            this.checkbox.checked = false;
         }
     }
 
@@ -46,7 +48,6 @@ export class Chip extends HTMLElement {
 
     static observedAttributes = ['is-selected'];
     attributeChangedCallback(name, oldValue, newValue) {
-
 
         if (name == 'is-selected' && newValue != oldValue) {
             const event = new CustomEvent('chipChanged', {

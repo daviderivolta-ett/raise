@@ -191,6 +191,7 @@ const chipsContainer = document.querySelector('#chips-section');
 if (chipsContainer) {
   fetchJsonData(CATEGORIES_URL)
     .then(jsonData => {
+      // Create tag chips
       const allTags = getAllTags(jsonData);
 
       allTags.forEach(tag => {
@@ -199,6 +200,7 @@ if (chipsContainer) {
         chipsContainer.append(chip);
       });
 
+      // Button / chips behaviour
       let selectedTags = [];
 
       const chips = document.querySelectorAll('app-chip');
@@ -216,6 +218,21 @@ if (chipsContainer) {
         })
       })
 
+      // Select chips which tags are already in localStorage
+      if (localStorage.selectedTags) {
+        const selectedTags = JSON.parse(localStorage.selectedTags);
+        // console.log(selectedTags);
+
+        selectedTags.forEach(tag => {
+          chips.forEach(chip => {
+            if (chip.getAttribute('tag') == tag) {
+              chip.setAttribute('is-selected', 'true');
+            }
+          })
+        });
+      }      
+
+      // Clear localStorage
       const clear = document.querySelector('#clear-local-storage');
       clear.addEventListener('click', () => {
         localStorage.clear();
