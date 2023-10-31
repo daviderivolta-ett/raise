@@ -231,7 +231,23 @@ if (chipsContainer) {
             }
           })
         });
-      }      
+      }
+      
+      // Select all chips button
+      const selectAllBtn = document.querySelector('#select-all-btn');
+      selectAllBtn.addEventListener('click', () => {
+        chips.forEach(chip => {
+          chip.setAttribute('is-selected', 'true');
+        });
+      });
+
+      // Deselect all chips button
+      const resetBtn = document.querySelector('#reset-btn');
+      resetBtn.addEventListener('click', () => {
+        chips.forEach(chip => {
+          chip.setAttribute('is-selected', 'false');
+        });
+      });
 
       // Clear localStorage
       const clear = document.querySelector('#clear-local-storage');
