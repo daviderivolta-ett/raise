@@ -29,7 +29,7 @@ export class Button extends HTMLElement {
         
         this.btn.addEventListener('click', () => {
             localStorage.setItem('selectedTags', this.getAttribute('tags'));
-            window.open('/map', '_blank');
+            window.open('/map.html', '_blank');
         });
 
         // css
