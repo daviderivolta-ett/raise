@@ -5,6 +5,11 @@ export class Chip extends HTMLElement {
     }
 
     render() {
+        if (this.getAttribute('is-selected') == 'true') {
+            this.chip.classList.add('selected');
+        } else {
+            this.chip.classList.remove('selected');
+        }
     }
 
     connectedCallback() {
@@ -16,7 +21,7 @@ export class Chip extends HTMLElement {
                 <span class="chip-title"></span>               
             </label>
             `
-        ;
+            ;
 
         this.chip = this.shadow.querySelector('label');
         this.span = this.shadow.querySelector('span');
@@ -41,14 +46,15 @@ export class Chip extends HTMLElement {
 
     static observedAttributes = ['is-selected'];
     attributeChangedCallback(name, oldValue, newValue) {
-        
+
 
         if (name == 'is-selected' && newValue != oldValue) {
-            if (newValue == 'true') {
-                this.chip.classList.add('selected');
-            } else {
-                this.chip.classList.remove('selected');
-            }
+            const event = new CustomEvent('chipChanged', {
+                detail: { name, newValue, oldValue, tag: this.getAttribute('tag') }
+            });
+
+            this.dispatchEvent(event);
+            this.render();
         }
     }
 }
