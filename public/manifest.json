@@ -1,7 +1,7 @@
 {
 "name": "RAISE Liguria",
 "short_name": "RAISE",
-"start_url": "https://sp1lu.github.io/map/",
+"start_url": "https://daviderivolta-ett.github.io/raise/",
 "display": "standalone",
 "description": "Mappa che mostra dati forniti dal geoserver della città di Genova",
 "lang": "it",
