@@ -1,0 +1,40 @@
+{
+    "name": "Sistema servizi pubblici",
+    "layers": [
+        {
+            "name": "Sistema servizi pubblici",
+            "layer": "SITGEO:V_PUC2010_SERVIZI",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "servizi",
+                "pubblici",
+                "puc"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "INDIRIZZO",
+                    "display_name": "Indirizzo",
+                    "type": "string"
+                },
+                {
+                    "property_name": "TIPO",
+                    "display_name": "Tipologia",
+                    "type": "number"
+                },
+                {
+                    "property_name": "PROPRIETA_",
+                    "display_name": "Proprietà",
+                    "type": "string"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        }
+    ]
+}

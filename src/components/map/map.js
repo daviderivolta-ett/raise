@@ -120,6 +120,7 @@ export default class CesiumViewer {
             .then(response => response.json())
             .then(geoJson => {
 
+                console.log(geoJson);
                 // Load data
                 this.viewer.dataSources.add(Cesium.GeoJsonDataSource.load(geoJson, {
                     stroke: Cesium.Color[strokeColor].withAlpha(parseFloat(opacity)),
