@@ -1,0 +1,22 @@
+a {
+    position: fixed;
+    top: 21px;
+    left: 250px;
+    z-index: 99;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: white;
+    padding: 6px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 576px) {
+    a {
+        left: auto;
+        right: 72px;
+    }
+}

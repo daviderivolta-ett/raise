@@ -18,7 +18,11 @@
                 "./json/amt-bus-stop.json",
                 "./json/metro.json",
                 "./json/architectural-barriers.json",
-                "./json/car-parks.json"
+                "./json/car-parks.json",
+                "./json/puc.json",
+                "./json/pedestrian-area.json",
+                "./json/roads.json",
+                "./json/highway.json"
             ]
         },
         {

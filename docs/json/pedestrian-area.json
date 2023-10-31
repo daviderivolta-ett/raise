@@ -1,0 +1,29 @@
+{
+    "name": "Aree pedonali",
+    "layers": [
+        {
+            "name": "Aree pedonali",
+            "layer": "SITGEO:V_MOB_AREE_PEDONALI",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 0.5
+            },
+            "tags": [
+                "città",
+                "aree",
+                "pedonali"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME_VIA",
+                    "display_name": "Indirizzo",
+                    "type": "string"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        }
+    ]
+}
