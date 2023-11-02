@@ -15,12 +15,17 @@
 <body class="map-page">
 
   <main>
-    <app-drawer-toggle></app-drawer-toggle>
-    <app-icon-btn link="/"></app-icon-btn>
     <app-map></app-map>
 
     <div class="logo-section">
       <img src="./images/RAISE-logo-neg.svg" alt="RAISE logo" id="logo">
+
+      <div class="menu">
+        <button>THEME</button> 
+        <app-icon-btn link="/"></app-icon-btn>
+        <app-drawer-toggle></app-drawer-toggle>
+      </div>
+      
     </div>
 
     <div id="drawer">
@@ -35,7 +40,6 @@
       <app-zoom-btn zoom-type="out"></app-zoom-btn>  
     </div>
 
-    <button>CHANGE</button>
   </main>
 
   <script type="module" src="./src/main.js"></script>

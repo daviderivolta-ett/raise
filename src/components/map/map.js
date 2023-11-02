@@ -18,7 +18,7 @@ export default class CesiumViewer {
             navigationHelpButton: false,
             sceneModePicker: false,
             fullscreenButton: false,
-            infoBox: false
+            infoBox: false,
             // terrain: Cesium.Terrain.fromWorldTerrain()
         });
 

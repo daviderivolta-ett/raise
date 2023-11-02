@@ -12,17 +12,19 @@ export class DrawerToggle extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
-            <a id="menu-toggle" class="menu-toggle">
-                <span class="menu-toggle-bar menu-toggle-bar--top"></span>
-                <span class="menu-toggle-bar menu-toggle-bar--middle"></span>
-                <span class="menu-toggle-bar menu-toggle-bar--bottom"></span>
-            </a>
+            <div class="menu-toggle">
+                <a id="menu-toggle">
+                    <span class="menu-toggle-bar menu-toggle-bar--top"></span>
+                    <span class="menu-toggle-bar menu-toggle-bar--middle"></span>
+                    <span class="menu-toggle-bar menu-toggle-bar--bottom"></span>
+                </a>
+            </div>
             `
-            ;
+        ;
 
         this.setAttribute('is-open', 'false');
         let isOpen = this.getAttribute('is-open');
-        this.a = this.shadow.querySelector('a');
+        this.btn = this.shadow.querySelector('.menu-toggle');
 
         // css
         const style = document.createElement('link');
@@ -31,7 +33,7 @@ export class DrawerToggle extends HTMLElement {
         this.shadow.append(style);
 
         // js
-        this.a.addEventListener('click', () => {
+        this.btn.addEventListener('click', () => {
             isOpen = this.getAttribute('is-open') === 'true';
             this.setAttribute('is-open', !isOpen + '');
         });
@@ -40,12 +42,12 @@ export class DrawerToggle extends HTMLElement {
     static observedAttributes = ['is-open'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'is-open') {
-            if (this.a) {
+            if (this.btn) {
                 if (newValue === 'true') {
-                    this.a.classList.add('nav-open');
+                    this.btn.classList.add('nav-open');
                     
                 } else {
-                    this.a.classList.remove('nav-open');
+                    this.btn.classList.remove('nav-open');
                 }
             }
 

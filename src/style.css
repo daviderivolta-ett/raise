@@ -29,6 +29,9 @@ html {
   position: fixed;
   top: 0px;
   left: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 24px;
   width: 350px;
   z-index: 98;
@@ -37,6 +40,11 @@ html {
 
 #logo {
   max-width: 100px;
+}
+
+.menu {
+  display: flex;
+  gap: 8px;
 }
 
 /* Drawer */
@@ -80,11 +88,11 @@ html {
 }
 
 /* Theme button */
-button {
+/* button {
   position: fixed;
   top: 40px;
   right: 40px;
-}
+} */
 
 /* Media queries */
 @media screen and (max-width: 576px) {

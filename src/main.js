@@ -44,7 +44,7 @@ import './components/autocomplete/autocomplete.js';
 import './components/tools/opacity-slider.js';
 import './components/chip/chip.js';
 import './components/button/button.js';
-import './components/icon/icon.js';
+import './components/settingsIcon/settingsIcon.js';
 import './components/zoom-button/zoom-button.js';
 
 const mapContainer = document.querySelector('app-map');
@@ -56,11 +56,11 @@ if (mapContainer) {
 
   // Zoom buttons
   const zoomBtns = document.querySelectorAll('app-zoom-btn');
-  zoomHandle(viewer, zoomBtns);
+  zoomBtns.forEach(btn => zoomHandle(viewer, btn));
 
   // Theme button
   const themeBtn = document.querySelector('button');
-  themeChange(viewer, themeBtn);
+  themeBtn.addEventListener('click', () => themeChange(viewer));
 
   // Accordions creation
   const drawerContent = document.querySelector('#categories-section');
@@ -140,7 +140,6 @@ if (mapContainer) {
 
       // Checkbox list behaviour
       const activeLayers = [];
-      // activateLayersWMS(allCheckboxLists, activeLayers, viewer);
       activateLayersWFS(allCheckboxLists, activeLayers, viewer);
 
       // Accordion behaviour
@@ -170,7 +169,6 @@ if (mapContainer) {
         }
 
         const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-        // activateLayersWMS(allCheckboxLists, activeLayers, viewer);
         activateLayersWFS(allCheckboxLists, activeLayers, viewer);
 
         const allCategoryAccordions = document.querySelectorAll('.category-accordion');
