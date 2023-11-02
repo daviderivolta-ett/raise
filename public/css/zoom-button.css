@@ -1,0 +1,15 @@
+a {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: white;
+    padding: 6px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    line-height: 0;
+    font-size: 1.5rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

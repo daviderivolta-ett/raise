@@ -16,6 +16,7 @@
 
   <main>
     <app-drawer-toggle></app-drawer-toggle>
+    <app-icon-btn link="/"></app-icon-btn>
     <app-map></app-map>
 
     <div class="logo-section">
@@ -29,8 +30,10 @@
       <div id="categories-section"></div>
     </div>
 
-    <app-icon-btn link="/"></app-icon-btn>
-    
+    <div id="zoom-btns">
+      <app-zoom-btn zoom-type="in"></app-zoom-btn>  
+      <app-zoom-btn zoom-type="out"></app-zoom-btn>  
+    </div>
   </main>
 
   <script type="module" src="./src/main.js"></script>

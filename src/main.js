@@ -19,6 +19,7 @@ import { filterTag } from './utils/filterTagByName.js';
 
 import { createInfobox } from './utils/createInfobox.js';
 import { handleInfoBox } from './utils/handleInfobox.js';
+import { zoomHandle } from './utils/zoomHandle.js';
 
 import { getAllTags } from './utils/getAllTags.js';
 import { filterLayersBySelectedTags } from './utils/filterLayersBySelectedTags.js';
@@ -43,6 +44,7 @@ import './components/tools/opacity-slider.js';
 import './components/chip/chip.js';
 import './components/button/button.js';
 import './components/icon/icon.js';
+import './components/zoom-button/zoom-button.js';
 
 const mapContainer = document.querySelector('app-map');
 if (mapContainer) {
@@ -50,6 +52,29 @@ if (mapContainer) {
   // Map initialization
   const viewer = new CesiumViewer();
   viewer.setCamera();
+
+  // Zoom buttons
+  const zoomBtns = document.querySelectorAll('app-zoom-btn');
+  zoomHandle(viewer, zoomBtns);
+  // zoomBtns.forEach(btn => {
+
+  //     switch (btn.getAttribute('zoom-type')) {
+  //       case "in":
+  //         btn.addEventListener('click', () => {
+  //           viewer.viewer.camera.zoomIn(500.0);
+  //         })
+  //         break;
+
+  //         case "out":
+  //           btn.addEventListener('click', () => {
+  //             viewer.viewer.camera.zoomOut(500.0);
+  //           })
+  //           break;
+      
+  //       default:
+  //         break;
+  //     }
+  // })
 
   // Accordions creation
   const drawerContent = document.querySelector('#categories-section');
