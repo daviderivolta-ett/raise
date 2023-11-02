@@ -9,7 +9,6 @@ export default class CesiumViewer {
         Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMmEyNDlkYS1iYTg4LTQ4MDktOTU0ZS05Yjg2ZTcyZGI1ZGMiLCJpZCI6MTY5MDU3LCJpYXQiOjE2OTU5MDI3ODB9.xSyAfYggSQ_UaYmqQLfI4Rf-Hl_Ip0ubYKLQakKadvA';
         
         this.viewer = new Cesium.Viewer(element, {
-            //imageryProvider: CesiumViewer.getImageryProvider(),
             baseLayerPicker: false,
             geocoder: false,
             timeline: false,
@@ -19,19 +18,30 @@ export default class CesiumViewer {
             navigationHelpButton: false,
             sceneModePicker: false,
             fullscreenButton: false,
-            // infoBox: false
+            infoBox: false
             // terrain: Cesium.Terrain.fromWorldTerrain()
         });
 
         // this.viewer.imageryLayers.addImageryProvider(CesiumViewer.getImageryProvider());
-        this.toColor = false;
         this.viewer.screenSpaceEventHandler.setInputAction(this.onClick.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
+    }
+
+    changeTheme(url) {
+        const mapStyle = new Cesium.WebMapTileServiceImageryProvider({
+            url: url,
+            layer: 'carto-light',
+            style: 'default',
+            format: 'image/jpeg',
+            maximumLevel: 19,
+            tileMatrixSetID: 'default',
+            credit: new Cesium.Credit('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>')
+        })
+        this.viewer.imageryLayers.addImageryProvider(mapStyle);
     }
 
     static getImageryProvider() {
         return new Cesium.WebMapTileServiceImageryProvider({
-            // url: 'https://c.basemaps.cartocdn.com/light_nolabels/{TileMatrix}/{TileCol}/{TileRow}.png',
-            url: 'https://c.basemaps.cartocdn.com/rastertiles/voyager/{TileMatrix}/{TileCol}/{TileRow}.png',
+            url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{TileMatrix}/{TileCol}/{TileRow}.png',
             layer: 'carto-light',
             style: 'default',
             format: 'image/jpeg',
