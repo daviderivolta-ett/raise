@@ -2,9 +2,9 @@
     "name": "Strade",
     "layers": [
         {
-            "name": "Area stradale WMS",
-            "layer": "L7999",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
+            "name": "Tracciato autostradale",
+            "layer": "L8285",
+            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2268/wfs",
             "style": {
                 "color": "red",
                 "opacity": 1
@@ -12,195 +12,26 @@
             "tags": [
                 "città",
                 "strada"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Viabilità mista secondaria WMS",
-            "layer": "L8001",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
-            "style": {
-                "color": "red",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Elemento stradale WMS",
-            "layer": "L8018",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
-            "style": {
-                "color": "red",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Elemento viabilità mista secondaria WMS",
-            "layer": "L8022",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
-            "style": {
-                "color": "red",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Sede trasporto su ferro",
-            "layer": "L8017",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
-            "style": {
-                "color": "red",
-                "opacity": 0.5
-            },
-            "tags": [
-                "strada",
-                "regione",
-                "ferrovia"
             ],
             "relevant_properties": [
                 {
-                    "property_name": "DEF_TIPO",
-                    "display_name": "Tipologia",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_SEDE",
-                    "display_name": "Sede",
+                    "property_name": "COD_STRADA_BREVE",
+                    "display_name": "Autostrada",
                     "type": "number"
                 },
-                {
-                    "property_name": "DEF_LIVELLO",
-                    "display_name": "Livello",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_FONDO",
-                    "display_name": "Fondo",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Elemento ferroviario",
-            "layer": "L8019",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
-            "style": {
-                "color": "red",
-                "opacity": 0.5
-            },
-            "tags": [
-                "strada",
-                "regione",
-                "ferrovia"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DEF_COD_TRATTA",
-                    "display_name": "Tratta",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_ALTA_VEL",
-                    "display_name": "Tipo velocità",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_SEDE",
-                    "display_name": "Sede",
-                    "type": "number"
-                },
-                {
-                    "property_name": "DEF_LIVELLO",
-                    "display_name": "Livello",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_FONDO",
-                    "display_name": "Fondo",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Elemento funicolare",
-            "layer": "L8020",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
-            "style": {
-                "color": "red",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "funicolare"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DEF_SEDE",
-                    "display_name": "Sede",
-                    "type": "number"
-                },
-                {
-                    "property_name": "DEF_LIVELLO",
-                    "display_name": "Livello",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_STATO",
-                    "display_name": "Stato",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Strade comunali",
-            "layer": "L8322",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2277/wfs",
-            "style": {
-                "color": "red",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [
                 {
                     "property_name": "NOME_STRADA",
-                    "display_name": "Nome strada",
+                    "display_name": "Nome",
+                    "type": "number"
+                },
+                {
+                    "property_name": "DIREZ_AUTOS",
+                    "display_name": "Direzione",
+                    "type": "number"
+                },
+                {
+                    "property_name": "GESTORE",
+                    "display_name": "Gestore",
                     "type": "number"
                 }
             ],
@@ -209,9 +40,9 @@
             ]
         },
         {
-            "name": "Strade provinciali",
-            "layer": "L8320",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2276/wfs",
+            "name": "Caselli autostrada",
+            "layer": "L8287",
+            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2268/wfs",
             "style": {
                 "color": "red",
                 "opacity": 1
@@ -222,8 +53,13 @@
             ],
             "relevant_properties": [
                 {
-                    "property_name": "NOME_STRADA",
-                    "display_name": "Nome strada",
+                    "property_name": "NAME",
+                    "display_name": "Nome stazione",
+                    "type": "number"
+                },
+                {
+                    "property_name": "PROGR_KM",
+                    "display_name": "Progressione (Km)",
                     "type": "number"
                 }
             ],
@@ -232,7 +68,7 @@
             ]
         },
         {
-            "name": "Strade Statali",
+            "name": "Strade Statali cittadine",
             "layer": "L8324",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2269/wfs",
             "style": {
@@ -247,6 +83,75 @@
                 {
                     "property_name": "NOME_STRADA",
                     "display_name": "Nome strada",
+                    "type": "number"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
+            "name": "Strade Statali extracittadine",
+            "layer": "L8289",
+            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2269/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "strada"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME_STRADA",
+                    "display_name": "Nome strada",
+                    "type": "number"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
+            "name": "Strade/vie",
+            "layer": "MEDIATORE:MV_TRACCIATO_STRADALE",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "strada"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME_VIA",
+                    "display_name": "Nome via",
+                    "type": "number"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
+            "name": "Toponomastica",
+            "layer": "L8179",
+            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2238/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "strada"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "TOPONIMO",
+                    "display_name": "Nome",
                     "type": "number"
                 }
             ],

@@ -62,7 +62,7 @@
             ]
         },
         {
-            "name": "Interventi eliminazione",
+            "name": "Percorsi",
             "layer": "SITGEO:V_PEBA_PERCORSI_CS",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {

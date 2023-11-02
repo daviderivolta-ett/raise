@@ -19,7 +19,7 @@ export const activateLayersWFS = async (allCheckboxLists, activeLayers, viewer) 
             await viewer.viewer.dataSources.removeAll();
 
             for (const layer of activeLayers) {
-                await viewer.addLayersWFS(layer.layer_url_wfs, layer.layer, layer.style);
+                viewer.addLayersWFS(layer.layer_url_wfs, layer.layer, layer.style);
             }
 
             console.log('Active layers:');

@@ -6,6 +6,8 @@ export default class CesiumViewer {
     constructor() {
         const element = document.querySelector('app-map');
 
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMmEyNDlkYS1iYTg4LTQ4MDktOTU0ZS05Yjg2ZTcyZGI1ZGMiLCJpZCI6MTY5MDU3LCJpYXQiOjE2OTU5MDI3ODB9.xSyAfYggSQ_UaYmqQLfI4Rf-Hl_Ip0ubYKLQakKadvA';
+        
         this.viewer = new Cesium.Viewer(element, {
             //imageryProvider: CesiumViewer.getImageryProvider(),
             baseLayerPicker: false,
@@ -13,7 +15,7 @@ export default class CesiumViewer {
             timeline: false,
             animation: false,
             homeButton: false,
-            navigationInstructionsInitiallyVisible: true,
+            navigationInstructionsInitiallyVisible: false,
             navigationHelpButton: false,
             sceneModePicker: false,
             fullscreenButton: false,
@@ -75,14 +77,16 @@ export default class CesiumViewer {
         }
     }
 
-    addLayerWMS(wmsUrl, wmsLayerName, wmsParameters) {
+    addLayerWMS(wmsUrl, wmsLayerName) {
         const wmsImageryProvider = new Cesium.WebMapServiceImageryProvider({
             url: wmsUrl,
             layers: wmsLayerName,
-            parameters: wmsParameters
+            // parameters: wmsParameters
         });
 
+        console.log(this.viewer.imageryLayers);
         this.viewer.imageryLayers.addImageryProvider(wmsImageryProvider);
+        console.log(this.viewer.imageryLayers);
     }
 
     removeLayerWMS(layerName) {
@@ -121,6 +125,7 @@ export default class CesiumViewer {
             .then(geoJson => {
 
                 console.log(geoJson);
+                
                 // Load data
                 this.viewer.dataSources.add(Cesium.GeoJsonDataSource.load(geoJson, {
                     stroke: Cesium.Color[strokeColor].withAlpha(parseFloat(opacity)),
