@@ -13,7 +13,7 @@
             "groups": [
                 "./json/cycle-pedestrian.json",
                 "./json/acoustic-zoning.json",
-                "./json/municipi.json",
+                "./json/borders.json",
                 "./json/public-transport.json",
                 "./json/architectural-barriers.json",
                 "./json/car-parks.json",

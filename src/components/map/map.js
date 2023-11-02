@@ -126,7 +126,7 @@ export default class CesiumViewer {
 
                 console.log(geoJson);
                 
-                // Load data
+                // Style data
                 this.viewer.dataSources.add(Cesium.GeoJsonDataSource.load(geoJson, {
                     stroke: Cesium.Color[strokeColor].withAlpha(parseFloat(opacity)),
                     strokeWidth: 2,
@@ -135,7 +135,7 @@ export default class CesiumViewer {
 
                     .then(dataSource => {
 
-                        // Style data
+                        // Clustering
                         dataSource.entities.values.forEach(entity => {
                             entity.billboard = undefined,
                                 entity.point = new Cesium.PointGraphics({
@@ -145,8 +145,7 @@ export default class CesiumViewer {
                                     outlineWidth: 2
                                 })
                         })
-
-                        // Clustering
+                        
                         const pixelRange = 100;
                         const minimumClusterSize = 3;
                         const enabled = true;

@@ -31,7 +31,7 @@
             ]
         },
         {
-            "name": "Destinazione uso centro storico",
+            "name": "Edifici centro storico",
             "layer": "SITGEO:V_TIPO_CONNOTATIVO_CS",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
@@ -46,54 +46,6 @@
                 {
                     "property_name": "TIPO_CONN",
                     "display_name": "Tipologia",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Strutture ricettive turistiche",
-            "layer": "SITGEO:V_RIC_TURISTICHE",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "red",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "TIPOLOGIA",
-                    "display_name": "Tipologia",
-                    "type": "string"
-                },
-                {
-                    "property_name": "INDIRIZZO",
-                    "display_name": "Indirizzo",
-                    "type": "string"
-                },
-                {
-                    "property_name": "CIVICO",
-                    "display_name": "N.",
-                    "type": "number"
-                },
-                {
-                    "property_name": "CLAS",
-                    "display_name": "Valutazione",
-                    "type": "string"
-                },
-                {
-                    "property_name": "CAMERE",
-                    "display_name": "Camere",
-                    "type": "number"
-                },
-                {
-                    "property_name": "LETTI",
-                    "display_name": "Letti",
                     "type": "number"
                 }
             ],
