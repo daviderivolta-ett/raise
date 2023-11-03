@@ -8,28 +8,24 @@ import { populateDrawer } from './utils/populateDrawer.js';
 import { filterLayersByTagName } from './utils/filterLayersByTagName.js';
 import { fetchJsonData } from './settings.js';
 
-import { activateLayersWMS } from './utils/activateLayersWMS.js';
 import { activateLayersWFS } from './utils/activateLayersWFS.js';
 
-import { handleFeaturesWMS } from './utils/handleFeaturesWMS.js';
 import { handleFeaturesWFS } from './utils/handleFeaturesWFS.js';
 
 import { accordionBehaviour } from './utils/accordionBehaviour.js';
 import { filterTag } from './utils/filterTagByName.js';
 
 import { createInfobox } from './utils/createInfobox.js';
-import { handleInfoBox } from './utils/handleInfobox.js';
 import { zoomHandle } from './utils/zoomHandle.js';
 import { themeChange } from './utils/themeChange.js';
 
 import { getAllTags } from './utils/getAllTags.js';
 import { filterLayersBySelectedTags } from './utils/filterLayersBySelectedTags.js';
 
-
 // Import data
 const CATEGORIES_URL = '../json/categories.json';
 
-// Import sw
+// Import service worker
 import '../service-worker.js';
 
 // Import web components
@@ -48,6 +44,7 @@ import './components/settings-icon.js';
 import './components/zoom-button.js';
 import './components/theme-icon.js';
 
+// Map page
 const mapContainer = document.querySelector('app-map');
 if (mapContainer) {
 
@@ -61,7 +58,7 @@ if (mapContainer) {
 
   // Theme button
   const themeBtn = document.querySelector('app-theme-icon');
-  themeBtn.addEventListener('themeChanged', (event) =>  themeChange(viewer, event.detail.newValue));
+  themeBtn.addEventListener('themeChanged', (event) => themeChange(viewer, event.detail.newValue));
 
   // Accordions creation
   const drawerContent = document.querySelector('#categories-section');
@@ -70,7 +67,7 @@ if (mapContainer) {
 
     .then(jsonData => {
       if (localStorage.length != 0) {
-        let dataToFilter = JSON.parse(JSON.stringify(jsonData));        
+        let dataToFilter = JSON.parse(JSON.stringify(jsonData));
         filterLayersBySelectedTags(dataToFilter, JSON.parse(localStorage.selectedTags));
 
         populateDrawer(dataToFilter, drawerContent);
@@ -242,7 +239,7 @@ if (chipsContainer) {
           })
         });
       }
-      
+
       // Select all chips button
       const selectAllBtn = document.querySelector('#select-all-btn');
       selectAllBtn.addEventListener('click', () => {
@@ -261,8 +258,6 @@ if (chipsContainer) {
 
       // Clear localStorage
       const clear = document.querySelector('#clear-local-storage');
-      clear.addEventListener('click', () => {
-        localStorage.clear();
-      })
+      clear.addEventListener('click', () => localStorage.clear());
     })
 }
