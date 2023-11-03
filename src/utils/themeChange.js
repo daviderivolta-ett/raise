@@ -1,25 +1,8 @@
-const themes = [
-    {},
-    {
-        url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{TileMatrix}/{TileCol}/{TileRow}.png',
-    },
-    {
-        url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{TileMatrix}/{TileCol}/{TileRow}.png',
-    }
-]
-
-let currentIndex = 0;
-
-export const themeChange = (viewer) => {
-    // console.log(viewer.viewer.imageryLayers);
+export const themeChange = (viewer, themeUrl) => {
     const themeLayerToRemove = viewer.viewer.imageryLayers._layers[1];
     viewer.viewer.imageryLayers.remove(themeLayerToRemove);
 
-    currentIndex = (currentIndex + 1) % themes.length;
-    if (currentIndex === 0) {
-        return;
-    } else {
-        const themeUrl = themes[currentIndex].url
+    if (themeUrl != '') {
         viewer.changeTheme(themeUrl);
     }
 }

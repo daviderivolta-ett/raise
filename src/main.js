@@ -44,8 +44,9 @@ import './components/autocomplete/autocomplete.js';
 import './components/tools/opacity-slider.js';
 import './components/chip/chip.js';
 import './components/button/button.js';
-import './components/settingsIcon/settingsIcon.js';
+import './components/settings-icon/settings-icon.js';
 import './components/zoom-button/zoom-button.js';
+import './components/theme-icon/theme-icon.js';
 
 const mapContainer = document.querySelector('app-map');
 if (mapContainer) {
@@ -59,8 +60,8 @@ if (mapContainer) {
   zoomBtns.forEach(btn => zoomHandle(viewer, btn));
 
   // Theme button
-  const themeBtn = document.querySelector('button');
-  themeBtn.addEventListener('click', () => themeChange(viewer));
+  const themeBtn = document.querySelector('app-theme-icon');
+  themeBtn.addEventListener('themeChanged', (event) =>  themeChange(viewer, event.detail.newValue));
 
   // Accordions creation
   const drawerContent = document.querySelector('#categories-section');
