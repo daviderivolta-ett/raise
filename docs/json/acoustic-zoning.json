@@ -11,10 +11,7 @@
             },
             "tags": [
                 "città",
-                "misura",
-                "fonometria",
-                "acustica",
-                "zona"
+                "acustica"
             ],
             "relevant_properties": [
                 {
@@ -47,11 +44,7 @@
             },
             "tags": [
                 "città",
-                "misura",
-                "fonometria",
                 "acustica",
-                "zona",
-                "auto",
                 "strada"
             ],
             "relevant_properties": [],
@@ -69,12 +62,8 @@
             },
             "tags": [
                 "città",
-                "misura",
-                "fonometria",
                 "acustica",
-                "zona",
-                "ferrovia",
-                "treno"
+                "ferrovia"
             ],
             "relevant_properties": [],
             "components": [

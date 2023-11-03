@@ -1,11 +1,12 @@
 .menu-toggle {
     cursor: pointer;
-    position: fixed;
+    color: rgba(0, 0, 0, 0.87);
     background-color: white;
     padding: 6px;
     border-radius: 50%;
-    left: 300px;
-    top: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 24px;
     width: 24px;
     z-index: 99;
@@ -16,11 +17,13 @@
     color: rgba(0, 0, 0, 0.87);
 }
 
+#menu-toggle {
+    color: rgba(0, 0, 0, 0.87);
+    margin: 1px 0 0 1px;
+}
+
 .menu-toggle-bar {
     display: block;
-    position: absolute;
-    top: 52%;
-    left: 28%;
     margin-top: -1px;
     width: 16px;
     height: 1px;

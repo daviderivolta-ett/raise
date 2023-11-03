@@ -4,25 +4,24 @@
             "name": "Natura",
             "groups": [
                 "./json/geomorphology.json",
-                "./json/forestry-management.json"
+                "./json/forestry-management.json",
+                "./json/parks-and-trees.json"
             ]
         },
         {
             "name": "Città",
             "groups": [
-                "./json/bicycle-lane.json",
-                "./json/parking-areas.json",
+                "./json/cycle-pedestrian.json",
                 "./json/acoustic-zoning.json",
-                "./json/municipi.json",
-                "./json/caruggi-map.json",
-                "./json/amt-bus-stop.json",
-                "./json/metro.json",
+                "./json/borders.json",
+                "./json/public-transport.json",
                 "./json/architectural-barriers.json",
                 "./json/car-parks.json",
-                "./json/puc.json",
-                "./json/pedestrian-area.json",
                 "./json/roads.json",
-                "./json/highway.json"
+                "./json/services.json",
+                "./json/sport.json",
+                "./json/telecommunications.json",
+                "./json/buildings.json"
             ]
         },
         {

@@ -1,9 +1,9 @@
 {
-    "name": "Parking Areas",
+    "name": "Confini",
     "layers": [
         {
-            "name": "Blu area",
-            "layer": "SITGEO:V_MOB_BLUAREA",
+            "name": "Municipi",
+            "layer": "SITGEO:V_MUNICIPI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
                 "color": "red",
@@ -11,20 +11,18 @@
             },
             "tags": [
                 "città",
-                "parcheggi",
-                "aree",
-                "area",
-                "blu"
+                "confini",
+                "municipio"
             ],
             "relevant_properties": [
                 {
-                    "property_name": "DENOMINAZIONE",
-                    "display_name": "Nome area",
+                    "property_name": "NOME_MUNICIPIO",
+                    "display_name": "Nome",
                     "type": "string"
                 },
                 {
-                    "property_name": "CODICE_ZONA",
-                    "display_name": "Codice area",
+                    "property_name": "CODICE_MUNICIPIO",
+                    "display_name": "Codice",
                     "type": "string"
                 }
             ],
@@ -33,8 +31,8 @@
             ]
         },
         {
-            "name": "Zona inquinamento",
-            "layer": "SITGEO:V_MOB_ZTL_AMBIENTE",
+            "name": "Quartieri",
+            "layer": "SITGEO:V_UNITA_URBANISTICHE",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
                 "color": "red",
@@ -42,24 +40,23 @@
             },
             "tags": [
                 "città",
-                "inquinamento",
-                "zona",
-                "ambiente"
+                "confini",
+                "quartiere"
             ],
             "relevant_properties": [
                 {
-                    "property_name": "ZONA",
-                    "display_name": "Zona",
+                    "property_name": "NOME_MUNICIPIO",
+                    "display_name": "Municipio",
                     "type": "string"
                 },
                 {
-                    "property_name": "DESCRIZIONE",
-                    "display_name": "Descrizione",
+                    "property_name": "CODICE_CIRCOSCRIZIONE",
+                    "display_name": "Circoscrizione",
                     "type": "string"
                 },
                 {
-                    "property_name": "TIPOLOGIA",
-                    "display_name": "Tipologia",
+                    "property_name": "NOME_UU",
+                    "display_name": "Quartiere",
                     "type": "string"
                 }
             ],

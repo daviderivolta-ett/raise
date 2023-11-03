@@ -2,7 +2,7 @@
     "name": "Assestamento forestale",
     "layers": [
         {
-            "name": "Tipi forestale",
+            "name": "Tipologia",
             "layer": "SITGEO:V_VE_PAF_TIPI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
@@ -16,13 +16,18 @@
             ],
             "relevant_properties": [
                 {
-                    "property_name": "DESCR_CAT",
+                    "property_name": "DESC_CAT",
                     "display_name": "Descrizione categoria",
                     "type": "string"
                 },
                 {
-                    "property_name": "DESCR_TIPO",
+                    "property_name": "DESC_TIPO",
                     "display_name": "Descrizione tipologia",
+                    "type": "string"
+                },
+                {
+                    "property_name": "HA_AREA",
+                    "display_name": "Area (ha)",
                     "type": "string"
                 }
             ],

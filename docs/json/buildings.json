@@ -1,0 +1,57 @@
+{
+    "name": "Edifici",
+    "layers": [
+        {
+            "name": "Edifici del territorio comunale",
+            "layer": "MEDIATORE:V_IMM_ANTRO_BASE",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "servizi",
+                "ospedali"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "TIPO_OGGETTO",
+                    "display_name": "Tipo oggetto",
+                    "type": "string"
+                },
+                {
+                    "property_name": "TIPO",
+                    "display_name": "Tipo",
+                    "type": "string"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
+            "name": "Edifici centro storico",
+            "layer": "SITGEO:V_TIPO_CONNOTATIVO_CS",
+            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 0.5
+            },
+            "tags": [
+                "città",
+                "strada"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "TIPO_CONN",
+                    "display_name": "Tipologia",
+                    "type": "number"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        }
+    ]
+}

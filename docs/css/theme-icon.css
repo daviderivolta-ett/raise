@@ -1,5 +1,5 @@
-a {
-    z-index: 99;
+#change-theme-icon {
+    cursor: pointer;
     color: rgba(0, 0, 0, 0.87);
     background-color: white;
     padding: 6px;
@@ -9,11 +9,4 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-@media screen and (max-width: 576px) {
-    a {
-        left: auto;
-        right: 72px;
-    }
 }

@@ -1,0 +1,189 @@
+{
+    "name": "Parchi e giardini",
+    "layers": [
+        {
+            "name": "Alberi monumentali",
+            "layer": "L9671",
+            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2502/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "natura",
+                "parchi",
+                "giardini",
+                "alberi"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "ALTITUDINE",
+                    "display_name": "Altitudine",
+                    "type": "string"
+                },
+                {
+                    "property_name": "LONGITUDINE",
+                    "display_name": "Longitudine",
+                    "type": "string"
+                },
+                {
+                    "property_name": "PROVINCIA",
+                    "display_name": "Provincia",
+                    "type": "string"
+                },
+                {
+                    "property_name": "COMUNE",
+                    "display_name": "Comune",
+                    "type": "string"
+                },
+                {
+                    "property_name": "LOCALITA",
+                    "display_name": "Località",
+                    "type": "string"
+                },
+                {
+                    "property_name": "CONTESTO_URBANO",
+                    "display_name": "Constesto urbano",
+                    "type": "string"
+                },
+                {
+                    "property_name": "ATTO_NAZ",
+                    "display_name": "Atto nazionale",
+                    "type": "string"
+                },
+                {
+                    "property_name": "ATTO_REG",
+                    "display_name": "Atto regionale",
+                    "type": "string"
+                },
+                {
+                    "property_name": "ID_ALBERO",
+                    "display_name": "Id albero",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NOME_SCIENTIFICO",
+                    "display_name": "Nome scientifico",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NOME_VOLGARE",
+                    "display_name": "Nome volgare",
+                    "type": "string"
+                },
+                {
+                    "property_name": "ALTEZZA",
+                    "display_name": "Altezza",
+                    "type": "number"
+                },
+                {
+                    "property_name": "ETA",
+                    "display_name": "Età (anni)",
+                    "type": "number"
+                },
+                {
+                    "property_name": "CIRC_FUSTO",
+                    "display_name": "Circonferenza fusto (cm)",
+                    "type": "number"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
+            "name": "Parchi e giardini",
+            "layer": "L8776",
+            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2342/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "natura",
+                "parchi",
+                "giardini"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "CAT_NAME",
+                    "display_name": "Categoria",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NOME",
+                    "display_name": "Nome",
+                    "type": "string"
+                },
+                {
+                    "property_name": "INDIRIZZO",
+                    "display_name": "Indirizzo",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NUMCIVICO",
+                    "display_name": "N.",
+                    "type": "number"
+                },
+                {
+                    "property_name": "LOCALITA",
+                    "display_name": "Località",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NOMEAREA",
+                    "display_name": "Nome area",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NOMECOMUNE",
+                    "display_name": "Comune",
+                    "type": "string"
+                },
+                {
+                    "property_name": "NOMEPROVINCIA",
+                    "display_name": "Provincia",
+                    "type": "string"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
+            "name": "Foreste regionali",
+            "layer": "L7937",
+            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2188/wfs",
+            "style": {
+                "color": "red",
+                "opacity": 0.5
+            },
+            "tags": [
+                "natura",
+                "parchi",
+                "giardini",
+                "foreste"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "NOME_FORESTA",
+                    "display_name": "Nome",
+                    "type": "string"
+                },
+                {
+                    "property_name": "RIF_GESTORE",
+                    "display_name": "Gestore",
+                    "type": "string"
+                },
+                {
+                    "property_name": "CONTATTO_GESTORE",
+                    "display_name": "Contatto gestore",
+                    "type": "string"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        }
+    ]
+}
