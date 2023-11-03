@@ -44,9 +44,8 @@ import './src/components/settings-icon.js';
 import './src/components/zoom-button.js';
 import './src/components/theme-icon.js';
 
-// Map page
-const mapContainer = document.querySelector('app-map');
-if (mapContainer) {
+// INIT MAP PAGE
+async function initMapPage() {
 
   // Map initialization
   const viewer = new CesiumViewer();
@@ -187,10 +186,8 @@ if (mapContainer) {
   });
 }
 
-// Onboard page
-const chipsContainer = document.querySelector('#chips-section');
-
-if (chipsContainer) {
+// INIT ONBOARD PAGE
+async function initOnboardpage() {
   let jsonData = await fetchJsonData(CATEGORIES_URL);
 
   // Create tag chips
@@ -254,3 +251,11 @@ if (chipsContainer) {
   const clear = document.querySelector('#clear-local-storage');
   clear.addEventListener('click', () => localStorage.clear());
 }
+
+// Map page
+const mapContainer = document.querySelector('app-map');
+if (mapContainer) { initMapPage(); }
+
+// Onboard page
+const chipsContainer = document.querySelector('#chips-section');
+if (chipsContainer) { initOnboardpage(); }
