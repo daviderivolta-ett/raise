@@ -1,5 +1,5 @@
 // Import modules
-import CesiumViewer from './components/map/map.js';
+import CesiumViewer from './components/map.js';
 import * as Cesium from 'cesium';
 
 // Import methods
@@ -33,20 +33,20 @@ const CATEGORIES_URL = '../json/categories.json';
 import '../service-worker.js';
 
 // Import web components
-import './components/map/map.js';
-import './components/checkbox/checkbox.js';
-import './components/checkbox-list/checkbox-list.js';
-import './components/infobox/infobox.js';
-import './components/accordion/accordion.js';
-import './components/search/search.js';
-import './components/drawer-toggle/drawer-toggle.js';
-import './components/autocomplete/autocomplete.js';
-import './components/tools/opacity-slider.js';
-import './components/chip/chip.js';
-import './components/button/button.js';
-import './components/settings-icon/settings-icon.js';
-import './components/zoom-button/zoom-button.js';
-import './components/theme-icon/theme-icon.js';
+import './components/map.js';
+import './components/checkbox.js';
+import './components/checkbox-list.js';
+import './components/infobox.js';
+import './components/accordion.js';
+import './components/search.js';
+import './components/drawer-toggle.js';
+import './components/autocomplete.js';
+import './components/opacity-slider.js';
+import './components/chip.js';
+import './components/button.js';
+import './components/settings-icon.js';
+import './components/zoom-button.js';
+import './components/theme-icon.js';
 
 const mapContainer = document.querySelector('app-map');
 if (mapContainer) {
