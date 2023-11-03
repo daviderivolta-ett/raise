@@ -25,10 +25,14 @@ export class ThemeIcon extends HTMLElement {
         const themes = [
             {},
             {
-                url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{TileMatrix}/{TileCol}/{TileRow}.png',
+                url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{TileMatrix}/{TileCol}/{TileRow}.png',
+                layer: 'stadia-light',
+                credit: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             },
             {
-                url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{TileMatrix}/{TileCol}/{TileRow}.png',
+                url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{TileMatrix}/{TileCol}/{TileRow}.png',
+                layer: 'stadia-dark',
+                credit: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }
         ]
 
@@ -41,8 +45,8 @@ export class ThemeIcon extends HTMLElement {
             if (currentThemeIndex === 0) {
                 this.setAttribute('theme', '');
             } else {
-                const themeUrl = themes[currentThemeIndex].url;
-                this.setAttribute('theme', themeUrl);
+                const theme = JSON.stringify(themes[currentThemeIndex]);
+                this.setAttribute('theme', theme);
             }
         })
 

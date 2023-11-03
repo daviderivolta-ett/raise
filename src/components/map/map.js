@@ -26,15 +26,16 @@ export default class CesiumViewer {
         this.viewer.screenSpaceEventHandler.setInputAction(this.onClick.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
     }
 
-    changeTheme(url) {
+    changeTheme(stringifiedTheme) {
+        const theme = JSON.parse(stringifiedTheme);
         const mapStyle = new Cesium.WebMapTileServiceImageryProvider({
-            url: url,
-            layer: 'carto-light',
+            url: theme.url,
+            layer: theme.layer,
             style: 'default',
             format: 'image/jpeg',
             maximumLevel: 19,
             tileMatrixSetID: 'default',
-            credit: new Cesium.Credit('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>')
+            credit: new Cesium.Credit(theme.credit)
         })
         this.viewer.imageryLayers.addImageryProvider(mapStyle);
     }
