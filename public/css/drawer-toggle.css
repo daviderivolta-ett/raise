@@ -1,5 +1,6 @@
 .menu-toggle {
     cursor: pointer;
+    color: rgba(0, 0, 0, 0.87);
     background-color: white;
     padding: 6px;
     border-radius: 50%;
@@ -14,6 +15,11 @@
 
 .menu-toggle:hover {
     color: rgba(0, 0, 0, 0.87);
+}
+
+#menu-toggle {
+    color: rgba(0, 0, 0, 0.87);
+    margin: 1px 0 0 1px;
 }
 
 .menu-toggle-bar {
