@@ -63,201 +63,194 @@ if (mapContainer) {
   // Accordions creation
   const drawerContent = document.querySelector('#categories-section');
 
-  fetchJsonData(CATEGORIES_URL)
+  let jsonData = await fetchJsonData(CATEGORIES_URL);
 
-    .then(jsonData => {
-      if (localStorage.length != 0) {
-        let dataToFilter = JSON.parse(JSON.stringify(jsonData));
-        filterLayersBySelectedTags(dataToFilter, JSON.parse(localStorage.selectedTags));
+  if (localStorage.length != 0) {
+    let dataToFilter = JSON.parse(JSON.stringify(jsonData));
+    filterLayersBySelectedTags(dataToFilter, JSON.parse(localStorage.selectedTags));
 
-        populateDrawer(dataToFilter, drawerContent);
-        return dataToFilter;
+    populateDrawer(dataToFilter, drawerContent);
+    jsonData = dataToFilter;
 
-      } else {
-        // Accordions creation    
-        populateDrawer(jsonData, drawerContent);
-        return jsonData;
-      }
-    })
+  } else {
+    populateDrawer(jsonData, drawerContent);
+  }
 
-    .then(jsonData => {
-      // DOM nodes
-      const main = document.querySelector('main');
-      const drawerToggle = document.querySelector('app-drawer-toggle');
-      const drawer = document.querySelector('#drawer');
-      const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-      const allCategoryAccordions = document.querySelectorAll('.category-accordion');
-      const allLayerAccordions = document.querySelectorAll('.layer-accordion');
-      const searchBar = document.querySelector('app-searchbar');
-      const drawerTitle = document.querySelector('#drawer-title');
-      const autocomplete = document.querySelector('app-autocomplete');
+  // DOM nodes
+  const main = document.querySelector('main');
+  const drawerToggle = document.querySelector('app-drawer-toggle');
+  const drawer = document.querySelector('#drawer');
+  const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
+  const allCategoryAccordions = document.querySelectorAll('.category-accordion');
+  const allLayerAccordions = document.querySelectorAll('.layer-accordion');
+  const searchBar = document.querySelector('app-searchbar');
+  const drawerTitle = document.querySelector('#drawer-title');
+  const autocomplete = document.querySelector('app-autocomplete');
 
-      // Toggle drawer behaviour
-      drawerToggle.addEventListener('drawerToggled', (event) => {
-        if (event.detail.newValue == 'true') {
-          drawer.classList.add('drawer-open');
+  // Toggle drawer behaviour
+  drawerToggle.addEventListener('drawerToggled', (event) => {
+    if (event.detail.newValue == 'true') {
+      drawer.classList.add('drawer-open');
 
-        } else {
-          drawer.classList.remove('drawer-open');
-        }
-      });
+    } else {
+      drawer.classList.remove('drawer-open');
+    }
+  });
 
-      // Infoboxes creation & handling
-      viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
-        viewer.onClick(movement.position)
-          .then(features => {
-            console.log(features);
+  // Infoboxes creation & handling
+  viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
+    viewer.onClick(movement.position)
+      .then(features => {
+        console.log(features);
 
-            if (typeof features === 'object' && !Array.isArray(features)) {
-              const infoContent = handleFeaturesWFS(features, jsonData);
+        if (typeof features === 'object' && !Array.isArray(features)) {
+          const infoContent = handleFeaturesWFS(features, jsonData);
 
-              let allInfoBoxes = document.querySelectorAll('app-infobox');
+          let allInfoBoxes = document.querySelectorAll('app-infobox');
 
-              if (infoContent) {
-                if (Object.keys(infoContent).length !== 0) {
-                  createInfobox(allInfoBoxes, infoContent, main);
-                }
-              }
-
-              drawerToggle.setAttribute('is-open', 'false');
+          if (infoContent) {
+            if (Object.keys(infoContent).length !== 0) {
+              createInfobox(allInfoBoxes, infoContent, main);
             }
-
-          })
-      }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-      // Autoclose drawer after 10 seconds
-      // let timer;
-      // drawer.addEventListener('click', () => {
-      //   if (timer) {
-      //     clearTimeout(timer);
-      //   }
-      //   timer = setTimeout(() => {
-      //     drawerToggle.setAttribute('is-open', 'false');
-      //   }, 10000);
-      // });
-
-      // Checkbox list behaviour
-      const activeLayers = [];
-      activateLayersWFS(allCheckboxLists, activeLayers, viewer);
-
-      // Accordion behaviour
-      accordionBehaviour(allCategoryAccordions, allLayerAccordions);
-
-      // Search bar
-      searchBar.addEventListener('searchValueChanged', (event) => {
-        drawerContent.innerHTML = ``;
-        const valueToSearch = event.detail.newValue.toLowerCase();
-        drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
-
-        let dataToFilter = JSON.parse(JSON.stringify(jsonData));
-
-        filterLayersByTagName(dataToFilter, valueToSearch);
-
-        if (valueToSearch == '') {
-          populateDrawer(jsonData, drawerContent);
-          drawerTitle.textContent = 'Categorie';
-        } else {
-          populateDrawer(dataToFilter, drawerContent);
-
-          if (!drawerContent.innerHTML) {
-            const emptyMsg = document.createElement('p');
-            emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
-            drawerContent.append(emptyMsg);
           }
+
+          drawerToggle.setAttribute('is-open', 'false');
         }
 
-        const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-        activateLayersWFS(allCheckboxLists, activeLayers, viewer);
+      })
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
-        const allCategoryAccordions = document.querySelectorAll('.category-accordion');
-        const allLayerAccordions = document.querySelectorAll('.layer-accordion');
-        accordionBehaviour(allCategoryAccordions, allLayerAccordions);
+  // Autoclose drawer after 10 seconds
+  // let timer;
+  // drawer.addEventListener('click', () => {
+  //   if (timer) {
+  //     clearTimeout(timer);
+  //   }
+  //   timer = setTimeout(() => {
+  //     drawerToggle.setAttribute('is-open', 'false');
+  //   }, 10000);
+  // });
 
-        if (valueToSearch.length >= 2) {
-          const foundTags = filterTag(jsonData, valueToSearch);
-          autocomplete.setAttribute('data', JSON.stringify(foundTags));
-        } else {
-          autocomplete.setAttribute('data', JSON.stringify(''));
-        }
-      });
+  // Checkbox list behaviour
+  const activeLayers = [];
+  activateLayersWFS(allCheckboxLists, activeLayers, viewer);
 
-      // Autocomplete behaviour
-      autocomplete.addEventListener('autocompleteSelected', (event) => {
-        const choosenAutocomplete = event.detail.newValue;
-        searchBar.setAttribute('value', choosenAutocomplete);
-      });
+  // Accordion behaviour
+  accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
-      document.addEventListener('keydown', (event) => {
-        autocomplete.setAttribute('last-key-pressed', event.key);
-      });
-    });
+  // Search bar
+  searchBar.addEventListener('searchValueChanged', (event) => {
+    drawerContent.innerHTML = ``;
+    const valueToSearch = event.detail.newValue.toLowerCase();
+    drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
+
+    let dataToFilter = JSON.parse(JSON.stringify(jsonData));
+
+    filterLayersByTagName(dataToFilter, valueToSearch);
+
+    if (valueToSearch == '') {
+      populateDrawer(jsonData, drawerContent);
+      drawerTitle.textContent = 'Categorie';
+    } else {
+      populateDrawer(dataToFilter, drawerContent);
+
+      if (!drawerContent.innerHTML) {
+        const emptyMsg = document.createElement('p');
+        emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
+        drawerContent.append(emptyMsg);
+      }
+    }
+
+    const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
+    activateLayersWFS(allCheckboxLists, activeLayers, viewer);
+
+    const allCategoryAccordions = document.querySelectorAll('.category-accordion');
+    const allLayerAccordions = document.querySelectorAll('.layer-accordion');
+    accordionBehaviour(allCategoryAccordions, allLayerAccordions);
+
+    if (valueToSearch.length >= 2) {
+      const foundTags = filterTag(jsonData, valueToSearch);
+      autocomplete.setAttribute('data', JSON.stringify(foundTags));
+    } else {
+      autocomplete.setAttribute('data', JSON.stringify(''));
+    }
+  });
+
+  // Autocomplete behaviour
+  autocomplete.addEventListener('autocompleteSelected', (event) => {
+    const choosenAutocomplete = event.detail.newValue;
+    searchBar.setAttribute('value', choosenAutocomplete);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    autocomplete.setAttribute('last-key-pressed', event.key);
+  });
 }
 
 // Onboard page
 const chipsContainer = document.querySelector('#chips-section');
 
 if (chipsContainer) {
-  fetchJsonData(CATEGORIES_URL)
-    .then(jsonData => {
-      // Create tag chips
-      const allTags = getAllTags(jsonData);
+  let jsonData = await fetchJsonData(CATEGORIES_URL);
 
-      allTags.forEach(tag => {
-        let chip = document.createElement('app-chip');
-        chip.setAttribute('tag', tag);
-        chipsContainer.append(chip);
-      });
+  // Create tag chips
+  const allTags = getAllTags(jsonData);
 
-      // Button / chips behaviour
-      let selectedTags = [];
+  allTags.forEach(tag => {
+    let chip = document.createElement('app-chip');
+    chip.setAttribute('tag', tag);
+    chipsContainer.append(chip);
+  });
 
-      const chips = document.querySelectorAll('app-chip');
-      const btn = document.querySelector('app-btn');
-      chips.forEach(chip => {
-        chip.addEventListener('chipChanged', (event) => {
+  // Button / chips behaviour
+  let selectedTags = [];
 
-          if (event.detail.newValue == 'true') {
-            selectedTags.push(event.detail.tag);
-          } else {
-            selectedTags = selectedTags.filter(item => item !== event.detail.tag);
-          }
+  const chips = document.querySelectorAll('app-chip');
+  const btn = document.querySelector('app-btn');
+  chips.forEach(chip => {
+    chip.addEventListener('chipChanged', (event) => {
 
-          btn.setAttribute('tags', JSON.stringify(selectedTags));
-        })
-      })
-
-      // Select chips which tags are already in localStorage
-      if (localStorage.selectedTags) {
-        const selectedTags = JSON.parse(localStorage.selectedTags);
-        // console.log(selectedTags);
-
-        selectedTags.forEach(tag => {
-          chips.forEach(chip => {
-            if (chip.getAttribute('tag') == tag) {
-              chip.setAttribute('is-selected', 'true');
-            }
-          })
-        });
+      if (event.detail.newValue == 'true') {
+        selectedTags.push(event.detail.tag);
+      } else {
+        selectedTags = selectedTags.filter(item => item !== event.detail.tag);
       }
 
-      // Select all chips button
-      const selectAllBtn = document.querySelector('#select-all-btn');
-      selectAllBtn.addEventListener('click', () => {
-        chips.forEach(chip => {
-          chip.setAttribute('is-selected', 'true');
-        });
-      });
-
-      // Deselect all chips button
-      const resetBtn = document.querySelector('#reset-btn');
-      resetBtn.addEventListener('click', () => {
-        chips.forEach(chip => {
-          chip.setAttribute('is-selected', 'false');
-        });
-      });
-
-      // Clear localStorage
-      const clear = document.querySelector('#clear-local-storage');
-      clear.addEventListener('click', () => localStorage.clear());
+      btn.setAttribute('tags', JSON.stringify(selectedTags));
     })
+  })
+
+  // Select chips which tags are already in localStorage
+  if (localStorage.selectedTags) {
+    const selectedTags = JSON.parse(localStorage.selectedTags);
+    // console.log(selectedTags);
+
+    selectedTags.forEach(tag => {
+      chips.forEach(chip => {
+        if (chip.getAttribute('tag') == tag) {
+          chip.setAttribute('is-selected', 'true');
+        }
+      })
+    });
+  }
+
+  // Select all chips button
+  const selectAllBtn = document.querySelector('#select-all-btn');
+  selectAllBtn.addEventListener('click', () => {
+    chips.forEach(chip => {
+      chip.setAttribute('is-selected', 'true');
+    });
+  });
+
+  // Deselect all chips button
+  const resetBtn = document.querySelector('#reset-btn');
+  resetBtn.addEventListener('click', () => {
+    chips.forEach(chip => {
+      chip.setAttribute('is-selected', 'false');
+    });
+  });
+
+  // Clear localStorage
+  const clear = document.querySelector('#clear-local-storage');
+  clear.addEventListener('click', () => localStorage.clear());
 }
