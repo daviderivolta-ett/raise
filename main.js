@@ -1,48 +1,48 @@
 // Import modules
-import CesiumViewer from './components/map.js';
+import CesiumViewer from './src/components/map.js';
 import * as Cesium from 'cesium';
 
 // Import methods
-import { populateDrawer } from './utils/populateDrawer.js';
+import { populateDrawer } from './src/utils/populateDrawer.js';
 
-import { filterLayersByTagName } from './utils/filterLayersByTagName.js';
-import { fetchJsonData } from './settings.js';
+import { filterLayersByTagName } from './src/utils/filterLayersByTagName.js';
+import { fetchJsonData } from './src/settings.js';
 
-import { activateLayersWFS } from './utils/activateLayersWFS.js';
+import { activateLayersWFS } from './src/utils/activateLayersWFS.js';
 
-import { handleFeaturesWFS } from './utils/handleFeaturesWFS.js';
+import { handleFeaturesWFS } from './src/utils/handleFeaturesWFS.js';
 
-import { accordionBehaviour } from './utils/accordionBehaviour.js';
-import { filterTag } from './utils/filterTagByName.js';
+import { accordionBehaviour } from './src/utils/accordionBehaviour.js';
+import { filterTag } from './src/utils/filterTagByName.js';
 
-import { createInfobox } from './utils/createInfobox.js';
-import { zoomHandle } from './utils/zoomHandle.js';
-import { themeChange } from './utils/themeChange.js';
+import { createInfobox } from './src/utils/createInfobox.js';
+import { zoomHandle } from './src/utils/zoomHandle.js';
+import { themeChange } from './src/utils/themeChange.js';
 
-import { getAllTags } from './utils/getAllTags.js';
-import { filterLayersBySelectedTags } from './utils/filterLayersBySelectedTags.js';
+import { getAllTags } from './src/utils/getAllTags.js';
+import { filterLayersBySelectedTags } from './src/utils/filterLayersBySelectedTags.js';
 
 // Import data
-const CATEGORIES_URL = '../json/categories.json';
+const CATEGORIES_URL = './json/categories.json';
 
 // Import service worker
-import '../service-worker.js';
+import './service-worker.js';
 
 // Import web components
-import './components/map.js';
-import './components/checkbox.js';
-import './components/checkbox-list.js';
-import './components/infobox.js';
-import './components/accordion.js';
-import './components/search.js';
-import './components/drawer-toggle.js';
-import './components/autocomplete.js';
-import './components/opacity-slider.js';
-import './components/chip.js';
-import './components/button.js';
-import './components/settings-icon.js';
-import './components/zoom-button.js';
-import './components/theme-icon.js';
+import './src/components/map.js';
+import './src/components/checkbox.js';
+import './src/components/checkbox-list.js';
+import './src/components/infobox.js';
+import './src/components/accordion.js';
+import './src/components/search.js';
+import './src/components/drawer-toggle.js';
+import './src/components/autocomplete.js';
+import './src/components/opacity-slider.js';
+import './src/components/chip.js';
+import './src/components/button.js';
+import './src/components/settings-icon.js';
+import './src/components/zoom-button.js';
+import './src/components/theme-icon.js';
 
 // Map page
 const mapContainer = document.querySelector('app-map');
