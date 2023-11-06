@@ -25,14 +25,14 @@ export class ThemeIcon extends HTMLElement {
         const themes = [
             {},
             {
-                url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{TileMatrix}/{TileCol}/{TileRow}.png',
-                layer: 'stadia-light',
-                credit: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url: 'https://{s}.basemaps.cartocdn.com/light_all/{TileMatrix}/{TileCol}/{TileRow}.png',
+                layer: 'carto-light',
+                credit: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
             },
             {
-                url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{TileMatrix}/{TileCol}/{TileRow}.png',
-                layer: 'stadia-dark',
-                credit: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url: 'https://{s}.basemaps.cartocdn.com/dark_all/{TileMatrix}/{TileCol}/{TileRow}.png',
+                layer: 'carto-dark',
+                credit: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
             }
         ]
 
