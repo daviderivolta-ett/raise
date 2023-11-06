@@ -7,7 +7,7 @@ export default class CesiumViewer {
         const element = document.querySelector('app-map');
 
         Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMmEyNDlkYS1iYTg4LTQ4MDktOTU0ZS05Yjg2ZTcyZGI1ZGMiLCJpZCI6MTY5MDU3LCJpYXQiOjE2OTU5MDI3ODB9.xSyAfYggSQ_UaYmqQLfI4Rf-Hl_Ip0ubYKLQakKadvA';
-        
+
         this.viewer = new Cesium.Viewer(element, {
             baseLayerPicker: false,
             geocoder: false,
@@ -135,8 +135,8 @@ export default class CesiumViewer {
             .then(response => response.json())
             .then(geoJson => {
 
-                console.log(geoJson);
-                
+                // console.log(geoJson);
+
                 // Style data
                 this.viewer.dataSources.add(Cesium.GeoJsonDataSource.load(geoJson, {
                     stroke: Cesium.Color[strokeColor].withAlpha(parseFloat(opacity)),
@@ -156,7 +156,7 @@ export default class CesiumViewer {
                                     outlineWidth: 2
                                 })
                         })
-                        
+
                         const pixelRange = 100;
                         const minimumClusterSize = 3;
                         const enabled = true;
@@ -252,6 +252,36 @@ export default class CesiumViewer {
                 pitch: Cesium.Math.toRadians(-90.0),
                 roll: 0
             }
+        })
+    }
+
+    setCameraToUserPosition(userPosition) {
+        const initialPosition = Cesium.Cartesian3.fromDegrees(
+            userPosition.coords.longitude,
+            userPosition.coords.latitude,
+            4000
+        )
+
+        this.viewer.camera.flyTo({
+            destination: initialPosition,
+            orientation: {
+                heading: Cesium.Math.toRadians(0.0),
+                pitch: Cesium.Math.toRadians(-90.0),
+                roll: 0
+            }
+        })
+    }
+
+    createUserPin(userPosition) {
+        this.viewer.entities.add({
+            name: "Green cylinder with black outline",
+            position: Cesium.Cartesian3.fromDegrees(userPosition.coords.longitude, userPosition.coords.latitude, 20.0),
+            cylinder: {
+                length: 40.0,
+                topRadius: 10.0,
+                bottomRadius: 10.0,
+                material: Cesium.Color.GREEN.withAlpha(1)
+            },
         })
     }
 

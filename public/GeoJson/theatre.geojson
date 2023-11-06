@@ -1,0 +1,375 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2023-11-06T10:25:00Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/237298943",
+        "addr:city": "Genova",
+        "addr:housenumber": "6",
+        "addr:street": "Via Nicolò Bacigalupo",
+        "amenity": "theatre",
+        "name": "Teatro Duse",
+        "wikidata": "Q3981969",
+        "wikipedia": "it:Teatro Duse (Genova)"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9382365,
+          44.411255
+        ]
+      },
+      "id": "GEOJSON_TEATRI/237298943"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/237300388",
+        "alt_name": "Teatro della Corte",
+        "amenity": "theatre",
+        "name": "Teatro Ivo Chiesa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9481031,
+          44.404524
+        ]
+      },
+      "id": "GEOJSON_TEATRI/237300388"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/242693780",
+        "amenity": "theatre",
+        "name": "Teatro della Tosse",
+        "wheelchair": "yes",
+        "wikidata": "Q3982309",
+        "wikipedia": "it:Teatro della Tosse"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9318247,
+          44.4049524
+        ]
+      },
+      "id": "GEOJSON_TEATRI/242693780"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/254565440",
+        "amenity": "theatre",
+        "created_by": "Potlatch 0.9",
+        "name": "Teatro Garage"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9589109,
+          44.4080705
+        ]
+      },
+      "id": "GEOJSON_TEATRI/254565440"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/269904280",
+        "amenity": "theatre",
+        "name": "Teatro Rina e Gilberto Govi",
+        "wikidata": "Q3982117",
+        "wikipedia": "it:Teatro Rina e Gilberto Govi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9009628,
+          44.4581034
+        ]
+      },
+      "id": "GEOJSON_TEATRI/269904280"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/311614752",
+        "amenity": "theatre",
+        "name": "cinema teatro Instabile",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9493101,
+          44.3978483
+        ]
+      },
+      "id": "GEOJSON_TEATRI/311614752"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/1377933953",
+        "addr:city": "Genova",
+        "addr:housenumber": "4",
+        "addr:postcode": "16158",
+        "addr:street": "Vico Nicolò da Corte",
+        "amenity": "theatre",
+        "description": "Teatro storico del 1786",
+        "name": "Teatro Storico di Villa Duchessa di Galliera",
+        "operator": "Teatro della Tosse"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7500213,
+          44.4307069
+        ]
+      },
+      "id": "GEOJSON_TEATRI/1377933953"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/1470967922",
+        "amenity": "theatre",
+        "name": "Teatro S.O.C"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8946507,
+          44.4300951
+        ]
+      },
+      "id": "GEOJSON_TEATRI/1470967922"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/1529901945",
+        "addr:city": "Genova",
+        "addr:housenumber": "8",
+        "addr:street": "Via Gio Batta Roggerone",
+        "amenity": "theatre",
+        "name": "Cinema Albatros",
+        "phone": "+39 010 7491662",
+        "website": "https://www.albatroscinema.it/",
+        "wikidata": "Q3981896",
+        "wikipedia": "it:Teatro Albatros"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8917408,
+          44.4351448
+        ]
+      },
+      "id": "GEOJSON_TEATRI/1529901945"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/2620401938",
+        "addr:city": "Genova",
+        "addr:housenumber": "2",
+        "addr:street": "Via Nicolò Bacigalupo",
+        "amenity": "theatre",
+        "name": "Politeama Genovese",
+        "wikidata": "Q3907408",
+        "wikipedia": "it:Politeama Genovese"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9379068,
+          44.4111195
+        ]
+      },
+      "id": "GEOJSON_TEATRI/2620401938"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/2758096417",
+        "addr:city": "Genova",
+        "addr:housenumber": "48",
+        "addr:postcode": "16138",
+        "addr:street": "Via Salvador Allende",
+        "amenity": "theatre",
+        "name": "Teatro dell'Ortica",
+        "operator": "Teatro dell'Ortica",
+        "website": "https://www.teatrortica.it/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9748091,
+          44.4526982
+        ]
+      },
+      "id": "GEOJSON_TEATRI/2758096417"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/3614940800",
+        "addr:housenumber": "1",
+        "addr:street": "Piazzetta Cambiaso",
+        "amenity": "theatre",
+        "name": "Teatro TiQu",
+        "website": "https://www.sarabanda-associazione.it/attivit%C3%A0/tiqu-teatro-internazionale-di-quartiere-genova/",
+        "wheelchair": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9318176,
+          44.4103278
+        ]
+      },
+      "id": "GEOJSON_TEATRI/3614940800"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/4073590024",
+        "addr:housenumber": "9",
+        "addr:street": "Vico di San Donato",
+        "alt_name": "Teatro della Tosse Sala Agorà",
+        "amenity": "theatre",
+        "name": "Teatro La Claque in Agorà"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9318984,
+          44.4053398
+        ]
+      },
+      "id": "GEOJSON_TEATRI/4073590024"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/5711972637",
+        "amenity": "theatre",
+        "name": "Teatro Carignano"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9378358,
+          44.4002783
+        ]
+      },
+      "id": "GEOJSON_TEATRI/5711972637"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/6394700960",
+        "addr:housenumber": "2",
+        "addr:street": "Vico Boccanegra",
+        "amenity": "theatre",
+        "name": "StradaNuova Teatro Auditorium",
+        "website": "https://teatrostradanuova.it/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9319512,
+          44.4111753
+        ]
+      },
+      "id": "GEOJSON_TEATRI/6394700960"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/8360343517",
+        "addr:housenumber": "35",
+        "addr:street": "Via Ayroli",
+        "amenity": "theatre",
+        "name": "Teatro Von Pauer",
+        "wikidata": "Q3982207",
+        "wikipedia": "it:Teatro Von Pauer"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9565697,
+          44.41152
+        ]
+      },
+      "id": "GEOJSON_TEATRI/8360343517"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/10276049709",
+        "addr:city": "Genova",
+        "addr:housenumber": "9",
+        "addr:postcode": "16158",
+        "addr:street": "Piazza Bernardo e Giovanni Odicini",
+        "amenity": "theatre",
+        "name": "Teatro del Ponente",
+        "website": "https://teatrodellatosse.it/teatro-del-ponente/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7488768,
+          44.4279883
+        ]
+      },
+      "id": "GEOJSON_TEATRI/10276049709"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/10581556324",
+        "amenity": "theatre",
+        "indoor": "yes",
+        "name": "Teatro Beppe De Ferrari",
+        "operator": "Parrocchia dei Santi Quirico e Giulitta"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9013961,
+          44.4855838
+        ]
+      },
+      "id": "GEOJSON_TEATRI/10581556324"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_TEATRI/11101604256",
+        "addr:city": "Genova",
+        "addr:housenumber": "10",
+        "addr:postcode": "16153",
+        "addr:street": "Via Mario Boeddu",
+        "amenity": "theatre",
+        "name": "Teatro Akropolis",
+        "website": "https://www.teatroakropolis.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8568079,
+          44.4239374
+        ]
+      },
+      "id": "GEOJSON_TEATRI/11101604256"
+    }
+  ]
+}

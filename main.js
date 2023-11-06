@@ -3,6 +3,8 @@ import CesiumViewer from './src/components/map.js';
 import * as Cesium from 'cesium';
 
 // Import methods
+import { getPosition } from './src/utils/getPosition.js';
+
 import { populateDrawer } from './src/utils/populateDrawer.js';
 
 import { filterLayersByTagName } from './src/utils/filterLayersByTagName.js';
@@ -38,6 +40,7 @@ import './src/components/search.js';
 import './src/components/drawer-toggle.js';
 import './src/components/autocomplete.js';
 import './src/components/opacity-slider.js';
+import './src/components/activate-navigation-btn.js';
 import './src/components/chip.js';
 import './src/components/button.js';
 import './src/components/settings-icon.js';
@@ -49,7 +52,12 @@ async function initMapPage() {
 
   // Map initialization
   const viewer = new CesiumViewer();
-  viewer.setCamera();
+  // viewer.setCamera();
+
+  // Get position
+  const position = await getPosition();
+  viewer.setCameraToUserPosition(position);
+  viewer.createUserPin(position);
 
   // Zoom buttons
   const zoomBtns = document.querySelectorAll('app-zoom-btn');
@@ -99,11 +107,11 @@ async function initMapPage() {
   // Infoboxes creation & handling
   viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
     viewer.onClick(movement.position)
-      .then(features => {
-        console.log(features);
+      .then(async features => {
+        // console.log(features);
 
         if (typeof features === 'object' && !Array.isArray(features)) {
-          const infoContent = handleFeaturesWFS(features, jsonData);
+          const infoContent = await handleFeaturesWFS(features, jsonData);
 
           let allInfoBoxes = document.querySelectorAll('app-infobox');
 

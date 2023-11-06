@@ -135,6 +135,94 @@
             ]
         },
         {
+            "name": "Cinema",
+            "layer": "GEOJSON_CINEMA",
+            "layer_url_wfs": "./GeoJson/cinemas.geojson",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "servizi",
+                "cinema"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "name",
+                    "display_name": "Nome",
+                    "type": "string"
+                },
+                {
+                    "property_name": "url",
+                    "display_name": "Sito web",
+                    "type": "string"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
+            "name": "Teatri",
+            "layer": "GEOJSON_TEATRI",
+            "layer_url_wfs": "./GeoJson/theatre.geojson",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "servizi",
+                "teatri"
+            ],
+            "relevant_properties": [
+                {
+                    "property_name": "name",
+                    "display_name": "Nome",
+                    "type": "string"
+                },
+                {
+                    "property_name": "addr:street",
+                    "display_name": "Via",
+                    "type": "string"
+                },
+                {
+                    "property_name": "addr:housenumber",
+                    "display_name": "N.",
+                    "type": "string"
+                },
+                {
+                    "property_name": "website",
+                    "display_name": "Sito web",
+                    "type": "string"
+                },
+                {
+                    "property_name": "wikidata",
+                    "display_name": "Wikidata",
+                    "type": "string"
+                },
+                {
+                    "property_name": "P154",
+                    "display_name": "Logo",
+                    "type": "img"
+                },
+                {
+                    "property_name": "P18",
+                    "display_name": "Foto",
+                    "type": "img"
+                },
+                {
+                    "property_name": "P856",
+                    "display_name": "Sito web",
+                    "type": "url"
+                }
+            ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
             "name": "Scuole",
             "layer": "SITGEO:SCUOLE_AGG_GEO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
@@ -311,6 +399,26 @@
                     "type": "number"
                 }
             ],
+            "components": [
+                "app-opacity-slider"
+            ]
+        },
+        {
+            "name": "Acqua potabile",
+            "layer": "GEOJSON_ACQUA_POTABILE",
+            "layer_url_wfs": "./GeoJson/drinking-water.geojson",
+            "style": {
+                "color": "red",
+                "opacity": 1
+            },
+            "tags": [
+                "città",
+                "servizi",
+                "acqua",
+                "potabile",
+                "fontane"
+            ],
+            "relevant_properties": [],
             "components": [
                 "app-opacity-slider"
             ]

@@ -1,11 +1,20 @@
 export const handleFeaturesWFS = (features, jsonData) => {
 
     if (features != null) {
-        
+
         let layerToFind = '';
 
-        if (features.id.includes('.')) {
-            layerToFind = features.id.split('.')[0];
+        switch (true) {
+            case features.id.includes('.'):
+                layerToFind = features.id.split('.')[0];
+                break;
+
+            case features.id.includes('/'):
+                layerToFind = features.id.split('/')[0];
+                break;
+
+            default:
+                break;
         }
 
         const foundLayer = filterLayerByName(jsonData, layerToFind);
@@ -37,14 +46,22 @@ function filterLayerByName(obj, layerToFind) {
     return null;
 }
 
-function getRelevantProperties(object, array, title) {
+async function getRelevantProperties(object, array, title) {
     const risultati = {};
+
+    // console.log(object);
+    // console.log(array);
 
     if (array) {
         for (const obj of array) {
             if (obj.property_name && object[obj.property_name]) {
                 risultati[obj.display_name] = object[obj.property_name]._value;
             }
+
+            // if (obj.property_name == 'wikidata') {
+            //     const wikidataId = object[obj.property_name]._value;
+            //     await getWikidata(wikidataId, array);
+            // }
         }
 
         risultati["Title"] = title;
@@ -53,4 +70,20 @@ function getRelevantProperties(object, array, title) {
     }
 
     return risultati;
+}
+
+async function getWikidata(wikidataId, relevantProperties) {
+    const risultati = {};
+    const wikiDataRaw = await fetch(`https://www.wikidata.org/wiki/Special:EntityData/${wikidataId}.json`)
+    const wikidata = await wikiDataRaw.json();    
+
+    const properties = wikidata.entities[wikidataId].claims;
+
+    console.log(relevantProperties);
+    console.log(properties);
+
+    for (const key in properties) {
+        // console.log(key + ": " + properties[key][0].mainsnak.datavalue.value);
+        console.log(properties[key]);
+    }
 }
