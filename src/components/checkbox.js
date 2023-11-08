@@ -67,11 +67,18 @@ export class Checkbox extends HTMLElement {
                         data.style.opacity = event.detail.newValue;
                         this.setAttribute('data', JSON.stringify(data));
                     });
-
                 }
+
+                if (component == 'app-navigation-btn') {
+                    this.component.addEventListener('routeTriggered', (event) => {
+                        this.setAttribute('is-route-active', event.detail.newValue);
+                    });
+                }
+
+                this.details.append(this.component);
+
             }
 
-            this.details.append(this.component);
             this.shadow.append(this.details);
             this.setAttribute('is-details-open', 'false');
         }
@@ -105,7 +112,7 @@ export class Checkbox extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-checked', 'data', 'is-details-open'];
+    static observedAttributes = ['is-checked', 'data', 'is-details-open', 'is-route-active'];
     attributeChangedCallback(name, oldValue, newValue) {
 
         if (name == 'is-checked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
@@ -120,9 +127,10 @@ export class Checkbox extends HTMLElement {
             });
 
             this.toolOpacity = this.shadow.querySelector('app-opacity-slider');
-            if (this.toolOpacity) {
-                this.toolOpacity.setAttribute('is-enable', newValue);
-            }
+            this.toolOpacity ? this.toolOpacity.setAttribute('is-enable', newValue) : '';
+
+            this.toolRoute = this.shadow.querySelector('app-navigation-btn');
+            this.toolRoute ? this.toolRoute.setAttribute('is-enable', newValue) : '';
 
             this.dispatchEvent(event);
         }
@@ -141,12 +149,23 @@ export class Checkbox extends HTMLElement {
             });
 
             this.dispatchEvent(event);
-            
+
             if (this.getAttribute('is-details-open') == 'true') {
                 this.details.setAttribute('open', '')
             } else {
                 this.details.removeAttribute('open');
             }
+        }
+
+        if (name == 'is-route-active' && newValue != oldValue) {
+            const layer = JSON.parse(this.getAttribute('data')).layer;
+            const url = JSON.parse(this.getAttribute('data')).layer_url_wfs;
+            
+            const event = new CustomEvent('routeTriggered', {
+                detail: { name, oldValue, newValue, layer: layer, url: url }
+            });
+
+            this.dispatchEvent(event);
         }
     }
 }

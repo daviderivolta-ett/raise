@@ -238,6 +238,41 @@ export default class CesiumViewer {
         return imageryLayers;
     }
 
+    createPolyline(navigationData) {
+        const url = `${navigationData.url}?service=WFS&typeName=${navigationData.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+
+                let coordinates = [];
+
+                let features = data.features;
+                console.log(features);
+                features.forEach(item => {
+
+                    if (Array.isArray(item.geometry.coordinates[0])) {
+                        item.geometry.coordinates.forEach(c => c.forEach(s => coordinates.push(s)));
+                    } else {
+                        item.geometry.coordinates.splice(2,1);
+                        item.geometry.coordinates.forEach(c => coordinates.push(c));
+                    }
+
+                });
+
+                console.log(coordinates);
+
+                const path = this.viewer.entities.add({
+                    name: "path",
+                    polyline: {
+                        positions: Cesium.Cartesian3.fromDegreesArray(coordinates),
+                        width: 5,
+                        material: Cesium.Color.RED,
+                        clampToGround: true,
+                    },
+                });
+            })
+    }
+
     setCamera() {
         const initialPosition = Cesium.Cartesian3.fromDegrees(
             8.909041078781357,

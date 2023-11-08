@@ -60,12 +60,6 @@ export class CheckboxList extends HTMLElement {
                 }
 
                 this.setAttribute('data', JSON.stringify(this.data));
-
-                // if (this.checkboxes.length === JSON.parse(this.getAttribute('data')).length) {
-                //     this.setAttribute('all-active', 'true');
-                // } else {
-                //     this.setAttribute('all-active', 'false');
-                // }
             });
 
             item.addEventListener('opacityChanged', (event) => {
@@ -86,6 +80,14 @@ export class CheckboxList extends HTMLElement {
                 this.setAttribute('data', JSON.stringify(this.data));
             });
 
+            item.addEventListener('routeTriggered', (event) => {
+                if (event.detail.newValue == 'true') {
+                    this.setAttribute('navigation-data', JSON.stringify(event.detail));
+                } else {
+                    this.setAttribute('navigation-data', null);
+                }
+            })
+
             item.addEventListener('detailStatusChanged', (event) => {
                 if (event.detail.newValue == 'true') {
                     this.checkboxes.forEach(otherItem => {
@@ -99,7 +101,7 @@ export class CheckboxList extends HTMLElement {
         });
     }
 
-    static observedAttributes = ['data', 'all-active'];
+    static observedAttributes = ['data', 'all-active', 'navigation-data'];
     attributeChangedCallback(name, oldValue, newValue) {
 
         if (name == 'data' && newValue != oldValue) {
@@ -110,6 +112,14 @@ export class CheckboxList extends HTMLElement {
                     newValue: newValue,
                     input: this.input
                 }
+            });
+
+            this.dispatchEvent(event);
+        }
+
+        if (name == 'navigation-data') {
+            const event = new CustomEvent('navigationTriggered', {
+                detail: { name, oldValue, newValue }
             });
 
             this.dispatchEvent(event);

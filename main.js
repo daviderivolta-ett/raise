@@ -11,6 +11,7 @@ import { filterLayersByTagName } from './src/utils/filterLayersByTagName.js';
 import { fetchJsonData } from './src/settings.js';
 
 import { activateLayersWFS } from './src/utils/activateLayersWFS.js';
+import { createRoute } from './src/utils/createRoute.js';
 
 import { handleFeaturesWFS } from './src/utils/handleFeaturesWFS.js';
 
@@ -144,6 +145,11 @@ async function initMapPage() {
 
   // Accordion behaviour
   accordionBehaviour(allCategoryAccordions, allLayerAccordions);
+
+  //// TESTING
+  // Route path
+  createRoute(allCheckboxLists, viewer);
+  //// TESTING
 
   // Search bar
   searchBar.addEventListener('searchValueChanged', (event) => {
