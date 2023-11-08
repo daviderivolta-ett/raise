@@ -1,4 +1,4 @@
-export const createRoute = async (allCheckboxLists, viewer) => {
+export const createRoute = async (position, allCheckboxLists, viewer) => {
     for (const checkboxList of allCheckboxLists) {
         checkboxList.addEventListener('navigationTriggered', async (event) => {
 
@@ -11,7 +11,7 @@ export const createRoute = async (allCheckboxLists, viewer) => {
 
             const navigationData = JSON.parse(event.detail.newValue);
             if (navigationData != null) {           
-                viewer.createPolyline(navigationData);
+                viewer.createPolyline(position, navigationData);
             }         
         })
     }

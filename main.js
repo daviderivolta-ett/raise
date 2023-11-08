@@ -146,10 +146,8 @@ async function initMapPage() {
   // Accordion behaviour
   accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
-  //// TESTING
   // Route path
-  createRoute(allCheckboxLists, viewer);
-  //// TESTING
+  createRoute(position, allCheckboxLists, viewer);
 
   // Search bar
   searchBar.addEventListener('searchValueChanged', (event) => {

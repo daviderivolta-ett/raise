@@ -141,7 +141,7 @@ export default class CesiumViewer {
                 this.viewer.dataSources.add(Cesium.GeoJsonDataSource.load(geoJson, {
                     stroke: Cesium.Color[strokeColor].withAlpha(parseFloat(opacity)),
                     strokeWidth: 2,
-                    fill: Cesium.Color[fillColor].withAlpha(parseFloat(opacity)),
+                    fill: Cesium.Color[fillColor].withAlpha(parseFloat(opacity))
                 }))
 
                     .then(dataSource => {
@@ -238,39 +238,76 @@ export default class CesiumViewer {
         return imageryLayers;
     }
 
-    createPolyline(navigationData) {
+    createPolyline(position, navigationData) {
         const url = `${navigationData.url}?service=WFS&typeName=${navigationData.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
         fetch(url)
             .then(res => res.json())
             .then(data => {
 
                 let coordinates = [];
+                coordinates.push(position.coords.longitude);
+                coordinates.push(position.coords.latitude);
 
                 let features = data.features;
                 console.log(features);
-                features.forEach(item => {
 
-                    if (Array.isArray(item.geometry.coordinates[0])) {
-                        item.geometry.coordinates.forEach(c => c.forEach(s => coordinates.push(s)));
-                    } else {
-                        item.geometry.coordinates.splice(2,1);
-                        item.geometry.coordinates.forEach(c => coordinates.push(c));
-                    }
+                let distances = [];
+                features.forEach(feature => {
+                    // let tempCoordinates = [...coordinates];
+                    
+                    // feature.geometry.coordinates.forEach(c => c.forEach(s => tempCoordinates.push(s)));
 
-                });
+                    // let start = Cesium.Cartographic.fromDegrees(tempCoordinates[0], tempCoordinates[1]);
+                    // let end = Cesium.Cartographic.fromDegrees(tempCoordinates[2], tempCoordinates[3]);
+                    // let ellipsoidGeodesic = new Cesium.EllipsoidGeodesic(start, end);
+                    // let distance = ellipsoidGeodesic.surfaceDistance;
+                    // console.log(distance);
+                    // distances.push(distance);
+                    
+                    this.calculateDistance(feature, coordinates, distances);
+                })
 
-                console.log(coordinates);
+                distances.sort((a, b) => a - b);
+                console.log(distances);
 
-                const path = this.viewer.entities.add({
-                    name: "path",
-                    polyline: {
-                        positions: Cesium.Cartesian3.fromDegreesArray(coordinates),
-                        width: 5,
-                        material: Cesium.Color.RED,
-                        clampToGround: true,
-                    },
-                });
+                // let features = data.features;
+                // console.log(features);
+                // features.forEach(item => {
+
+                //     if (Array.isArray(item.geometry.coordinates[0])) {
+                //         item.geometry.coordinates.forEach(c => c.forEach(s => coordinates.push(s)));
+                //     } else {
+                //         item.geometry.coordinates.splice(2,1);
+                //         item.geometry.coordinates.forEach(c => coordinates.push(c));
+                //     }
+
+                // });
+
+                // // console.log(coordinates);
+
+                // const path = this.viewer.entities.add({
+                //     name: "path",
+                //     polyline: {
+                //         positions: Cesium.Cartesian3.fromDegreesArray(coordinates),
+                //         width: 5,
+                //         material: Cesium.Color.RED,
+                //         clampToGround: true,
+                //     },
+                // });
             })
+    }
+
+    calculateDistance(feature, coordinates, distances) {
+        let tempCoordinates = [...coordinates];
+                    
+        feature.geometry.coordinates.forEach(c => c.forEach(s => tempCoordinates.push(s)));
+
+        let start = Cesium.Cartographic.fromDegrees(tempCoordinates[0], tempCoordinates[1]);
+        let end = Cesium.Cartographic.fromDegrees(tempCoordinates[2], tempCoordinates[3]);
+        let ellipsoidGeodesic = new Cesium.EllipsoidGeodesic(start, end);
+        let distance = ellipsoidGeodesic.surfaceDistance;
+        console.log(distance);
+        distances.push(distance);
     }
 
     setCamera() {
