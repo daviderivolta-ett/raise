@@ -238,13 +238,13 @@ export default class CesiumViewer {
         return imageryLayers;
     }
 
-    createPolyline(startingCoordinates, endingCoordinates) {
+    createRoute(startingCoordinates, endingCoordinates, pathIndex) {
         const coordinates = [];
         startingCoordinates.forEach(item => coordinates.push(item));
         endingCoordinates.forEach(item => coordinates.push(item));
 
         this.viewer.entities.add({
-            name: "path",
+            name: `path-${pathIndex}`,
             polyline: {
                 positions: Cesium.Cartesian3.fromDegreesArray(coordinates),
                 width: 5,

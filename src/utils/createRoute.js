@@ -18,6 +18,7 @@ export const createRoute = async (Cesium, position, allCheckboxLists, viewer) =>
             const features = data.features;
 
             let startingPosition = [position.coords.longitude, position.coords.latitude];
+            let pathIndex = 1;
             while (features.length != 0) {
 
                 let shortestDistance = Infinity;
@@ -34,14 +35,18 @@ export const createRoute = async (Cesium, position, allCheckboxLists, viewer) =>
 
                 const endingPosition = findFeatureCoordinates(features[shortestDistanceIndex]);
 
-                viewer.createPolyline(startingPosition, endingPosition);
+                viewer.createRoute(startingPosition, endingPosition, pathIndex);
 
                 if (shortestDistanceIndex !== -1) {
                     features.splice(shortestDistanceIndex, 1);
                 }
 
+                pathIndex++;
                 startingPosition = endingPosition;
             }
+
+            console.log(viewer);
+
         })
     }
 }
