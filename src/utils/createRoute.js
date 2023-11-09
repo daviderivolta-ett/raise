@@ -9,6 +9,10 @@ export const createRoute = async (Cesium, position, allCheckboxLists, viewer) =>
                 if (entity.polyline !== undefined) {
                     await entities.remove(entity);
                 }
+
+                if (entity.label !== undefined) {
+                    await entities.remove(entity);
+                }
             }
 
             const navigationData = JSON.parse(event.detail.newValue);
@@ -35,7 +39,8 @@ export const createRoute = async (Cesium, position, allCheckboxLists, viewer) =>
 
                 const endingPosition = findFeatureCoordinates(features[shortestDistanceIndex]);
 
-                viewer.createRoute(startingPosition, endingPosition, pathIndex);
+                // viewer.createRoute(startingPosition, endingPosition, pathIndex);
+                viewer.createPointsOrderLabels(endingPosition, pathIndex);
 
                 if (shortestDistanceIndex !== -1) {
                     features.splice(shortestDistanceIndex, 1);
@@ -45,9 +50,11 @@ export const createRoute = async (Cesium, position, allCheckboxLists, viewer) =>
                 startingPosition = endingPosition;
             }
 
+            viewer.viewer.zoomTo(viewer.viewer.entities);
+
             console.log(viewer);
 
-        })
+        })        
     }
 }
 

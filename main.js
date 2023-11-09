@@ -179,6 +179,8 @@ async function initMapPage() {
     const allLayerAccordions = document.querySelectorAll('.layer-accordion');
     accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
+    createRoute(Cesium, position, allCheckboxLists, viewer);
+
     if (valueToSearch.length >= 2) {
       const foundTags = filterTag(jsonData, valueToSearch);
       autocomplete.setAttribute('data', JSON.stringify(foundTags));

@@ -243,14 +243,31 @@ export default class CesiumViewer {
         startingCoordinates.forEach(item => coordinates.push(item));
         endingCoordinates.forEach(item => coordinates.push(item));
 
+        const color = '#4A89F3';
+
         this.viewer.entities.add({
             name: `path-${pathIndex}`,
             polyline: {
                 positions: Cesium.Cartesian3.fromDegreesArray(coordinates),
                 width: 5,
-                material: Cesium.Color.RED,
+                material: Cesium.Color.fromCssColorString(color),
                 clampToGround: true,
             },
+        });
+    }
+
+    createPointsOrderLabels(coordinates, pathIndex) {
+        const positionX = coordinates[0];
+        const positionY = coordinates[1];
+        this.viewer.entities.add({
+            position: Cesium.Cartesian3.fromDegrees(positionX, positionY, 1.0),
+            label: {
+                text: `${pathIndex}`,
+                verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                pixelOffset: new Cesium.Cartesian2(0, -20),
+                scale: 0.5,
+                scaleByDistance: new Cesium.NearFarScalar(1.5e2, 1.5, 8.0e6, 0.0)
+            }
         });
     }
 
