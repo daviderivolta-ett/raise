@@ -1,6 +1,4 @@
-import * as Cesium from 'cesium';
-
-export const createRoute = async (position, allCheckboxLists, viewer) => {
+export const createRoute = async (Cesium, position, allCheckboxLists, viewer) => {
     for (const checkboxList of allCheckboxLists) {
         checkboxList.addEventListener('navigationTriggered', async (event) => {
 
@@ -26,7 +24,7 @@ export const createRoute = async (position, allCheckboxLists, viewer) => {
                 let shortestDistanceIndex = -1;
                 for (let i = 0; i < features.length; i++) {
                     let feature = features[i];
-                    const distance = calculateDistance(startingPosition, feature);
+                    const distance = calculateDistance(Cesium, startingPosition, feature);
 
                     if (distance < shortestDistance) {
                         shortestDistance = distance;
@@ -62,7 +60,7 @@ async function fetchEntitiesData(obj) {
     }
 }
 
-function calculateDistance(initialPosition, feature) {
+function calculateDistance(Cesium, initialPosition, feature) {
     const endingPosition = findFeatureCoordinates(feature);
 
     const start = Cesium.Cartographic.fromDegrees(initialPosition[0], initialPosition[1]);
@@ -73,7 +71,6 @@ function calculateDistance(initialPosition, feature) {
 }
 
 function findFeatureCoordinates(feature) {
-    console.log(feature);
     let endingPosition = [];
     if (Array.isArray(feature.geometry.coordinates)) {
         let coordinates = feature.geometry.coordinates;

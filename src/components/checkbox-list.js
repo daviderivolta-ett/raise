@@ -46,7 +46,7 @@ export class CheckboxList extends HTMLElement {
         // js
         this.checkboxes.forEach(item => {
 
-            item.addEventListener('checkboxChanged', () => {
+            item.addEventListener('checkboxChanged', (event) => {
                 this.itemData = JSON.parse(item.getAttribute('data'));
 
                 const isPresentIndex = this.data.findIndex(obj => {

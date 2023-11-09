@@ -47,6 +47,8 @@ export class NavigationBtn extends HTMLElement {
         if (name == 'is-enable' && oldValue !== null && newValue !== null && newValue !== oldValue) {
 
             this.getAttribute('is-enable') == 'true' ? this.input.disabled = false : this.input.disabled = true;
+            this.getAttribute('is-enable') == 'false' ? this.setAttribute('is-checked', 'false') : '';
+            this.getAttribute('is-enable') == 'false' ? this.input.checked = false : '';
         }
 
         if (name == 'is-checked' && oldValue !== null && newValue !== null && newValue !== oldValue) {

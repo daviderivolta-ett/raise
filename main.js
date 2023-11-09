@@ -147,7 +147,7 @@ async function initMapPage() {
   accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
   // Route path
-  createRoute(position, allCheckboxLists, viewer);
+  createRoute(Cesium, position, allCheckboxLists, viewer);
 
   // Search bar
   searchBar.addEventListener('searchValueChanged', (event) => {
