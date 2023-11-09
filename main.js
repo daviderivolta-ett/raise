@@ -25,6 +25,8 @@ import { themeChange } from './src/utils/themeChange.js';
 import { getAllTags } from './src/utils/getAllTags.js';
 import { filterLayersBySelectedTags } from './src/utils/filterLayersBySelectedTags.js';
 
+import { removeAllEntities } from './src/utils/createRoute.js';
+
 // Import data
 const CATEGORIES_URL = './json/categories.json';
 
@@ -47,6 +49,7 @@ import './src/components/button.js';
 import './src/components/settings-icon.js';
 import './src/components/zoom-button.js';
 import './src/components/theme-icon.js';
+import './src/components/close-navigation-btn.js';
 
 // INIT MAP PAGE
 async function initMapPage() {
@@ -67,6 +70,10 @@ async function initMapPage() {
   // Theme button
   const themeBtn = document.querySelector('app-theme-icon');
   themeBtn.addEventListener('themeChanged', (event) => themeChange(viewer, event.detail.newValue));
+
+  // Close navigation button
+  const closeNavigationBtn = document.querySelector('app-close-navigation-btn');
+  closeNavigationBtn.addEventListener('click', () => removeAllEntities(viewer.viewer.entities));
 
   // Accordions creation
   const drawerContent = document.querySelector('#categories-section');

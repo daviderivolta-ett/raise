@@ -3,17 +3,7 @@ export const createRoute = async (Cesium, position, allCheckboxLists, viewer) =>
         checkboxList.addEventListener('navigationTriggered', async (event) => {
 
             const entities = viewer.viewer.entities;
-            const entitiesArray = Array.from(entities.values);
-
-            for (const entity of entitiesArray) {
-                if (entity.polyline !== undefined) {
-                    await entities.remove(entity);
-                }
-
-                if (entity.label !== undefined) {
-                    await entities.remove(entity);
-                }
-            }
+            removeAllEntities(entities);
 
             const navigationData = JSON.parse(event.detail.newValue);
 
@@ -54,7 +44,7 @@ export const createRoute = async (Cesium, position, allCheckboxLists, viewer) =>
 
             console.log(viewer);
 
-        })        
+        })
     }
 }
 
@@ -91,7 +81,7 @@ function findFeatureCoordinates(feature) {
             coordinates[0].forEach(item => endingPosition.push(item));
         } else {
             coordinates.splice(2);
-            coordinates.forEach(item => endingPosition.push(item)); 
+            coordinates.forEach(item => endingPosition.push(item));
         }
 
     } else {
@@ -99,4 +89,18 @@ function findFeatureCoordinates(feature) {
     }
 
     return endingPosition;
+}
+
+export async function removeAllEntities(entities) {
+    const entitiesArray = Array.from(entities.values);
+
+    for (const entity of entitiesArray) {
+        if (entity.polyline !== undefined) {
+            await entities.remove(entity);
+        }
+
+        if (entity.label !== undefined) {
+            await entities.remove(entity);
+        }
+    }
 }

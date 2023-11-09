@@ -87,6 +87,14 @@ html {
   gap: 8px;
 }
 
+/* Close navigation button */
+/* app-close-navigation-btn {
+  position: fixed;
+  right: 40px;
+  bottom: 300px;
+  z-index: 96;
+} */
+
 /* Theme button */
 /* button {
   position: fixed;
