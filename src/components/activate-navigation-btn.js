@@ -16,7 +16,7 @@ export class NavigationBtn extends HTMLElement {
                 <button type="button">Indicazioni</button>
             </div>
             `
-        ;
+            ;
 
         this.btn = this.shadow.querySelector('button');
 
@@ -30,8 +30,10 @@ export class NavigationBtn extends HTMLElement {
         }
 
         // js
-        this.btn.addEventListener('click', (event) => {
-            this.setAttribute('is-route-active', 'true');
+        this.btn.addEventListener('click', () => {
+            // this.setAttribute('is-route-active', 'true');
+            const event = new CustomEvent('routeTriggered');
+            this.dispatchEvent(event);
         });
 
         // css
@@ -51,11 +53,11 @@ export class NavigationBtn extends HTMLElement {
 
         if (name == 'is-route-active' && oldValue !== null && newValue !== null && newValue !== oldValue) {
 
-            const event = new CustomEvent('routeTriggered', {
-                detail: { name, oldValue, newValue }
-            });
+            // const event = new CustomEvent('routeTriggered', {
+            //     detail: { name, oldValue, newValue }
+            // });
 
-            this.dispatchEvent(event);
+            // this.dispatchEvent(event);
 
         }
     }

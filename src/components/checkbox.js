@@ -70,8 +70,18 @@ export class Checkbox extends HTMLElement {
                 }
 
                 if (component == 'app-navigation-btn') {
-                    this.component.addEventListener('routeTriggered', (event) => {
-                        this.setAttribute('is-route-active', event.detail.newValue);
+                    this.component.addEventListener('routeTriggered', () => {
+                        // console.log('route triggered');
+                        // this.setAttribute('is-route-active', event.detail.newValue);
+
+                        const layer = JSON.parse(this.getAttribute('data')).layer;
+                        const url = JSON.parse(this.getAttribute('data')).layer_url_wfs;
+                        
+                        const event = new CustomEvent('routeTriggered', {
+                            detail: { layer: layer, url: url }
+                        });
+            
+                        this.dispatchEvent(event);
                     });
                 }
 
@@ -157,16 +167,16 @@ export class Checkbox extends HTMLElement {
             }
         }
 
-        if (name == 'is-route-active' && newValue != oldValue) {
-            const layer = JSON.parse(this.getAttribute('data')).layer;
-            const url = JSON.parse(this.getAttribute('data')).layer_url_wfs;
+        // if (name == 'is-route-active' && newValue != oldValue) {
+        //     const layer = JSON.parse(this.getAttribute('data')).layer;
+        //     const url = JSON.parse(this.getAttribute('data')).layer_url_wfs;
             
-            const event = new CustomEvent('routeTriggered', {
-                detail: { name, oldValue, newValue, layer: layer, url: url }
-            });
+        //     const event = new CustomEvent('routeTriggered', {
+        //         detail: { name, oldValue, newValue, layer: layer, url: url }
+        //     });
 
-            this.dispatchEvent(event);
-        }
+        //     this.dispatchEvent(event);
+        // }
     }
 }
 

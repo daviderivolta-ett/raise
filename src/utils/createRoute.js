@@ -41,9 +41,6 @@ export const createRoute = async (Cesium, position, allCheckboxLists, viewer) =>
             }
 
             viewer.viewer.zoomTo(viewer.viewer.entities);
-
-            console.log(viewer);
-
         })
     }
 }
