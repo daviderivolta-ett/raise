@@ -11,6 +11,10 @@ export const activateLayersWFS = async (allCheckboxLists, activeLayers, viewer) 
                 }
             });
 
+            if (checkboxList.getAttribute('navigation-data') != 'null') {
+                checkboxList.setAttribute('navigation-data', 'null');
+            }
+
             const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
             checkboxListLayersToAdd.forEach(layer => {
                 activeLayers.push(layer);

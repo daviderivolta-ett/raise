@@ -71,8 +71,6 @@ export class Checkbox extends HTMLElement {
 
                 if (component == 'app-navigation-btn') {
                     this.component.addEventListener('routeTriggered', () => {
-                        // console.log('route triggered');
-                        // this.setAttribute('is-route-active', event.detail.newValue);
 
                         const layer = JSON.parse(this.getAttribute('data')).layer;
                         const url = JSON.parse(this.getAttribute('data')).layer_url_wfs;
@@ -107,12 +105,6 @@ export class Checkbox extends HTMLElement {
                     this.setAttribute('is-details-open', 'false');
                 }
             })
-
-            // if (this.getAttribute('is-details-open') == 'true') {
-            //     this.details.setAttribute('open', '')
-            // } else {
-            //     this.details.removeAttribute('open');
-            // }
         }
 
         // css

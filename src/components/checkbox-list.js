@@ -81,11 +81,7 @@ export class CheckboxList extends HTMLElement {
             });
 
             item.addEventListener('routeTriggered', (event) => {
-                // if (event.detail.newValue == 'true') {
                     this.setAttribute('navigation-data', JSON.stringify(event.detail));
-                // } else {
-                    // this.setAttribute('navigation-data', null);
-                // }
             })
 
             item.addEventListener('detailStatusChanged', (event) => {
