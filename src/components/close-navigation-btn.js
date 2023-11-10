@@ -32,9 +32,11 @@ export class CloseNavigationBtn extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = [];
-    attributeChangedCallback() {
-
+    static observedAttributes = ['is-active'];
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name == 'is-active' && oldValue != null && newValue != null && newValue != oldValue) {
+            this.classList.toggle('show');
+        }
     }
 }
 

@@ -50,7 +50,6 @@ import './src/components/settings-icon.js';
 import './src/components/zoom-button.js';
 import './src/components/theme-icon.js';
 import './src/components/close-navigation-btn.js';
-import { Checkbox } from './src/components/checkbox.js';
 
 // INIT MAP PAGE
 async function initMapPage() {
@@ -143,12 +142,6 @@ async function initMapPage() {
   //   }, 10000);
   // });
 
-  // Close navigation button
-  const closeNavigationBtn = document.querySelector('app-close-navigation-btn');
-  closeNavigationBtn.addEventListener('click', () => {
-    allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', null));
-  });
-
   // Checkbox list behaviour
   const activeLayers = [];
   activateLayersWFS(allCheckboxLists, activeLayers, viewer);
@@ -156,16 +149,28 @@ async function initMapPage() {
   // Accordion behaviour
   accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
+  // Close navigation button
+  const closeNavigationBtn = document.querySelector('app-close-navigation-btn');
+  closeNavigationBtn.addEventListener('click', () => {
+    allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', null));
+  });
+
   // Navigation
   let isNavigation = false;
   for (const checkboxList of allCheckboxLists) {
     checkboxList.addEventListener('navigationTriggered', (event) => {
       if (event.detail.newValue != 'null') {
         isNavigation = true;
+        closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+        const navigationData = JSON.parse(event.detail.newValue);
+        createRoute(Cesium, position, navigationData, viewer);
+      } else {
+        isNavigation = false;
+        closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+        removeAllEntities(viewer.viewer.entities);
       }
     })
   }
-  createRoute(Cesium, position, allCheckboxLists, viewer);
 
   // Search bar
   searchBar.addEventListener('searchValueChanged', (event) => {

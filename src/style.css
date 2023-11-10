@@ -88,19 +88,17 @@ html {
 }
 
 /* Close navigation button */
-/* app-close-navigation-btn {
+app-close-navigation-btn {
   position: fixed;
-  right: 40px;
-  bottom: 300px;
+  right: -40px;
+  bottom: 130px;
   z-index: 96;
-} */
+  transition: .2s ease-in-out;
+}
 
-/* Theme button */
-/* button {
-  position: fixed;
-  top: 40px;
+app-close-navigation-btn.show {
   right: 40px;
-} */
+}
 
 /* Media queries */
 @media screen and (max-width: 576px) {

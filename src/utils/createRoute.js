@@ -1,49 +1,44 @@
-export const createRoute = async (Cesium, position, allCheckboxLists, viewer) => {
-    for (const checkboxList of allCheckboxLists) {
-        checkboxList.addEventListener('navigationTriggered', async (event) => {
+export const createRoute = async (Cesium, position, navigationData, viewer) => {
 
-            const entities = viewer.viewer.entities;
-            removeAllEntities(entities);
+    const entities = viewer.viewer.entities;
+    removeAllEntities(entities);
 
-            const navigationData = JSON.parse(event.detail.newValue);
+    if (navigationData == null) return;
+    const data = await fetchEntitiesData(navigationData);
+    const features = data.features;
 
-            if (navigationData == null) return;
-            const data = await fetchEntitiesData(navigationData);
-            const features = data.features;
+    let startingPosition = [position.coords.longitude, position.coords.latitude];
+    let pathIndex = 1;
+    while (features.length != 0) {
 
-            let startingPosition = [position.coords.longitude, position.coords.latitude];
-            let pathIndex = 1;
-            while (features.length != 0) {
+        let shortestDistance = Infinity;
+        let shortestDistanceIndex = -1;
+        for (let i = 0; i < features.length; i++) {
+            let feature = features[i];
+            const distance = calculateDistance(Cesium, startingPosition, feature);
 
-                let shortestDistance = Infinity;
-                let shortestDistanceIndex = -1;
-                for (let i = 0; i < features.length; i++) {
-                    let feature = features[i];
-                    const distance = calculateDistance(Cesium, startingPosition, feature);
-
-                    if (distance < shortestDistance) {
-                        shortestDistance = distance;
-                        shortestDistanceIndex = i;
-                    }
-                }
-
-                const endingPosition = findFeatureCoordinates(features[shortestDistanceIndex]);
-
-                // viewer.createRoute(startingPosition, endingPosition, pathIndex);
-                viewer.createPointsOrderLabels(endingPosition, pathIndex);
-
-                if (shortestDistanceIndex !== -1) {
-                    features.splice(shortestDistanceIndex, 1);
-                }
-
-                pathIndex++;
-                startingPosition = endingPosition;
+            if (distance < shortestDistance) {
+                shortestDistance = distance;
+                shortestDistanceIndex = i;
             }
+        }
 
-            viewer.viewer.zoomTo(viewer.viewer.entities);
-        })
+        const endingPosition = findFeatureCoordinates(features[shortestDistanceIndex]);
+
+        // viewer.createRoute(startingPosition, endingPosition, pathIndex);
+        viewer.createPointsOrderLabels(endingPosition, pathIndex);
+
+        if (shortestDistanceIndex !== -1) {
+            features.splice(shortestDistanceIndex, 1);
+        }
+
+        pathIndex++;
+        startingPosition = endingPosition;
     }
+
+    viewer.viewer.zoomTo(viewer.viewer.entities);
 }
+
 
 async function fetchEntitiesData(obj) {
     const url = `${obj.url}?service=WFS&typeName=${obj.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
