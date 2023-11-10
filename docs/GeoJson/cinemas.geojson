@@ -1,0 +1,318 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2023-11-06T10:37:15Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/252806062",
+        "amenity": "cinema",
+        "brand": "The Space Cinema",
+        "brand:wikidata": "Q3989406",
+        "brand:wikipedia": "it:The Space Cinema",
+        "name": "The Space Cinema",
+        "website": "https://www.thespacecinema.it/cinema/genova",
+        "wheelchair": "yes",
+        "wikidata": "Q37155803"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9214789,
+          44.4082236
+        ]
+      },
+      "id": "GEOJSON_CINEMA/252806062"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/253266745",
+        "amenity": "cinema",
+        "name": "Ariston",
+        "phone": "+39 010 2473549",
+        "url": "http://www.circuitocinemagenova.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9323264,
+          44.4086467
+        ]
+      },
+      "id": "GEOJSON_CINEMA/253266745"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/253267452",
+        "amenity": "cinema",
+        "brand": "UCI",
+        "brand:wikidata": "Q521922",
+        "level": "2",
+        "name": "UCI Cinemas Fiumara",
+        "ref:vatin": "IT04342801000",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8799778,
+          44.4135442
+        ]
+      },
+      "id": "GEOJSON_CINEMA/253267452"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/253268182",
+        "addr:city": "Genova",
+        "addr:housenumber": "11",
+        "addr:postcode": "16121",
+        "addr:street": "Via Colombo",
+        "amenity": "cinema",
+        "name": "America",
+        "phone": "+39 010 4559703",
+        "url": "https://circuitocinemagenova.com/america/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.942127,
+          44.4064408
+        ]
+      },
+      "id": "GEOJSON_CINEMA/253268182"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/253486824",
+        "amenity": "cinema",
+        "name": "City",
+        "phone": "+39 010 8690073",
+        "url": "http://www.circuitocinemagenova.com/",
+        "wikidata": "Q37155711"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9344257,
+          44.4091765
+        ]
+      },
+      "id": "GEOJSON_CINEMA/253486824"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/302324772",
+        "amenity": "cinema",
+        "description:en": "Film shows, theatre, concerts, conferences",
+        "description:it": "Proiezioni cinematografiche, spettacoli teatrali, intrattenimenti musicali,conferenze",
+        "name": "Cinema teatro Verdi",
+        "wheelchair": "yes",
+        "wikidata": "Q16612535"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8499972,
+          44.4264205
+        ]
+      },
+      "id": "GEOJSON_CINEMA/302324772"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/303163729",
+        "amenity": "cinema",
+        "created_by": "Potlatch 0.10d",
+        "name": "San Giovanni Battista"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8520087,
+          44.42969
+        ]
+      },
+      "id": "GEOJSON_CINEMA/303163729"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/413995262",
+        "amenity": "cinema",
+        "name": "Sìvori",
+        "phone": "+39 010 5532054",
+        "url": "http://www.circuitocinemagenova.com/",
+        "wikidata": "Q37155757"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9369744,
+          44.4098903
+        ]
+      },
+      "id": "GEOJSON_CINEMA/413995262"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/413995838",
+        "addr:city": "Genova",
+        "addr:housenumber": "5 rosso",
+        "addr:postcode": "16121",
+        "addr:street": "Via della Consolazione",
+        "amenity": "cinema",
+        "name": "Nickelodeon",
+        "phone": "+39 010 589640",
+        "screen": "1",
+        "url": "http://www.cineclubnickelodeon.it/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9413425,
+          44.4062187
+        ]
+      },
+      "id": "GEOJSON_CINEMA/413995838"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/442709467",
+        "amenity": "cinema",
+        "name": "Nuovo Cinema Palmaro",
+        "url": "http://www.nuovocinemapalmaro.it/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7748212,
+          44.4274544
+        ]
+      },
+      "id": "GEOJSON_CINEMA/442709467"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/750786139",
+        "alt_name": "Cineclub Charles Chaplin",
+        "amenity": "cinema",
+        "name": "Cinema Cappuccini",
+        "phone": "+39 010 880069",
+        "wikidata": "Q37155671"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9373157,
+          44.4124524
+        ]
+      },
+      "id": "GEOJSON_CINEMA/750786139"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/966304779",
+        "amenity": "cinema",
+        "min_age": "18",
+        "name": "Cinema Eldorado"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8943025,
+          44.409583
+        ]
+      },
+      "id": "GEOJSON_CINEMA/966304779"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/2178108475",
+        "addr:housenumber": "13 rosso",
+        "addr:street": "Via Innocenzo Quarto",
+        "amenity": "cinema",
+        "name": "Cinema Corallo",
+        "opening_hours:signed": "no",
+        "phone": "+39 010 586419",
+        "url": "http://www.circuitocinemagenova.com/",
+        "wikidata": "Q37155731"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9354965,
+          44.4023346
+        ]
+      },
+      "id": "GEOJSON_CINEMA/2178108475"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/3120670438",
+        "amenity": "cinema",
+        "min_age": "18",
+        "name": "Chiabrera"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9300911,
+          44.406733
+        ]
+      },
+      "id": "GEOJSON_CINEMA/3120670438"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/5078615379",
+        "amenity": "cinema",
+        "name": "Cinema Teatro San Pietro"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0156196,
+          44.3877792
+        ]
+      },
+      "id": "GEOJSON_CINEMA/5078615379"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_CINEMA/9840289660",
+        "addr:city": "Genova",
+        "addr:housenumber": "15",
+        "addr:postcode": "16151",
+        "addr:street": "Via Carlo Rolando",
+        "amenity": "cinema",
+        "name": "Club Amici del Cinema",
+        "phone": "+39 010 413838"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8879003,
+          44.4162878
+        ]
+      },
+      "id": "GEOJSON_CINEMA/9840289660"
+    }
+  ]
+}

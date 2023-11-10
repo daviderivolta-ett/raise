@@ -87,7 +87,8 @@
                 }
             ],
             "components": [
-                "app-opacity-slider"
+                "app-opacity-slider",
+                "app-navigation-btn"
             ]
         },
         {
