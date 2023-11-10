@@ -21,6 +21,10 @@ export class CloseNavigationBtn extends HTMLElement {
             `
         ;
 
+        if (!this.hasAttribute('is-active')) {
+            this.setAttribute('is-active', false);
+        }
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');

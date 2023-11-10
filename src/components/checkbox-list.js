@@ -113,7 +113,7 @@ export class CheckboxList extends HTMLElement {
             this.dispatchEvent(event);
         }
 
-        if (name == 'navigation-data') {
+        if (name == 'navigation-data' && oldValue != null && newValue != null && newValue != oldValue) {
             const event = new CustomEvent('navigationTriggered', {
                 detail: { name, oldValue, newValue }
             });

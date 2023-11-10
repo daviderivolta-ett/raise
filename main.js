@@ -156,7 +156,15 @@ async function initMapPage() {
   // Accordion behaviour
   accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
-  // Route path
+  // Navigation
+  let isNavigation = false;
+  for (const checkboxList of allCheckboxLists) {
+    checkboxList.addEventListener('navigationTriggered', (event) => {
+      if (event.detail.newValue != 'null') {
+        isNavigation = true;
+      }
+    })
+  }
   createRoute(Cesium, position, allCheckboxLists, viewer);
 
   // Search bar
