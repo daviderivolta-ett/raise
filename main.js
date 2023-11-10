@@ -12,6 +12,7 @@ import { fetchJsonData } from './src/settings.js';
 
 import { activateLayersWFS } from './src/utils/activateLayersWFS.js';
 import { createRoute } from './src/utils/createRoute.js';
+import { startNavigation } from './src/utils/startNavigation.js';
 
 import { handleFeaturesWFS } from './src/utils/handleFeaturesWFS.js';
 
@@ -110,22 +111,29 @@ async function initMapPage() {
 
   // Infoboxes creation & handling
   viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
-    viewer.onClick(movement.position)
+    const windowPosition = movement.position;
+    viewer.onClick(windowPosition)
       .then(async features => {
         // console.log(features);
 
         if (typeof features === 'object' && !Array.isArray(features)) {
-          const infoContent = await handleFeaturesWFS(features, jsonData);
+          if (isNavigation == false) {
+            const infoContent = await handleFeaturesWFS(features, jsonData);
 
-          let allInfoBoxes = document.querySelectorAll('app-infobox');
+            let allInfoBoxes = document.querySelectorAll('app-infobox');
 
-          if (infoContent) {
-            if (Object.keys(infoContent).length !== 0) {
-              createInfobox(allInfoBoxes, infoContent, main);
+            if (infoContent) {
+              if (Object.keys(infoContent).length !== 0) {
+                createInfobox(allInfoBoxes, infoContent, main);
+              }
             }
+
+            drawerToggle.setAttribute('is-open', 'false');
+
+          } else {
+            startNavigation(Cesium, viewer, windowPosition);
           }
 
-          drawerToggle.setAttribute('is-open', 'false');
         }
 
       })
