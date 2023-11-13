@@ -7,8 +7,8 @@
       }
     </style>
   </defs>
-  <circle class="cls-1" cx="48" cy="19.65" r="19.65" fill="#1E233A"/>
-  <circle class="cls-1" cx="76.35" cy="48" r="19.65" fill="#1E233A"/>
-  <circle class="cls-1" cx="48" cy="76.35" r="19.65" fill="#1E233A"/>
-  <circle class="cls-1" cx="19.65" cy="48" r="19.65" fill="#1E233A"/>
+  <circle class="cls-1" cx="48" cy="19.65" r="19.65" fill="#ffffff"/>
+  <circle class="cls-1" cx="76.35" cy="48" r="19.65" fill="#ffffff"/>
+  <circle class="cls-1" cx="48" cy="76.35" r="19.65" fill="#ffffff"/>
+  <circle class="cls-1" cx="19.65" cy="48" r="19.65" fill="#ffffff"/>
 </svg>

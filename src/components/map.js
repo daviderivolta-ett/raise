@@ -115,91 +115,98 @@ export default class CesiumViewer {
     }
 
     addLayersWFS(wfsUrl, layerName, style) {
-        let strokeColor = 'YELLOW';
-        let fillColor = 'YELLOW';
-        let markerColor = 'YELLOW';
-        let opacity = 0.5;
-
-        if (style && style.color) {
-            strokeColor = style.color.toUpperCase();
-            fillColor = style.color.toUpperCase();
-            markerColor = style.color.toUpperCase();
-        }
-
-        if (style && style.opacity) {
-            opacity = style.opacity;
-        }
-
         const url = `${wfsUrl}?service=WFS&typeName=${layerName}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
         fetch(url)
             .then(response => response.json())
             .then(geoJson => {
-
                 // console.log(geoJson);
-
                 // Load entities
                 const dataSourcePromise = Cesium.GeoJsonDataSource.load(geoJson);
                 dataSourcePromise.then(dataSource => {
                     this.viewer.dataSources.add(dataSource);
-                })
+                });
 
-                // Style entities
-                dataSourcePromise.then(dataSource => {
-                    dataSource.entities.values.forEach(entity => {
+                // Style entities & cluster
+                let fillColor = 'YELLOW';
+                let markerColor = 'YELLOW';
+                let opacity = 0.5;
+        
+                if (style && style.color) {
+                    fillColor = style.color.toUpperCase();
+                    markerColor = style.color.toUpperCase();
+                }
+        
+                if (style && style.opacity) opacity = style.opacity;
 
-                        switch (true) {
-                            case Cesium.defined(entity.polyline):
-                                entity.polyline.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
-                                entity.polyline.width = 2;
-                                break;
-
-                            case Cesium.defined(entity.billboard):
-                                entity.billboard = undefined;
-                                entity.point = new Cesium.PointGraphics({
-                                    pixelSize: 18,
-                                    color: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
-                                    outlineColor: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
-                                    outlineWidth: 2
-                                })
-                                break;
-
-                            default:
-                                break;
-                        }
-                    })
-                })
-
-                // Cluster entities
-                dataSourcePromise.then(dataSource => {
-                    const pixelRange = 20;
-                    const minimumClusterSize = 2;
-                    const enabled = true;
-
-                    dataSource.clustering.enabled = enabled;
-                    dataSource.clustering.pixelRange = pixelRange;
-                    dataSource.clustering.minimumClusterSize = minimumClusterSize;
-
-                    dataSource.clustering.clusterEvent.addEventListener(function (clusteredEntities, cluster) {
-                        cluster.label.show = false;
-                        cluster.billboard.show = true;
-                        cluster.billboard.scale = 0.38;
-
-                        switch (true) {
-                            case clusteredEntities.length >= 4:
-                                cluster.billboard.image = '/images/cluster/cluster-4.svg';
-                                break;
-                            case clusteredEntities.length == 3:
-                                cluster.billboard.image = '/images/cluster/cluster-3.svg';
-                                break;
-                            case clusteredEntities.length == 2:
-                                cluster.billboard.image = '/images/cluster/cluster-2.svg';
-                                break;
-                            default:
-                                break;
-                        }
-                    })
-                })
+                this.styleEntities(dataSourcePromise, fillColor, markerColor, opacity);
+                this.clusterEntities(dataSourcePromise, markerColor);
             })
+    }
+
+    styleEntities(dataSourcePromise, fillColor, markerColor, opacity) {
+        dataSourcePromise.then(dataSource => {
+            dataSource.entities.values.forEach(entity => {
+                console.log(entity);
+
+                switch (true) {
+                    case Cesium.defined(entity.polyline):
+                        entity.polyline.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
+                        entity.polyline.width = 2;
+                        break;
+
+                    case Cesium.defined(entity.billboard):
+                        entity.billboard = undefined;
+                        entity.point = new Cesium.PointGraphics({
+                            pixelSize: 18,
+                            color: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
+                            outlineColor: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
+                            outlineWidth: 2
+                        })
+                        break;
+
+                    case Cesium.defined(entity.polygon):
+                        entity.polygon.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
+                        entity.polygon.outlineColor = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
+                        break;
+                        
+                    default:
+                        break;
+                }
+            })
+        })
+    }
+
+    clusterEntities(dataSourcePromise, color) {
+        dataSourcePromise.then(async dataSource => {
+            const pixelRange = 25;
+            const minimumClusterSize = 2;
+            const enabled = true;
+
+            dataSource.clustering.enabled = enabled;
+            dataSource.clustering.pixelRange = pixelRange;
+            dataSource.clustering.minimumClusterSize = minimumClusterSize;
+
+            dataSource.clustering.clusterEvent.addEventListener(function (clusteredEntities, cluster) {
+                cluster.label.show = false;
+                cluster.billboard.show = true;
+                cluster.billboard.color = Cesium.Color[color];
+                cluster.billboard.scale = 0.38;
+
+                switch (true) {
+                    case clusteredEntities.length >= 4:
+                        cluster.billboard.image = '/images/cluster/cluster-4.svg';
+                        break;
+                    case clusteredEntities.length == 3:
+                        cluster.billboard.image = '/images/cluster/cluster-3.svg';
+                        break;
+                    case clusteredEntities.length == 2:
+                        cluster.billboard.image = '/images/cluster/cluster-2.svg';
+                        break;
+                    default:
+                        break;
+                }
+            })
+        })
     }
 
     removeLayerWFS(layerName) {
