@@ -1,7 +1,7 @@
 export const createRoute = async (Cesium, position, navigationData, viewer) => {
 
     const entities = viewer.viewer.entities;
-    removeAllEntities(entities);
+    viewer.removeAllEntities(entities);
 
     if (navigationData == null) return;
     const data = await fetchEntitiesData(navigationData);
@@ -83,16 +83,16 @@ function findFeatureCoordinates(feature) {
     return endingPosition;
 }
 
-export async function removeAllEntities(entities) {
-    const entitiesArray = Array.from(entities.values);
+// export async function removeAllEntities(entities) {
+//     const entitiesArray = Array.from(entities.values);
 
-    for (const entity of entitiesArray) {
-        if (entity.polyline !== undefined) {
-            await entities.remove(entity);
-        }
+//     for (const entity of entitiesArray) {
+//         if (entity.polyline !== undefined) {
+//             await entities.remove(entity);
+//         }
 
-        if (entity.label !== undefined) {
-            await entities.remove(entity);
-        }
-    }
-}
+//         if (entity.label !== undefined) {
+//             await entities.remove(entity);
+//         }
+//     }
+// }

@@ -26,8 +26,8 @@ export default class CesiumViewer {
         this.viewer.screenSpaceEventHandler.setInputAction(this.onClick.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
     }
 
-    changeTheme(stringifiedTheme) {
-        const theme = JSON.parse(stringifiedTheme);
+    changeTheme(theme) {
+        // const theme = JSON.parse(stringifiedTheme)
         const mapStyle = new Cesium.WebMapTileServiceImageryProvider({
             url: theme.url,
             layer: theme.layer,
@@ -238,6 +238,20 @@ export default class CesiumViewer {
         return imageryLayers;
     }
 
+    removeAllEntities(entities) {
+        const entitiesToRemove = [];
+
+        for (const entity of entities.values) {
+            if (entity.name !== 'user-position') {
+                entitiesToRemove.push(entity);
+            }
+        }
+
+        for (const entityToRemove of entitiesToRemove) {
+            entities.remove(entityToRemove);
+        }
+    }
+
     createRoute(startingCoordinates, endingCoordinates, pathIndex) {
         const coordinates = [];
         startingCoordinates.forEach(item => coordinates.push(item));
@@ -266,7 +280,8 @@ export default class CesiumViewer {
                 verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
                 pixelOffset: new Cesium.Cartesian2(0, -20),
                 scale: 0.5,
-                scaleByDistance: new Cesium.NearFarScalar(1.5e2, 1.5, 8.0e6, 0.0)
+                scaleByDistance: new Cesium.NearFarScalar(1.5e2, 1.5, 8.0e6, 0.0),
+                fillColor: Cesium.Color.WHITE
             }
         });
     }
@@ -307,7 +322,7 @@ export default class CesiumViewer {
 
     createUserPin(userPosition) {
         this.viewer.entities.add({
-            name: "Green cylinder with black outline",
+            name: "user-position",
             position: Cesium.Cartesian3.fromDegrees(userPosition.coords.longitude, userPosition.coords.latitude, 20.0),
             cylinder: {
                 length: 40.0,

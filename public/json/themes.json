@@ -1,0 +1,17 @@
+[
+    {
+        "url": "",
+        "layer": "",
+        "credit": ""
+    },
+    {
+        "url": "https://{s}.basemaps.cartocdn.com/light_all/{TileMatrix}/{TileCol}/{TileRow}.png",
+        "layer": "carto-light",
+        "credit": "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors &copy; <a href='https://carto.com/attributions'>CARTO</a>"
+    },
+    {
+        "url": "https://{s}.basemaps.cartocdn.com/dark_all/{TileMatrix}/{TileCol}/{TileRow}.png",
+        "layer": "carto-dark",
+        "credit": "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors &copy; <a href='https://carto.com/attributions'>CARTO</a>"
+    }
+]

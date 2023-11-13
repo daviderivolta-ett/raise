@@ -9,6 +9,7 @@ import { populateDrawer } from './src/utils/populateDrawer.js';
 
 import { filterLayersByTagName } from './src/utils/filterLayersByTagName.js';
 import { fetchJsonData } from './src/settings.js';
+import { fetchThemes } from './src/utils/fetchThemes.js';
 
 import { activateLayersWFS } from './src/utils/activateLayersWFS.js';
 import { createRoute } from './src/utils/createRoute.js';
@@ -26,10 +27,11 @@ import { themeChange } from './src/utils/themeChange.js';
 import { getAllTags } from './src/utils/getAllTags.js';
 import { filterLayersBySelectedTags } from './src/utils/filterLayersBySelectedTags.js';
 
-import { removeAllEntities } from './src/utils/createRoute.js';
+// import { removeAllEntities } from './src/utils/createRoute.js';
 
 // Import data
 const CATEGORIES_URL = './json/categories.json';
+const THEMES_URL = './json/themes.json';
 
 // Import service worker
 import './service-worker.js';
@@ -69,8 +71,10 @@ async function initMapPage() {
   zoomBtns.forEach(btn => zoomHandle(viewer, btn));
 
   // Theme button
+  const themes = await fetchThemes(THEMES_URL);
   const themeBtn = document.querySelector('app-theme-icon');
-  themeBtn.addEventListener('themeChanged', (event) => themeChange(viewer, event.detail.newValue));
+  themeBtn.setAttribute('themes', JSON.stringify(themes));
+  themeBtn.addEventListener('themeChanged', (event) => themeChange(Cesium, viewer, event.detail.newValue));
 
   // Accordions creation
   const drawerContent = document.querySelector('#categories-section');
@@ -175,7 +179,8 @@ async function initMapPage() {
       } else {
         isNavigation = false;
         closeNavigationBtn.setAttribute('is-active', isNavigation + '');
-        removeAllEntities(viewer.viewer.entities);
+        const entities = viewer.viewer.entities;
+        viewer.removeAllEntities(entities);
       }
     })
   }

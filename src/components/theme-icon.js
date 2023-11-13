@@ -5,7 +5,21 @@ export class ThemeIcon extends HTMLElement {
     }
 
     render() {
+        const themes = JSON.parse(this.getAttribute('themes'));
 
+        let currentThemeIndex = 0;
+        this.setAttribute('current-theme', '');
+
+        this.div = this.shadow.querySelector('#change-theme-icon');
+        this.div.addEventListener('click', () => {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            if (currentThemeIndex === 0) {
+                this.setAttribute('current-theme', '');
+            } else {
+                const theme = JSON.stringify(themes[currentThemeIndex]);
+                this.setAttribute('current-theme', theme);
+            }
+        })
     }
 
     connectedCallback() {
@@ -19,36 +33,7 @@ export class ThemeIcon extends HTMLElement {
                 </svg>
             </div>
             `
-            ;
-
-        // js
-        const themes = [
-            {},
-            {
-                url: 'https://{s}.basemaps.cartocdn.com/light_all/{TileMatrix}/{TileCol}/{TileRow}.png',
-                layer: 'carto-light',
-                credit: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            },
-            {
-                url: 'https://{s}.basemaps.cartocdn.com/dark_all/{TileMatrix}/{TileCol}/{TileRow}.png',
-                layer: 'carto-dark',
-                credit: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            }
-        ]
-
-        let currentThemeIndex = 0;
-        this.setAttribute('theme', '');
-
-        this.div = this.shadow.querySelector('#change-theme-icon');
-        this.div.addEventListener('click', () => {
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            if (currentThemeIndex === 0) {
-                this.setAttribute('theme', '');
-            } else {
-                const theme = JSON.stringify(themes[currentThemeIndex]);
-                this.setAttribute('theme', theme);
-            }
-        })
+        ;
 
         // css
         const style = document.createElement('link');
@@ -58,9 +43,13 @@ export class ThemeIcon extends HTMLElement {
 
     }
 
-    static observedAttributes = ['theme'];
+    static observedAttributes = ['themes', 'current-theme'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'theme' && newValue != oldValue && oldValue != null && newValue != null) {
+        if (name == 'themes') {
+            this.render();
+        }
+
+        if (name == 'current-theme' && newValue != oldValue && oldValue != null && newValue != null) {
 
             const event = new CustomEvent('themeChanged', {
                 detail: { name, oldValue, newValue }
