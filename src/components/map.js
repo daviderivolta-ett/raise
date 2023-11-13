@@ -6,7 +6,7 @@ export default class CesiumViewer {
     constructor() {
         const element = document.querySelector('app-map');
 
-        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMmEyNDlkYS1iYTg4LTQ4MDktOTU0ZS05Yjg2ZTcyZGI1ZGMiLCJpZCI6MTY5MDU3LCJpYXQiOjE2OTU5MDI3ODB9.xSyAfYggSQ_UaYmqQLfI4Rf-Hl_Ip0ubYKLQakKadvA';
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5MjY2YmYxNy1mNTM2LTRlOWYtYTUyZC01ZmY0NjBhNzllMWEiLCJpZCI6MTY5MDU3LCJpYXQiOjE2OTU4ODQ4NzB9.bN66rOR5h37xuKVsuUSYRSLOGJy-34IhH9S1hr4NOOE';
 
         this.viewer = new Cesium.Viewer(element, {
             baseLayerPicker: false,
@@ -137,80 +137,68 @@ export default class CesiumViewer {
 
                 // console.log(geoJson);
 
-                // Style data
-                this.viewer.dataSources.add(Cesium.GeoJsonDataSource.load(geoJson, {
-                    stroke: Cesium.Color[strokeColor].withAlpha(parseFloat(opacity)),
-                    strokeWidth: 2,
-                    fill: Cesium.Color[fillColor].withAlpha(parseFloat(opacity))
-                }))
+                // Load entities
+                const dataSourcePromise = Cesium.GeoJsonDataSource.load(geoJson);
+                dataSourcePromise.then(dataSource => {
+                    this.viewer.dataSources.add(dataSource);
+                })
 
-                    .then(dataSource => {
+                // Style entities
+                dataSourcePromise.then(dataSource => {
+                    dataSource.entities.values.forEach(entity => {
 
-                        // Clustering
-                        dataSource.entities.values.forEach(entity => {
-                            entity.billboard = undefined,
+                        switch (true) {
+                            case Cesium.defined(entity.polyline):
+                                entity.polyline.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
+                                entity.polyline.width = 2;
+                                break;
+
+                            case Cesium.defined(entity.billboard):
+                                entity.billboard = undefined;
                                 entity.point = new Cesium.PointGraphics({
                                     pixelSize: 18,
                                     color: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
                                     outlineColor: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
                                     outlineWidth: 2
                                 })
-                        })
+                                break;
 
-                        const pixelRange = 100;
-                        const minimumClusterSize = 3;
-                        const enabled = true;
-
-                        dataSource.clustering.enabled = enabled;
-                        dataSource.clustering.pixelRange = pixelRange;
-                        dataSource.clustering.minimumClusterSize = minimumClusterSize;
-
-                        let removeListener;
-
-                        if (Cesium.defined(removeListener)) {
-                            removeListener();
-                            removeListener = undefined;
-                        } else {
-                            removeListener = dataSource.clustering.clusterEvent.addEventListener(
-                                function (clusteredEntities, cluster) {
-
-                                    // Points
-                                    cluster.billboard.show = false;
-                                    cluster.point.show = true;
-                                    cluster.point.pixelSize = 48;
-
-                                    if (clusteredEntities.length >= 50) {
-                                        cluster.point.color = Cesium.Color.RED.withAlpha(parseFloat(opacity));
-                                        cluster.point.outlineColor = Cesium.Color.RED;
-                                    } else if (clusteredEntities.length >= 40) {
-                                        cluster.point.color = Cesium.Color.ORANGE.withAlpha(parseFloat(opacity));
-                                        cluster.point.outlineColor = Cesium.Color.ORANGE;
-                                    } else if (clusteredEntities.length >= 30) {
-                                        cluster.point.color = Cesium.Color.YELLOW.withAlpha(parseFloat(opacity));
-                                        cluster.point.outlineColor = Cesium.Color.YELLOW;
-                                    } else if (clusteredEntities.length >= 20) {
-                                        cluster.point.color = Cesium.Color.GREEN.withAlpha(parseFloat(opacity));
-                                        cluster.point.outlineColor = Cesium.Color.GREEN;
-                                    } else if (clusteredEntities.length >= 10) {
-                                        cluster.point.color = Cesium.Color.BLUE.withAlpha(parseFloat(opacity));
-                                        cluster.point.outlineColor = Cesium.Color.BLUE;
-                                    } else {
-                                        cluster.point.color = Cesium.Color.VIOLET.withAlpha(parseFloat(opacity));
-                                        cluster.point.outlineColor = Cesium.Color.VIOLET;
-                                    }
-
-                                    // Labels
-                                    cluster.label.show = true;
-                                    cluster.label.text = clusteredEntities.length.toLocaleString();
-                                    cluster.label.verticalOrigin = Cesium.VerticalOrigin.CENTER;
-                                    cluster.label.horizontalOrigin = Cesium.HorizontalOrigin.CENTER;
-                                    cluster.label.pixelOffset = new Cesium.Cartesian2(0.0, 0.0);
-                                    cluster.label.pixelOffsetScaleByDistance = undefined;
-                                    cluster.label.position.z += 5;
-                                }
-                            );
+                            default:
+                                break;
                         }
                     })
+                })
+
+                // Cluster entities
+                dataSourcePromise.then(dataSource => {
+                    const pixelRange = 20;
+                    const minimumClusterSize = 2;
+                    const enabled = true;
+
+                    dataSource.clustering.enabled = enabled;
+                    dataSource.clustering.pixelRange = pixelRange;
+                    dataSource.clustering.minimumClusterSize = minimumClusterSize;
+
+                    dataSource.clustering.clusterEvent.addEventListener(function (clusteredEntities, cluster) {
+                        cluster.label.show = false;
+                        cluster.billboard.show = true;
+                        cluster.billboard.scale = 0.38;
+
+                        switch (true) {
+                            case clusteredEntities.length >= 4:
+                                cluster.billboard.image = '/images/cluster/cluster-4.svg';
+                                break;
+                            case clusteredEntities.length == 3:
+                                cluster.billboard.image = '/images/cluster/cluster-3.svg';
+                                break;
+                            case clusteredEntities.length == 2:
+                                cluster.billboard.image = '/images/cluster/cluster-2.svg';
+                                break;
+                            default:
+                                break;
+                        }
+                    })
+                })
             })
     }
 

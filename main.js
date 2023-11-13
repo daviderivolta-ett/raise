@@ -59,7 +59,6 @@ async function initMapPage() {
 
   // Map initialization
   const viewer = new CesiumViewer();
-  // viewer.setCamera();
 
   // Get position
   const position = await getPosition();
