@@ -23,7 +23,7 @@ export default class CesiumViewer {
         });
 
         // this.viewer.imageryLayers.addImageryProvider(CesiumViewer.getImageryProvider());
-        this.viewer.screenSpaceEventHandler.setInputAction(this.onClick.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
+        // this.viewer.screenSpaceEventHandler.setInputAction(this.onClick.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
     }
 
     changeTheme(theme) {
@@ -82,36 +82,15 @@ export default class CesiumViewer {
 
         const pickedEntity = this.viewer.scene.pick(windowPosition);
 
-        if (pickedEntity) {
-            const features = pickedEntity.id;
-            return features;
+        if (!pickedEntity) return;
+
+        if (Array.isArray(pickedEntity.id)) {
+            this.viewer.zoomTo(pickedEntity.id);
         }
-    }
 
-    addLayerWMS(wmsUrl, wmsLayerName) {
-        const wmsImageryProvider = new Cesium.WebMapServiceImageryProvider({
-            url: wmsUrl,
-            layers: wmsLayerName,
-            // parameters: wmsParameters
-        });
-
-        console.log(this.viewer.imageryLayers);
-        this.viewer.imageryLayers.addImageryProvider(wmsImageryProvider);
-        console.log(this.viewer.imageryLayers);
-    }
-
-    removeLayerWMS(layerName) {
-        const imageryLayers = this.viewer.imageryLayers;
-        const numLayers = imageryLayers.length;
-
-        for (let i = 0; i < numLayers; i++) {
-            const layer = imageryLayers.get(i);
-
-            if (layer._imageryProvider._layers === layerName) {
-                imageryLayers.remove(layer);
-                return;
-            }
-        }
+        console.log(pickedEntity);
+        const features = pickedEntity.id;
+        return features;
     }
 
     async fetchLayerData(wfsUrl, layerName) {
@@ -171,37 +150,37 @@ export default class CesiumViewer {
         })
     }
 
-    clusterEntities(promise, color) {
-        promise.then(dataSource => {
-            dataSource.clustering.enabled = true;
-            dataSource.clustering.pixelRange = 25;
-            dataSource.clustering.minimumClusterSize = 2;
+    // clusterEntities(promise, color) {
+    //     promise.then(dataSource => {
+    //         dataSource.clustering.enabled = true;
+    //         dataSource.clustering.pixelRange = 25;
+    //         dataSource.clustering.minimumClusterSize = 2;
 
-            dataSource.clustering.clusterEvent.addEventListener(function (clusteredEntities, cluster) {
-                cluster.label.show = false;
-                cluster.billboard.show = true;
-                cluster.billboard.color = Cesium.Color.fromCssColorString(color);
-                cluster.billboard.scale = 0.38;
+    //         dataSource.clustering.clusterEvent.addEventListener((clusteredEntities, cluster) => {
+    //             cluster.label.show = false;
+    //             cluster.billboard.show = true;
+    //             cluster.billboard.color = Cesium.Color.fromCssColorString(color);
+    //             cluster.billboard.scale = 0.38;
 
-                switch (true) {
-                    case clusteredEntities.length >= 4:
-                        cluster.billboard.image = '/images/cluster/cluster-4.svg';
-                        break;
-                    case clusteredEntities.length == 3:
-                        cluster.billboard.image = '/images/cluster/cluster-3.svg';
-                        break;
-                    case clusteredEntities.length == 2:
-                        cluster.billboard.image = '/images/cluster/cluster-2.svg';
-                        break;
-                    default:
-                        break;
-                }
-            })
-        })
-    }
+    //             switch (true) {
+    //                 case clusteredEntities.length >= 4:
+    //                     cluster.billboard.image = '/images/cluster/cluster-4.svg';
+    //                     break;
+    //                 case clusteredEntities.length == 3:
+    //                     cluster.billboard.image = '/images/cluster/cluster-3.svg';
+    //                     break;
+    //                 case clusteredEntities.length == 2:
+    //                     cluster.billboard.image = '/images/cluster/cluster-2.svg';
+    //                     break;
+    //                 default:
+    //                     break;
+    //             }
+    //         })
+    //     })
+    // }
 
     clusterAllEntities(promises) {
-        const color = 'RED';
+        const color = 'rgb(30, 35, 58)';
         const combinedDataSource = new Cesium.CustomDataSource();
 
         const data = Promise.all(promises);
@@ -222,11 +201,19 @@ export default class CesiumViewer {
             combinedDataSource.clustering.pixelRange = 25;
             combinedDataSource.clustering.minimumClusterSize = 2;
 
-            combinedDataSource.clustering.clusterEvent.addEventListener(function (clusteredEntities, cluster) {
-                cluster.label.show = false;
+            combinedDataSource.clustering.clusterEvent.addEventListener((clusteredEntities, cluster) => {
                 cluster.billboard.show = true;
                 cluster.billboard.color = Cesium.Color.fromCssColorString(color);
                 cluster.billboard.scale = 0.38;
+
+                cluster.label.show = false;
+                cluster.label.scale = 2;
+                cluster.label.fillColor = Cesium.Color.RED;
+                // cluster.label.eyeOffset = new Cesium.Cartesian3(0.0, 0.0, 10.0);
+                cluster.label.showBackground = true;
+                cluster.label.backgroundColor = Cesium.Color.PURPLE.withAlpha(1);
+                cluster.label.horizontalOrigin = Cesium.HorizontalOrigin.CENTER;
+                cluster.label.verticalOrigin = Cesium.VerticalOrigin.CENTER;
 
                 switch (true) {
                     case clusteredEntities.length >= 4:
@@ -241,8 +228,8 @@ export default class CesiumViewer {
                     default:
                         break;
                 }
-            })
-        })
+            });
+        });
 
         this.viewer.dataSources.add(combinedDataSource);
     }

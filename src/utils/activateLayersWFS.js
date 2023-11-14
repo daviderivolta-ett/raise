@@ -18,17 +18,13 @@ export const activateLayersWFS = async (allCheckboxLists, activeLayers, promises
 
                 await viewer.addLayer(promise);
                 await viewer.styleEntities(promise, layer.style);
-                // await viewer.clusterEntities(promise, layer.style.color);
             }
 
-            // await viewer.viewer.dataSources.removeAll();
-            
             await viewer.clusterAllEntities(promises);
-            // console.log('Active layers:');
-            // console.log(activeLayers);
-            // console.log('Promises:');
-            // console.log(promises);
-            // console.log(viewer.viewer.dataSources);
+
+            console.log('Active layers:');
+            console.log(activeLayers);
+
         });
     }
 }
