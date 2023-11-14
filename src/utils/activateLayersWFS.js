@@ -20,7 +20,11 @@ export const activateLayersWFS = async (allCheckboxLists, activeLayers, promises
                 await viewer.styleEntities(promise, layer.style);
             }
 
-            await viewer.clusterAllEntities(promises);
+            //// TEST COLORS
+            let colors = ["#ffffff", "#000000"];
+            ////
+            
+            await viewer.clusterAllEntities(promises, colors);
 
             console.log('Active layers:');
             console.log(activeLayers);

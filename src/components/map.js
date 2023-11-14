@@ -86,9 +86,12 @@ export default class CesiumViewer {
 
         if (Array.isArray(pickedEntity.id)) {
             this.viewer.zoomTo(pickedEntity.id);
+
+            // pickedEntity.id.forEach(entity => {
+            //     console.log(entity.point.color._value);
+            // })
         }
 
-        console.log(pickedEntity);
         const features = pickedEntity.id;
         return features;
     }
@@ -179,8 +182,8 @@ export default class CesiumViewer {
     //     })
     // }
 
-    clusterAllEntities(promises) {
-        const color = 'rgb(30, 35, 58)';
+    clusterAllEntities(promises, colors) {
+        const color = colors[0];
         const combinedDataSource = new Cesium.CustomDataSource();
 
         const data = Promise.all(promises);
@@ -202,18 +205,21 @@ export default class CesiumViewer {
             combinedDataSource.clustering.minimumClusterSize = 2;
 
             combinedDataSource.clustering.clusterEvent.addEventListener((clusteredEntities, cluster) => {
+                cluster.label.show = false;
                 cluster.billboard.show = true;
                 cluster.billboard.color = Cesium.Color.fromCssColorString(color);
                 cluster.billboard.scale = 0.38;
+                cluster.billboard.id = cluster.label.id;
 
-                cluster.label.show = false;
-                cluster.label.scale = 2;
-                cluster.label.fillColor = Cesium.Color.RED;
-                // cluster.label.eyeOffset = new Cesium.Cartesian3(0.0, 0.0, 10.0);
-                cluster.label.showBackground = true;
-                cluster.label.backgroundColor = Cesium.Color.PURPLE.withAlpha(1);
-                cluster.label.horizontalOrigin = Cesium.HorizontalOrigin.CENTER;
-                cluster.label.verticalOrigin = Cesium.VerticalOrigin.CENTER;
+                //// TEST
+                // cluster.billboard.id.forEach(entity => {
+                //     console.log(entity.point.color._value);
+                // })
+
+                clusteredEntities.forEach(entity => {
+                    console.log(entity.point.color._value);
+                })
+                ////
 
                 switch (true) {
                     case clusteredEntities.length >= 4:
