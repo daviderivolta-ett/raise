@@ -143,19 +143,20 @@ async function initMapPage() {
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
   // Autoclose drawer after 10 seconds
-  // let timer;
-  // drawer.addEventListener('click', () => {
-  //   if (timer) {
-  //     clearTimeout(timer);
-  //   }
-  //   timer = setTimeout(() => {
-  //     drawerToggle.setAttribute('is-open', 'false');
-  //   }, 10000);
-  // });
+  let timer;
+  drawer.addEventListener('click', () => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      drawerToggle.setAttribute('is-open', 'false');
+    }, 10000);
+  });
 
   // Checkbox list behaviour
   const activeLayers = [];
-  activateLayersWFS(allCheckboxLists, activeLayers, viewer);
+  const promises = [];
+  activateLayersWFS(allCheckboxLists, activeLayers, promises, viewer);
 
   // Accordion behaviour
   accordionBehaviour(allCategoryAccordions, allLayerAccordions);

@@ -114,39 +114,34 @@ export default class CesiumViewer {
         }
     }
 
-    addLayersWFS(wfsUrl, layerName, style) {
-        const url = `${wfsUrl}?service=WFS&typeName=${layerName}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
-        fetch(url)
-            .then(response => response.json())
-            .then(geoJson => {
-                // console.log(geoJson);
-                // Load entities
-                const dataSourcePromise = Cesium.GeoJsonDataSource.load(geoJson);
-                dataSourcePromise.then(dataSource => {
-                    this.viewer.dataSources.add(dataSource);
-                });
-
-                // Style entities & cluster
-                let fillColor = 'YELLOW';
-                let markerColor = 'YELLOW';
-                let opacity = 0.5;
-        
-                if (style && style.color) {
-                    fillColor = style.color.toUpperCase();
-                    markerColor = style.color.toUpperCase();
-                }
-        
-                if (style && style.opacity) opacity = style.opacity;
-
-                this.styleEntities(dataSourcePromise, fillColor, markerColor, opacity);
-                this.clusterEntities(dataSourcePromise, markerColor);
-            })
+    async fetchLayerData(wfsUrl, layerName) {
+        const url = `${wfsUrl}?service=WFS&typeName=${layerName}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;
+        return await fetch(url)
+            .then(res => res.json())
+            .then(geoJson => Cesium.GeoJsonDataSource.load(geoJson))
+            .catch(err => err)
     }
 
-    styleEntities(dataSourcePromise, fillColor, markerColor, opacity) {
-        dataSourcePromise.then(dataSource => {
+    addLayer(promise) {
+        promise.then(dataSource => {
+            this.viewer.dataSources.add(dataSource)
+        });
+    }
+
+    styleEntities(promise, style) {
+        let fillColor = 'YELLOW';
+        let markerColor = 'YELLOW';
+        let opacity = 0.5;
+
+        if (style && style.color) {
+            fillColor = style.color.toUpperCase();
+            markerColor = style.color.toUpperCase();
+        }
+
+        if (style && style.opacity) opacity = style.opacity;
+
+        promise.then(dataSource => {
             dataSource.entities.values.forEach(entity => {
-                console.log(entity);
 
                 switch (true) {
                     case Cesium.defined(entity.polyline):
@@ -168,7 +163,7 @@ export default class CesiumViewer {
                         entity.polygon.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
                         entity.polygon.outlineColor = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
                         break;
-                        
+
                     default:
                         break;
                 }
@@ -176,20 +171,16 @@ export default class CesiumViewer {
         })
     }
 
-    clusterEntities(dataSourcePromise, color) {
-        dataSourcePromise.then(async dataSource => {
-            const pixelRange = 25;
-            const minimumClusterSize = 2;
-            const enabled = true;
-
-            dataSource.clustering.enabled = enabled;
-            dataSource.clustering.pixelRange = pixelRange;
-            dataSource.clustering.minimumClusterSize = minimumClusterSize;
+    clusterEntities(promise, color) {
+        promise.then(dataSource => {
+            dataSource.clustering.enabled = true;
+            dataSource.clustering.pixelRange = 25;
+            dataSource.clustering.minimumClusterSize = 2;
 
             dataSource.clustering.clusterEvent.addEventListener(function (clusteredEntities, cluster) {
                 cluster.label.show = false;
                 cluster.billboard.show = true;
-                cluster.billboard.color = Cesium.Color[color];
+                cluster.billboard.color = Cesium.Color.fromCssColorString(color);
                 cluster.billboard.scale = 0.38;
 
                 switch (true) {
@@ -208,6 +199,54 @@ export default class CesiumViewer {
             })
         })
     }
+
+    clusterAllEntities(promises) {
+        const color = 'RED';
+        const combinedDataSource = new Cesium.CustomDataSource();
+
+        const data = Promise.all(promises);
+        data.then(() => {
+            const dataSources = this.viewer.dataSources;
+            for (let i = 0; i < dataSources.length; i++) {
+                dataSources.get(i).entities.values.forEach(entity => {
+                    combinedDataSource.entities.add(entity);
+                });
+            }
+
+            const combinedDataSourceIndex = dataSources.indexOf(combinedDataSource);
+            for (let i = dataSources.length - 1; i >= 0; i--) {
+                if (i !== combinedDataSourceIndex) dataSources.remove(dataSources.get(i));
+            }
+
+            combinedDataSource.clustering.enabled = true;
+            combinedDataSource.clustering.pixelRange = 25;
+            combinedDataSource.clustering.minimumClusterSize = 2;
+
+            combinedDataSource.clustering.clusterEvent.addEventListener(function (clusteredEntities, cluster) {
+                cluster.label.show = false;
+                cluster.billboard.show = true;
+                cluster.billboard.color = Cesium.Color.fromCssColorString(color);
+                cluster.billboard.scale = 0.38;
+
+                switch (true) {
+                    case clusteredEntities.length >= 4:
+                        cluster.billboard.image = '/images/cluster/cluster-4.svg';
+                        break;
+                    case clusteredEntities.length == 3:
+                        cluster.billboard.image = '/images/cluster/cluster-3.svg';
+                        break;
+                    case clusteredEntities.length == 2:
+                        cluster.billboard.image = '/images/cluster/cluster-2.svg';
+                        break;
+                    default:
+                        break;
+                }
+            })
+        })
+
+        this.viewer.dataSources.add(combinedDataSource);
+    }
+
 
     removeLayerWFS(layerName) {
         const imageryLayers = this.viewer._dataSourceCollection._dataSources;
