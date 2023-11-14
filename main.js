@@ -209,13 +209,31 @@ async function initMapPage() {
     }
 
     const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-    activateLayersWFS(allCheckboxLists, activeLayers, viewer);
+    activateLayersWFS(allCheckboxLists, activeLayers, promises, viewer);
 
     const allCategoryAccordions = document.querySelectorAll('.category-accordion');
     const allLayerAccordions = document.querySelectorAll('.layer-accordion');
     accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
-    createRoute(Cesium, position, allCheckboxLists, viewer);
+    for (const checkboxList of allCheckboxLists) {
+      checkboxList.addEventListener('navigationTriggered', (event) => {
+        if (event.detail.newValue != 'null') {
+          isNavigation = true;
+          closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+          const navigationData = JSON.parse(event.detail.newValue);
+          createRoute(Cesium, position, navigationData, viewer);
+        } else {
+          isNavigation = false;
+          closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+          const entities = viewer.viewer.entities;
+          viewer.removeAllEntities(entities);
+        }
+      })
+    }
+
+    closeNavigationBtn.addEventListener('click', () => {
+      allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', null));
+    });
 
     if (valueToSearch.length >= 2) {
       const foundTags = filterTag(jsonData, valueToSearch);
