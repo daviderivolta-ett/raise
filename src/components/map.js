@@ -187,7 +187,7 @@ export default class CesiumViewer {
         const combinedDataSource = new Cesium.CustomDataSource();
 
         const data = Promise.all(promises);
-        data.then(() => {
+        data.then(async () => {
             const dataSources = this.viewer.dataSources;
             for (let i = 0; i < dataSources.length; i++) {
                 dataSources.get(i).entities.values.forEach(entity => {
@@ -204,7 +204,16 @@ export default class CesiumViewer {
             combinedDataSource.clustering.pixelRange = 25;
             combinedDataSource.clustering.minimumClusterSize = 2;
 
-            combinedDataSource.clustering.clusterEvent.addEventListener((clusteredEntities, cluster) => {
+            ////
+            // const icon = await this.fetchSvgIcon();
+            // console.log(icon);
+            ////
+
+            const icon2 = await this.fetchSvgIcon(2);
+            const icon3 = await this.fetchSvgIcon(3);
+            const icon4 = await this.fetchSvgIcon(4);
+
+            combinedDataSource.clustering.clusterEvent.addEventListener(async (clusteredEntities, cluster) => {
                 cluster.label.show = false;
                 cluster.billboard.show = true;
                 cluster.billboard.color = Cesium.Color.fromCssColorString(color);
@@ -212,32 +221,73 @@ export default class CesiumViewer {
                 cluster.billboard.id = cluster.label.id;
 
                 //// TEST
-                // cluster.billboard.id.forEach(entity => {
-                //     console.log(entity.point.color._value);
-                // })
-
-                clusteredEntities.forEach(entity => {
-                    console.log(entity.point.color._value);
-                })
-                ////
+                let colors = [];
+                cluster.billboard.id.forEach(entity => {
+                    colors.push(entity.point.color.getValue());
+                });
+                // console.log(colors);
 
                 switch (true) {
                     case clusteredEntities.length >= 4:
-                        cluster.billboard.image = '/images/cluster/cluster-4.svg';
+                        const styledIcon4 = this.styleClusterIcon(icon4);
+                        const url4 = this.createClusterIconUrl(styledIcon4);
+                        cluster.billboard.image = url4;
                         break;
                     case clusteredEntities.length == 3:
-                        cluster.billboard.image = '/images/cluster/cluster-3.svg';
+                        const styledIcon3 = this.styleClusterIcon(icon3);
+                        const url3 = this.createClusterIconUrl(styledIcon3);
+                        cluster.billboard.image = url3;
                         break;
                     case clusteredEntities.length == 2:
-                        cluster.billboard.image = '/images/cluster/cluster-2.svg';
+                        const styledIcon2 = this.styleClusterIcon(icon2);
+                        const url2 = this.createClusterIconUrl(styledIcon2);
+                        cluster.billboard.image = url2;
                         break;
                     default:
                         break;
                 }
+
             });
         });
 
         this.viewer.dataSources.add(combinedDataSource);
+    }
+
+    async fetchSvgIcon(iconNumber) {
+        try {
+            const response = await fetch(`./images/cluster/cluster-${iconNumber}.svg`);
+            const svgText = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(svgText, 'image/svg+xml');
+            return doc;
+
+        } catch (error) {
+            console.error(error);
+            throw error;
+        }
+    }
+
+    styleClusterIcon(svgDoc) {
+        let colors = ['yellow', 'greenyellow', 'cyan', 'steelblue'];
+        let colorIndex = 0;
+
+        const circles = svgDoc.querySelectorAll('circle');
+
+        for (let i = 0; i < circles.length; i++) {
+            circles[i].setAttribute('fill', colors[colorIndex]);
+            colorIndex++;
+        }
+
+        return svgDoc;
+    }
+
+    createClusterIconUrl(svgDoc) {
+        let serializer = new XMLSerializer();
+        let svgString = serializer.serializeToString(svgDoc);
+        let blob = new Blob([svgString], { type: 'image/svg+xml' });
+        let url = URL.createObjectURL(blob);
+
+        return url;
     }
 
 

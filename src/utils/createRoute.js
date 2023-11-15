@@ -1,5 +1,5 @@
 export const createRoute = async (Cesium, position, navigationData, viewer) => {
-    console.log(navigationData);
+    // console.log(navigationData);
     const entities = viewer.viewer.entities;
     viewer.removeAllEntities(entities);
 
