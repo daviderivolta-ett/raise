@@ -229,17 +229,17 @@ export default class CesiumViewer {
 
                 switch (true) {
                     case clusteredEntities.length >= 4:
-                        const styledIcon4 = this.styleClusterIcon(icon4);
+                        const styledIcon4 = this.styleClusterIcon(icon4, colors);
                         const url4 = this.createClusterIconUrl(styledIcon4);
                         cluster.billboard.image = url4;
                         break;
                     case clusteredEntities.length == 3:
-                        const styledIcon3 = this.styleClusterIcon(icon3);
+                        const styledIcon3 = this.styleClusterIcon(icon3, colors);
                         const url3 = this.createClusterIconUrl(styledIcon3);
                         cluster.billboard.image = url3;
                         break;
                     case clusteredEntities.length == 2:
-                        const styledIcon2 = this.styleClusterIcon(icon2);
+                        const styledIcon2 = this.styleClusterIcon(icon2, colors);
                         const url2 = this.createClusterIconUrl(styledIcon2);
                         cluster.billboard.image = url2;
                         break;
@@ -267,14 +267,24 @@ export default class CesiumViewer {
         }
     }
 
-    styleClusterIcon(svgDoc) {
-        let colors = ['yellow', 'greenyellow', 'cyan', 'steelblue'];
+    styleClusterIcon(svgDoc, colors) {
+        // let colors = ['yellow', 'greenyellow', 'cyan', 'steelblue'];
+        let rgbColors = [];
+
+        colors.forEach(color => {
+            let red = Math.floor(color.red * 255);
+            let green = Math.floor(color.green * 255);
+            let blue = Math.floor(color.blue * 255);
+            let obj = { red, green, blue }
+            rgbColors.push(obj);
+        });
+
         let colorIndex = 0;
 
         const circles = svgDoc.querySelectorAll('circle');
 
         for (let i = 0; i < circles.length; i++) {
-            circles[i].setAttribute('fill', colors[colorIndex]);
+            circles[i].setAttribute('fill', `rgb(${rgbColors[colorIndex].red}, ${rgbColors[colorIndex].green}, ${rgbColors[colorIndex].blue})`);
             colorIndex++;
         }
 
