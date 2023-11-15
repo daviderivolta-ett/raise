@@ -254,7 +254,7 @@ export default class CesiumViewer {
             let red = Math.floor(color.red * 255);
             let green = Math.floor(color.green * 255);
             let blue = Math.floor(color.blue * 255);
-            let obj = { red, green, blue }
+            let obj = { red, green, blue };
             rgbColors.push(obj);
         });
 

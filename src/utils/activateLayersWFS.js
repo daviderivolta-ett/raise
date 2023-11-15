@@ -24,7 +24,6 @@ export const activateLayersWFS = async (allCheckboxLists, activeLayers, promises
 
             // console.log('Active layers:');
             // console.log(activeLayers);
-
         });
     }
 }

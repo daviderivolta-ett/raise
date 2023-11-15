@@ -4,29 +4,21 @@ import * as Cesium from 'cesium';
 
 // Import methods
 import { getPosition } from './src/utils/getPosition.js';
-
 import { populateDrawer } from './src/utils/populateDrawer.js';
-
 import { filterLayersByTagName } from './src/utils/filterLayersByTagName.js';
 import { fetchJsonData } from './src/settings.js';
 import { fetchThemes } from './src/utils/fetchThemes.js';
-
 import { activateLayersWFS } from './src/utils/activateLayersWFS.js';
 import { createRoute } from './src/utils/createRoute.js';
 import { startNavigation } from './src/utils/startNavigation.js';
-
 import { handleFeaturesWFS } from './src/utils/handleFeaturesWFS.js';
-
 import { accordionBehaviour } from './src/utils/accordionBehaviour.js';
 import { filterTag } from './src/utils/filterTagByName.js';
-
 import { createInfobox } from './src/utils/createInfobox.js';
 import { zoomHandle } from './src/utils/zoomHandle.js';
 import { themeChange } from './src/utils/themeChange.js';
-
 import { getAllTags } from './src/utils/getAllTags.js';
 import { filterLayersBySelectedTags } from './src/utils/filterLayersBySelectedTags.js';
-
 import { fetchSvgIcon } from './src/utils/fetchSvgIcon.js';
 
 // Import data
@@ -60,7 +52,7 @@ async function initMapPage() {
   // Map initialization
   const viewer = new CesiumViewer();
 
-  // Get position
+  // Get user position
   const position = await getPosition();
   viewer.setCameraToUserPosition(position);
   viewer.createUserPin(position);

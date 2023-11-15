@@ -5,7 +5,6 @@ export const zoomHandle = (viewer, btn) => {
             btn.addEventListener('click', () => {
                 viewer.viewer.camera.zoomIn(500.0);
                 console.log(viewer.viewer.scene);
-                // this.viewer.scene.screenSpaceCameraController.minimumZoomDistance = 10000;
             });
             break;
 

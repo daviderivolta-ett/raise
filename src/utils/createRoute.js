@@ -82,17 +82,3 @@ function findFeatureCoordinates(feature) {
 
     return endingPosition;
 }
-
-// export async function removeAllEntities(entities) {
-//     const entitiesArray = Array.from(entities.values);
-
-//     for (const entity of entitiesArray) {
-//         if (entity.polyline !== undefined) {
-//             await entities.remove(entity);
-//         }
-
-//         if (entity.label !== undefined) {
-//             await entities.remove(entity);
-//         }
-//     }
-// }
