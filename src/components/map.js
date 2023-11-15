@@ -57,7 +57,6 @@ export default class CesiumViewer {
     pickEntity(windowPosition) {
         const pickedEntity = this.viewer.scene.pick(windowPosition);
         if (!pickedEntity) return;
-        console.log(pickedEntity);
         return pickedEntity;
     }
 
@@ -101,7 +100,7 @@ export default class CesiumViewer {
                         entity.point = new Cesium.PointGraphics({
                             pixelSize: 18,
                             color: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
-                            outlineColor: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
+                            outlineColor: Cesium.Color.WHITE,
                             outlineWidth: 2
                         })
                         break;
@@ -154,6 +153,7 @@ export default class CesiumViewer {
         const data = Promise.all(promises);
         data.then(async () => {
             const dataSources = this.viewer.dataSources;
+            console.log(dataSources);
             for (let i = 0; i < dataSources.length; i++) {
                 dataSources.get(i).entities.values.forEach(entity => {
                     combinedDataSource.entities.add(entity);
@@ -225,9 +225,14 @@ export default class CesiumViewer {
 
         let colorIndex = 0;
         const circles = svgDoc.querySelectorAll('circle');
-        for (let i = 0; i < circles.length; i++) {
-            circles[i].setAttribute('fill', `rgb(${rgbColors[colorIndex].red}, ${rgbColors[colorIndex].green}, ${rgbColors[colorIndex].blue})`);
-            colorIndex++;
+
+        if (circles.length == 4) {
+            circles.forEach(circle => circle.setAttribute('fill', '#1E233A'));
+        } else {
+            for (let i = 0; i < circles.length; i++) {
+                circles[i].setAttribute('fill', `rgb(${rgbColors[colorIndex].red}, ${rgbColors[colorIndex].green}, ${rgbColors[colorIndex].blue})`);
+                colorIndex++;
+            }
         }
 
         return svgDoc;
