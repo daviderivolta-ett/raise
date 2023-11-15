@@ -22,12 +22,14 @@ export default class CesiumViewer {
             // terrain: Cesium.Terrain.fromWorldTerrain()
         });
 
-        // this.viewer.imageryLayers.addImageryProvider(CesiumViewer.getImageryProvider());
-        // this.viewer.screenSpaceEventHandler.setInputAction(this.onClick.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
+        // this.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
+        //     const pickedEntity = this.pickEntity(movement.position);
+        //     const event = new CustomEvent('mapClick', { detail: pickedEntity });
+        //     window.dispatchEvent(event);
+        // }.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
     }
 
-    changeTheme(theme) {
-        // const theme = JSON.parse(stringifiedTheme)
+    loadTileFromTheme(theme) {
         const mapStyle = new Cesium.WebMapTileServiceImageryProvider({
             url: theme.url,
             layer: theme.layer,
@@ -52,48 +54,11 @@ export default class CesiumViewer {
         });
     }
 
-    async onClick(windowPosition) {
-        // const pickRay = this.viewer.camera.getPickRay(windowPosition);
-        // const featuresPromise = this.viewer.imageryLayers.pickImageryLayerFeatures(pickRay, this.viewer.scene);
-
-        // if (!Cesium.defined(featuresPromise)) {
-        //     console.log('No features picked.');
-        //     return null;
-
-        // } else {
-
-        //     try {
-        //         const features = await Promise.resolve(featuresPromise);
-        //         console.log(`Number of features: ${features.length}`);
-
-        //         if (features.length > 0) {
-        //             return features[0];
-
-        //         } else {
-        //             console.log(null);
-        //             return null;
-        //         }
-
-        //     } catch (error) {
-        //         console.error('Errore nella raccolta delle features:', error);
-        //         return null;
-        //     }
-        // }
-
+    pickEntity(windowPosition) {
         const pickedEntity = this.viewer.scene.pick(windowPosition);
-
         if (!pickedEntity) return;
-
-        if (Array.isArray(pickedEntity.id)) {
-            this.viewer.zoomTo(pickedEntity.id);
-
-            // pickedEntity.id.forEach(entity => {
-            //     console.log(entity.point.color._value);
-            // })
-        }
-
-        const features = pickedEntity.id;
-        return features;
+        console.log(pickedEntity);
+        return pickedEntity;
     }
 
     async fetchLayerData(wfsUrl, layerName) {

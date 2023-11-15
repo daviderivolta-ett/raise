@@ -1,11 +1,11 @@
-export const themeChange = (Cesium, viewer, stringifiedTheme) => {
-    const themeLayerToRemove = viewer.viewer.imageryLayers._layers[1];
-    viewer.viewer.imageryLayers.remove(themeLayerToRemove);
+export const changeTheme = (Cesium, map, stringifiedTheme) => {
+    const themeLayerToRemove = map.viewer.imageryLayers._layers[1];
+    map.viewer.imageryLayers.remove(themeLayerToRemove);
 
     if (stringifiedTheme != '') {
         const theme = JSON.parse(stringifiedTheme);
-        viewer.changeTheme(theme);
-        const entitiesArray = Array.from(viewer.viewer.entities.values);
+        map.loadTileFromTheme(theme);
+        const entitiesArray = Array.from(map.viewer.entities.values);
         let color;
         if (theme.layer && theme.layer.includes('light')) {
             color = 'DARKSLATEGRAY';
@@ -16,6 +16,13 @@ export const themeChange = (Cesium, viewer, stringifiedTheme) => {
         }
 
     }
+}
+
+export async function fetchThemes(themesUrl) {
+    const themesJson = await fetch(themesUrl)
+        .then(res => res.json())
+
+    return themesJson;
 }
 
 function changeLabelsColor(Cesium, entitiesArray, color) {

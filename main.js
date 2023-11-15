@@ -7,7 +7,6 @@ import { getPosition } from './src/utils/getPosition.js';
 import { populateDrawer } from './src/utils/populateDrawer.js';
 import { filterLayersByTagName } from './src/utils/filterLayersByTagName.js';
 import { fetchJsonData } from './src/settings.js';
-import { fetchThemes } from './src/utils/fetchThemes.js';
 import { activateLayersWFS } from './src/utils/activateLayersWFS.js';
 import { createRoute } from './src/utils/createRoute.js';
 import { startNavigation } from './src/utils/startNavigation.js';
@@ -16,7 +15,7 @@ import { accordionBehaviour } from './src/utils/accordionBehaviour.js';
 import { filterTag } from './src/utils/filterTagByName.js';
 import { createInfobox } from './src/utils/createInfobox.js';
 import { zoomHandle } from './src/utils/zoomHandle.js';
-import { themeChange } from './src/utils/themeChange.js';
+import { changeTheme, fetchThemes } from './src/utils/themeChange.js';
 import { getAllTags } from './src/utils/getAllTags.js';
 import { filterLayersBySelectedTags } from './src/utils/filterLayersBySelectedTags.js';
 import { fetchSvgIcon } from './src/utils/fetchSvgIcon.js';
@@ -50,35 +49,32 @@ import './src/components/close-navigation-btn.js';
 async function initMapPage() {
 
   // Map initialization
-  const viewer = new CesiumViewer();
+  const map = new CesiumViewer();
 
   // Get user position
   const position = await getPosition();
-  viewer.setCameraToUserPosition(position);
-  viewer.createUserPin(position);
+  map.setCameraToUserPosition(position);
+  map.createUserPin(position);
 
   // Zoom buttons
   const zoomBtns = document.querySelectorAll('app-zoom-btn');
-  zoomBtns.forEach(btn => zoomHandle(viewer, btn));
+  zoomBtns.forEach(btn => zoomHandle(map, btn));
 
   // Theme button
   const themes = await fetchThemes(THEMES_URL);
   const themeBtn = document.querySelector('app-theme-icon');
   themeBtn.setAttribute('themes', JSON.stringify(themes));
-  themeBtn.addEventListener('themeChanged', (event) => themeChange(Cesium, viewer, event.detail.newValue));
+  themeBtn.addEventListener('themeChanged', (event) => changeTheme(Cesium, map, event.detail.newValue));
 
   // Accordions creation
   const drawerContent = document.querySelector('#categories-section');
-
   let jsonData = await fetchJsonData(CATEGORIES_URL);
 
   if (localStorage.length != 0) {
     let dataToFilter = JSON.parse(JSON.stringify(jsonData));
     filterLayersBySelectedTags(dataToFilter, JSON.parse(localStorage.selectedTags));
-
     populateDrawer(dataToFilter, drawerContent);
     jsonData = dataToFilter;
-
   } else {
     populateDrawer(jsonData, drawerContent);
   }
@@ -105,57 +101,53 @@ async function initMapPage() {
   drawerToggle.addEventListener('drawerToggled', (event) => {
     if (event.detail.newValue == 'true') {
       drawer.classList.add('drawer-open');
-
     } else {
       drawer.classList.remove('drawer-open');
     }
   });
 
-  // Infoboxes creation & handling
-  viewer.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
+  // Handle click on entities
+  map.viewer.screenSpaceEventHandler.setInputAction(async function (movement) {
+    drawerToggle.setAttribute('is-open', 'false');
+
     const windowPosition = movement.position;
-    viewer.onClick(windowPosition)
-      .then(async features => {
-        // console.log(features);
+    const pickedEntity = map.pickEntity(windowPosition)
+    if (pickedEntity == null) return;
+    if (Array.isArray(pickedEntity.id)) map.viewer.zoomTo(pickedEntity.id);
+    const features = pickedEntity.id;
 
-        if (typeof features === 'object' && !Array.isArray(features)) {
-          if (isNavigation == false) {
-            const infoContent = await handleFeaturesWFS(features, jsonData);
+    if (typeof features === 'object' && !Array.isArray(features)) {
+      if (isNavigation == false) {
+        const infoContent = await handleFeaturesWFS(features, jsonData);
+        let allInfoBoxes = document.querySelectorAll('app-infobox');
 
-            let allInfoBoxes = document.querySelectorAll('app-infobox');
-
-            if (infoContent) {
-              if (Object.keys(infoContent).length !== 0) {
-                createInfobox(allInfoBoxes, infoContent, main);
-              }
-            }
-
-            drawerToggle.setAttribute('is-open', 'false');
-
-          } else {
-            startNavigation(Cesium, viewer, windowPosition);
+        if (infoContent) {
+          if (Object.keys(infoContent).length !== 0) {
+            createInfobox(allInfoBoxes, infoContent, main);
           }
-
         }
 
-      })
+      } else {
+        startNavigation(Cesium, map, windowPosition);
+      }
+    }
   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
   // Autoclose drawer after 10 seconds
-  let timer;
-  drawer.addEventListener('click', () => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      drawerToggle.setAttribute('is-open', 'false');
-    }, 10000);
-  });
+  // let timer;
+  // drawer.addEventListener('click', () => {
+  //   if (timer) {
+  //     clearTimeout(timer);
+  //   }
+  //   timer = setTimeout(() => {
+  //     drawerToggle.setAttribute('is-open', 'false');
+  //   }, 10000);
+  // });
 
   // Checkbox list behaviour
   const activeLayers = [];
   const promises = [];
-  activateLayersWFS(allCheckboxLists, activeLayers, promises, viewer, clusterIcons);
+  activateLayersWFS(allCheckboxLists, activeLayers, promises, map, clusterIcons);
 
   // Accordion behaviour
   accordionBehaviour(allCategoryAccordions, allLayerAccordions);
@@ -174,12 +166,12 @@ async function initMapPage() {
         isNavigation = true;
         closeNavigationBtn.setAttribute('is-active', isNavigation + '');
         const navigationData = JSON.parse(event.detail.newValue);
-        createRoute(Cesium, position, navigationData, viewer);
+        createRoute(Cesium, position, navigationData, map);
       } else {
         isNavigation = false;
         closeNavigationBtn.setAttribute('is-active', isNavigation + '');
-        const entities = viewer.viewer.entities;
-        viewer.removeAllEntities(entities);
+        const entities = map.viewer.entities;
+        map.removeAllEntities(entities);
       }
     })
   }
@@ -208,7 +200,7 @@ async function initMapPage() {
     }
 
     const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-    activateLayersWFS(allCheckboxLists, activeLayers, promises, viewer, clusterIcons);
+    activateLayersWFS(allCheckboxLists, activeLayers, promises, map, clusterIcons);
 
     const allCategoryAccordions = document.querySelectorAll('.category-accordion');
     const allLayerAccordions = document.querySelectorAll('.layer-accordion');
@@ -220,12 +212,12 @@ async function initMapPage() {
           isNavigation = true;
           closeNavigationBtn.setAttribute('is-active', isNavigation + '');
           const navigationData = JSON.parse(event.detail.newValue);
-          createRoute(Cesium, position, navigationData, viewer);
+          createRoute(Cesium, position, navigationData, map);
         } else {
           isNavigation = false;
           closeNavigationBtn.setAttribute('is-active', isNavigation + '');
-          const entities = viewer.viewer.entities;
-          viewer.removeAllEntities(entities);
+          const entities = map.viewer.entities;
+          map.removeAllEntities(entities);
         }
       })
     }
@@ -319,6 +311,7 @@ async function initOnboardpage() {
   clear.addEventListener('click', () => localStorage.clear());
 }
 
+// INIT PAGES
 // Map page
 const mapContainer = document.querySelector('app-map');
 if (mapContainer) { initMapPage(); }

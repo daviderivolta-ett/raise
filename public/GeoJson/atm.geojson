@@ -1,0 +1,2155 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2023-11-15T15:04:58Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/155139117",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.957646,
+          44.412993
+        ]
+      },
+      "id": "GEOJSON_ATM/155139117"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/185350458",
+        "amenity": "GEOJSON_ATM",
+        "check_date": "2023-06-03",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9600216,
+          44.4077522
+        ]
+      },
+      "id": "GEOJSON_ATM/185350458"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/185388239",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Intesa Sanpaolo",
+        "brand:wikidata": "Q1343118",
+        "brand:wikipedia": "it:Intesa Sanpaolo",
+        "name": "Intesa Sanpaolo",
+        "operator": "Intesa Sanpaolo",
+        "operator:wikidata": "Q1343118",
+        "operator:wikipedia": "it:Intesa Sanpaolo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9479218,
+          44.404124
+        ]
+      },
+      "id": "GEOJSON_ATM/185388239"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/185396118",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9349521,
+          44.4064532
+        ]
+      },
+      "id": "GEOJSON_ATM/185396118"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/185406047",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9434787,
+          44.4045257
+        ]
+      },
+      "id": "GEOJSON_ATM/185406047"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/187086444",
+        "amenity": "GEOJSON_ATM",
+        "check_date": "2023-07-22",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9223082,
+          44.4162403
+        ]
+      },
+      "id": "GEOJSON_ATM/187086444"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/187101915",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9522966,
+          44.4058248
+        ]
+      },
+      "id": "GEOJSON_ATM/187101915"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/205283598",
+        "amenity": "GEOJSON_ATM",
+        "created_by": "Potlatch 0.6",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9479374,
+          44.3956172
+        ]
+      },
+      "id": "GEOJSON_ATM/205283598"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/211067171",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8927035,
+          44.4304694
+        ]
+      },
+      "id": "GEOJSON_ATM/211067171"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/218891159",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9523858,
+          44.4110401
+        ]
+      },
+      "id": "GEOJSON_ATM/218891159"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/221943971",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8889134,
+          44.4106582
+        ]
+      },
+      "id": "GEOJSON_ATM/221943971"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/223108872",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "indoor": "yes",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.902324,
+          44.460855
+        ]
+      },
+      "id": "GEOJSON_ATM/223108872"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/224528867",
+        "amenity": "GEOJSON_ATM",
+        "branch": "Ag 55",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9664498,
+          44.419809
+        ]
+      },
+      "id": "GEOJSON_ATM/224528867"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/237246315",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9069511,
+          44.4111313
+        ]
+      },
+      "id": "GEOJSON_ATM/237246315"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/242043505",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Intesa Sanpaolo",
+        "brand:wikidata": "Q1343118",
+        "brand:wikipedia": "it:Intesa Sanpaolo",
+        "name": "Intesa Sanpaolo",
+        "operator": "Intesa Sanpaolo",
+        "operator:wikidata": "Q1343118",
+        "operator:wikipedia": "it:Intesa Sanpaolo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9303997,
+          44.4120366
+        ]
+      },
+      "id": "GEOJSON_ATM/242043505"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/242723731",
+        "amenity": "GEOJSON_ATM",
+        "brand": "UniCredit Bank",
+        "brand:wikidata": "Q45568",
+        "brand:wikipedia": "en:UniCredit",
+        "name": "UniCredit Bank",
+        "operator": "UniCredit Bank",
+        "operator:wikidata": "Q45568",
+        "operator:wikipedia": "en:UniCredit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9297567,
+          44.4092145
+        ]
+      },
+      "id": "GEOJSON_ATM/242723731"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/243160074",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9327389,
+          44.41284
+        ]
+      },
+      "id": "GEOJSON_ATM/243160074"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/243318779",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9313193,
+          44.4193625
+        ]
+      },
+      "id": "GEOJSON_ATM/243318779"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/244430972",
+        "addr:housenumber": "76ar",
+        "addr:street": "Via della Libertà",
+        "amenity": "GEOJSON_ATM",
+        "branch": "Ag 7",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9482836,
+          44.3996024
+        ]
+      },
+      "id": "GEOJSON_ATM/244430972"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/245564930",
+        "amenity": "GEOJSON_ATM",
+        "created_by": "Potlatch 0.7"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9882701,
+          44.443954
+        ]
+      },
+      "id": "GEOJSON_ATM/245564930"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/248821997",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0169248,
+          44.3851352
+        ]
+      },
+      "id": "GEOJSON_ATM/248821997"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/252100372",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9761676,
+          44.3959481
+        ]
+      },
+      "id": "GEOJSON_ATM/252100372"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/252727000",
+        "amenity": "GEOJSON_ATM",
+        "check_date": "2022-04-29",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0404687,
+          44.3844214
+        ]
+      },
+      "id": "GEOJSON_ATM/252727000"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/254286512",
+        "amenity": "GEOJSON_ATM",
+        "created_by": "Potlatch 0.8a",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.996026,
+          44.3882047
+        ]
+      },
+      "id": "GEOJSON_ATM/254286512"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/254294708",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9861013,
+          44.3928636
+        ]
+      },
+      "id": "GEOJSON_ATM/254294708"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/254303620",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste",
+        "toilets:wheelchair": "no",
+        "wheelchair": "limited"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0008631,
+          44.3944873
+        ]
+      },
+      "id": "GEOJSON_ATM/254303620"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256578894",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.985957,
+          44.4023445
+        ]
+      },
+      "id": "GEOJSON_ATM/256578894"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256581443",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9575678,
+          44.416083
+        ]
+      },
+      "id": "GEOJSON_ATM/256581443"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256581955",
+        "amenity": "GEOJSON_ATM",
+        "check_date": "2023-06-11",
+        "name": "Poste",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9496665,
+          44.4181963
+        ]
+      },
+      "id": "GEOJSON_ATM/256581955"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256582479",
+        "amenity": "GEOJSON_ATM",
+        "fee": "Banco Posta",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.964057,
+          44.4429294
+        ]
+      },
+      "id": "GEOJSON_ATM/256582479"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256582789",
+        "amenity": "GEOJSON_ATM",
+        "check_date": "2021-03-23",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9827743,
+          44.4546529
+        ]
+      },
+      "id": "GEOJSON_ATM/256582789"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256583274",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9768139,
+          44.4067776
+        ]
+      },
+      "id": "GEOJSON_ATM/256583274"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256583666",
+        "amenity": "GEOJSON_ATM",
+        "check_date": "2022-08-31",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9300183,
+          44.413504
+        ]
+      },
+      "id": "GEOJSON_ATM/256583666"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256583805",
+        "amenity": "GEOJSON_ATM",
+        "frazionario": "28281",
+        "name": "Genova 24",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9359403,
+          44.4097901
+        ]
+      },
+      "id": "GEOJSON_ATM/256583805"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256583889",
+        "amenity": "GEOJSON_ATM",
+        "check_date": "2022-09-25",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9293317,
+          44.410479
+        ]
+      },
+      "id": "GEOJSON_ATM/256583889"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256584314",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9204605,
+          44.4234225
+        ]
+      },
+      "id": "GEOJSON_ATM/256584314"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256584634",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8986178,
+          44.4102715
+        ]
+      },
+      "id": "GEOJSON_ATM/256584634"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/256765728",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Deutsche Bank",
+        "brand:wikidata": "Q66048",
+        "brand:wikipedia": "en:Deutsche Bank",
+        "name": "Deutsche Bank",
+        "operator": "Deutsche Bank",
+        "operator:wikidata": "Q66048",
+        "operator:wikipedia": "en:Deutsche Bank"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9539633,
+          44.4083329
+        ]
+      },
+      "id": "GEOJSON_ATM/256765728"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/259189892",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8921132,
+          44.4353196
+        ]
+      },
+      "id": "GEOJSON_ATM/259189892"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/259191895",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8810489,
+          44.4211677
+        ]
+      },
+      "id": "GEOJSON_ATM/259191895"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/259588119",
+        "amenity": "GEOJSON_ATM",
+        "created_by": "Potlatch 0.8b",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.0116766,
+          44.4492332
+        ]
+      },
+      "id": "GEOJSON_ATM/259588119"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/266336752",
+        "amenity": "GEOJSON_ATM",
+        "name": "Popolare di Sondrio"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9351658,
+          44.4089484
+        ]
+      },
+      "id": "GEOJSON_ATM/266336752"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/267221652",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "check_date": "2023-02-19",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9421808,
+          44.4064326
+        ]
+      },
+      "id": "GEOJSON_ATM/267221652"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/267344676",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.934616,
+          44.4124325
+        ]
+      },
+      "id": "GEOJSON_ATM/267344676"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/269911912",
+        "amenity": "GEOJSON_ATM",
+        "created_by": "Potlatch 0.9c",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8948212,
+          44.4501019
+        ]
+      },
+      "id": "GEOJSON_ATM/269911912"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/273116765",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.855645,
+          44.4232908
+        ]
+      },
+      "id": "GEOJSON_ATM/273116765"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/275774553",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9474186,
+          44.4136662
+        ]
+      },
+      "id": "GEOJSON_ATM/275774553"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/275959517",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "currency:EUR": "yes",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7513975,
+          44.4279622
+        ]
+      },
+      "id": "GEOJSON_ATM/275959517"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/302912771",
+        "amenity": "GEOJSON_ATM",
+        "name": "Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.849703,
+          44.4244137
+        ]
+      },
+      "id": "GEOJSON_ATM/302912771"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/303163296",
+        "amenity": "GEOJSON_ATM"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8516029,
+          44.4305399
+        ]
+      },
+      "id": "GEOJSON_ATM/303163296"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/332720921",
+        "amenity": "GEOJSON_ATM",
+        "check_date": "2021-04-17",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9664232,
+          44.4194914
+        ]
+      },
+      "id": "GEOJSON_ATM/332720921"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/354980355",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9526045,
+          44.4136918
+        ]
+      },
+      "id": "GEOJSON_ATM/354980355"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/417348691",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7851647,
+          44.4277131
+        ]
+      },
+      "id": "GEOJSON_ATM/417348691"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/544433084",
+        "addr:housenumber": "8",
+        "addr:street": "Via De Marini",
+        "amenity": "GEOJSON_ATM",
+        "brand": "BNL",
+        "brand:wikidata": "Q2201225",
+        "brand:wikipedia": "it:Banca Nazionale del Lavoro",
+        "name": "BNL",
+        "official_name": "Banca Nazionale del Lavoro",
+        "operator": "BNL",
+        "operator:wikidata": "Q2201225",
+        "operator:wikipedia": "it:Banca Nazionale del Lavoro"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9011989,
+          44.4086241
+        ]
+      },
+      "id": "GEOJSON_ATM/544433084"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/564958521",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9000037,
+          44.4086342
+        ]
+      },
+      "id": "GEOJSON_ATM/564958521"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/688669130",
+        "amenity": "GEOJSON_ATM",
+        "check_date": "2022-09-25",
+        "operator": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9698245,
+          44.4122479
+        ]
+      },
+      "id": "GEOJSON_ATM/688669130"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/688669160",
+        "amenity": "GEOJSON_ATM",
+        "operator": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9643356,
+          44.3986875
+        ]
+      },
+      "id": "GEOJSON_ATM/688669160"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/691452358",
+        "amenity": "GEOJSON_ATM",
+        "operator": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6978282,
+          44.5361465
+        ]
+      },
+      "id": "GEOJSON_ATM/691452358"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/880487058",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9219662,
+          44.4251956
+        ]
+      },
+      "id": "GEOJSON_ATM/880487058"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/891117185",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8761662,
+          44.4209843
+        ]
+      },
+      "id": "GEOJSON_ATM/891117185"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/899468607",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9265435,
+          44.4247546
+        ]
+      },
+      "id": "GEOJSON_ATM/899468607"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/924292213",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9675262,
+          44.4399786
+        ]
+      },
+      "id": "GEOJSON_ATM/924292213"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/939483157",
+        "amenity": "GEOJSON_ATM",
+        "operator": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8460059,
+          44.4237731
+        ]
+      },
+      "id": "GEOJSON_ATM/939483157"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/939486479",
+        "amenity": "GEOJSON_ATM",
+        "operator": "Poste",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8519023,
+          44.4237735
+        ]
+      },
+      "id": "GEOJSON_ATM/939486479"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/939489131",
+        "amenity": "GEOJSON_ATM",
+        "operator": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8482155,
+          44.4324348
+        ]
+      },
+      "id": "GEOJSON_ATM/939489131"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/939496392",
+        "amenity": "GEOJSON_ATM",
+        "operator": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8289445,
+          44.4263092
+        ]
+      },
+      "id": "GEOJSON_ATM/939496392"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/988973898",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9068669,
+          44.413638
+        ]
+      },
+      "id": "GEOJSON_ATM/988973898"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1119796342",
+        "amenity": "GEOJSON_ATM",
+        "brand": "BPER Banca",
+        "brand:wikidata": "Q806167",
+        "brand:wikipedia": "en:BPER Banca",
+        "cash_in": "no",
+        "covered": "no",
+        "name": "Bper Banca",
+        "official_name": "Banca Popolare dell'Emilia Romagna",
+        "operator": "Carige",
+        "operator:wikidata": "Q806167",
+        "operator:wikipedia": "en:BPER Banca"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9911934,
+          44.396046
+        ]
+      },
+      "id": "GEOJSON_ATM/1119796342"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1123654656",
+        "amenity": "GEOJSON_ATM",
+        "operator": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9283569,
+          44.4069073
+        ]
+      },
+      "id": "GEOJSON_ATM/1123654656"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1157495436",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "cash_in": "no",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8879552,
+          44.4164436
+        ]
+      },
+      "id": "GEOJSON_ATM/1157495436"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1187757161",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8960349,
+          44.4177134
+        ]
+      },
+      "id": "GEOJSON_ATM/1187757161"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1312194119",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.968139,
+          44.4835007
+        ]
+      },
+      "id": "GEOJSON_ATM/1312194119"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1333351492",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8801712,
+          44.44033
+        ]
+      },
+      "id": "GEOJSON_ATM/1333351492"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1463002335",
+        "amenity": "GEOJSON_ATM",
+        "name": "Poste",
+        "operator": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.81701,
+          44.4266215
+        ]
+      },
+      "id": "GEOJSON_ATM/1463002335"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1483766030",
+        "amenity": "GEOJSON_ATM",
+        "check_date": "2021-12-14",
+        "name": "Poste",
+        "operator": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9568173,
+          44.4220771
+        ]
+      },
+      "id": "GEOJSON_ATM/1483766030"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1531757189",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8939057,
+          44.4467853
+        ]
+      },
+      "id": "GEOJSON_ATM/1531757189"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1538409436",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "outdoor": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9047682,
+          44.5008735
+        ]
+      },
+      "id": "GEOJSON_ATM/1538409436"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1644724950",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8815419,
+          44.4222244
+        ]
+      },
+      "id": "GEOJSON_ATM/1644724950"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1678777144",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9014495,
+          44.444059
+        ]
+      },
+      "id": "GEOJSON_ATM/1678777144"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1764278400",
+        "addr:housenumber": "4",
+        "addr:street": "Via Megollo Lercari",
+        "amenity": "GEOJSON_ATM",
+        "brand": "UBI Banca",
+        "brand:wikidata": "Q1476162",
+        "brand:wikipedia": "en:UBI Banca",
+        "name": "UBI Banca",
+        "operator": "UBI Banca",
+        "operator:wikidata": "Q1476162",
+        "operator:wikipedia": "en:UBI Banca"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9221921,
+          44.4148656
+        ]
+      },
+      "id": "GEOJSON_ATM/1764278400"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1929864166",
+        "amenity": "GEOJSON_ATM",
+        "operator": "SanPaolo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8925405,
+          44.4354367
+        ]
+      },
+      "id": "GEOJSON_ATM/1929864166"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/1974572170",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Banca Carige",
+        "brand:wikidata": "Q3633695",
+        "operator": "Banca Carige",
+        "operator:wikidata": "Q3633695"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8807175,
+          44.4135534
+        ]
+      },
+      "id": "GEOJSON_ATM/1974572170"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/2437945351",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8385583,
+          44.4151179
+        ]
+      },
+      "id": "GEOJSON_ATM/2437945351"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/2465863863",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9230363,
+          44.4087912
+        ]
+      },
+      "id": "GEOJSON_ATM/2465863863"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/2807330654",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8828405,
+          44.5105563
+        ]
+      },
+      "id": "GEOJSON_ATM/2807330654"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/3202259665",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige",
+        "toilets:wheelchair": "yes",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9752,
+          44.4093448
+        ]
+      },
+      "id": "GEOJSON_ATM/3202259665"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/3405725852",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9584318,
+          44.4029079
+        ]
+      },
+      "id": "GEOJSON_ATM/3405725852"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/3464107763",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8627386,
+          44.4259212
+        ]
+      },
+      "id": "GEOJSON_ATM/3464107763"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/3609806384",
+        "amenity": "GEOJSON_ATM"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9359048,
+          44.4078764
+        ]
+      },
+      "id": "GEOJSON_ATM/3609806384"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/3757003920",
+        "addr:city": "Genova",
+        "addr:country": "IT",
+        "addr:housenumber": "37",
+        "addr:street": "Via Gabriele D'Annunzio",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "brand:wikipedia": "en:Banca Carige",
+        "name": "Carige",
+        "opening_hours": "24/7",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695",
+        "operator:wikipedia": "en:Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.935009,
+          44.4045507
+        ]
+      },
+      "id": "GEOJSON_ATM/3757003920"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/3824287059",
+        "amenity": "GEOJSON_ATM",
+        "operator": "Poste"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9446016,
+          44.412923
+        ]
+      },
+      "id": "GEOJSON_ATM/3824287059"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/3865378599",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9230595,
+          44.4773788
+        ]
+      },
+      "id": "GEOJSON_ATM/3865378599"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/3883790329",
+        "amenity": "GEOJSON_ATM",
+        "brand": "UniCredit Bank",
+        "brand:wikidata": "Q45568",
+        "brand:wikipedia": "en:UniCredit",
+        "name": "UniCredit Bank",
+        "operator": "UniCredit Bank",
+        "operator:wikidata": "Q45568",
+        "operator:wikipedia": "en:UniCredit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8492261,
+          44.4251548
+        ]
+      },
+      "id": "GEOJSON_ATM/3883790329"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/3992131640",
+        "amenity": "GEOJSON_ATM"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8720757,
+          44.4161543
+        ]
+      },
+      "id": "GEOJSON_ATM/3992131640"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/4506002044",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane",
+        "outdoor": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9003031,
+          44.4868495
+        ]
+      },
+      "id": "GEOJSON_ATM/4506002044"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/4843643708",
+        "amenity": "GEOJSON_ATM",
+        "cash_in": "yes",
+        "check_date": "2021-01-15",
+        "drive_through": "no",
+        "name": "Monte Paschi Siena",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8947059,
+          44.4116882
+        ]
+      },
+      "id": "GEOJSON_ATM/4843643708"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/5086201042",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Banca Carige",
+        "brand:wikidata": "Q3633695",
+        "indoor": "yes",
+        "level": "-1",
+        "opening_hours": "Mo-Su 08:00-21:00",
+        "operator": "Banca Carige",
+        "operator:wikidata": "Q3633695",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9003393,
+          44.4723347
+        ]
+      },
+      "id": "GEOJSON_ATM/5086201042"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/5086201045",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Banca Carige",
+        "brand:wikidata": "Q3633695",
+        "indoor": "yes",
+        "level": "1",
+        "opening_hours": "Mo-Su 08:00-21:00",
+        "operator": "Banca Carige",
+        "operator:wikidata": "Q3633695",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8995172,
+          44.4731468
+        ]
+      },
+      "id": "GEOJSON_ATM/5086201045"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/5695369342",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.876241,
+          44.4210468
+        ]
+      },
+      "id": "GEOJSON_ATM/5695369342"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/5731970968",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "name": "Postamat",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.936753,
+          44.5078533
+        ]
+      },
+      "id": "GEOJSON_ATM/5731970968"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/6363655417",
+        "amenity": "GEOJSON_ATM",
+        "brand": "BPER Banca",
+        "brand:wikidata": "Q806167",
+        "brand:wikipedia": "en:Banca Carige",
+        "cash_in": "no",
+        "currency:EUR": "yes",
+        "drive_through": "no",
+        "name": "BPER Banca",
+        "official_name": "Banca Popolare dell'Emilia Romagna",
+        "operator": "BPER Banca",
+        "operator:wikidata": "Q806167",
+        "operator:wikipedia": "en:BPER Banca"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7522866,
+          44.4282261
+        ]
+      },
+      "id": "GEOJSON_ATM/6363655417"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/6622377314",
+        "amenity": "GEOJSON_ATM",
+        "brand": "BPER Banca",
+        "brand:wikidata": "Q806167",
+        "brand:wikipedia": "en:BPER Banca",
+        "cash_in": "yes",
+        "drive_through": "no",
+        "name": "BPER Banca",
+        "official_name": "Banca Popolare dell'Emilia Romagna",
+        "old_name": "Carige",
+        "operator": "BPER Banca",
+        "operator:wikidata": "Q806167",
+        "operator:wikipedia": "en:BPER"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.78229,
+          44.4273887
+        ]
+      },
+      "id": "GEOJSON_ATM/6622377314"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/7889635660",
+        "addr:city": "Genova",
+        "addr:housenumber": "235r",
+        "addr:postcode": "16156",
+        "addr:street": "Lungomare di Pegli",
+        "amenity": "GEOJSON_ATM",
+        "currency:XBT": "yes",
+        "description": "Bitcoin GEOJSON_ATM che permette di acquistare Bitcoin, Ethereum, Litecoin, Dogecoin, Bitcoin Cash, Dash, Monero. L'GEOJSON_ATM è situato all'interno del negozio Ottico Rattaro.",
+        "email": "support@cryptolocalGEOJSON_ATM.com",
+        "name": "CryptoLocalGEOJSON_ATM C/o Ottico Rattaro",
+        "website": "https://cryptolocalGEOJSON_ATM.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.814064,
+          44.424844
+        ]
+      },
+      "id": "GEOJSON_ATM/7889635660"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/8243479086",
+        "amenity": "GEOJSON_ATM",
+        "level": "0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.850627,
+          44.4150101
+        ]
+      },
+      "id": "GEOJSON_ATM/8243479086"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/8332215018",
+        "amenity": "GEOJSON_ATM",
+        "brand": "UniCredit Bank",
+        "brand:wikidata": "Q45568",
+        "brand:wikipedia": "en:UniCredit",
+        "drive_through": "no",
+        "name": "UniCredit Bank",
+        "operator": "UniCredit Bank",
+        "operator:wikidata": "Q45568",
+        "operator:wikipedia": "en:UniCredit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9582755,
+          44.4072216
+        ]
+      },
+      "id": "GEOJSON_ATM/8332215018"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/8477084222",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Postamat",
+        "brand:wikidata": "Q3909447",
+        "brand:wikipedia": "it:Postamat",
+        "currency:EUR": "yes",
+        "name": "Postamat",
+        "network": "Postamat",
+        "opening_hours": "24/7",
+        "operator": "Poste Italiane",
+        "operator:wikidata": "Q495026",
+        "operator:wikipedia": "it:Poste italiane",
+        "source": "https://www.facebook.com/PosteItaliane/posts/2563082010426710?comment_id=2567158356685742"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7481856,
+          44.4453381
+        ]
+      },
+      "id": "GEOJSON_ATM/8477084222"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/9461164924",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Banca Carige"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9035602,
+          44.4997598
+        ]
+      },
+      "id": "GEOJSON_ATM/9461164924"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/9485937898",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Coop",
+        "indoor": "yes",
+        "level": "0",
+        "opening_hours": "Mo-Su 08:00-21:00",
+        "operator": "Coop",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.8995766,
+          44.4729375
+        ]
+      },
+      "id": "GEOJSON_ATM/9485937898"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/9926174486",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Carige",
+        "brand:wikidata": "Q3633695",
+        "check_date": "2023-08-13",
+        "name": "Carige",
+        "operator": "Carige",
+        "operator:wikidata": "Q3633695"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.9343768,
+          44.4085687
+        ]
+      },
+      "id": "GEOJSON_ATM/9926174486"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/10050449928",
+        "amenity": "GEOJSON_ATM",
+        "brand": "Euronet",
+        "brand:wikidata": "Q5412010",
+        "description": "Nel chiosco dell'edicola",
+        "operator": "Euronet",
+        "operator:wikidata": "Q5412010"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.946187,
+          44.4058068
+        ]
+      },
+      "id": "GEOJSON_ATM/10050449928"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "GEOJSON_ATM/10276049723",
+        "amenity": "GEOJSON_ATM",
+        "brand": "BPER Banca",
+        "brand:wikidata": "Q806167",
+        "brand:wikipedia": "en:Banca Carige",
+        "cash_in": "no",
+        "currency:EUR": "yes",
+        "drive_through": "no",
+        "name": "BPER Banca",
+        "official_name": "Banca Popolare dell'Emilia Romagna",
+        "operator": "BPER Banca",
+        "operator:wikidata": "Q806167",
+        "operator:wikipedia": "en:BPER Banca"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.7522485,
+          44.4281427
+        ]
+      },
+      "id": "GEOJSON_ATM/10276049723"
+    }
+  ]
+}
