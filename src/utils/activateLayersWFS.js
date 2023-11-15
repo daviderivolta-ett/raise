@@ -1,4 +1,4 @@
-export const activateLayersWFS = async (allCheckboxLists, activeLayers, promises, viewer) => {
+export const activateLayersWFS = async (allCheckboxLists, activeLayers, promises, viewer, clusterIcons) => {
     for (const checkboxList of allCheckboxLists) {
         checkboxList.addEventListener('checkboxListChanged', async (event) => {
             checkLayerToRemove(event, activeLayers);
@@ -19,15 +19,11 @@ export const activateLayersWFS = async (allCheckboxLists, activeLayers, promises
                 await viewer.addLayer(promise);
                 await viewer.styleEntities(promise, layer.style);
             }
-
-            //// TEST COLORS
-            let colors = ["#ffffff", "#000000"];
-            ////
             
-            await viewer.clusterAllEntities(promises, colors);
+            viewer.clusterAllEntities(promises, clusterIcons);
 
-            console.log('Active layers:');
-            console.log(activeLayers);
+            // console.log('Active layers:');
+            // console.log(activeLayers);
 
         });
     }

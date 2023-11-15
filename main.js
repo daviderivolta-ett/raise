@@ -27,7 +27,7 @@ import { themeChange } from './src/utils/themeChange.js';
 import { getAllTags } from './src/utils/getAllTags.js';
 import { filterLayersBySelectedTags } from './src/utils/filterLayersBySelectedTags.js';
 
-// import { removeAllEntities } from './src/utils/createRoute.js';
+import { fetchSvgIcon } from './src/utils/fetchSvgIcon.js';
 
 // Import data
 const CATEGORIES_URL = './json/categories.json';
@@ -102,6 +102,13 @@ async function initMapPage() {
   const drawerTitle = document.querySelector('#drawer-title');
   const autocomplete = document.querySelector('app-autocomplete');
 
+  // Import cluster icons
+  const clusterIcons = [];
+  for (let i = 0; i <= 2; i++) {
+    const clusterIcon = await fetchSvgIcon(i + 2);
+    clusterIcons.push(clusterIcon);
+  }
+
   // Toggle drawer behaviour
   drawerToggle.addEventListener('drawerToggled', (event) => {
     if (event.detail.newValue == 'true') {
@@ -156,7 +163,7 @@ async function initMapPage() {
   // Checkbox list behaviour
   const activeLayers = [];
   const promises = [];
-  activateLayersWFS(allCheckboxLists, activeLayers, promises, viewer);
+  activateLayersWFS(allCheckboxLists, activeLayers, promises, viewer, clusterIcons);
 
   // Accordion behaviour
   accordionBehaviour(allCategoryAccordions, allLayerAccordions);
@@ -209,7 +216,7 @@ async function initMapPage() {
     }
 
     const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-    activateLayersWFS(allCheckboxLists, activeLayers, promises, viewer);
+    activateLayersWFS(allCheckboxLists, activeLayers, promises, viewer, clusterIcons);
 
     const allCategoryAccordions = document.querySelectorAll('.category-accordion');
     const allLayerAccordions = document.querySelectorAll('.layer-accordion');

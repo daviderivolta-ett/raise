@@ -182,8 +182,8 @@ export default class CesiumViewer {
     //     })
     // }
 
-    clusterAllEntities(promises, colors) {
-        const color = colors[0];
+    clusterAllEntities(promises, clusterIcons) {
+        const color = 'WHITE';
         const combinedDataSource = new Cesium.CustomDataSource();
 
         const data = Promise.all(promises);
@@ -204,14 +204,9 @@ export default class CesiumViewer {
             combinedDataSource.clustering.pixelRange = 25;
             combinedDataSource.clustering.minimumClusterSize = 2;
 
-            ////
-            // const icon = await this.fetchSvgIcon();
-            // console.log(icon);
-            ////
-
-            const icon2 = await this.fetchSvgIcon(2);
-            const icon3 = await this.fetchSvgIcon(3);
-            const icon4 = await this.fetchSvgIcon(4);
+            const icon2 = clusterIcons[0];
+            const icon3 = clusterIcons[1];
+            const icon4 = clusterIcons[2];
 
             combinedDataSource.clustering.clusterEvent.addEventListener(async (clusteredEntities, cluster) => {
                 cluster.label.show = false;
@@ -220,12 +215,11 @@ export default class CesiumViewer {
                 cluster.billboard.scale = 0.38;
                 cluster.billboard.id = cluster.label.id;
 
-                //// TEST
                 let colors = [];
                 cluster.billboard.id.forEach(entity => {
                     colors.push(entity.point.color.getValue());
+                    if (colors.length > 4) colors.shift();
                 });
-                // console.log(colors);
 
                 switch (true) {
                     case clusteredEntities.length >= 4:
@@ -253,22 +247,7 @@ export default class CesiumViewer {
         this.viewer.dataSources.add(combinedDataSource);
     }
 
-    async fetchSvgIcon(iconNumber) {
-        try {
-            const response = await fetch(`./images/cluster/cluster-${iconNumber}.svg`);
-            const svgText = await response.text();
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(svgText, 'image/svg+xml');
-            return doc;
-
-        } catch (error) {
-            console.error(error);
-            throw error;
-        }
-    }
-
     styleClusterIcon(svgDoc, colors) {
-        // let colors = ['yellow', 'greenyellow', 'cyan', 'steelblue'];
         let rgbColors = [];
 
         colors.forEach(color => {
@@ -280,9 +259,7 @@ export default class CesiumViewer {
         });
 
         let colorIndex = 0;
-
         const circles = svgDoc.querySelectorAll('circle');
-
         for (let i = 0; i < circles.length; i++) {
             circles[i].setAttribute('fill', `rgb(${rgbColors[colorIndex].red}, ${rgbColors[colorIndex].green}, ${rgbColors[colorIndex].blue})`);
             colorIndex++;
@@ -299,7 +276,6 @@ export default class CesiumViewer {
 
         return url;
     }
-
 
     removeLayerWFS(layerName) {
         const imageryLayers = this.viewer._dataSourceCollection._dataSources;
