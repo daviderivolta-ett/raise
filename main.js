@@ -3,13 +3,10 @@ import CesiumViewer from './src/components/map.js';
 import * as Cesium from 'cesium';
 
 // Import methods
-import { getPosition } from './src/utils/getPosition.js';
+import { getPosition } from './src/utils/position.js';
 import { populateDrawer, accordionBehaviour, autocloseDrawer } from './src/controller/drawer.js';
-import { filterLayersByTagName } from './src/utils/filter.js';
-import { filterLayersBySelectedTags } from './src/utils/filter.js';
-import { filterTag } from './src/utils/filter.js';
-import { fetchJsonData } from './src/settings.js';
-import { fetchSvgIcon } from './src/settings.js';
+import { filterLayersBySelectedTags, filterTag, filterLayersByTagName, checkLayerToRemove } from './src/utils/filter.js';
+import { fetchJsonData, fetchSvgIcon } from './src/settings.js';
 import { changeTheme, fetchThemes } from './src/controller/theme.js';
 
 // Import data
@@ -42,7 +39,8 @@ const map = new CesiumViewer();
 
 // Get user position
 const position = await getPosition();
-map.setCameraToUserPosition(position);
+// map.setCameraToUserPosition(position);
+map.setCamera();
 map.createUserPin(position);
 
 // Zoom buttons
@@ -110,8 +108,32 @@ autocloseDrawer(drawer, drawerToggle);
 
 // Checkbox list behaviour
 const activeLayers = [];
-const promises = [];
-map.activateLayer(allCheckboxLists, activeLayers, promises, clusterIcons);
+for (const checkboxList of allCheckboxLists) {
+  checkboxList.addEventListener('checkboxListChanged', async (event) => {
+    const checkboxListLayers = event.detail.input;
+    checkLayerToRemove(checkboxListLayers, activeLayers);
+
+    if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
+
+    const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
+    checkboxListLayersToAdd.forEach(layer => {
+      activeLayers.push(layer);
+    });
+
+    map.viewer.dataSources.removeAll();
+
+    await Promise.all(activeLayers.map(async (layer) => {
+      const source = await map.fetchLayerData(layer);
+      await map.viewer.dataSources.add(source);
+      await map.styleEntities(source, layer.style);
+    }));
+
+    await map.clusterAllEntities(clusterIcons);
+
+    // console.log('Active layers:');
+    // console.log(activeLayers);
+  });
+}
 
 // Accordion behaviour
 accordionBehaviour(allCategoryAccordions, allLayerAccordions);
@@ -164,7 +186,32 @@ searchBar.addEventListener('searchValueChanged', (event) => {
   }
 
   const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-  activateLayersWFS(allCheckboxLists, activeLayers, promises, map, clusterIcons);
+  for (const checkboxList of allCheckboxLists) {
+    checkboxList.addEventListener('checkboxListChanged', async (event) => {
+      const checkboxListLayers = event.detail.input;
+      checkLayerToRemove(checkboxListLayers, activeLayers);
+
+      if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
+
+      const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
+      checkboxListLayersToAdd.forEach(layer => {
+        activeLayers.push(layer);
+      });
+
+      map.viewer.dataSources.removeAll();
+
+      await Promise.all(activeLayers.map(async (layer) => {
+        const source = await map.fetchLayerData(layer);
+        await map.viewer.dataSources.add(source);
+        await map.styleEntities(source, layer.style);
+      }));
+
+      await map.clusterAllEntities(clusterIcons);
+
+      // console.log('Active layers:');
+      // console.log(activeLayers);
+    });
+  }
 
   const allCategoryAccordions = document.querySelectorAll('.category-accordion');
   const allLayerAccordions = document.querySelectorAll('.layer-accordion');
@@ -176,7 +223,7 @@ searchBar.addEventListener('searchValueChanged', (event) => {
         isNavigation = true;
         closeNavigationBtn.setAttribute('is-active', isNavigation + '');
         const navigationData = JSON.parse(event.detail.newValue);
-        createRoute(Cesium, position, navigationData, map);
+        map.createRoute(position, navigationData);
       } else {
         isNavigation = false;
         closeNavigationBtn.setAttribute('is-active', isNavigation + '');

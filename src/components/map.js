@@ -1,7 +1,5 @@
 import * as Cesium from 'cesium';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
-import { filterLayerByName } from '/src/utils/filter.js';
-import { getRelevantProperties } from '/src/utils/filter.js';
 
 export default class CesiumViewer {
 
@@ -22,6 +20,18 @@ export default class CesiumViewer {
             fullscreenButton: false,
             infoBox: false,
             // terrain: Cesium.Terrain.fromWorldTerrain()
+        });
+    }
+
+    getImageryProvider(url, layer, credit) {
+        return new Cesium.WebMapTileServiceImageryProvider({
+            url: url,
+            layer: layer,
+            style: 'default',
+            format: 'image/jpeg',
+            maximumLevel: 19,
+            tileMatrixSetID: 'default',
+            credit: new Cesium.Credit(credit)
         });
     }
 
@@ -50,23 +60,87 @@ export default class CesiumViewer {
         }
     }
 
-    createInfobox(infoboxCounter, allElements, info, div) {
-        let isElementPresent = false;
+    async handleFeatures(features, jsonData) {
+        if (features != null) {
+    
+            let layerToFind = '';
+    
+            switch (true) {
+                case features.id.includes('.'):
+                    layerToFind = features.id.split('.')[0];
+                    break;
+    
+                case features.id.includes('/'):
+                    layerToFind = features.id.split('/')[0];
+                    break;
+    
+                default:
+                    break;
+            }
+    
+            const foundLayer = this.filterLayerByName(jsonData, layerToFind);
+            const foundLayerName = foundLayer.name;
+            const relevantProperties = foundLayer.relevant_properties;
+    
+            const properties = this.getRelevantProperties(features.properties, relevantProperties, foundLayerName);
+            // console.log(properties);
+    
+            return properties;
+        }
+    }
 
-        allElements.forEach(element => {
+    createInfobox(counter, elements, info, div) {
+        let isElementPresent = false;
+    
+        elements.forEach(element => {
             if (element.getAttribute('data') === JSON.stringify(info)) {
                 isElementPresent = true;
             }
         });
-
+    
         if (!isElementPresent && info) {
             const element = document.createElement('app-infobox');
-
+    
             element.setAttribute('data', JSON.stringify(info));
-            infoboxCounter++;
-            element.setAttribute('uuid', infoboxCounter);
+            counter++;
+            element.setAttribute('uuid', counter);
             div.append(element);
         }
+    }
+
+    filterLayerByName(obj, layerToFind) {
+        for (const key in obj) {
+            const currentValue = obj[key];
+    
+            if (Array.isArray(currentValue) || typeof currentValue === 'object') {
+                const result = this.filterLayerByName(currentValue, layerToFind);
+                if (result) {
+                    return result;
+                }
+    
+            } else if (typeof currentValue === 'string' && currentValue.includes(layerToFind)) {
+                return obj;
+            }
+        }
+    
+        return null;
+    }
+
+    getRelevantProperties(object, array, title) {
+        const risultati = {};
+    
+        if (array) {
+            for (const obj of array) {
+                if (obj.property_name && object[obj.property_name]) {
+                    risultati[obj.display_name] = object[obj.property_name]._value;
+                }
+            }
+    
+            risultati["Title"] = title;
+            return risultati;
+        }
+    
+        return risultati;
     }
 
     startNavigation(windowPosition) {
@@ -79,117 +153,23 @@ export default class CesiumViewer {
     convertCoordinates(windowPosition) {
         const featurePositionCartesian3 = this.viewer.scene.pickPosition(windowPosition);
         const featurePositionCartographic = Cesium.Cartographic.fromCartesian(featurePositionCartesian3);
-
+    
         const longitude = Cesium.Math.toDegrees(featurePositionCartographic.longitude);
         const latitude = Cesium.Math.toDegrees(featurePositionCartographic.latitude);
-
+    
         return { longitude, latitude }
     }
 
-    handleFeatures(features, jsonData) {
-        if (features != null) {
-
-            let layerToFind = '';
-
-            switch (true) {
-                case features.id.includes('.'):
-                    layerToFind = features.id.split('.')[0];
-                    break;
-
-                case features.id.includes('/'):
-                    layerToFind = features.id.split('/')[0];
-                    break;
-
-                default:
-                    break;
-            }
-
-            const foundLayer = filterLayerByName(jsonData, layerToFind);
-            const foundLayerName = foundLayer.name;
-            const relevantProperties = foundLayer.relevant_properties;
-
-            const properties = getRelevantProperties(features.properties, relevantProperties, foundLayerName);
-            // console.log(properties);
-
-            return properties;
-        }
-    }
-
-    getImageryProvider(url, layer, credit) {
-        return new Cesium.WebMapTileServiceImageryProvider({
-            url: url,
-            layer: layer,
-            style: 'default',
-            format: 'image/jpeg',
-            maximumLevel: 19,
-            tileMatrixSetID: 'default',
-            credit: new Cesium.Credit(credit)
-        });
-    }
-
-    pickEntity(windowPosition) {
-        const pickedEntity = this.viewer.scene.pick(windowPosition);
-        if (!pickedEntity) return;
-        return pickedEntity;
-    }
-
-    async fetchLayerData(wfsUrl, layerName) {
-        const url = `${wfsUrl}?service=WFS&typeName=${layerName}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;
-        return await fetch(url)
+    async fetchLayerData(layer) {
+        const url = `${layer.layer_url_wfs}?service=WFS&typeName=${layer.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;
+        const geoJson = await fetch(url)
             .then(res => res.json())
             .then(geoJson => Cesium.GeoJsonDataSource.load(geoJson))
             .catch(err => err)
+        return geoJson;
     }
 
-    async activateLayer(allCheckboxLists, activeLayers, promises, clusterIcons) {
-        for (const checkboxList of allCheckboxLists) {
-            checkboxList.addEventListener('checkboxListChanged', async (event) => {
-                this.checkLayerToRemove(event, activeLayers);
-    
-                if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
-    
-                const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
-                checkboxListLayersToAdd.forEach(layer => {
-                    activeLayers.push(layer);
-                });
-    
-                await this.viewer.dataSources.removeAll();
-    
-                for (const layer of activeLayers) {
-                    const promise = this.fetchLayerData(layer.layer_url_wfs, layer.layer);
-                    promises.push(promise);
-    
-                    await this.addLayer(promise);
-                    await this.styleEntities(promise, layer.style);
-                }
-                
-                this.clusterAllEntities(promises, clusterIcons);
-    
-                // console.log('Active layers:');
-                // console.log(activeLayers);
-            });
-        }
-    }
-
-    checkLayerToRemove(event, activeLayers) {
-        const checkboxListLayersToRemove = event.detail.input;
-    
-        checkboxListLayersToRemove.forEach(layer => {
-            const layerToRemoveIndex = activeLayers.findIndex(item => item.layer === layer.layer);
-    
-            if (layerToRemoveIndex !== -1) {
-                activeLayers.splice(layerToRemoveIndex, 1);
-            }
-        });
-    }
-
-    addLayer(promise) {
-        promise.then(dataSource => {
-            this.viewer.dataSources.add(dataSource)
-        });
-    }
-
-    styleEntities(promise, style) {
+    async styleEntities(dataSource, style) {
         let fillColor = 'YELLOW';
         let markerColor = 'YELLOW';
         let opacity = 0.5;
@@ -201,98 +181,92 @@ export default class CesiumViewer {
 
         if (style && style.opacity) opacity = style.opacity;
 
-        promise.then(dataSource => {
-            dataSource.entities.values.forEach(entity => {
+        dataSource.entities.values.forEach(entity => {
 
-                switch (true) {
-                    case Cesium.defined(entity.polyline):
-                        entity.polyline.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
-                        entity.polyline.width = 2;
-                        break;
+            switch (true) {
+                case Cesium.defined(entity.polyline):
+                    entity.polyline.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
+                    entity.polyline.width = 2;
+                    break;
 
-                    case Cesium.defined(entity.billboard):
-                        entity.billboard = undefined;
-                        entity.point = new Cesium.PointGraphics({
-                            pixelSize: 18,
-                            color: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
-                            outlineColor: Cesium.Color.WHITE,
-                            outlineWidth: 2
-                        })
-                        break;
+                case Cesium.defined(entity.billboard):
+                    entity.billboard = undefined;
+                    entity.point = new Cesium.PointGraphics({
+                        pixelSize: 18,
+                        color: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
+                        outlineColor: Cesium.Color.WHITE,
+                        outlineWidth: 2
+                    })
+                    break;
 
-                    case Cesium.defined(entity.polygon):
-                        entity.polygon.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
-                        entity.polygon.outlineColor = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
-                        break;
+                case Cesium.defined(entity.polygon):
+                    entity.polygon.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
+                    entity.polygon.outlineColor = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
+                    break;
 
-                    default:
-                        break;
-                }
-            })
+                default:
+                    break;
+            }
         })
     }
 
-    clusterAllEntities(promises, clusterIcons) {
+    async clusterAllEntities(clusterIcons) {
         const color = 'WHITE';
         const combinedDataSource = new Cesium.CustomDataSource();
 
-        const data = Promise.all(promises);
-        data.then(async () => {
-            const dataSources = this.viewer.dataSources;
-            console.log(dataSources);
-            for (let i = 0; i < dataSources.length; i++) {
-                dataSources.get(i).entities.values.forEach(entity => {
-                    combinedDataSource.entities.add(entity);
-                });
-            }
-
-            const combinedDataSourceIndex = dataSources.indexOf(combinedDataSource);
-            for (let i = dataSources.length - 1; i >= 0; i--) {
-                if (i !== combinedDataSourceIndex) dataSources.remove(dataSources.get(i));
-            }
-
-            combinedDataSource.clustering.enabled = true;
-            combinedDataSource.clustering.pixelRange = 25;
-            combinedDataSource.clustering.minimumClusterSize = 2;
-
-            const icon2 = clusterIcons[0];
-            const icon3 = clusterIcons[1];
-            const icon4 = clusterIcons[2];
-
-            combinedDataSource.clustering.clusterEvent.addEventListener(async (clusteredEntities, cluster) => {
-                cluster.label.show = false;
-                cluster.billboard.show = true;
-                cluster.billboard.color = Cesium.Color.fromCssColorString(color);
-                cluster.billboard.scale = 0.38;
-                cluster.billboard.id = cluster.label.id;
-
-                let colors = [];
-                cluster.billboard.id.forEach(entity => {
-                    colors.push(entity.point.color.getValue());
-                    if (colors.length > 4) colors.shift();
-                });
-
-                switch (true) {
-                    case clusteredEntities.length >= 4:
-                        const styledIcon4 = this.styleClusterIcon(icon4, colors);
-                        const url4 = this.createClusterIconUrl(styledIcon4);
-                        cluster.billboard.image = url4;
-                        break;
-                    case clusteredEntities.length == 3:
-                        const styledIcon3 = this.styleClusterIcon(icon3, colors);
-                        const url3 = this.createClusterIconUrl(styledIcon3);
-                        cluster.billboard.image = url3;
-                        break;
-                    case clusteredEntities.length == 2:
-                        const styledIcon2 = this.styleClusterIcon(icon2, colors);
-                        const url2 = this.createClusterIconUrl(styledIcon2);
-                        cluster.billboard.image = url2;
-                        break;
-                    default:
-                        break;
-                }
-
+        const dataSources = this.viewer.dataSources;
+        for (let i = 0; i < dataSources.length; i++) {
+            dataSources.get(i).entities.values.forEach(entity => {
+                combinedDataSource.entities.add(entity);
             });
+        }
+
+        const combinedDataSourceIndex = dataSources.indexOf(combinedDataSource);
+        for (let i = dataSources.length - 1; i >= 0; i--) {
+            if (i !== combinedDataSourceIndex) dataSources.remove(dataSources.get(i));
+        }
+
+        combinedDataSource.clustering.enabled = true;
+        combinedDataSource.clustering.pixelRange = 25;
+        combinedDataSource.clustering.minimumClusterSize = 2;
+
+        const icon2 = clusterIcons[0];
+        const icon3 = clusterIcons[1];
+        const icon4 = clusterIcons[2];
+
+        combinedDataSource.clustering.clusterEvent.addEventListener(async (clusteredEntities, cluster) => {
+            cluster.label.show = false;
+            cluster.billboard.show = true;
+            cluster.billboard.color = Cesium.Color.fromCssColorString(color);
+            cluster.billboard.scale = 0.38;
+            cluster.billboard.id = cluster.label.id;
+
+            let colors = [];
+            cluster.billboard.id.forEach(entity => {
+                colors.push(entity.point.color.getValue());
+                if (colors.length > 4) colors.shift();
+            });
+
+            switch (true) {
+                case clusteredEntities.length >= 4:
+                    const styledIcon4 = this.styleClusterIcon(icon4, colors);
+                    const url4 = this.createClusterIconUrl(styledIcon4);
+                    cluster.billboard.image = url4;
+                    break;
+                case clusteredEntities.length == 3:
+                    const styledIcon3 = this.styleClusterIcon(icon3, colors);
+                    const url3 = this.createClusterIconUrl(styledIcon3);
+                    cluster.billboard.image = url3;
+                    break;
+                case clusteredEntities.length == 2:
+                    const styledIcon2 = this.styleClusterIcon(icon2, colors);
+                    const url2 = this.createClusterIconUrl(styledIcon2);
+                    cluster.billboard.image = url2;
+                    break;
+                default:
+                    break;
+            }
+
         });
 
         this.viewer.dataSources.add(combinedDataSource);
@@ -300,7 +274,7 @@ export default class CesiumViewer {
 
     styleClusterIcon(svgDoc, colors) {
         let rgbColors = [];
-
+    
         colors.forEach(color => {
             let red = Math.floor(color.red * 255);
             let green = Math.floor(color.green * 255);
@@ -308,10 +282,10 @@ export default class CesiumViewer {
             let obj = { red, green, blue };
             rgbColors.push(obj);
         });
-
+    
         let colorIndex = 0;
         const circles = svgDoc.querySelectorAll('circle');
-
+    
         if (circles.length == 4) {
             circles.forEach(circle => circle.setAttribute('fill', '#1E233A'));
         } else {
@@ -320,7 +294,7 @@ export default class CesiumViewer {
                 colorIndex++;
             }
         }
-
+    
         return svgDoc;
     }
 
@@ -329,7 +303,7 @@ export default class CesiumViewer {
         let svgString = serializer.serializeToString(svgDoc);
         let blob = new Blob([svgString], { type: 'image/svg+xml' });
         let url = URL.createObjectURL(blob);
-
+    
         return url;
     }
 
@@ -413,44 +387,44 @@ export default class CesiumViewer {
 
     async fetchEntitiesData(obj) {
         const url = `${obj.url}?service=WFS&typeName=${obj.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
-    
+
         try {
             const response = await fetch(url);
             const data = await response.json();
             return data;
-    
+
         } catch (error) {
             console.error('Errore durante la richiesta fetch:', error);
             throw error;
         }
     }
-    
+
     calculateDistance(initialPosition, feature) {
         const endingPosition = this.findFeatureCoordinates(feature);
-    
+
         const start = Cesium.Cartographic.fromDegrees(initialPosition[0], initialPosition[1]);
         const end = Cesium.Cartographic.fromDegrees(endingPosition[0], endingPosition[1]);
         const ellipsoidGeodesic = new Cesium.EllipsoidGeodesic(start, end);
         const distance = ellipsoidGeodesic.surfaceDistance;
         return distance;
     }
-    
+
     findFeatureCoordinates(feature) {
         let endingPosition = [];
         if (Array.isArray(feature.geometry.coordinates)) {
             let coordinates = feature.geometry.coordinates;
-    
+
             if (coordinates.length == 1) {
                 coordinates[0].forEach(item => endingPosition.push(item));
             } else {
                 coordinates.splice(2);
                 coordinates.forEach(item => endingPosition.push(item));
             }
-    
+
         } else {
             endingPosition = [feature.geometry.coordinates];
         }
-    
+
         return endingPosition;
     }
 
@@ -517,6 +491,11 @@ export default class CesiumViewer {
         })
     }
 
+    async addBuilding() {
+        const buildingTileset = await Cesium.createOsmBuildingsAsync();
+        this.viewer.scene.primitives.add(buildingTileset);
+    }
+
     zoom(btn) {
         switch (btn.getAttribute('zoom-type')) {
             case "in":
@@ -524,20 +503,15 @@ export default class CesiumViewer {
                     this.viewer.camera.zoomIn(500.0);
                 });
                 break;
-
+    
             case "out":
                 btn.addEventListener('click', () => {
                     this.viewer.camera.zoomOut(500.0);
                 });
                 break;
-
+    
             default:
                 break;
         }
-    }
-
-    async addBuilding() {
-        const buildingTileset = await Cesium.createOsmBuildingsAsync();
-        this.viewer.scene.primitives.add(buildingTileset);
     }
 }

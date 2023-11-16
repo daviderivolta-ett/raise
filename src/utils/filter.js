@@ -60,37 +60,12 @@ export const filterTag = (data, value) => {
     return uniqueFoundTags;
 }
 
-export function filterLayerByName(obj, layerToFind) {
-    for (const key in obj) {
-        const currentValue = obj[key];
+export function checkLayerToRemove(allLayers, activeLayers) {
+    allLayers.forEach(layer => {
+        const layerToRemoveIndex = activeLayers.findIndex(item => item.layer === layer.layer);
 
-        if (Array.isArray(currentValue) || typeof currentValue === 'object') {
-            const result = filterLayerByName(currentValue, layerToFind);
-            if (result) {
-                return result;
-            }
-
-        } else if (typeof currentValue === 'string' && currentValue.includes(layerToFind)) {
-            return obj;
+        if (layerToRemoveIndex !== -1) {
+            activeLayers.splice(layerToRemoveIndex, 1);
         }
-    }
-
-    return null;
-}
-
-export async function getRelevantProperties(object, array, title) {
-    const risultati = {};
-
-    if (array) {
-        for (const obj of array) {
-            if (obj.property_name && object[obj.property_name]) {
-                risultati[obj.display_name] = object[obj.property_name]._value;
-            }
-        }
-
-        risultati["Title"] = title;
-        return risultati;
-    }
-
-    return risultati;
+    });
 }
