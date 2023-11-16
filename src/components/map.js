@@ -1,5 +1,7 @@
 import * as Cesium from 'cesium';
-import "cesium/Build/Cesium/Widgets/widgets.css";
+import 'cesium/Build/Cesium/Widgets/widgets.css';
+import { filterLayerByName } from '/src/utils/filter.js';
+import { getRelevantProperties } from '/src/utils/filter.js';
 
 export default class CesiumViewer {
 
@@ -21,36 +23,107 @@ export default class CesiumViewer {
             infoBox: false,
             // terrain: Cesium.Terrain.fromWorldTerrain()
         });
-
-        // this.viewer.screenSpaceEventHandler.setInputAction(function (movement) {
-        //     const pickedEntity = this.pickEntity(movement.position);
-        //     const event = new CustomEvent('mapClick', { detail: pickedEntity });
-        //     window.dispatchEvent(event);
-        // }.bind(this), Cesium.ScreenSpaceEventType.LEFT_CLICK);
     }
 
-    loadTileFromTheme(theme) {
-        const mapStyle = new Cesium.WebMapTileServiceImageryProvider({
-            url: theme.url,
-            layer: theme.layer,
-            style: 'default',
-            format: 'image/jpeg',
-            maximumLevel: 19,
-            tileMatrixSetID: 'default',
-            credit: new Cesium.Credit(theme.credit)
-        })
-        this.viewer.imageryLayers.addImageryProvider(mapStyle);
+    async onClick(movement, jsonData, div, drawerToggle, infoboxCounter, isNavigation) {
+        drawerToggle.setAttribute('is-open', 'false');
+        const windowPosition = movement.position;
+        const pickedEntity = this.viewer.scene.pick(windowPosition);
+        if (!pickedEntity) return;
+        if (pickedEntity == null) return;
+        const features = pickedEntity.id;
+        if (Array.isArray(pickedEntity.id)) this.viewer.zoomTo(features);
+        if (typeof features === 'object' && !Array.isArray(features)) {
+            if (isNavigation == false) {
+                const infoContent = await this.handleFeatures(features, jsonData);
+                let allInfoBoxes = document.querySelectorAll('app-infobox');
+
+                if (infoContent) {
+                    if (Object.keys(infoContent).length !== 0) {
+                        this.createInfobox(infoboxCounter, allInfoBoxes, infoContent, div);
+                    }
+                }
+
+            } else {
+                this.startNavigation(windowPosition);
+            }
+        }
     }
 
-    static getImageryProvider() {
+    createInfobox(infoboxCounter, allElements, info, div) {
+        let isElementPresent = false;
+
+        allElements.forEach(element => {
+            if (element.getAttribute('data') === JSON.stringify(info)) {
+                isElementPresent = true;
+            }
+        });
+
+        if (!isElementPresent && info) {
+            const element = document.createElement('app-infobox');
+
+            element.setAttribute('data', JSON.stringify(info));
+            infoboxCounter++;
+            element.setAttribute('uuid', infoboxCounter);
+            div.append(element);
+        }
+    }
+
+    startNavigation(windowPosition) {
+        const destination = this.convertCoordinates(windowPosition);
+        const url = `https://www.google.com/maps/dir/?api=1` +
+            `&destination=${destination.latitude},${destination.longitude}`;
+        window.open(url, '_blank');
+    }
+
+    convertCoordinates(windowPosition) {
+        const featurePositionCartesian3 = this.viewer.scene.pickPosition(windowPosition);
+        const featurePositionCartographic = Cesium.Cartographic.fromCartesian(featurePositionCartesian3);
+
+        const longitude = Cesium.Math.toDegrees(featurePositionCartographic.longitude);
+        const latitude = Cesium.Math.toDegrees(featurePositionCartographic.latitude);
+
+        return { longitude, latitude }
+    }
+
+    handleFeatures(features, jsonData) {
+        if (features != null) {
+
+            let layerToFind = '';
+
+            switch (true) {
+                case features.id.includes('.'):
+                    layerToFind = features.id.split('.')[0];
+                    break;
+
+                case features.id.includes('/'):
+                    layerToFind = features.id.split('/')[0];
+                    break;
+
+                default:
+                    break;
+            }
+
+            const foundLayer = filterLayerByName(jsonData, layerToFind);
+            const foundLayerName = foundLayer.name;
+            const relevantProperties = foundLayer.relevant_properties;
+
+            const properties = getRelevantProperties(features.properties, relevantProperties, foundLayerName);
+            // console.log(properties);
+
+            return properties;
+        }
+    }
+
+    getImageryProvider(url, layer, credit) {
         return new Cesium.WebMapTileServiceImageryProvider({
-            url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{TileMatrix}/{TileCol}/{TileRow}.png',
-            layer: 'carto-light',
+            url: url,
+            layer: layer,
             style: 'default',
             format: 'image/jpeg',
             maximumLevel: 19,
             tileMatrixSetID: 'default',
-            credit: new Cesium.Credit('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>')
+            credit: new Cesium.Credit(credit)
         });
     }
 
@@ -66,6 +139,48 @@ export default class CesiumViewer {
             .then(res => res.json())
             .then(geoJson => Cesium.GeoJsonDataSource.load(geoJson))
             .catch(err => err)
+    }
+
+    async activateLayer(allCheckboxLists, activeLayers, promises, clusterIcons) {
+        for (const checkboxList of allCheckboxLists) {
+            checkboxList.addEventListener('checkboxListChanged', async (event) => {
+                this.checkLayerToRemove(event, activeLayers);
+    
+                if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
+    
+                const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
+                checkboxListLayersToAdd.forEach(layer => {
+                    activeLayers.push(layer);
+                });
+    
+                await this.viewer.dataSources.removeAll();
+    
+                for (const layer of activeLayers) {
+                    const promise = this.fetchLayerData(layer.layer_url_wfs, layer.layer);
+                    promises.push(promise);
+    
+                    await this.addLayer(promise);
+                    await this.styleEntities(promise, layer.style);
+                }
+                
+                this.clusterAllEntities(promises, clusterIcons);
+    
+                // console.log('Active layers:');
+                // console.log(activeLayers);
+            });
+        }
+    }
+
+    checkLayerToRemove(event, activeLayers) {
+        const checkboxListLayersToRemove = event.detail.input;
+    
+        checkboxListLayersToRemove.forEach(layer => {
+            const layerToRemoveIndex = activeLayers.findIndex(item => item.layer === layer.layer);
+    
+            if (layerToRemoveIndex !== -1) {
+                activeLayers.splice(layerToRemoveIndex, 1);
+            }
+        });
     }
 
     addLayer(promise) {
@@ -116,35 +231,6 @@ export default class CesiumViewer {
             })
         })
     }
-
-    // clusterEntities(promise, color) {
-    //     promise.then(dataSource => {
-    //         dataSource.clustering.enabled = true;
-    //         dataSource.clustering.pixelRange = 25;
-    //         dataSource.clustering.minimumClusterSize = 2;
-
-    //         dataSource.clustering.clusterEvent.addEventListener((clusteredEntities, cluster) => {
-    //             cluster.label.show = false;
-    //             cluster.billboard.show = true;
-    //             cluster.billboard.color = Cesium.Color.fromCssColorString(color);
-    //             cluster.billboard.scale = 0.38;
-
-    //             switch (true) {
-    //                 case clusteredEntities.length >= 4:
-    //                     cluster.billboard.image = '/images/cluster/cluster-4.svg';
-    //                     break;
-    //                 case clusteredEntities.length == 3:
-    //                     cluster.billboard.image = '/images/cluster/cluster-3.svg';
-    //                     break;
-    //                 case clusteredEntities.length == 2:
-    //                     cluster.billboard.image = '/images/cluster/cluster-2.svg';
-    //                     break;
-    //                 default:
-    //                     break;
-    //             }
-    //         })
-    //     })
-    // }
 
     clusterAllEntities(promises, clusterIcons) {
         const color = 'WHITE';
@@ -285,22 +371,87 @@ export default class CesiumViewer {
         }
     }
 
-    createRoute(startingCoordinates, endingCoordinates, pathIndex) {
-        const coordinates = [];
-        startingCoordinates.forEach(item => coordinates.push(item));
-        endingCoordinates.forEach(item => coordinates.push(item));
+    async createRoute(position, navigationData) {
+        const entities = this.viewer.entities;
+        this.removeAllEntities(entities);
 
-        const color = '#4A89F3';
+        if (navigationData == null) return;
+        const data = await this.fetchEntitiesData(navigationData);
+        const features = data.features;
 
-        this.viewer.entities.add({
-            name: `path-${pathIndex}`,
-            polyline: {
-                positions: Cesium.Cartesian3.fromDegreesArray(coordinates),
-                width: 5,
-                material: Cesium.Color.fromCssColorString(color),
-                clampToGround: true,
-            },
-        });
+        let startingPosition = [position.coords.longitude, position.coords.latitude];
+        let pathIndex = 1;
+        while (features.length != 0) {
+
+            let shortestDistance = Infinity;
+            let shortestDistanceIndex = -1;
+            for (let i = 0; i < features.length; i++) {
+                let feature = features[i];
+                const distance = this.calculateDistance(startingPosition, feature);
+
+                if (distance < shortestDistance) {
+                    shortestDistance = distance;
+                    shortestDistanceIndex = i;
+                }
+            }
+
+            const endingPosition = this.findFeatureCoordinates(features[shortestDistanceIndex]);
+
+            // viewer.createRoute(startingPosition, endingPosition, pathIndex);
+            this.createPointsOrderLabels(endingPosition, pathIndex);
+
+            if (shortestDistanceIndex !== -1) {
+                features.splice(shortestDistanceIndex, 1);
+            }
+
+            pathIndex++;
+            startingPosition = endingPosition;
+        }
+
+        this.viewer.zoomTo(entities);
+    }
+
+    async fetchEntitiesData(obj) {
+        const url = `${obj.url}?service=WFS&typeName=${obj.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
+    
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data;
+    
+        } catch (error) {
+            console.error('Errore durante la richiesta fetch:', error);
+            throw error;
+        }
+    }
+    
+    calculateDistance(initialPosition, feature) {
+        const endingPosition = this.findFeatureCoordinates(feature);
+    
+        const start = Cesium.Cartographic.fromDegrees(initialPosition[0], initialPosition[1]);
+        const end = Cesium.Cartographic.fromDegrees(endingPosition[0], endingPosition[1]);
+        const ellipsoidGeodesic = new Cesium.EllipsoidGeodesic(start, end);
+        const distance = ellipsoidGeodesic.surfaceDistance;
+        return distance;
+    }
+    
+    findFeatureCoordinates(feature) {
+        let endingPosition = [];
+        if (Array.isArray(feature.geometry.coordinates)) {
+            let coordinates = feature.geometry.coordinates;
+    
+            if (coordinates.length == 1) {
+                coordinates[0].forEach(item => endingPosition.push(item));
+            } else {
+                coordinates.splice(2);
+                coordinates.forEach(item => endingPosition.push(item));
+            }
+    
+        } else {
+            endingPosition = [feature.geometry.coordinates];
+        }
+    
+        return endingPosition;
     }
 
     createPointsOrderLabels(coordinates, pathIndex) {
@@ -364,6 +515,25 @@ export default class CesiumViewer {
                 material: Cesium.Color.GREEN.withAlpha(1)
             },
         })
+    }
+
+    zoom(btn) {
+        switch (btn.getAttribute('zoom-type')) {
+            case "in":
+                btn.addEventListener('click', () => {
+                    this.viewer.camera.zoomIn(500.0);
+                });
+                break;
+
+            case "out":
+                btn.addEventListener('click', () => {
+                    this.viewer.camera.zoomOut(500.0);
+                });
+                break;
+
+            default:
+                break;
+        }
     }
 
     async addBuilding() {
