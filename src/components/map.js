@@ -215,6 +215,7 @@ export default class CesiumViewer {
         const combinedDataSource = new Cesium.CustomDataSource();
 
         const dataSources = this.viewer.dataSources;
+
         for (let i = 0; i < dataSources.length; i++) {
             dataSources.get(i).entities.values.forEach(entity => {
                 combinedDataSource.entities.add(entity);
@@ -329,6 +330,13 @@ export default class CesiumViewer {
     getActiveLayers() {
         const imageryLayers = this.viewer.imageryLayers._layers;
         return imageryLayers;
+    }
+
+    async removeDataSources(dataSources) {
+        for (let i = 0; i < dataSources.length; i++) {
+            const dataSource = this.viewer.dataSources.get(i);
+            this.viewer.dataSources.remove(dataSource);
+        }
     }
 
     removeAllEntities(entities) {

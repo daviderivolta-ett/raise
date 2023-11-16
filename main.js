@@ -120,7 +120,8 @@ for (const checkboxList of allCheckboxLists) {
       activeLayers.push(layer);
     });
 
-    map.viewer.dataSources.removeAll();
+    await map.removeDataSources(map.viewer.dataSources);
+    // map.viewer.dataSources.removeAll();
 
     await Promise.all(activeLayers.map(async (layer) => {
       const source = await map.fetchLayerData(layer);
@@ -130,8 +131,10 @@ for (const checkboxList of allCheckboxLists) {
 
     await map.clusterAllEntities(clusterIcons);
 
-    // console.log('Active layers:');
-    // console.log(activeLayers);
+    console.log('Active layers:');
+    console.log(activeLayers);
+    // console.log(map.viewer.dataSources._dataSources[0].entities.values);
+    // console.log(map.viewer.dataSources._dataSources);
   });
 }
 
