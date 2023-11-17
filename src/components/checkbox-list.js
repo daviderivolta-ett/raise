@@ -25,7 +25,6 @@ export class CheckboxList extends HTMLElement {
         style.setAttribute('href', './css/checkbox-list.css');
         this.shadow.append(style);
 
-
         if (!this.hasAttribute('input')) return;
 
         // html

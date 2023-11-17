@@ -23,6 +23,23 @@ export default class CesiumViewer {
         });
     }
 
+    changeTheme (theme) {
+        const themeLayerToRemove = this.viewer.imageryLayers._layers[1];
+        this.viewer.imageryLayers.remove(themeLayerToRemove);
+    
+        if (theme != '') {
+            theme = JSON.parse(theme);
+            const style = this.getImageryProvider(theme.url, theme.layer, theme. credit);
+            this.viewer.imageryLayers.addImageryProvider(style);
+        }
+    }
+    
+    async fetchThemes(themesUrl) {
+        const themesJson = await fetch(themesUrl)
+            .then(res => res.json());    
+        return themesJson;
+    }
+
     getImageryProvider(url, layer, credit) {
         return new Cesium.WebMapTileServiceImageryProvider({
             url: url,

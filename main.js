@@ -7,7 +7,6 @@ import { getPosition } from './src/utils/position.js';
 import { populateDrawer, accordionBehaviour, autocloseDrawer } from './src/controller/drawer.js';
 import { filterLayersBySelectedTags, filterTag, filterLayersByTagName } from './src/utils/filter.js';
 import { fetchJsonData, fetchSvgIcon } from './src/settings.js';
-import { changeTheme, fetchThemes } from './src/controller/theme.js';
 
 // Import data
 const CATEGORIES_URL = './json/categories.json';
@@ -18,6 +17,7 @@ import './service-worker.js';
 
 // Import web components
 import './src/components/map.js';
+import './src/components/drawer.js';
 import './src/components/checkbox.js';
 import './src/components/checkbox-list.js';
 import './src/components/infobox.js';
@@ -43,32 +43,37 @@ const position = await getPosition();
 map.setCamera();
 map.createUserPin(position);
 
-// Zoom buttons
-const zoomBtns = document.querySelectorAll('app-zoom-btn');
-zoomBtns.forEach(btn => map.zoom(btn));
-
-// Theme button
-const changeThemeBtn = document.querySelector('app-theme-icon');
-const themes = await fetchThemes(THEMES_URL);
-changeThemeBtn.setAttribute('themes', JSON.stringify(themes));
-changeThemeBtn.addEventListener('themeChanged', (event) => {
-  const theme = event.detail.newValue;
-  changeTheme(map, theme);
-});
-
 // Accordions creation
 const drawerContent = document.querySelector('#categories-section');
 let jsonData = await fetchJsonData(CATEGORIES_URL);
 
+////
+const test = document.querySelector('app-drawer');
+test.setAttribute('data', JSON.stringify(jsonData));
+////
+
 if (localStorage.length != 0) {
   let dataToFilter = JSON.parse(JSON.stringify(jsonData));
-  let selectedTags = JSON.parse(localStorage.selectedTags)
+  let selectedTags = JSON.parse(localStorage.selectedTags);
   filterLayersBySelectedTags(dataToFilter, selectedTags);
   populateDrawer(dataToFilter, drawerContent);
   jsonData = dataToFilter;
 } else {
   populateDrawer(jsonData, drawerContent);
 }
+
+// Zoom buttons
+const zoomBtns = document.querySelectorAll('app-zoom-btn');
+zoomBtns.forEach(btn => map.zoom(btn));
+
+// Theme button
+const changeThemeBtn = document.querySelector('app-theme-icon');
+const themes = await map.fetchThemes(THEMES_URL);
+changeThemeBtn.setAttribute('themes', JSON.stringify(themes));
+changeThemeBtn.addEventListener('themeChanged', (event) => {
+  const theme = event.detail.newValue;
+  map.changeTheme(theme);
+});
 
 // DOM nodes
 const main = document.querySelector('main');

@@ -50,9 +50,7 @@ export class ZoomBtn extends HTMLElement {
     }
 
     static observedAttributes = [];
-    attributeChangedCallback() {
-
-    }
+    attributeChangedCallback() {}
 }
 
 customElements.define('app-zoom-btn', ZoomBtn);
