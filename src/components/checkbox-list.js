@@ -46,7 +46,7 @@ export class CheckboxList extends HTMLElement {
         // js
         this.checkboxes.forEach(item => {
 
-            item.addEventListener('checkboxChanged', (event) => {
+            item.addEventListener('checkboxClicked', () => {
                 this.itemData = JSON.parse(item.getAttribute('data'));
 
                 const isPresentIndex = this.data.findIndex(obj => {
@@ -81,7 +81,7 @@ export class CheckboxList extends HTMLElement {
             });
 
             item.addEventListener('routeTriggered', (event) => {
-                    this.setAttribute('navigation-data', JSON.stringify(event.detail));
+                this.setAttribute('navigation-data', JSON.stringify(event.detail));
             })
 
             item.addEventListener('detailStatusChanged', (event) => {
@@ -102,14 +102,19 @@ export class CheckboxList extends HTMLElement {
 
         if (name == 'data' && newValue != oldValue) {
             const event = new CustomEvent('checkboxListChanged', {
-                detail: {
-                    name: 'data',
-                    oldValue: oldValue,
-                    newValue: newValue,
-                    input: this.input
-                }
+                detail: { name, oldValue, newValue, input: this.input }
+            });
+            this.dispatchEvent(event);
+        }
+
+        if (name == 'all-active' && oldValue != null && newValue != null && newValue != oldValue) {
+            this.checkboxes.forEach(item => {
+                item.setAttribute('is-checked', this.getAttribute('all-active'));
             });
 
+            const event = new CustomEvent('allCheckboxesActivated', {
+                detail: { name, oldValue, newValue, input: this.input }
+            });
             this.dispatchEvent(event);
         }
 
@@ -119,12 +124,6 @@ export class CheckboxList extends HTMLElement {
             });
 
             this.dispatchEvent(event);
-        }
-
-        if (name == 'all-active' && oldValue != null && newValue != null && newValue != oldValue) {
-            this.checkboxes.forEach(item => {
-                item.setAttribute('is-checked', this.getAttribute('all-active'));
-            })
         }
     }
 }

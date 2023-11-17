@@ -23,11 +23,11 @@ export class Checkbox extends HTMLElement {
         this.checkbox = this.shadow.querySelector('input');
 
         // checkbox
-        if (this.hasAttribute('is-checked') && this.getAttribute('is-checked') == 'true') {
-            this.setAttribute('is-checked', this.getAttribute('is-checked'));
+        if (this.hasAttribute('is-clicked') && this.getAttribute('is-clicked') == 'true') {
+            this.setAttribute('is-clicked', this.getAttribute('is-clicked'));
             this.checkbox.checked = true;
         } else {
-            this.setAttribute('is-checked', 'false');
+            this.setAttribute('is-clicked', 'false');
             this.checkbox.checked = false;
         }
 
@@ -92,9 +92,9 @@ export class Checkbox extends HTMLElement {
         }
 
         // js
-        this.checkbox.addEventListener('change', (event) => {
+        this.checkbox.addEventListener('click', (event) => {
             const isChecked = event.target.checked;
-            this.setAttribute('is-checked', isChecked + '');
+            this.setAttribute('is-clicked', isChecked + '');
         });
 
         if (this.details) {
@@ -114,27 +114,30 @@ export class Checkbox extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-checked', 'data', 'is-details-open', 'is-route-active'];
+    static observedAttributes = ['is-clicked', 'is-checked', 'data', 'is-details-open', 'is-route-active'];
     attributeChangedCallback(name, oldValue, newValue) {
-
         if (name == 'is-checked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
+            newValue == 'true' ? this.checkbox.checked = true : this.checkbox.checked = false;
+        }
+
+        if (name == 'is-clicked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
             if (newValue == 'true') {
                 this.checkbox.checked = true;
             } else {
                 this.checkbox.checked = false;
             }
 
-            const event = new CustomEvent('checkboxChanged', {
+            const event = new CustomEvent('checkboxClicked', {
                 detail: { name, oldValue, newValue }
             });
+
+            this.dispatchEvent(event);
 
             this.toolOpacity = this.shadow.querySelector('app-opacity-slider');
             this.toolOpacity ? this.toolOpacity.setAttribute('is-enable', newValue) : '';
 
             this.toolRoute = this.shadow.querySelector('app-navigation-btn');
             this.toolRoute ? this.toolRoute.setAttribute('is-enable', newValue) : '';
-
-            this.dispatchEvent(event);
         }
 
         if (name == 'data' && newValue !== oldValue) {
@@ -158,17 +161,6 @@ export class Checkbox extends HTMLElement {
                 this.details.removeAttribute('open');
             }
         }
-
-        // if (name == 'is-route-active' && newValue != oldValue) {
-        //     const layer = JSON.parse(this.getAttribute('data')).layer;
-        //     const url = JSON.parse(this.getAttribute('data')).layer_url_wfs;
-            
-        //     const event = new CustomEvent('routeTriggered', {
-        //         detail: { name, oldValue, newValue, layer: layer, url: url }
-        //     });
-
-        //     this.dispatchEvent(event);
-        // }
     }
 }
 

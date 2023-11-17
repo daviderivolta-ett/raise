@@ -5,7 +5,7 @@ import * as Cesium from 'cesium';
 // Import methods
 import { getPosition } from './src/utils/position.js';
 import { populateDrawer, accordionBehaviour, autocloseDrawer } from './src/controller/drawer.js';
-import { filterLayersBySelectedTags, filterTag, filterLayersByTagName, checkLayerToRemove } from './src/utils/filter.js';
+import { filterLayersBySelectedTags, filterTag, filterLayersByTagName } from './src/utils/filter.js';
 import { fetchJsonData, fetchSvgIcon } from './src/settings.js';
 import { changeTheme, fetchThemes } from './src/controller/theme.js';
 
@@ -108,35 +108,18 @@ autocloseDrawer(drawer, drawerToggle);
 
 // Checkbox list behaviour
 const activeLayers = [];
-for (const checkboxList of allCheckboxLists) {
-  checkboxList.addEventListener('checkboxListChanged', async (event) => {
-    const checkboxListLayers = event.detail.input;
-    checkLayerToRemove(checkboxListLayers, activeLayers);
 
-    if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
-
-    const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
-    checkboxListLayersToAdd.forEach(layer => {
-      activeLayers.push(layer);
-    });
-
-    await map.removeDataSources(map.viewer.dataSources);
-    // map.viewer.dataSources.removeAll();
-
-    await Promise.all(activeLayers.map(async (layer) => {
-      const source = await map.fetchLayerData(layer);
-      await map.viewer.dataSources.add(source);
-      await map.styleEntities(source, layer.style);
-    }));
-
-    await map.clusterAllEntities(clusterIcons);
-
-    console.log('Active layers:');
-    console.log(activeLayers);
-    // console.log(map.viewer.dataSources._dataSources[0].entities.values);
-    // console.log(map.viewer.dataSources._dataSources);
+allCheckboxLists.forEach(checkboxList => {
+  checkboxList.addEventListener('checkboxListChanged', async function (event) {
+    await map.handleCheckbox(event, activeLayers, checkboxList, clusterIcons);
   });
-}
+});
+
+allCheckboxLists.forEach(checkboxList => {
+  checkboxList.addEventListener('allCheckboxesActivated', async (event) => {
+    await map.handleCheckbox(event, activeLayers, checkboxList, clusterIcons);
+  });
+});
 
 // Accordion behaviour
 accordionBehaviour(allCategoryAccordions, allLayerAccordions);
@@ -189,32 +172,11 @@ searchBar.addEventListener('searchValueChanged', (event) => {
   }
 
   const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
-  for (const checkboxList of allCheckboxLists) {
-    checkboxList.addEventListener('checkboxListChanged', async (event) => {
-      const checkboxListLayers = event.detail.input;
-      checkLayerToRemove(checkboxListLayers, activeLayers);
-
-      if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
-
-      const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
-      checkboxListLayersToAdd.forEach(layer => {
-        activeLayers.push(layer);
-      });
-
-      map.viewer.dataSources.removeAll();
-
-      await Promise.all(activeLayers.map(async (layer) => {
-        const source = await map.fetchLayerData(layer);
-        await map.viewer.dataSources.add(source);
-        await map.styleEntities(source, layer.style);
-      }));
-
-      await map.clusterAllEntities(clusterIcons);
-
-      // console.log('Active layers:');
-      // console.log(activeLayers);
+  allCheckboxLists.forEach(checkboxList => {
+    checkboxList.addEventListener('checkboxListChanged', async function (event) {
+      await handleCheckbox(event, checkboxList);
     });
-  }
+  });
 
   const allCategoryAccordions = document.querySelectorAll('.category-accordion');
   const allLayerAccordions = document.querySelectorAll('.layer-accordion');

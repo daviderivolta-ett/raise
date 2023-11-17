@@ -62,45 +62,45 @@ export default class CesiumViewer {
 
     async handleFeatures(features, jsonData) {
         if (features != null) {
-    
+
             let layerToFind = '';
-    
+
             switch (true) {
                 case features.id.includes('.'):
                     layerToFind = features.id.split('.')[0];
                     break;
-    
+
                 case features.id.includes('/'):
                     layerToFind = features.id.split('/')[0];
                     break;
-    
+
                 default:
                     break;
             }
-    
+
             const foundLayer = this.filterLayerByName(jsonData, layerToFind);
             const foundLayerName = foundLayer.name;
             const relevantProperties = foundLayer.relevant_properties;
-    
+
             const properties = this.getRelevantProperties(features.properties, relevantProperties, foundLayerName);
             // console.log(properties);
-    
+
             return properties;
         }
     }
 
     createInfobox(counter, elements, info, div) {
         let isElementPresent = false;
-    
+
         elements.forEach(element => {
             if (element.getAttribute('data') === JSON.stringify(info)) {
                 isElementPresent = true;
             }
         });
-    
+
         if (!isElementPresent && info) {
             const element = document.createElement('app-infobox');
-    
+
             element.setAttribute('data', JSON.stringify(info));
             counter++;
             element.setAttribute('uuid', counter);
@@ -111,35 +111,35 @@ export default class CesiumViewer {
     filterLayerByName(obj, layerToFind) {
         for (const key in obj) {
             const currentValue = obj[key];
-    
+
             if (Array.isArray(currentValue) || typeof currentValue === 'object') {
                 const result = this.filterLayerByName(currentValue, layerToFind);
                 if (result) {
                     return result;
                 }
-    
+
             } else if (typeof currentValue === 'string' && currentValue.includes(layerToFind)) {
                 return obj;
             }
         }
-    
+
         return null;
     }
 
     getRelevantProperties(object, array, title) {
         const risultati = {};
-    
+
         if (array) {
             for (const obj of array) {
                 if (obj.property_name && object[obj.property_name]) {
                     risultati[obj.display_name] = object[obj.property_name]._value;
                 }
             }
-    
+
             risultati["Title"] = title;
             return risultati;
         }
-    
+
         return risultati;
     }
 
@@ -153,20 +153,61 @@ export default class CesiumViewer {
     convertCoordinates(windowPosition) {
         const featurePositionCartesian3 = this.viewer.scene.pickPosition(windowPosition);
         const featurePositionCartographic = Cesium.Cartographic.fromCartesian(featurePositionCartesian3);
-    
+
         const longitude = Cesium.Math.toDegrees(featurePositionCartographic.longitude);
         const latitude = Cesium.Math.toDegrees(featurePositionCartographic.latitude);
-    
+
         return { longitude, latitude }
     }
 
+    async handleCheckbox(event, activeLayers, checkboxList, clusterIcons) {
+        const checkboxListLayers = event.detail.input;
+        this.checkLayerToRemove(checkboxListLayers, activeLayers);
+
+        if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
+
+        let checkboxListLayersToAdd;
+        if (event.detail.newValue == 'true' || event.detail.newValue == 'false') {
+            checkboxListLayersToAdd = checkboxListLayers;
+        } else {
+            checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
+        }
+        checkboxListLayersToAdd.forEach(layer => {
+            activeLayers.push(layer);
+        });
+
+        const requests = activeLayers.map(layer => this.fetchLayerData(layer).then(data => ({ layer, data })));
+
+        await Promise.all(requests).then(sources => {
+            this.viewer.dataSources.removeAll();
+            sources.forEach(source => {
+                this.viewer.dataSources.add(source.data);
+                this.styleEntities(source.data, source.layer.style);
+            });
+        });
+        this.clusterAllEntities(clusterIcons);
+    }
+
+    checkLayerToRemove(allLayers, activeLayers) {
+        allLayers.forEach(layer => {
+            const layerToRemoveIndex = activeLayers.findIndex(item => item.layer === layer.layer);
+
+            if (layerToRemoveIndex !== -1) {
+                activeLayers.splice(layerToRemoveIndex, 1);
+            }
+        });
+    }
+
+
     async fetchLayerData(layer) {
         const url = `${layer.layer_url_wfs}?service=WFS&typeName=${layer.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;
-        const geoJson = await fetch(url)
+        return fetch(url)
             .then(res => res.json())
             .then(geoJson => Cesium.GeoJsonDataSource.load(geoJson))
-            .catch(err => err)
-        return geoJson;
+            .catch(err => {
+                console.error(err);
+                throw err;
+            });
     }
 
     async styleEntities(dataSource, style) {
@@ -275,7 +316,7 @@ export default class CesiumViewer {
 
     styleClusterIcon(svgDoc, colors) {
         let rgbColors = [];
-    
+
         colors.forEach(color => {
             let red = Math.floor(color.red * 255);
             let green = Math.floor(color.green * 255);
@@ -283,10 +324,10 @@ export default class CesiumViewer {
             let obj = { red, green, blue };
             rgbColors.push(obj);
         });
-    
+
         let colorIndex = 0;
         const circles = svgDoc.querySelectorAll('circle');
-    
+
         if (circles.length == 4) {
             circles.forEach(circle => circle.setAttribute('fill', '#1E233A'));
         } else {
@@ -295,7 +336,7 @@ export default class CesiumViewer {
                 colorIndex++;
             }
         }
-    
+
         return svgDoc;
     }
 
@@ -304,7 +345,7 @@ export default class CesiumViewer {
         let svgString = serializer.serializeToString(svgDoc);
         let blob = new Blob([svgString], { type: 'image/svg+xml' });
         let url = URL.createObjectURL(blob);
-    
+
         return url;
     }
 
@@ -330,13 +371,6 @@ export default class CesiumViewer {
     getActiveLayers() {
         const imageryLayers = this.viewer.imageryLayers._layers;
         return imageryLayers;
-    }
-
-    async removeDataSources(dataSources) {
-        for (let i = 0; i < dataSources.length; i++) {
-            const dataSource = this.viewer.dataSources.get(i);
-            this.viewer.dataSources.remove(dataSource);
-        }
     }
 
     removeAllEntities(entities) {
@@ -511,13 +545,13 @@ export default class CesiumViewer {
                     this.viewer.camera.zoomIn(500.0);
                 });
                 break;
-    
+
             case "out":
                 btn.addEventListener('click', () => {
                     this.viewer.camera.zoomOut(500.0);
                 });
                 break;
-    
+
             default:
                 break;
         }

@@ -59,13 +59,3 @@ export const filterTag = (data, value) => {
     const uniqueFoundTags = [...new Set(foundTags)];
     return uniqueFoundTags;
 }
-
-export function checkLayerToRemove(allLayers, activeLayers) {
-    allLayers.forEach(layer => {
-        const layerToRemoveIndex = activeLayers.findIndex(item => item.layer === layer.layer);
-
-        if (layerToRemoveIndex !== -1) {
-            activeLayers.splice(layerToRemoveIndex, 1);
-        }
-    });
-}
