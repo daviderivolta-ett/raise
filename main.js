@@ -115,12 +115,6 @@ allCheckboxLists.forEach(checkboxList => {
   });
 });
 
-allCheckboxLists.forEach(checkboxList => {
-  checkboxList.addEventListener('allCheckboxesActivated', async (event) => {
-      checkboxList.setAttribute('data', JSON.stringify(event.detail.input));
-  });
-});
-
 // Accordion behaviour
 accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
@@ -171,10 +165,9 @@ searchBar.addEventListener('searchValueChanged', (event) => {
     }
   }
 
-  const allCheckboxLists = document.querySelectorAll('app-checkbox-list');
   allCheckboxLists.forEach(checkboxList => {
     checkboxList.addEventListener('checkboxListChanged', async function (event) {
-      await handleCheckbox(event, checkboxList);
+      await map.handleCheckbox(event, activeLayers, checkboxList, clusterIcons);
     });
   });
 

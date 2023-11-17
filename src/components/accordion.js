@@ -12,21 +12,9 @@ export class Accordion extends HTMLElement {
         this.slots.forEach(slot => {
             const assignedNodes = slot.assignedNodes();
             assignedNodes.forEach(node => {
-                if (node.nodeName === 'APP-ACCORDION' || node.tagName === 'APP-ACCORDION') {
-                    node.setAttribute('all-active', this.getAttribute('all-active'));
-                }
-
-                if (node.nodeName === 'APP-CHECKBOX-LIST' || node.tagName === 'APP-CHECKBOX-LIST') {
-                    node.setAttribute('all-active', this.getAttribute('all-active'));
-                }
+                node.setAttribute('all-active', this.getAttribute('all-active'));
             });
         });
-
-        if (this.getAttribute('all-active') == 'true') {
-            this.checkbox.checked = true;
-        } else {
-            this.checkbox.checked = false;
-        }
     }
 
     connectedCallback() {
@@ -124,20 +112,27 @@ export class Accordion extends HTMLElement {
 
     static observedAttributes = ['is-active', 'all-active'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'is-active' && oldValue !== null && newValue !== null && newValue != oldValue) {
 
-            if (this.getAttribute('is-active') === 'true') {
-                this.accordionContent.classList.add('accordion-show');
-                this.accordionIcon.classList.add('accordion-icon-active');
+        if (oldValue !== null && newValue !== null && newValue != oldValue) {
 
-            } else {
-                this.accordionContent.classList.remove('accordion-show');
-                this.accordionIcon.classList.remove('accordion-icon-active');
+            if (name == 'is-active') {
+                if (this.getAttribute('is-active') === 'true') {
+                    this.accordionContent.classList.add('accordion-show');
+                    this.accordionIcon.classList.add('accordion-icon-active');
+                } else {
+                    this.accordionContent.classList.remove('accordion-show');
+                    this.accordionIcon.classList.remove('accordion-icon-active');
+                }
             }
-        }
 
-        if (name == 'all-active' && oldValue !== null && newValue !== null && newValue != oldValue) {
-            this.render();
+            if (name == 'all-active') {
+                if (this.getAttribute('all-active') == 'true') {
+                    this.checkbox.checked = true;
+                } else {
+                    this.checkbox.checked = false;
+                }
+                this.render();
+            }
         }
     }
 }

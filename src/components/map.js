@@ -162,7 +162,7 @@ export default class CesiumViewer {
 
     async handleCheckbox(event, activeLayers, checkboxList, clusterIcons) {
         const checkboxListLayers = event.detail.input;
-        this.checkLayerToRemove(checkboxListLayers, activeLayers);
+        await this.checkLayerToRemove(checkboxListLayers, activeLayers);
 
         if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
 
@@ -183,7 +183,7 @@ export default class CesiumViewer {
         this.clusterAllEntities(clusterIcons);
     }
 
-    checkLayerToRemove(allLayers, activeLayers) {
+    async checkLayerToRemove(allLayers, activeLayers) {
         allLayers.forEach(layer => {
             const layerToRemoveIndex = activeLayers.findIndex(item => item.layer === layer.layer);
 

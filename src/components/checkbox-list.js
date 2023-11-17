@@ -30,7 +30,7 @@ export class CheckboxList extends HTMLElement {
 
         // html
         this.input = JSON.parse(this.getAttribute('input'));
-        this.data = [];
+        this.data = this.getAttribute('data');
 
         this.checkboxes = [];
 
@@ -115,8 +115,7 @@ export class CheckboxList extends HTMLElement {
                 });
 
                 if (this.getAttribute('all-active') == 'true') {
-                    const event = new CustomEvent('allCheckboxesActivated', { detail: { input: this.input } });
-                    this.dispatchEvent(event);
+                    this.setAttribute('data', this.getAttribute('input'));
                 } else {
                     this.setAttribute('data', '[]');
                 }
