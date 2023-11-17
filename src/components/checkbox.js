@@ -74,17 +74,15 @@ export class Checkbox extends HTMLElement {
 
                         const layer = JSON.parse(this.getAttribute('data')).layer;
                         const url = JSON.parse(this.getAttribute('data')).layer_url_wfs;
-                        
+
                         const event = new CustomEvent('routeTriggered', {
                             detail: { layer: layer, url: url }
                         });
-            
+
                         this.dispatchEvent(event);
                     });
                 }
-
                 this.details.append(this.component);
-
             }
 
             this.shadow.append(this.details);
@@ -95,11 +93,9 @@ export class Checkbox extends HTMLElement {
         this.checkbox.addEventListener('click', (event) => {
             const isChecked = event.target.checked;
             this.setAttribute('is-checked', isChecked + '');
-            const layer = JSON.parse(this.getAttribute('data'));
-            const click = new CustomEvent('checkboxClicked', {
-                detail: { layer }
-            });
 
+            const layer = JSON.parse(this.getAttribute('data'));
+            const click = new CustomEvent('checkboxClicked', { detail: { layer } });
             this.dispatchEvent(click);
         });
 
@@ -110,7 +106,7 @@ export class Checkbox extends HTMLElement {
                 } else {
                     this.setAttribute('is-details-open', 'false');
                 }
-            })
+            });
         }
 
         // css
@@ -122,35 +118,32 @@ export class Checkbox extends HTMLElement {
 
     static observedAttributes = ['is-checked', 'data', 'is-details-open', 'is-route-active'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'is-checked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
-            newValue == 'true' ? this.checkbox.checked = true : this.checkbox.checked = false;
+        if (newValue !== oldValue && oldValue !== null && newValue !== null) {
 
-            this.toolOpacity = this.shadow.querySelector('app-opacity-slider');
-            this.toolOpacity ? this.toolOpacity.setAttribute('is-enable', newValue) : '';
+            if (name == 'data' && newValue !== oldValue) {
+                const event = new CustomEvent('opacityChanged', { detail: { name, oldValue, newValue } });
+                this.dispatchEvent(event);
+            }
 
-            this.toolRoute = this.shadow.querySelector('app-navigation-btn');
-            this.toolRoute ? this.toolRoute.setAttribute('is-enable', newValue) : '';
-        }
+            if (name == 'is-checked') {
+                newValue == 'true' ? this.checkbox.checked = true : this.checkbox.checked = false;
 
-        if (name == 'data' && newValue !== oldValue) {
-            const event = new CustomEvent('opacityChanged', {
-                detail: { name, oldValue, newValue }
-            });
+                this.toolOpacity = this.shadow.querySelector('app-opacity-slider');
+                this.toolOpacity ? this.toolOpacity.setAttribute('is-enable', newValue) : '';
 
-            this.dispatchEvent(event);
-        }
+                this.toolRoute = this.shadow.querySelector('app-navigation-btn');
+                this.toolRoute ? this.toolRoute.setAttribute('is-enable', newValue) : '';
+            }
 
-        if (name == 'is-details-open' && oldValue != null && newValue != null && newValue != oldValue) {
-            const event = new CustomEvent('detailStatusChanged', {
-                detail: { name, oldValue, newValue }
-            });
+            if (name == 'is-details-open') {
+                const event = new CustomEvent('detailStatusChanged', { detail: { name, oldValue, newValue } });
+                this.dispatchEvent(event);
 
-            this.dispatchEvent(event);
-
-            if (this.getAttribute('is-details-open') == 'true') {
-                this.details.setAttribute('open', '')
-            } else {
-                this.details.removeAttribute('open');
+                if (this.getAttribute('is-details-open') == 'true') {
+                    this.details.setAttribute('open', '')
+                } else {
+                    this.details.removeAttribute('open');
+                }
             }
         }
     }

@@ -13,10 +13,11 @@ export class CheckboxList extends HTMLElement {
             `
             <div></div>
             `
-            ;
+        ;
 
         this.div = this.shadow.querySelector('div');
         this.setAttribute('all-active', 'false');
+        this.setAttribute('data', '[]');
 
         // css
         const style = document.createElement('link');
@@ -47,6 +48,7 @@ export class CheckboxList extends HTMLElement {
         this.checkboxes.forEach(item => {
 
             item.addEventListener('checkboxClicked', () => {
+                this.data = JSON.parse(this.getAttribute('data'));
                 this.itemData = JSON.parse(item.getAttribute('data'));
 
                 const isPresentIndex = this.data.findIndex(obj => {
@@ -100,32 +102,30 @@ export class CheckboxList extends HTMLElement {
     static observedAttributes = ['data', 'all-active', 'navigation-data'];
     attributeChangedCallback(name, oldValue, newValue) {
 
-        if (name == 'data' && newValue != oldValue) {
-            const event = new CustomEvent('checkboxListChanged', {
-                detail: { name, oldValue, newValue, input: this.input }
-            });
-            this.dispatchEvent(event);
-        }
+        if (newValue != oldValue && oldValue !== null && newValue !== null) {
 
-        if (name == 'all-active' && oldValue != null && newValue != null && newValue != oldValue) {
-            this.checkboxes.forEach(item => {
-                item.setAttribute('is-checked', this.getAttribute('all-active'));
-            });
-
-            if (this.getAttribute('all-active') == 'true') {
-                const event = new CustomEvent('allCheckboxesActivated', { detail: { input: this.input } });
+            if (name == 'data') {
+                const event = new CustomEvent('checkboxListChanged', { detail: { name, oldValue, newValue, input: this.input } });
                 this.dispatchEvent(event);
-            } else {
-                this.setAttribute('data', '[]');
             }
-        }
 
-        if (name == 'navigation-data' && oldValue != null && newValue != null && newValue != oldValue) {
-            const event = new CustomEvent('navigationTriggered', {
-                detail: { name, oldValue, newValue }
-            });
+            if (name == 'all-active') {
+                this.checkboxes.forEach(item => {
+                    item.setAttribute('is-checked', this.getAttribute('all-active'));
+                });
 
-            this.dispatchEvent(event);
+                if (this.getAttribute('all-active') == 'true') {
+                    const event = new CustomEvent('allCheckboxesActivated', { detail: { input: this.input } });
+                    this.dispatchEvent(event);
+                } else {
+                    this.setAttribute('data', '[]');
+                }
+            }
+
+            if (name == 'navigation-data') {
+                const event = new CustomEvent('navigationTriggered', { detail: { name, oldValue, newValue } });
+                this.dispatchEvent(event);
+            }
         }
     }
 }
