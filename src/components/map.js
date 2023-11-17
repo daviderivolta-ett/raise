@@ -166,12 +166,7 @@ export default class CesiumViewer {
 
         if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
 
-        let checkboxListLayersToAdd;
-        if (event.detail.newValue == 'true' || event.detail.newValue == 'false') {
-            checkboxListLayersToAdd = checkboxListLayers;
-        } else {
-            checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
-        }
+        const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
         checkboxListLayersToAdd.forEach(layer => {
             activeLayers.push(layer);
         });

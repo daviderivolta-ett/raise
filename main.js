@@ -117,7 +117,7 @@ allCheckboxLists.forEach(checkboxList => {
 
 allCheckboxLists.forEach(checkboxList => {
   checkboxList.addEventListener('allCheckboxesActivated', async (event) => {
-    await map.handleCheckbox(event, activeLayers, checkboxList, clusterIcons);
+      checkboxList.setAttribute('data', JSON.stringify(event.detail.input));
   });
 });
 

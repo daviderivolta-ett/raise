@@ -23,11 +23,11 @@ export class Checkbox extends HTMLElement {
         this.checkbox = this.shadow.querySelector('input');
 
         // checkbox
-        if (this.hasAttribute('is-clicked') && this.getAttribute('is-clicked') == 'true') {
-            this.setAttribute('is-clicked', this.getAttribute('is-clicked'));
+        if (this.hasAttribute('is-checked') && this.getAttribute('is-checked') == 'true') {
+            this.setAttribute('is-checked', this.getAttribute('is-checked'));
             this.checkbox.checked = true;
         } else {
-            this.setAttribute('is-clicked', 'false');
+            this.setAttribute('is-checked', 'false');
             this.checkbox.checked = false;
         }
 
@@ -94,7 +94,13 @@ export class Checkbox extends HTMLElement {
         // js
         this.checkbox.addEventListener('click', (event) => {
             const isChecked = event.target.checked;
-            this.setAttribute('is-clicked', isChecked + '');
+            this.setAttribute('is-checked', isChecked + '');
+            const layer = JSON.parse(this.getAttribute('data'));
+            const click = new CustomEvent('checkboxClicked', {
+                detail: { layer }
+            });
+
+            this.dispatchEvent(click);
         });
 
         if (this.details) {
@@ -114,24 +120,10 @@ export class Checkbox extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-clicked', 'is-checked', 'data', 'is-details-open', 'is-route-active'];
+    static observedAttributes = ['is-checked', 'data', 'is-details-open', 'is-route-active'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (name == 'is-checked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
             newValue == 'true' ? this.checkbox.checked = true : this.checkbox.checked = false;
-        }
-
-        if (name == 'is-clicked' && oldValue !== null && newValue !== null && newValue !== oldValue) {
-            if (newValue == 'true') {
-                this.checkbox.checked = true;
-            } else {
-                this.checkbox.checked = false;
-            }
-
-            const event = new CustomEvent('checkboxClicked', {
-                detail: { name, oldValue, newValue }
-            });
-
-            this.dispatchEvent(event);
 
             this.toolOpacity = this.shadow.querySelector('app-opacity-slider');
             this.toolOpacity ? this.toolOpacity.setAttribute('is-enable', newValue) : '';

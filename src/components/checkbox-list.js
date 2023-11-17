@@ -112,10 +112,12 @@ export class CheckboxList extends HTMLElement {
                 item.setAttribute('is-checked', this.getAttribute('all-active'));
             });
 
-            const event = new CustomEvent('allCheckboxesActivated', {
-                detail: { name, oldValue, newValue, input: this.input }
-            });
-            this.dispatchEvent(event);
+            if (this.getAttribute('all-active') == 'true') {
+                const event = new CustomEvent('allCheckboxesActivated', { detail: { input: this.input } });
+                this.dispatchEvent(event);
+            } else {
+                this.setAttribute('data', '[]');
+            }
         }
 
         if (name == 'navigation-data' && oldValue != null && newValue != null && newValue != oldValue) {
