@@ -18,6 +18,7 @@ export class CheckboxList extends HTMLElement {
         this.div = this.shadow.querySelector('div');
         this.setAttribute('all-active', 'false');
         this.setAttribute('data', '[]');
+        this.setAttribute('navigation-data', '[]');
 
         // css
         const style = document.createElement('link');

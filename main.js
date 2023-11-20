@@ -44,23 +44,25 @@ map.setCamera();
 map.createUserPin(position);
 
 // Accordions creation
-const drawerContent = document.querySelector('#categories-section');
+// const drawerContent = document.querySelector('#categories-section');
 let jsonData = await fetchJsonData(CATEGORIES_URL);
 
 ////
-const test = document.querySelector('app-drawer');
-test.setAttribute('data', JSON.stringify(jsonData));
+////
+const drawerContent = document.querySelector('app-drawer-content');
+drawerContent.setAttribute('data', JSON.stringify(jsonData));
+////
 ////
 
-if (localStorage.length != 0) {
-  let dataToFilter = JSON.parse(JSON.stringify(jsonData));
-  let selectedTags = JSON.parse(localStorage.selectedTags);
-  filterLayersBySelectedTags(dataToFilter, selectedTags);
-  populateDrawer(dataToFilter, drawerContent);
-  jsonData = dataToFilter;
-} else {
-  populateDrawer(jsonData, drawerContent);
-}
+// if (localStorage.length != 0) {
+//   let dataToFilter = JSON.parse(JSON.stringify(jsonData));
+//   let selectedTags = JSON.parse(localStorage.selectedTags);
+//   filterLayersBySelectedTags(dataToFilter, selectedTags);
+//   populateDrawer(dataToFilter, drawerContent);
+//   jsonData = dataToFilter;
+// } else {
+//   populateDrawer(jsonData, drawerContent);
+// }
 
 // Zoom buttons
 const zoomBtns = document.querySelectorAll('app-zoom-btn');
@@ -112,7 +114,7 @@ map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
 autocloseDrawer(drawer, drawerToggle);
 
 // Checkbox list behaviour
-const activeLayers = [];
+// const activeLayers = [];
 
 // allCheckboxLists.forEach(checkboxList => {
 //   checkboxList.addEventListener('checkboxListChanged', async function (event) {
@@ -122,16 +124,15 @@ const activeLayers = [];
 
 ////
 ////
-const drawerNew = document.querySelector('app-drawer');
-drawerNew.addEventListener('activeLayersChanged', async (event) => {
-  console.log(event.detail);
+// const drawerContent = document.querySelector('app-drawer');
+drawerContent.addEventListener('activeLayersChanged', async (event) => {
   await map.handleCheckbox(event.detail.newValue, clusterIcons);
 });
 ////
 ////
 
 // Accordion behaviour
-accordionBehaviour(allCategoryAccordions, allLayerAccordions);
+// accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
 // Close navigation button
 const closeNavigationBtn = document.querySelector('app-close-navigation-btn');
@@ -139,27 +140,105 @@ closeNavigationBtn.addEventListener('click', () => {
   allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', null));
 });
 
+closeNavigationBtn.addEventListener('click', () => {
+  drawerContent.setAttribute('navigation-data', '[]');
+})
+
 // Navigation
 let isNavigation = false;
-for (const checkboxList of allCheckboxLists) {
-  checkboxList.addEventListener('navigationTriggered', (event) => {
-    if (event.detail.newValue != 'null') {
-      isNavigation = true;
-      closeNavigationBtn.setAttribute('is-active', isNavigation + '');
-      const navigationData = JSON.parse(event.detail.newValue);
-      map.createRoute(position, navigationData);
-    } else {
-      isNavigation = false;
-      closeNavigationBtn.setAttribute('is-active', isNavigation + '');
-      const entities = map.viewer.entities;
-      map.removeAllEntities(entities);
-    }
-  })
-}
+// for (const checkboxList of allCheckboxLists) {
+//   checkboxList.addEventListener('navigationTriggered', (event) => {
+//     if (event.detail.newValue != 'null') {
+//       isNavigation = true;
+//       closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+//       const navigationData = JSON.parse(event.detail.newValue);
+//       map.createRoute(position, navigationData);
+//     } else {
+//       isNavigation = false;
+//       closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+//       const entities = map.viewer.entities;
+//       map.removeAllEntities(entities);
+//     }
+//   })
+// }
+
+drawerContent.addEventListener('navigationTriggered', (event) => {
+  if (event.detail.newValue != '[]') {
+    isNavigation = true;
+    closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+    const navigationData = JSON.parse(event.detail.newValue);
+    map.createRoute(position, navigationData);
+  } else {
+    isNavigation = false;
+    closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+    const entities = map.viewer.entities;
+    map.removeAllEntities(entities);
+  }
+});
 
 // Search bar
+// searchBar.addEventListener('searchValueChanged', (event) => {
+//   drawerContent.innerHTML = ``;
+//   const valueToSearch = event.detail.newValue.toLowerCase();
+//   drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
+
+//   let dataToFilter = JSON.parse(JSON.stringify(jsonData));
+
+//   filterLayersByTagName(dataToFilter, valueToSearch);
+
+//   if (valueToSearch == '') {
+//     populateDrawer(jsonData, drawerContent);
+//     drawerTitle.textContent = 'Categorie';
+//   } else {
+//     populateDrawer(dataToFilter, drawerContent);
+
+//     if (!drawerContent.innerHTML) {
+//       const emptyMsg = document.createElement('p');
+//       emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
+//       drawerContent.append(emptyMsg);
+//     }
+//   }
+
+//   allCheckboxLists.forEach(checkboxList => {
+//     checkboxList.addEventListener('checkboxListChanged', async function (event) {
+//       await map.handleCheckbox(event, activeLayers, checkboxList, clusterIcons);
+//     });
+//   });
+
+//   const allCategoryAccordions = document.querySelectorAll('.category-accordion');
+//   const allLayerAccordions = document.querySelectorAll('.layer-accordion');
+//   accordionBehaviour(allCategoryAccordions, allLayerAccordions);
+
+//   for (const checkboxList of allCheckboxLists) {
+//     checkboxList.addEventListener('navigationTriggered', (event) => {
+//       if (event.detail.newValue != 'null') {
+//         isNavigation = true;
+//         closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+//         const navigationData = JSON.parse(event.detail.newValue);
+//         map.createRoute(position, navigationData);
+//       } else {
+//         isNavigation = false;
+//         closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+//         const entities = map.viewer.entities;
+//         map.removeAllEntities(entities);
+//       }
+//     })
+//   }
+
+//   closeNavigationBtn.addEventListener('click', () => {
+//     allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', null));
+//   });
+
+//   if (valueToSearch.length >= 2) {
+//     const foundTags = filterTag(jsonData, valueToSearch);
+//     autocomplete.setAttribute('data', JSON.stringify(foundTags));
+//   } else {
+//     autocomplete.setAttribute('data', JSON.stringify(''));
+//   }
+// });
+
+////
 searchBar.addEventListener('searchValueChanged', (event) => {
-  drawerContent.innerHTML = ``;
   const valueToSearch = event.detail.newValue.toLowerCase();
   drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
 
@@ -168,10 +247,10 @@ searchBar.addEventListener('searchValueChanged', (event) => {
   filterLayersByTagName(dataToFilter, valueToSearch);
 
   if (valueToSearch == '') {
-    populateDrawer(jsonData, drawerContent);
+    drawerContent.setAttribute('data', JSON.stringify(jsonData));
     drawerTitle.textContent = 'Categorie';
   } else {
-    populateDrawer(dataToFilter, drawerContent);
+    drawerContent.setAttribute('data', JSON.stringify(dataToFilter));
 
     if (!drawerContent.innerHTML) {
       const emptyMsg = document.createElement('p');
@@ -180,35 +259,35 @@ searchBar.addEventListener('searchValueChanged', (event) => {
     }
   }
 
-  allCheckboxLists.forEach(checkboxList => {
-    checkboxList.addEventListener('checkboxListChanged', async function (event) {
-      await map.handleCheckbox(event, activeLayers, checkboxList, clusterIcons);
-    });
-  });
+  // allCheckboxLists.forEach(checkboxList => {
+  //   checkboxList.addEventListener('checkboxListChanged', async function (event) {
+  //     await map.handleCheckbox(event, activeLayers, checkboxList, clusterIcons);
+  //   });
+  // });
 
-  const allCategoryAccordions = document.querySelectorAll('.category-accordion');
-  const allLayerAccordions = document.querySelectorAll('.layer-accordion');
-  accordionBehaviour(allCategoryAccordions, allLayerAccordions);
+  // const allCategoryAccordions = document.querySelectorAll('.category-accordion');
+  // const allLayerAccordions = document.querySelectorAll('.layer-accordion');
+  // accordionBehaviour(allCategoryAccordions, allLayerAccordions);
 
-  for (const checkboxList of allCheckboxLists) {
-    checkboxList.addEventListener('navigationTriggered', (event) => {
-      if (event.detail.newValue != 'null') {
-        isNavigation = true;
-        closeNavigationBtn.setAttribute('is-active', isNavigation + '');
-        const navigationData = JSON.parse(event.detail.newValue);
-        map.createRoute(position, navigationData);
-      } else {
-        isNavigation = false;
-        closeNavigationBtn.setAttribute('is-active', isNavigation + '');
-        const entities = map.viewer.entities;
-        map.removeAllEntities(entities);
-      }
-    })
-  }
+  // for (const checkboxList of allCheckboxLists) {
+  //   checkboxList.addEventListener('navigationTriggered', (event) => {
+  //     if (event.detail.newValue != 'null') {
+  //       isNavigation = true;
+  //       closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+  //       const navigationData = JSON.parse(event.detail.newValue);
+  //       map.createRoute(position, navigationData);
+  //     } else {
+  //       isNavigation = false;
+  //       closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+  //       const entities = map.viewer.entities;
+  //       map.removeAllEntities(entities);
+  //     }
+  //   })
+  // }
 
-  closeNavigationBtn.addEventListener('click', () => {
-    allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', null));
-  });
+  // closeNavigationBtn.addEventListener('click', () => {
+  //   allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', null));
+  // });
 
   if (valueToSearch.length >= 2) {
     const foundTags = filterTag(jsonData, valueToSearch);
@@ -217,6 +296,7 @@ searchBar.addEventListener('searchValueChanged', (event) => {
     autocomplete.setAttribute('data', JSON.stringify(''));
   }
 });
+////
 
 // Autocomplete behaviour
 autocomplete.addEventListener('autocompleteSelected', (event) => {

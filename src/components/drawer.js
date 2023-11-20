@@ -1,30 +1,19 @@
 import { filterLayersBySelectedTags } from '../utils/filter.js';
 
-export class Drawer extends HTMLElement {
+export class DrawerContent extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        this.dataPromise = new Promise((resolve) => {
-            this.dataResolver = resolve;
-        });
     }
 
-    render() {
-    }
-
-    async connectedCallback() {
-        this.shadow.innerHTML =
-            `
-            <div id="categories-section"></div>
-            `
-            ;
-
-        this.div = this.shadow.querySelector('#categories-section');
-
+    async render() {
         // Accordions creation
-        let jsonData = await this.dataPromise;
+        let jsonData = JSON.parse(this.getAttribute('data'));
+
+        this.div.innerHTML = '';
+
         if (localStorage.length != 0) {
-            let dataToFilter = JSON.parse(JSON.stringify(jsonData));
+            let dataToFilter = jsonData;
             let selectedTags = JSON.parse(localStorage.selectedTags);
             filterLayersBySelectedTags(dataToFilter, selectedTags);
             await populateDrawer(dataToFilter, this.div);
@@ -57,14 +46,32 @@ export class Drawer extends HTMLElement {
                 this.setAttribute('active-layers', JSON.stringify(activeLayers));
             });
         });
+
+        // Navigation
+        allCheckboxLists.forEach(checkboxList => {
+            checkboxList.addEventListener('navigationTriggered', (event) => {
+                this.setAttribute('navigation-data', event.detail.newValue);
+            });
+        });
     }
 
-    static observedAttributes = ['data', 'active-layers'];
+    connectedCallback() {
+        this.shadow.innerHTML =
+            `
+            <div id="categories-section"></div>
+            `
+            ;
+
+        this.div = this.shadow.querySelector('#categories-section');
+        this.setAttribute('navigation-data', '[]');
+    }
+
+    static observedAttributes = ['data', 'active-layers', 'navigation-data'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue) {
 
             if (name == 'data') {
-                this.dataResolver(JSON.parse(newValue));
+                this.render();
             }
 
             if (name == 'active-layers') {
@@ -73,11 +80,19 @@ export class Drawer extends HTMLElement {
                 });
                 this.dispatchEvent(event);
             }
+
+            if (name == 'navigation-data') {
+                const event = new CustomEvent('navigationTriggered', {
+                    detail: { name, oldValue, newValue }
+                });
+                this.dispatchEvent(event);
+            }
+
         }
     }
 }
 
-customElements.define('app-drawer', Drawer);
+customElements.define('app-drawer-content', DrawerContent);
 
 /* Functions */
 async function populateDrawer(jsonData, div) {
