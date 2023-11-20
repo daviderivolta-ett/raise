@@ -116,7 +116,7 @@ export class Checkbox extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-checked', 'data', 'is-details-open', 'is-route-active'];
+    static observedAttributes = ['is-checked', 'data', 'is-details-open'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue !== oldValue && oldValue !== null && newValue !== null) {
 

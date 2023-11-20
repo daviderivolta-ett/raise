@@ -136,12 +136,14 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
 
 // Close navigation button
 const closeNavigationBtn = document.querySelector('app-close-navigation-btn');
-closeNavigationBtn.addEventListener('click', () => {
-  allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', null));
-});
+// closeNavigationBtn.addEventListener('click', () => {
+//   allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', null));
+// });
 
 closeNavigationBtn.addEventListener('click', () => {
   drawerContent.setAttribute('navigation-data', '[]');
+  const entities = map.viewer.entities;
+  map.removeAllEntities(entities);
 })
 
 // Navigation

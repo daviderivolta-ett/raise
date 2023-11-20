@@ -82,6 +82,12 @@ export class DrawerContent extends HTMLElement {
             }
 
             if (name == 'navigation-data') {
+
+                if (newValue == '[]') {
+                    const allCheckboxLists = this.shadow.querySelectorAll('app-checkbox-list');
+                    allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', newValue));
+                }
+
                 const event = new CustomEvent('navigationTriggered', {
                     detail: { name, oldValue, newValue }
                 });

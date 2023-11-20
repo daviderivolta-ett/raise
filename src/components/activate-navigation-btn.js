@@ -16,13 +16,17 @@ export class NavigationBtn extends HTMLElement {
                 <button type="button">Indicazioni</button>
             </div>
             `
-            ;
+        ;
 
         this.btn = this.shadow.querySelector('button');
 
         if (!this.hasAttribute('is-enable')) {
             this.setAttribute('is-enable', 'false');
             this.btn.disabled = true;
+        }
+
+        if (!this.hasAttribute('is-route-active')) {
+            this.setAttribute('is-route-active', 'false');
         }
 
         // js
@@ -38,12 +42,20 @@ export class NavigationBtn extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-enable'];
+    static observedAttributes = ['is-enable', 'is-route-active'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'is-enable' && oldValue !== null && newValue !== null && newValue !== oldValue) {
+        if (oldValue !== null && newValue !== null && newValue !== oldValue) {
 
-            this.getAttribute('is-enable') == 'true' ? this.btn.disabled = false : this.btn.disabled = true;
-            this.getAttribute('is-enable') == 'false' ? this.setAttribute('is-route-active', 'false') : '';
+            if (name == 'is-enable') {
+                this.getAttribute('is-enable') == 'true' ? this.btn.disabled = false : this.btn.disabled = true;
+                this.getAttribute('is-enable') == 'false' ? this.setAttribute('is-route-active', 'false') : '';
+            }
+
+            if (name == 'is-route-active') {
+                const event = new CustomEvent('routeTriggered');
+                this.dispatchEvent(event);
+            }
+
         }
     }
 }
