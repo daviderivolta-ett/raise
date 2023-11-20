@@ -103,9 +103,9 @@ app-close-navigation-btn.show {
 /* Loader */
 app-loader {
   position: fixed;
-  top: 50%;
+  bottom: 24px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   display: none;
   z-index: 9999;
 }
@@ -148,6 +148,12 @@ main#onboard h1 {
   flex-wrap: wrap;
   gap: 2px;
   margin: 24px 0;
+}
+
+#chips-section::after {
+  content: '';
+  flex-grow: 9999;
+  min-width: 2px;
 }
 
 button {

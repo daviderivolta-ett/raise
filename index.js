@@ -4,13 +4,23 @@ import { fetchJsonData } from './src/settings.js';
 // Import web components
 import './src/components/chip.js';
 import './src/components/button.js';
+import './src/components/loader.js';
 
 // DOM Nodes
 const chipsContainer = document.querySelector('#chips-section');
+const loader = document.querySelector('app-loader');
 
 // Import data
 const CATEGORIES_URL = './json/categories.json';
-let jsonData = await fetchJsonData(CATEGORIES_URL);
+let jsonData;
+try {
+    loader.setAttribute('is-loading', 'true');
+    jsonData = await fetchJsonData(CATEGORIES_URL);
+} catch (error) {
+    console.error('Errore durante il recupero dei dati JSON', error);
+} finally {
+    loader.setAttribute('is-loading', 'false');
+}
 
 // Create tag chips
 const allTags = getAllTags(jsonData);

@@ -23,20 +23,20 @@ export default class CesiumViewer {
         });
     }
 
-    changeTheme (theme) {
+    changeTheme(theme) {
         const themeLayerToRemove = this.viewer.imageryLayers._layers[1];
         this.viewer.imageryLayers.remove(themeLayerToRemove);
-    
+
         if (theme != '') {
             theme = JSON.parse(theme);
-            const style = this.getImageryProvider(theme.url, theme.layer, theme. credit);
+            const style = this.getImageryProvider(theme.url, theme.layer, theme.credit);
             this.viewer.imageryLayers.addImageryProvider(style);
         }
     }
-    
+
     async fetchThemes(themesUrl) {
         const themesJson = await fetch(themesUrl)
-            .then(res => res.json());    
+            .then(res => res.json());
         return themesJson;
     }
 
@@ -445,6 +445,8 @@ export default class CesiumViewer {
     calculateDistance(initialPosition, feature) {
         const endingPosition = this.findFeatureCoordinates(feature);
 
+        console.log(initialPosition);
+
         const start = Cesium.Cartographic.fromDegrees(initialPosition[0], initialPosition[1]);
         const end = Cesium.Cartographic.fromDegrees(endingPosition[0], endingPosition[1]);
         const ellipsoidGeodesic = new Cesium.EllipsoidGeodesic(start, end);
@@ -482,7 +484,10 @@ export default class CesiumViewer {
                 pixelOffset: new Cesium.Cartesian2(0, -20),
                 scale: 0.5,
                 scaleByDistance: new Cesium.NearFarScalar(1.5e2, 1.5, 8.0e6, 0.0),
-                fillColor: Cesium.Color.WHITE
+                fillColor: Cesium.Color.WHITE,
+                outlineWidth: 2,
+                outlineColor: Cesium.Color.BLACK,
+                style: Cesium.LabelStyle.FILL_AND_OUTLINE
             }
         });
     }
@@ -557,4 +562,57 @@ export default class CesiumViewer {
                 break;
         }
     }
+
+    ////
+    async solveTSP(position, navigationData) {
+        this.bestPath = [];
+        this.bestDistance = Infinity;
+
+        const data = await this.fetchEntitiesData(navigationData);
+        const features = data.features;
+        const startingCity = {
+            coordinates: [position.coords.longitude, position.coords.latitude],
+            index: -1
+        };
+
+        this.branchAndBoundTSP([startingCity], features);
+
+        return this.bestPath;
+    }
+
+    calculatePathDistance(path) {
+        let distance = 0;
+        for (let i = 0; i < path.length - 1; i++) {
+            distance += this.calculateDistance(path[i], path[i + 1]);
+        }
+        return distance;
+    }
+
+    branchAndBoundTSP(currentPath, remainingCities) {
+        const currentDistance = this.calculatePathDistance(currentPath);
+
+        if (currentPath.length === remainingCities.length + 1) {
+            // Tutte le città sono state visitate
+            if (currentDistance < this.bestDistance) {
+                this.bestDistance = currentDistance;
+                this.bestPath = [...currentPath];
+            }
+            return;
+        }
+
+        if (currentDistance >= this.bestDistance) {
+            // Abbandona questo ramo se già più lungo del miglior percorso conosciuto
+            return;
+        }
+
+        for (let i = 0; i < remainingCities.length; i++) {
+            const nextCity = remainingCities[i];
+            const newPath = [...currentPath, nextCity];
+            const remainingCitiesCopy = [...remainingCities];
+            remainingCitiesCopy.splice(i, 1);
+
+            this.branchAndBoundTSP(newPath, remainingCitiesCopy);
+        }
+    }
+
 }

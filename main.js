@@ -57,6 +57,7 @@ map.createUserPin(position);
 let jsonData;
 try {
   loader.setAttribute('is-loading', 'true');
+  loader.setAttribute('text', 'Loading...');
   jsonData = await fetchJsonData(CATEGORIES_URL);
   drawerContent.setAttribute('data', JSON.stringify(jsonData));
 } catch (error) {
@@ -104,6 +105,7 @@ map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
 // Checkbox list behaviour
 drawerContent.addEventListener('activeLayersChanged', async (event) => {
   try {
+    loader.setAttribute('text', 'Loading...');
     loader.setAttribute('is-loading', 'true');
     await map.handleCheckbox(event.detail.newValue, clusterIcons);
   } catch (error) {
@@ -130,6 +132,7 @@ drawerContent.addEventListener('navigationTriggered', (event) => {
     closeNavigationBtn.setAttribute('is-active', isNavigation + '');
     const navigationData = JSON.parse(event.detail.newValue);
     map.createRoute(position, navigationData);
+    // map.solveTSP(position, navigationData);
   } else {
     isNavigation = false;
     closeNavigationBtn.setAttribute('is-active', isNavigation + '');
