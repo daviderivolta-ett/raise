@@ -85,7 +85,6 @@ export class Accordion extends HTMLElement {
                     newValue: this.getAttribute('is-active')
                 }
             });
-
             this.dispatchEvent(event);
         });
 

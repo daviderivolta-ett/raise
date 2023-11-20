@@ -150,3 +150,11 @@ button {
 button:hover {
   background-color: #f3f3f3;
 }
+
+/**/
+app-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: white;
+}

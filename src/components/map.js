@@ -177,16 +177,16 @@ export default class CesiumViewer {
         return { longitude, latitude }
     }
 
-    async handleCheckbox(event, activeLayers, checkboxList, clusterIcons) {
-        const checkboxListLayers = event.detail.input;
-        await this.checkLayerToRemove(checkboxListLayers, activeLayers);
+    async handleCheckbox(activeLayers, clusterIcons) {
+        // const checkboxListLayers = event.detail.input;
+        // await this.checkLayerToRemove(checkboxListLayers, activeLayers);
 
-        if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
+        // if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
 
-        const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
-        checkboxListLayersToAdd.forEach(layer => {
-            activeLayers.push(layer);
-        });
+        // const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
+        // checkboxListLayersToAdd.forEach(layer => {
+        //     activeLayers.push(layer);
+        // });
 
         const requests = activeLayers.map(layer => this.fetchLayerData(layer).then(data => ({ layer, data })));
 

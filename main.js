@@ -35,7 +35,7 @@ import './src/components/theme-icon.js';
 import './src/components/close-navigation-btn.js';
 
 // Map initialization
-const map = new CesiumViewer();
+export const map = new CesiumViewer();
 
 // Get user position
 const position = await getPosition();
@@ -114,11 +114,21 @@ autocloseDrawer(drawer, drawerToggle);
 // Checkbox list behaviour
 const activeLayers = [];
 
-allCheckboxLists.forEach(checkboxList => {
-  checkboxList.addEventListener('checkboxListChanged', async function (event) {
-    await map.handleCheckbox(event, activeLayers, checkboxList, clusterIcons);
-  });
+// allCheckboxLists.forEach(checkboxList => {
+//   checkboxList.addEventListener('checkboxListChanged', async function (event) {
+//     await map.handleCheckbox(event, activeLayers, checkboxList, clusterIcons);
+//   });
+// });
+
+////
+////
+const drawerNew = document.querySelector('app-drawer');
+drawerNew.addEventListener('activeLayersChanged', async (event) => {
+  console.log(event.detail);
+  await map.handleCheckbox(event.detail.newValue, clusterIcons);
 });
+////
+////
 
 // Accordion behaviour
 accordionBehaviour(allCategoryAccordions, allLayerAccordions);
