@@ -1,5 +1,3 @@
-import { filterLayersBySelectedTags } from '../utils/filter.js';
-
 export class DrawerContent extends HTMLElement {
     constructor() {
         super();
@@ -18,6 +16,13 @@ export class DrawerContent extends HTMLElement {
             filterLayersBySelectedTags(dataToFilter, selectedTags);
             await populateDrawer(dataToFilter, this.div);
             jsonData = dataToFilter;
+
+            if (jsonData.categories.length == 0) {
+                const msg = document.createElement('p');
+                msg.innerText = 'Nessun livello trovato';
+                this.div.append(msg);
+            }
+            
         } else {
             await populateDrawer(jsonData, this.div);
         }
@@ -60,7 +65,7 @@ export class DrawerContent extends HTMLElement {
             `
             <div id="categories-section"></div>
             `
-            ;
+        ;
 
         this.div = this.shadow.querySelector('#categories-section');
         this.setAttribute('navigation-data', '[]');
@@ -165,3 +170,24 @@ async function checkLayerToRemove(allLayers, activeLayers) {
         }
     });
 }
+
+function filterLayersBySelectedTags (dataToFilter, array) {
+    dataToFilter.categories.forEach(category => {
+        category.groups.forEach(group => {
+            group.layers = group.layers.filter(layer => {
+                if (layer.tags) {
+                    return array.some(value => layer.tags.includes(value));
+                }
+                return false;
+            });
+
+            if (group.layers.length === 0) {
+                category.groups = category.groups.filter(existingGroup => existingGroup !== group);
+            }
+        });
+
+        if (category.groups.length === 0) {
+            dataToFilter.categories = dataToFilter.categories.filter(existingCategory => existingCategory !== category);
+        }
+    });
+};

@@ -178,26 +178,16 @@ export default class CesiumViewer {
     }
 
     async handleCheckbox(activeLayers, clusterIcons) {
-        // const checkboxListLayers = event.detail.input;
-        // await this.checkLayerToRemove(checkboxListLayers, activeLayers);
-
-        // if (checkboxList.getAttribute('navigation-data') != 'null') checkboxList.setAttribute('navigation-data', 'null');
-
-        // const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
-        // checkboxListLayersToAdd.forEach(layer => {
-        //     activeLayers.push(layer);
-        // });
-
         const requests = activeLayers.map(layer => this.fetchLayerData(layer).then(data => ({ layer, data })));
 
         await Promise.all(requests).then(sources => {
             this.viewer.dataSources.removeAll();
-            sources.forEach(source => {
+            sources.forEach(async source => {
                 this.viewer.dataSources.add(source.data);
-                this.styleEntities(source.data, source.layer.style);
+                await this.styleEntities(source.data, source.layer.style);
             });
         });
-        this.clusterAllEntities(clusterIcons);
+        await this.clusterAllEntities(clusterIcons);
     }
 
     async checkLayerToRemove(allLayers, activeLayers) {
@@ -209,7 +199,6 @@ export default class CesiumViewer {
             }
         });
     }
-
 
     async fetchLayerData(layer) {
         const url = `${layer.layer_url_wfs}?service=WFS&typeName=${layer.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;

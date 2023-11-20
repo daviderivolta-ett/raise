@@ -100,6 +100,21 @@ app-close-navigation-btn.show {
   right: 40px;
 }
 
+/* Loader */
+app-loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 9999;
+}
+
+.loading {
+  visibility: visible !important;
+  display: block;
+}
+
 /* Media queries */
 @media screen and (max-width: 576px) {
 
@@ -150,11 +165,3 @@ button {
 button:hover {
   background-color: #f3f3f3;
 }
-
-/**/
-/* app-drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: white;
-} */

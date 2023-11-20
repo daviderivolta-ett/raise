@@ -1,5 +1,4 @@
 // Import methods
-import { getAllTags } from './src/controller/tags.js';
 import { fetchJsonData } from './src/settings.js';
 
 // Import web components
@@ -71,3 +70,27 @@ resetBtn.addEventListener('click', () => {
 // Clear localStorage
 const clear = document.querySelector('#clear-local-storage');
 clear.addEventListener('click', () => localStorage.clear());
+
+// Get all tags
+function getAllTags(data) {
+
+    let foundTags = [];
+
+    data.categories.forEach(category => {
+        category.groups.forEach(group => {
+            group.layers.forEach(layer => {
+
+                if (layer.tags) {
+                    layer.tags.forEach(tag => {
+                        foundTags.push(tag);
+                    });
+                }
+
+            });
+        });
+    });
+
+    const uniqueFoundTags = [...new Set(foundTags)];
+    uniqueFoundTags.sort();
+    return uniqueFoundTags;
+}
