@@ -33,6 +33,7 @@ import './src/components/zoom-button.js';
 import './src/components/theme-icon.js';
 import './src/components/close-navigation-btn.js';
 import './src/components/snackbar.js';
+import './src/components/center-position-btn.js';
 
 // DOM nodes
 const main = document.querySelector('main');
@@ -42,6 +43,7 @@ const searchBar = document.querySelector('app-searchbar');
 const drawerTitle = document.querySelector('#drawer-title');
 const drawerContent = document.querySelector('app-drawer-content');
 const autocomplete = document.querySelector('app-autocomplete');
+const centerBtn = document.querySelector('app-center-position');
 
 // Map initialization
 const map = new CesiumViewer();
@@ -51,8 +53,8 @@ let position;
 try { position = await getPosition(); }
 catch (error) { console.error(error); }
 
-// map.setCameraToUserPosition(position);
-map.setCamera();
+map.setCameraToUserPosition(position);
+// map.setCamera();
 map.createUserPin(position);
 
 // Accordions creation
@@ -76,6 +78,9 @@ try {
 // Zoom buttons
 const zoomBtns = document.querySelectorAll('app-zoom-btn');
 zoomBtns.forEach(btn => map.zoom(btn));
+
+// Center position
+centerBtn.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
 
 // Theme button
 const changeThemeBtn = document.querySelector('app-theme-icon');

@@ -527,13 +527,22 @@ export default class CesiumViewer {
     createUserPin(userPosition) {
         this.viewer.entities.add({
             name: "user-position",
-            position: Cesium.Cartesian3.fromDegrees(userPosition.coords.longitude, userPosition.coords.latitude, 20.0),
-            cylinder: {
-                length: 40.0,
-                topRadius: 10.0,
-                bottomRadius: 10.0,
-                material: Cesium.Color.GREEN.withAlpha(1)
-            },
+            position: Cesium.Cartesian3.fromDegrees(userPosition.coords.longitude, userPosition.coords.latitude, 0.0),
+            // cylinder: {
+            //     length: 40.0,
+            //     topRadius: 10.0,
+            //     bottomRadius: 10.0,
+            //     material: Cesium.Color.GREEN.withAlpha(1)
+            // },
+            ellipse: {
+                semiMinorAxis: 20.0,
+                semiMajorAxis: 20.0,
+                height: 0.0,
+                material: Cesium.Color.BLUE,
+                outline: true,
+                outlineColor: Cesium.Color.WHITE,
+                outlineWidth: 200.0
+            }
         })
     }
 
