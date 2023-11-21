@@ -1,7 +1,10 @@
 export class SnackBar extends HTMLElement {
+    static counter = 0;
+
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
+        SnackBar.counter++;
     }
 
     render() {
@@ -12,8 +15,10 @@ export class SnackBar extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
-            <div>
-                <p></p>
+            <div class="snackbar">
+                <div class="content">
+                    <p></p>
+                </div>
             </div>
             `
         ;
@@ -22,10 +27,11 @@ export class SnackBar extends HTMLElement {
         if (!this.hasAttribute('text')) this.setAttribute('text', '');
         if (!this.hasAttribute('type')) this.setAttribute('type', 'closable');
 
-        this.div = this.shadow.querySelector('div');
-
+        this.snackbar = this.shadow.querySelector('.snackbar');
+        this.content = this.shadow.querySelector('.content');
         this.p = this.shadow.querySelector('p');
-        this.p.innerText = this.getAttribute('text');      
+
+        this.p.innerText = this.getAttribute('text');
 
         // Closable
         if (this.getAttribute('type') == 'closable') {
@@ -40,7 +46,7 @@ export class SnackBar extends HTMLElement {
                 `
             ;
 
-            this.div.append(this.button);
+            this.content.append(this.button);
             this.button.addEventListener('click', () => this.setAttribute('is-active', 'false'));
         }
 
@@ -49,9 +55,28 @@ export class SnackBar extends HTMLElement {
             let timeout;
             this.hasAttribute('timeout') ? timeout = this.getAttribute('timeout') : timeout = 3000;
 
-            setTimeout(() => {
-                this.setAttribute('is-active', 'false');
-            }, timeout);
+            if (this.getAttribute('text') == '') this.setAttribute('text', 'Attendere...');
+
+            this.bar = document.createElement('div');
+            this.bar.innerHTML =
+                `
+                <div class="bar-color" style="width:100%"></div>
+                `
+            ;
+
+            this.snackbar.append(this.bar);
+
+            let width = 100;
+            let interval = setInterval(() => {
+                if (width == 0) {
+                    clearInterval(interval);
+                    this.setAttribute('is-active', 'false');
+                }
+
+                width--;
+                this.bar.style.width = width + '%';
+
+            }, timeout / 100);
         }
 
         // Loader
@@ -63,6 +88,11 @@ export class SnackBar extends HTMLElement {
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/snackbar.css');
+
+        const cssVar = document.createElement('style');
+        cssVar.innerHTML = `:host { --snackbar-counter: ${64 * SnackBar.counter}px; }`;
+
+        this.shadow.append(cssVar);
         this.shadow.append(style);
     }
 
@@ -80,6 +110,9 @@ export class SnackBar extends HTMLElement {
         }
     }
 
+    disconnectedCallback() {
+        SnackBar.counter--;
+    }
 }
 
 customElements.define('app-snackbar', SnackBar);

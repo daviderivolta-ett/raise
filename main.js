@@ -47,7 +47,10 @@ const autocomplete = document.querySelector('app-autocomplete');
 const map = new CesiumViewer();
 
 // Get user position
-const position = await getPosition();
+let position;
+try { position = await getPosition(); }
+catch (error) { console.error(error); }
+
 // map.setCameraToUserPosition(position);
 map.setCamera();
 map.createUserPin(position);
@@ -69,7 +72,6 @@ try {
   let snackbar = document.querySelector('app-snackbar[type="loader"]');
   snackbar.setAttribute('is-active', 'false');
 }
-
 
 // Zoom buttons
 const zoomBtns = document.querySelectorAll('app-zoom-btn');

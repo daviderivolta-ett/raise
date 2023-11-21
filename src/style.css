@@ -100,18 +100,6 @@ app-close-navigation-btn.show {
   right: 40px;
 }
 
-/* Loader */
-app-snackbar {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 350px;
-  max-width: 90%;
-  margin: auto;
-  z-index: 999;
-}
-
 /* Media queries */
 @media screen and (max-width: 576px) {
 
