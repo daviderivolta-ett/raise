@@ -4,10 +4,6 @@ export class CenterPositionBtn extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'closed' });
     }
 
-    render() {
-
-    }
-
     connectedCallback() {
         // html
         this.button = document.createElement('button');
@@ -22,21 +18,13 @@ export class CenterPositionBtn extends HTMLElement {
         this.shadow.append(this.button);
 
         // js
-        this.button.addEventListener('click', () => {
-            const event = new CustomEvent('centerPosition');
-            this.dispatchEvent(event);
-        });
+        this.button.addEventListener('click', () => this.dispatchEvent(new CustomEvent('centerPosition')));
 
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/center-position-btn.css');
         this.shadow.append(style);
-    }
-
-    static observedAttributes = [];
-    attributeChangedCallback() {
-
     }
 }
 
