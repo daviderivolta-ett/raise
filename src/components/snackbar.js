@@ -23,7 +23,7 @@ export class SnackBar extends HTMLElement {
                 </div>
             </div>
             `
-            ;
+        ;
 
         this.setAttribute('is-active', 'true');
         if (!this.hasAttribute('text')) this.setAttribute('text', '');
@@ -46,7 +46,7 @@ export class SnackBar extends HTMLElement {
                     <path d="m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z"/>
                 </svg>
                 `
-                ;
+            ;
 
             this.content.append(this.button);
             this.button.addEventListener('click', () => this.setAttribute('is-active', 'false'));
@@ -85,17 +85,13 @@ export class SnackBar extends HTMLElement {
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/snackbar.css');
-
-        // const cssVar = document.createElement('style');
-        // cssVar.innerHTML = `:host { --snackbar-counter: ${64 * SnackBar.counter}px; }`;
-
-        // this.shadow.append(cssVar);
         this.shadow.append(style);
 
         this.style.setProperty('transform', 'translateX(-50%)');
         this.style.setProperty('position', 'fixed');
         this.style.setProperty('left', '50%');
-        this.style.setProperty('bottom', `${64 * index}px`);
+        this.style.setProperty('bottom', `${24 + 64 * index}px`);
+        this.style.setProperty('z-index', '9999');
     }
 
     static observedAttributes = ['text', 'is-active'];
@@ -122,7 +118,7 @@ export class SnackBar extends HTMLElement {
 
     updatePosition() {
         SnackBar.snackbars.forEach((snackbar, index) => {
-            snackbar.style.setProperty('bottom', `${64 * (index + 1)}px`);
+            snackbar.style.setProperty('bottom', `${24 + 64 * index}px`);
         });
     }
 }
