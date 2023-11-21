@@ -112,9 +112,12 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
     let snackbar = document.createElement('app-snackbar');
     snackbar.setAttribute('type', 'loader');
     main.append(snackbar);
+
     await map.handleCheckbox(event.detail.newValue, clusterIcons);
+
   } catch (error) {
     console.error('Errore durante il recupero dei layer dal geoserver', error);
+
   } finally {
     let snackbar = document.querySelector('app-snackbar[type="loader"]');
     snackbar.setAttribute('is-active', 'false');

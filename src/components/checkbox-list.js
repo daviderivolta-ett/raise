@@ -13,7 +13,7 @@ export class CheckboxList extends HTMLElement {
             `
             <div></div>
             `
-        ;
+            ;
 
         this.div = this.shadow.querySelector('div');
         this.setAttribute('all-active', 'false');
@@ -65,8 +65,9 @@ export class CheckboxList extends HTMLElement {
             });
 
             item.addEventListener('opacityChanged', (event) => {
+                this.data = JSON.parse(this.getAttribute('data'));
                 this.itemData = JSON.parse(item.getAttribute('data'));
-                this.itemData.opacity = event.detail.newValue;
+                this.itemData = JSON.parse(event.detail.newValue);
 
                 const isPresentIndex = this.data.findIndex(obj => {
                     return obj.layer === this.itemData.layer;
@@ -115,7 +116,12 @@ export class CheckboxList extends HTMLElement {
                 });
 
                 if (this.getAttribute('all-active') == 'true') {
-                    this.setAttribute('data', this.getAttribute('input'));
+                    const checkboxes = [];
+                    this.allCheckboxes = this.shadow.querySelectorAll('app-checkbox');
+                    this.allCheckboxes.forEach(checkbox => checkboxes.push(checkbox.getAttribute('data')));
+
+                    // this.setAttribute('data', this.getAttribute('input'));
+                    this.setAttribute('data', `[${checkboxes}]`);
                 } else {
                     this.setAttribute('data', '[]');
                 }

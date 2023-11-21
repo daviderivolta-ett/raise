@@ -445,8 +445,6 @@ export default class CesiumViewer {
     calculateDistance(initialPosition, feature) {
         const endingPosition = this.findFeatureCoordinates(feature);
 
-        console.log(initialPosition);
-
         const start = Cesium.Cartographic.fromDegrees(initialPosition[0], initialPosition[1]);
         const end = Cesium.Cartographic.fromDegrees(endingPosition[0], endingPosition[1]);
         const ellipsoidGeodesic = new Cesium.EllipsoidGeodesic(start, end);
