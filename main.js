@@ -32,7 +32,7 @@ import './src/components/settings-icon.js';
 import './src/components/zoom-button.js';
 import './src/components/theme-icon.js';
 import './src/components/close-navigation-btn.js';
-import './src/components/loader.js';
+import './src/components/snackbar.js';
 
 // DOM nodes
 const main = document.querySelector('main');
@@ -42,7 +42,6 @@ const searchBar = document.querySelector('app-searchbar');
 const drawerTitle = document.querySelector('#drawer-title');
 const drawerContent = document.querySelector('app-drawer-content');
 const autocomplete = document.querySelector('app-autocomplete');
-const loader = document.querySelector('app-loader');
 
 // Map initialization
 const map = new CesiumViewer();
@@ -56,14 +55,19 @@ map.createUserPin(position);
 // Accordions creation
 let jsonData;
 try {
-  loader.setAttribute('is-loading', 'true');
-  loader.setAttribute('text', 'Loading...');
+  let snackbar = document.createElement('app-snackbar');
+  snackbar.setAttribute('type', 'loader');
+  main.append(snackbar);
+
   jsonData = await fetchJsonData(CATEGORIES_URL);
   drawerContent.setAttribute('data', JSON.stringify(jsonData));
+
 } catch (error) {
   console.error('Errore durante il recupero dei dati JSON', error);
+
 } finally {
-  loader.setAttribute('is-loading', 'false');
+  let snackbar = document.querySelector('app-snackbar[type="loader"]');
+  snackbar.setAttribute('is-active', 'false');
 }
 
 
@@ -105,13 +109,15 @@ map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
 // Checkbox list behaviour
 drawerContent.addEventListener('activeLayersChanged', async (event) => {
   try {
-    loader.setAttribute('text', 'Loading...');
-    loader.setAttribute('is-loading', 'true');
+    let snackbar = document.createElement('app-snackbar');
+    snackbar.setAttribute('type', 'loader');
+    main.append(snackbar);
     await map.handleCheckbox(event.detail.newValue, clusterIcons);
   } catch (error) {
     console.error('Errore durante il recupero dei layer dal geoserver', error);
   } finally {
-    loader.setAttribute('is-loading', 'false');
+    let snackbar = document.querySelector('app-snackbar[type="loader"]');
+    snackbar.setAttribute('is-active', 'false');
   }
 
 });

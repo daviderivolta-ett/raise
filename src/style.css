@@ -101,18 +101,15 @@ app-close-navigation-btn.show {
 }
 
 /* Loader */
-app-loader {
+app-snackbar {
   position: fixed;
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  display: none;
-  z-index: 9999;
-}
-
-.loading {
-  visibility: visible !important;
-  display: block;
+  width: 350px;
+  max-width: 90%;
+  margin: auto;
+  z-index: 999;
 }
 
 /* Media queries */
