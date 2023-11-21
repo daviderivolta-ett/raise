@@ -4,22 +4,29 @@ import { fetchJsonData } from './src/settings.js';
 // Import web components
 import './src/components/chip.js';
 import './src/components/button.js';
-import './src/components/loader.js';
+import './src/components/snackbar.js';
 
 // DOM Nodes
 const chipsContainer = document.querySelector('#chips-section');
-const loader = document.querySelector('app-loader');
+const main = document.querySelector('main');
 
 // Import data
 const CATEGORIES_URL = './json/categories.json';
 let jsonData;
 try {
-    loader.setAttribute('is-loading', 'true');
+    let snackbar = document.createElement('app-snackbar');
+    snackbar.setAttribute('type', 'loader');
+    main.append(snackbar);
+
     jsonData = await fetchJsonData(CATEGORIES_URL);
+
 } catch (error) {
+
     console.error('Errore durante il recupero dei dati JSON', error);
+
 } finally {
-    loader.setAttribute('is-loading', 'false');
+    let snackbar = document.querySelector('app-snackbar[type="loader"]');
+    snackbar.setAttribute('is-active', 'false');
 }
 
 // Create tag chips
