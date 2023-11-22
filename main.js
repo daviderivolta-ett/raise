@@ -142,7 +142,6 @@ drawerContent.addEventListener('routeTriggered', (event) => {
     closeNavigationBtn.setAttribute('is-active', isNavigation + '');
     const navigationData = JSON.parse(event.detail.newValue);
     map.createRoute(position, navigationData);
-    // map.solveTSP(position, navigationData);
     
   } else {
     isNavigation = false;
