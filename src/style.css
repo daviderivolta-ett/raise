@@ -77,7 +77,7 @@ html {
 }
 
 /* Zoom buttons */
-#zoom-btns {
+#map-btns {
   position: fixed;
   z-index: 96;
   bottom: 40px;
@@ -91,7 +91,7 @@ html {
 app-close-navigation-btn {
   position: fixed;
   right: -40px;
-  bottom: 130px;
+  bottom: 180px;
   z-index: 96;
   transition: .2s ease-in-out;
 }

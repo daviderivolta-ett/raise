@@ -81,7 +81,7 @@ const zoomBtns = document.querySelectorAll('app-zoom-btn');
 zoomBtns.forEach(btn => map.zoom(btn));
 
 // Center position
-// centerBtn.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
+centerBtn.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
 
 // Theme button
 const changeThemeBtn = document.querySelector('app-theme-icon');

@@ -10,8 +10,7 @@ export class ThemeIcon extends HTMLElement {
         let currentThemeIndex = 0;
         this.setAttribute('current-theme', '');
 
-        this.div = this.shadow.querySelector('#change-theme-icon');
-        this.div.addEventListener('click', () => {
+        this.button.addEventListener('click', () => {
             currentThemeIndex = (currentThemeIndex + 1) % themes.length;
             if (currentThemeIndex === 0) {
                 this.setAttribute('current-theme', '');
@@ -24,16 +23,16 @@ export class ThemeIcon extends HTMLElement {
 
     connectedCallback() {
         // html
-        this.shadow.innerHTML =
+        this.button = document.createElement('button');
+        this.button.innerHTML =
             `
-            <div id="change-theme-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-palette2" viewBox="0 0 16 16">
-                    <path d="M0 .5A.5.5 0 0 1 .5 0h5a.5.5 0 0 1 .5.5v5.277l4.147-4.131a.5.5 0 0 1 .707 0l3.535 3.536a.5.5 0 0 1 0 .708L10.261 10H15.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H3a2.99 2.99 0 0 1-2.121-.879A2.99 2.99 0 0 1 0 13.044m6-.21 7.328-7.3-2.829-2.828L6 7.188v5.647zM4.5 13a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0zM15 15v-4H9.258l-4.015 4H15zM0 .5v12.495V.5z"/>
-                    <path d="M0 12.995V13a3.07 3.07 0 0 0 0-.005z"/>
-                </svg>
-            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <path d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm40-83q119-15 199.5-104.5T800-480q0-123-80.5-212.5T520-797v634Z"/>
+            </svg>
             `
         ;
+
+        this.shadow.append(this.button);
 
         // css
         const style = document.createElement('link');

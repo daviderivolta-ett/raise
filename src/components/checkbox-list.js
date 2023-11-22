@@ -126,9 +126,7 @@ export class CheckboxList extends HTMLElement {
             }
 
             if (name == 'navigation-data') {
-                if (newValue == '[]') {
-                    this.allCheckboxes.forEach(checkbox => checkbox.setAttribute('is-navigation-active', 'false'));
-                }
+                if (newValue == '[]') this.allCheckboxes.forEach(checkbox => checkbox.setAttribute('is-navigation-active', 'false'));
 
                 const event = new CustomEvent('routeTriggered', { detail: { newValue } });
                 this.dispatchEvent(event);

@@ -134,12 +134,7 @@ export class Checkbox extends HTMLElement {
             if (name == 'is-details-open') {
                 const event = new CustomEvent('detailStatusChanged', { detail: { name, oldValue, newValue } });
                 this.dispatchEvent(event);
-
-                if (this.getAttribute('is-details-open') == 'true') {
-                    this.details.setAttribute('open', '')
-                } else {
-                    this.details.removeAttribute('open');
-                }
+                this.getAttribute('is-details-open') == 'true' ? this.details.setAttribute('open', '') : this.details.removeAttribute('open');
             }
 
             if (name == 'is-navigation-active') {
@@ -148,6 +143,7 @@ export class Checkbox extends HTMLElement {
                 const event = new CustomEvent('routeTriggered', { detail: { data } });
                 this.dispatchEvent(event);
             }
+            
         }
     }
 }

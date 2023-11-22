@@ -10,29 +10,24 @@ export class ZoomBtn extends HTMLElement {
 
     connectedCallback() {
         // html
-        this.shadow.innerHTML =
-            `
-            <div class="zoom-icon"></div>
-            `
-        ;
-
-        this.div = this.shadow.querySelector('.zoom-icon');
+        this.button = document.createElement('button');
+        
         switch (this.getAttribute('zoom-type')) {
             case "in":
-                this.div.innerHTML =
+                this.button.innerHTML =
                     `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24" height="24">
+                        <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
                     </svg>
                     `
                 ;
                 break;
 
             case "out":
-                this.div.innerHTML =
+                this.button.innerHTML =
                     `
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
-                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24" height="24">
+                        <path d="M200-440v-80h560v80H200Z"/>
                     </svg>
                     `
                 ;
@@ -41,6 +36,8 @@ export class ZoomBtn extends HTMLElement {
             default:
                 break;
         }
+
+        this.shadow.append(this.button);
 
         // css
         const style = document.createElement('link');
