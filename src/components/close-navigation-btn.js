@@ -37,7 +37,7 @@ export class CloseNavigationBtn extends HTMLElement {
         if (oldValue != null && newValue != null && newValue != oldValue) {
 
             if (name == 'is-active') {
-                this.classList.toggle('show');
+                newValue == 'true' ? this.classList.add('show') : this.classList.remove('show');
             }
         }
     }

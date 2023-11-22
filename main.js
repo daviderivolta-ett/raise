@@ -44,6 +44,7 @@ const drawerTitle = document.querySelector('#drawer-title');
 const drawerContent = document.querySelector('app-drawer-content');
 const autocomplete = document.querySelector('app-autocomplete');
 const centerBtn = document.querySelector('app-center-position');
+const closeNavigationBtn = document.querySelector('app-close-navigation-btn');
 
 // Map initialization
 const map = new CesiumViewer();
@@ -134,23 +135,23 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
 
 // Navigation
 let isNavigation = false;
-drawerContent.addEventListener('navigationTriggered', (event) => {
+drawerContent.addEventListener('routeTriggered', (event) => {
+
   if (event.detail.newValue != '[]') {
     isNavigation = true;
     closeNavigationBtn.setAttribute('is-active', isNavigation + '');
     const navigationData = JSON.parse(event.detail.newValue);
     map.createRoute(position, navigationData);
-    // map.solveTSP(position, navigationData);
+    
   } else {
     isNavigation = false;
     closeNavigationBtn.setAttribute('is-active', isNavigation + '');
     const entities = map.viewer.entities;
     map.removeAllEntities(entities);
   }
+
 });
 
-// Close navigation button
-const closeNavigationBtn = document.querySelector('app-close-navigation-btn');
 closeNavigationBtn.addEventListener('click', () => {
   isNavigation = false;
   closeNavigationBtn.setAttribute('is-active', isNavigation + '');

@@ -122,6 +122,7 @@ export class Checkbox extends HTMLElement {
 
             if (name == 'is-checked') {
                 newValue == 'true' ? this.checkbox.checked = true : this.checkbox.checked = false;
+                if (newValue == 'false') this.setAttribute('is-navigation-active', 'false');
 
                 this.toolOpacity = this.shadow.querySelector('app-opacity-slider');
                 this.toolOpacity ? this.toolOpacity.setAttribute('is-enable', newValue) : '';
@@ -142,13 +143,10 @@ export class Checkbox extends HTMLElement {
             }
 
             if (name == 'is-navigation-active') {
-                if (newValue != 'false') {
-                    const layer = JSON.parse(this.getAttribute('data')).layer;
-                    const url = JSON.parse(this.getAttribute('data')).layer_url_wfs;
-
-                    const event = new CustomEvent('routeTriggered', { detail: { layer, url } });
-                    this.dispatchEvent(event);
-                }
+                let data;
+                newValue == 'true' ? data = JSON.parse(this.getAttribute('data')) : data = JSON.parse('[]');
+                const event = new CustomEvent('routeTriggered', { detail: { data } });
+                this.dispatchEvent(event);
             }
         }
     }

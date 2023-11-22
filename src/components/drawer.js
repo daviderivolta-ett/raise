@@ -54,7 +54,7 @@ export class DrawerContent extends HTMLElement {
 
         // Navigation
         allCheckboxLists.forEach(checkboxList => {
-            checkboxList.addEventListener('navigationTriggered', (event) => {
+            checkboxList.addEventListener('routeTriggered', (event) => {
                 this.setAttribute('navigation-data', event.detail.newValue);
             });
         });
@@ -89,12 +89,11 @@ export class DrawerContent extends HTMLElement {
             if (name == 'navigation-data') {
                 if (newValue == '[]') {
                     const allCheckboxLists = this.shadow.querySelectorAll('app-checkbox-list');
-                    allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', newValue));
-
-                } else {
-                    const event = new CustomEvent('navigationTriggered', { detail: { name, oldValue, newValue } });
-                    this.dispatchEvent(event);
+                    allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', '[]'));   
                 }
+            
+                const event = new CustomEvent('routeTriggered', { detail: { newValue } });
+                this.dispatchEvent(event);
             }
 
         }

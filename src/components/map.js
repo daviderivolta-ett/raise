@@ -429,7 +429,7 @@ export default class CesiumViewer {
     }
 
     async fetchEntitiesData(obj) {
-        const url = `${obj.url}?service=WFS&typeName=${obj.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
+        const url = `${obj.layer_url_wfs}?service=WFS&typeName=${obj.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`
 
         try {
             const response = await fetch(url);

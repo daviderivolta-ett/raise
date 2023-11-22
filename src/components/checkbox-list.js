@@ -84,7 +84,7 @@ export class CheckboxList extends HTMLElement {
             });
 
             item.addEventListener('routeTriggered', (event) => {
-                this.setAttribute('navigation-data', JSON.stringify(event.detail));
+                this.setAttribute('navigation-data', JSON.stringify(event.detail.data));
             });
 
             item.addEventListener('detailStatusChanged', (event) => {
@@ -127,15 +127,13 @@ export class CheckboxList extends HTMLElement {
 
             if (name == 'navigation-data') {
                 if (newValue == '[]') {
-                    this.allCheckboxes.forEach(checkbox => {
-                        if (checkbox.hasAttribute('is-navigation-active')) checkbox.setAttribute('is-navigation-active', 'false');
-                    });
-
-                } else {
-                    const event = new CustomEvent('navigationTriggered', { detail: { name, oldValue, newValue } });
-                    this.dispatchEvent(event);
+                    this.allCheckboxes.forEach(checkbox => checkbox.setAttribute('is-navigation-active', 'false'));
                 }
+
+                const event = new CustomEvent('routeTriggered', { detail: { newValue } });
+                this.dispatchEvent(event);
             }
+
         }
     }
 }
