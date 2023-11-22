@@ -85,7 +85,7 @@ export class CheckboxList extends HTMLElement {
 
             item.addEventListener('routeTriggered', (event) => {
                 this.setAttribute('navigation-data', JSON.stringify(event.detail));
-            })
+            });
 
             item.addEventListener('detailStatusChanged', (event) => {
                 if (event.detail.newValue == 'true') {
@@ -102,6 +102,7 @@ export class CheckboxList extends HTMLElement {
 
     static observedAttributes = ['data', 'all-active', 'navigation-data'];
     attributeChangedCallback(name, oldValue, newValue) {
+        this.allCheckboxes = this.shadow.querySelectorAll('app-checkbox');
 
         if (newValue != oldValue && oldValue !== null && newValue !== null) {
 
@@ -117,10 +118,7 @@ export class CheckboxList extends HTMLElement {
 
                 if (this.getAttribute('all-active') == 'true') {
                     const checkboxes = [];
-                    this.allCheckboxes = this.shadow.querySelectorAll('app-checkbox');
                     this.allCheckboxes.forEach(checkbox => checkboxes.push(checkbox.getAttribute('data')));
-
-                    // this.setAttribute('data', this.getAttribute('input'));
                     this.setAttribute('data', `[${checkboxes}]`);
                 } else {
                     this.setAttribute('data', '[]');
@@ -128,8 +126,15 @@ export class CheckboxList extends HTMLElement {
             }
 
             if (name == 'navigation-data') {
-                const event = new CustomEvent('navigationTriggered', { detail: { name, oldValue, newValue } });
-                this.dispatchEvent(event);
+                if (newValue == '[]') {
+                    this.allCheckboxes.forEach(checkbox => {
+                        if (checkbox.hasAttribute('is-navigation-active')) checkbox.setAttribute('is-navigation-active', 'false');
+                    });
+
+                } else {
+                    const event = new CustomEvent('navigationTriggered', { detail: { name, oldValue, newValue } });
+                    this.dispatchEvent(event);
+                }
             }
         }
     }

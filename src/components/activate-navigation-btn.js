@@ -25,10 +25,6 @@ export class NavigationBtn extends HTMLElement {
             this.btn.disabled = true;
         }
 
-        if (!this.hasAttribute('is-route-active')) {
-            this.setAttribute('is-route-active', 'false');
-        }
-
         // js
         this.btn.addEventListener('click', () => {
             const event = new CustomEvent('routeTriggered');
@@ -42,18 +38,13 @@ export class NavigationBtn extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-enable', 'is-route-active'];
+    static observedAttributes = ['is-enable'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (oldValue !== null && newValue !== null && newValue !== oldValue) {
 
             if (name == 'is-enable') {
                 this.getAttribute('is-enable') == 'true' ? this.btn.disabled = false : this.btn.disabled = true;
                 this.getAttribute('is-enable') == 'false' ? this.setAttribute('is-route-active', 'false') : '';
-            }
-
-            if (name == 'is-route-active') {
-                const event = new CustomEvent('routeTriggered');
-                this.dispatchEvent(event);
             }
 
         }

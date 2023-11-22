@@ -70,18 +70,13 @@ export class Checkbox extends HTMLElement {
                 }
 
                 if (component == 'app-navigation-btn') {
+                    this.setAttribute('is-navigation-active', 'false');
+
                     this.component.addEventListener('routeTriggered', () => {
-
-                        const layer = JSON.parse(this.getAttribute('data')).layer;
-                        const url = JSON.parse(this.getAttribute('data')).layer_url_wfs;
-
-                        const event = new CustomEvent('routeTriggered', {
-                            detail: { layer: layer, url: url }
-                        });
-
-                        this.dispatchEvent(event);
+                        this.setAttribute('is-navigation-active', 'true');
                     });
                 }
+
                 this.details.append(this.component);
             }
 
@@ -116,7 +111,7 @@ export class Checkbox extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-checked', 'data', 'is-details-open'];
+    static observedAttributes = ['is-checked', 'data', 'is-details-open', 'is-navigation-active'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue !== oldValue && oldValue !== null && newValue !== null) {
 
@@ -143,6 +138,16 @@ export class Checkbox extends HTMLElement {
                     this.details.setAttribute('open', '')
                 } else {
                     this.details.removeAttribute('open');
+                }
+            }
+
+            if (name == 'is-navigation-active') {
+                if (newValue != 'false') {
+                    const layer = JSON.parse(this.getAttribute('data')).layer;
+                    const url = JSON.parse(this.getAttribute('data')).layer_url_wfs;
+
+                    const event = new CustomEvent('routeTriggered', { detail: { layer, url } });
+                    this.dispatchEvent(event);
                 }
             }
         }

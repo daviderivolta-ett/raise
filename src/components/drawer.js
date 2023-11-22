@@ -22,7 +22,7 @@ export class DrawerContent extends HTMLElement {
                 msg.innerText = 'Nessun livello trovato';
                 this.div.append(msg);
             }
-            
+
         } else {
             await populateDrawer(jsonData, this.div);
         }
@@ -65,7 +65,7 @@ export class DrawerContent extends HTMLElement {
             `
             <div id="categories-section"></div>
             `
-        ;
+            ;
 
         this.div = this.shadow.querySelector('#categories-section');
         this.setAttribute('navigation-data', '[]');
@@ -87,16 +87,14 @@ export class DrawerContent extends HTMLElement {
             }
 
             if (name == 'navigation-data') {
-
                 if (newValue == '[]') {
                     const allCheckboxLists = this.shadow.querySelectorAll('app-checkbox-list');
                     allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', newValue));
-                }
 
-                const event = new CustomEvent('navigationTriggered', {
-                    detail: { name, oldValue, newValue }
-                });
-                this.dispatchEvent(event);
+                } else {
+                    const event = new CustomEvent('navigationTriggered', { detail: { name, oldValue, newValue } });
+                    this.dispatchEvent(event);
+                }
             }
 
         }
@@ -171,7 +169,7 @@ async function checkLayerToRemove(allLayers, activeLayers) {
     });
 }
 
-function filterLayersBySelectedTags (dataToFilter, array) {
+function filterLayersBySelectedTags(dataToFilter, array) {
     dataToFilter.categories.forEach(category => {
         category.groups.forEach(group => {
             group.layers = group.layers.filter(layer => {

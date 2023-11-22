@@ -80,7 +80,7 @@ const zoomBtns = document.querySelectorAll('app-zoom-btn');
 zoomBtns.forEach(btn => map.zoom(btn));
 
 // Center position
-centerBtn.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
+// centerBtn.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
 
 // Theme button
 const changeThemeBtn = document.querySelector('app-theme-icon');
@@ -132,14 +132,6 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
 
 });
 
-// Close navigation button
-const closeNavigationBtn = document.querySelector('app-close-navigation-btn');
-closeNavigationBtn.addEventListener('click', () => {
-  drawerContent.setAttribute('navigation-data', '[]');
-  const entities = map.viewer.entities;
-  map.removeAllEntities(entities);
-})
-
 // Navigation
 let isNavigation = false;
 drawerContent.addEventListener('navigationTriggered', (event) => {
@@ -157,12 +149,21 @@ drawerContent.addEventListener('navigationTriggered', (event) => {
   }
 });
 
+// Close navigation button
+const closeNavigationBtn = document.querySelector('app-close-navigation-btn');
+closeNavigationBtn.addEventListener('click', () => {
+  isNavigation = false;
+  closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+  drawerContent.setAttribute('navigation-data', '[]');
+  const entities = map.viewer.entities;
+  map.removeAllEntities(entities);
+});
+
 // Search bar
 searchBar.addEventListener('searchValueChanged', (event) => {
   const valueToSearch = event.detail.newValue.toLowerCase();
   drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
 
-  console.log(jsonData);
   let dataToFilter = JSON.parse(JSON.stringify(jsonData));
 
   filterLayersByTagName(dataToFilter, valueToSearch);

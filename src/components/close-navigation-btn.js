@@ -19,7 +19,7 @@ export class CloseNavigationBtn extends HTMLElement {
                 </svg>
             </div>
             `
-        ;
+            ;
 
         if (!this.hasAttribute('is-active')) {
             this.setAttribute('is-active', false);
@@ -34,8 +34,11 @@ export class CloseNavigationBtn extends HTMLElement {
 
     static observedAttributes = ['is-active'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'is-active' && oldValue != null && newValue != null && newValue != oldValue) {
-            this.classList.toggle('show');
+        if (oldValue != null && newValue != null && newValue != oldValue) {
+
+            if (name == 'is-active') {
+                this.classList.toggle('show');
+            }
         }
     }
 }
