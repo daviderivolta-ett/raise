@@ -91,7 +91,7 @@ html {
 app-close-navigation-btn {
   position: fixed;
   right: -40px;
-  bottom: 180px;
+  bottom: 172px;
   z-index: 96;
   transition: .2s ease-in-out;
 }

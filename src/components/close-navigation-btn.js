@@ -10,16 +10,16 @@ export class CloseNavigationBtn extends HTMLElement {
 
     connectedCallback() {
         // html
-        this.shadow.innerHTML =
+        this.button = document.createElement('button');
+        this.button.innerHTML =
             `
-            <div class="close-navigation-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-slash-circle" viewBox="0 0 16 16">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                    <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708z"/>
-                </svg>
-            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <path d="M516-120 402-402 120-516v-56l195-73-203-203 57-57 736 736-57 57-203-203-73 195h-56Zm191-361-63-63 60-160-160 60-63-63 359-133-133 359ZM542-268l41-109-206-206-109 41 196 78 78 196Zm52-326ZM480-480Z"/>
+            </svg>
             `
-            ;
+        ;
+
+        this.shadow.append(this.button);
 
         if (!this.hasAttribute('is-active')) {
             this.setAttribute('is-active', false);

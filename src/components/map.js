@@ -555,13 +555,13 @@ export default class CesiumViewer {
         switch (btn.getAttribute('zoom-type')) {
             case "in":
                 btn.addEventListener('click', () => {
-                    this.viewer.camera.zoomIn(500.0);
+                    this.viewer.camera.zoomIn(1000.0);
                 });
                 break;
 
             case "out":
                 btn.addEventListener('click', () => {
-                    this.viewer.camera.zoomOut(500.0);
+                    this.viewer.camera.zoomOut(1000.0);
                 });
                 break;
 
