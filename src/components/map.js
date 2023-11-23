@@ -72,7 +72,9 @@ export default class CesiumViewer {
                 }
 
             } else {
-                this.startNavigation(windowPosition);
+                // this.startNavigation(windowPosition);
+                const infoContent = await this.handleFeatures(features, jsonData);
+                let allInfoBoxes = document.querySelectorAll('app-infobox');
             }
         }
     }
@@ -183,6 +185,7 @@ export default class CesiumViewer {
         await Promise.all(requests).then(sources => {
             this.viewer.dataSources.removeAll();
             sources.forEach(async source => {
+                console.log(source.data);
                 this.viewer.dataSources.add(source.data);
                 await this.styleEntities(source.data, source.layer.style);
             });
@@ -549,24 +552,5 @@ export default class CesiumViewer {
     async addBuilding() {
         const buildingTileset = await Cesium.createOsmBuildingsAsync();
         this.viewer.scene.primitives.add(buildingTileset);
-    }
-
-    zoom(btn) {
-        switch (btn.getAttribute('zoom-type')) {
-            case "in":
-                btn.addEventListener('click', () => {
-                    this.viewer.camera.zoomIn(1000.0);
-                });
-                break;
-
-            case "out":
-                btn.addEventListener('click', () => {
-                    this.viewer.camera.zoomOut(1000.0);
-                });
-                break;
-
-            default:
-                break;
-        }
     }
 }

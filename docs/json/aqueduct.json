@@ -38,7 +38,7 @@
             "layer": "CULTURA:V_ACQ_MANU_STORICI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "green",
                 "opacity": 1
             },
             "tags": [
@@ -80,7 +80,7 @@
             "layer": "CULTURA:V_ACQ_AREA_SOSTA",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "blue",
                 "opacity": 1
             },
             "tags": [
@@ -103,7 +103,7 @@
             "layer": "V_ACQ_PTI_ACCESSO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "purple",
                 "opacity": 1
             },
             "tags": [

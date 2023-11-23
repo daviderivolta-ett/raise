@@ -137,3 +137,13 @@ export class CheckboxList extends HTMLElement {
 }
 
 customElements.define('app-checkbox-list', CheckboxList);
+
+function checkLayerToRemove(allLayers, activeLayers) {
+    allLayers.forEach(layer => {
+        const layerToRemoveIndex = activeLayers.findIndex(item => item.layer === layer.layer);
+
+        if (layerToRemoveIndex !== -1) {
+            activeLayers.splice(layerToRemoveIndex, 1);
+        }
+    });
+}

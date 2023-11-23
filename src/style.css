@@ -76,30 +76,6 @@ html {
   transition: .2s ease-in-out;
 }
 
-/* Zoom buttons */
-#map-btns {
-  position: fixed;
-  z-index: 96;
-  bottom: 40px;
-  right: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* Close navigation button */
-app-close-navigation-btn {
-  position: fixed;
-  right: -40px;
-  bottom: 172px;
-  z-index: 96;
-  transition: .2s ease-in-out;
-}
-
-app-close-navigation-btn.show {
-  right: 40px;
-}
-
 /* Media queries */
 @media screen and (max-width: 576px) {
 
@@ -120,39 +96,4 @@ main#onboard {
   max-width: 800px;
   margin: 40px auto;
   padding: 0 4%;
-}
-
-main#onboard h1 {
-  text-align: center;
-  font-size: 1.6rem;
-}
-
-#chips-section {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2px;
-  margin: 24px 0;
-}
-
-#chips-section::after {
-  content: '';
-  flex-grow: 9999;
-  min-width: 2px;
-}
-
-button {
-  cursor: pointer;
-  color: #3f51b5;
-  background-color: white;
-  font-family: 'Roboto', sans-serif;
-  font-size: .9rem;
-  font-weight: 500;
-  padding: 8px 16px;
-  border: 1px solid rgba(0, 0, 0, .12);
-  border-radius: 4px;
-}
-
-button:hover {
-  background-color: #f3f3f3;
 }

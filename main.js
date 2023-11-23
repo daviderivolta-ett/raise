@@ -27,13 +27,16 @@ import './src/components/autocomplete.js';
 import './src/components/opacity-slider.js';
 import './src/components/activate-navigation-btn.js';
 import './src/components/chip.js';
-import './src/components/button.js';
+import './src/components/submit-tags-btn.js';
 import './src/components/settings-icon.js';
 import './src/components/zoom-button.js';
 import './src/components/theme-icon.js';
 import './src/components/close-navigation-btn.js';
 import './src/components/snackbar.js';
 import './src/components/center-position-btn.js';
+import './src/components/path-drawer.js';
+import './src/components/map-controls.js';
+import './src/components/path-infobox.js';
 
 // DOM nodes
 const main = document.querySelector('main');
@@ -43,8 +46,8 @@ const searchBar = document.querySelector('app-searchbar');
 const drawerTitle = document.querySelector('#drawer-title');
 const drawerContent = document.querySelector('app-drawer-content');
 const autocomplete = document.querySelector('app-autocomplete');
-const centerBtn = document.querySelector('app-center-position');
-const closeNavigationBtn = document.querySelector('app-close-navigation-btn');
+const pathDrawer = document.querySelector('app-path-drawer');
+const mapControls = document.querySelector('app-map-controls');
 
 // Map initialization
 const map = new CesiumViewer();
@@ -76,17 +79,17 @@ try {
   snackbar.setAttribute('is-active', 'false');
 }
 
-// Zoom buttons
-const zoomBtns = document.querySelectorAll('app-zoom-btn');
-zoomBtns.forEach(btn => map.zoom(btn));
-
-// Center position
-centerBtn.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
+// Map controls
+mapControls.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
+mapControls.addEventListener('zoomIn', () => map.viewer.camera.zoomIn(1000.0));
+mapControls.addEventListener('zoomOut', () => map.viewer.camera.zoomOut(1000.0));
 
 // Theme button
 const changeThemeBtn = document.querySelector('app-theme-icon');
-const themes = await map.fetchThemes(THEMES_URL);
-changeThemeBtn.setAttribute('themes', JSON.stringify(themes));
+
+map.fetchThemes(THEMES_URL)
+  .then(themes => changeThemeBtn.setAttribute('themes', JSON.stringify(themes)));
+
 changeThemeBtn.addEventListener('themeChanged', (event) => {
   const theme = event.detail.newValue;
   map.changeTheme(theme);
@@ -95,8 +98,8 @@ changeThemeBtn.addEventListener('themeChanged', (event) => {
 // Import cluster icons
 const clusterIcons = [];
 for (let i = 0; i <= 2; i++) {
-  const clusterIcon = await fetchSvgIcon(i + 2);
-  clusterIcons.push(clusterIcon);
+  fetchSvgIcon(i + 2)
+    .then(clusterIcon => clusterIcons.push(clusterIcon));
 }
 
 // Toggle drawer behaviour
@@ -139,26 +142,41 @@ drawerContent.addEventListener('routeTriggered', (event) => {
 
   if (event.detail.newValue != '[]') {
     isNavigation = true;
-    closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+    pathDrawer.setAttribute('is-active', isNavigation + '');
+    pathDrawer.setAttribute('data', event.detail.newValue);
+    mapControls.setAttribute('is-navigation', isNavigation + '');
     const navigationData = JSON.parse(event.detail.newValue);
     map.createRoute(position, navigationData);
-    
+
+    // map.viewer.dataSources.get(0).entities.values.forEach(entity => {
+    //   entity.
+    // });
+
   } else {
     isNavigation = false;
-    closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+    pathDrawer.setAttribute('is-active', isNavigation + '');
+    mapControls.setAttribute('is-navigation', isNavigation + '');
     const entities = map.viewer.entities;
     map.removeAllEntities(entities);
   }
 
 });
 
-closeNavigationBtn.addEventListener('click', () => {
+pathDrawer.addEventListener('closeNavigation', () => {
+  closeNavigation(isNavigation, mapControls, drawerContent, map);
+});
+
+mapControls.addEventListener('closeNavigation', () => {
+  closeNavigation(isNavigation, mapControls, drawerContent, map);
+});
+
+function closeNavigation(isNavigation, mapControls, drawerContent, map) {
   isNavigation = false;
-  closeNavigationBtn.setAttribute('is-active', isNavigation + '');
+  mapControls.setAttribute('is-navigation', isNavigation + '');
   drawerContent.setAttribute('navigation-data', '[]');
   const entities = map.viewer.entities;
   map.removeAllEntities(entities);
-});
+}
 
 // Search bar
 searchBar.addEventListener('searchValueChanged', (event) => {

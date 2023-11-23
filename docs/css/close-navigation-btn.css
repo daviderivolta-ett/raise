@@ -1,15 +1,11 @@
-.close-navigation-btn {
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.87);
-    background-color: white;
-    padding: 6px;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    line-height: 0;
-    font-size: 1.5rem;
-    border: none;
+button {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    padding: 0 1px 0 0;
 }

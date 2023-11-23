@@ -1,0 +1,17 @@
+:host {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 96;
+    transition: .2s ease-in-out;
+}
+
+:host-context(.visible) {
+    right: 324px;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

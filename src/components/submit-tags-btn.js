@@ -1,4 +1,4 @@
-export class Button extends HTMLElement {
+export class SubmitTagsButton extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
@@ -35,7 +35,7 @@ export class Button extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/button.css');
+        style.setAttribute('href', './css/primary-btn.css');
         this.shadow.append(style);
     }
 
@@ -49,4 +49,4 @@ export class Button extends HTMLElement {
     }
 }
 
-customElements.define('app-btn', Button);
+customElements.define('app-submit-tags-btn', SubmitTagsButton);

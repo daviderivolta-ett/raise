@@ -1,4 +1,4 @@
-#change-theme-icon {
+/* #change-theme-icon {
     cursor: pointer;
     color: rgba(0, 0, 0, 0.87);
     background-color: white;
@@ -9,4 +9,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+} */
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
 }

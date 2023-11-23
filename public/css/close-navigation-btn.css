@@ -9,3 +9,11 @@ button {
     border-radius: 50%;
     padding: 0 1px 0 0;
 }
+
+:host {
+    display: none;
+}
+
+:host-context(.show) {
+    display: block;
+}
