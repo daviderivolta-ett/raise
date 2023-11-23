@@ -148,9 +148,7 @@ drawerContent.addEventListener('routeTriggered', (event) => {
     const navigationData = JSON.parse(event.detail.newValue);
     map.createRoute(position, navigationData);
 
-    // map.viewer.dataSources.get(0).entities.values.forEach(entity => {
-    //   entity.
-    // });
+    console.log(map.viewer.dataSources._dataSources[0]);
 
   } else {
     isNavigation = false;
