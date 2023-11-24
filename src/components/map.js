@@ -189,7 +189,7 @@ export default class CesiumViewer {
                 source.data.layer.then(async layer => await this.styleEntities(layer, source.layer.style));
             });
         });
-        this.clusterAllEntities(clusterIcons);
+        await this.clusterAllEntities(clusterIcons);
     }
 
     async checkLayerToRemove(allLayers, activeLayers) {
@@ -257,7 +257,7 @@ export default class CesiumViewer {
         });
     }
 
-    clusterAllEntities(clusterIcons) {
+    async clusterAllEntities(clusterIcons) {
         const color = 'WHITE';
         const combinedDataSource = new Cesium.CustomDataSource();
 
