@@ -8,9 +8,14 @@ export class PathDrawer extends HTMLElement {
         this.data = JSON.parse(this.getAttribute('data'));
         this.titleText.innerText = this.data.name;
         
+        this.div.innerHTML = '';
+
         this.features = this.data.features;
         this.features.forEach(feature => {
-            
+            const infobox = document.createElement('app-path-infobox');
+            const properties = feature.properties;
+            infobox.setAttribute('data', JSON.stringify(properties));
+            this.div.append(infobox);
         });
     }
 
@@ -18,12 +23,13 @@ export class PathDrawer extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24" height="24" class="close-icon">
-                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-            </svg>
-            <div>
+            <div class="path-drawer-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24" height="24" class="close-icon">
+                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
                 <h2></h2>
             </div>
+            <div class="info-container"></div>
             `
         ;
 
@@ -31,7 +37,7 @@ export class PathDrawer extends HTMLElement {
         
         this.closeIcon = this.shadow.querySelector('.close-icon');
         this.titleText = this.shadow.querySelector('h2');
-        this.div = this.shadow.querySelector('div');
+        this.div = this.shadow.querySelector('.info-container');
 
         // js
         this.closeIcon.addEventListener('click', () => {

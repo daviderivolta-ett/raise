@@ -419,6 +419,7 @@ export default class CesiumViewer {
 
             const endingPosition = this.findFeatureCoordinates(features[shortestDistanceIndex]);
 
+            console.log(features[shortestDistanceIndex]);
             // viewer.createRoute(startingPosition, endingPosition, pathIndex);
             this.createPointsOrderLabels(endingPosition, pathIndex);
 
