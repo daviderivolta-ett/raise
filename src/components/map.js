@@ -179,17 +179,37 @@ export default class CesiumViewer {
         return { longitude, latitude }
     }
 
+    // async handleCheckbox(activeLayers, clusterIcons) {
+    //     const requests = activeLayers.map(layer => this.fetchLayerData(layer).then((data) => ({ layer, data })));
+
+    //     await Promise.all(requests).then(async sources => {
+    //         this.viewer.dataSources.removeAll();
+    //         sources.forEach(async source => {
+    //             this.viewer.dataSources.add(source.data.layer);
+    //             source.data.layer.then(async layer => await this.styleEntities(layer, source.layer.style));
+    //         });
+    //     });
+    //     // await this.clusterAllEntities(clusterIcons);
+    // }
+
     async handleCheckbox(activeLayers, clusterIcons) {
         const requests = activeLayers.map(layer => this.fetchLayerData(layer).then((data) => ({ layer, data })));
 
-        await Promise.all(requests).then(sources => {
+        await Promise.all(requests).then(async sources => {
             this.viewer.dataSources.removeAll();
-            sources.forEach(async source => {
-                this.viewer.dataSources.add(source.data.layer);
-                source.data.layer.then(async layer => await this.styleEntities(layer, source.layer.style));
-            });
+
+            await Promise.all(sources.map(async source => {
+                const layer = await source.data.layer;
+                this.viewer.dataSources.add(layer);
+                await this.styleEntities(layer, source.layer.style);
+            }));
+
+            const combinedDataSource = this.combineDataSource();
+            const clusteredDataSource = await this.clusterAllEntities(clusterIcons, combinedDataSource);
+            this.viewer.dataSources.add(clusteredDataSource);
         });
-        await this.clusterAllEntities(clusterIcons);
+
+        
     }
 
     async checkLayerToRemove(allLayers, activeLayers) {
@@ -257,11 +277,9 @@ export default class CesiumViewer {
         });
     }
 
-    async clusterAllEntities(clusterIcons) {
-        const color = 'WHITE';
-        const combinedDataSource = new Cesium.CustomDataSource();
-
+    combineDataSource() {
         const dataSources = this.viewer.dataSources;
+        const combinedDataSource = new Cesium.CustomDataSource();
 
         for (let i = 0; i < dataSources.length; i++) {
             dataSources.get(i).entities.values.forEach(entity => {
@@ -273,6 +291,25 @@ export default class CesiumViewer {
         for (let i = dataSources.length - 1; i >= 0; i--) {
             if (i !== combinedDataSourceIndex) dataSources.remove(dataSources.get(i));
         }
+
+        return combinedDataSource;
+    }
+
+    async clusterAllEntities(clusterIcons, combinedDataSource) {
+        const color = 'WHITE';
+        // const combinedDataSource = this.viewer.dataSources;
+        // const combinedDataSource = new Cesium.CustomDataSource();
+
+        // for (let i = 0; i < dataSources.length; i++) {
+        //     dataSources.get(i).entities.values.forEach(entity => {
+        //         combinedDataSource.entities.add(entity);
+        //     });
+        // }
+
+        // const combinedDataSourceIndex = dataSources.indexOf(combinedDataSource);
+        // for (let i = dataSources.length - 1; i >= 0; i--) {
+        //     if (i !== combinedDataSourceIndex) dataSources.remove(dataSources.get(i));
+        // }
 
         combinedDataSource.clustering.enabled = true;
         combinedDataSource.clustering.pixelRange = 25;
@@ -317,7 +354,7 @@ export default class CesiumViewer {
 
         });
 
-        this.viewer.dataSources.add(combinedDataSource);
+        return combinedDataSource;
     }
 
     styleClusterIcon(svgDoc, colors) {
@@ -410,7 +447,7 @@ export default class CesiumViewer {
             this.createPointsOrderLabels(endingPosition, i);
             i++;
             startingPosition = endingPosition;
-        });        
+        });
 
         this.viewer.zoomTo(entities);
     }
