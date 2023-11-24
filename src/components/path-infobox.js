@@ -10,7 +10,7 @@ export class PathInfobox extends HTMLElement {
             `
             <div></div>
             `
-            ;
+        ;
 
         this.data = JSON.parse(this.getAttribute('data'));
         this.div = this.shadow.querySelector('div');

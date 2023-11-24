@@ -12,12 +12,15 @@ export class PathDrawer extends HTMLElement {
         this.div.innerHTML = '';
 
         this.features = this.data.features;
-        this.features.forEach(feature => {
+
+        for (let i = 0; i < this.features.length; i++) {
+            const feature = this.features[i];
             const infobox = document.createElement('app-path-infobox');
             const properties = feature.properties;
             infobox.setAttribute('data', JSON.stringify(properties));
+            if(i == this.features.length - 1) infobox.classList.add('last');
             this.div.append(infobox);
-        });
+        }
     }
 
     connectedCallback() {
