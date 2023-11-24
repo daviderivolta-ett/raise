@@ -6,6 +6,7 @@ export class PathDrawer extends HTMLElement {
 
     render() {
         this.data = JSON.parse(this.getAttribute('data'));
+        console.log(this.data);
         this.titleText.innerText = this.data.name;
         
         this.div.innerHTML = '';

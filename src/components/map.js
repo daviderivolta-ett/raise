@@ -393,6 +393,45 @@ export default class CesiumViewer {
         }
     }
 
+    // async createRoute(position, navigationData) {
+    //     const entities = this.viewer.entities;
+    //     this.removeAllEntities(entities);
+
+    //     if (navigationData == null) return;
+    //     const data = await this.fetchEntitiesData(navigationData);
+    //     const features = data.features;
+
+    //     let startingPosition = [position.coords.longitude, position.coords.latitude];
+    //     let pathIndex = 1;
+    //     while (features.length != 0) {
+
+    //         let shortestDistance = Infinity;
+    //         let shortestDistanceIndex = -1;
+    //         for (let i = 0; i < features.length; i++) {
+    //             let feature = features[i];
+    //             const distance = this.calculateDistance(startingPosition, feature);
+
+    //             if (distance < shortestDistance) {
+    //                 shortestDistance = distance;
+    //                 shortestDistanceIndex = i;
+    //             }
+    //         }
+
+    //         const endingPosition = this.findFeatureCoordinates(features[shortestDistanceIndex]);
+
+    //         this.createPointsOrderLabels(endingPosition, pathIndex);
+
+    //         if (shortestDistanceIndex !== -1) {
+    //             features.splice(shortestDistanceIndex, 1);
+    //         }
+
+    //         pathIndex++;
+    //         startingPosition = endingPosition;
+    //     }
+
+    //     this.viewer.zoomTo(entities);
+    // }
+
     async createRoute(position, navigationData) {
         const entities = this.viewer.entities;
         this.removeAllEntities(entities);
@@ -400,13 +439,29 @@ export default class CesiumViewer {
         if (navigationData == null) return;
         const data = await this.fetchEntitiesData(navigationData);
         const features = data.features;
+        const featuresByProximity = this.orderFeaturesByProximity(position, features);
 
+        let i = 1;
         let startingPosition = [position.coords.longitude, position.coords.latitude];
-        let pathIndex = 1;
-        while (features.length != 0) {
 
+        featuresByProximity.forEach(feature => {
+            const endingPosition = this.findFeatureCoordinates(feature);
+            this.createPointsOrderLabels(endingPosition, i);
+            i++;
+            startingPosition = endingPosition;
+        });        
+
+        this.viewer.zoomTo(entities);
+    }
+
+    orderFeaturesByProximity(position, features) {
+        let featuresByProximity = [];
+        let startingPosition = [position.coords.longitude, position.coords.latitude];
+
+        while (features.length != 0) {
             let shortestDistance = Infinity;
             let shortestDistanceIndex = -1;
+
             for (let i = 0; i < features.length; i++) {
                 let feature = features[i];
                 const distance = this.calculateDistance(startingPosition, feature);
@@ -417,21 +472,11 @@ export default class CesiumViewer {
                 }
             }
 
-            const endingPosition = this.findFeatureCoordinates(features[shortestDistanceIndex]);
-
-            console.log(features[shortestDistanceIndex]);
-            // viewer.createRoute(startingPosition, endingPosition, pathIndex);
-            this.createPointsOrderLabels(endingPosition, pathIndex);
-
-            if (shortestDistanceIndex !== -1) {
-                features.splice(shortestDistanceIndex, 1);
-            }
-
-            pathIndex++;
-            startingPosition = endingPosition;
+            featuresByProximity.push(features[shortestDistanceIndex]);
+            features.splice(shortestDistanceIndex, 1);
         }
 
-        this.viewer.zoomTo(entities);
+        return featuresByProximity;
     }
 
     async fetchEntitiesData(obj) {

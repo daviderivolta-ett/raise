@@ -149,7 +149,8 @@ drawerContent.addEventListener('routeTriggered', async (event) => {
 
     let layerToFetch = JSON.parse(event.detail.newValue);
     map.fetchEntitiesData(layerToFetch).then(geoJson => {
-      layerToFetch.features = geoJson.features;      
+      const featuresByProximity = map.orderFeaturesByProximity(position, geoJson.features);
+      layerToFetch.features = featuresByProximity;
       pathDrawer.setAttribute('data', JSON.stringify(layerToFetch));
     });
 
