@@ -1,9 +1,20 @@
-div {
+.wrapper {
     padding: 8px 0;
+    display: flex;
+    justify-content: left;
     border-bottom: 1px solid #e0e0e0;
 }
 
-:host-context(.last) div {
-    padding: 8px 0 0 0;
+.info {
+    width: 16%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {    
+    width: 84%;
+}
+
+:host-context(.last) .wrapper {
     border-bottom: none;
 }

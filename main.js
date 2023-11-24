@@ -37,6 +37,8 @@ import './src/components/center-position-btn.js';
 import './src/components/path-drawer.js';
 import './src/components/map-controls.js';
 import './src/components/path-infobox.js';
+import './src/components/play-info-btn.js';
+import './src/components/goto-btn.js';
 
 // DOM nodes
 const main = document.querySelector('main');
