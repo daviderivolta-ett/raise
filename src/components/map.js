@@ -186,7 +186,7 @@ export default class CesiumViewer {
             this.viewer.dataSources.removeAll();
             sources.forEach(async source => {
                 this.viewer.dataSources.add(source.data.layer);
-                await this.styleEntities(source.data.layer, source.layer.style);
+                source.data.layer.then(async layer => await this.styleEntities(layer, source.layer.style))
             });
         });
         await this.clusterAllEntities(clusterIcons);
@@ -217,45 +217,43 @@ export default class CesiumViewer {
     }
 
     async styleEntities(dataSource, style) {
-        dataSource.then(source => {
-            let fillColor = 'YELLOW';
-            let markerColor = 'YELLOW';
-            let opacity = 0.5;
+        let fillColor = 'YELLOW';
+        let markerColor = 'YELLOW';
+        let opacity = 0.5;
 
-            if (style && style.color) {
-                fillColor = style.color.toUpperCase();
-                markerColor = style.color.toUpperCase();
+        if (style && style.color) {
+            fillColor = style.color.toUpperCase();
+            markerColor = style.color.toUpperCase();
+        }
+
+        if (style && style.opacity) opacity = style.opacity;
+
+        dataSource.entities.values.forEach(entity => {
+
+            switch (true) {
+                case Cesium.defined(entity.polyline):
+                    entity.polyline.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
+                    entity.polyline.width = 2;
+                    break;
+
+                case Cesium.defined(entity.billboard):
+                    entity.billboard = undefined;
+                    entity.point = new Cesium.PointGraphics({
+                        pixelSize: 18,
+                        color: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
+                        outlineColor: Cesium.Color.WHITE,
+                        outlineWidth: 2
+                    })
+                    break;
+
+                case Cesium.defined(entity.polygon):
+                    entity.polygon.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
+                    entity.polygon.outlineColor = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
+                    break;
+
+                default:
+                    break;
             }
-
-            if (style && style.opacity) opacity = style.opacity;
-
-            source.entities.values.forEach(entity => {
-
-                switch (true) {
-                    case Cesium.defined(entity.polyline):
-                        entity.polyline.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
-                        entity.polyline.width = 2;
-                        break;
-
-                    case Cesium.defined(entity.billboard):
-                        entity.billboard = undefined;
-                        entity.point = new Cesium.PointGraphics({
-                            pixelSize: 18,
-                            color: Cesium.Color[markerColor].withAlpha(parseFloat(opacity)),
-                            outlineColor: Cesium.Color.WHITE,
-                            outlineWidth: 2
-                        })
-                        break;
-
-                    case Cesium.defined(entity.polygon):
-                        entity.polygon.material = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
-                        entity.polygon.outlineColor = Cesium.Color[fillColor].withAlpha(parseFloat(opacity));
-                        break;
-
-                    default:
-                        break;
-                }
-            })
         });
     }
 

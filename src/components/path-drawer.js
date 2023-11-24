@@ -7,6 +7,11 @@ export class PathDrawer extends HTMLElement {
     render() {
         this.data = JSON.parse(this.getAttribute('data'));
         this.titleText.innerText = this.data.name;
+        
+        this.features = this.data.features;
+        this.features.forEach(feature => {
+            
+        });
     }
 
     connectedCallback() {
@@ -23,8 +28,10 @@ export class PathDrawer extends HTMLElement {
         ;
 
         this.setAttribute('is-active', 'false');
+        
         this.closeIcon = this.shadow.querySelector('.close-icon');
         this.titleText = this.shadow.querySelector('h2');
+        this.div = this.shadow.querySelector('div');
 
         // js
         this.closeIcon.addEventListener('click', () => {
@@ -45,9 +52,7 @@ export class PathDrawer extends HTMLElement {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
             }
 
-            if (name == 'data') {
-                this.render();
-            }
+            if (name == 'data') this.render();
         }
     }
 }

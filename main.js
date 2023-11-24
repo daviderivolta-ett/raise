@@ -138,17 +138,20 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
 
 // Navigation
 let isNavigation = false;
-drawerContent.addEventListener('routeTriggered', (event) => {
+drawerContent.addEventListener('routeTriggered', async (event) => {
 
   if (event.detail.newValue != '[]') {
     isNavigation = true;
     pathDrawer.setAttribute('is-active', isNavigation + '');
-    pathDrawer.setAttribute('data', event.detail.newValue);
     mapControls.setAttribute('is-navigation', isNavigation + '');
     const navigationData = JSON.parse(event.detail.newValue);
     map.createRoute(position, navigationData);
 
-    console.log(map.viewer.dataSources._dataSources[0]);
+    let layerToFetch = JSON.parse(event.detail.newValue);
+    map.fetchEntitiesData(layerToFetch).then(geoJson => {
+      layerToFetch.features = geoJson.features;      
+      pathDrawer.setAttribute('data', JSON.stringify(layerToFetch));
+    });
 
   } else {
     isNavigation = false;
