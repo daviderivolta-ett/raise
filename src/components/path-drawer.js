@@ -27,10 +27,9 @@ export class PathDrawer extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="path-drawer-header">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24" height="24" class="close-icon">
-                    <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
-                </svg>
+                <span class="material-symbols-outlined close-icon">close</span>
                 <h2></h2>
             </div>
             <div class="info-container"></div>

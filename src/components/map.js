@@ -186,10 +186,10 @@ export default class CesiumViewer {
             this.viewer.dataSources.removeAll();
             sources.forEach(async source => {
                 this.viewer.dataSources.add(source.data.layer);
-                source.data.layer.then(async layer => await this.styleEntities(layer, source.layer.style))
+                source.data.layer.then(async layer => await this.styleEntities(layer, source.layer.style));
             });
         });
-        await this.clusterAllEntities(clusterIcons);
+        this.clusterAllEntities(clusterIcons);
     }
 
     async checkLayerToRemove(allLayers, activeLayers) {
@@ -257,7 +257,7 @@ export default class CesiumViewer {
         });
     }
 
-    async clusterAllEntities(clusterIcons) {
+    clusterAllEntities(clusterIcons) {
         const color = 'WHITE';
         const combinedDataSource = new Cesium.CustomDataSource();
 
@@ -392,45 +392,6 @@ export default class CesiumViewer {
             entities.remove(entityToRemove);
         }
     }
-
-    // async createRoute(position, navigationData) {
-    //     const entities = this.viewer.entities;
-    //     this.removeAllEntities(entities);
-
-    //     if (navigationData == null) return;
-    //     const data = await this.fetchEntitiesData(navigationData);
-    //     const features = data.features;
-
-    //     let startingPosition = [position.coords.longitude, position.coords.latitude];
-    //     let pathIndex = 1;
-    //     while (features.length != 0) {
-
-    //         let shortestDistance = Infinity;
-    //         let shortestDistanceIndex = -1;
-    //         for (let i = 0; i < features.length; i++) {
-    //             let feature = features[i];
-    //             const distance = this.calculateDistance(startingPosition, feature);
-
-    //             if (distance < shortestDistance) {
-    //                 shortestDistance = distance;
-    //                 shortestDistanceIndex = i;
-    //             }
-    //         }
-
-    //         const endingPosition = this.findFeatureCoordinates(features[shortestDistanceIndex]);
-
-    //         this.createPointsOrderLabels(endingPosition, pathIndex);
-
-    //         if (shortestDistanceIndex !== -1) {
-    //             features.splice(shortestDistanceIndex, 1);
-    //         }
-
-    //         pathIndex++;
-    //         startingPosition = endingPosition;
-    //     }
-
-    //     this.viewer.zoomTo(entities);
-    // }
 
     async createRoute(position, navigationData) {
         const entities = this.viewer.entities;

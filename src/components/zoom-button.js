@@ -11,24 +11,21 @@ export class ZoomBtn extends HTMLElement {
     connectedCallback() {
         // html
         this.button = document.createElement('button');
+        this.button.innerHTML = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />';
         
         switch (this.getAttribute('zoom-type')) {
             case "in":
-                this.button.innerHTML =
+                this.button.innerHTML +=
                     `
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24" height="24">
-                        <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
-                    </svg>
+                    <span class="material-symbols-outlined">add</span>
                     `
                 ;
                 break;
 
             case "out":
-                this.button.innerHTML =
+                this.button.innerHTML +=
                     `
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24" height="24">
-                        <path d="M200-440v-80h560v80H200Z"/>
-                    </svg>
+                    <span class="material-symbols-outlined">remove</span>
                     `
                 ;
                 break;

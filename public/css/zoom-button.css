@@ -6,5 +6,14 @@ button {
     border: none;
     width: 36px;
     height: 36px;
-    border-radius: 50%;
+    border-radius: 4px;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 300,
+        'GRAD' 0,
+        'opsz' 24;
+    color: rgb(32, 33, 36);
 }
