@@ -108,8 +108,16 @@ drawerToggle.addEventListener('drawerToggled', (event) => {
 
 // Click on map
 let infoboxCounter = 0;
+// map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
+//   map.onClick(movement, jsonData, main, drawerToggle, infoboxCounter, isNavigation);
+// }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
 map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
-  map.onClick(movement, jsonData, main, drawerToggle, infoboxCounter, isNavigation);
+  const info = map.test(movement, jsonData, drawerToggle);
+  info.then(i => {
+    console.log(i);
+    pathDrawer.setAttribute('features', JSON.stringify(i));
+  });  
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
 // Checkbox list behaviour

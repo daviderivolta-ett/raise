@@ -52,30 +52,49 @@ export default class CesiumViewer {
         });
     }
 
-    async onClick(movement, jsonData, div, drawerToggle, infoboxCounter, isNavigation) {
+    // async onClick(movement, jsonData, div, drawerToggle, infoboxCounter, isNavigation) {
+    //     drawerToggle.setAttribute('is-open', 'false');
+    //     const windowPosition = movement.position;
+    //     const pickedEntity = this.viewer.scene.pick(windowPosition);
+
+    //     if (!pickedEntity) return;
+    //     if (pickedEntity == null) return;
+
+    //     const features = pickedEntity.id;
+    //     if (Array.isArray(pickedEntity.id)) this.viewer.zoomTo(features);
+    //     if (typeof features === 'object' && !Array.isArray(features)) {
+    //         if (isNavigation == false) {
+    //             const infoContent = await this.handleFeatures(features, jsonData);
+    //             let allInfoBoxes = document.querySelectorAll('app-infobox');
+
+
+    //             if (infoContent) {
+    //                 if (Object.keys(infoContent).length !== 0) {
+    //                     this.createInfobox(infoboxCounter, allInfoBoxes, infoContent, div);
+    //                 }
+    //             }
+
+    //         } else {
+    //             // this.startNavigation(windowPosition);
+    //             const infoContent = await this.handleFeatures(features, jsonData);
+    //             let allInfoBoxes = document.querySelectorAll('app-infobox');
+    //         }
+    //     }
+    // }
+
+    async test(movement, jsonData, drawerToggle) {
         drawerToggle.setAttribute('is-open', 'false');
         const windowPosition = movement.position;
         const pickedEntity = this.viewer.scene.pick(windowPosition);
+
         if (!pickedEntity) return;
         if (pickedEntity == null) return;
+
         const features = pickedEntity.id;
         if (Array.isArray(pickedEntity.id)) this.viewer.zoomTo(features);
         if (typeof features === 'object' && !Array.isArray(features)) {
-            if (isNavigation == false) {
-                const infoContent = await this.handleFeatures(features, jsonData);
-                let allInfoBoxes = document.querySelectorAll('app-infobox');
-
-                if (infoContent) {
-                    if (Object.keys(infoContent).length !== 0) {
-                        this.createInfobox(infoboxCounter, allInfoBoxes, infoContent, div);
-                    }
-                }
-
-            } else {
-                // this.startNavigation(windowPosition);
-                const infoContent = await this.handleFeatures(features, jsonData);
-                let allInfoBoxes = document.querySelectorAll('app-infobox');
-            }
+            const infoContent = await this.handleFeatures(features, jsonData);
+            return infoContent;
         }
     }
 
@@ -98,13 +117,15 @@ export default class CesiumViewer {
             }
 
             const foundLayer = this.filterLayerByName(jsonData, layerToFind);
+
             const foundLayerName = foundLayer.name;
             const relevantProperties = foundLayer.relevant_properties;
 
             const properties = this.getRelevantProperties(features.properties, relevantProperties, foundLayerName);
             // console.log(properties);
 
-            return properties;
+            // return properties;
+            return foundLayer;
         }
     }
 

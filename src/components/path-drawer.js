@@ -6,21 +6,21 @@ export class PathDrawer extends HTMLElement {
 
     render() {
         this.features = JSON.parse(this.getAttribute('features'));
-        
+
         this.div.innerHTML = '';
 
         for (let i = 0; i < this.features.length; i++) {
             const feature = this.features[i];
             const infobox = document.createElement('app-path-infobox');
             infobox.setAttribute('data', JSON.stringify(feature));
-            if(i == this.features.length - 1) infobox.classList.add('last');
+            if (i == this.features.length - 1) infobox.classList.add('last');
             this.div.append(infobox);
         }
 
         this.allInfoboxes = this.shadow.querySelectorAll('app-path-infobox');
         this.allInfoboxes.forEach(infobox => {
             infobox.addEventListener('goto', (e) => {
-                this.dispatchEvent(new CustomEvent('goto', {detail: e.detail.coordinates}));
+                this.dispatchEvent(new CustomEvent('goto', { detail: e.detail.coordinates }));
             });
         });
     }
@@ -44,11 +44,11 @@ export class PathDrawer extends HTMLElement {
             </div>
             <div class="info-container"></div>
             `
-        ;
+            ;
 
         if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
         this.setAttribute('is-active', 'false');
-        
+
         this.openArrow = this.shadow.querySelector('.open-drawer-icon');
         this.closeArrow = this.shadow.querySelector('.close-drawer-icon');
         this.closeIcon = this.shadow.querySelector('.close-icon');
@@ -68,7 +68,7 @@ export class PathDrawer extends HTMLElement {
         this.closeIcon.addEventListener('click', () => {
             this.dispatchEvent(new CustomEvent('closeNavigation'));
             this.setAttribute('is-active', 'false');
-        });        
+        });
 
         // css
         const style = document.createElement('link');
@@ -79,16 +79,15 @@ export class PathDrawer extends HTMLElement {
 
     static observedAttributes = ['is-active', 'features'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue) {
+        if (newValue != oldValue && newValue != null && oldValue != null) {
             if (name == 'is-active') {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
             }
 
             if (name == 'features') {
 
-                if (newValue == '[]') {
-                    this.classList.remove('draggable');
-                } else {
+                if (newValue == '[]') { this.classList.remove('draggable'); }
+                else {
                     this.classList.add('draggable');
                     this.render();
                 }
