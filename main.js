@@ -31,6 +31,7 @@ import './src/components/submit-tags-btn.js';
 import './src/components/settings-icon.js';
 import './src/components/zoom-button.js';
 import './src/components/theme-icon.js';
+import './src/components/navigation-btn.js';
 import './src/components/close-navigation-btn.js';
 import './src/components/snackbar.js';
 import './src/components/center-position-btn.js';
@@ -118,6 +119,8 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
     main.append(snackbar);
 
     await map.handleCheckbox(event.detail.newValue, clusterIcons);
+    const activeLayers = event.detail.newValue;
+    mapControls.setAttribute('data', JSON.stringify(activeLayers));
 
   } catch (error) {
     console.error('Errore durante il recupero dei layer dal geoserver', error);
@@ -140,31 +143,42 @@ map.createUserPin(position);
 
 // Navigation
 let isNavigation = false;
-drawerContent.addEventListener('routeTriggered', async (event) => {
+mapControls.addEventListener('activateNavigation', async (event) => {
+  isNavigation = true;
+  const activeLayers = event.detail.data
+  const featuresByProximity = map.createRoute(position, activeLayers);
+  featuresByProximity.then(features => {
+    pathDrawer.setAttribute('features', JSON.stringify(features));
+  });
 
-  if (event.detail.newValue != '[]') {
-    isNavigation = true;
-    pathDrawer.setAttribute('is-active', isNavigation + '');
-    mapControls.setAttribute('is-navigation', isNavigation + '');
-    const navigationData = JSON.parse(event.detail.newValue);
-    map.createRoute(position, navigationData);
-
-    let layerToFetch = JSON.parse(event.detail.newValue);
-    map.fetchEntitiesData(layerToFetch).then(geoJson => {
-      const featuresByProximity = map.orderFeaturesByProximity(position, geoJson.features);
-      layerToFetch.features = featuresByProximity;
-      pathDrawer.setAttribute('data', JSON.stringify(layerToFetch));
-    });
-
-  } else {
-    isNavigation = false;
-    pathDrawer.setAttribute('is-active', isNavigation + '');
-    mapControls.setAttribute('is-navigation', isNavigation + '');
-    const entities = map.viewer.entities;
-    map.removeAllEntities(entities);
-  }
-
+  pathDrawer.setAttribute('is-active', isNavigation + '');
+  mapControls.setAttribute('is-navigation', isNavigation + '');
 });
+
+// drawerContent.addEventListener('routeTriggered', async (event) => {
+
+//   if (event.detail.newValue != '[]') {
+//     isNavigation = true;
+//     pathDrawer.setAttribute('is-active', isNavigation + '');
+//     mapControls.setAttribute('is-navigation', isNavigation + '');
+//     const navigationData = JSON.parse(event.detail.newValue);
+
+//     let layerToFetch = JSON.parse(event.detail.newValue);
+//     map.fetchEntitiesData(layerToFetch).then(geoJson => {
+//       const featuresByProximity = map.orderFeaturesByProximity(position, geoJson.features);
+//       layerToFetch.features = featuresByProximity;
+//       pathDrawer.setAttribute('data', JSON.stringify(layerToFetch));
+//     });
+
+//   } else {
+//     isNavigation = false;
+//     pathDrawer.setAttribute('is-active', isNavigation + '');
+//     mapControls.setAttribute('is-navigation', isNavigation + '');
+//     const entities = map.viewer.entities;
+//     map.removeAllEntities(entities);
+//   }
+
+// });
 
 pathDrawer.addEventListener('closeNavigation', () => {
   closeNavigation(isNavigation, mapControls, drawerContent, map);

@@ -15,24 +15,29 @@
 }
 
 .path-drawer-header {
-    padding: 24px 24px 8px 24px;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E0E1F9;
 }
 
 .close-icon {
     cursor: pointer;
+    color: #5b5d72;
 }
 
 h2 {
     font-size: 1rem;
+    margin: 0;
     font-weight: 500;
     color: #5b5d72;
 }
 
 .info-container {
-    height: 78%;
+    padding: 0px 24px 24px 24px;
+    height: 85%;
     overflow-y: auto;
-    padding: 8px 24px 24px 24px;
 }
 
 .info-container::-webkit-scrollbar {

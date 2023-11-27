@@ -1,8 +1,16 @@
 .material-symbols-outlined {
     font-variation-settings:
         'FILL' 0,
-        'wght' 300,
+        'wght' 400,
         'GRAD' 0,
         'opsz' 24;
-    color: rgb(32, 33, 36);
+    color: #4355b9;
+    background-color: #E0E1F9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }

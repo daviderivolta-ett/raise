@@ -436,13 +436,46 @@ export default class CesiumViewer {
         }
     }
 
-    async createRoute(position, navigationData) {
+    // async createRoute(position, navigationData) {
+    //     console.log(navigationData);
+    //     const entities = this.viewer.entities;
+    //     this.removeAllEntities(entities);
+
+    //     if (navigationData == null) return;
+    //     const data = await this.fetchEntitiesData(navigationData);
+    //     const features = data.features;
+    //     const featuresByProximity = this.orderFeaturesByProximity(position, features);
+
+    //     let i = 1;
+    //     let startingPosition = [position.coords.longitude, position.coords.latitude];
+
+    //     featuresByProximity.forEach(feature => {
+    //         const endingPosition = this.findFeatureCoordinates(feature);
+    //         this.createPointsOrderLabels(endingPosition, i);
+    //         i++;
+    //         startingPosition = endingPosition;
+    //     });
+
+    //     this.viewer.zoomTo(entities);
+    // }
+
+    async createRoute(position, layers) {
         const entities = this.viewer.entities;
         this.removeAllEntities(entities);
 
-        if (navigationData == null) return;
-        const data = await this.fetchEntitiesData(navigationData);
-        const features = data.features;
+        if (layers == null) return;
+
+        let features = [];
+
+        await Promise.all(layers.map(async layer => {
+            const data = await this.fetchEntitiesData(layer);
+            data.features.forEach(feature => {
+                if (feature.geometry.type == 'Point' || feature.geometry.type == 'Multipoint') {
+                    features.push(feature);
+                }
+            });
+        }));
+
         const featuresByProximity = this.orderFeaturesByProximity(position, features);
 
         let i = 1;
@@ -456,7 +489,10 @@ export default class CesiumViewer {
         });
 
         this.viewer.zoomTo(entities);
+
+        return featuresByProximity;
     }
+
 
     orderFeaturesByProximity(position, features) {
         let featuresByProximity = [];
