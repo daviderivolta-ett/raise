@@ -46,6 +46,7 @@ export class PathDrawer extends HTMLElement {
             `
         ;
 
+        if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
         this.setAttribute('is-active', 'false');
         
         this.openArrow = this.shadow.querySelector('.open-drawer-icon');
@@ -83,7 +84,16 @@ export class PathDrawer extends HTMLElement {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
             }
 
-            if (name == 'features') this.render();
+            if (name == 'features') {
+
+                if (newValue == '[]') {
+                    this.classList.remove('draggable');
+                } else {
+                    this.classList.add('draggable');
+                    this.render();
+                }
+
+            }
         }
     }
 }
