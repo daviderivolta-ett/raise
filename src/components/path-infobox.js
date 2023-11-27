@@ -40,7 +40,6 @@ export class PathInfobox extends HTMLElement {
         }
 
         if (Array.isArray(this.data.geometry.coordinates)) {
-            console.log(this.data.geometry.coordinates);
             this.goToBtn = document.createElement('app-goto');
             const coordinates = {};
             coordinates.longitude = this.data.geometry.coordinates[0];

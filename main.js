@@ -40,6 +40,7 @@ import './src/components/map-controls.js';
 import './src/components/path-infobox.js';
 import './src/components/play-info-btn.js';
 import './src/components/goto-btn.js';
+import './src/components/path-drawer-toggle.js';
 
 // DOM nodes
 const main = document.querySelector('main');
@@ -179,6 +180,14 @@ mapControls.addEventListener('activateNavigation', async (event) => {
 //   }
 
 // });
+
+pathDrawer.addEventListener('pathDrawerOpened', () => {
+  mapControls.setAttribute('is-navigation', 'true');
+});
+
+pathDrawer.addEventListener('pathDrawerClosed', () => {
+  mapControls.setAttribute('is-navigation', 'false');
+});
 
 pathDrawer.addEventListener('closeNavigation', () => {
   closeNavigation(isNavigation, mapControls, drawerContent, map);
