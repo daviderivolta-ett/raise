@@ -54,15 +54,6 @@ const mapControls = document.querySelector('app-map-controls');
 // Map initialization
 const map = new CesiumViewer();
 
-// Get user position
-let position;
-try { position = await getPosition(); }
-catch (error) { console.error(error); }
-
-map.setCameraToUserPosition(position);
-// map.setCamera();
-map.createUserPin(position);
-
 // Accordions creation
 let jsonData;
 try {
@@ -138,6 +129,15 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
 
 });
 
+// Get user position
+let position;
+try { position = await getPosition(); }
+catch (error) { console.error(error); }
+
+map.setCameraToUserPosition(position);
+// map.setCamera();
+map.createUserPin(position);
+
 // Navigation
 let isNavigation = false;
 drawerContent.addEventListener('routeTriggered', async (event) => {
@@ -168,6 +168,11 @@ drawerContent.addEventListener('routeTriggered', async (event) => {
 
 pathDrawer.addEventListener('closeNavigation', () => {
   closeNavigation(isNavigation, mapControls, drawerContent, map);
+});
+
+pathDrawer.addEventListener('goto', event => {
+  const coordinates = event.detail;
+  map.goto(coordinates);
 });
 
 mapControls.addEventListener('closeNavigation', () => {

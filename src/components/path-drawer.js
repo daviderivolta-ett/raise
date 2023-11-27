@@ -16,10 +16,17 @@ export class PathDrawer extends HTMLElement {
             const feature = this.features[i];
             const infobox = document.createElement('app-path-infobox');
             const properties = feature.properties;
-            infobox.setAttribute('data', JSON.stringify(properties));
+            infobox.setAttribute('data', JSON.stringify(feature));
             if(i == this.features.length - 1) infobox.classList.add('last');
             this.div.append(infobox);
         }
+
+        this.allInfoboxes = this.shadow.querySelectorAll('app-path-infobox');
+        this.allInfoboxes.forEach(infobox => {
+            infobox.addEventListener('goto', (e) => {
+                this.dispatchEvent(new CustomEvent('goto', {detail: e.detail.coordinates}));
+            });
+        });
     }
 
     connectedCallback() {
@@ -45,6 +52,8 @@ export class PathDrawer extends HTMLElement {
         this.closeIcon.addEventListener('click', () => {
             this.dispatchEvent(new CustomEvent('closeNavigation'));
         });
+
+        
 
         // css
         const style = document.createElement('link');

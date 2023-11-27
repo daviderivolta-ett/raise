@@ -179,6 +179,12 @@ export default class CesiumViewer {
         return { longitude, latitude }
     }
 
+    goto(coordinates) {
+        const url = `https://www.google.com/maps/dir/?api=1` +
+            `&destination=${coordinates.latitude},${coordinates.longitude}`;
+        window.open(url, '_blank');
+    }
+
     // async handleCheckbox(activeLayers, clusterIcons) {
     //     const requests = activeLayers.map(layer => this.fetchLayerData(layer).then((data) => ({ layer, data })));
 
@@ -209,7 +215,7 @@ export default class CesiumViewer {
             this.viewer.dataSources.add(clusteredDataSource);
         });
 
-        
+
     }
 
     async checkLayerToRemove(allLayers, activeLayers) {

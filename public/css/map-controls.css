@@ -1,13 +1,13 @@
 :host {
     position: fixed;
-    bottom: 24px;
+    bottom: 2%;
     right: 24px;
     z-index: 96;
     transition: .2s ease-in-out;
 }
 
 :host-context(.visible) {
-    right: 424px;
+    right: calc(360px + 3%);
 }
 
 div {

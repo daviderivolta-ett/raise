@@ -11,10 +11,16 @@ export class GoToBtn extends HTMLElement {
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <span class="material-symbols-outlined">turn_right</span>
             `
-        ;
+            ;
 
         this.icon = this.shadow.querySelector('.material-symbols-outlined');
-        this.icon.addEventListener('click', () => this.dispatchEvent(new CustomEvent('test')));
+
+        // js
+        this.coordinates = JSON.parse(this.getAttribute('coordinates'));
+        this.icon.addEventListener('click', () => {
+            const event = new CustomEvent('goto', { detail: { coordinates: this.coordinates } });
+            this.dispatchEvent(event);
+        });
 
         // css
         const style = document.createElement('link');

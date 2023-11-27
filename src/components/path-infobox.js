@@ -14,7 +14,6 @@ export class PathInfobox extends HTMLElement {
             <div class="wrapper">
                 <div class="info">
                     <app-play-info-btn></app-play-info-btn>
-                    <app-goto></app-goto>
                 </div>
                 <div class="content"></div>
             </div>
@@ -30,14 +29,30 @@ export class PathInfobox extends HTMLElement {
         p.innerText = PathInfobox.counter;
         this.info.insertBefore(p, this.playBtn);
 
-        for (const key in this.data) {
-            if (this.data.hasOwnProperty(key)) {
-                const value = this.data[key];
+        const properties = this.data.properties;
+        for (const key in properties) {
+            if (properties.hasOwnProperty(key)) {
+                const value = properties[key];
                 const p = document.createElement('p');
                 p.innerText = value;
                 this.content.append(p);
             }
         }
+
+        if (Array.isArray(this.data.geometry.coordinates)) {
+            this.goToBtn = document.createElement('app-goto');
+            const coordinates = {};
+            coordinates.longitude = this.data.geometry.coordinates[0][0];
+            coordinates.latitude = this.data.geometry.coordinates[0][1];
+            this.goToBtn.setAttribute('coordinates', JSON.stringify(coordinates));
+            this.info.append(this.goToBtn);
+        }        
+
+        // js
+        this.goToBtn.addEventListener('goto', (e) => {
+            const event = new CustomEvent('goto', { detail: { coordinates: e.detail.coordinates } });
+            this.dispatchEvent(event);
+        });
 
         // css
         const style = document.createElement('link');
