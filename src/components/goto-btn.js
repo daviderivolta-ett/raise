@@ -16,8 +16,8 @@ export class GoToBtn extends HTMLElement {
         this.icon = this.shadow.querySelector('.material-symbols-outlined');
 
         // js
-        this.coordinates = JSON.parse(this.getAttribute('coordinates'));
         this.icon.addEventListener('click', () => {
+            this.coordinates = JSON.parse(this.getAttribute('coordinates'));
             const event = new CustomEvent('goto', { detail: { coordinates: this.coordinates } });
             this.dispatchEvent(event);
         });

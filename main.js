@@ -158,31 +158,6 @@ mapControls.addEventListener('activateNavigation', async (event) => {
   mapControls.setAttribute('is-navigation', isNavigation + '');
 });
 
-// drawerContent.addEventListener('routeTriggered', async (event) => {
-
-//   if (event.detail.newValue != '[]') {
-//     isNavigation = true;
-//     pathDrawer.setAttribute('is-active', isNavigation + '');
-//     mapControls.setAttribute('is-navigation', isNavigation + '');
-//     const navigationData = JSON.parse(event.detail.newValue);
-
-//     let layerToFetch = JSON.parse(event.detail.newValue);
-//     map.fetchEntitiesData(layerToFetch).then(geoJson => {
-//       const featuresByProximity = map.orderFeaturesByProximity(position, geoJson.features);
-//       layerToFetch.features = featuresByProximity;
-//       pathDrawer.setAttribute('data', JSON.stringify(layerToFetch));
-//     });
-
-//   } else {
-//     isNavigation = false;
-//     pathDrawer.setAttribute('is-active', isNavigation + '');
-//     mapControls.setAttribute('is-navigation', isNavigation + '');
-//     const entities = map.viewer.entities;
-//     map.removeAllEntities(entities);
-//   }
-
-// });
-
 pathDrawer.addEventListener('pathDrawerOpened', () => {
   mapControls.setAttribute('is-navigation', 'true');
 });

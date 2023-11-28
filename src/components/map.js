@@ -292,20 +292,6 @@ export default class CesiumViewer {
 
     async clusterAllEntities(clusterIcons, combinedDataSource) {
         const color = 'WHITE';
-        // const combinedDataSource = this.viewer.dataSources;
-        // const combinedDataSource = new Cesium.CustomDataSource();
-
-        // for (let i = 0; i < dataSources.length; i++) {
-        //     dataSources.get(i).entities.values.forEach(entity => {
-        //         combinedDataSource.entities.add(entity);
-        //     });
-        // }
-
-        // const combinedDataSourceIndex = dataSources.indexOf(combinedDataSource);
-        // for (let i = dataSources.length - 1; i >= 0; i--) {
-        //     if (i !== combinedDataSourceIndex) dataSources.remove(dataSources.get(i));
-        // }
-
         combinedDataSource.clustering.enabled = true;
         combinedDataSource.clustering.pixelRange = 25;
         combinedDataSource.clustering.minimumClusterSize = 2;
@@ -436,7 +422,7 @@ export default class CesiumViewer {
         await Promise.all(layers.map(async layer => {
             const data = await this.fetchEntitiesData(layer);
             data.features.forEach(feature => {
-                if (feature.geometry.type == 'Point' || feature.geometry.type == 'Multipoint') {
+                if (feature.geometry.type == 'Point' || feature.geometry.type == 'MultiPoint') {
                     features.push(feature);
                 }
             });
@@ -458,6 +444,7 @@ export default class CesiumViewer {
             const layerToFind = this.getLayerToFind(f);
             const layer = this.filterLayerByName(jsonData, layerToFind);
             f.layer = layer.layer;
+            f.name = layer.name;
             f.relevant_properties = layer.relevant_properties;
         });
 
@@ -474,13 +461,27 @@ export default class CesiumViewer {
         let featuresToExport = [];
 
         featuresByProximity.forEach(f => {
-            const properties = f.properties;
-            const longitude = f.geometry.coordinates[0];
-            const latitude = f.geometry.coordinates[1];
-            const coordinates = { longitude, latitude };
             const feature = {};
+            const properties = f.properties;
+            properties.Title = f.name;
             feature.properties = properties;
-            feature.coordinates = coordinates;
+
+            let longitude;
+            let latitude;
+            if (Array.isArray(f.geometry.coordinates)) {
+                if (f.geometry.coordinates.length == 1) {
+                    longitude = f.geometry.coordinates[0][0];
+                    latitude = f.geometry.coordinates[0][1];
+                    const coordinates = { longitude, latitude };
+                    feature.coordinates = coordinates;
+                } else if (f.geometry.coordinates.length == 2) {
+                    longitude = f.geometry.coordinates[0];
+                    latitude = f.geometry.coordinates[1];
+                    const coordinates = { longitude, latitude };
+                    feature.coordinates = coordinates;
+                }
+            }
+            
             featuresToExport.push(feature);
         });
 

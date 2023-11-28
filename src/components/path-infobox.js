@@ -4,7 +4,6 @@ export class PathInfobox extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        PathInfobox.counter++;
     }
 
     connectedCallback() {
@@ -13,7 +12,13 @@ export class PathInfobox extends HTMLElement {
             `
             <div class="wrapper">
                 <div class="info">
-                    <app-play-info-btn></app-play-info-btn>
+                    <div class="title">
+                        <h4></h4>
+                    </div>
+                    <div class="tools">
+                        <app-play-info-btn></app-play-info-btn>
+                        <app-goto></app-goto>
+                    </div>
                 </div>
                 <div class="content"></div>
             </div>
@@ -21,18 +26,20 @@ export class PathInfobox extends HTMLElement {
         ;
 
         this.data = JSON.parse(this.getAttribute('data'));
-        this.content = this.shadow.querySelector('.content');
         this.info = this.shadow.querySelector('.info');
+        this.category = this.shadow.querySelector('h4');
         this.playBtn = this.shadow.querySelector('app-play-info-btn');
-
-        const p = document.createElement('p');
-        p.innerText = PathInfobox.counter;
-        this.info.insertBefore(p, this.playBtn);
+        this.goToBtn = this.shadow.querySelector('app-goto');
+        this.content = this.shadow.querySelector('.content');
 
         const properties = this.data.properties;
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
                 const value = properties[key];
+                if (key == 'Title') {
+                    this.category.innerText = value;
+                    continue;
+                };
                 const p = document.createElement('p');
                 p.innerText = value;
                 this.content.append(p);
@@ -40,12 +47,10 @@ export class PathInfobox extends HTMLElement {
         }
 
         if (typeof this.data.coordinates == 'object' ) {
-            this.goToBtn = document.createElement('app-goto');
             const coordinates = {};
             coordinates.longitude = this.data.coordinates.longitude;
             coordinates.latitude = this.data.coordinates.latitude;
             this.goToBtn.setAttribute('coordinates', JSON.stringify(coordinates));
-            this.info.append(this.goToBtn);
         }        
 
         // js
@@ -64,10 +69,6 @@ export class PathInfobox extends HTMLElement {
     static observedAttributes = [];
     attributeChangedCallback(name, newValue, oldValue) {
 
-    }
-
-    disconnectedCallback() {
-        PathInfobox.counter = 0;
     }
 }
 
