@@ -39,11 +39,11 @@ export class PathInfobox extends HTMLElement {
             }
         }
 
-        if (Array.isArray(this.data.geometry.coordinates)) {
+        if (typeof this.data.coordinates == 'object' ) {
             this.goToBtn = document.createElement('app-goto');
             const coordinates = {};
-            coordinates.longitude = this.data.geometry.coordinates[0];
-            coordinates.latitude = this.data.geometry.coordinates[1];
+            coordinates.longitude = this.data.coordinates.longitude;
+            coordinates.latitude = this.data.coordinates.latitude;
             this.goToBtn.setAttribute('coordinates', JSON.stringify(coordinates));
             this.info.append(this.goToBtn);
         }        

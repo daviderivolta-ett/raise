@@ -6,7 +6,6 @@ export class PathDrawer extends HTMLElement {
 
     render() {
         this.features = JSON.parse(this.getAttribute('features'));
-
         this.div.innerHTML = '';
 
         for (let i = 0; i < this.features.length; i++) {
@@ -79,7 +78,7 @@ export class PathDrawer extends HTMLElement {
 
     static observedAttributes = ['is-active', 'features'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue && newValue != null && oldValue != null) {
+        if (newValue != oldValue) {
             if (name == 'is-active') {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
             }

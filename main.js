@@ -107,17 +107,11 @@ drawerToggle.addEventListener('drawerToggled', (event) => {
 });
 
 // Click on map
-let infoboxCounter = 0;
-// map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
-//   map.onClick(movement, jsonData, main, drawerToggle, infoboxCounter, isNavigation);
-// }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
 map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
-  const info = map.test(movement, jsonData, drawerToggle);
-  info.then(i => {
-    console.log(i);
-    pathDrawer.setAttribute('features', JSON.stringify(i));
-  });  
+  const feature = map.onClick(movement, jsonData);
+  if(feature == undefined) return;
+  pathDrawer.setAttribute('is-active', 'true');
+  pathDrawer.setAttribute('features', `[${JSON.stringify(feature)}]`);
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
 // Checkbox list behaviour
@@ -154,8 +148,8 @@ map.createUserPin(position);
 let isNavigation = false;
 mapControls.addEventListener('activateNavigation', async (event) => {
   isNavigation = true;
-  const activeLayers = event.detail.data
-  const featuresByProximity = map.createRoute(position, activeLayers);
+  const activeLayers = event.detail.data;
+  const featuresByProximity = map.createRoute(jsonData, position, activeLayers);
   featuresByProximity.then(features => {
     pathDrawer.setAttribute('features', JSON.stringify(features));
   });

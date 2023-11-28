@@ -52,81 +52,64 @@ export default class CesiumViewer {
         });
     }
 
-    // async onClick(movement, jsonData, div, drawerToggle, infoboxCounter, isNavigation) {
-    //     drawerToggle.setAttribute('is-open', 'false');
-    //     const windowPosition = movement.position;
-    //     const pickedEntity = this.viewer.scene.pick(windowPosition);
-
-    //     if (!pickedEntity) return;
-    //     if (pickedEntity == null) return;
-
-    //     const features = pickedEntity.id;
-    //     if (Array.isArray(pickedEntity.id)) this.viewer.zoomTo(features);
-    //     if (typeof features === 'object' && !Array.isArray(features)) {
-    //         if (isNavigation == false) {
-    //             const infoContent = await this.handleFeatures(features, jsonData);
-    //             let allInfoBoxes = document.querySelectorAll('app-infobox');
-
-
-    //             if (infoContent) {
-    //                 if (Object.keys(infoContent).length !== 0) {
-    //                     this.createInfobox(infoboxCounter, allInfoBoxes, infoContent, div);
-    //                 }
-    //             }
-
-    //         } else {
-    //             // this.startNavigation(windowPosition);
-    //             const infoContent = await this.handleFeatures(features, jsonData);
-    //             let allInfoBoxes = document.querySelectorAll('app-infobox');
-    //         }
-    //     }
-    // }
-
-    async test(movement, jsonData, drawerToggle) {
-        drawerToggle.setAttribute('is-open', 'false');
+    onClick(movement, jsonData) {
         const windowPosition = movement.position;
         const pickedEntity = this.viewer.scene.pick(windowPosition);
 
         if (!pickedEntity) return;
         if (pickedEntity == null) return;
 
-        const features = pickedEntity.id;
-        if (Array.isArray(pickedEntity.id)) this.viewer.zoomTo(features);
-        if (typeof features === 'object' && !Array.isArray(features)) {
-            const infoContent = await this.handleFeatures(features, jsonData);
-            return infoContent;
+        if (Array.isArray(pickedEntity.id)) {
+            this.viewer.zoomTo(pickedEntity.id);
+            return;
         }
+
+        const layerNameToFetch = this.getLayerToFind(pickedEntity.id);
+        const foundLayer = this.filterLayerByName(jsonData, layerNameToFetch);
+
+        const ray = this.viewer.camera.getPickRay(windowPosition);
+        const cartesian = this.viewer.scene.globe.pick(ray, this.viewer.scene);
+        const coordinates = this.cartesianToCartographic(cartesian);
+
+        const properties = pickedEntity.id.properties;
+        const propertiesToFind = foundLayer.relevant_properties;
+        const layerName = foundLayer.name;
+
+        const relevantProperties = this.getRelevantProperties(properties, propertiesToFind, layerName);
+
+        let feature = {};
+        feature.properties = relevantProperties;
+        feature.coordinates = coordinates;
+
+        return feature;
     }
 
-    async handleFeatures(features, jsonData) {
-        if (features != null) {
+    getLayerToFind(features) {
+        if (features == null) return;
 
-            let layerToFind = '';
+        let layerToFind;
 
-            switch (true) {
-                case features.id.includes('.'):
-                    layerToFind = features.id.split('.')[0];
-                    break;
+        switch (true) {
+            case features.id.includes('.'):
+                layerToFind = features.id.split('.')[0];
+                break;
 
-                case features.id.includes('/'):
-                    layerToFind = features.id.split('/')[0];
-                    break;
+            case features.id.includes('/'):
+                layerToFind = features.id.split('/')[0];
+                break;
 
-                default:
-                    break;
-            }
-
-            const foundLayer = this.filterLayerByName(jsonData, layerToFind);
-
-            const foundLayerName = foundLayer.name;
-            const relevantProperties = foundLayer.relevant_properties;
-
-            const properties = this.getRelevantProperties(features.properties, relevantProperties, foundLayerName);
-            // console.log(properties);
-
-            // return properties;
-            return foundLayer;
+            default:
+                break;
         }
+
+        return layerToFind;
+    }
+
+    cartesianToCartographic(cartesian) {
+        const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+        const longitude = Cesium.Math.toDegrees(cartographic.longitude);
+        const latitude = Cesium.Math.toDegrees(cartographic.latitude);
+        return { longitude, latitude };
     }
 
     createInfobox(counter, elements, info, div) {
@@ -206,19 +189,6 @@ export default class CesiumViewer {
         window.open(url, '_blank');
     }
 
-    // async handleCheckbox(activeLayers, clusterIcons) {
-    //     const requests = activeLayers.map(layer => this.fetchLayerData(layer).then((data) => ({ layer, data })));
-
-    //     await Promise.all(requests).then(async sources => {
-    //         this.viewer.dataSources.removeAll();
-    //         sources.forEach(async source => {
-    //             this.viewer.dataSources.add(source.data.layer);
-    //             source.data.layer.then(async layer => await this.styleEntities(layer, source.layer.style));
-    //         });
-    //     });
-    //     // await this.clusterAllEntities(clusterIcons);
-    // }
-
     async handleCheckbox(activeLayers, clusterIcons) {
         const requests = activeLayers.map(layer => this.fetchLayerData(layer).then((data) => ({ layer, data })));
 
@@ -235,8 +205,6 @@ export default class CesiumViewer {
             const clusteredDataSource = await this.clusterAllEntities(clusterIcons, combinedDataSource);
             this.viewer.dataSources.add(clusteredDataSource);
         });
-
-
     }
 
     async checkLayerToRemove(allLayers, activeLayers) {
@@ -457,30 +425,7 @@ export default class CesiumViewer {
         }
     }
 
-    // async createRoute(position, navigationData) {
-    //     console.log(navigationData);
-    //     const entities = this.viewer.entities;
-    //     this.removeAllEntities(entities);
-
-    //     if (navigationData == null) return;
-    //     const data = await this.fetchEntitiesData(navigationData);
-    //     const features = data.features;
-    //     const featuresByProximity = this.orderFeaturesByProximity(position, features);
-
-    //     let i = 1;
-    //     let startingPosition = [position.coords.longitude, position.coords.latitude];
-
-    //     featuresByProximity.forEach(feature => {
-    //         const endingPosition = this.findFeatureCoordinates(feature);
-    //         this.createPointsOrderLabels(endingPosition, i);
-    //         i++;
-    //         startingPosition = endingPosition;
-    //     });
-
-    //     this.viewer.zoomTo(entities);
-    // }
-
-    async createRoute(position, layers) {
+    async createRoute(jsonData, position, layers) {
         const entities = this.viewer.entities;
         this.removeAllEntities(entities);
 
@@ -509,11 +454,40 @@ export default class CesiumViewer {
             startingPosition = endingPosition;
         });
 
+        featuresByProximity.forEach(f => {
+            const layerToFind = this.getLayerToFind(f);
+            const layer = this.filterLayerByName(jsonData, layerToFind);
+            f.layer = layer.layer;
+            f.relevant_properties = layer.relevant_properties;
+        });
+
+        featuresByProximity.forEach(f => {
+            f.properties = Object.entries(f.properties).reduce((acc, [key, value]) => {
+                const matchingProperty = f.relevant_properties.find(rp => rp.property_name === key);
+                if (matchingProperty) {
+                    acc[matchingProperty.display_name] = value;
+                }
+                return acc;
+            }, {});
+        });
+
+        let featuresToExport = [];
+
+        featuresByProximity.forEach(f => {
+            const properties = f.properties;
+            const longitude = f.geometry.coordinates[0];
+            const latitude = f.geometry.coordinates[1];
+            const coordinates = { longitude, latitude };
+            const feature = {};
+            feature.properties = properties;
+            feature.coordinates = coordinates;
+            featuresToExport.push(feature);
+        });
+
         this.viewer.zoomTo(entities);
 
-        return featuresByProximity;
+        return featuresToExport;
     }
-
 
     orderFeaturesByProximity(position, features) {
         let featuresByProximity = [];
