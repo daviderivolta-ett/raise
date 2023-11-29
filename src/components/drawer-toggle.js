@@ -10,18 +10,6 @@ export class DrawerToggle extends HTMLElement {
 
     connectedCallback() {
         // html
-        // this.shadow.innerHTML =
-        //     `
-        //     <div class="menu-toggle">
-        //         <a id="menu-toggle">
-        //             <span class="menu-toggle-bar menu-toggle-bar--top"></span>
-        //             <span class="menu-toggle-bar menu-toggle-bar--middle"></span>
-        //             <span class="menu-toggle-bar menu-toggle-bar--bottom"></span>
-        //         </a>
-        //     </div>
-        //     `
-        // ;
-
         this.shadow.innerHTML =
             `
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
