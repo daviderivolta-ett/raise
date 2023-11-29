@@ -30,7 +30,7 @@ export class Rail extends HTMLElement {
 
         // js
         this.drawerToggle.addEventListener('drawerToggled', (event) => {
-            this.dispatchEvent(new CustomEvent('drawerToggled', { detail: { newValue: event.detail.newValue } }));
+            this.setAttribute('is-open', event.detail.newValue);
         });
 
         this.themeBtn.addEventListener('themeChanged', (event) => {
@@ -44,12 +44,17 @@ export class Rail extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['themes'];
+    static observedAttributes = ['is-open', 'themes'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue) {
 
             if (name == 'themes') {
                 this.render();
+            }
+
+            if (name == 'is-open') {
+                this.drawerToggle.setAttribute('is-open', newValue + '');
+                this.dispatchEvent(new CustomEvent('drawerToggled', { detail: { newValue } }));
             }
             
         }

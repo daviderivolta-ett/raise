@@ -26,7 +26,7 @@ export class DrawerToggle extends HTMLElement {
                 Layer
             </span>
             `
-        ;
+            ;
 
         this.shadow.append(this.button);
 
@@ -49,15 +49,7 @@ export class DrawerToggle extends HTMLElement {
 
     static observedAttributes = ['is-open'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'is-open') {
-            if (this.btn) {
-                if (newValue === 'true') {
-                    this.btn.classList.add('nav-open');
-                    
-                } else {
-                    this.btn.classList.remove('nav-open');
-                }
-            }
+        if (name == 'is-open') {
 
             const event = new CustomEvent('drawerToggled', {
                 detail: { name, oldValue, newValue }

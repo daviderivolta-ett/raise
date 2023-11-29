@@ -42,10 +42,10 @@ import './src/components/play-info-btn.js';
 import './src/components/goto-btn.js';
 import './src/components/path-drawer-toggle.js';
 import './src/components/rail.js';
+import './src/components/info-drawer.js';
 
 // DOM nodes
 const main = document.querySelector('main');
-const drawerToggle = document.querySelector('app-drawer-toggle');
 const drawer = document.querySelector('#drawer');
 const searchBar = document.querySelector('app-searchbar');
 const drawerTitle = document.querySelector('#drawer-title');
@@ -54,6 +54,7 @@ const autocomplete = document.querySelector('app-autocomplete');
 const pathDrawer = document.querySelector('app-path-drawer');
 const mapControls = document.querySelector('app-map-controls');
 const rail = document.querySelector('app-rail');
+const infoDrawer = document.querySelector('app-info-drawer');
 
 // Map initialization
 const map = new CesiumViewer();
@@ -103,6 +104,7 @@ for (let i = 0; i <= 2; i++) {
 // Toggle drawer behaviour
 rail.addEventListener('drawerToggled', (event) => {
   if (event.detail.newValue == 'true') {
+    infoDrawer.setAttribute('is-open', 'false');
     drawer.classList.add('drawer-open');
   } else {
     drawer.classList.remove('drawer-open');
@@ -111,10 +113,16 @@ rail.addEventListener('drawerToggled', (event) => {
 
 // Click on map
 map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
+  rail.setAttribute('is-open', 'false');
   const feature = map.onClick(movement, jsonData);
-  if (feature == undefined) return;
-  pathDrawer.setAttribute('is-active', 'true');
-  pathDrawer.setAttribute('features', `[${JSON.stringify(feature)}]`);
+  if (feature == undefined) {
+    infoDrawer.setAttribute('is-open', 'false');
+    return;
+  }
+  // pathDrawer.setAttribute('is-active', 'true');
+  // pathDrawer.setAttribute('features', `[${JSON.stringify(feature)}]`);
+  infoDrawer.setAttribute('data', `${JSON.stringify(feature)}`);
+  infoDrawer.setAttribute('is-open', 'true');
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
 // Checkbox list behaviour

@@ -1,0 +1,29 @@
+:host {
+    position: fixed;
+    top: 0;
+    left: -360px;
+    width: 360px;
+    height: 100%;
+    background-color: white;
+    border-radius: 0 12px 12px 0;
+    transition: .2s ease-in-out;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+:host(.visible) {
+    left: 80px;
+}
+
+:host::-webkit-scrollbar {
+    width: 6px;
+    background-color: #eeeeee;
+}
+
+:host::-webkit-scrollbar-thumb {
+    background-color: #9e9e9e;
+}
+
+.wrapper {
+    background-color: white;
+}
