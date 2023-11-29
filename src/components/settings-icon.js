@@ -10,15 +10,35 @@ export class SettingsIcon extends HTMLElement {
 
     connectedCallback() {
         // html
+        this.shadow.innerHTML =
+            `
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+            `
+        ;
+
         this.button = document.createElement('button');
         this.button.innerHTML =
             `
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <a href="${this.hasAttribute('link') ? this.getAttribute('link') : '/'}">
-            <span class="material-symbols-outlined">tag</span>
+                <span class="icon">
+                    <span class="material-symbols-outlined">tag</span>
+                </span>
+                <span class="label">
+                    Tags
+                </span>
             </a>
             `
         ;
+
+
+        // this.button.innerHTML =
+        //     `
+        //     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        //     <a href="${this.hasAttribute('link') ? this.getAttribute('link') : '/'}">
+        //     <span class="material-symbols-outlined">tag</span>
+        //     </a>
+        //     `
+        //     ;
 
         this.shadow.append(this.button);
 

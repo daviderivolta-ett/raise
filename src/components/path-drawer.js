@@ -29,43 +29,24 @@ export class PathDrawer extends HTMLElement {
         this.shadow.innerHTML =
             `
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            <div class="drawer-toggle">
-                <button class="open-drawer-icon">
-                    <span class="material-symbols-outlined">chevron_left</span>
-                </button>
-                <button class="close-drawer-icon">
-                    <span class="material-symbols-outlined">chevron_right</span>
-                </button>
+            <div class="drawer">
+                <div class="close-icon"><span class="material-symbols-outlined">close</span></div>
+                <div class="header"></div>
+                <div class="info-container"></div>
             </div>
-            <div class="path-drawer-header">
-                <h2>Indicazioni</h2>
-                <span class="material-symbols-outlined close-icon">close</span>
-            </div>
-            <div class="info-container"></div>
             `
-            ;
+        ;
 
         if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
         this.setAttribute('is-active', 'false');
 
-        this.openArrow = this.shadow.querySelector('.open-drawer-icon');
-        this.closeArrow = this.shadow.querySelector('.close-drawer-icon');
         this.closeIcon = this.shadow.querySelector('.close-icon');
         this.div = this.shadow.querySelector('.info-container');
 
         // js
-        this.openArrow.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('pathDrawerOpened'));
-            this.setAttribute('is-active', 'true');
-        });
-
-        this.closeArrow.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('pathDrawerClosed'));
-            this.setAttribute('is-active', 'false');
-        });
 
         this.closeIcon.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('closeNavigation'));
+            this.dispatchEvent(new CustomEvent('pathDrawerClosed'));
             this.setAttribute('is-active', 'false');
         });
 
@@ -81,6 +62,7 @@ export class PathDrawer extends HTMLElement {
         if (newValue != oldValue) {
             if (name == 'is-active') {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
+                this.dispatchEvent(new CustomEvent('pathDrawerStatusChanged', { detail: { newValue } }));
             }
 
             if (name == 'features') {

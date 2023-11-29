@@ -10,31 +10,52 @@ export class ZoomBtn extends HTMLElement {
 
     connectedCallback() {
         // html
-        this.button = document.createElement('button');
-        this.button.innerHTML = '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />';
-        
-        switch (this.getAttribute('zoom-type')) {
-            case "in":
-                this.button.innerHTML +=
-                    `
-                    <span class="material-symbols-outlined">add</span>
-                    `
-                ;
-                break;
+        this.shadow.innerHTML =
+            `
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+            <div class="zoom-btns">
+                <button class="zoom-in"><span class="material-symbols-outlined">add</span></button>
+                <button class="zoom-out"><span class="material-symbols-outlined">remove</span></button>
+            </div>
+            `
+        ;
 
-            case "out":
-                this.button.innerHTML +=
-                    `
-                    <span class="material-symbols-outlined">remove</span>
-                    `
-                ;
-                break;
-        
-            default:
-                break;
-        }
+        this.zoomIn = this.shadow.querySelector('.zoom-in');
+        this.zoomOut = this.shadow.querySelector('.zoom-out');
 
-        this.shadow.append(this.button);
+        // this.button = document.createElement('button');
+        
+        // switch (this.getAttribute('zoom-type')) {
+        //     case "in":
+        //         this.button.innerHTML +=
+        //             `
+        //             <span class="material-symbols-outlined">add</span>
+        //             `
+        //         ;
+        //         break;
+
+        //     case "out":
+        //         this.button.innerHTML +=
+        //             `
+        //             <span class="material-symbols-outlined">remove</span>
+        //             `
+        //         ;
+        //         break;
+        
+        //     default:
+        //         break;
+        // }
+
+        // this.shadow.append(this.button);
+
+        // js
+        this.zoomIn.addEventListener('click', () => {
+            this.dispatchEvent(new CustomEvent('zoomIn'));
+        });
+
+        this.zoomOut.addEventListener('click', () => {
+            this.dispatchEvent(new CustomEvent('zoomOut'));
+        });
 
         // css
         const style = document.createElement('link');

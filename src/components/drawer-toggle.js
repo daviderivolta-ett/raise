@@ -10,21 +10,41 @@ export class DrawerToggle extends HTMLElement {
 
     connectedCallback() {
         // html
+        // this.shadow.innerHTML =
+        //     `
+        //     <div class="menu-toggle">
+        //         <a id="menu-toggle">
+        //             <span class="menu-toggle-bar menu-toggle-bar--top"></span>
+        //             <span class="menu-toggle-bar menu-toggle-bar--middle"></span>
+        //             <span class="menu-toggle-bar menu-toggle-bar--bottom"></span>
+        //         </a>
+        //     </div>
+        //     `
+        // ;
+
         this.shadow.innerHTML =
             `
-            <div class="menu-toggle">
-                <a id="menu-toggle">
-                    <span class="menu-toggle-bar menu-toggle-bar--top"></span>
-                    <span class="menu-toggle-bar menu-toggle-bar--middle"></span>
-                    <span class="menu-toggle-bar menu-toggle-bar--bottom"></span>
-                </a>
-            </div>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             `
         ;
 
+        this.button = document.createElement('button');
+        this.button.innerHTML =
+            `
+            <span class="icon">
+                <span class="material-symbols-outlined">apps</span>
+            </span>
+            <span class="label">
+                Layer
+            </span>
+            `
+        ;
+
+        this.shadow.append(this.button);
+
         this.setAttribute('is-open', 'false');
         let isOpen = this.getAttribute('is-open');
-        this.btn = this.shadow.querySelector('.menu-toggle');
+        this.btn = this.shadow.querySelector('button');
 
         // css
         const style = document.createElement('link');

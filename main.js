@@ -41,6 +41,7 @@ import './src/components/path-infobox.js';
 import './src/components/play-info-btn.js';
 import './src/components/goto-btn.js';
 import './src/components/path-drawer-toggle.js';
+import './src/components/rail.js';
 
 // DOM nodes
 const main = document.querySelector('main');
@@ -52,6 +53,7 @@ const drawerContent = document.querySelector('app-drawer-content');
 const autocomplete = document.querySelector('app-autocomplete');
 const pathDrawer = document.querySelector('app-path-drawer');
 const mapControls = document.querySelector('app-map-controls');
+const rail = document.querySelector('app-rail');
 
 // Map initialization
 const map = new CesiumViewer();
@@ -78,14 +80,15 @@ try {
 mapControls.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
 mapControls.addEventListener('zoomIn', () => map.viewer.camera.zoomIn(1000.0));
 mapControls.addEventListener('zoomOut', () => map.viewer.camera.zoomOut(1000.0));
+pathDrawer.addEventListener('pathDrawerStatusChanged', (event) => {
+  mapControls.setAttribute('is-navigation', event.detail.newValue)
+});
 
 // Theme button
-const changeThemeBtn = document.querySelector('app-theme-icon');
-
 map.fetchThemes(THEMES_URL)
-  .then(themes => changeThemeBtn.setAttribute('themes', JSON.stringify(themes)));
+  .then(themes => rail.setAttribute('themes', JSON.stringify(themes)));
 
-changeThemeBtn.addEventListener('themeChanged', (event) => {
+rail.addEventListener('themeChanged', (event) => {
   const theme = event.detail.newValue;
   map.changeTheme(theme);
 });
@@ -98,7 +101,7 @@ for (let i = 0; i <= 2; i++) {
 }
 
 // Toggle drawer behaviour
-drawerToggle.addEventListener('drawerToggled', (event) => {
+rail.addEventListener('drawerToggled', (event) => {
   if (event.detail.newValue == 'true') {
     drawer.classList.add('drawer-open');
   } else {
@@ -109,7 +112,7 @@ drawerToggle.addEventListener('drawerToggled', (event) => {
 // Click on map
 map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
   const feature = map.onClick(movement, jsonData);
-  if(feature == undefined) return;
+  if (feature == undefined) return;
   pathDrawer.setAttribute('is-active', 'true');
   pathDrawer.setAttribute('features', `[${JSON.stringify(feature)}]`);
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
@@ -156,10 +159,6 @@ mapControls.addEventListener('activateNavigation', async (event) => {
 
   pathDrawer.setAttribute('is-active', isNavigation + '');
   mapControls.setAttribute('is-navigation', isNavigation + '');
-});
-
-pathDrawer.addEventListener('pathDrawerOpened', () => {
-  mapControls.setAttribute('is-navigation', 'true');
 });
 
 pathDrawer.addEventListener('pathDrawerClosed', () => {

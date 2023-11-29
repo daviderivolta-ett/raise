@@ -2,16 +2,36 @@
     border-bottom: none;
 }
 
-.info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.wrapper {
+    border-bottom: 1px solid #DBDCE0;
+    padding: 24px;
 }
 
-.tools h4 {
+.wrapper:hover {
+    background-color: #F7F8F8;
+}
+
+.title {
+    margin: 0 0 16px 0;
+}
+
+.title .name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #202125;
+    margin: 0 0 8px 0;
+}
+
+.title .category {
+    font-size: 14px;
+    font-weight: 400;
+    color: #5E5E5E;
     margin: 0;
 }
 
 .tools {
     display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 8px;
 }

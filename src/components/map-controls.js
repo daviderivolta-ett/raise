@@ -8,12 +8,12 @@ export class MapControls extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
-            <div>
+            <div class="wrapper">
                 <app-close-navigation-btn></app-close-navigation-btn>
                 <app-navigation></app-navigation>
                 <app-center-position></app-center-position>
-                <app-zoom-btn zoom-type="in"></app-zoom-btn>
-                <app-zoom-btn zoom-type="out"></app-zoom-btn>
+
+                <app-zoom-btn></app-zoom-btn>
             </div>
             `
         ;
@@ -22,10 +22,11 @@ export class MapControls extends HTMLElement {
         if (!this.hasAttribute('data')) this.setAttribute('data', '[]');
 
         this.navigation = this.shadow.querySelector('app-navigation');
-        this.close = this.shadow.querySelector('app-close-navigation-btn');
+        // this.close = this.shadow.querySelector('app-close-navigation-btn');
         this.positionBtn = this.shadow.querySelector('app-center-position');
-        this.zoomIn = this.shadow.querySelector('app-zoom-btn[zoom-type="in"]');
-        this.zoomOut = this.shadow.querySelector('app-zoom-btn[zoom-type="out"]');
+        // this.zoomIn = this.shadow.querySelector('app-zoom-btn[zoom-type="in"]');
+        // this.zoomOut = this.shadow.querySelector('app-zoom-btn[zoom-type="out"]');
+        this.zoomBtn = this.shadow.querySelector('app-zoom-btn');
 
         // js
         this.navigation.addEventListener('activateNavigation', (event) => {
@@ -33,21 +34,29 @@ export class MapControls extends HTMLElement {
             this.dispatchEvent(new CustomEvent('activateNavigation', { detail: { data } }));
         });
 
-        this.close.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('closeNavigation'));
-        });
+        // this.close.addEventListener('click', () => {
+        //     this.dispatchEvent(new CustomEvent('closeNavigation'));
+        // });
 
         this.positionBtn.addEventListener('click', () => {
             this.dispatchEvent(new CustomEvent('centerPosition'));
         });
 
-        this.zoomIn.addEventListener('click', () => {
+        this.zoomBtn.addEventListener('zoomIn', () => {
             this.dispatchEvent(new CustomEvent('zoomIn'));
         });
 
-        this.zoomOut.addEventListener('click', () => {
+        this.zoomBtn.addEventListener('zoomOut', () => {
             this.dispatchEvent(new CustomEvent('zoomOut'));
         });
+
+        // this.zoomIn.addEventListener('click', () => {
+        //     this.dispatchEvent(new CustomEvent('zoomIn'));
+        // });
+
+        // this.zoomOut.addEventListener('click', () => {
+        //     this.dispatchEvent(new CustomEvent('zoomOut'));
+        // });
 
         // css
         const style = document.createElement('link');
@@ -63,10 +72,10 @@ export class MapControls extends HTMLElement {
             if (name == 'is-navigation') {
                 if (newValue == 'true') {
                     this.classList.add('visible');
-                    this.close.setAttribute('is-active', 'true');
+                    // this.close.setAttribute('is-active', 'true');
                 } else {
                     this.classList.remove('visible');
-                    this.close.setAttribute('is-active', 'false');
+                    // this.close.setAttribute('is-active', 'false');
                 }
             }
 

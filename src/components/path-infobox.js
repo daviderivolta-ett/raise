@@ -13,11 +13,12 @@ export class PathInfobox extends HTMLElement {
             <div class="wrapper">
                 <div class="info">
                     <div class="title">
-                        <h4></h4>
+                        <h4 class="name"></h4>
+                        <p class="category"></p>
                     </div>
                     <div class="tools">
-                        <app-play-info-btn></app-play-info-btn>
                         <app-goto></app-goto>
+                        <app-play-info-btn></app-play-info-btn>
                     </div>
                 </div>
                 <div class="content"></div>
@@ -27,7 +28,8 @@ export class PathInfobox extends HTMLElement {
 
         this.data = JSON.parse(this.getAttribute('data'));
         this.info = this.shadow.querySelector('.info');
-        this.category = this.shadow.querySelector('h4');
+        this.name = this.shadow.querySelector('.name');
+        this.category = this.shadow.querySelector('.category');
         this.playBtn = this.shadow.querySelector('app-play-info-btn');
         this.goToBtn = this.shadow.querySelector('app-goto');
         this.content = this.shadow.querySelector('.content');
@@ -36,10 +38,17 @@ export class PathInfobox extends HTMLElement {
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
                 const value = properties[key];
+
                 if (key == 'Title') {
                     this.category.innerText = value;
                     continue;
                 };
+
+                if (key == 'Nome') {
+                    this.name.innerText = value;
+                    continue;
+                }
+
                 const p = document.createElement('p');
                 p.innerText = value;
                 this.content.append(p);
