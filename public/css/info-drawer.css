@@ -7,12 +7,19 @@
     background-color: white;
     border-radius: 0 12px 12px 0;
     transition: .2s ease-in-out;
-    padding: 24px;
     overflow-y: auto;
 }
 
-:host(.visible) {
-    left: 80px;
+:host(.open) {
+    animation-name: open;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+}
+
+:host(.close) {
+    animation-name: close;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
 }
 
 :host::-webkit-scrollbar {
@@ -26,4 +33,62 @@
 
 .wrapper {
     background-color: white;
+    /* padding: 24px; */
+}
+
+.close-icon {
+    cursor: pointer;
+    position: sticky;
+    top: 24px;
+    padding: 0 24px;
+    text-align: right;
+}
+
+.info {
+    padding: 0 24px 24px 24px;
+    border-bottom: 1px solid #DBDCE0;
+}
+
+.title {
+    padding: 24px 0 0 0;
+}
+
+.title .name {
+    margin: 0 0 4px 0;
+}
+
+.title .category {
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    color: #70757A;
+}
+
+.tools {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.content {
+    padding: 0 24px;
+}
+
+@keyframes open {
+    0% {
+        left: -360px
+    }
+
+    100% {
+        left: 80px
+    }
+}
+
+@keyframes close {
+    0% {
+        left: 80px;
+    }
+
+    100% {
+        left: -360px;
+    }
 }

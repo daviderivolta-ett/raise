@@ -182,6 +182,11 @@ pathDrawer.addEventListener('goto', event => {
   map.goto(coordinates);
 });
 
+infoDrawer.addEventListener('goto', event => {
+  const coordinates = event.detail;
+  map.goto(coordinates);
+});
+
 mapControls.addEventListener('closeNavigation', () => {
   closeNavigation(isNavigation, mapControls, drawerContent, map);
 });
