@@ -1,3 +1,7 @@
+:host {
+    cursor: pointer;
+}
+
 :host-context(.last) .wrapper {
     border-bottom: none;
 }

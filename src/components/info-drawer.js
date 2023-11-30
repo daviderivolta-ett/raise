@@ -6,7 +6,6 @@ export class InfoDrawer extends HTMLElement {
 
     render() {
         this.data = JSON.parse(this.getAttribute('data'));
-        console.log(this.data);
 
         this.content.innerHTML = '';
 
@@ -58,26 +57,34 @@ export class InfoDrawer extends HTMLElement {
                     </div>
                     <div class="tools">
                         <app-goto></app-goto>
+                        <app-add-to-route></app-add-to-route>
                         <app-play-info-btn></app-play-info-btn>
                     </div>
                 </div>
                 <div class="content"></div>
             </div>
             `
-        ;
+            ;
 
         this.close = this.shadow.querySelector('.close-icon');
         this.info = this.shadow.querySelector('.info');
         this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
-        this.playBtn = this.shadow.querySelector('app-play-info-btn');
         this.goToBtn = this.shadow.querySelector('app-goto');
+        this.addToRouteBtn = this.shadow.querySelector('app-add-to-route');
+        this.playBtn = this.shadow.querySelector('app-play-info-btn');
         this.content = this.shadow.querySelector('.content');
 
         // js
         this.close.addEventListener('click', () => this.setAttribute('is-open', 'false'));
+
         this.goToBtn.addEventListener('goto', (e) => {
             this.dispatchEvent(new CustomEvent('goto', { detail: e.detail.coordinates }));
+        });
+
+        this.addToRouteBtn.addEventListener('click', () => {
+            this.data = JSON.parse(this.getAttribute('data'));
+            this.dispatchEvent(new CustomEvent('addToRoute', { detail: { data: this.data } }));
         });
 
         // css

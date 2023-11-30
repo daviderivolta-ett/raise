@@ -43,6 +43,8 @@ import './src/components/goto-btn.js';
 import './src/components/path-drawer-toggle.js';
 import './src/components/rail.js';
 import './src/components/info-drawer.js';
+import './src/components/add-to-route-btn.js';
+import './src/components/remove-btn.js';
 
 // DOM nodes
 const main = document.querySelector('main');
@@ -59,7 +61,24 @@ const infoDrawer = document.querySelector('app-info-drawer');
 // Map initialization
 const map = new CesiumViewer();
 
-// Accordions creation
+// Map controls
+mapControls.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
+mapControls.addEventListener('zoomIn', () => map.viewer.camera.zoomIn(1000.0));
+mapControls.addEventListener('zoomOut', () => map.viewer.camera.zoomOut(1000.0));
+mapControls.addEventListener('closeNavigation', () => {
+  closeNavigation(isNavigation, mapControls, drawerContent, map);
+});
+
+// Theme button
+map.fetchThemes(THEMES_URL)
+  .then(themes => rail.setAttribute('themes', JSON.stringify(themes)));
+
+rail.addEventListener('themeChanged', (event) => {
+  const theme = event.detail.newValue;
+  map.changeTheme(theme);
+});
+
+// Layer drawer creation
 let jsonData;
 try {
   let snackbar = document.createElement('app-snackbar');
@@ -77,31 +96,7 @@ try {
   snackbar.setAttribute('is-active', 'false');
 }
 
-// Map controls
-mapControls.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
-mapControls.addEventListener('zoomIn', () => map.viewer.camera.zoomIn(1000.0));
-mapControls.addEventListener('zoomOut', () => map.viewer.camera.zoomOut(1000.0));
-pathDrawer.addEventListener('pathDrawerStatusChanged', (event) => {
-  mapControls.setAttribute('is-navigation', event.detail.newValue)
-});
-
-// Theme button
-map.fetchThemes(THEMES_URL)
-  .then(themes => rail.setAttribute('themes', JSON.stringify(themes)));
-
-rail.addEventListener('themeChanged', (event) => {
-  const theme = event.detail.newValue;
-  map.changeTheme(theme);
-});
-
-// Import cluster icons
-const clusterIcons = [];
-for (let i = 0; i <= 2; i++) {
-  fetchSvgIcon(i + 2)
-    .then(clusterIcon => clusterIcons.push(clusterIcon));
-}
-
-// Toggle drawer behaviour
+// Rail behaviour
 rail.addEventListener('drawerToggled', (event) => {
   if (event.detail.newValue == 'true') {
     infoDrawer.setAttribute('is-open', 'false');
@@ -111,19 +106,51 @@ rail.addEventListener('drawerToggled', (event) => {
   }
 });
 
+// Infobox Drawer
+infoDrawer.addEventListener('goto', event => {
+  const coordinates = event.detail;
+  map.goto(coordinates);
+});
+
+infoDrawer.addEventListener('addToRoute', (event) => {
+  let features = JSON.parse(pathDrawer.getAttribute('features'));
+  let feature = event.detail.data;
+
+  if (!features.some(obj => JSON.stringify(obj.properties) === JSON.stringify(feature.properties))) {
+    features.push(feature); 
+  } else {
+    let snackbar = document.createElement('app-snackbar');
+    snackbar.setAttribute('type', 'temporary');
+    snackbar.setAttribute('text', 'Tappa già presente nel percorso.')
+    main.append(snackbar);
+  }
+
+  pathDrawer.setAttribute('features', JSON.stringify(features));
+  pathDrawer.setAttribute('is-open', 'true');
+});
+
+
 // Click on map
 map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
   rail.setAttribute('is-open', 'false');
   const feature = map.onClick(movement, jsonData);
+
   if (feature == undefined) {
     infoDrawer.setAttribute('is-open', 'false');
+    pathDrawer.setAttribute('is-open', 'false');
     return;
   }
-  // pathDrawer.setAttribute('is-active', 'true');
-  // pathDrawer.setAttribute('features', `[${JSON.stringify(feature)}]`);
+
   infoDrawer.setAttribute('data', `${JSON.stringify(feature)}`);
   infoDrawer.setAttribute('is-open', 'true');
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+// Import cluster icons
+const clusterIcons = [];
+for (let i = 0; i <= 2; i++) {
+  fetchSvgIcon(i + 2)
+    .then(clusterIcon => clusterIcons.push(clusterIcon));
+}
 
 // Checkbox list behaviour
 drawerContent.addEventListener('activeLayersChanged', async (event) => {
@@ -156,39 +183,27 @@ map.setCameraToUserPosition(position);
 map.createUserPin(position);
 
 // Navigation
-let isNavigation = false;
-mapControls.addEventListener('activateNavigation', async (event) => {
-  isNavigation = true;
-  const activeLayers = event.detail.data;
-  const featuresByProximity = map.createRoute(jsonData, position, activeLayers);
-  featuresByProximity.then(features => {
-    pathDrawer.setAttribute('features', JSON.stringify(features));
-  });
+// let isNavigation = false;
+// mapControls.addEventListener('activateNavigation', async (event) => {
+//   isNavigation = true;
+//   const activeLayers = event.detail.data;
+//   const featuresByProximity = map.createRoute(jsonData, position, activeLayers);
+//   featuresByProximity.then(features => {
+//     pathDrawer.setAttribute('features', JSON.stringify(features));
+//   });
 
-  pathDrawer.setAttribute('is-active', isNavigation + '');
-  mapControls.setAttribute('is-navigation', isNavigation + '');
-});
+//   pathDrawer.setAttribute('is-open', isNavigation + '');
+//   mapControls.setAttribute('is-navigation', isNavigation + '');
+// });
 
-pathDrawer.addEventListener('pathDrawerClosed', () => {
-  mapControls.setAttribute('is-navigation', 'false');
-});
-
-pathDrawer.addEventListener('closeNavigation', () => {
-  closeNavigation(isNavigation, mapControls, drawerContent, map);
-});
-
+// Path drawer
 pathDrawer.addEventListener('goto', event => {
   const coordinates = event.detail;
   map.goto(coordinates);
 });
 
-infoDrawer.addEventListener('goto', event => {
-  const coordinates = event.detail;
-  map.goto(coordinates);
-});
-
-mapControls.addEventListener('closeNavigation', () => {
-  closeNavigation(isNavigation, mapControls, drawerContent, map);
+pathDrawer.addEventListener('pathDrawerStatusChanged', (event) => {
+  mapControls.setAttribute('is-route', event.detail.newValue + '');
 });
 
 function closeNavigation(isNavigation, mapControls, drawerContent, map) {

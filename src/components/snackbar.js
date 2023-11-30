@@ -17,6 +17,7 @@ export class SnackBar extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="snackbar">
                 <div class="content">
                     <p></p>
@@ -42,9 +43,9 @@ export class SnackBar extends HTMLElement {
             this.button = document.createElement('button');
             this.button.innerHTML =
                 `
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="24" height="24">
-                    <path d="m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z"/>
-                </svg>
+                <div class="close-icon">
+                    <span class="material-symbols-outlined">close</span>
+                </div>
                 `
             ;
 
@@ -87,11 +88,11 @@ export class SnackBar extends HTMLElement {
         style.setAttribute('href', './css/snackbar.css');
         this.shadow.append(style);
 
-        this.style.setProperty('transform', 'translateX(-50%)');
-        this.style.setProperty('position', 'fixed');
-        this.style.setProperty('left', '50%');
+        // this.style.setProperty('transform', 'translateX(-50%)');
+        // this.style.setProperty('position', 'fixed');
+        // this.style.setProperty('left', '50%');
         this.style.setProperty('bottom', `${24 + 64 * index}px`);
-        this.style.setProperty('z-index', '9999');
+        // this.style.setProperty('z-index', '9999');
     }
 
     static observedAttributes = ['text', 'is-active'];

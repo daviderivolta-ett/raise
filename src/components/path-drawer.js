@@ -22,6 +22,15 @@ export class PathDrawer extends HTMLElement {
                 this.dispatchEvent(new CustomEvent('goto', { detail: e.detail.coordinates }));
             });
         });
+
+        this.allInfoboxes.forEach(infobox => {
+            infobox.addEventListener('remove', (event) => {
+                let feature = event.detail.data;
+                let features = this.checkFeature(feature);
+                this.setAttribute('features', JSON.stringify(features));
+                console.log(JSON.parse(this.getAttribute('features')));
+            });
+        });
     }
 
     connectedCallback() {
@@ -30,24 +39,26 @@ export class PathDrawer extends HTMLElement {
             `
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="drawer">
-                <div class="close-icon"><span class="material-symbols-outlined">close</span></div>
-                <div class="header"></div>
+                <div class="header">
+                    <h2 class="title">Percorso tematico</h2>
+                    <div class="close-icon">
+                        <span class="material-symbols-outlined">close</span>
+                    </div>
+                </div>
                 <div class="info-container"></div>
             </div>
             `
-        ;
+            ;
 
         if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
-        this.setAttribute('is-active', 'false');
+        this.setAttribute('is-open', 'false');
 
         this.closeIcon = this.shadow.querySelector('.close-icon');
         this.div = this.shadow.querySelector('.info-container');
 
         // js
-
         this.closeIcon.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('pathDrawerClosed'));
-            this.setAttribute('is-active', 'false');
+            this.setAttribute('is-open', 'false');
         });
 
         // css
@@ -57,25 +68,40 @@ export class PathDrawer extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-active', 'features'];
+    static observedAttributes = ['is-open', 'features'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue) {
-            if (name == 'is-active') {
+
+            if (name == 'is-open') {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
                 this.dispatchEvent(new CustomEvent('pathDrawerStatusChanged', { detail: { newValue } }));
             }
 
             if (name == 'features') {
 
-                if (newValue == '[]') { this.classList.remove('draggable'); }
+                if (newValue == '[]') {
+                    this.setAttribute('is-open', 'false');
+                }
                 else {
-                    this.classList.add('draggable');
+                    this.setAttribute('is-open', 'true');
                     this.render();
                 }
 
             }
         }
     }
+
+    //// Da controllare
+    checkFeature(feature) {
+        let features = JSON.parse(this.getAttribute('features'));
+
+        if (!features.some(obj => JSON.stringify(obj.properties) === JSON.stringify(feature.properties))) {
+            features.push(feature);
+        }
+
+        return features;
+    }
+
 }
 
 customElements.define('app-path-drawer', PathDrawer);

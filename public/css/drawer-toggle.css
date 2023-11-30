@@ -40,10 +40,6 @@ button:active .material-symbols-outlined {
     margin: 0 0 4px 0;
 }
 
-button:hover .icon {
-    background-color: #D3E3FD;
-}
-
 .material-symbols-outlined {
     transition: .2s ease-in-out;
     font-variation-settings:
@@ -52,6 +48,10 @@ button:hover .icon {
         'GRAD' 0,
         'opsz' 24;
     color: #5E5E5E;
+}
+
+button:hover .icon {
+    background-color: #D3E3FD;
 }
 
 button:hover .material-symbols-outlined {
