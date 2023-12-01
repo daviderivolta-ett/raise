@@ -219,6 +219,7 @@ pathDrawer.addEventListener('empty', () => rail.setAttribute('is-open', 'true'))
 
 pathDrawer.addEventListener('selectedFeature', (e) => {
   const feature = e.detail.data;
+  map.setCameraToPosition(feature.coordinates);
   infoDrawer.setAttribute('data', JSON.stringify(feature));
   infoDrawer.setAttribute('is-open', 'true');
 });

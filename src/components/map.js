@@ -481,7 +481,7 @@ export default class CesiumViewer {
                     feature.coordinates = coordinates;
                 }
             }
-            
+
             featuresToExport.push(feature);
         });
 
@@ -592,6 +592,23 @@ export default class CesiumViewer {
                 roll: 0
             }
         })
+    }
+
+    setCameraToPosition(coordinates) {
+        const position = Cesium.Cartesian3.fromDegrees(
+            coordinates.longitude,
+            coordinates.latitude,
+            4000
+        );
+
+        this.viewer.camera.flyTo({
+            destination: position,
+            orientation: {
+                heading: Cesium.Math.toRadians(0.0),
+                pitch: Cesium.Math.toRadians(-90.0),
+                roll: 0
+            }
+        });
     }
 
     setCameraToUserPosition(userPosition) {
