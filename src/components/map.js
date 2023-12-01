@@ -411,6 +411,33 @@ export default class CesiumViewer {
         }
     }
 
+    startNavigation(features) {
+        let i = 1;
+        features.forEach(feature => {
+            this.createPathOrderLabels(feature.coordinates, i);
+            i++;
+        });
+    }
+
+    createPathOrderLabels(coordinates, index) {
+        const longitude = coordinates.longitude;
+        const latitude = coordinates.latitude;
+        this.viewer.entities.add({
+            position: Cesium.Cartesian3.fromDegrees(longitude, latitude, 1.0),
+            label: {
+                text: `${index}`,
+                verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                pixelOffset: new Cesium.Cartesian2(0, -20),
+                scale: 0.5,
+                scaleByDistance: new Cesium.NearFarScalar(1.5e2, 1.5, 8.0e6, 0.0),
+                fillColor: Cesium.Color.WHITE,
+                outlineWidth: 2,
+                outlineColor: Cesium.Color.BLACK,
+                style: Cesium.LabelStyle.FILL_AND_OUTLINE
+            }
+        });
+    }
+
     async createRoute(jsonData, position, layers) {
         const entities = this.viewer.entities;
         this.removeAllEntities(entities);
@@ -576,6 +603,10 @@ export default class CesiumViewer {
             }
         });
     }
+
+    ////
+
+    ////
 
     setCamera() {
         const initialPosition = Cesium.Cartesian3.fromDegrees(

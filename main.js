@@ -224,6 +224,16 @@ pathDrawer.addEventListener('selectedFeature', (e) => {
   infoDrawer.setAttribute('is-open', 'true');
 });
 
+pathDrawer.addEventListener('activateNavigation', (e) => {
+  if (e.detail.isNavigation == 'true') {
+    const features = e.detail.features;
+    map.startNavigation(features);    
+  } else {
+    const entities = map.viewer.entities;
+    map.removeAllEntities(entities);
+  }
+});
+
 function closeNavigation(isNavigation, mapControls, drawerContent, map) {
   isNavigation = false;
   mapControls.setAttribute('is-navigation', isNavigation + '');

@@ -4,24 +4,47 @@ export class NavigationBtn extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'closed' });
     }
 
+    render() {
+        this.isNavigation = this.getAttribute('is-navigation');
+
+        if (this.isNavigation == 'true') {
+            this.icon.innerHTML = 'close';
+            this.label.innerHTML = 'Chiudi navigazione';
+        } else {
+            this.icon.innerHTML = 'directions';
+            this.label.innerHTML = 'Avvia percorso';
+        }
+    }
+
     connectedCallback() {
+        if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
+        if (!this.hasAttribute('is-active')) this.setAttribute('is-active', 'false');
+        if (!this.hasAttribute('is-navigation')) this.setAttribute('is-navigation', 'false');
+
         // html
+        this.shadow.innerHTML =
+            `
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+            `
+            ;
+
         this.button = document.createElement('button');
         this.button.innerHTML =
             `
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            <span class="material-symbols-outlined">navigation</span>
+            <span class="material-symbols-outlined">directions</span>
+            <span class="label">Avvia percorso</span>
             `
-        ;
+            ;
 
         this.shadow.append(this.button);
 
-        if (!this.hasAttribute('data')) this.setAttribute('data', '[]');
+        this.icon = this.shadow.querySelector('.material-symbols-outlined');
+        this.label = this.shadow.querySelector('.label');
 
         // js
         this.button.addEventListener('click', () => {
-            const data = JSON.parse(this.getAttribute('data'));
-            this.dispatchEvent(new CustomEvent('activateNavigation', { detail: { data } }));
+            const isNavigation = JSON.parse(this.getAttribute('is-navigation'));
+            this.setAttribute('is-navigation', !isNavigation + '');
         });
 
         // css
@@ -31,13 +54,25 @@ export class NavigationBtn extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['data'];
+    static observedAttributes = ['is-active', 'is-navigation', 'features'];
     attributeChangedCallback(name, oldvalue, newValue) {
         if (newValue != oldvalue && oldvalue != null && newValue != null) {
 
-            if (name == 'data') {
-                if (newValue == '[]') { this.classList.remove('visible'); }
-                else { this.classList.add('visible') }
+            if (name == 'features') {
+                newValue == '[]' ? this.setAttribute('is-active', 'false') : this.setAttribute('is-active', 'true');
+            }
+
+            if (name == 'is-active') {
+                newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
+            }
+
+            if (name == 'is-navigation') {
+                const features = JSON.parse(this.getAttribute('features'));
+                this.dispatchEvent(new CustomEvent('activateNavigation', {
+                    detail: { features, isNavigation: newValue }
+                }));
+
+                this.render();
             }
 
         }

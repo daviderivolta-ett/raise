@@ -22,6 +22,11 @@ export class AddToRouteBtn extends HTMLElement {
 
         this.shadow.append(this.button);
 
+        // js
+        this.button.addEventListener('click', () => {
+            this.dispatchEvent(new CustomEvent('startNavigation'));
+        });
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');

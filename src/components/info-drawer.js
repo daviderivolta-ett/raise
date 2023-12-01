@@ -7,6 +7,8 @@ export class InfoDrawer extends HTMLElement {
     render() {
         this.data = JSON.parse(this.getAttribute('data'));
 
+        this.category.innerText = '';
+        this.name.innerText = '';
         this.content.innerHTML = '';
 
         const properties = this.data.properties;

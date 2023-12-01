@@ -9,6 +9,7 @@ export class PathDrawer extends HTMLElement {
         this.div.innerHTML = '';
 
         if (this.features.length != 0) {
+            this.startNavigationBtn.setAttribute('features', JSON.stringify(this.features));
             this.generateInfobox(this.div, this.features);
 
             this.allInfoboxes = this.shadow.querySelectorAll('app-path-infobox');
@@ -34,6 +35,7 @@ export class PathDrawer extends HTMLElement {
             });
 
         } else {
+            this.startNavigationBtn.setAttribute('features', '[]');
             this.emptyMsg = document.createElement('app-empty-msg')
             this.div.append(this.emptyMsg);
 
@@ -51,18 +53,20 @@ export class PathDrawer extends HTMLElement {
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="drawer">
                 <div class="header">
-                    <h2 class="title">Percorso tematico</h2>
+                    <h2 class="title">Percorso</h2>
                     <div class="close-icon">
                         <span class="material-symbols-outlined">close</span>
                     </div>
                 </div>
                 <div class="info-container"></div>
+                <app-navigation></app-navigation>
             </div>
             `
             ;
 
         this.closeIcon = this.shadow.querySelector('.close-icon');
         this.div = this.shadow.querySelector('.info-container');
+        this.startNavigationBtn = this.shadow.querySelector('app-navigation');
 
         if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
         this.setAttribute('is-open', 'false');
@@ -70,6 +74,12 @@ export class PathDrawer extends HTMLElement {
         // js
         this.closeIcon.addEventListener('click', () => {
             this.setAttribute('is-open', 'false');
+        });
+
+        this.startNavigationBtn.addEventListener('activateNavigation', (e) => {
+            this.dispatchEvent(new CustomEvent('activateNavigation', {
+                detail: { features: e.detail.features, isNavigation: e.detail.isNavigation }
+            }));
         });
 
         // css
@@ -89,15 +99,8 @@ export class PathDrawer extends HTMLElement {
             }
 
             if (name == 'features') {
-
-                // if (newValue == '[]') {
-                //     this.setAttribute('is-open', 'false');
-                // }
-                // else {
                 this.setAttribute('is-open', 'true');
                 this.render();
-                // }
-
             }
         }
     }
