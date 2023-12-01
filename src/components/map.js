@@ -603,6 +603,7 @@ export default class CesiumViewer {
 
         this.viewer.camera.flyTo({
             destination: position,
+            duration: 0.5,
             orientation: {
                 heading: Cesium.Math.toRadians(0.0),
                 pitch: Cesium.Math.toRadians(-90.0),
