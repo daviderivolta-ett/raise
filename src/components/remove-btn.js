@@ -23,7 +23,8 @@ export class RemoveBtn extends HTMLElement {
         this.shadow.append(this.button);
 
         // js
-        this.button.addEventListener('click', () => {
+        this.button.addEventListener('click', (e) => {
+            e.stopPropagation();
             this.dispatchEvent(new CustomEvent('remove'));
         });
 
