@@ -28,7 +28,6 @@ export class PathDrawer extends HTMLElement {
                 let feature = event.detail.data;
                 let features = this.checkFeature(feature);
                 this.setAttribute('features', JSON.stringify(features));
-                console.log(JSON.parse(this.getAttribute('features')));
             });
         });
     }
@@ -48,7 +47,7 @@ export class PathDrawer extends HTMLElement {
                 <div class="info-container"></div>
             </div>
             `
-            ;
+        ;
 
         if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
         this.setAttribute('is-open', 'false');
@@ -91,14 +90,14 @@ export class PathDrawer extends HTMLElement {
         }
     }
 
-    //// Da controllare
     checkFeature(feature) {
         let features = JSON.parse(this.getAttribute('features'));
 
-        if (!features.some(obj => JSON.stringify(obj.properties) === JSON.stringify(feature.properties))) {
-            features.push(feature);
-        }
+        const i = features.findIndex(obj => {
+            return JSON.stringify(obj.properties) == JSON.stringify(feature.properties);
+        });
 
+        features.splice(i, 1);
         return features;
     }
 
