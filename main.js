@@ -217,6 +217,12 @@ pathDrawer.addEventListener('pathDrawerStatusChanged', (event) => {
 
 pathDrawer.addEventListener('empty', () => rail.setAttribute('is-open', 'true'));
 
+pathDrawer.addEventListener('selectedFeature', (e) => {
+  const feature = e.detail.data;
+  infoDrawer.setAttribute('data', JSON.stringify(feature));
+  infoDrawer.setAttribute('is-open', 'true');
+});
+
 function closeNavigation(isNavigation, mapControls, drawerContent, map) {
   isNavigation = false;
   mapControls.setAttribute('is-navigation', isNavigation + '');

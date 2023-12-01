@@ -76,6 +76,13 @@ export class PathInfobox extends HTMLElement {
             this.dispatchEvent(event);
         });
 
+        this.addEventListener('click', () => {
+            const event = new CustomEvent('selectedFeature', {
+                detail: { data: this.data }
+            });
+            this.dispatchEvent(event);
+        });
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');

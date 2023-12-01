@@ -17,7 +17,7 @@ export class PathDrawer extends HTMLElement {
                     this.dispatchEvent(new CustomEvent('goto', { detail: e.detail.coordinates }));
                 });
             });
-    
+
             this.allInfoboxes.forEach(infobox => {
                 infobox.addEventListener('remove', (event) => {
                     let feature = event.detail.data;
@@ -26,8 +26,15 @@ export class PathDrawer extends HTMLElement {
                 });
             });
 
-        } else {        
-            this.emptyMsg = document.createElement('app-empty-msg')   
+            this.allInfoboxes.forEach(infobox => {
+                infobox.addEventListener('selectedFeature', event => {
+                    let feature = event.detail.data;
+                    this.dispatchEvent(new CustomEvent('selectedFeature', { detail: { data: feature } }));
+                });
+            });
+
+        } else {
+            this.emptyMsg = document.createElement('app-empty-msg')
             this.div.append(this.emptyMsg);
 
             this.emptyMsg.addEventListener('empty', () => {
@@ -52,7 +59,7 @@ export class PathDrawer extends HTMLElement {
                 <div class="info-container"></div>
             </div>
             `
-        ;
+            ;
 
         this.closeIcon = this.shadow.querySelector('.close-icon');
         this.div = this.shadow.querySelector('.info-container');
