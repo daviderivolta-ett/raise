@@ -16,7 +16,6 @@ export class MapControls extends HTMLElement {
         ;
 
         if (!this.hasAttribute('is-route')) this.setAttribute('is-route', 'false');
-        if (!this.hasAttribute('data')) this.setAttribute('data', '[]');
 
         this.positionBtn = this.shadow.querySelector('app-center-position');
         this.zoomBtn = this.shadow.querySelector('app-zoom-btn');
@@ -41,7 +40,7 @@ export class MapControls extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-route', 'data'];
+    static observedAttributes = ['is-route'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue && newValue != null && oldValue != null) {
 
@@ -49,9 +48,6 @@ export class MapControls extends HTMLElement {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
             }
 
-            if (name == 'data') {
-                // this.navigation.setAttribute('data', newValue);
-            }
         }
     }
 }

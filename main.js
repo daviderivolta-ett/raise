@@ -45,6 +45,7 @@ import './src/components/rail.js';
 import './src/components/info-drawer.js';
 import './src/components/add-to-route-btn.js';
 import './src/components/remove-btn.js';
+import './src/components/empty-path-drawer-msg.js';
 
 // DOM nodes
 const main = document.querySelector('main');
@@ -54,6 +55,7 @@ const drawerTitle = document.querySelector('#drawer-title');
 const drawerContent = document.querySelector('app-drawer-content');
 const autocomplete = document.querySelector('app-autocomplete');
 const pathDrawer = document.querySelector('app-path-drawer');
+const pathDrawerToggle = document.querySelector('app-path-drawer-toggle');
 const mapControls = document.querySelector('app-map-controls');
 const rail = document.querySelector('app-rail');
 const infoDrawer = document.querySelector('app-info-drawer');
@@ -117,7 +119,7 @@ infoDrawer.addEventListener('addToRoute', (event) => {
   let feature = event.detail.data;
 
   if (!features.some(obj => JSON.stringify(obj.properties) === JSON.stringify(feature.properties))) {
-    features.push(feature); 
+    features.push(feature);
   } else {
     let snackbar = document.createElement('app-snackbar');
     snackbar.setAttribute('type', 'temporary');
@@ -160,8 +162,8 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
     main.append(snackbar);
 
     await map.handleCheckbox(event.detail.newValue, clusterIcons);
-    const activeLayers = event.detail.newValue;
-    mapControls.setAttribute('data', JSON.stringify(activeLayers));
+    // const activeLayers = event.detail.newValue;
+    // mapControls.setAttribute('data', JSON.stringify(activeLayers));
 
   } catch (error) {
     console.error('Errore durante il recupero dei layer dal geoserver', error);
@@ -197,14 +199,23 @@ map.createUserPin(position);
 // });
 
 // Path drawer
+pathDrawerToggle.addEventListener('togglePathDrawer', event => {
+  const e = event.detail.newValue;
+  pathDrawer.setAttribute('is-open', e + '');
+});
+
 pathDrawer.addEventListener('goto', event => {
   const coordinates = event.detail;
   map.goto(coordinates);
 });
 
 pathDrawer.addEventListener('pathDrawerStatusChanged', (event) => {
-  mapControls.setAttribute('is-route', event.detail.newValue + '');
+  const e = event.detail.newValue;
+  mapControls.setAttribute('is-route', e + '');
+  pathDrawerToggle.setAttribute('is-open', e + '');
 });
+
+pathDrawer.addEventListener('empty', () => rail.setAttribute('is-open', 'true'));
 
 function closeNavigation(isNavigation, mapControls, drawerContent, map) {
   isNavigation = false;

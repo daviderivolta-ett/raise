@@ -8,28 +8,33 @@ export class PathDrawer extends HTMLElement {
         this.features = JSON.parse(this.getAttribute('features'));
         this.div.innerHTML = '';
 
-        for (let i = 0; i < this.features.length; i++) {
-            const feature = this.features[i];
-            const infobox = document.createElement('app-path-infobox');
-            infobox.setAttribute('data', JSON.stringify(feature));
-            if (i == this.features.length - 1) infobox.classList.add('last');
-            this.div.append(infobox);
+        if (this.features.length != 0) {
+            this.generateInfobox(this.div, this.features);
+
+            this.allInfoboxes = this.shadow.querySelectorAll('app-path-infobox');
+            this.allInfoboxes.forEach(infobox => {
+                infobox.addEventListener('goto', (e) => {
+                    this.dispatchEvent(new CustomEvent('goto', { detail: e.detail.coordinates }));
+                });
+            });
+    
+            this.allInfoboxes.forEach(infobox => {
+                infobox.addEventListener('remove', (event) => {
+                    let feature = event.detail.data;
+                    let features = this.checkFeature(feature);
+                    this.setAttribute('features', JSON.stringify(features));
+                });
+            });
+
+        } else {        
+            this.emptyMsg = document.createElement('app-empty-msg')   
+            this.div.append(this.emptyMsg);
+
+            this.emptyMsg.addEventListener('empty', () => {
+                this.dispatchEvent(new CustomEvent('empty'));
+                this.setAttribute('is-open', 'false');
+            });
         }
-
-        this.allInfoboxes = this.shadow.querySelectorAll('app-path-infobox');
-        this.allInfoboxes.forEach(infobox => {
-            infobox.addEventListener('goto', (e) => {
-                this.dispatchEvent(new CustomEvent('goto', { detail: e.detail.coordinates }));
-            });
-        });
-
-        this.allInfoboxes.forEach(infobox => {
-            infobox.addEventListener('remove', (event) => {
-                let feature = event.detail.data;
-                let features = this.checkFeature(feature);
-                this.setAttribute('features', JSON.stringify(features));
-            });
-        });
     }
 
     connectedCallback() {
@@ -49,11 +54,11 @@ export class PathDrawer extends HTMLElement {
             `
         ;
 
-        if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
-        this.setAttribute('is-open', 'false');
-
         this.closeIcon = this.shadow.querySelector('.close-icon');
         this.div = this.shadow.querySelector('.info-container');
+
+        if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
+        this.setAttribute('is-open', 'false');
 
         // js
         this.closeIcon.addEventListener('click', () => {
@@ -78,25 +83,34 @@ export class PathDrawer extends HTMLElement {
 
             if (name == 'features') {
 
-                if (newValue == '[]') {
-                    this.setAttribute('is-open', 'false');
-                }
-                else {
-                    this.setAttribute('is-open', 'true');
-                    this.render();
-                }
+                // if (newValue == '[]') {
+                //     this.setAttribute('is-open', 'false');
+                // }
+                // else {
+                this.setAttribute('is-open', 'true');
+                this.render();
+                // }
 
             }
         }
     }
 
+    generateInfobox(div, features) {
+        for (let i = 0; i < features.length; i++) {
+            const feature = features[i];
+            const infobox = document.createElement('app-path-infobox');
+            infobox.setAttribute('data', JSON.stringify(feature));
+            if (i == features.length - 1) infobox.classList.add('last');
+            div.append(infobox);
+        }
+    }
+
+
     checkFeature(feature) {
         let features = JSON.parse(this.getAttribute('features'));
-
         const i = features.findIndex(obj => {
             return JSON.stringify(obj.properties) == JSON.stringify(feature.properties);
         });
-
         features.splice(i, 1);
         return features;
     }
