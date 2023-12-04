@@ -46,6 +46,8 @@ import './src/components/info-drawer.js';
 import './src/components/add-to-route-btn.js';
 import './src/components/remove-btn.js';
 import './src/components/empty-path-drawer-msg.js';
+import './src/components/save-route-btn.js';
+import './src/components/save-route-input.js';
 
 // DOM nodes
 const main = document.querySelector('main');
@@ -229,6 +231,8 @@ pathDrawer.addEventListener('selectedFeature', (e) => {
   infoDrawer.setAttribute('data', JSON.stringify(feature));
   infoDrawer.setAttribute('is-open', 'true');
 });
+
+pathDrawer.addEventListener('saveCustomRoute', () => console.log(localStorage));
 
 pathDrawer.addEventListener('activateNavigation', (e) => {
   if (e.detail.isNavigation == 'true') {

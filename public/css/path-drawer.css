@@ -76,10 +76,14 @@
     font-size: 1.25rem;
 }
 
+.header-tools {
+    display: flex;
+}
+
 .close-icon {
     cursor: pointer;
     display: flex;
-    justify-content: right;
+    justify-content: center;
     align-items: center;    
     float: right;
     height: 40px;

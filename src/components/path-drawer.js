@@ -55,9 +55,12 @@ export class PathDrawer extends HTMLElement {
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="drawer">
                 <div class="header">
-                    <h2 class="title">Percorso</h2>
-                    <div class="close-icon">
-                        <span class="material-symbols-outlined">close</span>
+                    <app-save-route-input></app-save-route-input>
+                    <div class="header-tools">
+                        <app-save-route-btn></app-save-route-btn>
+                        <div class="close-icon">
+                            <span class="material-symbols-outlined">close</span>
+                        </div>
                     </div>
                 </div>
                 <div class="info-container"></div>
@@ -67,6 +70,8 @@ export class PathDrawer extends HTMLElement {
             ;
 
         this.closeIcon = this.shadow.querySelector('.close-icon');
+        this.saveRouteInput = this.shadow.querySelector('app-save-route-input');
+        this.saveRouteBtn = this.shadow.querySelector('app-save-route-btn');
         this.div = this.shadow.querySelector('.info-container');
         this.startNavigationBtn = this.shadow.querySelector('app-navigation');
 
@@ -75,6 +80,15 @@ export class PathDrawer extends HTMLElement {
         this.setAttribute('is-open', 'false');
 
         // js
+        this.saveRouteBtn.addEventListener('saveCustomRoute', () => {
+            const name = this.saveRouteInput.getAttribute('value');
+            let customRoute = {};
+            customRoute.name = name;
+            const features = JSON.parse(this.getAttribute('features'));
+            customRoute.features = features;
+            localStorage.setItem('customRoute', JSON.stringify(customRoute));
+        });
+
         this.closeIcon.addEventListener('click', () => {
             this.setAttribute('is-open', 'false');
         });

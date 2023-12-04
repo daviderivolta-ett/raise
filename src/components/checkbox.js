@@ -18,7 +18,7 @@ export class Checkbox extends HTMLElement {
                 <label for="checkbox">Label</label>
             </div>                      
             `
-            ;
+        ;
 
         this.checkbox = this.shadow.querySelector('input');
 
