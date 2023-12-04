@@ -16,7 +16,6 @@ export class RemoveBtn extends HTMLElement {
         this.button.innerHTML =
             `
             <span class="material-symbols-outlined">close</span>
-            <span class="label">Rimuovi</span>
             `
         ;
 

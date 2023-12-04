@@ -66,9 +66,7 @@ export default class CesiumViewer {
 
         const layerNameToFetch = this.getLayerToFind(pickedEntity.id);
         const foundLayer = this.filterLayerByName(jsonData, layerNameToFetch);
-
-        const ray = this.viewer.camera.getPickRay(windowPosition);
-        const cartesian = this.viewer.scene.globe.pick(ray, this.viewer.scene);
+        const cartesian = pickedEntity.primitive._position;
         const coordinates = this.cartesianToCartographic(cartesian);
 
         const properties = pickedEntity.id.properties;
@@ -110,6 +108,17 @@ export default class CesiumViewer {
         const longitude = Cesium.Math.toDegrees(cartographic.longitude);
         const latitude = Cesium.Math.toDegrees(cartographic.latitude);
         return { longitude, latitude };
+    }
+
+    mouseOver(movement) {
+        const windowPosition = movement.endPosition;
+        const pickedEntity = this.viewer.scene.pick(windowPosition);
+
+        if (Cesium.defined(pickedEntity) && Cesium.defined(pickedEntity.id)) {
+            document.body.style.cursor = 'pointer';
+        } else {
+            document.body.style.cursor = 'default';
+        }
     }
 
     createInfobox(counter, elements, info, div) {

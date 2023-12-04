@@ -147,6 +147,11 @@ map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
   infoDrawer.setAttribute('is-open', 'true');
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
+// Cursor on map
+map.viewer.screenSpaceEventHandler.setInputAction(movement => {
+  map.mouseOver(movement);
+}, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
 // Import cluster icons
 const clusterIcons = [];
 for (let i = 0; i <= 2; i++) {
@@ -227,7 +232,7 @@ pathDrawer.addEventListener('selectedFeature', (e) => {
 pathDrawer.addEventListener('activateNavigation', (e) => {
   if (e.detail.isNavigation == 'true') {
     const features = e.detail.features;
-    map.startNavigation(features);    
+    map.startNavigation(features);
   } else {
     const entities = map.viewer.entities;
     map.removeAllEntities(entities);
