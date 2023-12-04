@@ -166,6 +166,7 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
     snackbar.setAttribute('type', 'loader');
     main.append(snackbar);
 
+    pathDrawer.setAttribute('is-navigation', 'false');
     await map.handleCheckbox(event.detail.newValue, clusterIcons);
     // const activeLayers = event.detail.newValue;
     // mapControls.setAttribute('data', JSON.stringify(activeLayers));

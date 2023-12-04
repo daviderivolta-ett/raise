@@ -1,3 +1,5 @@
+import { DataSource } from "cesium";
+
 export class InfoDrawer extends HTMLElement {
     constructor() {
         super();
@@ -9,6 +11,7 @@ export class InfoDrawer extends HTMLElement {
 
         this.category.innerText = '';
         this.name.innerText = '';
+        this.tools.innerHTML = '';
         this.content.innerHTML = '';
 
         const properties = this.data.properties;
@@ -32,12 +35,31 @@ export class InfoDrawer extends HTMLElement {
             }
         }
 
-        if (typeof this.data.coordinates == 'object') {
-            const coordinates = {};
-            coordinates.longitude = this.data.coordinates.longitude;
-            coordinates.latitude = this.data.coordinates.latitude;
-            this.goToBtn.setAttribute('coordinates', JSON.stringify(coordinates));
-        }
+        this.playBtn = document.createElement('app-play-info-btn');
+        this.tools.append(this.playBtn);
+
+        if (!this.data.coordinates || !typeof this.data.coordinates == 'object') return;
+
+        const coordinates = {};
+        coordinates.longitude = this.data.coordinates.longitude;
+        coordinates.latitude = this.data.coordinates.latitude;
+
+        this.goToBtn = document.createElement('app-goto');
+        this.goToBtn.setAttribute('coordinates', JSON.stringify(coordinates));
+        this.tools.insertBefore(this.goToBtn, this.playBtn);
+
+        this.addToRouteBtn = document.createElement('app-add-to-route');
+        this.tools.insertBefore(this.addToRouteBtn, this.playBtn);
+
+        this.goToBtn.addEventListener('goto', (e) => {
+            this.dispatchEvent(new CustomEvent('goto', { detail: e.detail.coordinates }));
+        });
+
+        this.addToRouteBtn.addEventListener('click', () => {
+            this.data = JSON.parse(this.getAttribute('data'));
+            this.dispatchEvent(new CustomEvent('addToRoute', { detail: { data: this.data } }));
+        });
+
     }
 
     connectedCallback() {
@@ -58,7 +80,6 @@ export class InfoDrawer extends HTMLElement {
                         <p class="category"></p>
                     </div>
                     <div class="tools">
-                        <app-goto></app-goto>
                         <app-add-to-route></app-add-to-route>
                         <app-play-info-btn></app-play-info-btn>
                     </div>
@@ -72,22 +93,11 @@ export class InfoDrawer extends HTMLElement {
         this.info = this.shadow.querySelector('.info');
         this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
-        this.goToBtn = this.shadow.querySelector('app-goto');
-        this.addToRouteBtn = this.shadow.querySelector('app-add-to-route');
-        this.playBtn = this.shadow.querySelector('app-play-info-btn');
+        this.tools = this.shadow.querySelector('.tools');
         this.content = this.shadow.querySelector('.content');
 
         // js
         this.close.addEventListener('click', () => this.setAttribute('is-open', 'false'));
-
-        this.goToBtn.addEventListener('goto', (e) => {
-            this.dispatchEvent(new CustomEvent('goto', { detail: e.detail.coordinates }));
-        });
-
-        this.addToRouteBtn.addEventListener('click', () => {
-            this.data = JSON.parse(this.getAttribute('data'));
-            this.dispatchEvent(new CustomEvent('addToRoute', { detail: { data: this.data } }));
-        });
 
         // css
         const style = document.createElement('link');

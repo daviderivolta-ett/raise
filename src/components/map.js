@@ -66,8 +66,13 @@ export default class CesiumViewer {
 
         const layerNameToFetch = this.getLayerToFind(pickedEntity.id);
         const foundLayer = this.filterLayerByName(jsonData, layerNameToFetch);
-        const cartesian = pickedEntity.primitive._position;
-        const coordinates = this.cartesianToCartographic(cartesian);
+
+        let cartesian;
+        let coordinates;
+        if (pickedEntity.primitive._position) {
+            cartesian = pickedEntity.primitive._position;   
+            coordinates = this.cartesianToCartographic(cartesian);
+        }
 
         const properties = pickedEntity.id.properties;
         const propertiesToFind = foundLayer.relevant_properties;
@@ -77,7 +82,8 @@ export default class CesiumViewer {
 
         let feature = {};
         feature.properties = relevantProperties;
-        feature.coordinates = coordinates;
+
+        if (coordinates) feature.coordinates = coordinates;
 
         return feature;
     }

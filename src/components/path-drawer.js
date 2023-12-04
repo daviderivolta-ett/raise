@@ -1,4 +1,6 @@
 export class PathDrawer extends HTMLElement {
+    static features = [];
+
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
@@ -69,6 +71,7 @@ export class PathDrawer extends HTMLElement {
         this.startNavigationBtn = this.shadow.querySelector('app-navigation');
 
         if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
+        if (!this.hasAttribute('is-navigation')) this.setAttribute('is-navigation', 'false');
         this.setAttribute('is-open', 'false');
 
         // js
@@ -77,9 +80,9 @@ export class PathDrawer extends HTMLElement {
         });
 
         this.startNavigationBtn.addEventListener('activateNavigation', (e) => {
-            this.dispatchEvent(new CustomEvent('activateNavigation', {
-                detail: { features: e.detail.features, isNavigation: e.detail.isNavigation }
-            }));
+            PathDrawer.features = e.detail.features;
+            const isNavigation = e.detail.isNavigation;
+            this.setAttribute('is-navigation', isNavigation + '');
         });
 
         // css
@@ -89,7 +92,7 @@ export class PathDrawer extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-open', 'features'];
+    static observedAttributes = ['is-open', 'is-navigation', 'features'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue) {
 
@@ -98,8 +101,18 @@ export class PathDrawer extends HTMLElement {
                 this.dispatchEvent(new CustomEvent('pathDrawerStatusChanged', { detail: { newValue } }));
             }
 
+            if (name == 'is-navigation') {
+                const features = PathDrawer.features;
+                const isNavigation = newValue;
+                this.dispatchEvent(new CustomEvent('activateNavigation', {
+                    detail: { features, isNavigation }
+                }));
+                this.startNavigationBtn.setAttribute('is-navigation', isNavigation + '');
+            }
+
             if (name == 'features') {
                 this.setAttribute('is-open', 'true');
+                this.startNavigationBtn.setAttribute('is-navigation', 'false');
                 this.render();
             }
         }
