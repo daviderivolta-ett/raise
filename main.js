@@ -79,6 +79,33 @@ rail.addEventListener('themeChanged', (event) => {
   map.changeTheme(theme);
 });
 
+// Local storage
+let activeLayers = [];
+if (localStorage.customRoute) {
+  pathDrawerToggle.setAttribute('is-open', 'true');
+  mapControls.setAttribute('is-route', 'true');
+  let customRoute = JSON.parse(localStorage.customRoute);
+  pathDrawer.setAttribute('route-name', customRoute.name);
+  pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
+
+  ////
+  const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
+  let layers = [];
+  customRouteFeatures.map(feature => layers.push(feature.layer));
+  
+  let seenLayers = {};
+  
+  layers.forEach(item => {
+    if (!seenLayers[item]) {
+      seenLayers[item] = true;
+      activeLayers.push(item);
+    }
+  });
+  ////
+}
+
+console.log(activeLayers);
+
 // Layer drawer creation
 let jsonData;
 try {
@@ -89,6 +116,9 @@ try {
   jsonData = await fetchJsonData(CATEGORIES_URL);
   drawerContent.setAttribute('data', JSON.stringify(jsonData));
 
+  ////
+  drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
+  ////
 } catch (error) {
   console.error('Errore durante il recupero dei dati JSON', error);
 
@@ -96,6 +126,8 @@ try {
   let snackbar = document.querySelector('app-snackbar[type="loader"]');
   snackbar.setAttribute('is-active', 'false');
 }
+
+console.log(jsonData);
 
 // Rail behaviour
 rail.addEventListener('drawerToggled', (event) => {
@@ -117,7 +149,7 @@ infoDrawer.addEventListener('addToRoute', (event) => {
   let features = JSON.parse(pathDrawer.getAttribute('features'));
   let feature = event.detail.data;
 
-  if (!features.some(obj => JSON.stringify(obj.properties) === JSON.stringify(feature.properties))) {
+  if (!features.some(obj => JSON.stringify(obj) === JSON.stringify(feature))) {
     features.push(feature);
   } else {
     let snackbar = document.createElement('app-snackbar');
@@ -190,14 +222,6 @@ map.setCameraToUserPosition(position);
 map.createUserPin(position);
 
 // Path drawer
-if (localStorage.customRoute) {
-  pathDrawerToggle.setAttribute('is-open', 'true');
-  mapControls.setAttribute('is-route', 'true');
-  let customRoute = JSON.parse(localStorage.customRoute);
-  pathDrawer.setAttribute('route-name', customRoute.name);
-  pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
-}
-
 pathDrawerToggle.addEventListener('togglePathDrawer', event => {
   const e = event.detail.newValue;
   pathDrawer.setAttribute('is-open', e + '');

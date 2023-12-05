@@ -82,7 +82,7 @@ export default class CesiumViewer {
 
         let feature = {};
         feature.properties = relevantProperties;
-
+        feature.layer = foundLayer;
         if (coordinates) feature.coordinates = coordinates;
 
         return feature;

@@ -63,7 +63,7 @@ export class PathDrawer extends HTMLElement {
                         </div>
                     </div>
                 </div>
-                <div class="info-container"></div>
+                <div class="info-container"><app-empty-msg></app-empty-msg></div>
                 <app-navigation></app-navigation>
             </div>
             `
@@ -73,6 +73,7 @@ export class PathDrawer extends HTMLElement {
         this.saveRouteInput = this.shadow.querySelector('app-save-route-input');
         this.saveRouteBtn = this.shadow.querySelector('app-save-route-btn');
         this.div = this.shadow.querySelector('.info-container');
+        this.emptyMsg = this.shadow.querySelector('app-empty-msg');
         this.startNavigationBtn = this.shadow.querySelector('app-navigation');
 
         if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
@@ -98,6 +99,11 @@ export class PathDrawer extends HTMLElement {
             PathDrawer.features = e.detail.features;
             const isNavigation = e.detail.isNavigation;
             this.setAttribute('is-navigation', isNavigation + '');
+        });
+
+        this.emptyMsg.addEventListener('empty', () => {
+            this.dispatchEvent(new CustomEvent('empty'));
+            this.setAttribute('is-open', 'false');
         });
 
         // css
