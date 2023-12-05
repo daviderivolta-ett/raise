@@ -16,38 +16,36 @@ import './service-worker.js';
 
 // Import web components
 import './src/components/map.js';
-import './src/components/drawer.js';
-import './src/components/checkbox.js';
-import './src/components/checkbox-list.js';
-import './src/components/infobox.js';
-import './src/components/accordion.js';
-import './src/components/search.js';
+import './src/components/rail.js';
 import './src/components/drawer-toggle.js';
+import './src/components/theme-icon.js';
+import './src/components/drawer.js';
+import './src/components/search.js';
 import './src/components/autocomplete.js';
+import './src/components/accordion.js';
+import './src/components/checkbox-list.js';
+import './src/components/checkbox.js';
 import './src/components/opacity-slider.js';
-import './src/components/activate-navigation-btn.js';
 import './src/components/chip.js';
 import './src/components/submit-tags-btn.js';
 import './src/components/settings-icon.js';
-import './src/components/zoom-button.js';
-import './src/components/theme-icon.js';
 import './src/components/navigation-btn.js';
-import './src/components/close-navigation-btn.js';
-import './src/components/snackbar.js';
-import './src/components/center-position-btn.js';
-import './src/components/path-drawer.js';
-import './src/components/map-controls.js';
-import './src/components/path-infobox.js';
+import './src/components/info-drawer.js';
 import './src/components/play-info-btn.js';
 import './src/components/goto-btn.js';
-import './src/components/path-drawer-toggle.js';
-import './src/components/rail.js';
-import './src/components/info-drawer.js';
 import './src/components/add-to-route-btn.js';
-import './src/components/remove-btn.js';
+import './src/components/path-drawer.js';
 import './src/components/empty-path-drawer-msg.js';
+import './src/components/path-infobox.js';
 import './src/components/save-route-btn.js';
 import './src/components/save-route-input.js';
+import './src/components/remove-btn.js';
+import './src/components/map-controls.js';
+import './src/components/path-drawer-toggle.js';
+import './src/components/center-position-btn.js';
+import './src/components/zoom-button.js';
+import './src/components/snackbar.js';
+import './src/components/tag-selection.js';
 
 // DOM nodes
 const main = document.querySelector('main');
@@ -66,7 +64,6 @@ const infoDrawer = document.querySelector('app-info-drawer');
 const map = new CesiumViewer();
 
 // Map controls
-mapControls.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
 mapControls.addEventListener('zoomIn', () => map.viewer.camera.zoomIn(1000.0));
 mapControls.addEventListener('zoomOut', () => map.viewer.camera.zoomOut(1000.0));
 
@@ -78,31 +75,6 @@ rail.addEventListener('themeChanged', (event) => {
   const theme = event.detail.newValue;
   map.changeTheme(theme);
 });
-
-// Local storage
-let activeLayers = [];
-if (localStorage.customRoute) {
-  pathDrawerToggle.setAttribute('is-open', 'true');
-  mapControls.setAttribute('is-route', 'true');
-  let customRoute = JSON.parse(localStorage.customRoute);
-  pathDrawer.setAttribute('route-name', customRoute.name);
-  pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
-
-  ////
-  const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
-  let layers = [];
-  customRouteFeatures.map(feature => layers.push(feature.layer));
-
-  let seenLayers = {};
-
-  layers.forEach(item => {
-    if (!seenLayers[item]) {
-      seenLayers[item] = true;
-      activeLayers.push(item);
-    }
-  });
-  ////
-}
 
 // Rail behaviour
 rail.addEventListener('drawerToggled', (event) => {
@@ -229,8 +201,96 @@ try {
   snackbar.setAttribute('type', 'loader');
   main.append(snackbar);
 
-  let jsonData = await fetchJsonData(CATEGORIES_URL)
-  drawerContent.setAttribute('data', JSON.stringify(jsonData));
+  // let jsonData = await fetchJsonData(CATEGORIES_URL);
+  // drawerContent.setAttribute('data', JSON.stringify(jsonData));
+
+  fetchJsonData(CATEGORIES_URL).then(jsonData => {
+    drawerContent.setAttribute('data', JSON.stringify(jsonData));
+
+    // Click on map
+    map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
+      rail.setAttribute('is-open', 'false');
+      const feature = map.onClick(movement, jsonData);
+
+      if (feature == undefined) {
+        infoDrawer.setAttribute('is-open', 'false');
+        pathDrawer.setAttribute('is-open', 'false');
+        return;
+      }
+
+      infoDrawer.setAttribute('data', `${JSON.stringify(feature)}`);
+      infoDrawer.setAttribute('is-open', 'true');
+    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+    // Search bar
+    searchBar.addEventListener('searchValueChanged', (event) => {
+      const valueToSearch = event.detail.newValue.toLowerCase();
+      drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
+
+      let dataToFilter = JSON.parse(JSON.stringify(jsonData));
+
+      filterLayersByTagName(dataToFilter, valueToSearch);
+
+      if (valueToSearch == '') {
+        drawerContent.setAttribute('data', JSON.stringify(jsonData));
+        drawerTitle.textContent = 'Categorie';
+      } else {
+        drawerContent.setAttribute('data', JSON.stringify(dataToFilter));
+
+        if (!drawerContent.innerHTML) {
+          const emptyMsg = document.createElement('p');
+          emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
+          drawerContent.append(emptyMsg);
+        }
+      }
+
+      if (valueToSearch.length >= 2) {
+        const foundTags = filterTag(jsonData, valueToSearch);
+        autocomplete.setAttribute('data', JSON.stringify(foundTags));
+      } else {
+        autocomplete.setAttribute('data', JSON.stringify(''));
+      }
+    });
+
+
+
+
+
+    // Local storage
+    let activeLayers = [];
+    if (localStorage.customRoute) {
+      pathDrawerToggle.setAttribute('is-open', 'true');
+      mapControls.setAttribute('is-route', 'true');
+      let customRoute = JSON.parse(localStorage.customRoute);
+      pathDrawer.setAttribute('route-name', customRoute.name);
+      pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
+
+      const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
+      let layers = [];
+      customRouteFeatures.map(feature => layers.push(feature.layer));
+
+      let seenLayers = {};
+      layers.forEach(item => {
+        const value = item.layer;
+        if (!seenLayers[value]) {
+          seenLayers[value] = true;
+          activeLayers.push(item);
+        }
+      });
+
+      drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
+    }
+
+
+
+
+
+
+
+
+
+
+  });
 
 } catch (error) {
   console.error('Errore durante il recupero dei dati JSON', error);
@@ -240,61 +300,15 @@ try {
   snackbar.setAttribute('is-active', 'false');
 }
 
-let jsonData = JSON.parse(drawerContent.getAttribute('data'));
-
-// Click on map
-map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
-  rail.setAttribute('is-open', 'false');
-  const feature = map.onClick(movement, jsonData);
-
-  if (feature == undefined) {
-    infoDrawer.setAttribute('is-open', 'false');
-    pathDrawer.setAttribute('is-open', 'false');
-    return;
-  }
-
-  infoDrawer.setAttribute('data', `${JSON.stringify(feature)}`);
-  infoDrawer.setAttribute('is-open', 'true');
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-// Search bar
-searchBar.addEventListener('searchValueChanged', (event) => {
-  const valueToSearch = event.detail.newValue.toLowerCase();
-  drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
-
-  let dataToFilter = JSON.parse(JSON.stringify(jsonData));
-
-  filterLayersByTagName(dataToFilter, valueToSearch);
-
-  if (valueToSearch == '') {
-    drawerContent.setAttribute('data', JSON.stringify(jsonData));
-    drawerTitle.textContent = 'Categorie';
-  } else {
-    drawerContent.setAttribute('data', JSON.stringify(dataToFilter));
-
-    if (!drawerContent.innerHTML) {
-      const emptyMsg = document.createElement('p');
-      emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
-      drawerContent.append(emptyMsg);
-    }
-  }
-
-  if (valueToSearch.length >= 2) {
-    const foundTags = filterTag(jsonData, valueToSearch);
-    autocomplete.setAttribute('data', JSON.stringify(foundTags));
-  } else {
-    autocomplete.setAttribute('data', JSON.stringify(''));
-  }
-});
-
 // Get user position
-let position;
 try {
-  position = await getPosition();
+  getPosition().then(position => {
+    map.setCameraToUserPosition(position);
+    map.createUserPin(position);
+    mapControls.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
+  });
+
 } catch (error) {
   console.error(error);
+  map.setCamera();
 }
-
-map.setCameraToUserPosition(position);
-// map.setCamera();
-map.createUserPin(position);

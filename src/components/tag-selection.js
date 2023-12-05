@@ -4,7 +4,7 @@ export class TagSelection extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'closed' });
     }
 
-    connectedCallback() {
+    render() {
         // html
         this.text = document.createElement('h1');
         this.text.innerText = 'Seleziona i tag a cui sei interessato';
@@ -92,9 +92,14 @@ export class TagSelection extends HTMLElement {
         this.shadow.append(style);
     }
 
+    connectedCallback() {
+
+    }
+
     static observedAttributes = ['input'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue) {
+            if (name == 'input') this.render();
         }
     }
 }

@@ -19,8 +19,12 @@ export default class CesiumViewer {
             sceneModePicker: false,
             fullscreenButton: false,
             infoBox: false,
+            // sceneMode: Cesium.SceneMode.SCENE2D,
+            // mapProjection: new Cesium.WebMercatorProjection()
             // terrain: Cesium.Terrain.fromWorldTerrain()
         });
+
+        // this.viewer.scene.morphTo2D();
     }
 
     changeTheme(theme) {
@@ -70,7 +74,7 @@ export default class CesiumViewer {
         let cartesian;
         let coordinates;
         if (pickedEntity.primitive._position) {
-            cartesian = pickedEntity.primitive._position;   
+            cartesian = pickedEntity.primitive._position;
             coordinates = this.cartesianToCartographic(cartesian);
         }
 
@@ -619,10 +623,6 @@ export default class CesiumViewer {
         });
     }
 
-    ////
-
-    ////
-
     setCamera() {
         const initialPosition = Cesium.Cartesian3.fromDegrees(
             8.909041078781357,
@@ -636,7 +636,8 @@ export default class CesiumViewer {
                 heading: Cesium.Math.toRadians(0.0),
                 pitch: Cesium.Math.toRadians(-90.0),
                 roll: 0
-            }
+            },
+            duration: 0
         })
     }
 
@@ -671,7 +672,8 @@ export default class CesiumViewer {
                 heading: Cesium.Math.toRadians(0.0),
                 pitch: Cesium.Math.toRadians(-90.0),
                 roll: 0
-            }
+            },
+            duration: 0
         })
     }
 
