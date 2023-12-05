@@ -69,9 +69,6 @@ const map = new CesiumViewer();
 mapControls.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
 mapControls.addEventListener('zoomIn', () => map.viewer.camera.zoomIn(1000.0));
 mapControls.addEventListener('zoomOut', () => map.viewer.camera.zoomOut(1000.0));
-mapControls.addEventListener('closeNavigation', () => {
-  closeNavigation(isNavigation, mapControls, drawerContent, map);
-});
 
 // Theme button
 map.fetchThemes(THEMES_URL)
@@ -192,21 +189,15 @@ map.setCameraToUserPosition(position);
 // map.setCamera();
 map.createUserPin(position);
 
-// Navigation
-// let isNavigation = false;
-// mapControls.addEventListener('activateNavigation', async (event) => {
-//   isNavigation = true;
-//   const activeLayers = event.detail.data;
-//   const featuresByProximity = map.createRoute(jsonData, position, activeLayers);
-//   featuresByProximity.then(features => {
-//     pathDrawer.setAttribute('features', JSON.stringify(features));
-//   });
-
-//   pathDrawer.setAttribute('is-open', isNavigation + '');
-//   mapControls.setAttribute('is-navigation', isNavigation + '');
-// });
-
 // Path drawer
+if (localStorage.customRoute) {
+  pathDrawerToggle.setAttribute('is-open', 'true');
+  mapControls.setAttribute('is-route', 'true');
+  let customRoute = JSON.parse(localStorage.customRoute);
+  pathDrawer.setAttribute('route-name', customRoute.name);
+  pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
+}
+
 pathDrawerToggle.addEventListener('togglePathDrawer', event => {
   const e = event.detail.newValue;
   pathDrawer.setAttribute('is-open', e + '');
@@ -232,7 +223,14 @@ pathDrawer.addEventListener('selectedFeature', (e) => {
   infoDrawer.setAttribute('is-open', 'true');
 });
 
-pathDrawer.addEventListener('saveCustomRoute', () => console.log(localStorage));
+pathDrawer.addEventListener('saveCustomRoute', (e) => {
+  localStorage.setItem('customRoute', JSON.stringify(e.detail.customRoute));
+
+  let snackbar = document.createElement('app-snackbar');
+  snackbar.setAttribute('type', 'closable');
+  snackbar.setAttribute('text', `Salvato percorso "${e.detail.customRoute.name}".`)
+  main.append(snackbar);
+});
 
 pathDrawer.addEventListener('activateNavigation', (e) => {
   if (e.detail.isNavigation == 'true') {
@@ -243,14 +241,6 @@ pathDrawer.addEventListener('activateNavigation', (e) => {
     map.removeAllEntities(entities);
   }
 });
-
-function closeNavigation(isNavigation, mapControls, drawerContent, map) {
-  isNavigation = false;
-  mapControls.setAttribute('is-navigation', isNavigation + '');
-  drawerContent.setAttribute('navigation-data', '[]');
-  const entities = map.viewer.entities;
-  map.removeAllEntities(entities);
-}
 
 // Search bar
 searchBar.addEventListener('searchValueChanged', (event) => {

@@ -26,6 +26,7 @@ export class SaveRouteInput extends HTMLElement {
 
         this.input = this.shadow.querySelector('input');
         if (!this.getAttribute('value')) this.setAttribute('value', 'Nuovo percorso');
+        if (this.hasAttribute('value')) this.input.value = this.getAttribute('value');
 
         // js
         this.input.addEventListener('input', () => {
@@ -41,7 +42,7 @@ export class SaveRouteInput extends HTMLElement {
 
     static observedAttributes = ['value'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue) {
+        if (newValue != oldValue && oldValue != null) {
 
             if (name == 'value') {
                 this.render();

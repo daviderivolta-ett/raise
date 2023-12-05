@@ -33,5 +33,5 @@ input {
 input:active, 
 input:focus {
     outline: none;
-    border-bottom: 1px dotted #DBDCE0;
+    border-bottom: none;
 }

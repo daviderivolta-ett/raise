@@ -76,6 +76,7 @@ export class PathDrawer extends HTMLElement {
         this.startNavigationBtn = this.shadow.querySelector('app-navigation');
 
         if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
+        if (!this.hasAttribute('route-name')) this.setAttribute('route-name', 'Nuovo percorso');
         if (!this.hasAttribute('is-navigation')) this.setAttribute('is-navigation', 'false');
         this.setAttribute('is-open', 'false');
 
@@ -86,7 +87,7 @@ export class PathDrawer extends HTMLElement {
             customRoute.name = name;
             const features = JSON.parse(this.getAttribute('features'));
             customRoute.features = features;
-            localStorage.setItem('customRoute', JSON.stringify(customRoute));
+            this.dispatchEvent(new CustomEvent('saveCustomRoute', { detail: { customRoute } }));
         });
 
         this.closeIcon.addEventListener('click', () => {
@@ -106,9 +107,9 @@ export class PathDrawer extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-open', 'is-navigation', 'features'];
+    static observedAttributes = ['is-open', 'is-navigation', 'features', 'route-name'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue) {
+        if (newValue != oldValue  && oldValue != null) {
 
             if (name == 'is-open') {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
@@ -128,6 +129,10 @@ export class PathDrawer extends HTMLElement {
                 this.setAttribute('is-open', 'true');
                 this.startNavigationBtn.setAttribute('is-navigation', 'false');
                 this.render();
+            }
+
+            if (name == 'route-name') {
+                this.saveRouteInput.setAttribute('value', newValue);
             }
         }
     }
