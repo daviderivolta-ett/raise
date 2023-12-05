@@ -104,8 +104,6 @@ if (localStorage.customRoute) {
   ////
 }
 
-console.log(activeLayers);
-
 // Layer drawer creation
 let jsonData;
 try {
@@ -126,8 +124,6 @@ try {
   let snackbar = document.querySelector('app-snackbar[type="loader"]');
   snackbar.setAttribute('is-active', 'false');
 }
-
-console.log(jsonData);
 
 // Rail behaviour
 rail.addEventListener('drawerToggled', (event) => {
