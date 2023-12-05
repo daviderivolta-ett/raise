@@ -10,10 +10,10 @@ export async function fetchJsonData(categoriesUrl) {
                     if (res.ok) {
                         return res.json();
                     }
-                    throw new Error(`Failed to fetch data from ${url}`);
+                    throw new Error(`Errore durante il recupero dei dati da ${url}`);
                 } catch (err) {
                     console.error(err);
-                    return null; // Handle the error gracefully, return null or a default value
+                    return null;
                 }
             });
 
@@ -21,11 +21,11 @@ export async function fetchJsonData(categoriesUrl) {
         });
 
         await Promise.all(categoryPromises);
-
         return jsonFile;
+
     } catch (error) {
-        console.error('Error fetching JSON data', error);
-        throw error; // Rethrow the error for the calling code to handle if needed
+        console.error('Errore durante il recupero dei dati JSON', error);
+        throw error;
     }
 }
 

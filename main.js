@@ -92,9 +92,9 @@ if (localStorage.customRoute) {
   const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
   let layers = [];
   customRouteFeatures.map(feature => layers.push(feature.layer));
-  
+
   let seenLayers = {};
-  
+
   layers.forEach(item => {
     if (!seenLayers[item]) {
       seenLayers[item] = true;
@@ -102,27 +102,6 @@ if (localStorage.customRoute) {
     }
   });
   ////
-}
-
-// Layer drawer creation
-let jsonData;
-try {
-  let snackbar = document.createElement('app-snackbar');
-  snackbar.setAttribute('type', 'loader');
-  main.append(snackbar);
-
-  jsonData = await fetchJsonData(CATEGORIES_URL);
-  drawerContent.setAttribute('data', JSON.stringify(jsonData));
-
-  ////
-  // drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
-  ////
-} catch (error) {
-  console.error('Errore durante il recupero dei dati JSON', error);
-
-} finally {
-  let snackbar = document.querySelector('app-snackbar[type="loader"]');
-  snackbar.setAttribute('is-active', 'false');
 }
 
 // Rail behaviour
@@ -158,22 +137,6 @@ infoDrawer.addEventListener('addToRoute', (event) => {
   pathDrawer.setAttribute('is-open', 'true');
 });
 
-
-// Click on map
-map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
-  rail.setAttribute('is-open', 'false');
-  const feature = map.onClick(movement, jsonData);
-
-  if (feature == undefined) {
-    infoDrawer.setAttribute('is-open', 'false');
-    pathDrawer.setAttribute('is-open', 'false');
-    return;
-  }
-
-  infoDrawer.setAttribute('data', `${JSON.stringify(feature)}`);
-  infoDrawer.setAttribute('is-open', 'true');
-}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
 // Cursor on map
 map.viewer.screenSpaceEventHandler.setInputAction(movement => {
   map.mouseOver(movement);
@@ -195,8 +158,6 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
 
     pathDrawer.setAttribute('is-navigation', 'false');
     await map.handleCheckbox(event.detail.newValue, clusterIcons);
-    // const activeLayers = event.detail.newValue;
-    // mapControls.setAttribute('data', JSON.stringify(activeLayers));
 
   } catch (error) {
     console.error('Errore durante il recupero dei layer dal geoserver', error);
@@ -205,17 +166,7 @@ drawerContent.addEventListener('activeLayersChanged', async (event) => {
     let snackbar = document.querySelector('app-snackbar[type="loader"]');
     snackbar.setAttribute('is-active', 'false');
   }
-
 });
-
-// Get user position
-let position;
-try { position = await getPosition(); }
-catch (error) { console.error(error); }
-
-map.setCameraToUserPosition(position);
-// map.setCamera();
-map.createUserPin(position);
 
 // Path drawer
 pathDrawerToggle.addEventListener('togglePathDrawer', event => {
@@ -262,6 +213,50 @@ pathDrawer.addEventListener('activateNavigation', (e) => {
   }
 });
 
+// Autocomplete behaviour
+autocomplete.addEventListener('autocompleteSelected', (event) => {
+  const choosenAutocomplete = event.detail.newValue;
+  searchBar.setAttribute('value', choosenAutocomplete);
+});
+
+document.addEventListener('keydown', (event) => {
+  autocomplete.setAttribute('last-key-pressed', event.key);
+});
+
+// Layer drawer creation
+try {
+  let snackbar = document.createElement('app-snackbar');
+  snackbar.setAttribute('type', 'loader');
+  main.append(snackbar);
+
+  let jsonData = await fetchJsonData(CATEGORIES_URL)
+  drawerContent.setAttribute('data', JSON.stringify(jsonData));
+
+} catch (error) {
+  console.error('Errore durante il recupero dei dati JSON', error);
+
+} finally {
+  let snackbar = document.querySelector('app-snackbar[type="loader"]');
+  snackbar.setAttribute('is-active', 'false');
+}
+
+let jsonData = JSON.parse(drawerContent.getAttribute('data'));
+
+// Click on map
+map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
+  rail.setAttribute('is-open', 'false');
+  const feature = map.onClick(movement, jsonData);
+
+  if (feature == undefined) {
+    infoDrawer.setAttribute('is-open', 'false');
+    pathDrawer.setAttribute('is-open', 'false');
+    return;
+  }
+
+  infoDrawer.setAttribute('data', `${JSON.stringify(feature)}`);
+  infoDrawer.setAttribute('is-open', 'true');
+}, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
 // Search bar
 searchBar.addEventListener('searchValueChanged', (event) => {
   const valueToSearch = event.detail.newValue.toLowerCase();
@@ -292,12 +287,14 @@ searchBar.addEventListener('searchValueChanged', (event) => {
   }
 });
 
-// Autocomplete behaviour
-autocomplete.addEventListener('autocompleteSelected', (event) => {
-  const choosenAutocomplete = event.detail.newValue;
-  searchBar.setAttribute('value', choosenAutocomplete);
-});
+// Get user position
+let position;
+try {
+  position = await getPosition();
+} catch (error) {
+  console.error(error);
+}
 
-document.addEventListener('keydown', (event) => {
-  autocomplete.setAttribute('last-key-pressed', event.key);
-});
+map.setCameraToUserPosition(position);
+// map.setCamera();
+map.createUserPin(position);

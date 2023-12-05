@@ -71,8 +71,7 @@
                 }
             ],
             "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
+                "app-opacity-slider"
             ]
         },
         {
@@ -94,8 +93,7 @@
             ],
             "relevant_properties": [],
             "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
+                "app-opacity-slider"
             ]
         },
         {
@@ -183,8 +181,7 @@
             ],
             "relevant_properties": [],
             "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
+                "app-opacity-slider"
             ]
         },
         {

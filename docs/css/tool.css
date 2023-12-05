@@ -1,5 +1,7 @@
 div {
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
     margin: 8px 0 0 0;
 }
 
@@ -8,5 +10,5 @@ label {
 }
 
 input[type="range"] {
-    width: 90%;
+    width: 64%;
 }

@@ -1,0 +1,37 @@
+:host {
+    max-width: 64%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.label {
+    position: absolute;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    font-size: 16px;
+    color: #70757A;
+    cursor: text;
+}
+
+input {
+    width: 100%;
+    border: none;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+input:active, 
+input:focus {
+    outline: none;
+    border-bottom: none;
+}

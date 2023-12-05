@@ -1,21 +1,19 @@
+:host {
+    position: absolute;
+    right: 24px;
+}
+
 button {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-    border: none;
-    width: 40px;
-    height: 40px;
-    padding: 16px;
     background-color: #FFFFFF;
-}
-
-button.zoom-in {
-    border-radius: 8px 8px 0 0;
-}
-
-button.zoom-out {
-    border-radius: 0 0 8px 8px;
+    color: #202125;
+    border: none;
+    border-radius: 100px;
+    height: 24px;
+    width: 24px;
 }
 
 .material-symbols-outlined {
@@ -24,5 +22,6 @@ button.zoom-out {
         'wght' 400,
         'GRAD' 0,
         'opsz' 24;
-    color: #70757A;
+    color: #202125;
+    font-size: 12px;
 }
