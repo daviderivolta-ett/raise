@@ -115,7 +115,7 @@ try {
   drawerContent.setAttribute('data', JSON.stringify(jsonData));
 
   ////
-  drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
+  // drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
   ////
 } catch (error) {
   console.error('Errore durante il recupero dei dati JSON', error);
