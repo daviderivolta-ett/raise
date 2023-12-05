@@ -4,15 +4,7 @@ export class DrawerContent extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'closed' });
     }
 
-    connectedCallback() {
-        this.shadow.innerHTML =
-            `
-            <div id="categories-section"></div>
-            `
-        ;
-
-        this.div = this.shadow.querySelector('#categories-section');
-
+    async render() {
         // Accordions creation
         let jsonData = JSON.parse(this.getAttribute('data'));
 
@@ -22,7 +14,7 @@ export class DrawerContent extends HTMLElement {
             let dataToFilter = jsonData;
             let selectedTags = JSON.parse(localStorage.selectedTags);
             filterLayersBySelectedTags(dataToFilter, selectedTags);
-            populateDrawer(dataToFilter, this.div);
+            await populateDrawer(dataToFilter, this.div);
             jsonData = dataToFilter;
 
             if (jsonData.categories.length == 0) {
@@ -32,7 +24,7 @@ export class DrawerContent extends HTMLElement {
             }
 
         } else {
-            populateDrawer(jsonData, this.div);
+            await populateDrawer(jsonData, this.div);
         }
 
         // DOM nodes
@@ -68,9 +60,24 @@ export class DrawerContent extends HTMLElement {
         });
     }
 
-    static observedAttributes = ['active-layers', 'navigation-data'];
+    connectedCallback() {
+        this.shadow.innerHTML =
+            `
+            <div id="categories-section"></div>
+            `
+            ;
+
+        this.div = this.shadow.querySelector('#categories-section');
+        this.setAttribute('navigation-data', '[]');
+    }
+
+    static observedAttributes = ['data', 'active-layers', 'navigation-data'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue) {
+
+            if (name == 'data') {
+                this.render();
+            }
 
             if (name == 'active-layers') {
                 const event = new CustomEvent('activeLayersChanged', {
@@ -82,9 +89,9 @@ export class DrawerContent extends HTMLElement {
             if (name == 'navigation-data') {
                 if (newValue == '[]') {
                     const allCheckboxLists = this.shadow.querySelectorAll('app-checkbox-list');
-                    allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', '[]'));
+                    allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', '[]'));   
                 }
-
+            
                 const event = new CustomEvent('routeTriggered', { detail: { newValue } });
                 this.dispatchEvent(event);
             }
@@ -96,7 +103,7 @@ export class DrawerContent extends HTMLElement {
 customElements.define('app-drawer-content', DrawerContent);
 
 /* Functions */
-function populateDrawer(jsonData, div) {
+async function populateDrawer(jsonData, div) {
     jsonData.categories.forEach(item => {
         const categoryAccordion = document.createElement('app-accordion');
 

@@ -54,6 +54,7 @@ const main = document.querySelector('main');
 const drawer = document.querySelector('#drawer');
 const searchBar = document.querySelector('app-searchbar');
 const drawerTitle = document.querySelector('#drawer-title');
+const drawerContent = document.querySelector('app-drawer-content');
 const autocomplete = document.querySelector('app-autocomplete');
 const pathDrawer = document.querySelector('app-path-drawer');
 const pathDrawerToggle = document.querySelector('app-path-drawer-toggle');
@@ -111,9 +112,8 @@ try {
   main.append(snackbar);
 
   jsonData = await fetchJsonData(CATEGORIES_URL);
-  const drawerContent = document.createElement('app-drawer-content');
   drawerContent.setAttribute('data', JSON.stringify(jsonData));
-  drawer.append(drawerContent);
+
   ////
   drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
   ////
@@ -187,7 +187,6 @@ for (let i = 0; i <= 2; i++) {
 }
 
 // Checkbox list behaviour
-const drawerContent = document.querySelector('app-drawer-content');
 drawerContent.addEventListener('activeLayersChanged', async (event) => {
   try {
     let snackbar = document.createElement('app-snackbar');
