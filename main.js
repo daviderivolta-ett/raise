@@ -23,6 +23,10 @@ import './src/components/drawer.js';
 import './src/components/search.js';
 import './src/components/autocomplete.js';
 import './src/components/accordion.js';
+
+import './src/components/category-accordion.js';
+import './src/components/list-accordion.js';
+
 import './src/components/checkbox-list.js';
 import './src/components/checkbox.js';
 import './src/components/opacity-slider.js';
@@ -256,30 +260,30 @@ try {
 
 
 
-    // Local storage
-    let activeLayers = [];
-    if (localStorage.customRoute) {
-      pathDrawerToggle.setAttribute('is-open', 'true');
-      mapControls.setAttribute('is-route', 'true');
-      let customRoute = JSON.parse(localStorage.customRoute);
-      pathDrawer.setAttribute('route-name', customRoute.name);
-      pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
+    // // Local storage
+    // let activeLayers = [];
+    // if (localStorage.customRoute) {
+    //   pathDrawerToggle.setAttribute('is-open', 'true');
+    //   mapControls.setAttribute('is-route', 'true');
+    //   let customRoute = JSON.parse(localStorage.customRoute);
+    //   pathDrawer.setAttribute('route-name', customRoute.name);
+    //   pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
 
-      const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
-      let layers = [];
-      customRouteFeatures.map(feature => layers.push(feature.layer));
+    //   const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
+    //   let layers = [];
+    //   customRouteFeatures.map(feature => layers.push(feature.layer));
 
-      let seenLayers = {};
-      layers.forEach(item => {
-        const value = item.layer;
-        if (!seenLayers[value]) {
-          seenLayers[value] = true;
-          activeLayers.push(item);
-        }
-      });
+    //   let seenLayers = {};
+    //   layers.forEach(item => {
+    //     const value = item.layer;
+    //     if (!seenLayers[value]) {
+    //       seenLayers[value] = true;
+    //       activeLayers.push(item);
+    //     }
+    //   });
 
-      drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
-    }
+    //   drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
+    // }
 
 
 

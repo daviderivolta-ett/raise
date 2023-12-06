@@ -31,7 +31,7 @@
 
 .accordion-icon-active {
     transform: rotate(180deg);
-    transform-origin: center 8px;
+    transform-origin: center 11px;
     transition: all .1s ease-in-out;
 }
 
