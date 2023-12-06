@@ -60,6 +60,10 @@ export class InfoDrawer extends HTMLElement {
             this.dispatchEvent(new CustomEvent('addToRoute', { detail: { data: this.data } }));
         });
 
+        this.playBtn.addEventListener('readInfo', () => {
+            
+        });
+
     }
 
     connectedCallback() {

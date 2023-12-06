@@ -14,7 +14,7 @@ export class DrawerContent extends HTMLElement {
             let dataToFilter = jsonData;
             let selectedTags = JSON.parse(localStorage.selectedTags);
             filterLayersBySelectedTags(dataToFilter, selectedTags);
-            populateDrawer(dataToFilter, this.div);
+            // populateDrawer(dataToFilter, this.div);
             //
             createDrawer(dataToFilter, this.div);
             //
@@ -27,7 +27,7 @@ export class DrawerContent extends HTMLElement {
             }
 
         } else {
-            populateDrawer(jsonData, this.div);
+            // populateDrawer(jsonData, this.div);
             //
             createDrawer(jsonData, this.div);
             //
@@ -66,12 +66,12 @@ export class DrawerContent extends HTMLElement {
         });
 
         ////
-        const accordions = this.shadow.querySelectorAll('app-category-accordion');
-        accordions.forEach(accordion => {
+        this.accordions = this.shadow.querySelectorAll('app-category-accordion');
+        this.accordions.forEach(accordion => {
             accordion.addEventListener('accordionChanged', event => {
                 const newValue = event.detail.newValue;
                 if (newValue == 'true') {
-                    accordions.forEach(item => {
+                    this.accordions.forEach(item => {
                         if (item !== event.target) item.setAttribute('is-active', 'false');
                     });
                 }
@@ -79,10 +79,10 @@ export class DrawerContent extends HTMLElement {
         });
 
         let activeLayerss = [];
-        accordions.forEach(accordion => {
+        this.accordions.forEach(accordion => {
             accordion.addEventListener('checkboxListChanged', event => {
                 activeLayerss = [];
-                accordions.forEach(accordion => {
+                this.accordions.forEach(accordion => {
                     const layers = JSON.parse(accordion.getAttribute('data'));
                     layers.forEach(layer => activeLayerss.push(layer));
                 });
@@ -96,10 +96,11 @@ export class DrawerContent extends HTMLElement {
             `
             <div id="categories-section"></div>
             `
-            ;
+        ;
 
         this.div = this.shadow.querySelector('#categories-section');
         this.setAttribute('navigation-data', '[]');
+        this.setAttribute('active-layers', '[]');
     }
 
     static observedAttributes = ['data', 'active-layers', 'navigation-data'];
@@ -115,6 +116,16 @@ export class DrawerContent extends HTMLElement {
                     detail: { name, oldValue, newValue: JSON.parse(newValue) }
                 });
                 this.dispatchEvent(event);
+
+                console.log('New layers:');
+                console.log(JSON.parse(newValue));
+
+                this.accordions = this.shadow.querySelectorAll('app-category-accordion');
+                this.accordions.forEach(accordion => {
+                    const accordionLayers = JSON.parse(accordion.getAttribute('data'));
+                    console.log('Layers:');
+                    console.log(accordionLayers);
+                });
             }
 
             if (name == 'navigation-data') {

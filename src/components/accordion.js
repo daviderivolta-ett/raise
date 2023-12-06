@@ -25,7 +25,6 @@ export class Accordion extends HTMLElement {
         this.shadow.innerHTML = `
             
             <div class="accordion-item">
-
                 <div class="accordion-checkbox">
                 <input type="checkbox"></input>                
 

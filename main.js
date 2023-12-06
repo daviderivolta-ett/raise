@@ -26,6 +26,7 @@ import './src/components/accordion.js';
 
 import './src/components/category-accordion.js';
 import './src/components/list-accordion.js';
+import './src/components/aria-live-region.js';
 
 import './src/components/checkbox-list.js';
 import './src/components/checkbox.js';

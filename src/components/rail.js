@@ -16,7 +16,7 @@ export class Rail extends HTMLElement {
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="rail">
                 <div class="menu">
-                    <img src="/images/RAISE-pictogram-neg.svg" alt="RAISE pictogram" class="logo">
+                    <img src="/images/RAISE-pictogram-neg.svg" alt="Logo di RAISE" class="logo">
                     <app-drawer-toggle></app-drawer-toggle>
                     <app-icon-btn link="/"></app-icon-btn>
                 </div>

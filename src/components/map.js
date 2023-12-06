@@ -5,6 +5,7 @@ export default class CesiumViewer {
 
     constructor() {
         const element = document.querySelector('app-map');
+        element.setAttribute('aria-hidden', 'true');
 
         Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5MjY2YmYxNy1mNTM2LTRlOWYtYTUyZC01ZmY0NjBhNzllMWEiLCJpZCI6MTY5MDU3LCJpYXQiOjE2OTU4ODQ4NzB9.bN66rOR5h37xuKVsuUSYRSLOGJy-34IhH9S1hr4NOOE';
 
@@ -23,8 +24,6 @@ export default class CesiumViewer {
             // mapProjection: new Cesium.WebMercatorProjection()
             // terrain: Cesium.Terrain.fromWorldTerrain()
         });
-
-        // this.viewer.scene.morphTo2D();
     }
 
     changeTheme(theme) {
