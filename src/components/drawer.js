@@ -14,9 +14,9 @@ export class DrawerContent extends HTMLElement {
             let dataToFilter = jsonData;
             let selectedTags = JSON.parse(localStorage.selectedTags);
             filterLayersBySelectedTags(dataToFilter, selectedTags);
-            // populateDrawer(dataToFilter, this.div);
+            populateDrawer(dataToFilter, this.div);
             //
-            createDrawer(dataToFilter, this.div);
+            // createDrawer(dataToFilter, this.div);
             //
             jsonData = dataToFilter;
 
@@ -27,9 +27,9 @@ export class DrawerContent extends HTMLElement {
             }
 
         } else {
-            // populateDrawer(jsonData, this.div);
+            populateDrawer(jsonData, this.div);
             //
-            createDrawer(jsonData, this.div);
+            // createDrawer(jsonData, this.div);
             //
         }
 
@@ -117,14 +117,10 @@ export class DrawerContent extends HTMLElement {
                 });
                 this.dispatchEvent(event);
 
-                console.log('New layers:');
-                console.log(JSON.parse(newValue));
 
                 this.accordions = this.shadow.querySelectorAll('app-category-accordion');
                 this.accordions.forEach(accordion => {
                     const accordionLayers = JSON.parse(accordion.getAttribute('data'));
-                    console.log('Layers:');
-                    console.log(accordionLayers);
                 });
             }
 

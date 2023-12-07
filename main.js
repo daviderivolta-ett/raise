@@ -27,6 +27,10 @@ import './src/components/accordion.js';
 import './src/components/category-accordion.js';
 import './src/components/list-accordion.js';
 import './src/components/aria-live-region.js';
+import './src/components/new-checkbox.js';
+import './src/components/new-drawer.js';
+import './src/components/new-category-accordion.js';
+import './src/components/new-list-accordion.js';
 
 import './src/components/checkbox-list.js';
 import './src/components/checkbox.js';
@@ -64,6 +68,14 @@ const pathDrawerToggle = document.querySelector('app-path-drawer-toggle');
 const mapControls = document.querySelector('app-map-controls');
 const rail = document.querySelector('app-rail');
 const infoDrawer = document.querySelector('app-info-drawer');
+
+const newDrawer = document.querySelector('app-drawer');
+
+const TESTBUTTON = document.querySelector('#TESTBUTTON');
+TESTBUTTON.addEventListener('click', () => {
+  const layers = JSON.parse(TESTBUTTON.getAttribute('layers'));
+  newDrawer.input = layers;
+});
 
 // Map initialization
 const map = new CesiumViewer();
@@ -212,6 +224,11 @@ try {
   fetchJsonData(CATEGORIES_URL).then(jsonData => {
     drawerContent.setAttribute('data', JSON.stringify(jsonData));
 
+    ////
+    drawer.append(newDrawer);
+    newDrawer.data = jsonData;
+    ////
+
     // Click on map
     map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
       rail.setAttribute('is-open', 'false');
@@ -261,30 +278,31 @@ try {
 
 
 
-    // // Local storage
-    // let activeLayers = [];
-    // if (localStorage.customRoute) {
-    //   pathDrawerToggle.setAttribute('is-open', 'true');
-    //   mapControls.setAttribute('is-route', 'true');
-    //   let customRoute = JSON.parse(localStorage.customRoute);
-    //   pathDrawer.setAttribute('route-name', customRoute.name);
-    //   pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
+    // Local storage
+    let activeLayers = [];
+    if (localStorage.customRoute) {
+      pathDrawerToggle.setAttribute('is-open', 'true');
+      mapControls.setAttribute('is-route', 'true');
+      let customRoute = JSON.parse(localStorage.customRoute);
+      pathDrawer.setAttribute('route-name', customRoute.name);
+      pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
 
-    //   const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
-    //   let layers = [];
-    //   customRouteFeatures.map(feature => layers.push(feature.layer));
+      const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
+      let layers = [];
+      customRouteFeatures.map(feature => layers.push(feature.layer));
 
-    //   let seenLayers = {};
-    //   layers.forEach(item => {
-    //     const value = item.layer;
-    //     if (!seenLayers[value]) {
-    //       seenLayers[value] = true;
-    //       activeLayers.push(item);
-    //     }
-    //   });
+      let seenLayers = {};
+      layers.forEach(item => {
+        const value = item.layer;
+        if (!seenLayers[value]) {
+          seenLayers[value] = true;
+          activeLayers.push(item);
+        }
+      });
 
-    //   drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
-    // }
+      TESTBUTTON.setAttribute('layers', JSON.stringify(activeLayers));
+      // drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
+    }
 
 
 
