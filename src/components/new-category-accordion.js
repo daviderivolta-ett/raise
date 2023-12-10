@@ -18,6 +18,7 @@ export class CategoryAccordionNew extends HTMLElement {
 
     set output(output) {
         this._output = output;
+        console.log(this.output);
         this.dispatchEvent(new CustomEvent('newOutput', {
             detail: { layersToAdd: this.output.layersToAdd, layersToRemove: this.output.layersToRemove }
         }));
@@ -106,6 +107,35 @@ export class CategoryAccordionNew extends HTMLElement {
         this.accordionBtn.addEventListener('click', () => {
             const isOpen = JSON.parse(this.getAttribute('is-open'));
             this.setAttribute('is-open', !isOpen + '');
+        });
+
+        this.checkbox.addEventListener('click', () => {
+            let allChecked = JSON.parse(this.getAttribute('all-checked'));
+            allChecked = !allChecked;
+            this.setAttribute('all-checked', allChecked + '');
+
+            if (this.input == undefined) this._input = [];
+            if (this._output == undefined) {
+                this._output = {};
+                this._output.layersToAdd = [];
+                this._output.layersToRemove = [];
+            }
+
+            if (allChecked == true) {
+                this.data.groups.forEach(group => {
+                    group.layers.forEach(layer => {
+                        this._input.push(layer)
+                        this._output.layersToAdd.push(layer);
+                    });
+                });
+            } else {
+                this._input = [];
+                this.data.groups.forEach(group => {
+                    group.layers.forEach(layer => this._output.layersToRemove.push(layer));
+                })
+            }
+            this.input = this._input;
+            this.output = this._output;
         });
 
         this.accordions.forEach(accordion => {
