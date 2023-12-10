@@ -18,7 +18,6 @@ export class CategoryAccordionNew extends HTMLElement {
 
     set output(output) {
         this._output = output;
-        console.log(this.output);
         this.dispatchEvent(new CustomEvent('newOutput', {
             detail: { layersToAdd: this.output.layersToAdd, layersToRemove: this.output.layersToRemove }
         }));
