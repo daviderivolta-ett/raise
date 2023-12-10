@@ -1,5 +1,7 @@
 export class CategoryAccordionNew extends HTMLElement {
     _data;
+    _output
+    _input
 
     constructor() {
         super();
@@ -12,6 +14,43 @@ export class CategoryAccordionNew extends HTMLElement {
 
     get data() {
         return this._data;
+    }
+
+    set output(output) {
+        this._output = output;
+        this.dispatchEvent(new CustomEvent('newOutput', {
+            detail: { layersToAdd: this.output.layersToAdd, layersToRemove: this.output.layersToRemove }
+        }));
+        this._output.layersToAdd = [];
+        this._output.layersToRemove = [];
+    }
+
+    get output() {
+        return this._output;
+    }
+
+    set input(input) {
+        this._input = input;
+
+        this.accordions.forEach(accordion => {
+            let activeLayers = [];
+            for (let i = 0; i < this.input.length; i++) {
+                const inputLayer = this.input[i];
+
+                accordion.data.layers.forEach(layer => {
+                    if (layer.layer == inputLayer.layer) {
+                        activeLayers.push(inputLayer);
+                    }
+                });
+            }
+
+            accordion.input = activeLayers;
+
+        });
+    }
+
+    get input() {
+        return this._input;
     }
 
     render() {
@@ -78,6 +117,21 @@ export class CategoryAccordionNew extends HTMLElement {
                         if (accordion !== event.target) accordion.setAttribute('is-open', 'false');
                     });
                 }
+            });
+        });
+
+        this.accordions.forEach(accordion => {
+            accordion.addEventListener('newOutput', event => {
+                const layersToAdd = event.detail.layersToAdd;
+                const layersToRemove = event.detail.layersToRemove;
+                if (this.output == undefined) {
+                    this._output = {};
+                    this._output.layersToAdd = [];
+                    this._output.layersToRemove = [];
+                }
+                layersToAdd.forEach(layer => this._output.layersToAdd.push(layer));
+                layersToRemove.forEach(layer => this._output.layersToRemove.push(layer));
+                this.output = this._output;
             });
         });
 

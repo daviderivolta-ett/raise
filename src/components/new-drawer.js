@@ -31,12 +31,26 @@ export class Drawer extends HTMLElement {
     set input(input) {
         this._input = input;
 
-        console.log(this.input);
+        this.output = this.input;
+
         this.accordions.forEach(accordion => {
-            console.log(accordion.data);
-            this.input.forEach(layer => {
-                
-            });
+            let activeLayers = [];
+            for (let i = 0; i < this.input.length; i++) {
+                const inputLayer = this.input[i];
+
+                for (let i = 0; i < accordion.data.groups.length; i++) {
+                    const group = accordion.data.groups[i];
+
+                    group.layers.forEach(groupLayer => {
+                        if (groupLayer.layer == inputLayer.layer) {
+                            activeLayers.push(inputLayer);
+                        }
+                    });
+                }
+            }
+
+            accordion.input = activeLayers;
+
         });
     }
 
@@ -73,6 +87,20 @@ export class Drawer extends HTMLElement {
                         if (accordion !== event.target) accordion.setAttribute('is-open', 'false');
                     });
                 }
+            });
+        });
+
+        this.accordions.forEach(accordion => {
+            accordion.addEventListener('newOutput', event => {
+                if (this.output == undefined) this._output = [];
+                const layersToAdd = event.detail.layersToAdd;
+                const layersToRemove = event.detail.layersToRemove;
+                layersToAdd.forEach(layer => this._output.push(layer));
+                this._output = [...new Set(this._output)];
+                let activeLayers = this._output.filter(layer => {
+                    return !layersToRemove.some(item => item.layer == layer.layer);
+                });
+                this.output = activeLayers;
             });
         });
     }

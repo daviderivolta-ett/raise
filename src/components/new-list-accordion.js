@@ -1,5 +1,7 @@
 export class ListAccordionNew extends HTMLElement {
     _data;
+    _output;
+    _input;
 
     constructor() {
         super();
@@ -12,6 +14,39 @@ export class ListAccordionNew extends HTMLElement {
 
     get data() {
         return this._data;
+    }
+
+    set output(output) {
+        this._output = output;
+        this.dispatchEvent(new CustomEvent('newOutput', {
+            detail: { layersToAdd: this.output.layersToAdd, layersToRemove: this.output.layersToRemove }
+        }));
+        this._output.layersToAdd = [];
+        this._output.layersToRemove = [];
+    }
+
+    get output() {
+        return this._output;
+    }
+
+    set input(input) {
+        this._input = input;
+
+        this.checkboxes.forEach(checkbox => {
+            if (this.input.length != []) {
+                this.input.forEach(inputLayer => {
+                    if (checkbox.data.layer == inputLayer.layer) {
+                        checkbox.setAttribute('is-checked', 'true');
+                    }
+                });
+            } else {
+                checkbox.setAttribute('is-checked', 'false');
+            }
+        });
+    }
+
+    get input() {
+        return this._input;
     }
 
     render() {
@@ -46,6 +81,7 @@ export class ListAccordionNew extends HTMLElement {
             ;
 
         if (!this.hasAttribute('is-open')) this.setAttribute('is-open', 'false');
+        if (!this.hasAttribute('all-checked')) this.setAttribute('all-checked', 'false');
 
         this.checkbox = this.shadow.querySelector('input');
         this.accordionTitle = this.shadow.querySelector('.accordion-title');
@@ -61,10 +97,48 @@ export class ListAccordionNew extends HTMLElement {
             this.accordionContent.append(checkbox);
         });
 
+        this.checkboxes = this.shadow.querySelectorAll('app-checkbox-new');
+
         // js
         this.accordionBtn.addEventListener('click', () => {
             const isOpen = JSON.parse(this.getAttribute('is-open'));
             this.setAttribute('is-open', !isOpen + '');
+        });
+
+        this.checkbox.addEventListener('click', () => {
+            let allChecked = JSON.parse(this.getAttribute('all-checked'));
+            allChecked = !allChecked;
+            this.setAttribute('all-checked', allChecked + '');
+            allChecked == true ? this.input = this.data.layers : this.input = [];
+            if (this._output == undefined) {
+                this._output = {};
+                this._output.layersToAdd = [];
+                this._output.layersToRemove = [];
+            }
+            if (allChecked == true) {
+                this._output.layersToAdd = this.data.layers; 
+            } else {
+                this._output.layersToRemove = this.data.layers;
+            }
+            this.output = this._output;
+        });
+
+        this.checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('checkboxToggled', event => {
+                const toggledLayer = event.detail.layerToAdd;
+                const isChecked = event.detail.isChecked;
+                if (this._output == undefined) {
+                    this._output = {};
+                    this._output.layersToAdd = [];
+                    this._output.layersToRemove = [];
+                }
+                if (isChecked == true) {
+                    this._output.layersToAdd.push(toggledLayer);
+                } else {
+                    this._output.layersToRemove.push(toggledLayer);
+                }
+                this.output = this._output;
+            });
         });
 
         // css
@@ -74,7 +148,7 @@ export class ListAccordionNew extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-open'];
+    static observedAttributes = ['is-open', 'all-checked'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue && oldValue != null) {
 

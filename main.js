@@ -227,6 +227,25 @@ try {
     ////
     drawer.append(newDrawer);
     newDrawer.data = jsonData;
+
+    newDrawer.addEventListener('activeLayers', async (event) => {
+      let activeLayers = event.detail.activeLayers
+      try {
+        let snackbar = document.createElement('app-snackbar');
+        snackbar.setAttribute('type', 'loader');
+        main.append(snackbar);
+
+        pathDrawer.setAttribute('is-navigation', 'false');
+        await map.handleCheckbox(activeLayers, clusterIcons);
+
+      } catch (error) {
+        console.error('Errore durante il recupero dei layer dal geoserver', error);
+
+      } finally {
+        let snackbar = document.querySelector('app-snackbar[type="loader"]');
+        snackbar.setAttribute('is-active', 'false');
+      }
+    });
     ////
 
     // Click on map
@@ -301,6 +320,7 @@ try {
       });
 
       TESTBUTTON.setAttribute('layers', JSON.stringify(activeLayers));
+      newDrawer.input = layers;
       // drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
     }
 

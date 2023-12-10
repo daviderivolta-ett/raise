@@ -1,11 +1,10 @@
 export class CheckboxNew extends HTMLElement {
     _data;
-    _isChecked;
+    _output;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        this.isChecked = false;
     }
 
     set data(data) {
@@ -16,17 +15,24 @@ export class CheckboxNew extends HTMLElement {
         return this._data;
     }
 
-    set isChecked(isChecked) {
-        this._isChecked = isChecked;
+    set output(output) {
+        this._output = output;
+        const isChecked = JSON.parse(this.getAttribute('is-checked'));
+        this.dispatchEvent(new CustomEvent('checkboxToggled', {
+            detail: { layerToAdd: this.output, isChecked }
+        }));
     }
 
-    get isChecked() {
-        return this._isChecked;
+    get output() {
+        return this._output;
     }
 
     render() {
         const isOpen = this.getAttribute('is-open');
         isOpen == 'true' ? this.details.setAttribute('open', '') : this.details.removeAttribute('open');
+
+        const isChecked = this.getAttribute('is-checked');
+        isChecked == 'true' ? this.checkbox.checked = true : this.checkbox.checked = false;
     }
 
     connectedCallback() {
@@ -46,7 +52,7 @@ export class CheckboxNew extends HTMLElement {
         this.label = this.shadow.querySelector('label');
 
         if (!this.hasAttribute('is-checked')) {
-            this.setAttribute('is-checked', JSON.stringify(this.isChecked));
+            this.setAttribute('is-checked', 'false');
         }
 
         if (this.data) {
@@ -99,8 +105,9 @@ export class CheckboxNew extends HTMLElement {
 
         // js
         this.checkbox.addEventListener('change', (event) => {
-            this.isChecked = event.target.checked;
-            this.setAttribute('is-checked', this.isChecked);
+            const isChecked = event.target.checked;
+            this.setAttribute('is-checked', isChecked);
+            this.output = this.data;
         });
 
         if (this.details) {
@@ -130,6 +137,8 @@ export class CheckboxNew extends HTMLElement {
 
                 this.toolRoute = this.shadow.querySelector('app-navigation-btn');
                 this.toolRoute ? this.toolRoute.setAttribute('is-enable', newValue) : '';
+
+                this.render();
             }
 
             if (name == 'is-open') {
