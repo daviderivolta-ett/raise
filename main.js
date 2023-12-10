@@ -273,15 +273,18 @@ try {
       filterLayersByTagName(dataToFilter, valueToSearch);
 
       if (valueToSearch == '') {
+        newDrawer.data = jsonData;
         drawerContent.setAttribute('data', JSON.stringify(jsonData));
         drawerTitle.textContent = 'Categorie';
       } else {
+        newDrawer.data = dataToFilter;
         drawerContent.setAttribute('data', JSON.stringify(dataToFilter));
 
         if (!drawerContent.innerHTML) {
           const emptyMsg = document.createElement('p');
           emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
           drawerContent.append(emptyMsg);
+          newDrawer.append(emptyMsg)
         }
       }
 
