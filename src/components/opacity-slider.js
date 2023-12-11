@@ -59,4 +59,4 @@ export class OpacitySlider extends HTMLElement {
     }
 }
 
-customElements.define('app-opacity-slider', OpacitySlider);
+customElements.define('app-opacity-slider-2', OpacitySlider);

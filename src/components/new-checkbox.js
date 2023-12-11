@@ -39,6 +39,7 @@ export class CheckboxNew extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="checkbox">
                 <input type="checkbox" id="checkbox">
                 <div class="legend"></div>
@@ -68,9 +69,7 @@ export class CheckboxNew extends HTMLElement {
             this.details.innerHTML =
                 `
                 <summary>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                    </svg>                
+                    <span class="material-symbols-outlined">keyboard_arrow_down</span>              
                 </summary>
                 `
             ;
@@ -81,10 +80,11 @@ export class CheckboxNew extends HTMLElement {
                 if (component == 'app-opacity-slider') {
                     this.opacity = this.data.style.opacity;
                     this.component.setAttribute('opacity', this.opacity);
+                    this.component.setAttribute('is-enabled', 'false');
 
                     this.component.addEventListener('opacityChanged', (event) => {
-                        this.data.style.opacity = event.detail.newValue;
-                        this.setAttribute('data', this.data);
+                        this._data.style.opacity = event.detail.opacity;
+                        this.output = this.data;
                     });
                 }
 
@@ -133,15 +133,18 @@ export class CheckboxNew extends HTMLElement {
 
             if (name == 'is-checked') {
                 this.toolOpacity = this.shadow.querySelector('app-opacity-slider');
-                this.toolOpacity ? this.toolOpacity.setAttribute('is-enable', newValue) : '';
+                this.toolOpacity ? this.toolOpacity.setAttribute('is-enabled', newValue) : '';
 
                 this.toolRoute = this.shadow.querySelector('app-navigation-btn');
-                this.toolRoute ? this.toolRoute.setAttribute('is-enable', newValue) : '';
+                this.toolRoute ? this.toolRoute.setAttribute('is-enabled', newValue) : '';
 
                 this.render();
             }
 
             if (name == 'is-open') {
+                this.dispatchEvent(new CustomEvent('detailsToggled', {
+                    detail: { isOpen: newValue }
+                }));
                 this.render();
             }
 

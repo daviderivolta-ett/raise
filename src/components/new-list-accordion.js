@@ -116,7 +116,7 @@ export class ListAccordionNew extends HTMLElement {
                 this._output.layersToRemove = [];
             }
             if (allChecked == true) {
-                this._output.layersToAdd = this.data.layers; 
+                this._output.layersToAdd = this.data.layers;
             } else {
                 this._output.layersToRemove = this.data.layers;
             }
@@ -138,6 +138,17 @@ export class ListAccordionNew extends HTMLElement {
                     this._output.layersToRemove.push(toggledLayer);
                 }
                 this.output = this._output;
+            });
+        });
+
+        this.checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('detailsToggled', event => {
+                const isOpen = event.detail.isOpen;
+                if (isOpen == 'true') {
+                    this.checkboxes.forEach(checkbox => {
+                        if (checkbox !== event.target) checkbox.setAttribute('is-open', 'false');
+                    });
+                }
             });
         });
 

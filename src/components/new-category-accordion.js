@@ -101,6 +101,8 @@ export class CategoryAccordionNew extends HTMLElement {
         });
 
         this.accordions = this.shadow.querySelectorAll('app-list-accordion-new');
+        const lastAccordion = this.accordions[this.accordions.length - 1];
+        lastAccordion.classList.add('last-accordion');
 
         // js
         this.accordionBtn.addEventListener('click', () => {

@@ -31,6 +31,7 @@ import './src/components/new-checkbox.js';
 import './src/components/new-drawer.js';
 import './src/components/new-category-accordion.js';
 import './src/components/new-list-accordion.js';
+import './src/components/opacity.js';
 
 import './src/components/checkbox-list.js';
 import './src/components/checkbox.js';
@@ -61,7 +62,7 @@ const main = document.querySelector('main');
 const drawer = document.querySelector('#drawer');
 const searchBar = document.querySelector('app-searchbar');
 const drawerTitle = document.querySelector('#drawer-title');
-const drawerContent = document.querySelector('app-drawer-content');
+// const drawerContent = document.querySelector('app-drawer-content');
 const autocomplete = document.querySelector('app-autocomplete');
 const pathDrawer = document.querySelector('app-path-drawer');
 const pathDrawerToggle = document.querySelector('app-path-drawer-toggle');
@@ -70,12 +71,6 @@ const rail = document.querySelector('app-rail');
 const infoDrawer = document.querySelector('app-info-drawer');
 
 const newDrawer = document.querySelector('app-drawer');
-
-const TESTBUTTON = document.querySelector('#TESTBUTTON');
-TESTBUTTON.addEventListener('click', () => {
-  const layers = JSON.parse(TESTBUTTON.getAttribute('layers'));
-  newDrawer.input = layers;
-});
 
 // Map initialization
 const map = new CesiumViewer();
@@ -139,23 +134,23 @@ for (let i = 0; i <= 2; i++) {
 }
 
 // Checkbox list behaviour
-drawerContent.addEventListener('activeLayersChanged', async (event) => {
-  try {
-    let snackbar = document.createElement('app-snackbar');
-    snackbar.setAttribute('type', 'loader');
-    main.append(snackbar);
+// drawerContent.addEventListener('activeLayersChanged', async (event) => {
+//   try {
+//     let snackbar = document.createElement('app-snackbar');
+//     snackbar.setAttribute('type', 'loader');
+//     main.append(snackbar);
 
-    pathDrawer.setAttribute('is-navigation', 'false');
-    await map.handleCheckbox(event.detail.newValue, clusterIcons);
+//     pathDrawer.setAttribute('is-navigation', 'false');
+//     await map.handleCheckbox(event.detail.newValue, clusterIcons);
 
-  } catch (error) {
-    console.error('Errore durante il recupero dei layer dal geoserver', error);
+//   } catch (error) {
+//     console.error('Errore durante il recupero dei layer dal geoserver', error);
 
-  } finally {
-    let snackbar = document.querySelector('app-snackbar[type="loader"]');
-    snackbar.setAttribute('is-active', 'false');
-  }
-});
+//   } finally {
+//     let snackbar = document.querySelector('app-snackbar[type="loader"]');
+//     snackbar.setAttribute('is-active', 'false');
+//   }
+// });
 
 // Path drawer
 pathDrawerToggle.addEventListener('togglePathDrawer', event => {
@@ -222,7 +217,7 @@ try {
   // drawerContent.setAttribute('data', JSON.stringify(jsonData));
 
   fetchJsonData(CATEGORIES_URL).then(jsonData => {
-    drawerContent.setAttribute('data', JSON.stringify(jsonData));
+    // drawerContent.setAttribute('data', JSON.stringify(jsonData));
 
     ////
     drawer.append(newDrawer);
@@ -274,16 +269,16 @@ try {
 
       if (valueToSearch == '') {
         newDrawer.data = jsonData;
-        drawerContent.setAttribute('data', JSON.stringify(jsonData));
+        // drawerContent.setAttribute('data', JSON.stringify(jsonData));
         drawerTitle.textContent = 'Categorie';
       } else {
         newDrawer.data = dataToFilter;
-        drawerContent.setAttribute('data', JSON.stringify(dataToFilter));
+        // drawerContent.setAttribute('data', JSON.stringify(dataToFilter));
 
-        if (!drawerContent.innerHTML) {
+        if (!newDrawer.innerHTML) {
           const emptyMsg = document.createElement('p');
           emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
-          drawerContent.append(emptyMsg);
+          // drawerContent.append(emptyMsg);
           newDrawer.append(emptyMsg)
         }
       }
@@ -321,10 +316,8 @@ try {
           activeLayers.push(item);
         }
       });
-
-      TESTBUTTON.setAttribute('layers', JSON.stringify(activeLayers));
-      newDrawer.input = layers;
-      // drawerContent.setAttribute('active-layers', JSON.stringify(activeLayers));
+      activeLayers = [...new Set(activeLayers)];
+      newDrawer.input = activeLayers;
     }
 
 

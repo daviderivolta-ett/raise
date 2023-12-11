@@ -78,15 +78,14 @@ summary::-webkit-details-marker {
     display: none;
 }
 
-svg {
+.material-symbols-outlined {
     position: absolute;
     top: -24px;
     right: 0;
     transition: all .1s ease-in-out;
 }
 
-details[open] > summary svg {
-    transform: rotate(180deg);
-    transform-origin: center 8px;
-    transition: all .1s ease-in-out;
+details[open] > summary .material-symbols-outlined {
+    transform: scaleY(-1);
+    transform-origin: center 11px;
 }
