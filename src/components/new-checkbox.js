@@ -29,7 +29,8 @@ export class CheckboxNew extends HTMLElement {
 
     render() {
         const isOpen = this.getAttribute('is-open');
-        isOpen == 'true' ? this.details.setAttribute('open', '') : this.details.removeAttribute('open');
+        isOpen == 'true' ? this.componentsDetails.classList.add('active') : this.componentsDetails.classList.remove('active');
+        // isOpen == 'true' ? this.details.setAttribute('open', '') : this.details.removeAttribute('open');
 
         const isChecked = this.getAttribute('is-checked');
         isChecked == 'true' ? this.checkbox.checked = true : this.checkbox.checked = false;
@@ -40,17 +41,27 @@ export class CheckboxNew extends HTMLElement {
         this.shadow.innerHTML =
             `
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            <div class="checkbox">
-                <input type="checkbox" id="checkbox">
-                <div class="legend"></div>
-                <label for="checkbox">Label</label>
-            </div>                     
+            <div class="wrapper">
+                <div class="checkbox">
+                    <input type="checkbox" id="checkbox">
+                    <div class="legend"></div>
+                    <label for="checkbox">Label</label>
+                </div>
+                <div class="tools">
+                    <div class="icon">
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </div>
+                </div>
+            </div>
+            <div class="components"></div>
             `
-            ;
+        ;
 
         this.checkbox = this.shadow.querySelector('input');
         this.legend = this.shadow.querySelector('.legend');
         this.label = this.shadow.querySelector('label');
+        this.icon = this.shadow.querySelector('.icon');
+        this.componentsDetails = this.shadow.querySelector('.components');
 
         if (!this.hasAttribute('is-checked')) {
             this.setAttribute('is-checked', 'false');
@@ -65,14 +76,14 @@ export class CheckboxNew extends HTMLElement {
 
         this.components = this.data.components;
         if (this.components != undefined && this.components != 0) {
-            this.details = document.createElement('details');
-            this.details.innerHTML =
-                `
-                <summary>
-                    <span class="material-symbols-outlined">keyboard_arrow_down</span>              
-                </summary>
-                `
-            ;
+            // this.details = document.createElement('details');
+            // this.details.innerHTML =
+            //     `
+            //     <summary>
+            //         <span class="material-symbols-outlined">keyboard_arrow_down</span>              
+            //     </summary>
+            //     `
+            // ;
 
             for (const component of this.components) {
                 this.component = document.createElement(`${component}`);
@@ -96,10 +107,10 @@ export class CheckboxNew extends HTMLElement {
                     });
                 }
 
-                this.details.append(this.component);
+                this.componentsDetails.append(this.component);
             }
 
-            this.shadow.append(this.details);
+            // this.shadow.append(this.details);
             this.setAttribute('is-open', 'false');
         }
 
@@ -110,15 +121,20 @@ export class CheckboxNew extends HTMLElement {
             this.output = this.data;
         });
 
-        if (this.details) {
-            this.details.addEventListener('toggle', (event) => {
-                if (event.target.open) {
-                    this.setAttribute('is-open', 'true');
-                } else {
-                    this.setAttribute('is-open', 'false');
-                }
-            });
-        }
+        this.icon.addEventListener('click', () => {
+            const isOpen = JSON.parse(this.getAttribute('is-open'));
+            this.setAttribute('is-open', !isOpen + '');
+        });
+
+        // if (this.details) {
+        //     this.details.addEventListener('toggle', (event) => {
+        //         if (event.target.open) {
+        //             this.setAttribute('is-open', 'true');
+        //         } else {
+        //             this.setAttribute('is-open', 'false');
+        //         }
+        //     });
+        // }
 
         // css
         const style = document.createElement('link');
