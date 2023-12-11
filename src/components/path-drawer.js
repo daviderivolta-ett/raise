@@ -46,6 +46,9 @@ export class PathDrawer extends HTMLElement {
                 this.setAttribute('is-open', 'false');
             });
         }
+
+        // this.enableDragAndDrop();
+        this.drag();
     }
 
     connectedCallback() {
@@ -115,7 +118,7 @@ export class PathDrawer extends HTMLElement {
 
     static observedAttributes = ['is-open', 'is-navigation', 'features', 'route-name'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue  && oldValue != null) {
+        if (newValue != oldValue && oldValue != null) {
 
             if (name == 'is-open') {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
@@ -161,6 +164,62 @@ export class PathDrawer extends HTMLElement {
         });
         features.splice(i, 1);
         return features;
+    }
+
+    drag() {
+        this.allInfoboxes.forEach(infobox => {
+            infobox.draggable = true;
+    
+            infobox.addEventListener('dragstart', e => {
+                e.dataTransfer.setData('text/plain', infobox.getAttribute('data'));
+                infobox.classList.add('dragging');
+            });
+
+            this.div.addEventListener('dragover', e => {
+                e.preventDefault();
+            });
+    
+            infobox.addEventListener('dragend', () => {
+                infobox.classList.remove('dragging');
+            });
+        });
+    
+        this.div.addEventListener('drop', e => {
+            e.preventDefault();
+            const features = JSON.parse(this.getAttribute('features'));
+    
+            const draggingItemData = JSON.parse(e.dataTransfer.getData('text/plain'));
+            const draggingItemIndex = features.findIndex(item => {
+                return item.coordinates.longitude == draggingItemData.coordinates.longitude;
+            });
+    
+            const nearestInfobox = this.getNearestInfobox(e.clientY);
+            const nearestInfoboxIndex = features.findIndex(item => {
+                return item.coordinates.longitude == JSON.parse(nearestInfobox.getAttribute('data')).coordinates.longitude;
+            });
+    
+            features.splice(draggingItemIndex, 1);
+            features.splice(nearestInfoboxIndex, 0, draggingItemData);
+    
+            this.setAttribute('features', JSON.stringify(features));
+        });
+    }
+
+    getNearestInfobox(y) {
+        let nearestInfobox = null;
+        let minDistance = Infinity;
+
+        this.allInfoboxes.forEach(infobox => {
+            const rect = infobox.getBoundingClientRect();
+            const distance = Math.abs(rect.top - y);
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                nearestInfobox = infobox;
+            }
+        });
+
+        return nearestInfobox;
     }
 
 }

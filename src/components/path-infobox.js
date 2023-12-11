@@ -26,20 +26,17 @@ export class PathInfobox extends HTMLElement {
                     </div>
                     <app-remove-btn></app-remove-btn>
                 </div>
-                <div class="content"></div>
             </div>
             `
-            ;
+        ;
 
         this.data = JSON.parse(this.getAttribute('data'));
         this.info = this.shadow.querySelector('.info');
+        this.drag = this.shadow.querySelector('.drag-icon');
         this.index = this.shadow.querySelector('.index');
         this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
         this.removeBtn = this.shadow.querySelector('app-remove-btn');
-        // this.playBtn = this.shadow.querySelector('app-play-info-btn');
-        // this.goToBtn = this.shadow.querySelector('app-goto');
-        // this.content = this.shadow.querySelector('.content');
 
         const properties = this.data.properties;
         for (const key in properties) {
@@ -55,27 +52,10 @@ export class PathInfobox extends HTMLElement {
                     this.name.innerText = value;
                     continue;
                 }
-
-                // const p = document.createElement('p');
-                // p.innerText = value;
-                // this.content.append(p);
             }
         }
 
         this.index.innerText = PathInfobox.counter;
-
-        // if (typeof this.data.coordinates == 'object' ) {
-        //     const coordinates = {};
-        //     coordinates.longitude = this.data.coordinates.longitude;
-        //     coordinates.latitude = this.data.coordinates.latitude;
-        //     this.goToBtn.setAttribute('coordinates', JSON.stringify(coordinates));
-        // }        
-
-        // js
-        // this.goToBtn.addEventListener('goto', (e) => {
-        //     const event = new CustomEvent('goto', { detail: { coordinates: e.detail.coordinates } });
-        //     this.dispatchEvent(event);
-        // });
 
         // js
         this.removeBtn.addEventListener('remove', () => {
