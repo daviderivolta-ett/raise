@@ -44,7 +44,7 @@ export class CheckboxNew extends HTMLElement {
                 <input type="checkbox" id="checkbox">
                 <div class="legend"></div>
                 <label for="checkbox">Label</label>
-            </div>                      
+            </div>                     
             `
             ;
 

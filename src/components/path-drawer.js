@@ -169,7 +169,7 @@ export class PathDrawer extends HTMLElement {
     drag() {
         this.allInfoboxes.forEach(infobox => {
             infobox.draggable = true;
-    
+
             infobox.addEventListener('dragstart', e => {
                 e.dataTransfer.setData('text/plain', infobox.getAttribute('data'));
                 infobox.classList.add('dragging');
@@ -178,29 +178,29 @@ export class PathDrawer extends HTMLElement {
             this.div.addEventListener('dragover', e => {
                 e.preventDefault();
             });
-    
+
             infobox.addEventListener('dragend', () => {
                 infobox.classList.remove('dragging');
             });
         });
-    
+
         this.div.addEventListener('drop', e => {
             e.preventDefault();
             const features = JSON.parse(this.getAttribute('features'));
-    
+
             const draggingItemData = JSON.parse(e.dataTransfer.getData('text/plain'));
             const draggingItemIndex = features.findIndex(item => {
                 return item.coordinates.longitude == draggingItemData.coordinates.longitude;
             });
-    
+
             const nearestInfobox = this.getNearestInfobox(e.clientY);
             const nearestInfoboxIndex = features.findIndex(item => {
                 return item.coordinates.longitude == JSON.parse(nearestInfobox.getAttribute('data')).coordinates.longitude;
             });
-    
+
             features.splice(draggingItemIndex, 1);
-            features.splice(nearestInfoboxIndex, 0, draggingItemData);
-    
+            nearestInfoboxIndex != -1 ? features.splice(nearestInfoboxIndex, 0, draggingItemData) : features.add(draggingItemData);
+
             this.setAttribute('features', JSON.stringify(features));
         });
     }

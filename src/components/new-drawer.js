@@ -61,7 +61,7 @@ export class Drawer extends HTMLElement {
     render() {
         // Render
         this.div.innerHTML = '';
-        
+
         if (localStorage.length != 0) {
             let tags = JSON.parse(localStorage.selectedTags);
             this.filterLayersBySelectedTags(this.data, tags);
