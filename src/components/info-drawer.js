@@ -61,7 +61,11 @@ export class InfoDrawer extends HTMLElement {
         });
 
         this.playBtn.addEventListener('readInfo', () => {
-            
+            const speaker = new SpeechSynthesisUtterance();
+            speaker.lang = 'it';
+            const textToRead = this.shadow.querySelector('.content').innerHTML;
+            speaker.text = textToRead;
+            window.speechSynthesis.speak(speaker);
         });
 
     }

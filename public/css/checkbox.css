@@ -71,6 +71,21 @@ input:checked {
     margin: 0 8px 0 0;
 }
 
+.tools {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    cursor: pointer;
+    display: flex;
+}
+
+:host-context(app-checkbox-new[is-open="true"]) .icon {
+    transform: scaleY(-1);
+    transform-origin: center 11px;
+}
+
 .components {
     display: none;
 }
@@ -78,13 +93,4 @@ input:checked {
 .components.active {
     display: block;
     margin: 4px 0 8px 0;
-}
-
-.icon {
-    cursor: pointer;
-}
-
-:host-context(app-checkbox-new[is-open="true"]) .icon {
-    transform: scaleY(-1);
-    transform-origin: center 11px;
 }

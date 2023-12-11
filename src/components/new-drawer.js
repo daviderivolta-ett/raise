@@ -105,6 +105,14 @@ export class Drawer extends HTMLElement {
                 this.output = activeLayers;
             });
         });
+
+        this.accordions.forEach(accordion => {
+            accordion.addEventListener('routeToggled', event => {
+                this.dispatchEvent(new CustomEvent('routeToggled', {
+                    detail: { layer: event.detail.layer }
+                }));
+            });
+        });
     }
 
     connectedCallback() {

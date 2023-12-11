@@ -166,6 +166,14 @@ export class CategoryAccordionNew extends HTMLElement {
             });
         });
 
+        this.accordions.forEach(accordion => {
+            accordion.addEventListener('routeToggled', event => {
+                this.dispatchEvent(new CustomEvent('routeToggled', {
+                    detail: { layer: event.detail.layer }
+                }));
+            });
+        });
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');

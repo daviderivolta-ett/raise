@@ -1,7 +1,4 @@
-:host {
-    position: relative;
-    right: 48px;
-}
+
 
 button {
     display: flex;
@@ -9,11 +6,10 @@ button {
     align-items: center;
     cursor: pointer;
     border: none;
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
     border-radius: 8px;
-    padding: 16px;
-    background-color: #185FD9;
+    background-color: white;
 }
 
 .material-symbols-outlined {
@@ -22,5 +18,14 @@ button {
         'wght' 400,
         'GRAD' 0,
         'opsz' 24;
-    color: #FFFFFF;
+    color: #185FD9;
+    font-size: 18px;
+}
+
+:host(app-navigation-btn[is-enabled="false"]) button {
+    cursor: not-allowed;
+}
+
+:host(app-navigation-btn[is-enabled="false"]) .material-symbols-outlined {
+    opacity: .5;
 }

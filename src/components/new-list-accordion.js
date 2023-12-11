@@ -152,6 +152,14 @@ export class ListAccordionNew extends HTMLElement {
             });
         });
 
+        this.checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('routeToggled', event => {
+                this.dispatchEvent(new CustomEvent('routeToggled', {
+                    detail: { layer: event.detail.layer }
+                }));
+            });
+        });
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');

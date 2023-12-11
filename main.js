@@ -32,6 +32,7 @@ import './src/components/new-drawer.js';
 import './src/components/new-category-accordion.js';
 import './src/components/new-list-accordion.js';
 import './src/components/opacity.js';
+import './src/components/activate-navigation-btn.js';
 
 import './src/components/checkbox-list.js';
 import './src/components/checkbox.js';
@@ -241,6 +242,11 @@ try {
         snackbar.setAttribute('is-active', 'false');
       }
     });
+
+    newDrawer.addEventListener('routeToggled', event => {
+      const a = map.fetchLayerData(event.detail.layer);
+      a.then(p => console.log(p.features));
+    });
     ////
 
     // Click on map
@@ -319,10 +325,6 @@ try {
       activeLayers = [...new Set(activeLayers)];
       newDrawer.input = activeLayers;
     }
-
-
-
-
 
 
 

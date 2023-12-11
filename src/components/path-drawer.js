@@ -8,6 +8,7 @@ export class PathDrawer extends HTMLElement {
 
     render() {
         this.features = JSON.parse(this.getAttribute('features'));
+        console.log(this.features);
         this.div.innerHTML = '';
 
         if (this.features.length != 0) {
