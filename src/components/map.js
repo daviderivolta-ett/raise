@@ -55,6 +55,26 @@ export default class CesiumViewer {
         });
     }
 
+    getFeatureCoordinates(feature) {
+        if (Array.isArray(feature.geometry.coordinates)) {
+            let coordinates = {};
+
+            switch (feature.geometry.coordinates.length) {
+                case 1:
+                    coordinates.longitude = feature.geometry.coordinates[0][0];
+                    coordinates.latitude = feature.geometry.coordinates[0][1];
+                    break;
+            
+                default:
+                    coordinates.longitude = feature.geometry.coordinates[0];
+                    coordinates.latitude = feature.geometry.coordinates[1];
+                    break;
+            }
+
+            return coordinates;
+        }        
+    }
+
     onClick(movement, jsonData) {
         const windowPosition = movement.position;
         const pickedEntity = this.viewer.scene.pick(windowPosition);
@@ -95,7 +115,6 @@ export default class CesiumViewer {
         if (features == null) return;
 
         let layerToFind;
-
         switch (true) {
             case features.id.includes('.'):
                 layerToFind = features.id.split('.')[0];
@@ -173,7 +192,12 @@ export default class CesiumViewer {
         if (array) {
             for (const obj of array) {
                 if (obj.property_name && object[obj.property_name]) {
-                    risultati[obj.display_name] = object[obj.property_name]._value;
+                    if (object[obj.property_name]._value) {
+                        risultati[obj.display_name] = object[obj.property_name]._value;
+                    } else {
+                        risultati[obj.display_name] = object[obj.property_name];
+                    }
+                    
                 }
             }
 

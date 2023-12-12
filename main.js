@@ -244,8 +244,28 @@ try {
     });
 
     newDrawer.addEventListener('routeToggled', event => {
-      const a = map.fetchLayerData(event.detail.layer);
-      a.then(p => console.log(p.features));
+      const layerData = map.fetchLayerData(event.detail.layer);
+      layerData.then(data => {
+        let features = [];
+        data.features.forEach(f => {
+          let coordinates = map.getFeatureCoordinates(f);
+          let layerNameToFetch = map.getLayerToFind(f);
+          let foundLayer = map.filterLayerByName(jsonData, layerNameToFetch);
+  
+          let properties = f.properties;
+          let propertiesToFind = foundLayer.relevant_properties;
+          let layerName = foundLayer.name;
+          let relevantProperties = map.getRelevantProperties(properties, propertiesToFind, layerName);
+  
+          let feature = {};
+          feature.coordinates = coordinates;
+          feature.layer = foundLayer;
+          feature.properties = relevantProperties;
+
+          features.push(feature);
+        });
+
+      });
     });
     ////
 

@@ -33,17 +33,10 @@ export class CheckboxNew extends HTMLElement {
         const isOpen = this.getAttribute('is-open');
         isOpen == 'true' ? this.componentsDetails.classList.add('active') : this.componentsDetails.classList.remove('active');
 
-        const isChecked = this.getAttribute('is-checked');
-        if (isChecked == 'true') {
-            this.checkbox.checked = true;
-            this.opacityComponent.setAttribute('is-enabled', isChecked + '');
-            this.navigationComponent.setAttribute('is-enabled', isChecked + '');
-        }
-        else {
-            this.checkbox.checked = false;
-            this.opacityComponent.setAttribute('is-enabled', isChecked + '');
-            this.navigationComponent.setAttribute('is-enabled', isChecked + '');
-        }
+        const isChecked = JSON.parse(this.getAttribute('is-checked'));
+        this.checkbox.checked = isChecked;
+        this.opacityComponent.setAttribute('is-enabled', isChecked + '');
+        if (this.navigationComponent != undefined) this.navigationComponent.setAttribute('is-enabled', isChecked + '');
     }
 
     connectedCallback() {
@@ -65,7 +58,7 @@ export class CheckboxNew extends HTMLElement {
             </div>
             <div class="components"></div>
             `
-        ;
+            ;
 
         this.checkbox = this.shadow.querySelector('input');
         this.legend = this.shadow.querySelector('.legend');
