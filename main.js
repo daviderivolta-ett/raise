@@ -177,6 +177,7 @@ pathDrawer.addEventListener('selectedFeature', (e) => {
   map.setCameraToPosition(feature.coordinates);
   infoDrawer.setAttribute('data', JSON.stringify(feature));
   infoDrawer.setAttribute('is-open', 'true');
+  rail.setAttribute('is-open', 'false');
 });
 
 pathDrawer.addEventListener('saveCustomRoute', (e) => {
