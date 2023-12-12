@@ -15,12 +15,14 @@ export class PathTools extends HTMLElement {
             `
             <app-save-route-btn></app-save-route-btn>
             <app-flush-btn></app-flush-btn>
+            <app-sort-features-btn></app-sort-features-btn>
             `
         ;
 
         if (!this.hasAttribute('is-open')) this.setAttribute('is-open', 'false');
         this.saveRouteBtn = this.shadow.querySelector('app-save-route-btn');
         this.flushBtn = this.shadow.querySelector('app-flush-btn');
+        this.sortBtn = this.shadow.querySelector('app-sort-features-btn');
 
         this.saveRouteBtn.addEventListener('saveCustomRoute', () => {
             this.dispatchEvent(new CustomEvent('saveCustomRoute'));
@@ -28,6 +30,10 @@ export class PathTools extends HTMLElement {
 
         this.flushBtn.addEventListener('flush', () => {
             this.dispatchEvent(new CustomEvent('flush'));
+        });
+
+        this.sortBtn.addEventListener('sort', () => {
+            this.dispatchEvent(new CustomEvent('sort'));
         });
 
         // css

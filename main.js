@@ -37,6 +37,7 @@ import './src/components/add-to-route-btn.js';
 import './src/components/path-drawer.js';
 import './src/components/path-tools.js';
 import './src/components/flush-btn.js';
+import './src/components/sort-features-btn.js';
 import './src/components/empty-path-drawer-msg.js';
 import './src/components/path-infobox.js';
 import './src/components/save-route-btn.js';
@@ -326,6 +327,7 @@ try {
 // Get user position
 try {
   getPosition().then(position => {
+    console.log(position);
     map.setCameraToUserPosition(position);
     map.createUserPin(position);
     mapControls.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
