@@ -1,135 +1,181 @@
 export class CheckboxList extends HTMLElement {
+    _data;
+    _output;
+    _input;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
     }
 
+    set data(data) {
+        this._data = data;
+    }
+
+    get data() {
+        return this._data;
+    }
+
+    set output(output) {
+        this._output = output;
+        this.dispatchEvent(new CustomEvent('newOutput', {
+            detail: { layersToAdd: this.output.layersToAdd, layersToRemove: this.output.layersToRemove }
+        }));
+        this._output.layersToAdd = [];
+        this._output.layersToRemove = [];
+    }
+
+    get output() {
+        return this._output;
+    }
+
+    set input(input) {
+        this._input = input;
+
+        this.checkboxes.forEach(checkbox => {
+            if (this.input.length != []) {
+                this.input.forEach(inputLayer => {
+                    if (checkbox.data.layer == inputLayer.layer) {
+                        checkbox.setAttribute('is-checked', 'true');
+                    }
+                });
+            } else {
+                checkbox.setAttribute('is-checked', 'false');
+            }
+        });
+    }
+
+    get input() {
+        return this._input;
+    }
+
     render() {
+        const isOpen = this.getAttribute('is-open');
+        if (isOpen == 'true') {
+            this.accordionContent.classList.add('accordion-show');
+            this.accordionIcon.classList.add('accordion-icon-active');
+        } else {
+            this.accordionContent.classList.remove('accordion-show');
+            this.accordionIcon.classList.remove('accordion-icon-active');
+        }
     }
 
     connectedCallback() {
+        // html
         this.shadow.innerHTML =
             `
-            <div></div>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+            <div class="accordion-item">
+                <div class="accordion-checkbox">
+                    <input type="checkbox">
+                    <button type="button" class="accordion-btn">
+                        <span class="accordion-title"></span>
+                        <span class="accordion-icon">
+                            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                        </span>
+                    </button>
+                </div>
+                <div class="accordion-content"></div>
+            </div>
             `
             ;
 
-        this.div = this.shadow.querySelector('div');
-        this.setAttribute('all-active', 'false');
-        this.setAttribute('data', '[]');
-        this.setAttribute('navigation-data', '[]');
+        if (!this.hasAttribute('is-open')) this.setAttribute('is-open', 'false');
+        if (!this.hasAttribute('all-checked')) this.setAttribute('all-checked', 'false');
+
+        this.checkbox = this.shadow.querySelector('input');
+        this.accordionTitle = this.shadow.querySelector('.accordion-title');
+        this.accordionContent = this.shadow.querySelector('.accordion-content');
+        this.accordionIcon = this.shadow.querySelector('.accordion-icon');
+        this.accordionBtn = this.shadow.querySelector('.accordion-btn');
+
+        this.accordionTitle.textContent = this.data.name;
+
+        this.data.layers.forEach(layer => {
+            const checkbox = document.createElement('app-checkbox');
+            checkbox.data = layer;
+            this.accordionContent.append(checkbox);
+        });
+
+        this.checkboxes = this.shadow.querySelectorAll('app-checkbox');
+
+        // js
+        this.accordionBtn.addEventListener('click', () => {
+            const isOpen = JSON.parse(this.getAttribute('is-open'));
+            this.setAttribute('is-open', !isOpen + '');
+        });
+
+        this.checkbox.addEventListener('click', () => {
+            let allChecked = JSON.parse(this.getAttribute('all-checked'));
+            allChecked = !allChecked;
+            this.setAttribute('all-checked', allChecked + '');
+            allChecked == true ? this.input = this.data.layers : this.input = [];
+            if (this._output == undefined) {
+                this._output = {};
+                this._output.layersToAdd = [];
+                this._output.layersToRemove = [];
+            }
+            if (allChecked == true) {
+                this._output.layersToAdd = this.data.layers;
+            } else {
+                this._output.layersToRemove = this.data.layers;
+            }
+            this.output = this._output;
+        });
+
+        this.checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('checkboxToggled', event => {
+                const toggledLayer = event.detail.layerToAdd;
+                const isChecked = event.detail.isChecked;
+                if (this._output == undefined) {
+                    this._output = {};
+                    this._output.layersToAdd = [];
+                    this._output.layersToRemove = [];
+                }
+                if (isChecked == true) {
+                    this._output.layersToAdd.push(toggledLayer);
+                } else {
+                    this._output.layersToRemove.push(toggledLayer);
+                }
+                this.output = this._output;
+            });
+        });
+
+        this.checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('detailsToggled', event => {
+                const isOpen = event.detail.isOpen;
+                if (isOpen == 'true') {
+                    this.checkboxes.forEach(checkbox => {
+                        if (checkbox !== event.target) checkbox.setAttribute('is-open', 'false');
+                    });
+                }
+            });
+        });
+
+        this.checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('routeToggled', event => {
+                this.dispatchEvent(new CustomEvent('routeToggled', {
+                    detail: { layer: event.detail.layer }
+                }));
+            });
+        });
 
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/checkbox-list.css');
+        style.setAttribute('href', './css/accordion.css');
         this.shadow.append(style);
-
-        if (!this.hasAttribute('input')) return;
-
-        // html
-        this.input = JSON.parse(this.getAttribute('input'));
-        this.data = this.getAttribute('data');
-
-        this.checkboxes = [];
-
-        for (let i = 0; i < this.input.length; i++) {
-            this.checkbox = document.createElement('app-checkbox');
-            this.checkbox.setAttribute('is-checked', 'false');
-            this.checkbox.setAttribute('data', JSON.stringify(this.input[i]));
-
-            this.checkboxes.push(this.checkbox);
-
-            this.div.append(this.checkbox);
-        }
-
-        // js
-        this.checkboxes.forEach(item => {
-
-            item.addEventListener('checkboxClicked', () => {
-                this.data = JSON.parse(this.getAttribute('data'));
-                this.itemData = JSON.parse(item.getAttribute('data'));
-
-                const isPresentIndex = this.data.findIndex(obj => {
-                    return obj.layer === this.itemData.layer;
-                });
-
-                if (isPresentIndex !== -1) {
-                    this.data.splice(isPresentIndex, 1);
-                } else {
-                    this.data.push(this.itemData);
-                }
-
-                this.setAttribute('data', JSON.stringify(this.data));
-            });
-
-            item.addEventListener('opacityChanged', (event) => {
-                this.data = JSON.parse(this.getAttribute('data'));
-                this.itemData = JSON.parse(item.getAttribute('data'));
-                this.itemData = JSON.parse(event.detail.newValue);
-
-                const isPresentIndex = this.data.findIndex(obj => {
-                    return obj.layer === this.itemData.layer;
-                });
-
-                if (isPresentIndex !== -1) {
-                    this.data.splice(isPresentIndex, 1);
-                    this.data.push(this.itemData);
-                } else {
-                    this.data.push(this.itemData);
-                }
-
-                this.setAttribute('data', JSON.stringify(this.data));
-            });
-
-            item.addEventListener('routeTriggered', (event) => {
-                this.setAttribute('navigation-data', JSON.stringify(event.detail.data));
-            });
-
-            item.addEventListener('detailStatusChanged', (event) => {
-                if (event.detail.newValue == 'true') {
-                    this.checkboxes.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.setAttribute('is-details-open', 'false');
-                        }
-                    });
-                }
-            })
-
-        });
     }
 
-    static observedAttributes = ['data', 'all-active', 'navigation-data'];
+    static observedAttributes = ['is-open', 'all-checked'];
     attributeChangedCallback(name, oldValue, newValue) {
-        this.allCheckboxes = this.shadow.querySelectorAll('app-checkbox');
+        if (newValue != oldValue && oldValue != null) {
 
-        if (newValue != oldValue && oldValue !== null && newValue !== null) {
-
-            if (name == 'data') {
-                const event = new CustomEvent('checkboxListChanged', { detail: { name, oldValue, newValue, input: this.input } });
-                this.dispatchEvent(event);
-            }
-
-            if (name == 'all-active') {
-                this.checkboxes.forEach(item => {
-                    item.setAttribute('is-checked', this.getAttribute('all-active'));
-                });
-
-                if (this.getAttribute('all-active') == 'true') {
-                    const checkboxes = [];
-                    this.allCheckboxes.forEach(checkbox => checkboxes.push(checkbox.getAttribute('data')));
-                    this.setAttribute('data', `[${checkboxes}]`);
-                } else {
-                    this.setAttribute('data', '[]');
-                }
-            }
-
-            if (name == 'navigation-data') {
-                if (newValue == '[]') this.allCheckboxes.forEach(checkbox => checkbox.setAttribute('is-navigation-active', 'false'));
-
-                const event = new CustomEvent('routeTriggered', { detail: { newValue } });
-                this.dispatchEvent(event);
+            if (name == 'is-open') {
+                this.dispatchEvent(new CustomEvent('accordionToggled', {
+                    detail: { isOpen: newValue }
+                }));
+                this.render();
             }
 
         }
@@ -137,13 +183,3 @@ export class CheckboxList extends HTMLElement {
 }
 
 customElements.define('app-checkbox-list', CheckboxList);
-
-function checkLayerToRemove(allLayers, activeLayers) {
-    allLayers.forEach(layer => {
-        const layerToRemoveIndex = activeLayers.findIndex(item => item.layer === layer.layer);
-
-        if (layerToRemoveIndex !== -1) {
-            activeLayers.splice(layerToRemoveIndex, 1);
-        }
-    });
-}

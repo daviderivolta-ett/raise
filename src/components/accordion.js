@@ -1,136 +1,197 @@
-// import componentCss from '/public/css/accordion.css?raw';
-
 export class Accordion extends HTMLElement {
+    _data;
+    _output
+    _input
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
     }
 
-    render() {
-        // Checkbox
-        this.slots.forEach(slot => {
-            const assignedNodes = slot.assignedNodes();
-            assignedNodes.forEach(node => {
-                node.setAttribute('all-active', this.getAttribute('all-active'));
-            });
+    set data(data) {
+        this._data = data;
+    }
+
+    get data() {
+        return this._data;
+    }
+
+    set output(output) {
+        this._output = output;
+        this.dispatchEvent(new CustomEvent('newOutput', {
+            detail: { layersToAdd: this.output.layersToAdd, layersToRemove: this.output.layersToRemove }
+        }));
+        this._output.layersToAdd = [];
+        this._output.layersToRemove = [];
+    }
+
+    get output() {
+        return this._output;
+    }
+
+    set input(input) {
+        this._input = input;
+
+        this.accordions.forEach(accordion => {
+            let activeLayers = [];
+            for (let i = 0; i < this.input.length; i++) {
+                const inputLayer = this.input[i];
+
+                accordion.data.layers.forEach(layer => {
+                    if (layer.layer == inputLayer.layer) {
+                        activeLayers.push(inputLayer);
+                    }
+                });
+            }
+
+            accordion.input = activeLayers;
+
         });
     }
 
-    connectedCallback() {
-        //html
-        this.setAttribute('is-active', 'false');
-        this.setAttribute('all-active', 'false');
+    get input() {
+        return this._input;
+    }
 
-        this.shadow.innerHTML = `
-            
+    render() {
+        const isOpen = this.getAttribute('is-open');
+        if (isOpen == 'true') {
+            this.accordionContent.classList.add('accordion-show');
+            this.accordionIcon.classList.add('accordion-icon-active');
+        } else {
+            this.accordionContent.classList.remove('accordion-show');
+            this.accordionIcon.classList.remove('accordion-icon-active');
+        }
+    }
+
+    connectedCallback() {
+        // html
+        this.shadow.innerHTML =
+            `
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="accordion-item">
                 <div class="accordion-checkbox">
-                <input type="checkbox"></input>                
-
-                <button type="button" class="accordion-btn">
-                    <span class="accordion-title"></span>
-                    <span class="accordion-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                    </span>
-                </button>
-
+                    <input type="checkbox">
+                    <button type="button" class="accordion-btn">
+                        <span class="accordion-title"></span>
+                        <span class="accordion-icon">
+                            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                        </span>
+                    </button>
                 </div>
-
-                <div class="accordion-content">
-                    <slot></slot>
-                </div>
+                <div class="accordion-content"></div>
             </div>
             `
             ;
 
+        if (!this.hasAttribute('is-open')) this.setAttribute('is-open', 'false');
+
+        this.checkbox = this.shadow.querySelector('input');
         this.accordionTitle = this.shadow.querySelector('.accordion-title');
-
-        if (this.accordionTitle) {
-            this.accordionTitle.textContent = this.title;
-        }
-
         this.accordionContent = this.shadow.querySelector('.accordion-content');
         this.accordionIcon = this.shadow.querySelector('.accordion-icon');
+        this.accordionBtn = this.shadow.querySelector('.accordion-btn');
+
+        this.accordionTitle.textContent = this.data.name;
+
+        this.data.groups.forEach(group => {
+            const accordion = document.createElement('app-checkbox-list');
+            accordion.data = group;
+            this.accordionContent.append(accordion);
+        });
+
+        this.accordions = this.shadow.querySelectorAll('app-checkbox-list');
+        const lastAccordion = this.accordions[this.accordions.length - 1];
+        lastAccordion.classList.add('last-accordion');
+
+        // js
+        this.accordionBtn.addEventListener('click', () => {
+            const isOpen = JSON.parse(this.getAttribute('is-open'));
+            this.setAttribute('is-open', !isOpen + '');
+        });
+
+        this.checkbox.addEventListener('click', () => {
+            let allChecked = JSON.parse(this.getAttribute('all-checked'));
+            allChecked = !allChecked;
+            this.setAttribute('all-checked', allChecked + '');
+
+            if (this.input == undefined) this._input = [];
+            if (this._output == undefined) {
+                this._output = {};
+                this._output.layersToAdd = [];
+                this._output.layersToRemove = [];
+            }
+
+            if (allChecked == true) {
+                this.data.groups.forEach(group => {
+                    group.layers.forEach(layer => {
+                        this._input.push(layer)
+                        this._output.layersToAdd.push(layer);
+                    });
+                });
+            } else {
+                this._input = [];
+                this.data.groups.forEach(group => {
+                    group.layers.forEach(layer => this._output.layersToRemove.push(layer));
+                })
+            }
+            this.input = this._input;
+            this.output = this._output;
+        });
+
+        this.accordions.forEach(accordion => {
+            accordion.addEventListener('accordionToggled', event => {
+                const isOpen = event.detail.isOpen;
+
+                if (isOpen == 'true') {
+                    this.accordions.forEach(accordion => {
+                        if (accordion !== event.target) accordion.setAttribute('is-open', 'false');
+                    });
+                }
+            });
+        });
+
+        this.accordions.forEach(accordion => {
+            accordion.addEventListener('newOutput', event => {
+                const layersToAdd = event.detail.layersToAdd;
+                const layersToRemove = event.detail.layersToRemove;
+                if (this.output == undefined) {
+                    this._output = {};
+                    this._output.layersToAdd = [];
+                    this._output.layersToRemove = [];
+                }
+                layersToAdd.forEach(layer => this._output.layersToAdd.push(layer));
+                layersToRemove.forEach(layer => this._output.layersToRemove.push(layer));
+                this.output = this._output;
+            });
+        });
+
+        this.accordions.forEach(accordion => {
+            accordion.addEventListener('routeToggled', event => {
+                this.dispatchEvent(new CustomEvent('routeToggled', {
+                    detail: { layer: event.detail.layer }
+                }));
+            });
+        });
 
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/accordion.css');
         this.shadow.append(style);
-
-        //js
-        // accordion
-        this.accordionBtn = this.shadow.querySelector('.accordion-btn');
-        this.accordionBtn.addEventListener('click', () => {
-            this.accordionContent = this.shadow.querySelector('.accordion-content');
-
-            if (this.getAttribute('is-active') === 'true') {
-                this.setAttribute('is-active', 'false');
-                this.accordionContent.classList.remove('accordion-show');
-                this.accordionIcon.classList.remove('accordion-icon-active');
-            } else {
-                this.setAttribute('is-active', 'true');
-                this.accordionContent.classList.add('accordion-show');
-                this.accordionIcon.classList.add('accordion-icon-active');
-            }
-
-            const event = new CustomEvent('accordionChanged', {
-                detail: {
-                    name: 'is-active',
-                    oldValue: this.getAttribute('is-active'),
-                    newValue: this.getAttribute('is-active')
-                }
-            });
-            this.dispatchEvent(event);
-        });
-
-        if (this.classList.contains('last-accordion')) {
-            this.accordionContent.classList.add('last-accordion');
-        }
-
-        // checkbox
-        this.checkbox = this.shadow.querySelector('input[type="checkbox"]');
-        if (this.getAttribute('all-active') == 'true') {
-            this.checkbox.checked = true;
-        } else {
-            this.checkbox.checked = false;
-        }
-
-        this.checkbox.addEventListener('change', (event) => {
-            const isChecked = event.target.checked;
-            this.setAttribute('all-active', isChecked + '');
-        });
-
-        // slot
-        this.slots = this.shadow.querySelectorAll('slot');
     }
 
-    static observedAttributes = ['is-active', 'all-active'];
+    static observedAttributes = ['is-open'];
     attributeChangedCallback(name, oldValue, newValue) {
+        if (newValue != oldValue && oldValue != null) {
 
-        if (oldValue !== null && newValue !== null && newValue != oldValue) {
-
-            if (name == 'is-active') {
-                if (this.getAttribute('is-active') === 'true') {
-                    this.accordionContent.classList.add('accordion-show');
-                    this.accordionIcon.classList.add('accordion-icon-active');
-                } else {
-                    this.accordionContent.classList.remove('accordion-show');
-                    this.accordionIcon.classList.remove('accordion-icon-active');
-                }
-            }
-
-            if (name == 'all-active') {
-                if (this.getAttribute('all-active') == 'true') {
-                    this.checkbox.checked = true;
-                } else {
-                    this.checkbox.checked = false;
-                }
+            if (name == 'is-open') {
+                this.dispatchEvent(new CustomEvent('accordionToggled', {
+                    detail: { isOpen: newValue }
+                }));
                 this.render();
             }
+
         }
     }
 }

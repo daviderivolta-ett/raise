@@ -1,236 +1,159 @@
-export class DrawerContent extends HTMLElement {
+export class Drawer extends HTMLElement {
+    _data;
+    _output;
+    _input;
+
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: 'closed' });
+        this.shadow = this.attachShadow({ mode: 'open' });
+    }
+
+    set data(data) {
+        this._data = data;
+        this.render();
+    }
+
+    get data() {
+        return this._data;
+    }
+
+    set output(output) {
+        this._output = output;
+        this.dispatchEvent(new CustomEvent('activeLayers', {
+            detail: { activeLayers: this.output }
+        }));
+    }
+
+    get output() {
+        return this._output;
+    }
+
+    set input(input) {
+        this._input = input;
+
+        this.output = this.input;
+
+        this.accordions.forEach(accordion => {
+            let activeLayers = [];
+            for (let i = 0; i < this.input.length; i++) {
+                const inputLayer = this.input[i];
+
+                for (let i = 0; i < accordion.data.groups.length; i++) {
+                    const group = accordion.data.groups[i];
+
+                    group.layers.forEach(groupLayer => {
+                        if (groupLayer.layer == inputLayer.layer) {
+                            activeLayers.push(inputLayer);
+                        }
+                    });
+                }
+            }
+
+            accordion.input = activeLayers;
+
+        });
+    }
+
+    get input() {
+        return this._input;
     }
 
     render() {
-        // Accordions creation
-        let jsonData = JSON.parse(this.getAttribute('data'));
-
+        // Render
         this.div.innerHTML = '';
 
         if (localStorage.length != 0) {
-            let dataToFilter = jsonData;
-            let selectedTags = JSON.parse(localStorage.selectedTags);
-            filterLayersBySelectedTags(dataToFilter, selectedTags);
-            populateDrawer(dataToFilter, this.div);
-            //
-            // createDrawer(dataToFilter, this.div);
-            //
-            jsonData = dataToFilter;
+            let tags = JSON.parse(localStorage.selectedTags);
+            this.filterLayersBySelectedTags(this.data, tags);
+            this.createDrawer(this.data, this.div);
 
-            if (jsonData.categories.length == 0) {
+            if (this.data.categories.length == 0) {
                 const msg = document.createElement('p');
                 msg.innerText = 'Nessun livello trovato';
                 this.div.append(msg);
             }
-
         } else {
-            populateDrawer(jsonData, this.div);
-            //
-            // createDrawer(jsonData, this.div);
-            //
+            this.createDrawer(this.data, this.div);
         }
 
         // DOM nodes
-        const allCategoryAccordions = this.shadow.querySelectorAll('.category-accordion');
-        const allLayerAccordions = this.shadow.querySelectorAll('.layer-accordion');
-        const allCheckboxLists = this.shadow.querySelectorAll('app-checkbox-list');
+        this.accordions = this.shadow.querySelectorAll('app-accordion');
 
-        // Accordion behaviour
-        accordionBehaviour(allCategoryAccordions, allLayerAccordions);
-
-        // Checkbox list behaviour
-        const activeLayers = [];
-
-        allCheckboxLists.forEach(checkboxList => {
-            checkboxList.addEventListener('checkboxListChanged', async (event) => {
-                const checkboxListLayers = event.detail.input;
-                checkLayerToRemove(checkboxListLayers, activeLayers);
-
-                const checkboxListLayersToAdd = JSON.parse(event.detail.newValue);
-                checkboxListLayersToAdd.forEach(layer => {
-                    activeLayers.push(layer);
-                });
-
-                this.setAttribute('active-layers', JSON.stringify(activeLayers));
-            });
-        });
-
-        // Navigation
-        allCheckboxLists.forEach(checkboxList => {
-            checkboxList.addEventListener('routeTriggered', (event) => {
-                this.setAttribute('navigation-data', event.detail.newValue);
-            });
-        });
-
-        ////
-        this.accordions = this.shadow.querySelectorAll('app-category-accordion');
+        // js
         this.accordions.forEach(accordion => {
-            accordion.addEventListener('accordionChanged', event => {
-                const newValue = event.detail.newValue;
-                if (newValue == 'true') {
-                    this.accordions.forEach(item => {
-                        if (item !== event.target) item.setAttribute('is-active', 'false');
+            accordion.addEventListener('accordionToggled', event => {
+                const isOpen = event.detail.isOpen;
+
+                if (isOpen == 'true') {
+                    this.accordions.forEach(accordion => {
+                        if (accordion !== event.target) accordion.setAttribute('is-open', 'false');
                     });
                 }
             });
         });
 
-        let activeLayerss = [];
         this.accordions.forEach(accordion => {
-            accordion.addEventListener('checkboxListChanged', event => {
-                activeLayerss = [];
-                this.accordions.forEach(accordion => {
-                    const layers = JSON.parse(accordion.getAttribute('data'));
-                    layers.forEach(layer => activeLayerss.push(layer));
+            accordion.addEventListener('newOutput', event => {
+                if (this.output == undefined) this._output = [];
+                const layersToAdd = event.detail.layersToAdd;
+                const layersToRemove = event.detail.layersToRemove;
+                layersToAdd.forEach(layer => this._output.push(layer));
+                this._output = [...new Set(this._output)];
+                let activeLayers = this._output.filter(layer => {
+                    return !layersToRemove.some(item => item.layer == layer.layer);
                 });
-                this.setAttribute('active-layers', JSON.stringify(activeLayerss));
+                this.output = activeLayers;
+            });
+        });
+
+        this.accordions.forEach(accordion => {
+            accordion.addEventListener('routeToggled', event => {
+                this.dispatchEvent(new CustomEvent('routeToggled', {
+                    detail: { layer: event.detail.layer }
+                }));
             });
         });
     }
 
     connectedCallback() {
+        // html
         this.shadow.innerHTML =
             `
             <div id="categories-section"></div>
             `
-        ;
+            ;
 
         this.div = this.shadow.querySelector('#categories-section');
-        this.setAttribute('navigation-data', '[]');
-        this.setAttribute('active-layers', '[]');
     }
 
-    static observedAttributes = ['data', 'active-layers', 'navigation-data'];
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue) {
-
-            if (name == 'data') {
-                this.render();
-            }
-
-            if (name == 'active-layers') {
-                const event = new CustomEvent('activeLayersChanged', {
-                    detail: { name, oldValue, newValue: JSON.parse(newValue) }
+    filterLayersBySelectedTags(dataToFilter, array) {
+        dataToFilter.categories.forEach(category => {
+            category.groups.forEach(group => {
+                group.layers = group.layers.filter(layer => {
+                    if (layer.tags) {
+                        return array.some(value => layer.tags.includes(value));
+                    }
+                    return false;
                 });
-                this.dispatchEvent(event);
 
-
-                this.accordions = this.shadow.querySelectorAll('app-category-accordion');
-                this.accordions.forEach(accordion => {
-                    const accordionLayers = JSON.parse(accordion.getAttribute('data'));
-                });
-            }
-
-            if (name == 'navigation-data') {
-                if (newValue == '[]') {
-                    const allCheckboxLists = this.shadow.querySelectorAll('app-checkbox-list');
-                    allCheckboxLists.forEach(checkboxList => checkboxList.setAttribute('navigation-data', '[]'));
+                if (group.layers.length === 0) {
+                    category.groups = category.groups.filter(existingGroup => existingGroup !== group);
                 }
+            });
 
-                const event = new CustomEvent('routeTriggered', { detail: { newValue } });
-                this.dispatchEvent(event);
+            if (category.groups.length === 0) {
+                dataToFilter.categories = dataToFilter.categories.filter(existingCategory => existingCategory !== category);
             }
+        });
+    };
 
-        }
-    }
-}
-
-customElements.define('app-drawer-content', DrawerContent);
-
-/* Functions */
-function createDrawer(jsonData, div) {
-    jsonData.categories.forEach(item => {
-        const categoryAccordion = document.createElement('app-category-accordion');
-        categoryAccordion.setAttribute('input', JSON.stringify(item));
-        div.append(categoryAccordion);
-    });
-}
-
-function populateDrawer(jsonData, div) {
-    jsonData.categories.forEach(item => {
-        const categoryAccordion = document.createElement('app-accordion');
-
-        categoryAccordion.setAttribute('title', item.name);
-        categoryAccordion.classList.add('category-accordion');
-
-        item.groups.forEach((item, index, array) => {
-            const layerAccordion = document.createElement('app-accordion');
-            if (index === array.length - 1) {
-                layerAccordion.classList.add('last-accordion');
-            }
-
-            layerAccordion.setAttribute('title', item.name);
-            layerAccordion.classList.add('layer-accordion');
-
-            const checkboxList = document.createElement('app-checkbox-list');
-            checkboxList.setAttribute('input', JSON.stringify(item.layers));
-            layerAccordion.append(checkboxList);
-
-            categoryAccordion.append(layerAccordion);
+    createDrawer(data, div) {
+        data.categories.forEach(category => {
+            const categoryAccordion = document.createElement('app-accordion');
+            categoryAccordion.data = category;
             div.append(categoryAccordion);
         });
-    });
+    }
 }
 
-function accordionBehaviour(allCategoryAccordions, allLayerAccordions) {
-    allCategoryAccordions.forEach(item => {
-        item.addEventListener('accordionChanged', (event) => {
-
-            allCategoryAccordions.forEach(item => {
-                if (item != event.target) {
-                    item.setAttribute('is-active', 'false');
-                }
-            });
-
-            allLayerAccordions.forEach(item => {
-                item.setAttribute('is-active', 'false');
-            });
-        });
-    });
-
-    allLayerAccordions.forEach(item => {
-        item.addEventListener('accordionChanged', (event) => {
-
-            allLayerAccordions.forEach(item => {
-                if (item != event.target) {
-                    item.setAttribute('is-active', 'false');
-                }
-            });
-
-        });
-    });
-}
-
-function checkLayerToRemove(allLayers, activeLayers) {
-    allLayers.forEach(layer => {
-        const layerToRemoveIndex = activeLayers.findIndex(item => item.layer === layer.layer);
-
-        if (layerToRemoveIndex !== -1) {
-            activeLayers.splice(layerToRemoveIndex, 1);
-        }
-    });
-}
-
-function filterLayersBySelectedTags(dataToFilter, array) {
-    dataToFilter.categories.forEach(category => {
-        category.groups.forEach(group => {
-            group.layers = group.layers.filter(layer => {
-                if (layer.tags) {
-                    return array.some(value => layer.tags.includes(value));
-                }
-                return false;
-            });
-
-            if (group.layers.length === 0) {
-                category.groups = category.groups.filter(existingGroup => existingGroup !== group);
-            }
-        });
-
-        if (category.groups.length === 0) {
-            dataToFilter.categories = dataToFilter.categories.filter(existingCategory => existingCategory !== category);
-        }
-    });
-};
+customElements.define('app-drawer', Drawer);

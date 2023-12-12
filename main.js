@@ -18,28 +18,17 @@ import './service-worker.js';
 import './src/components/map.js';
 import './src/components/rail.js';
 import './src/components/drawer-toggle.js';
+import './src/components/settings-icon.js';
 import './src/components/theme-icon.js';
-import './src/components/drawer.js';
 import './src/components/search.js';
 import './src/components/autocomplete.js';
+import './src/components/drawer.js';
 import './src/components/accordion.js';
-
-import './src/components/category-accordion.js';
-import './src/components/list-accordion.js';
-import './src/components/aria-live-region.js';
-import './src/components/new-checkbox.js';
-import './src/components/new-drawer.js';
-import './src/components/new-category-accordion.js';
-import './src/components/new-list-accordion.js';
-import './src/components/opacity.js';
-import './src/components/activate-navigation-btn.js';
-
 import './src/components/checkbox-list.js';
 import './src/components/checkbox.js';
+import './src/components/opacity.js';
+import './src/components/activate-navigation-btn.js';
 import './src/components/opacity-slider.js';
-import './src/components/chip.js';
-import './src/components/submit-tags-btn.js';
-import './src/components/settings-icon.js';
 import './src/components/navigation-btn.js';
 import './src/components/info-drawer.js';
 import './src/components/play-info-btn.js';
@@ -57,21 +46,21 @@ import './src/components/center-position-btn.js';
 import './src/components/zoom-button.js';
 import './src/components/snackbar.js';
 import './src/components/tag-selection.js';
+import './src/components/chip.js';
+import './src/components/submit-tags-btn.js';
 
 // DOM nodes
 const main = document.querySelector('main');
 const drawer = document.querySelector('#drawer');
 const searchBar = document.querySelector('app-searchbar');
 const drawerTitle = document.querySelector('#drawer-title');
-// const drawerContent = document.querySelector('app-drawer-content');
 const autocomplete = document.querySelector('app-autocomplete');
+const drawerContent = document.querySelector('app-drawer');
 const pathDrawer = document.querySelector('app-path-drawer');
 const pathDrawerToggle = document.querySelector('app-path-drawer-toggle');
 const mapControls = document.querySelector('app-map-controls');
 const rail = document.querySelector('app-rail');
 const infoDrawer = document.querySelector('app-info-drawer');
-
-const newDrawer = document.querySelector('app-drawer');
 
 // Map initialization
 const map = new CesiumViewer();
@@ -133,25 +122,6 @@ for (let i = 0; i <= 2; i++) {
   fetchSvgIcon(i + 2)
     .then(clusterIcon => clusterIcons.push(clusterIcon));
 }
-
-// Checkbox list behaviour
-// drawerContent.addEventListener('activeLayersChanged', async (event) => {
-//   try {
-//     let snackbar = document.createElement('app-snackbar');
-//     snackbar.setAttribute('type', 'loader');
-//     main.append(snackbar);
-
-//     pathDrawer.setAttribute('is-navigation', 'false');
-//     await map.handleCheckbox(event.detail.newValue, clusterIcons);
-
-//   } catch (error) {
-//     console.error('Errore durante il recupero dei layer dal geoserver', error);
-
-//   } finally {
-//     let snackbar = document.querySelector('app-snackbar[type="loader"]');
-//     snackbar.setAttribute('is-active', 'false');
-//   }
-// });
 
 // Path drawer
 pathDrawerToggle.addEventListener('togglePathDrawer', event => {
@@ -215,17 +185,11 @@ try {
   snackbar.setAttribute('type', 'loader');
   main.append(snackbar);
 
-  // let jsonData = await fetchJsonData(CATEGORIES_URL);
-  // drawerContent.setAttribute('data', JSON.stringify(jsonData));
-
   fetchJsonData(CATEGORIES_URL).then(jsonData => {
-    // drawerContent.setAttribute('data', JSON.stringify(jsonData));
+    drawer.append(drawerContent);
+    drawerContent.data = jsonData;
 
-    ////
-    drawer.append(newDrawer);
-    newDrawer.data = jsonData;
-
-    newDrawer.addEventListener('activeLayers', async (event) => {
+    drawerContent.addEventListener('activeLayers', async (event) => {
       let activeLayers = event.detail.activeLayers
       try {
         let snackbar = document.createElement('app-snackbar');
@@ -244,7 +208,7 @@ try {
       }
     });
 
-    newDrawer.addEventListener('routeToggled', event => {
+    drawerContent.addEventListener('routeToggled', event => {
       const layerData = map.fetchLayerData(event.detail.layer);
       layerData.then(data => {
         let features = [];
@@ -304,18 +268,15 @@ try {
       filterLayersByTagName(dataToFilter, valueToSearch);
 
       if (valueToSearch == '') {
-        newDrawer.data = jsonData;
-        // drawerContent.setAttribute('data', JSON.stringify(jsonData));
+        drawerContent.data = jsonData;
         drawerTitle.textContent = 'Categorie';
       } else {
-        newDrawer.data = dataToFilter;
-        // drawerContent.setAttribute('data', JSON.stringify(dataToFilter));
+        drawerContent.data = dataToFilter;
 
-        if (!newDrawer.innerHTML) {
+        if (!drawerContent.innerHTML) {
           const emptyMsg = document.createElement('p');
           emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
-          // drawerContent.append(emptyMsg);
-          newDrawer.append(emptyMsg)
+          drawerContent.append(emptyMsg)
         }
       }
 
@@ -354,7 +315,7 @@ try {
         }
       });
       activeLayers = [...new Set(activeLayers)];
-      newDrawer.input = activeLayers;
+      drawerContent.input = activeLayers;
     }
 
 
