@@ -106,7 +106,8 @@ infoDrawer.addEventListener('goto', event => {
 });
 
 infoDrawer.addEventListener('addToRoute', (event) => {
-  let features = JSON.parse(pathDrawer.getAttribute('features'));
+  // let features = JSON.parse(pathDrawer.getAttribute('features'));
+  let features = pathDrawer.features;
   let feature = event.detail.data;
 
   if (!features.some(obj => JSON.stringify(obj) === JSON.stringify(feature))) {
@@ -118,7 +119,8 @@ infoDrawer.addEventListener('addToRoute', (event) => {
     main.append(snackbar);
   }
 
-  pathDrawer.setAttribute('features', JSON.stringify(features));
+  // pathDrawer.setAttribute('features', JSON.stringify(features));
+  pathDrawer.features = features;
   pathDrawer.setAttribute('is-open', 'true');
 });
 
@@ -328,7 +330,8 @@ try {
       mapControls.setAttribute('is-route', 'true');
       let customRoute = JSON.parse(localStorage.customRoute);
       pathDrawer.setAttribute('route-name', customRoute.name);
-      pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
+      // pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
+      pathDrawer.features = customRoute.features;
 
       const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
       let layers = [];

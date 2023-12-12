@@ -1,14 +1,22 @@
 export class PathDrawer extends HTMLElement {
-    static features = [];
+    _features;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
+        this._features = [];
+    }
+
+    get features() {
+        return this._features;
+    }
+
+    set features(features) {
+        this._features = features;
+        this.render();
     }
 
     render() {
-        this.features = JSON.parse(this.getAttribute('features'));
-        console.log(this.features);
         this.div.innerHTML = '';
 
         if (this.features.length != 0) {
@@ -25,8 +33,8 @@ export class PathDrawer extends HTMLElement {
             this.allInfoboxes.forEach(infobox => {
                 infobox.addEventListener('remove', (event) => {
                     let feature = event.detail.data;
-                    let features = this.checkFeature(feature);
-                    this.setAttribute('features', JSON.stringify(features));
+                    this.features = this.checkFeature(feature);
+                    this.startNavigationBtn.setAttribute('is-navigation', 'false');
                 });
             });
 
@@ -36,6 +44,8 @@ export class PathDrawer extends HTMLElement {
                     this.dispatchEvent(new CustomEvent('selectedFeature', { detail: { data: feature } }));
                 });
             });
+
+            this.drag();
 
         } else {
             this.startNavigationBtn.setAttribute('features', '[]');
@@ -47,9 +57,6 @@ export class PathDrawer extends HTMLElement {
                 this.setAttribute('is-open', 'false');
             });
         }
-
-        // this.enableDragAndDrop();
-        this.drag();
     }
 
     connectedCallback() {
@@ -71,7 +78,7 @@ export class PathDrawer extends HTMLElement {
                 <app-navigation></app-navigation>
             </div>
             `
-            ;
+        ;
 
         this.closeIcon = this.shadow.querySelector('.close-icon');
         this.saveRouteInput = this.shadow.querySelector('app-save-route-input');
@@ -80,7 +87,6 @@ export class PathDrawer extends HTMLElement {
         this.emptyMsg = this.shadow.querySelector('app-empty-msg');
         this.startNavigationBtn = this.shadow.querySelector('app-navigation');
 
-        if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
         if (!this.hasAttribute('route-name')) this.setAttribute('route-name', 'Nuovo percorso');
         if (!this.hasAttribute('is-navigation')) this.setAttribute('is-navigation', 'false');
         this.setAttribute('is-open', 'false');
@@ -100,7 +106,7 @@ export class PathDrawer extends HTMLElement {
         });
 
         this.startNavigationBtn.addEventListener('activateNavigation', (e) => {
-            PathDrawer.features = e.detail.features;
+            this.features = e.detail.features;
             const isNavigation = e.detail.isNavigation;
             this.setAttribute('is-navigation', isNavigation + '');
         });
@@ -117,7 +123,7 @@ export class PathDrawer extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-open', 'is-navigation', 'features', 'route-name'];
+    static observedAttributes = ['is-open', 'is-navigation', 'route-name'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue && oldValue != null) {
 
@@ -127,18 +133,11 @@ export class PathDrawer extends HTMLElement {
             }
 
             if (name == 'is-navigation') {
-                const features = PathDrawer.features;
                 const isNavigation = newValue;
                 this.dispatchEvent(new CustomEvent('activateNavigation', {
-                    detail: { features, isNavigation }
+                    detail: { features: this.features, isNavigation }
                 }));
                 this.startNavigationBtn.setAttribute('is-navigation', isNavigation + '');
-            }
-
-            if (name == 'features') {
-                this.setAttribute('is-open', 'true');
-                this.startNavigationBtn.setAttribute('is-navigation', 'false');
-                this.render();
             }
 
             if (name == 'route-name') {
@@ -159,12 +158,11 @@ export class PathDrawer extends HTMLElement {
 
 
     checkFeature(feature) {
-        let features = JSON.parse(this.getAttribute('features'));
-        const i = features.findIndex(obj => {
+        const i = this.features.findIndex(obj => {
             return JSON.stringify(obj.properties) == JSON.stringify(feature.properties);
         });
-        features.splice(i, 1);
-        return features;
+        this.features.splice(i, 1);
+        return this.features;
     }
 
     drag() {
@@ -187,22 +185,20 @@ export class PathDrawer extends HTMLElement {
 
         this.div.addEventListener('drop', e => {
             e.preventDefault();
-            const features = JSON.parse(this.getAttribute('features'));
 
             const draggingItemData = JSON.parse(e.dataTransfer.getData('text/plain'));
-            const draggingItemIndex = features.findIndex(item => {
+            const draggingItemIndex = this._features.findIndex(item => {
                 return item.coordinates.longitude == draggingItemData.coordinates.longitude;
             });
 
             const nearestInfobox = this.getNearestInfobox(e.clientY);
-            const nearestInfoboxIndex = features.findIndex(item => {
+            const nearestInfoboxIndex = this._features.findIndex(item => {
                 return item.coordinates.longitude == JSON.parse(nearestInfobox.getAttribute('data')).coordinates.longitude;
             });
 
-            features.splice(draggingItemIndex, 1);
-            nearestInfoboxIndex != -1 ? features.splice(nearestInfoboxIndex, 0, draggingItemData) : features.add(draggingItemData);
-
-            this.setAttribute('features', JSON.stringify(features));
+            this._features.splice(draggingItemIndex, 1);
+            nearestInfoboxIndex != -1 ? this._features.splice(nearestInfoboxIndex, 0, draggingItemData) : this._features.add(draggingItemData);
+            this.features = this._features;
         });
     }
 
