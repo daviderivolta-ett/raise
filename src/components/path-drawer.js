@@ -25,6 +25,7 @@ export class PathDrawer extends HTMLElement {
             this.generateInfobox(this.div, this.features);
 
             this.allInfoboxes = this.shadow.querySelectorAll('app-path-infobox');
+            this.pathTools = this.shadow.querySelector('app-path-tools');
             this.allInfoboxes.forEach(infobox => {
                 infobox.addEventListener('goto', (e) => {
                     this.dispatchEvent(new CustomEvent('goto', { detail: e.detail.coordinates }));
@@ -41,6 +42,7 @@ export class PathDrawer extends HTMLElement {
 
             this.allInfoboxes.forEach(infobox => {
                 infobox.addEventListener('selectedFeature', event => {
+                    this.pathTools.setAttribute('is-open', 'false');
                     let feature = event.detail.data;
                     this.dispatchEvent(new CustomEvent('selectedFeature', { detail: { data: feature } }));
                 });
@@ -49,7 +51,8 @@ export class PathDrawer extends HTMLElement {
             this.drag();
 
         } else {
-            this.startNavigationBtn.setAttribute('features', '[]');
+            this.startNavigationBtn.setAttribute('is-active', 'false');
+            this.startNavigationBtn.setAttribute('is-navigation', 'false');
             this.emptyMsg = document.createElement('app-empty-msg')
             this.div.append(this.emptyMsg);
 
@@ -69,21 +72,25 @@ export class PathDrawer extends HTMLElement {
                 <div class="header">
                     <app-save-route-input></app-save-route-input>
                     <div class="header-tools">
-                        <app-save-route-btn></app-save-route-btn>
+                        <div class="path-tools-icon">
+                            <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                        </div>
                         <div class="close-icon">
                             <span class="material-symbols-outlined">close</span>
                         </div>
                     </div>
                 </div>
+                <app-path-tools></app-path-tools>
                 <div class="info-container"><app-empty-msg></app-empty-msg></div>
                 <app-navigation></app-navigation>
             </div>
             `
         ;
 
+        this.pathToolsIcon = this.shadow.querySelector('.path-tools-icon');
+        this.pathTools = this.shadow.querySelector('app-path-tools');
         this.closeIcon = this.shadow.querySelector('.close-icon');
         this.saveRouteInput = this.shadow.querySelector('app-save-route-input');
-        this.saveRouteBtn = this.shadow.querySelector('app-save-route-btn');
         this.div = this.shadow.querySelector('.info-container');
         this.emptyMsg = this.shadow.querySelector('app-empty-msg');
         this.startNavigationBtn = this.shadow.querySelector('app-navigation');
@@ -93,12 +100,21 @@ export class PathDrawer extends HTMLElement {
         this.setAttribute('is-open', 'false');
 
         // js
-        this.saveRouteBtn.addEventListener('saveCustomRoute', () => {
+        this.pathToolsIcon.addEventListener('click', () => {
+            const isOpen = JSON.parse(this.pathTools.getAttribute('is-open'));
+            this.pathTools.setAttribute('is-open', !isOpen + '');
+        });
+
+        this.pathTools.addEventListener('saveCustomRoute', () => {
             const name = this.saveRouteInput.getAttribute('value');
             let customRoute = {};
             customRoute.name = name;
             customRoute.features = this.features;
             this.dispatchEvent(new CustomEvent('saveCustomRoute', { detail: { customRoute } }));
+        });
+
+        this.pathTools.addEventListener('flush', () => {
+            this.features = [];
         });
 
         this.closeIcon.addEventListener('click', () => {
@@ -189,6 +205,7 @@ export class PathDrawer extends HTMLElement {
 
             infobox.addEventListener('dragstart', e => {
                 e.dataTransfer.setData('text/plain', infobox.getAttribute('data'));
+                this.pathTools.setAttribute('is-open', 'false');
                 infobox.classList.add('dragging');
             });
 

@@ -35,6 +35,8 @@ import './src/components/play-info-btn.js';
 import './src/components/goto-btn.js';
 import './src/components/add-to-route-btn.js';
 import './src/components/path-drawer.js';
+import './src/components/path-tools.js';
+import './src/components/flush-btn.js';
 import './src/components/empty-path-drawer-msg.js';
 import './src/components/path-infobox.js';
 import './src/components/save-route-btn.js';
@@ -179,7 +181,7 @@ document.addEventListener('keydown', (event) => {
   autocomplete.setAttribute('last-key-pressed', event.key);
 });
 
-// Layer drawer creation
+// Drawer content
 try {
   let snackbar = document.createElement('app-snackbar');
   snackbar.setAttribute('type', 'loader');
@@ -241,7 +243,6 @@ try {
         pathDrawer.setAttribute('is-open', 'true');
       });
     });
-    ////
 
     // Click on map
     map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
@@ -288,10 +289,6 @@ try {
       }
     });
 
-
-
-
-
     // Local storage
     let activeLayers = [];
     if (localStorage.customRoute && JSON.parse(localStorage.customRoute).features.length != 0) {
@@ -299,7 +296,6 @@ try {
       mapControls.setAttribute('is-route', 'true');
       let customRoute = JSON.parse(localStorage.customRoute);
       pathDrawer.setAttribute('route-name', customRoute.name);
-      // pathDrawer.setAttribute('features', JSON.stringify(customRoute.features));
       pathDrawer.features = customRoute.features;
 
       const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
@@ -317,12 +313,6 @@ try {
       activeLayers = [...new Set(activeLayers)];
       drawerContent.input = activeLayers;
     }
-
-
-
-
-
-
   });
 
 } catch (error) {

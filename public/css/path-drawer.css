@@ -65,12 +65,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 48px;
     padding: 8px 24px;
     border-bottom: 1px solid #DBDCE0;
     background-color: #FFFFFF;
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 2;
 }
 
 .header .title {
@@ -81,7 +82,8 @@
     display: flex;
 }
 
-.close-icon {
+.close-icon,
+.path-tools-icon {
     cursor: pointer;
     display: flex;
     justify-content: center;
