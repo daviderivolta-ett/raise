@@ -92,6 +92,7 @@ export default class CesiumViewer {
 
         let cartesian;
         let coordinates;
+
         if (pickedEntity.primitive._position) {
             cartesian = pickedEntity.primitive._position;
             coordinates = this.cartesianToCartographic(cartesian);
@@ -133,8 +134,10 @@ export default class CesiumViewer {
 
     cartesianToCartographic(cartesian) {
         const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-        const longitude = Cesium.Math.toDegrees(cartographic.longitude);
-        const latitude = Cesium.Math.toDegrees(cartographic.latitude);
+        let longitude = Cesium.Math.toDegrees(cartographic.longitude);
+        let latitude = Cesium.Math.toDegrees(cartographic.latitude);
+        longitude = parseFloat(longitude.toFixed(8));
+        latitude = parseFloat(latitude.toFixed(8));
         return { longitude, latitude };
     }
 

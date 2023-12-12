@@ -106,7 +106,6 @@ infoDrawer.addEventListener('goto', event => {
 });
 
 infoDrawer.addEventListener('addToRoute', (event) => {
-  // let features = JSON.parse(pathDrawer.getAttribute('features'));
   let features = pathDrawer.features;
   let feature = event.detail.data;
 
@@ -119,7 +118,6 @@ infoDrawer.addEventListener('addToRoute', (event) => {
     main.append(snackbar);
   }
 
-  // pathDrawer.setAttribute('features', JSON.stringify(features));
   pathDrawer.features = features;
   pathDrawer.setAttribute('is-open', 'true');
 });
@@ -253,12 +251,12 @@ try {
           let coordinates = map.getFeatureCoordinates(f);
           let layerNameToFetch = map.getLayerToFind(f);
           let foundLayer = map.filterLayerByName(jsonData, layerNameToFetch);
-  
+
           let properties = f.properties;
           let propertiesToFind = foundLayer.relevant_properties;
           let layerName = foundLayer.name;
           let relevantProperties = map.getRelevantProperties(properties, propertiesToFind, layerName);
-  
+
           let feature = {};
           feature.coordinates = coordinates;
           feature.layer = foundLayer;
@@ -267,6 +265,15 @@ try {
           features.push(feature);
         });
 
+        let pathFeatures = pathDrawer.features;
+        let path = [...pathFeatures];
+        features.forEach(feature => {
+          if (!path.some(item => item.coordinates.longitude == feature.coordinates.longitude)) {
+              path.push(feature);
+          }
+        });
+        pathDrawer.features = path;
+        pathDrawer.setAttribute('is-open', 'true');
       });
     });
     ////
@@ -325,7 +332,7 @@ try {
 
     // Local storage
     let activeLayers = [];
-    if (localStorage.customRoute) {
+    if (localStorage.customRoute && JSON.parse(localStorage.customRoute).features.length != 0) {
       pathDrawerToggle.setAttribute('is-open', 'true');
       mapControls.setAttribute('is-route', 'true');
       let customRoute = JSON.parse(localStorage.customRoute);
