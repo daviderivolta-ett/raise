@@ -20,7 +20,8 @@ export class PathDrawer extends HTMLElement {
         this.div.innerHTML = '';
 
         if (this._features.length != 0) {
-            this.startNavigationBtn.setAttribute('features', JSON.stringify(this.features));
+            this.startNavigationBtn.setAttribute('is-active', 'true');
+            this.startNavigationBtn.setAttribute('is-navigation', 'false');
             this.generateInfobox(this.div, this.features);
 
             this.allInfoboxes = this.shadow.querySelectorAll('app-path-infobox');
@@ -105,7 +106,6 @@ export class PathDrawer extends HTMLElement {
         });
 
         this.startNavigationBtn.addEventListener('activateNavigation', (e) => {
-            this.features = e.detail.features;
             const isNavigation = e.detail.isNavigation;
             this.setAttribute('is-navigation', isNavigation + '');
         });

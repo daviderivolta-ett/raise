@@ -17,7 +17,6 @@ export class NavigationBtn extends HTMLElement {
     }
 
     connectedCallback() {
-        if (!this.hasAttribute('features')) this.setAttribute('features', '[]');
         if (!this.hasAttribute('is-active')) this.setAttribute('is-active', 'false');
         if (!this.hasAttribute('is-navigation')) this.setAttribute('is-navigation', 'false');
 
@@ -26,7 +25,7 @@ export class NavigationBtn extends HTMLElement {
             `
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             `
-            ;
+        ;
 
         this.button = document.createElement('button');
         this.button.innerHTML =
@@ -34,7 +33,7 @@ export class NavigationBtn extends HTMLElement {
             <span class="material-symbols-outlined">directions</span>
             <span class="label">Avvia percorso</span>
             `
-            ;
+        ;
 
         this.shadow.append(this.button);
 
@@ -58,20 +57,14 @@ export class NavigationBtn extends HTMLElement {
     attributeChangedCallback(name, oldvalue, newValue) {
         if (newValue != oldvalue && oldvalue != null && newValue != null) {
 
-            if (name == 'features') {
-                newValue == '[]' ? this.setAttribute('is-active', 'false') : this.setAttribute('is-active', 'true');
-            }
-
             if (name == 'is-active') {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
             }
 
             if (name == 'is-navigation') {
-                const features = JSON.parse(this.getAttribute('features'));
                 this.dispatchEvent(new CustomEvent('activateNavigation', {
-                    detail: { features, isNavigation: newValue }
+                    detail: { isNavigation: newValue }
                 }));
-
                 this.render();
             }
 
