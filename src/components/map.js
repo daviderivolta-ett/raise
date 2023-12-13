@@ -64,7 +64,7 @@ export default class CesiumViewer {
                     coordinates.longitude = feature.geometry.coordinates[0][0];
                     coordinates.latitude = feature.geometry.coordinates[0][1];
                     break;
-            
+
                 default:
                     coordinates.longitude = feature.geometry.coordinates[0];
                     coordinates.latitude = feature.geometry.coordinates[1];
@@ -72,7 +72,7 @@ export default class CesiumViewer {
             }
 
             return coordinates;
-        }        
+        }
     }
 
     onClick(movement, jsonData) {
@@ -200,7 +200,6 @@ export default class CesiumViewer {
                     } else {
                         risultati[obj.display_name] = object[obj.property_name];
                     }
-                    
                 }
             }
 

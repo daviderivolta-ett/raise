@@ -6,6 +6,7 @@ import * as Cesium from 'cesium';
 import { getPosition } from './src/utils/position.js';
 import { filterTag, filterLayersByTagName } from './src/utils/filter.js';
 import { fetchJsonData, fetchSvgIcon } from './src/settings.js';
+import { createRandomPopulation, evolvePopulation } from './src/utils/tsp.js';
 
 // Import data
 const CATEGORIES_URL = './json/categories.json';
@@ -172,6 +173,23 @@ pathDrawer.addEventListener('activateNavigation', (e) => {
   }
 });
 
+pathDrawer.addEventListener('sort', event => {
+  getPosition().then(p => {
+    let features = event.detail.features;
+    let position = {};
+    position.longitude = p.coords.longitude;
+    position.latitude = p.coords.latitude;
+
+    const populationSize = 100;
+    const generations = 300;
+    const initialPopulation = createRandomPopulation(features, populationSize);
+    initialPopulation.forEach(path => path.unshift({ coordinates: position }));
+    const optimizedPath = evolvePopulation(initialPopulation, generations);
+    const path = optimizedPath.slice(1);
+    pathDrawer.features = path;
+  });
+});
+
 // Autocomplete behaviour
 autocomplete.addEventListener('autocompleteSelected', (event) => {
   const choosenAutocomplete = event.detail.newValue;
@@ -237,7 +255,7 @@ try {
         let path = [...pathFeatures];
         features.forEach(feature => {
           if (!path.some(item => item.coordinates.longitude == feature.coordinates.longitude)) {
-              path.push(feature);
+            path.push(feature);
           }
         });
         pathDrawer.features = path;
@@ -327,7 +345,6 @@ try {
 // Get user position
 try {
   getPosition().then(position => {
-    console.log(position);
     map.setCameraToUserPosition(position);
     map.createUserPin(position);
     mapControls.addEventListener('centerPosition', () => map.setCameraToUserPosition(position));
