@@ -22,6 +22,7 @@ import './src/components/drawer-toggle.js';
 import './src/components/settings-icon.js';
 import './src/components/theme-icon.js';
 import './src/components/search.js';
+import './src/components/searchbar.js';
 import './src/components/autocomplete.js';
 import './src/components/drawer.js';
 import './src/components/accordion.js';
@@ -55,7 +56,9 @@ import './src/components/submit-tags-btn.js';
 
 // DOM nodes
 const main = document.querySelector('main');
+const menuToggle = document.querySelector('app-drawer-toggle');
 const drawer = document.querySelector('#drawer');
+const search = document.querySelector('app-search');
 const searchBar = document.querySelector('app-searchbar');
 const drawerTitle = document.querySelector('#drawer-title');
 const autocomplete = document.querySelector('app-autocomplete');
@@ -80,6 +83,14 @@ map.fetchThemes(THEMES_URL)
 rail.addEventListener('themeChanged', (event) => {
   const theme = event.detail.newValue;
   map.changeTheme(theme);
+});
+
+// Menu toggle
+menuToggle.addEventListener('drawerToggled', event => {
+  const isOpen = event.detail.isOpen;
+  search.setAttribute('is-active', isOpen + '');
+  // searchBar.setAttribute('is-active', isOpen + '');
+  drawerContent.setAttribute('is-active', isOpen + '');
 });
 
 // Rail behaviour
@@ -191,14 +202,14 @@ pathDrawer.addEventListener('sort', event => {
 });
 
 // Autocomplete behaviour
-autocomplete.addEventListener('autocompleteSelected', (event) => {
-  const choosenAutocomplete = event.detail.newValue;
-  searchBar.setAttribute('value', choosenAutocomplete);
-});
+// autocomplete.addEventListener('autocompleteSelected', (event) => {
+//   const choosenAutocomplete = event.detail.newValue;
+//   searchBar.setAttribute('value', choosenAutocomplete);
+// });
 
-document.addEventListener('keydown', (event) => {
-  autocomplete.setAttribute('last-key-pressed', event.key);
-});
+// document.addEventListener('keydown', (event) => {
+//   autocomplete.setAttribute('last-key-pressed', event.key);
+// });
 
 // Drawer content
 try {
@@ -207,7 +218,7 @@ try {
   main.append(snackbar);
 
   fetchJsonData(CATEGORIES_URL).then(jsonData => {
-    drawer.append(drawerContent);
+    main.append(drawerContent);
     drawerContent.data = jsonData;
 
     drawerContent.addEventListener('activeLayers', async (event) => {
@@ -271,6 +282,7 @@ try {
       if (feature == undefined) {
         infoDrawer.setAttribute('is-open', 'false');
         pathDrawer.setAttribute('is-open', 'false');
+        menuToggle.setAttribute('is-open', 'false');
         return;
       }
 
@@ -279,34 +291,38 @@ try {
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
     // Search bar
-    searchBar.addEventListener('searchValueChanged', (event) => {
-      const valueToSearch = event.detail.newValue.toLowerCase();
-      drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
+    search.data = jsonData;
 
-      let dataToFilter = JSON.parse(JSON.stringify(jsonData));
+    // searchBar.addEventListener('searchValueChanged', (event) => {
+    //   const valueToSearch = event.detail.newValue.toLowerCase();
+    //   drawerContent.setAttribute('title', `Livelli per: ${valueToSearch}`);
+    //   drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
 
-      filterLayersByTagName(dataToFilter, valueToSearch);
+    //   let dataToFilter = JSON.parse(JSON.stringify(jsonData));
 
-      if (valueToSearch == '') {
-        drawerContent.data = jsonData;
-        drawerTitle.textContent = 'Categorie';
-      } else {
-        drawerContent.data = dataToFilter;
+    //   filterLayersByTagName(dataToFilter, valueToSearch);
 
-        if (!drawerContent.innerHTML) {
-          const emptyMsg = document.createElement('p');
-          emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
-          drawerContent.append(emptyMsg)
-        }
-      }
+    //   if (valueToSearch == '') {
+    //     drawerContent.data = jsonData;
+    //     drawerContent.setAttribute('title', 'Categorie');
+    //     drawerTitle.textContent = 'Categorie';
+    //   } else {
+    //     drawerContent.data = dataToFilter;
 
-      if (valueToSearch.length >= 2) {
-        const foundTags = filterTag(jsonData, valueToSearch);
-        autocomplete.setAttribute('data', JSON.stringify(foundTags));
-      } else {
-        autocomplete.setAttribute('data', JSON.stringify(''));
-      }
-    });
+    //     if (!drawerContent.innerHTML) {
+    //       const emptyMsg = document.createElement('p');
+    //       emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
+    //       drawerContent.append(emptyMsg)
+    //     }
+    //   }
+
+    //   if (valueToSearch.length >= 2) {
+    //     const foundTags = filterTag(jsonData, valueToSearch);
+    //     autocomplete.setAttribute('data', JSON.stringify(foundTags));
+    //   } else {
+    //     autocomplete.setAttribute('data', JSON.stringify(''));
+    //   }
+    // });
 
     // Local storage
     let activeLayers = [];

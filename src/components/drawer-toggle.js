@@ -22,11 +22,8 @@ export class DrawerToggle extends HTMLElement {
             <span class="icon">
                 <span class="material-symbols-outlined">apps</span>
             </span>
-            <span class="label">
-                Layer
-            </span>
             `
-            ;
+        ;
 
         this.shadow.append(this.button);
 
@@ -49,13 +46,12 @@ export class DrawerToggle extends HTMLElement {
 
     static observedAttributes = ['is-open'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'is-open') {
+        if (newValue != oldValue) {
 
-            const event = new CustomEvent('drawerToggled', {
-                detail: { name, oldValue, newValue }
-            });
-
-            this.dispatchEvent(event);
+            if (name == 'is-open') {
+                const event = new CustomEvent('drawerToggled', { detail: { isOpen: newValue } });
+                this.dispatchEvent(event);
+            }
         }
     }
 }

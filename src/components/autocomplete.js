@@ -1,46 +1,51 @@
 export class Autocomplete extends HTMLElement {
+    selectedSpan = 0;
+    _input;
+
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: 'closed' });
+        this.shadow = this.attachShadow({ mode: 'open' });
+        this._input = [];
+    }
+
+    get input() {
+        return this._input;
+    }
+
+    set input(input) {
+        this._input = input;
+        this.render();
     }
 
     render() {
-        // Empty list
-        this.tags = JSON.parse(this.getAttribute('data'));
+        Autocomplete.selectedSpan = 0;
         this.div.innerHTML = '';
 
-        // Create list
-        if (this.tags) {
-            for (let i = 0; i < this.tags.length; i++) {
-                this.span = document.createElement('span');
-                this.span.textContent = this.tags[i];
-                this.span.setAttribute('name', this.tags[i]);
-                this.span.setAttribute('tabindex', i + 1);
-                this.div.append(this.span);
-            }
+        if (this.input.length == 0) return;
+
+        for (let i = 0; i < this.input.length; i++) {
+            this.span = document.createElement('span');
+            this.span.textContent = this.input[i];
+            this.span.setAttribute('name', this.input[i]);
+            this.span.setAttribute('tabindex', i + 1);
+            this.div.append(this.span);
         }
 
-        // List element behaviour on click
         this.spans = this.shadow.querySelectorAll('span');
         this.spans.forEach(span => {
-
             span.addEventListener('click', () => {
                 this.setAttribute('selected', span.getAttribute('name'));
             });
 
+            span.addEventListener('keydown', event => {
+                this.setAttribute('last-key', event.key);
+            });
         });
     }
 
     connectedCallback() {
         // html
-        this.shadow.innerHTML =
-            `
-            <div></div>
-            `
-            ;
-
-        this.selectedSpan = 0;
-
+        this.shadow.innerHTML = `<div></div>`;
         this.div = this.shadow.querySelector('div');
         this.setAttribute('selected', '');
 
@@ -51,13 +56,11 @@ export class Autocomplete extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['data', 'selected', 'last-key-pressed'];
+    static observedAttributes = ['selected', 'last-key'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'data' && newValue != oldValue) {
-            this.render();
-        }
+        // if (oldValue != null) {
 
-        if (name == 'selected' && newValue != oldValue) {
+        if (name == 'selected') {
             const event = new CustomEvent('autocompleteSelected', {
                 detail: { name, oldValue, newValue }
             });
@@ -66,35 +69,28 @@ export class Autocomplete extends HTMLElement {
             this.div.innerHTML = '';
         }
 
-        if (name == 'last-key-pressed' && newValue != 'Enter' && newValue != 'ArrowDown' && newValue != 'ArrowUp') {
-            this.selectedSpan = 0;
-            this.render();
-        }
-
-        if (name == 'last-key-pressed' && newValue == 'ArrowUp' || newValue == 'ArrowDown') {
-
+        if (name == 'last-key') {
             if (newValue == 'ArrowDown') {
-                this.selectedSpan++;
-                if (this.selectedSpan == this.spans.length + 1) {
-                    this.selectedSpan = 1;
-                }
-
-                this.shadow.querySelector(`span[tabindex="${this.selectedSpan}"]`).focus();
+                Autocomplete.selectedSpan++;
+                if (Autocomplete.selectedSpan == this.spans.length + 1) Autocomplete.selectedSpan = 1;
+                this.shadow.querySelector(`span[tabIndex="${Autocomplete.selectedSpan}"]`).focus();
             }
 
             if (newValue == 'ArrowUp') {
-                this.selectedSpan++;
-                if (this.selectedSpan == this.spans.length + 1) {
-                    this.selectedSpan = 1;
+                Autocomplete.selectedSpan--;
+                if (Autocomplete.selectedSpan == 0) {
+                    this.dispatchEvent(new CustomEvent('changeFocus'));
+                } else {
+                    this.shadow.querySelector(`span[tabIndex="${Autocomplete.selectedSpan}"]`).focus();
                 }
-
-                this.shadow.querySelector(`span[tabindex="${this.selectedSpan}"]`).focus();
             }
-        }
 
-        if (name == 'last-key-pressed' && newValue == 'Enter') {
-            this.setAttribute('selected', this.shadow.activeElement.getAttribute('name'));
-            this.div.innerHTML = '';
+            if (newValue == 'Enter') {
+                this.dispatchEvent(new CustomEvent('selectedTag', {
+                    detail: { selectedTag: this.shadow.activeElement.getAttribute('name') }
+                }));
+                this.div.innerHTML = '';
+            }
         }
     }
 }

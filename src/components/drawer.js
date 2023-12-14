@@ -119,11 +119,39 @@ export class Drawer extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
+            <h3></h3>
             <div id="categories-section"></div>
             `
-            ;
+        ;
 
         this.div = this.shadow.querySelector('#categories-section');
+        this.text = this.shadow.querySelector('h3');
+        if (!this.hasAttribute('is-active')) this.setAttribute('is-active', 'false');
+        if (!this.hasAttribute('title')) this.setAttribute('title', 'Categorie');
+
+        this.text.innerText = this.getAttribute('title');
+
+        // css
+        const style = document.createElement('link');
+        style.setAttribute('rel', 'stylesheet');
+        style.setAttribute('href', './css/drawer.css');
+        this.shadow.append(style);
+    }
+
+    static observedAttributes = ['is-active', 'title'];
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (oldValue != newValue && oldValue != null) {
+
+            if (name == 'is-active') {
+                let isActive = JSON.parse(newValue);
+                isActive == true ? this.classList.add('visible') : this.classList.remove('visible');
+            }
+
+            if (name == 'title') {
+                this.text.innerText = this.getAttribute('title');
+            }
+
+        }
     }
 
     filterLayersBySelectedTags(dataToFilter, array) {
