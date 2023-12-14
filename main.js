@@ -28,6 +28,7 @@ import './src/components/autocomplete.js';
 import './src/components/carousel.js';
 import './src/components/layer-chip.js';
 import './src/components/bench.js';
+import './src/components/bench-layer.js';
 import './src/components/drawer.js';
 import './src/components/accordion.js';
 import './src/components/checkbox-list.js';

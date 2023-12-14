@@ -138,7 +138,7 @@ main#onboard {
   width: 100%;
   padding: 24px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: 16px;
   flex-wrap: nowrap;

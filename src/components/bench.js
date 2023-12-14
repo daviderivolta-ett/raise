@@ -31,9 +31,9 @@ export class Bench extends HTMLElement {
     render() {
         this.div.innerHTML = '';
         this.data.forEach(layer => {
-            let p = document.createElement('p');
-            p.innerText = layer.name;
-            this.div.append(p);
+            let benchLayer = document.createElement('app-bench-layer');
+            benchLayer.setAttribute('title', layer.name);
+            this.div.append(benchLayer);
         });
     }
 
