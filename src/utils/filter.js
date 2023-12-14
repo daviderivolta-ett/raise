@@ -59,3 +59,34 @@ export const filterTag = (data, value) => {
     const uniqueFoundTags = [...new Set(foundTags)];
     return uniqueFoundTags;
 }
+
+export const filterLayersByTags = (dataToFilter, array) => {
+    const filteredData = {
+        categories: []
+    };
+
+    dataToFilter.categories.forEach(category => {
+        const filteredGroups = category.groups.map(group => {
+            const filteredLayers = group.layers.filter(layer => {
+                if (layer.tags) {
+                    return array.some(value => layer.tags.includes(value));
+                }
+                return false;
+            });
+
+            return {
+                ...group,
+                layers: filteredLayers
+            };
+        }).filter(filteredGroup => filteredGroup.layers.length > 0);
+
+        if (filteredGroups.length > 0) {
+            filteredData.categories.push({
+                ...category,
+                groups: filteredGroups
+            });
+        }
+    });
+
+    return filteredData;
+}

@@ -30,8 +30,7 @@ export default class CesiumViewer {
         const themeLayerToRemove = this.viewer.imageryLayers._layers[1];
         this.viewer.imageryLayers.remove(themeLayerToRemove);
 
-        if (theme != '') {
-            theme = JSON.parse(theme);
+        if (Object.keys(theme).length != 0) {
             const style = this.getImageryProvider(theme.url, theme.layer, theme.credit);
             this.viewer.imageryLayers.addImageryProvider(style);
         }

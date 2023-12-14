@@ -18,7 +18,7 @@ export class Rail extends HTMLElement {
                 <div class="menu">
                     <img src="/images/RAISE-pictogram-neg.svg" alt="Logo di RAISE" class="logo">
                     <app-drawer-toggle></app-drawer-toggle>
-                    <app-icon-btn link="/"></app-icon-btn>
+                    <app-link link="/"></app-link>
                 </div>
             <app-theme-icon></app-theme-icon>
             </div>

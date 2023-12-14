@@ -4,7 +4,7 @@ import * as Cesium from 'cesium';
 
 // Import methods
 import { getPosition } from './src/utils/position.js';
-import { filterTag, filterLayersByTagName } from './src/utils/filter.js';
+import { filterTag, filterLayersByTagName, filterLayersByTags } from './src/utils/filter.js';
 import { fetchJsonData, fetchSvgIcon } from './src/settings.js';
 import { createRandomPopulation, evolvePopulation } from './src/utils/tsp.js';
 
@@ -19,11 +19,15 @@ import './service-worker.js';
 import './src/components/map.js';
 import './src/components/rail.js';
 import './src/components/drawer-toggle.js';
-import './src/components/settings-icon.js';
+import './src/components/settings.js';
+import './src/components/link-icon.js';
 import './src/components/theme-icon.js';
 import './src/components/search.js';
 import './src/components/searchbar.js';
 import './src/components/autocomplete.js';
+import './src/components/carousel.js';
+import './src/components/layer-chip.js';
+import './src/components/bench.js';
 import './src/components/drawer.js';
 import './src/components/accordion.js';
 import './src/components/checkbox-list.js';
@@ -57,11 +61,11 @@ import './src/components/submit-tags-btn.js';
 // DOM nodes
 const main = document.querySelector('main');
 const menuToggle = document.querySelector('app-drawer-toggle');
+const settings = document.querySelector('app-settings');
 const drawer = document.querySelector('#drawer');
 const search = document.querySelector('app-search');
-const searchBar = document.querySelector('app-searchbar');
-const drawerTitle = document.querySelector('#drawer-title');
-const autocomplete = document.querySelector('app-autocomplete');
+const carousel = document.querySelector('app-carousel');
+const bench = document.querySelector('app-bench');
 const drawerContent = document.querySelector('app-drawer');
 const pathDrawer = document.querySelector('app-path-drawer');
 const pathDrawerToggle = document.querySelector('app-path-drawer-toggle');
@@ -78,7 +82,14 @@ mapControls.addEventListener('zoomOut', () => map.viewer.camera.zoomOut(1000.0))
 
 // Theme button
 map.fetchThemes(THEMES_URL)
-  .then(themes => rail.setAttribute('themes', JSON.stringify(themes)));
+  .then(themes => {
+    rail.setAttribute('themes', JSON.stringify(themes));
+    settings.themes = themes;
+  });
+
+settings.addEventListener('themeChanged', event => {
+  map.changeTheme(event.detail.theme);
+});
 
 rail.addEventListener('themeChanged', (event) => {
   const theme = event.detail.newValue;
@@ -91,6 +102,7 @@ menuToggle.addEventListener('drawerToggled', event => {
   search.setAttribute('is-active', isOpen + '');
   // searchBar.setAttribute('is-active', isOpen + '');
   drawerContent.setAttribute('is-active', isOpen + '');
+  settings.setAttribute('is-active', isOpen);
 });
 
 // Rail behaviour
@@ -201,6 +213,16 @@ pathDrawer.addEventListener('sort', event => {
   });
 });
 
+// Active layers
+carousel.addEventListener('activeLayers', event => {
+  map.handleCheckbox(event.detail.activeLayers, clusterIcons);
+});
+
+// Carousel
+carousel.addEventListener('benchlayer', event => {
+  bench.input = event.detail.layer;
+});
+
 // Autocomplete behaviour
 // autocomplete.addEventListener('autocompleteSelected', (event) => {
 //   const choosenAutocomplete = event.detail.newValue;
@@ -217,7 +239,21 @@ try {
   snackbar.setAttribute('type', 'loader');
   main.append(snackbar);
 
-  fetchJsonData(CATEGORIES_URL).then(jsonData => {
+  fetchJsonData(CATEGORIES_URL).then(async jsonData => {
+    let filteredData = filterLayersByTags(jsonData, JSON.parse(localStorage.selectedTags));
+    carousel.data = filteredData;
+    // let layers = [];
+
+    // filteredData.categories.forEach(category => {
+    //   category.groups.forEach(group => {
+    //     group.layers.forEach(layer => {
+    //       layers.push(layer);
+    //     });
+    //   });
+    // });
+
+    // await map.handleCheckbox(layers, clusterIcons);
+
     main.append(drawerContent);
     drawerContent.data = jsonData;
 
@@ -292,37 +328,6 @@ try {
 
     // Search bar
     search.data = jsonData;
-
-    // searchBar.addEventListener('searchValueChanged', (event) => {
-    //   const valueToSearch = event.detail.newValue.toLowerCase();
-    //   drawerContent.setAttribute('title', `Livelli per: ${valueToSearch}`);
-    //   drawerTitle.textContent = `Livelli per: ${valueToSearch}`;
-
-    //   let dataToFilter = JSON.parse(JSON.stringify(jsonData));
-
-    //   filterLayersByTagName(dataToFilter, valueToSearch);
-
-    //   if (valueToSearch == '') {
-    //     drawerContent.data = jsonData;
-    //     drawerContent.setAttribute('title', 'Categorie');
-    //     drawerTitle.textContent = 'Categorie';
-    //   } else {
-    //     drawerContent.data = dataToFilter;
-
-    //     if (!drawerContent.innerHTML) {
-    //       const emptyMsg = document.createElement('p');
-    //       emptyMsg.innerText = `Nessun livello trovato per ${valueToSearch}`;
-    //       drawerContent.append(emptyMsg)
-    //     }
-    //   }
-
-    //   if (valueToSearch.length >= 2) {
-    //     const foundTags = filterTag(jsonData, valueToSearch);
-    //     autocomplete.setAttribute('data', JSON.stringify(foundTags));
-    //   } else {
-    //     autocomplete.setAttribute('data', JSON.stringify(''));
-    //   }
-    // });
 
     // Local storage
     let activeLayers = [];

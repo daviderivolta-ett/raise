@@ -5,7 +5,7 @@ export class Search extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        if (!this.hasAttribute('is-active')) this.setAttribute('is-active', 'false');
+        // if (!this.hasAttribute('is-active')) this.setAttribute('is-active', 'false');
     }
 
     get data() {
@@ -80,15 +80,15 @@ export class Search extends HTMLElement {
         });
     }
 
-    static observedAttributes = ['is-active'];
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue && oldValue != null) {
-            if (name == 'is-active') {
-                let isActive = JSON.parse(this.getAttribute('is-active'));
-                isActive == true ? this.classList.add('visible') : this.classList.remove('visible');
-            }
-        }
-    }
+    // static observedAttributes = ['is-active'];
+    // attributeChangedCallback(name, oldValue, newValue) {
+    //     if (newValue != oldValue && oldValue != null) {
+    //         if (name == 'is-active') {
+    //             let isActive = JSON.parse(this.getAttribute('is-active'));
+    //             isActive == true ? this.classList.add('visible') : this.classList.remove('visible');
+    //         }
+    //     }
+    // }
 
     filterLayersByTagName(dataToFilter, value) {
         let filteredData = JSON.parse(JSON.stringify(dataToFilter));

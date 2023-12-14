@@ -1,0 +1,22 @@
+:host {
+    user-select: none;    
+}
+
+.chip {
+    white-space: nowrap;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 50px;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    cursor: pointer;
+}

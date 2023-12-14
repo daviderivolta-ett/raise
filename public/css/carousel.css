@@ -1,0 +1,12 @@
+:host {
+    width: -webkit-fill-available;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow: hidden;
+}
+
+:host::-webkit-scrollbar {
+    width: 0.5px;
+}

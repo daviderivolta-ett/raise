@@ -40,12 +40,6 @@ export class Searchbar extends HTMLElement {
         if (!this.hasAttribute('is-active')) this.setAttribute('is-active', 'false');
         if (!this.hasAttribute('value')) this.setAttribute('value', '');
 
-        // css
-        const style = document.createElement('link');
-        style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/searchbar.css');
-        this.shadow.append(style);
-
         // js
         this.input.addEventListener('input', event => {
             this.setAttribute('value', this.input.value);
@@ -56,6 +50,12 @@ export class Searchbar extends HTMLElement {
                 detail: { lastKey: event.key }
             }));
         });
+
+        // css
+        const style = document.createElement('link');
+        style.setAttribute('rel', 'stylesheet');
+        style.setAttribute('href', './css/searchbar.css');
+        this.shadow.append(style);
     }
 
     static observedAttributes = ['value', 'is-active'];

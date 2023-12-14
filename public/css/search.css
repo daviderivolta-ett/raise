@@ -1,12 +1,13 @@
 :host {
-    position: fixed;
-    top: 88px;
-    left: -360px;
-    width: 360px;
+    /* position: fixed;
+    top: 24px;
+    left: 72px; */
+    width: 300px;
+    min-width: 300px;
     background-color: white;
     transition: .2s ease-in-out;
 }
 
-:host(.visible) {
+/* :host(.visible) {
     left: 24px;
-}
+} */

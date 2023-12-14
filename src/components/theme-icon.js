@@ -1,24 +1,39 @@
 export class ThemeIcon extends HTMLElement {
+    _themes;
+    _theme;
+    _themeIndex;
+
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
+        this.themeIndex = 0;
     }
 
-    render() {
-        const themes = JSON.parse(this.getAttribute('themes'));
+    get themes() {
+        return this._themes;
+    }
 
-        let currentThemeIndex = 0;
-        this.setAttribute('current-theme', '');
+    set themes(themes) {
+        this._themes = themes;
+    }
 
-        this.button.addEventListener('click', () => {
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            if (currentThemeIndex === 0) {
-                this.setAttribute('current-theme', '');
-            } else {
-                const theme = JSON.stringify(themes[currentThemeIndex]);
-                this.setAttribute('current-theme', theme);
-            }
-        })
+    get theme() {
+        return this._theme;
+    }
+
+    set theme(theme) {
+        this._theme = theme;
+        this.dispatchEvent(new CustomEvent('themeChanged', {
+            detail: { theme: this.theme }
+        }));
+    }
+
+    get themeIndex() {
+        return this._themeIndex;
+    }
+
+    set themeIndex(themeIndex) {
+        this._themeIndex = themeIndex;
     }
 
     connectedCallback() {
@@ -27,16 +42,29 @@ export class ThemeIcon extends HTMLElement {
             `
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             `
-        ;
+            ;
 
         this.button = document.createElement('button');
         this.button.innerHTML =
             `
-            <span class="material-symbols-outlined">contrast</span>
+            <span class="icon">
+                <span class="material-symbols-outlined">contrast</span>
+            </span>
             `
-        ;
+            ;
 
         this.shadow.append(this.button);
+
+        // js
+        this.button.addEventListener('click', () => {
+            this.themeIndex = (this.themeIndex + 1) % this.themes.length;
+
+            if (this.themeIndex == 0) {
+                this.theme = {};
+            } else {
+                this.theme = this.themes[this.themeIndex];
+            }
+        });
 
         // css
         const style = document.createElement('link');
@@ -44,22 +72,6 @@ export class ThemeIcon extends HTMLElement {
         style.setAttribute('href', './css/theme-icon.css');
         this.shadow.append(style);
 
-    }
-
-    static observedAttributes = ['themes', 'current-theme'];
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (name == 'themes') {
-            this.render();
-        }
-
-        if (name == 'current-theme' && newValue != oldValue && oldValue != null && newValue != null) {
-
-            const event = new CustomEvent('themeChanged', {
-                detail: { name, oldValue, newValue }
-            });
-
-            this.dispatchEvent(event);
-        }
     }
 }
 
