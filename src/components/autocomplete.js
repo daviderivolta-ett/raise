@@ -1,5 +1,5 @@
 export class Autocomplete extends HTMLElement {
-    selectedSpan = 0;
+    static selectedSpan = 0;
     _input;
 
     constructor() {
@@ -58,7 +58,6 @@ export class Autocomplete extends HTMLElement {
 
     static observedAttributes = ['selected', 'last-key'];
     attributeChangedCallback(name, oldValue, newValue) {
-        // if (oldValue != null) {
 
         if (name == 'selected') {
             const event = new CustomEvent('autocompleteSelected', {
