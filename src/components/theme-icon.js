@@ -23,7 +23,7 @@ export class ThemeIcon extends HTMLElement {
 
     set theme(theme) {
         this._theme = theme;
-        this.dispatchEvent(new CustomEvent('themeChanged', {
+        this.dispatchEvent(new CustomEvent('themechange', {
             detail: { theme: this.theme }
         }));
     }

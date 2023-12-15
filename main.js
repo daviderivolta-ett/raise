@@ -62,11 +62,11 @@ import './src/components/submit-tags-btn.js';
 // DOM nodes
 const main = document.querySelector('main');
 const menuToggle = document.querySelector('app-drawer-toggle');
-const settings = document.querySelector('app-settings');
 const drawer = document.querySelector('#drawer');
 const search = document.querySelector('app-search');
 const carousel = document.querySelector('app-carousel');
 const bench = document.querySelector('app-bench');
+const themeIcon = document.querySelector('app-theme-icon');
 const drawerContent = document.querySelector('app-drawer');
 const pathDrawer = document.querySelector('app-path-drawer');
 const pathDrawerToggle = document.querySelector('app-path-drawer-toggle');
@@ -85,10 +85,10 @@ mapControls.addEventListener('zoomOut', () => map.viewer.camera.zoomOut(1000.0))
 map.fetchThemes(THEMES_URL)
   .then(themes => {
     rail.setAttribute('themes', JSON.stringify(themes));
-    settings.themes = themes;
+    themeIcon.themes = themes;
   });
 
-settings.addEventListener('themeChanged', event => {
+themeIcon.addEventListener('themechange', event => {
   map.changeTheme(event.detail.theme);
 });
 
@@ -100,11 +100,7 @@ rail.addEventListener('themeChanged', (event) => {
 // Menu toggle
 menuToggle.addEventListener('drawerToggled', event => {
   const isOpen = event.detail.isOpen;
-  search.setAttribute('is-active', isOpen + '');
-  // searchBar.setAttribute('is-active', isOpen + '');
-  // drawerContent.setAttribute('is-active', isOpen + '');
   bench.setAttribute('is-open', isOpen);
-  settings.setAttribute('is-active', isOpen);
 });
 
 // Rail behaviour
@@ -223,6 +219,7 @@ carousel.addEventListener('activeLayers', event => {
 // Carousel
 carousel.addEventListener('benchlayer', event => {
   bench.input = event.detail.layer;
+  menuToggle.setAttribute('is-open', true);
 });
 
 // Bench
@@ -389,11 +386,11 @@ try {
 function getLayers(object) {
   let layers = [];
   object.categories.forEach(category => {
-      category.groups.forEach(group => {
-          group.layers.forEach(layer => {
-              layers.push(layer);
-          });
+    category.groups.forEach(group => {
+      group.layers.forEach(layer => {
+        layers.push(layer);
       });
+    });
   });
   return layers;
 }

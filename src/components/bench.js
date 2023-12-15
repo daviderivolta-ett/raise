@@ -43,6 +43,10 @@ export class Bench extends HTMLElement {
                     detail: { layer: e.detail.layer }
                 }));
             });;
+
+            layer.addEventListener('deletelayer', e => {
+                this.removeLayer(e.detail.layer);
+            });
         });
     }
 

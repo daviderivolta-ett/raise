@@ -33,14 +33,22 @@ export class BenchLayer extends HTMLElement {
                 </span>
             </div>
             `
-            ;
+        ;
 
         this.add = this.shadow.querySelector('.add');
+        this.delete = this.shadow.querySelector('.delete');
 
         // js
         this.add.addEventListener('click', e => {
             e.stopPropagation();
             this.dispatchEvent(new CustomEvent('restorelayer', {
+                detail: { layer: this.layer }
+            }));
+        });
+
+        this.delete.addEventListener('click', e => {
+            e.stopPropagation();
+            this.dispatchEvent(new CustomEvent('deletelayer', {
                 detail: { layer: this.layer }
             }));
         });

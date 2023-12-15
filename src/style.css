@@ -143,3 +143,8 @@ main#onboard {
   gap: 16px;
   flex-wrap: nowrap;
 }
+
+.search {
+  background-color: white;
+  display: flex;
+}
