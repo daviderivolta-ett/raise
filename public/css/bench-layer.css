@@ -1,0 +1,56 @@
+:host {
+    user-select: none;   
+    max-width: fit-content;
+    display: inline-block;
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 50px;
+    max-width: fit-content;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 20px;
+}
+
+.add {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #cecece;
+    border-radius: 50px 0 0 50px;
+    padding: 4px 8px;
+}
+
+.add:hover {
+    background-color: #cacaca4f;
+}
+
+label {
+    cursor: pointer;
+    padding: 0 0 0 4px;
+}
+
+.delete {
+    cursor: pointer;
+    border-radius: 0 50px 50px 0;
+    padding: 4px 8px 4px 4px;
+}
+
+.delete:hover {
+    background-color: #cacaca4f;
+}

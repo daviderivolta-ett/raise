@@ -1,7 +1,16 @@
 :host {
     position: fixed;
-    bottom: 24px;
     left: 24px;
-    background-color: white;
     width: 356px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+}
+
+div {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    gap: 8px;
 }
