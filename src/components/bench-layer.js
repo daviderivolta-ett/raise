@@ -20,17 +20,20 @@ export class BenchLayer extends HTMLElement {
             `
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="chip">
-                <span class="add">
+                <div class="add">
                     <span class="icon add-icon">
                         <span class="material-symbols-outlined">add</span>
                     </span>
                     <label>${this.layer.name}</label>
-                </span>
-                <span class="delete">
+                </div>
+                <div class="divider">
+                    <span class="vr"></span>
+                </div>
+                <div class="delete">
                     <span class="icon delete-icon">
                         <span class="material-symbols-outlined">delete</span>
                     </span>
-                </span>
+                </div>
             </div>
             `
         ;

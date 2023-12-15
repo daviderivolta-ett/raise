@@ -232,6 +232,10 @@ bench.addEventListener('click', () => {
   menuToggle.setAttribute('is-open', false);
 });
 
+bench.addEventListener('benchempty', () => {
+  menuToggle.setAttribute('is-open', false);
+});
+
 // Autocomplete behaviour
 // autocomplete.addEventListener('autocompleteSelected', (event) => {
 //   const choosenAutocomplete = event.detail.newValue;

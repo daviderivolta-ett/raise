@@ -24,6 +24,7 @@ export class Bench extends HTMLElement {
 
     set data(data) {
         this._data = data;
+        if (this._data.length == 0) this.dispatchEvent(new CustomEvent('benchempty'));
         this.render();
     }
 

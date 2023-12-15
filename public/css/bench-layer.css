@@ -1,14 +1,13 @@
 :host {
-    user-select: none;   
+    user-select: none;
     max-width: fit-content;
     display: inline-block;
-    color: #F3F3F3;
+    color: rgba(241, 245, 244, 1);
 }
 
 .chip {
     display: flex;
     align-items: center;
-    background-color: #1b1b1bb3;
     backdrop-filter: blur(2px);
     border-radius: 50px;
     max-width: fit-content;
@@ -33,13 +32,17 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    border-right: 1px solid #cecece;
+    background-color: rgba(15, 29, 42, .9);
     border-radius: 50px 0 0 50px;
-    padding: 4px 8px;
+    padding: 8px 12px 8px 12px;
 }
 
 .add:hover {
-    background-color: #cacaca4f;
+    background-color: rgba(15, 29, 42, 1);
+}
+
+.add .icon {
+    color: rgba(241, 245, 244, 1);
 }
 
 label {
@@ -47,12 +50,32 @@ label {
     padding: 0 0 0 4px;
 }
 
+.divider {
+    width: 1px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(15, 29, 42, .9);
+}
+
+.vr {
+    width: 1px;
+    height: 24px;
+    background-color: rgba(241, 245, 244, 1);
+}
+
 .delete {
     cursor: pointer;
+    background-color: rgba(15, 29, 42, .9);
     border-radius: 0 50px 50px 0;
-    padding: 4px 8px 4px 4px;
+    padding: 8px 12px 8px 8px;
 }
 
 .delete:hover {
-    background-color: #cacaca4f;
+    background-color: rgba(15, 29, 42, 1);
+}
+
+.delete .icon {
+    color: rgba(190, 15, 58, 1);
 }
