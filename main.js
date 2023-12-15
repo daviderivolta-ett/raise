@@ -250,17 +250,9 @@ try {
     let filteredData = filterLayersByTags(jsonData, JSON.parse(localStorage.selectedTags));
     let layers = getLayers(filteredData);
     carousel.data = layers;
-    // let layers = [];
 
-    // filteredData.categories.forEach(category => {
-    //   category.groups.forEach(group => {
-    //     group.layers.forEach(layer => {
-    //       layers.push(layer);
-    //     });
-    //   });
-    // });
 
-    // await map.handleCheckbox(layers, clusterIcons);
+    
 
     main.append(drawerContent);
     drawerContent.data = jsonData;
