@@ -16,7 +16,6 @@ export class Bench extends HTMLElement {
         this._input = input;
         this._data.push(this.input);
         this.data = this._data;
-        console.log(this.data);
     }
 
     get data() {
@@ -32,8 +31,17 @@ export class Bench extends HTMLElement {
         this.div.innerHTML = '';
         this.data.forEach(layer => {
             let benchLayer = document.createElement('app-bench-layer');
-            benchLayer.setAttribute('title', layer.name);
+            benchLayer.layer = layer;
             this.div.append(benchLayer);
+        });
+
+        this.layers = this.shadow.querySelectorAll('app-bench-layer');
+        this.layers.forEach(layer => {
+            layer.addEventListener('restorelayer', e => {
+                this.dispatchEvent(new CustomEvent('restorelayer', {
+                    detail: { layer: e.detail.layer }
+                })); 
+            });;
         });
     }
 

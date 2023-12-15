@@ -224,6 +224,11 @@ carousel.addEventListener('benchlayer', event => {
   bench.input = event.detail.layer;
 });
 
+// Bench
+bench.addEventListener('restorelayer', event => {
+  carousel.input = event.detail.layer;
+});
+
 // Autocomplete behaviour
 // autocomplete.addEventListener('autocompleteSelected', (event) => {
 //   const choosenAutocomplete = event.detail.newValue;

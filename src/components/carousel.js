@@ -1,5 +1,6 @@
 export class Carousel extends HTMLElement {
     _data;
+    _input;
     _output;
     _isGrabbed;
     _startX;
@@ -20,6 +21,15 @@ export class Carousel extends HTMLElement {
         this._output = this.getLayers(this.data);
         this.output = this._output;
         this.render();
+    }
+
+    get input() {
+        return this._input;
+    }
+
+    set input(input) {
+        this._input = input;
+        console.log(this.input);
     }
 
     get output() {
