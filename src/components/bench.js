@@ -38,21 +38,17 @@ export class Bench extends HTMLElement {
         this.layers = this.shadow.querySelectorAll('app-bench-layer');
         this.layers.forEach(layer => {
             layer.addEventListener('restorelayer', e => {
+                this.removeLayer(e.detail.layer);
                 this.dispatchEvent(new CustomEvent('restorelayer', {
                     detail: { layer: e.detail.layer }
-                })); 
+                }));
             });;
         });
     }
 
     connectedCallback() {
         // html
-        this.shadow.innerHTML =
-            `
-            <div></div>
-            `
-        ;
-
+        this.shadow.innerHTML = `<div></div>`;
         this.div = this.shadow.querySelector('div');
 
         // css
@@ -60,7 +56,11 @@ export class Bench extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/bench.css');
         this.shadow.append(style);
+    }
 
+    removeLayer(layerToRemove) {
+        this._data = this._data.filter(layer => layerToRemove.layer !== layer.layer);
+        this.data = this._data;
     }
 }
 

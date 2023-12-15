@@ -1,7 +1,5 @@
 export class Carousel extends HTMLElement {
     _data;
-    _input;
-    _output;
     _isGrabbed;
     _startX;
     _scrollLeft;
@@ -18,28 +16,9 @@ export class Carousel extends HTMLElement {
 
     set data(data) {
         this._data = data;
-        this._output = this.getLayers(this.data);
-        this.output = this._output;
         this.render();
-    }
-
-    get input() {
-        return this._input;
-    }
-
-    set input(input) {
-        this._input = input;
-        console.log(this.input);
-    }
-
-    get output() {
-        return this._output;
-    }
-
-    set output(output) {
-        this._output = output;
         this.dispatchEvent(new CustomEvent('activeLayers', {
-            detail: { activeLayers: this._output }
+            detail: { activeLayers: this._data }
         }));
     }
 
@@ -53,10 +32,10 @@ export class Carousel extends HTMLElement {
     }
 
     render() {
-        let layers = this.getLayers(this.data);
-        layers.forEach(layer => {
+        this.div.innerHTML = '';
+        this._data.forEach(layer => {
             let chip = document.createElement('app-layer-chip');
-            this.shadow.append(chip);
+            this.div.append(chip);
             chip.layer = layer;
         });
 
@@ -67,16 +46,16 @@ export class Carousel extends HTMLElement {
                 this.dispatchEvent(new CustomEvent('benchlayer', {
                     detail: { layer: layerToBench }
                 }));
-                const activeLayers = this._output.filter(layer => {
-                    return layerToBench.layer !== layer.layer;
-                });
-
-                this.output = activeLayers;
+                this.removeLayer(layerToBench);
             });
         });
     }
 
     connectedCallback() {
+        // html
+        this.shadow.innerHTML = `<div></div>`
+        this.div = this.shadow.querySelector('div');
+
         // js
         this.addEventListener('mousedown', e => this.start(e));
         this.addEventListener('touchstart', e => this.start(e));
@@ -91,18 +70,6 @@ export class Carousel extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/carousel.css');
         this.shadow.append(style);
-    }
-
-    getLayers(object) {
-        let layers = [];
-        object.categories.forEach(category => {
-            category.groups.forEach(group => {
-                group.layers.forEach(layer => {
-                    layers.push(layer);
-                });
-            });
-        });
-        return layers;
     }
 
     start(e) {
@@ -121,6 +88,16 @@ export class Carousel extends HTMLElement {
 
     end() {
         this.isGrabbed = false;
+    }
+
+    addLayer(layer) {
+        this._data.push(layer);
+        this.data = this._data;
+    }
+
+    removeLayer(layerToRemove) {
+        this._data = this._data.filter(layer => layerToRemove.layer !== layer.layer);
+        this.data = this._data;
     }
 }
 

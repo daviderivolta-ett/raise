@@ -13,4 +13,6 @@ div {
     display: flex;
     flex-wrap: wrap-reverse;
     gap: 8px;
+    height: 100%;
+    overflow-y: auto;
 }

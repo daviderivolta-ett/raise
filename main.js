@@ -226,7 +226,8 @@ carousel.addEventListener('benchlayer', event => {
 
 // Bench
 bench.addEventListener('restorelayer', event => {
-  carousel.input = event.detail.layer;
+  let layer = event.detail.layer;
+  carousel.addLayer(layer);
 });
 
 // Autocomplete behaviour
@@ -247,7 +248,8 @@ try {
 
   fetchJsonData(CATEGORIES_URL).then(async jsonData => {
     let filteredData = filterLayersByTags(jsonData, JSON.parse(localStorage.selectedTags));
-    carousel.data = filteredData;
+    let layers = getLayers(filteredData);
+    carousel.data = layers;
     // let layers = [];
 
     // filteredData.categories.forEach(category => {
@@ -380,4 +382,21 @@ try {
 } catch (error) {
   console.error(error);
   map.setCamera();
+}
+
+
+
+
+
+
+function getLayers(object) {
+  let layers = [];
+  object.categories.forEach(category => {
+      category.groups.forEach(group => {
+          group.layers.forEach(layer => {
+              layers.push(layer);
+          });
+      });
+  });
+  return layers;
 }
