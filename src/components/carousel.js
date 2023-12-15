@@ -2,6 +2,8 @@ export class Carousel extends HTMLElement {
     _data;
     _output;
     _isGrabbed;
+    _startX;
+    _scrollLeft;
 
     constructor() {
         super();
@@ -58,7 +60,7 @@ export class Carousel extends HTMLElement {
                 const activeLayers = this._output.filter(layer => {
                     return layerToBench.layer !== layer.layer;
                 });
-                
+
                 this.output = activeLayers;
             });
         });
@@ -66,30 +68,13 @@ export class Carousel extends HTMLElement {
 
     connectedCallback() {
         // js
-        let startX;
-        let scrollLeft;
-
-        this.addEventListener('mousedown', e => {
-            this.isGrabbed = true;
-            startX = e.pageX - this.offsetLeft;
-            scrollLeft = this.scrollLeft;
-        });
-
-        this.addEventListener('mouseleave', e => {
-            this.isGrabbed = false;
-        });
-
-        this.addEventListener('mouseup', e => {
-            this.isGrabbed = false;
-        });
-
-        this.addEventListener('mousemove', e => {
-            if (this.isGrabbed == false) return;
-            e.preventDefault();
-            const x = e.pageX - this.offsetLeft;
-            const walk = (x - startX);
-            this.scrollLeft = scrollLeft - walk;
-        });
+        this.addEventListener('mousedown', e => this.start(e));
+        this.addEventListener('touchstart', e => this.start(e));
+        this.addEventListener('mousemove', e => this.move(e));
+        this.addEventListener('touchmove', e => this.move(e));
+        this.addEventListener('mouseup', this.end);
+        this.addEventListener('touchend', this.end);
+        this.addEventListener('mouseleave', this.end);
 
         // css
         const style = document.createElement('link');
@@ -108,6 +93,24 @@ export class Carousel extends HTMLElement {
             });
         });
         return layers;
+    }
+
+    start(e) {
+        this.isGrabbed = true;
+        this._startX = e.pageX || e.touches[0].pageX - this.offsetLeft;
+        this._scrollLeft = this.scrollLeft;
+    }
+
+    move(e) {
+        if (this.isGrabbed == false) return;
+        e.preventDefault();
+        const x = e.pageX || e.touches[0].pageX - this.offsetLeft;
+        const walk = (x - this._startX);
+        this.scrollLeft = this._scrollLeft - walk;
+    }
+
+    end() {
+        this.isGrabbed = false;
     }
 }
 
