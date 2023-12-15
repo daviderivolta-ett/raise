@@ -1,12 +1,17 @@
 :host {
     position: fixed;
-    left: 24px;
+    left: -356px;
     width: 356px;
     top: 50%;
     transform: translateY(-50%);
     height: calc(100vh - 200px);
     display: flex;
     align-items: center;
+    transition: .2s ease-in-out;
+}
+
+:host(.visible) {
+    left: 24px;
 }
 
 div {

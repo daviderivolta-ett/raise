@@ -38,7 +38,8 @@ export class BenchLayer extends HTMLElement {
         this.add = this.shadow.querySelector('.add');
 
         // js
-        this.add.addEventListener('click', () => {
+        this.add.addEventListener('click', e => {
+            e.stopPropagation();
             this.dispatchEvent(new CustomEvent('restorelayer', {
                 detail: { layer: this.layer }
             }));

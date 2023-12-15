@@ -50,12 +50,22 @@ export class Bench extends HTMLElement {
         // html
         this.shadow.innerHTML = `<div></div>`;
         this.div = this.shadow.querySelector('div');
+        if (!this.hasAttribute('is-open')) this.setAttribute('is-open', 'false');
 
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/bench.css');
         this.shadow.append(style);
+    }
+
+    static observedAttributes = ['is-open'];
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (newValue != oldValue && oldValue != null) {
+            if (name == 'is-open') {
+                newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
+            }
+        }
     }
 
     removeLayer(layerToRemove) {

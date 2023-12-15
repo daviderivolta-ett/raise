@@ -102,7 +102,8 @@ menuToggle.addEventListener('drawerToggled', event => {
   const isOpen = event.detail.isOpen;
   search.setAttribute('is-active', isOpen + '');
   // searchBar.setAttribute('is-active', isOpen + '');
-  drawerContent.setAttribute('is-active', isOpen + '');
+  // drawerContent.setAttribute('is-active', isOpen + '');
+  bench.setAttribute('is-open', isOpen);
   settings.setAttribute('is-active', isOpen);
 });
 
@@ -230,6 +231,10 @@ bench.addEventListener('restorelayer', event => {
   carousel.addLayer(layer);
 });
 
+bench.addEventListener('click', () => {
+  menuToggle.setAttribute('is-open', false);
+});
+
 // Autocomplete behaviour
 // autocomplete.addEventListener('autocompleteSelected', (event) => {
 //   const choosenAutocomplete = event.detail.newValue;
@@ -252,7 +257,7 @@ try {
     carousel.data = layers;
 
 
-    
+
 
     main.append(drawerContent);
     drawerContent.data = jsonData;
