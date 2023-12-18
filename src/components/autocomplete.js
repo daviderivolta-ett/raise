@@ -1,3 +1,5 @@
+import { SearchService } from '../services/searchServices.js';
+
 export class Autocomplete extends HTMLElement {
     static selectedSpan = 0;
     _input;
@@ -60,8 +62,8 @@ export class Autocomplete extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
 
         if (name == 'selected') {
-            const event = new CustomEvent('autocompleteSelected', {
-                detail: { name, oldValue, newValue }
+            const event = new CustomEvent('selectedtag', {
+                detail: { selectedTag: newValue }
             });
 
             this.dispatchEvent(event);
@@ -85,9 +87,10 @@ export class Autocomplete extends HTMLElement {
             }
 
             if (newValue == 'Enter') {
-                this.dispatchEvent(new CustomEvent('selectedTag', {
-                    detail: { selectedTag: this.shadow.activeElement.getAttribute('name') }
-                }));
+                this.setAttribute('selected', this.shadow.activeElement.getAttribute('name'));
+                // this.dispatchEvent(new CustomEvent('selectedTag', {
+                //     detail: { selectedTag: this.shadow.activeElement.getAttribute('name') }
+                // }));
                 this.div.innerHTML = '';
             }
         }

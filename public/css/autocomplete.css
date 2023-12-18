@@ -1,13 +1,29 @@
-:host {
-    position: absolute;
-    left: 24px;
-    top: 64px;
-    width: 380px;
-    background-color: white;
+span {
+    cursor: pointer;
+    color: var(--white);
+    display: block;
+    padding: 12px 16px;
+}
+
+span:focus {
+    background-color: var(--dark-blue-100);
+    outline: none;
+}
+
+span:hover {
+    background-color: var(--dark-blue-100);
+}
+
+span:last-child {
+    border-radius: 0 0 20px 20px;
+}
+
+/* :host {
+    color: var(--white);
 }
 
 div {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background-color: var(--black);
     border-radius: 0 0 4px 4px;
 }
 
@@ -28,4 +44,4 @@ span:focus {
 
 span:last-child {
     border-radius: 0 0 4px 4px;
-}
+} */

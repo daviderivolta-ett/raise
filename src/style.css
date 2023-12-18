@@ -5,6 +5,19 @@ app-rail {
   display: none;
 }
 
+.test {
+  position: fixed;
+  right: 100px;
+  bottom: 100px;
+  background-color: white;
+}
+
+:root {
+  --dark-blue-100: rgba(15, 29, 42, 1);
+  --dark-blue-90: rgba(15, 29, 42, .9);
+  --white: rgba(241, 245, 244, 1);
+  --light-blue: rgba(178, 224, 222, 1);
+}
 
 /* General */
 * {
@@ -146,6 +159,26 @@ main#onboard {
 }
 
 .search {
-  background-color: white;
+  width: 480px;
+  backdrop-filter: blur(2px);
+  background-color: var(--dark-blue-90);
+  border-radius: 20px;
+}
+
+.upper-search {
   display: flex;
+}
+
+.divider {
+  width: 1px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vr {
+  width: 1px;
+  height: 24px;
+  background-color: var(--light-blue);
 }

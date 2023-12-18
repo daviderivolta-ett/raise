@@ -4,7 +4,7 @@ import * as Cesium from 'cesium';
 
 // Import methods
 import { getPosition } from './src/utils/position.js';
-import { filterTag, filterLayersByTagName, filterLayersByTags } from './src/utils/filter.js';
+import { filterLayersByTags } from './src/utils/filter.js';
 import { fetchJsonData, fetchSvgIcon } from './src/settings.js';
 import { createRandomPopulation, evolvePopulation } from './src/utils/tsp.js';
 
@@ -22,7 +22,6 @@ import './src/components/drawer-toggle.js';
 import './src/components/settings.js';
 import './src/components/link-icon.js';
 import './src/components/theme-icon.js';
-import './src/components/search.js';
 import './src/components/searchbar.js';
 import './src/components/autocomplete.js';
 import './src/components/carousel.js';
@@ -67,6 +66,8 @@ const main = document.querySelector('main');
 const menuToggle = document.querySelector('app-drawer-toggle');
 const drawer = document.querySelector('#drawer');
 const search = document.querySelector('app-search');
+const searchbar = document.querySelector('app-searchbar');
+const autocomplete = document.querySelector('app-autocomplete');
 const carousel = document.querySelector('app-carousel');
 const bench = document.querySelector('app-bench');
 const themeIcon = document.querySelector('app-theme-icon');
@@ -239,15 +240,18 @@ bench.addEventListener('benchempty', () => {
   menuToggle.setAttribute('is-open', false);
 });
 
-// Autocomplete behaviour
-// autocomplete.addEventListener('autocompleteSelected', (event) => {
-//   const choosenAutocomplete = event.detail.newValue;
-//   searchBar.setAttribute('value', choosenAutocomplete);
-// });
+// Search
+searchbar.addEventListener('lastKey', event => {
+  if (event.detail.lastKey == 'ArrowDown') autocomplete.setAttribute('last-key', event.detail.lastKey);
+});
 
-// document.addEventListener('keydown', (event) => {
-//   autocomplete.setAttribute('last-key-pressed', event.key);
-// });
+autocomplete.addEventListener('changeFocus', () => {
+  searchbar.focusInput();
+});
+
+autocomplete.addEventListener('selectedtag', event => {
+  searchbar.selectedTag = event.detail.selectedTag;
+});
 
 // Drawer content
 try {
@@ -259,6 +263,22 @@ try {
     let filteredData = filterLayersByTags(jsonData, JSON.parse(localStorage.selectedTags));
     let layers = getLayers(filteredData);
     carousel.data = layers;
+
+
+    SearchService.instance.data = jsonData;
+    searchbar.addEventListener('searchvaluechanged', event => {
+      if (SearchService.instance.search == '') {
+        // console.log(SearchService.instance.data);
+      } else {
+        // console.log(SearchService.instance.filteredData);
+      }
+
+      if (SearchService.instance.search.length > 2) {
+        autocomplete.input = SearchService.instance.tags;
+      } else {
+        autocomplete.input = [];
+      }
+    });
 
 
 
@@ -336,7 +356,7 @@ try {
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
     // Search bar
-    search.data = jsonData;
+    // search.data = jsonData;
 
     // Local storage
     let activeLayers = [];
@@ -400,4 +420,45 @@ function getLayers(object) {
     });
   });
   return layers;
+}
+
+function filterLayersByTagName(dataToFilter, value) {
+  let filteredData = JSON.parse(JSON.stringify(dataToFilter));
+
+  filteredData.categories = filteredData.categories.map(category => {
+    category.groups = category.groups.map(group => {
+      group.layers = group.layers.filter(layer => {
+        if (layer.tags) {
+          return layer.tags.some(tag => tag.includes(value));
+        }
+        return false;
+      });
+
+      return group.layers.length > 0 ? group : null;
+    }).filter(Boolean);
+
+    return category.groups.length > 0 ? category : null;
+  }).filter(Boolean);
+
+  return filteredData;
+}
+
+function filterTag(data, value) {
+  let foundTags = [];
+  data.categories.forEach(category => {
+    category.groups.forEach(group => {
+      group.layers.forEach(layer => {
+        if (layer.tags) {
+          layer.tags.forEach(tag => {
+            if (tag.includes(value)) {
+              foundTags.push(tag);
+            }
+          });
+        }
+      });
+    });
+  });
+
+  const uniqueFoundTags = [...new Set(foundTags)];
+  return uniqueFoundTags;
 }

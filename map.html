@@ -19,11 +19,21 @@
     <app-map></app-map>
     <app-rail></app-rail>
     <div class="header">
+
       <div class="search">
-        <app-drawer-toggle></app-drawer-toggle>
-        <app-search></app-search>
-        <app-link icon='tag' link ="/"></app-link>
+        <div class="upper-search">
+          <app-drawer-toggle></app-drawer-toggle>
+          <app-searchbar></app-searchbar> 
+          <div class="divider">
+            <span class="vr"></span>
+          </div>       
+          <app-link icon='tag' link ="/"></app-link>
+        </div>
+        <div class="lower-search">
+          <app-autocomplete></app-autocomplete>
+        </div>
       </div>
+
       <app-carousel></app-carousel>
     </div>
     <app-theme-icon></app-theme-icon>

@@ -1,22 +1,51 @@
 :host {
-    /* position: fixed;
-    top: 24px;
-    left: 24px;
-    z-index: 99; */
-    background-color: white;
-    border-radius: 16px;
 }
 
-:host-context(app-drawer-toggle[is-open="true"]) .icon {
-    background-color: #D3E3FD;
+button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px 0 0 20px;
+    background-color: transparent;
+    border: none;
+    padding: 0 8px 0 12px;
+}
+
+button:hover {
+    background-color: var(--dark-blue-100);
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    color: var(--white);
+}
+
+.material-symbols-outlined {
+    transition: .2s ease-in-out;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+        font-size: 20px;
 }
 
 :host-context(app-drawer-toggle[is-open="true"]) .material-symbols-outlined {
-    color: #185FD9;
+    color: var(--light-blue);
 }
 
-:host-context(app-drawer-toggle[is-open="true"]) .label {
-    color: #185FD9;
+/* :host {
+}
+
+:host-context(app-drawer-toggle[is-open="true"]) .material-symbols-outlined {
+    color: var(--light-blue);
 }
 
 button {
@@ -56,7 +85,7 @@ button:active .material-symbols-outlined {
         'wght' 400,
         'GRAD' 0,
         'opsz' 24;
-    color: #5E5E5E;
+    color: var(--white);
 }
 
 button:hover .icon {
@@ -64,5 +93,5 @@ button:hover .icon {
 }
 
 button:hover .material-symbols-outlined {
-    color: #185FD9;
-}
+    color: var(--light-blue);
+} */
