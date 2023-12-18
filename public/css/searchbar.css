@@ -25,24 +25,3 @@ input:focus {
 input::-webkit-search-cancel-button {
     display: none;
 }
-
-/* :host {
-    width: 100%;
-}
-
-input[type="search"] {
-    width: 100%;
-    border: none;
-    color: var(--white);
-    background-color: var(--black);
-    border: none;
-    height: 40px;
-    padding: 0 12px;
-    font-family: 'Roboto', sans-serif;
-    font-size: .9rem;
-}
-
-input[type="search"]:active,
-input[type="search"]:focus {
-    outline: none;
-} */

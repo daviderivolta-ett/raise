@@ -17,31 +17,3 @@ span:hover {
 span:last-child {
     border-radius: 0 0 20px 20px;
 }
-
-/* :host {
-    color: var(--white);
-}
-
-div {
-    background-color: var(--black);
-    border-radius: 0 0 4px 4px;
-}
-
-span {
-    cursor: pointer;
-    display: block;
-    padding: 12px 16px;
-}
-
-span:hover {
-    background-color: rgba(0, 0, 0, .04);
-}
-
-span:focus {
-    background-color: rgba(0, 0, 0, .04);
-    outline: none;
-}
-
-span:last-child {
-    border-radius: 0 0 4px 4px;
-} */
