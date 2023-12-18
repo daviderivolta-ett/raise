@@ -65,7 +65,6 @@ import { SearchService } from './src/services/searchServices.js';
 const main = document.querySelector('main');
 const menuToggle = document.querySelector('app-drawer-toggle');
 const drawer = document.querySelector('#drawer');
-const search = document.querySelector('app-search');
 const searchbar = document.querySelector('app-searchbar');
 const autocomplete = document.querySelector('app-autocomplete');
 const carousel = document.querySelector('app-carousel');
@@ -260,11 +259,12 @@ try {
   main.append(snackbar);
 
   fetchJsonData(CATEGORIES_URL).then(async jsonData => {
+    // Populate carousel
     let filteredData = filterLayersByTags(jsonData, JSON.parse(localStorage.selectedTags));
     let layers = getLayers(filteredData);
     carousel.data = layers;
 
-
+    // Search
     SearchService.instance.data = jsonData;
     searchbar.addEventListener('searchvaluechanged', event => {
       if (SearchService.instance.search == '') {
@@ -354,9 +354,6 @@ try {
       infoDrawer.setAttribute('data', `${JSON.stringify(feature)}`);
       infoDrawer.setAttribute('is-open', 'true');
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-    // Search bar
-    // search.data = jsonData;
 
     // Local storage
     let activeLayers = [];
