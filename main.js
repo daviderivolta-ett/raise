@@ -59,6 +59,9 @@ import './src/components/tag-selection.js';
 import './src/components/chip.js';
 import './src/components/submit-tags-btn.js';
 
+// Import services
+import { SearchService } from './src/services/searchServices.js';
+
 // DOM nodes
 const main = document.querySelector('main');
 const menuToggle = document.querySelector('app-drawer-toggle');

@@ -12,16 +12,9 @@ export class LayerChip extends HTMLElement {
 
     set layer(layer) {
         this._layer = layer;
-        this.render();
     }
 
-    render() {
-        this.label.innerText = this.layer.name;
-        this.legend.style.backgroundColor = this.layer.style.color;
-        this.legend.style.borderColor = "rgba(241, 245, 244, 1)";
-        this.legend.style.borderWidth = "2px";
-        this.legend.style.borderStyle = "solid";
-    }
+    render() { }
 
     connectedCallback() {
         // html
@@ -49,6 +42,12 @@ export class LayerChip extends HTMLElement {
         this.label = this.shadow.querySelector('label');
         this.icon = this.shadow.querySelector('.icon');
 
+        this.label.innerText = this.layer.name;
+        this.legend.style.backgroundColor = this.layer.style.color;
+        this.legend.style.borderColor = "rgba(241, 245, 244, 1)";
+        this.legend.style.borderWidth = "2px";
+        this.legend.style.borderStyle = "solid";
+
         // js
         this.addEventListener('mousedown', () => {
             this.style.cursor = 'grabbing';
@@ -59,10 +58,7 @@ export class LayerChip extends HTMLElement {
         });
 
         this.icon.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('benchlayer', {
-                detail: { layer: this.layer }
-            }));
-            // this.remove();
+            this.remove();
         });
 
         // css
@@ -70,6 +66,12 @@ export class LayerChip extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/layer-chip.css');
         this.shadow.append(style);
+    }
+
+    disconnectedCallback() {
+        this.dispatchEvent(new CustomEvent('benchlayer', {
+            detail: { layer: this.layer }
+        }));
     }
 }
 

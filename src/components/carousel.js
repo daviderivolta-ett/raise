@@ -1,5 +1,6 @@
 export class Carousel extends HTMLElement {
     _data;
+    _output;
     _isGrabbed;
     _startX;
     _scrollLeft;
@@ -17,9 +18,19 @@ export class Carousel extends HTMLElement {
     set data(data) {
         this._data = data;
         this.render();
+        this.output = this.data;
+    }
+
+    get output() {
+        return this._output;
+    }
+
+    set output(output) {
+        this._output = output;
         this.dispatchEvent(new CustomEvent('activeLayers', {
-            detail: { activeLayers: this._data }
+            detail: { activeLayers: this.data }
         }));
+        this._ouput = null;
     }
 
     get isGrabbed() {
@@ -29,26 +40,6 @@ export class Carousel extends HTMLElement {
     set isGrabbed(isGrabbed) {
         this._isGrabbed = isGrabbed;
         this.isGrabbed == true ? this.style.cursor = 'grabbing' : this.style.cursor = 'pointer';
-    }
-
-    render() {
-        this.div.innerHTML = '';
-        this._data.forEach(layer => {
-            let chip = document.createElement('app-layer-chip');
-            this.div.append(chip);
-            chip.layer = layer;
-        });
-
-        let chips = this.shadow.querySelectorAll('app-layer-chip');
-        chips.forEach(chip => {
-            chip.addEventListener('benchlayer', e => {
-                const layerToBench = e.detail.layer;
-                this.dispatchEvent(new CustomEvent('benchlayer', {
-                    detail: { layer: layerToBench }
-                }));
-                this.removeLayer(layerToBench);
-            });
-        });
     }
 
     connectedCallback() {
@@ -90,14 +81,34 @@ export class Carousel extends HTMLElement {
         this.isGrabbed = false;
     }
 
+    render() {
+        this.data.forEach(layer => {
+            this.createChip(layer);
+        });
+    }
+
     addLayer(layer) {
         this._data.push(layer);
-        this.data = this._data;
+        this.createChip(layer);
+        this.output = this.data;
     }
 
     removeLayer(layerToRemove) {
         this._data = this._data.filter(layer => layerToRemove.layer !== layer.layer);
-        this.data = this._data;
+        this.output = this.data;
+    }
+
+    createChip(layer) {
+        let chip = document.createElement('app-layer-chip');
+        chip.layer = layer;
+        this.div.append(chip);
+        chip.addEventListener('benchlayer', e => {
+            const layerToBench = e.detail.layer;
+            this.dispatchEvent(new CustomEvent('benchlayer', {
+                detail: { layer: layerToBench }
+            }));
+            this.removeLayer(layerToBench);
+        });
     }
 }
 
