@@ -47,6 +47,7 @@ export class BenchLayer extends HTMLElement {
             this.dispatchEvent(new CustomEvent('restorelayer', {
                 detail: { layer: this.layer }
             }));
+            this.remove();
         });
 
         this.delete.addEventListener('click', e => {
@@ -54,6 +55,7 @@ export class BenchLayer extends HTMLElement {
             this.dispatchEvent(new CustomEvent('deletelayer', {
                 detail: { layer: this.layer }
             }));
+            this.remove();
         });
 
         // css

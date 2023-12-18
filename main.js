@@ -221,7 +221,7 @@ carousel.addEventListener('activeLayers', event => {
 
 // Carousel
 carousel.addEventListener('benchlayer', event => {
-  bench.input = event.detail.layer;
+  bench.addLayer(event.detail.layer);
   menuToggle.setAttribute('is-open', true);
 });
 

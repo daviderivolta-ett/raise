@@ -70,8 +70,8 @@ export class Searchbar extends HTMLElement {
 
             if (name == 'value') {
                 const event = new CustomEvent('searchvaluechanged', { detail: { search: newValue } });
-                SearchService.instance.search = newValue.toLowerCase();
                 this.dispatchEvent(event);
+                SearchService.instance.search = newValue.toLowerCase();
                 this.render();
             }
         }

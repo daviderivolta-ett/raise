@@ -1,6 +1,5 @@
 export class Bench extends HTMLElement {
     _data;
-    _input;
 
     constructor() {
         super();
@@ -8,47 +7,13 @@ export class Bench extends HTMLElement {
         this._data = [];
     }
 
-    get input() {
-        return this._input;
-    }
-
-    set input(input) {
-        this._input = input;
-        this._data.push(this.input);
-        this.data = this._data;
-    }
-
     get data() {
         return this._data;
     }
 
     set data(data) {
-        this._data = data;
+        this._data = data;      
         if (this._data.length == 0) this.dispatchEvent(new CustomEvent('benchempty'));
-        this.render();
-    }
-
-    render() {
-        this.div.innerHTML = '';
-        this.data.forEach(layer => {
-            let benchLayer = document.createElement('app-bench-layer');
-            benchLayer.layer = layer;
-            this.div.append(benchLayer);
-        });
-
-        this.layers = this.shadow.querySelectorAll('app-bench-layer');
-        this.layers.forEach(layer => {
-            layer.addEventListener('restorelayer', e => {
-                this.removeLayer(e.detail.layer);
-                this.dispatchEvent(new CustomEvent('restorelayer', {
-                    detail: { layer: e.detail.layer }
-                }));
-            });;
-
-            layer.addEventListener('deletelayer', e => {
-                this.removeLayer(e.detail.layer);
-            });
-        });
     }
 
     connectedCallback() {
@@ -73,9 +38,32 @@ export class Bench extends HTMLElement {
         }
     }
 
+    addLayer(layer) {
+        this._data.push(layer);
+        this.createChip(layer);
+        this.data = this._data;
+    }
+
     removeLayer(layerToRemove) {
         this._data = this._data.filter(layer => layerToRemove.layer !== layer.layer);
         this.data = this._data;
+    }
+
+    createChip(layer) {
+        let benchLayer = document.createElement('app-bench-layer');
+        benchLayer.layer = layer;
+        this.div.append(benchLayer);
+
+        benchLayer.addEventListener('restorelayer', e => {
+            this.removeLayer(e.detail.layer);
+            this.dispatchEvent(new CustomEvent('restorelayer', {
+                detail: { layer: e.detail.layer }
+            }));
+        });;
+
+        benchLayer.addEventListener('deletelayer', e => {
+            this.removeLayer(e.detail.layer);
+        });
     }
 }
 
