@@ -11,6 +11,7 @@
     backdrop-filter: blur(2px);
     border-radius: 50px;
     max-width: fit-content;
+    background-color: rgba(15, 29, 42, .9);
 }
 
 .icon {
@@ -32,7 +33,6 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    background-color: rgba(15, 29, 42, .9);
     border-radius: 50px 0 0 50px;
     padding: 8px 12px 8px 12px;
 }
@@ -56,7 +56,6 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(15, 29, 42, .9);
 }
 
 .vr {
@@ -67,7 +66,6 @@ label {
 
 .delete {
     cursor: pointer;
-    background-color: rgba(15, 29, 42, .9);
     border-radius: 0 50px 50px 0;
     padding: 8px 12px 8px 8px;
 }
