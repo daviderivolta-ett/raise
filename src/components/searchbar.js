@@ -1,3 +1,5 @@
+import { SearchService } from "../services/searchServices.js";
+
 export class Searchbar extends HTMLElement {
     _selectedTag;
 
