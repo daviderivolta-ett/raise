@@ -19,6 +19,8 @@ import './service-worker.js';
 import './src/components/router.js';
 
 // Import web components
+import './src/pages/map.page.js';
+
 import './src/components/map.js';
 import './src/components/rail.js';
 import './src/components/drawer-toggle.js';
@@ -65,27 +67,20 @@ import './src/components/submit-tags-btn.js';
 import './src/components/select-all-tags-btn.js';
 import './src/components/reset-tags-btn.js';
 
+import './src/pages/map.page.js';
+import './src/components/cesium-map.js';
+
 // Import services
 import { SettingService } from './src/services/SettingService.js';
 
 // Routing
-const body = document.querySelector('body');
-let loadMap = () => '<div>MAP</div>';
+let loadMap = () => '<app-map></app-map>';
 let loadIndex = () => `<app-tag-selection></app-tag-selection>`;
-
-let loadTest = () => {
-  let a = document.createElement('app-snackbar');
-  body.append(a);
-}
-
 const router = document.querySelector('app-router');
-
 const routes = {
   index: { routingFunction: loadIndex, type: 'default' },
-  map: { routingFunction: loadMap, type: 'map' },
-  test: { routingFunction: loadTest, type: 'test' }
+  map: { routingFunction: loadMap, type: 'map' }
 };
-
 router.addRoutes(routes);
 
 // DOM nodes

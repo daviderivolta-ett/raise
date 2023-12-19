@@ -1,4 +1,4 @@
-import { SearchObservable } from '../observable/SearchObservable.js';
+import { SearchObservable } from '../observables/SearchObservable.js';
 
 export class Searchbar extends HTMLElement {
     _selectedTag;

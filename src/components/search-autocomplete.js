@@ -1,4 +1,4 @@
-import { SearchObservable } from '../observable/SearchObservable.js';
+import { SearchObservable } from '../observables/SearchObservable.js';
 import { SettingService } from '../services/SettingService.js';
 
 export class SearchAutocomplete extends HTMLElement {

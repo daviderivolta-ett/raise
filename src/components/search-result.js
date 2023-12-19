@@ -1,5 +1,5 @@
 import { SettingService } from '../services/SettingService.js';
-import { SearchObservable } from '../observable/SearchObservable.js';
+import { SearchObservable } from '../observables/SearchObservable.js';
 
 export class SearchResult extends HTMLElement {
     _layers;

@@ -29,6 +29,12 @@ html {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
+  height: 100%;
+}
+
+main {
+  height: 100%;
+  width: 100%;
 }
 
 /* Map page */

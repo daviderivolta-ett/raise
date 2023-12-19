@@ -38,28 +38,24 @@ export class SettingService {
 
     async fetchAppData(categoriesUrl) {
         try {
-            const jsonFile = await fetch(categoriesUrl).then(res => res.json());
-    
-            const categoryPromises = await Promise.all(jsonFile.categories.map(async category => {
+            const data = await fetch(categoriesUrl).then(res => res.json());    
+            const categoryPromises = await Promise.all(data.categories.map(async category => {
                 const groupPromises = await Promise.all(category.groups.map(async url => {
                     try {
                         const res = await fetch(url);
-                        if (res.ok) {
-                            return res.json();
-                        }
+                        if (res.ok) return res.json();
                         throw new Error(`Errore durante il recupero dei dati da ${url}`);
                     } catch (err) {
                         console.error(err);
                         return null;
                     }
-                }));
-    
+                }));    
                 category.groups = groupPromises;
                 return category;
             }));
     
             return {
-                ...jsonFile,
+                ...data,
                 categories: categoryPromises,
             };
     
