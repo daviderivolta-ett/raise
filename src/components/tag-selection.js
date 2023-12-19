@@ -1,3 +1,5 @@
+import { SettingService } from "../services/SettingService";
+
 export class TagSelection extends HTMLElement {
     constructor() {
         super();
@@ -92,8 +94,9 @@ export class TagSelection extends HTMLElement {
         this.shadow.append(style);
     }
 
-    connectedCallback() {
-
+    async connectedCallback() {
+        const data = await SettingService.instance.getData();
+        this.setAttribute('input', JSON.stringify(data));
     }
 
     static observedAttributes = ['input'];

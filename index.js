@@ -6,7 +6,6 @@ import './src/components/tag-selection.js';
 import './src/components/chip.js';
 import './src/components/submit-tags-btn.js';
 import './src/components/select-all-tags-btn.js';
-import './src/components/select-all-tags-btn.js';
 import './src/components/reset-tags-btn.js';
 import './src/components/snackbar.js';
 

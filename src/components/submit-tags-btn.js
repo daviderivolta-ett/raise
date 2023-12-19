@@ -29,7 +29,7 @@ export class SubmitTagsButton extends HTMLElement {
         
         this.btn.addEventListener('click', () => {
             localStorage.setItem('selectedTags', this.getAttribute('tags'));
-            window.location.href = '/map.html';
+            window.location.href = '/#/map';
         });
 
         // css

@@ -15,6 +15,9 @@ const THEMES_URL = './json/themes.json';
 // Import service worker
 import './service-worker.js';
 
+// Import router
+import './src/components/router.js';
+
 // Import web components
 import './src/components/map.js';
 import './src/components/rail.js';
@@ -59,9 +62,31 @@ import './src/components/snackbar.js';
 import './src/components/tag-selection.js';
 import './src/components/chip.js';
 import './src/components/submit-tags-btn.js';
+import './src/components/select-all-tags-btn.js';
+import './src/components/reset-tags-btn.js';
 
 // Import services
 import { SettingService } from './src/services/SettingService.js';
+
+// Routing
+const body = document.querySelector('body');
+let loadMap = () => '<div>MAP</div>';
+let loadIndex = () => `<app-tag-selection></app-tag-selection>`;
+
+let loadTest = () => {
+  let a = document.createElement('app-snackbar');
+  body.append(a);
+}
+
+const router = document.querySelector('app-router');
+
+const routes = {
+  index: { routingFunction: loadIndex, type: 'default' },
+  map: { routingFunction: loadMap, type: 'map' },
+  test: { routingFunction: loadTest, type: 'test' }
+};
+
+router.addRoutes(routes);
 
 // DOM nodes
 const main = document.querySelector('main');
