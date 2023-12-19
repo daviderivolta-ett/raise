@@ -59,7 +59,7 @@ import './src/components/chip.js';
 import './src/components/submit-tags-btn.js';
 
 // Import services
-import { SearchService } from './src/services/searchServices.js';
+import { SettingService } from './src/services/SettingService.js';
 
 // DOM nodes
 const main = document.querySelector('main');
@@ -259,26 +259,15 @@ try {
   main.append(snackbar);
 
   fetchJsonData(CATEGORIES_URL).then(async jsonData => {
+    SettingService.instance.data = jsonData;
+
     // Populate carousel
     let filteredData = filterLayersByTags(jsonData, JSON.parse(localStorage.selectedTags));
     let layers = getLayers(filteredData);
     carousel.data = layers;
 
     // Search
-    SearchService.instance.data = jsonData;
-    searchbar.addEventListener('searchvaluechanged', event => {
-      if (SearchService.instance.search == '') {
-        // console.log(SearchService.instance.data);
-      } else {
-        // console.log(SearchService.instance.filteredData);
-      }
 
-      if (SearchService.instance.search.length > 2) {
-        autocomplete.input = SearchService.instance.tags;
-      } else {
-        autocomplete.input = [];
-      }
-    });
 
 
 

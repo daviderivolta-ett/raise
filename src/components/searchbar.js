@@ -1,4 +1,4 @@
-import { SearchService } from '../services/searchServices.js';
+import { SearchObservable } from '../observable/SearchObservable.js';
 
 export class Searchbar extends HTMLElement {
     _selectedTag;
@@ -69,9 +69,10 @@ export class Searchbar extends HTMLElement {
             }
 
             if (name == 'value') {
+                SearchObservable.instance.publish('search', newValue.toLowerCase());
+
                 const event = new CustomEvent('searchvaluechanged', { detail: { search: newValue } });
                 this.dispatchEvent(event);
-                SearchService.instance.search = newValue.toLowerCase();
                 this.render();
             }
         }
