@@ -1,0 +1,12 @@
+:host {
+    position: fixed;
+    bottom: 24px;
+    left: -356px;
+    width: 356px;
+    background-color: white;
+    transition: .2s ease-in-out;
+}
+
+:host(.visible) {
+    left: 24px;
+}

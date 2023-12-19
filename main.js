@@ -5,7 +5,7 @@ import * as Cesium from 'cesium';
 // Import methods
 import { getPosition } from './src/utils/position.js';
 import { filterLayersByTags } from './src/utils/filter.js';
-import { fetchJsonData, fetchSvgIcon } from './src/settings.js';
+import { fetchJsonData, fetchSvgIcon, fetchAppData } from './src/settings.js';
 import { createRandomPopulation, evolvePopulation } from './src/utils/tsp.js';
 
 // Import data
@@ -22,8 +22,10 @@ import './src/components/drawer-toggle.js';
 import './src/components/settings.js';
 import './src/components/link-icon.js';
 import './src/components/theme-icon.js';
-import './src/components/searchbar.js';
-import './src/components/autocomplete.js';
+import './src/components/search-bar.js';
+import './src/components/search-autocomplete.js';
+import './src/components/search-result.js';
+import './src/components/search-result-chip.js';
 import './src/components/carousel.js';
 import './src/components/layer-chip.js';
 import './src/components/bench.js';
@@ -258,13 +260,23 @@ try {
   snackbar.setAttribute('type', 'loader');
   main.append(snackbar);
 
-  fetchJsonData(CATEGORIES_URL).then(async jsonData => {
-    SettingService.instance.data = jsonData;
+  fetchAppData(CATEGORIES_URL).then(data => {
+    SettingService.instance.data = data;
 
     // Populate carousel
-    let filteredData = filterLayersByTags(jsonData, JSON.parse(localStorage.selectedTags));
+    let filteredData = filterLayersByTags(data, JSON.parse(localStorage.selectedTags));
     let layers = getLayers(filteredData);
     carousel.data = layers;
+  });
+
+
+  fetchJsonData(CATEGORIES_URL).then(jsonData => {
+    // SettingService.instance.data = jsonData;
+
+    // Populate carousel
+    // let filteredData = filterLayersByTags(jsonData, JSON.parse(localStorage.selectedTags));
+    // let layers = getLayers(filteredData);
+    // carousel.data = layers;
 
     // Search
 
@@ -408,43 +420,43 @@ function getLayers(object) {
   return layers;
 }
 
-function filterLayersByTagName(dataToFilter, value) {
-  let filteredData = JSON.parse(JSON.stringify(dataToFilter));
+// function filterLayersByTagName(dataToFilter, value) {
+//   let filteredData = JSON.parse(JSON.stringify(dataToFilter));
 
-  filteredData.categories = filteredData.categories.map(category => {
-    category.groups = category.groups.map(group => {
-      group.layers = group.layers.filter(layer => {
-        if (layer.tags) {
-          return layer.tags.some(tag => tag.includes(value));
-        }
-        return false;
-      });
+//   filteredData.categories = filteredData.categories.map(category => {
+//     category.groups = category.groups.map(group => {
+//       group.layers = group.layers.filter(layer => {
+//         if (layer.tags) {
+//           return layer.tags.some(tag => tag.includes(value));
+//         }
+//         return false;
+//       });
 
-      return group.layers.length > 0 ? group : null;
-    }).filter(Boolean);
+//       return group.layers.length > 0 ? group : null;
+//     }).filter(Boolean);
 
-    return category.groups.length > 0 ? category : null;
-  }).filter(Boolean);
+//     return category.groups.length > 0 ? category : null;
+//   }).filter(Boolean);
 
-  return filteredData;
-}
+//   return filteredData;
+// }
 
-function filterTag(data, value) {
-  let foundTags = [];
-  data.categories.forEach(category => {
-    category.groups.forEach(group => {
-      group.layers.forEach(layer => {
-        if (layer.tags) {
-          layer.tags.forEach(tag => {
-            if (tag.includes(value)) {
-              foundTags.push(tag);
-            }
-          });
-        }
-      });
-    });
-  });
+// function filterTag(data, value) {
+//   let foundTags = [];
+//   data.categories.forEach(category => {
+//     category.groups.forEach(group => {
+//       group.layers.forEach(layer => {
+//         if (layer.tags) {
+//           layer.tags.forEach(tag => {
+//             if (tag.includes(value)) {
+//               foundTags.push(tag);
+//             }
+//           });
+//         }
+//       });
+//     });
+//   });
 
-  const uniqueFoundTags = [...new Set(foundTags)];
-  return uniqueFoundTags;
-}
+//   const uniqueFoundTags = [...new Set(foundTags)];
+//   return uniqueFoundTags;
+// }

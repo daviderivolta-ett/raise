@@ -29,7 +29,6 @@ export async function fetchJsonData(categoriesUrl) {
     }
 }
 
-
 // Get svg cluster icons
 export async function fetchSvgIcon(iconNumber) {
     try {
@@ -41,6 +40,39 @@ export async function fetchSvgIcon(iconNumber) {
 
     } catch (error) {
         console.error(error);
+        throw error;
+    }
+}
+
+export async function fetchAppData(categoriesUrl) {
+    try {
+        const jsonFile = await fetch(categoriesUrl).then(res => res.json());
+
+        const categoryPromises = await Promise.all(jsonFile.categories.map(async category => {
+            const groupPromises = await Promise.all(category.groups.map(async url => {
+                try {
+                    const res = await fetch(url);
+                    if (res.ok) {
+                        return res.json();
+                    }
+                    throw new Error(`Errore durante il recupero dei dati da ${url}`);
+                } catch (err) {
+                    console.error(err);
+                    return null;
+                }
+            }));
+
+            category.groups = groupPromises;
+            return category;
+        }));
+
+        return {
+            ...jsonFile,
+            categories: categoryPromises,
+        };
+
+    } catch (error) {
+        console.error('Errore durante il recupero dei dati JSON', error);
         throw error;
     }
 }

@@ -69,10 +69,8 @@ export class Searchbar extends HTMLElement {
             }
 
             if (name == 'value') {
-                SearchObservable.instance.publish('search', newValue.toLowerCase());
-
-                const event = new CustomEvent('searchvaluechanged', { detail: { search: newValue } });
-                this.dispatchEvent(event);
+                newValue = newValue.toLowerCase();
+                SearchObservable.instance.publish('search', newValue);
                 this.render();
             }
         }

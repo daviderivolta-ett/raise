@@ -1,7 +1,7 @@
 import { SearchObservable } from '../observable/SearchObservable.js';
 import { SettingService } from '../services/SettingService.js';
 
-export class Autocomplete extends HTMLElement {
+export class SearchAutocomplete extends HTMLElement {
     static selectedSpan = 0;
     _input;
 
@@ -21,7 +21,7 @@ export class Autocomplete extends HTMLElement {
     }
 
     render() {
-        Autocomplete.selectedSpan = 0;
+        SearchAutocomplete.selectedSpan = 0;
         this.div.innerHTML = '';
 
         if (this.input.length == 0) return;
@@ -55,12 +55,19 @@ export class Autocomplete extends HTMLElement {
         // js
         SearchObservable.instance.subscribe('search', searchValue => {
             searchValue = searchValue.toLowerCase();
-            if (searchValue.length > 2) {
-                this.input = this.filterTag(SettingService.instance.data, searchValue);
+            let search = {};
+            search.value = searchValue;
+
+            if (searchValue.length >= 2) {
+                let tags = this.filterTag(SettingService.instance.data, searchValue);
+                search.tags = tags;
+                SearchObservable.instance.publish('filtertags', search);
+                this.input = tags;
             } else {
+                search.tags = [];
+                SearchObservable.instance.publish('filtertags', search);
                 this.input = [];
-            }
-            
+            }            
         });
 
         // css
@@ -84,17 +91,17 @@ export class Autocomplete extends HTMLElement {
 
         if (name == 'last-key') {
             if (newValue == 'ArrowDown') {
-                Autocomplete.selectedSpan++;
-                if (Autocomplete.selectedSpan == this.spans.length + 1) Autocomplete.selectedSpan = 1;
-                this.shadow.querySelector(`span[tabIndex="${Autocomplete.selectedSpan}"]`).focus();
+                SearchAutocomplete.selectedSpan++;
+                if (SearchAutocomplete.selectedSpan == this.spans.length + 1) SearchAutocomplete.selectedSpan = 1;
+                this.shadow.querySelector(`span[tabIndex="${SearchAutocomplete.selectedSpan}"]`).focus();
             }
 
             if (newValue == 'ArrowUp') {
-                Autocomplete.selectedSpan--;
-                if (Autocomplete.selectedSpan == 0) {
+                SearchAutocomplete.selectedSpan--;
+                if (SearchAutocomplete.selectedSpan == 0) {
                     this.dispatchEvent(new CustomEvent('changeFocus'));
                 } else {
-                    this.shadow.querySelector(`span[tabIndex="${Autocomplete.selectedSpan}"]`).focus();
+                    this.shadow.querySelector(`span[tabIndex="${SearchAutocomplete.selectedSpan}"]`).focus();
                 }
             }
 
@@ -128,11 +135,11 @@ export class Autocomplete extends HTMLElement {
 
     filterTag(data, value) {
         let foundTags = [];
-        data.categories.forEach(category => {
-            category.groups.forEach(group => {
-                group.layers.forEach(layer => {
+        data.categories.map(category => {
+            category.groups.map(group => {
+                group.layers.map(layer => {
                     if (layer.tags) {
-                        layer.tags.forEach(tag => {
+                        layer.tags.map(tag => {
                             if (tag.includes(value)) {
                                 foundTags.push(tag);
                             }
@@ -147,4 +154,4 @@ export class Autocomplete extends HTMLElement {
     }
 }
 
-customElements.define('app-autocomplete', Autocomplete);
+customElements.define('app-autocomplete', SearchAutocomplete);
