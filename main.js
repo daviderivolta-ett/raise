@@ -269,118 +269,133 @@ try {
     carousel.data = layers;
   });
 
+  map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
+    rail.setAttribute('is-open', 'false');
+    const feature = map.onClick(movement, SettingService.instance.data);
 
-  fetchJsonData(CATEGORIES_URL).then(jsonData => {
-    // SettingService.instance.data = jsonData;
-
-    // Populate carousel
-    // let filteredData = filterLayersByTags(jsonData, JSON.parse(localStorage.selectedTags));
-    // let layers = getLayers(filteredData);
-    // carousel.data = layers;
-
-    // Search
-
-
-
-
-
-    main.append(drawerContent);
-    drawerContent.data = jsonData;
-
-    drawerContent.addEventListener('activeLayers', async (event) => {
-      let activeLayers = event.detail.activeLayers
-      try {
-        let snackbar = document.createElement('app-snackbar');
-        snackbar.setAttribute('type', 'loader');
-        main.append(snackbar);
-
-        pathDrawer.setAttribute('is-navigation', 'false');
-        await map.handleCheckbox(activeLayers, clusterIcons);
-
-      } catch (error) {
-        console.error('Errore durante il recupero dei layer dal geoserver', error);
-
-      } finally {
-        let snackbar = document.querySelector('app-snackbar[type="loader"]');
-        snackbar.setAttribute('is-active', 'false');
-      }
-    });
-
-    drawerContent.addEventListener('routeToggled', event => {
-      const layerData = map.fetchLayerData(event.detail.layer);
-      layerData.then(data => {
-        let features = [];
-        data.features.forEach(f => {
-          let coordinates = map.getFeatureCoordinates(f);
-          let layerNameToFetch = map.getLayerToFind(f);
-          let foundLayer = map.filterLayerByName(jsonData, layerNameToFetch);
-
-          let properties = f.properties;
-          let propertiesToFind = foundLayer.relevant_properties;
-          let layerName = foundLayer.name;
-          let relevantProperties = map.getRelevantProperties(properties, propertiesToFind, layerName);
-
-          let feature = {};
-          feature.coordinates = coordinates;
-          feature.layer = foundLayer;
-          feature.properties = relevantProperties;
-
-          features.push(feature);
-        });
-
-        let pathFeatures = pathDrawer.features;
-        let path = [...pathFeatures];
-        features.forEach(feature => {
-          if (!path.some(item => item.coordinates.longitude == feature.coordinates.longitude)) {
-            path.push(feature);
-          }
-        });
-        pathDrawer.features = path;
-        pathDrawer.setAttribute('is-open', 'true');
-      });
-    });
-
-    // Click on map
-    map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
-      rail.setAttribute('is-open', 'false');
-      const feature = map.onClick(movement, jsonData);
-
-      if (feature == undefined) {
-        infoDrawer.setAttribute('is-open', 'false');
-        pathDrawer.setAttribute('is-open', 'false');
-        menuToggle.setAttribute('is-open', 'false');
-        return;
-      }
-
-      infoDrawer.setAttribute('data', `${JSON.stringify(feature)}`);
-      infoDrawer.setAttribute('is-open', 'true');
-    }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
-    // Local storage
-    let activeLayers = [];
-    if (localStorage.customRoute && JSON.parse(localStorage.customRoute).features.length != 0) {
-      pathDrawerToggle.setAttribute('is-open', 'true');
-      mapControls.setAttribute('is-route', 'true');
-      let customRoute = JSON.parse(localStorage.customRoute);
-      pathDrawer.setAttribute('route-name', customRoute.name);
-      pathDrawer.features = customRoute.features;
-
-      const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
-      let layers = [];
-      customRouteFeatures.map(feature => layers.push(feature.layer));
-
-      let seenLayers = {};
-      layers.forEach(item => {
-        const value = item.layer;
-        if (!seenLayers[value]) {
-          seenLayers[value] = true;
-          activeLayers.push(item);
-        }
-      });
-      activeLayers = [...new Set(activeLayers)];
-      drawerContent.input = activeLayers;
+    if (feature == undefined) {
+      infoDrawer.setAttribute('is-open', 'false');
+      pathDrawer.setAttribute('is-open', 'false');
+      menuToggle.setAttribute('is-open', 'false');
+      return;
     }
-  });
+
+    infoDrawer.setAttribute('data', `${JSON.stringify(feature)}`);
+    infoDrawer.setAttribute('is-open', 'true');
+  }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+
+  // fetchJsonData(CATEGORIES_URL).then(jsonData => {
+  //   SettingService.instance.data = jsonData;
+
+  //   // Populate carousel
+  //   let filteredData = filterLayersByTags(jsonData, JSON.parse(localStorage.selectedTags));
+  //   let layers = getLayers(filteredData);
+  //   carousel.data = layers;
+
+  //   // Search
+
+
+
+
+
+  //   main.append(drawerContent);
+  //   drawerContent.data = jsonData;
+
+  //   drawerContent.addEventListener('activeLayers', async (event) => {
+  //     let activeLayers = event.detail.activeLayers
+  //     try {
+  //       let snackbar = document.createElement('app-snackbar');
+  //       snackbar.setAttribute('type', 'loader');
+  //       main.append(snackbar);
+
+  //       pathDrawer.setAttribute('is-navigation', 'false');
+  //       await map.handleCheckbox(activeLayers, clusterIcons);
+
+  //     } catch (error) {
+  //       console.error('Errore durante il recupero dei layer dal geoserver', error);
+
+  //     } finally {
+  //       let snackbar = document.querySelector('app-snackbar[type="loader"]');
+  //       snackbar.setAttribute('is-active', 'false');
+  //     }
+  //   });
+
+  //   drawerContent.addEventListener('routeToggled', event => {
+  //     const layerData = map.fetchLayerData(event.detail.layer);
+  //     layerData.then(data => {
+  //       let features = [];
+  //       data.features.forEach(f => {
+  //         let coordinates = map.getFeatureCoordinates(f);
+  //         let layerNameToFetch = map.getLayerToFind(f);
+  //         let foundLayer = map.filterLayerByName(jsonData, layerNameToFetch);
+
+  //         let properties = f.properties;
+  //         let propertiesToFind = foundLayer.relevant_properties;
+  //         let layerName = foundLayer.name;
+  //         let relevantProperties = map.getRelevantProperties(properties, propertiesToFind, layerName);
+
+  //         let feature = {};
+  //         feature.coordinates = coordinates;
+  //         feature.layer = foundLayer;
+  //         feature.properties = relevantProperties;
+
+  //         features.push(feature);
+  //       });
+
+  //       let pathFeatures = pathDrawer.features;
+  //       let path = [...pathFeatures];
+  //       features.forEach(feature => {
+  //         if (!path.some(item => item.coordinates.longitude == feature.coordinates.longitude)) {
+  //           path.push(feature);
+  //         }
+  //       });
+  //       pathDrawer.features = path;
+  //       pathDrawer.setAttribute('is-open', 'true');
+  //     });
+  //   });
+
+  //   // Click on map
+  //   map.viewer.screenSpaceEventHandler.setInputAction(async movement => {
+  //     rail.setAttribute('is-open', 'false');
+  //     const feature = map.onClick(movement, jsonData);
+
+  //     if (feature == undefined) {
+  //       infoDrawer.setAttribute('is-open', 'false');
+  //       pathDrawer.setAttribute('is-open', 'false');
+  //       menuToggle.setAttribute('is-open', 'false');
+  //       return;
+  //     }
+
+  //     infoDrawer.setAttribute('data', `${JSON.stringify(feature)}`);
+  //     infoDrawer.setAttribute('is-open', 'true');
+  //   }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+  //   // Local storage
+  //   let activeLayers = [];
+  //   if (localStorage.customRoute && JSON.parse(localStorage.customRoute).features.length != 0) {
+  //     pathDrawerToggle.setAttribute('is-open', 'true');
+  //     mapControls.setAttribute('is-route', 'true');
+  //     let customRoute = JSON.parse(localStorage.customRoute);
+  //     pathDrawer.setAttribute('route-name', customRoute.name);
+  //     pathDrawer.features = customRoute.features;
+
+  //     const customRouteFeatures = JSON.parse(localStorage.customRoute).features;
+  //     let layers = [];
+  //     customRouteFeatures.map(feature => layers.push(feature.layer));
+
+  //     let seenLayers = {};
+  //     layers.forEach(item => {
+  //       const value = item.layer;
+  //       if (!seenLayers[value]) {
+  //         seenLayers[value] = true;
+  //         activeLayers.push(item);
+  //       }
+  //     });
+  //     activeLayers = [...new Set(activeLayers)];
+  //     drawerContent.input = activeLayers;
+  //   }
+  // });
 
 } catch (error) {
   console.error('Errore durante il recupero dei dati JSON', error);

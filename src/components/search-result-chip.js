@@ -24,11 +24,18 @@ export class SearchResultChip extends HTMLElement {
             <div class="chip">
                 <label>${this.layer.name}</label>
                 <span class="icon add-icon">
-                <span class="material-symbols-outlined">add</span>
+                    <span class="material-symbols-outlined">add</span>
                 </span>
             </div>
             `
         ;
+
+        this.chip = this.shadow.querySelector('.chip');
+
+        // js
+        this.chip.addEventListener('click', () => {
+
+        });
     }
 }
 
