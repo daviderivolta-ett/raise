@@ -1,11 +1,9 @@
-import { SettingService } from "./SettingService";
-
 export class UserPositionService {
     constructor() {
         if (UserPositionService._instance) {
             return UserPositionService._instance;
         }
-        SettingService._instance = this;
+        UserPositionService._instance = this;
     }
 
     static get instance() {

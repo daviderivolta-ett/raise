@@ -24,14 +24,14 @@ export class Carousel extends HTMLElement {
     get output() {
         return this._output;
     }
-
+    
     set output(output) {
         this._output = output;
-        this.dispatchEvent(new CustomEvent('activeLayers', {
+        this.dispatchEvent(new CustomEvent('loadlayers', {
             detail: { activeLayers: this.data }
         }));
-        this._ouput = null;
-    }
+        this._output = null;
+    }    
 
     get isGrabbed() {
         return this._isGrabbed;
@@ -44,7 +44,7 @@ export class Carousel extends HTMLElement {
 
     connectedCallback() {
         // html
-        this.shadow.innerHTML = `<div></div>`
+        this.shadow.innerHTML = `<div></div>`;
         this.div = this.shadow.querySelector('div');
 
         // js

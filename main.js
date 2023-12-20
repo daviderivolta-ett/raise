@@ -23,7 +23,7 @@ import './src/pages/map.page.js';
 
 import './src/components/map.js';
 import './src/components/rail.js';
-import './src/components/drawer-toggle.js';
+import './src/components/bench-toggle.js';
 import './src/components/settings.js';
 import './src/components/link-icon.js';
 import './src/components/theme-icon.js';

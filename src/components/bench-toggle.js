@@ -1,4 +1,4 @@
-export class DrawerToggle extends HTMLElement {
+export class BenchToggle extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
@@ -56,4 +56,4 @@ export class DrawerToggle extends HTMLElement {
     }
 }
 
-customElements.define('app-drawer-toggle', DrawerToggle);
+customElements.define('app-bench-toggle', BenchToggle);

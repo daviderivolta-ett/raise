@@ -1,6 +1,7 @@
 export class SettingService {
     CATEGORIES_URL = './json/categories.json';
-
+    _data;
+    
     constructor() {
         if (SettingService._instance) {
             return SettingService._instance;
@@ -13,6 +14,14 @@ export class SettingService {
             SettingService._instance = new SettingService();
         }
         return SettingService._instance;
+    }
+
+    get data() {
+        return this._data;
+    }
+
+    set data(data) {
+        this._data = data;
     }
 
     // getData() {

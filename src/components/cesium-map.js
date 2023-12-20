@@ -23,6 +23,10 @@ export default class CesiumViewer extends HTMLElement {
             infoBox: false,
         });
 
+        this.viewer.screenSpaceEventHandler.setInputAction(movement => {
+            this.mouseOver(movement)
+        }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
         // css
         const style = document.createElement('style');
         style.innerHTML = cesiumCss;
@@ -61,6 +65,44 @@ export default class CesiumViewer extends HTMLElement {
                 outlineWidth: 200
             }
         });
+    }
+
+    mouseOver(movement) {
+        const windowPosition = movement.endPosition;
+        const pickedEntity = this.viewer.scene.pick(windowPosition);
+
+        if (Cesium.defined(pickedEntity) && Cesium.defined(pickedEntity.id)) {
+            document.body.style.cursor = 'pointer';
+        } else {
+            document.body.style.cursor = 'default';
+        }
+    }
+
+    async loadLayers(layers) {
+        const requests = layers.map(layer => this.createlayer(layer).then((data) => ({ layer, data })));
+
+        await Promise.all(requests).then(async sources => {
+            this.viewer.dataSources.removeAll();
+
+            await Promise.all(sources.map(async source => {
+                const layer = await source.data.layer;
+                this.viewer.dataSources.add(layer);
+            }));
+        });
+    }
+
+    async createlayer(layer) {
+        const url = `${layer.layer_url_wfs}?service=WFS&typeName=${layer.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;
+        return fetch(url)
+            .then(res => res.json())
+            .then(geoJson => ({
+                features: geoJson.features,
+                layer: Cesium.GeoJsonDataSource.load(geoJson)
+            }))
+            .catch(err => {
+                console.error(err);
+                throw err;
+            });
     }
 }
 
