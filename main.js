@@ -72,6 +72,7 @@ import './src/components/cesium-map.js';
 
 // Import services
 import { SettingService } from './src/services/SettingService.js';
+import { UserPositionService } from './src/services/UserPositionService.js';
 
 // Routing
 let loadMap = () => '<app-map></app-map>';
