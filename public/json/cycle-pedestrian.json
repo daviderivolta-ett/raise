@@ -6,7 +6,7 @@
             "layer": "SITGEO:V_MOB_PARKS_BIKESHARING",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -35,7 +35,7 @@
             "layer": "SITGEO:V_MOB_PISTE_CICLABILI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -74,7 +74,7 @@
             "layer": "SITGEO:V_MOB_AREE_PEDONALI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [

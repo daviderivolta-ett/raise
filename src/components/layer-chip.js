@@ -1,9 +1,12 @@
+import { ColorManager } from "../services/ColorManager";
+
 export class LayerChip extends HTMLElement {
     _layer;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
+        this.colorManager = new ColorManager();
     }
 
     get layer() {
@@ -42,9 +45,12 @@ export class LayerChip extends HTMLElement {
         this.label = this.shadow.querySelector('label');
         this.icon = this.shadow.querySelector('.icon');
 
+        this.colorManager.hex = this.layer.style.color;
+        this.colorManager.rgba = this.colorManager.convertHexToRgba(this.colorManager.hex);
+
         this.label.innerText = this.layer.name;
-        this.legend.style.backgroundColor = this.layer.style.color;
-        this.legend.style.borderColor = "rgba(241, 245, 244, 1)";
+        this.legend.style.backgroundColor = this.colorManager.changeOpacity(this.colorManager.rgba, 0.25);
+        this.legend.style.borderColor = this.colorManager.rgba;
         this.legend.style.borderWidth = "2px";
         this.legend.style.borderStyle = "solid";
 

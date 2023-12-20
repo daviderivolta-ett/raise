@@ -6,7 +6,7 @@
             "layer": "SITGEO:V_PUC2010_SERVIZI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [

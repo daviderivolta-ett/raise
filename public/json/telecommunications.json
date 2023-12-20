@@ -6,7 +6,7 @@
             "layer": "SITGEO:WI-FI_URBANO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -50,7 +50,7 @@
             "layer": "L7991",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2196/wms",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [

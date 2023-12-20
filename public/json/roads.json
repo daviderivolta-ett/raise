@@ -6,7 +6,7 @@
             "layer": "L8285",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2268/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -44,7 +44,7 @@
             "layer": "L8287",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2268/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -72,7 +72,7 @@
             "layer": "L8324",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2269/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -95,7 +95,7 @@
             "layer": "L8289",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2269/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -118,7 +118,7 @@
             "layer": "MEDIATORE:MV_TRACCIATO_STRADALE",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -141,7 +141,7 @@
             "layer": "L8179",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2238/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [

@@ -6,7 +6,7 @@
             "layer": "MEDIATORE:V_IMM_ANTRO_BASE",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -35,7 +35,7 @@
             "layer": "SITGEO:V_TIPO_CONNOTATIVO_CS",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [

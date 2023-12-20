@@ -6,7 +6,7 @@
             "layer": "SITGEO:V_MOB_FERMATE_AMT",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -46,7 +46,7 @@
             "layer": "SITGEO:V_MOB_METROPOLITANA",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -65,7 +65,7 @@
             "layer": "SITGEO:V_MOB_METROPOLITANA_STAZIONI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -96,7 +96,7 @@
             "layer": "L8020",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -129,7 +129,7 @@
             "layer": "L8019",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [

@@ -6,7 +6,7 @@
             "layer": "CULTURA:V_ACQ_STORICO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -38,7 +38,7 @@
             "layer": "CULTURA:V_ACQ_MANU_STORICI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "green",
+                "color": "#008000",
                 "opacity": 1
             },
             "tags": [
@@ -80,7 +80,7 @@
             "layer": "CULTURA:V_ACQ_AREA_SOSTA",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "blue",
+                "color": "#0000ff",
                 "opacity": 1
             },
             "tags": [
@@ -103,7 +103,7 @@
             "layer": "V_ACQ_PTI_ACCESSO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "purple",
+                "color": "#800080",
                 "opacity": 1
             },
             "tags": [
@@ -136,7 +136,7 @@
             "layer": "CULTURA:V_ACQ_PTI_INT_STORICO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -170,7 +170,7 @@
             "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -194,7 +194,7 @@
             "layer": "SITGEO:V_ACQUA_POTABILE",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [

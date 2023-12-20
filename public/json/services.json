@@ -6,7 +6,7 @@
             "layer": "SITGEO:V_BAGNI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -51,7 +51,7 @@
             "layer": "SITGEO:V_PC_OSPEDALI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -91,7 +91,7 @@
             "layer": "L807",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M452/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -125,7 +125,7 @@
             "layer": "SITGEO:V_COLLETTIVE_GEO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -174,7 +174,7 @@
             "layer": "GEOJSON_CINEMA",
             "layer_url_wfs": "./GeoJson/cinemas.geojson",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -204,7 +204,7 @@
             "layer": "GEOJSON_TEATRI",
             "layer_url_wfs": "./GeoJson/theatre.geojson",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -264,7 +264,7 @@
             "layer": "SITGEO:SCUOLE_AGG_GEO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -353,7 +353,7 @@
             "layer": "SITGEO:V_COM_MERCATI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -397,7 +397,7 @@
             "layer": "SITGEO:V_RIC_TURISTICHE",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -445,7 +445,7 @@
             "layer": "GEOJSON_ACQUA_POTABILE",
             "layer_url_wfs": "./GeoJson/drinking-water.geojson",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -465,7 +465,7 @@
             "layer": "GEOJSON_SURVEILLANCE_CAMERAS",
             "layer_url_wfs": "./GeoJson/surveillance-cameras.geojson",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -483,7 +483,7 @@
             "layer": "GEOJSON_ATM",
             "layer_url_wfs": "./GeoJson/atm.geojson",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [

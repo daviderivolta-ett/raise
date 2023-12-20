@@ -9,7 +9,6 @@ export default class CesiumViewer extends HTMLElement {
 
     connectedCallback() {
         // html
-        /** @type { Cesium.Viewer } */
         this.viewer = new Cesium.Viewer(this.shadow, {
             baseLayerPicker: false,
             geocoder: false,
@@ -87,6 +86,7 @@ export default class CesiumViewer extends HTMLElement {
             await Promise.all(sources.map(async source => {
                 const layer = await source.data.layer;
                 this.viewer.dataSources.add(layer);
+                this.styleEntities(layer, source.layer.style);
             }));
         });
     }
@@ -103,6 +103,47 @@ export default class CesiumViewer extends HTMLElement {
                 console.error(err);
                 throw err;
             });
+    }
+
+    styleEntities(dataSource, style) {
+        let fillColor = 'YELLOW';
+        let markerColor = 'YELLOW';
+        let opacity = 0.5;
+
+        if (style && style.color) {
+            fillColor = style.color.toUpperCase();
+            markerColor = style.color.toUpperCase();
+        }
+
+        if (style && style.opacity) opacity = style.opacity;
+
+        dataSource.entities.values.forEach(entity => {
+
+            switch (true) {
+                case Cesium.defined(entity.polyline):
+                    entity.polyline.material = Cesium.Color.fromCssColorString(fillColor).withAlpha(parseFloat(opacity));
+                    entity.polyline.width = 2;
+                    break;
+
+                case Cesium.defined(entity.billboard):
+                    entity.billboard = undefined;
+                    entity.point = new Cesium.PointGraphics({
+                        pixelSize: 8,
+                        color: Cesium.Color.fromCssColorString(markerColor).withAlpha(parseFloat(opacity)),
+                        outlineColor: Cesium.Color.WHITE,
+                        outlineWidth: 2
+                    })
+                    break;
+
+                case Cesium.defined(entity.polygon):
+                    entity.polygon.material = Cesium.Color.fromCssColorString(fillColor).withAlpha(parseFloat(opacity));
+                    entity.polygon.outlineColor = Cesium.Color.fromCssColorString(fillColor).withAlpha(parseFloat(opacity));
+                    break;
+
+                default:
+                    break;
+            }
+        });
     }
 }
 
