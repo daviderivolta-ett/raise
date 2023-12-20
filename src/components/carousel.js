@@ -67,7 +67,6 @@ export class Carousel extends HTMLElement {
         this.isGrabbed = true;
         this._startX = e.pageX || e.touches[0].pageX - this.offsetLeft;
         this._scrollLeft = this.scrollLeft;
-        console.log('start');
     }
 
     move(e) {
@@ -76,12 +75,10 @@ export class Carousel extends HTMLElement {
         const x = e.pageX || e.touches[0].pageX - this.offsetLeft;
         const walk = (x - this._startX);
         this.scrollLeft = this._scrollLeft - walk;
-        console.log('move');
     }
 
     end() {
         this.isGrabbed = false;
-        console.log('end');
     }
 
     render() {

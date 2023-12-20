@@ -20,7 +20,7 @@ export class BenchToggle extends HTMLElement {
         this.button.innerHTML =
             `
             <span class="icon">
-                <span class="material-symbols-outlined">apps</span>
+                <span class="material-symbols-outlined">menu</span>
             </span>
             `
         ;
@@ -34,7 +34,7 @@ export class BenchToggle extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/drawer-toggle.css');
+        style.setAttribute('href', './css/bench-toggle.css');
         this.shadow.append(style);
 
         // js

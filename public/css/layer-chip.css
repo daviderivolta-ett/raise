@@ -1,19 +1,18 @@
 :host {
     cursor: pointer;
-    user-select: none;  
-    max-width: fit-content;
-    display: inline-block;
-    color: rgba(241, 245, 244, 1);
 }
 
 .chip {
+    user-select: none;  
+    max-width: fit-content;
+    display: inline-block;
+    color: var(--white);
     white-space: nowrap;
-    background-color: white;
     display: flex;
     align-items: center;
     border-radius: 50px;
     backdrop-filter: blur(2px);
-    background-color: rgba(15, 29, 42, .9);
+    background-color: var(--dark-blue-90);
 }
 
 .icon {
@@ -38,9 +37,13 @@
     padding: 8px 12px 8px 12px;
 }
 
+.select:hover {
+    background-color: var(--dark-blue-100);
+}
+
 .legend {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     border-radius: 100%;
 }
 

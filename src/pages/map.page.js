@@ -1,5 +1,6 @@
 import { LocalStorageService } from '../services/LocalStorageService.js';
 import { SettingService } from '../services/SettingService.js';
+import { ThemeService } from '../services/ThemeService.js';
 import { UserPositionService } from '../services/UserPositionService.js';
 
 export class PageMap extends HTMLElement {
@@ -45,8 +46,8 @@ export class PageMap extends HTMLElement {
                     <div class="upper-search">
                         <app-bench-toggle></app-bench-toggle>
                         <app-searchbar></app-searchbar>
-                        <div class="divider"><span class="vr"></span></div>       
-                        <app-link icon='tag' link ="/"></app-link>
+                        <div class="divider"><span class="vr"></span></div>
+                        <app-link icon='apps' link ="/"></app-link>
                     </div>
                     <div class="lower-search">
                         <app-autocomplete></app-autocomplete>
@@ -56,6 +57,7 @@ export class PageMap extends HTMLElement {
             </div>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
+            <app-theme-icon></app-theme-icon>
             `
             ;
 
@@ -64,11 +66,17 @@ export class PageMap extends HTMLElement {
         this.bench = this.shadow.querySelector('app-bench');
         this.benchToggle = this.shadow.querySelector('app-bench-toggle');
         this.carousel = this.shadow.querySelector('app-carousel');
+        this.themeIcon = this.shadow.querySelector('app-theme-icon');
 
         // js
         // services
         this.map.setCameraToPosition(this.position);
         this.map.createUserPin(this.position);
+
+        // map
+        this.map.addEventListener('clickonmap', () => {
+            this.benchToggle.setAttribute('is-open', false);
+        });
 
         // layers bench
         this.benchToggle.addEventListener('drawerToggled', event => {
@@ -98,20 +106,29 @@ export class PageMap extends HTMLElement {
             this.benchToggle.setAttribute('is-open', true);
         });
 
+        // theme icon
+        this.themeIcon.addEventListener('themechange', event => {
+            this.map.changeTheme(event.detail.theme);
+        });
+
+        // populate carousel
+        let layers = this.filterLayersByTags(this.data, LocalStorageService.instance.getData().selectedTags);
+        this.carousel.data = layers;
+
+        // set themes
+        this.themeIcon.themes = await ThemeService.instance.getThemes();
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/map.page.css');
         this.shadow.append(style);
 
-        // first render
-        this.render();
+
     }
 
     render() {
-        // populate carousel
-        let layers = this.filterLayersByTags(this.data, LocalStorageService.instance.getData().selectedTags);
-        this.carousel.data = layers;
+
     }
 
     filterLayersByTags = (object, array) => {

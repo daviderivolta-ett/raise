@@ -34,6 +34,7 @@ button:hover {
         font-size: 20px;
 }
 
-:host-context(app-drawer-toggle[is-open="true"]) .material-symbols-outlined {
-    color: var(--light-blue);
+
+:host(app-bench-toggle[is-open="true"]) button {
+    background-color: var(--dark-blue-100);
 }

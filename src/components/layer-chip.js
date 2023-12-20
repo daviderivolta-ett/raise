@@ -2,6 +2,7 @@ import { ColorManager } from "../services/ColorManager";
 
 export class LayerChip extends HTMLElement {
     _layer;
+    _isGrabbed;
 
     constructor() {
         super();
@@ -15,6 +16,15 @@ export class LayerChip extends HTMLElement {
 
     set layer(layer) {
         this._layer = layer;
+    }
+
+    get isGrabbed() {
+        return this._isGrabbed;
+    }
+
+    set isGrabbed(isGrabbed) {
+        this._isGrabbed = isGrabbed;
+        this.isGrabbed == true ? this.style.cursor = 'grabbing' : this.style.cursor = 'pointer';
     }
 
     render() { }
@@ -56,11 +66,11 @@ export class LayerChip extends HTMLElement {
 
         // js
         this.addEventListener('mousedown', () => {
-            this.style.cursor = 'grabbing';
+            this.isGrabbed = true;
         });
 
         this.addEventListener('mouseup', () => {
-            this.style.cursor = 'pointer';
+            this.isGrabbed = false;
         });
 
         this.icon.addEventListener('click', () => {

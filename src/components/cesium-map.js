@@ -23,6 +23,10 @@ export default class CesiumViewer extends HTMLElement {
         });
 
         this.viewer.screenSpaceEventHandler.setInputAction(movement => {
+            this.dispatchEvent(new CustomEvent('clickonmap'));
+        }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+        this.viewer.screenSpaceEventHandler.setInputAction(movement => {
             this.mouseOver(movement)
         }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
@@ -77,6 +81,29 @@ export default class CesiumViewer extends HTMLElement {
         }
     }
 
+    
+    changeTheme(theme) {
+        const themeLayerToRemove = this.viewer.imageryLayers._layers[1];
+        this.viewer.imageryLayers.remove(themeLayerToRemove);
+
+        if (Object.keys(theme).length != 0) {
+            const style = this.getImageryProvider(theme.url, theme.layer, theme.credit);
+            this.viewer.imageryLayers.addImageryProvider(style);
+        }
+    }
+
+    getImageryProvider(url, layer, credit) {
+        return new Cesium.WebMapTileServiceImageryProvider({
+            url: url,
+            layer: layer,
+            style: 'default',
+            format: 'image/jpeg',
+            maximumLevel: 19,
+            tileMatrixSetID: 'default',
+            credit: new Cesium.Credit(credit)
+        });
+    }
+
     async loadLayers(layers) {
         const requests = layers.map(layer => this.createlayer(layer).then((data) => ({ layer, data })));
 
@@ -129,9 +156,10 @@ export default class CesiumViewer extends HTMLElement {
                     entity.billboard = undefined;
                     entity.point = new Cesium.PointGraphics({
                         pixelSize: 8,
-                        color: Cesium.Color.fromCssColorString(markerColor).withAlpha(parseFloat(opacity)),
+                        // color: Cesium.Color.fromCssColorString(markerColor).withAlpha(parseFloat(opacity)),
+                        color: Cesium.Color.fromCssColorString(markerColor).withAlpha(0.5),
                         outlineColor: Cesium.Color.fromCssColorString(markerColor),
-                        outlineWidth: 2
+                        outlineWidth: 1
                     })
                     break;
 
