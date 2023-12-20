@@ -13,6 +13,7 @@
     justify-content: flex-start;
     gap: 16px;
     flex-wrap: nowrap;
+    box-sizing: border-box;
 }
 
 .search {

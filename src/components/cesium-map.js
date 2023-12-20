@@ -130,7 +130,7 @@ export default class CesiumViewer extends HTMLElement {
                     entity.point = new Cesium.PointGraphics({
                         pixelSize: 8,
                         color: Cesium.Color.fromCssColorString(markerColor).withAlpha(parseFloat(opacity)),
-                        outlineColor: Cesium.Color.WHITE,
+                        outlineColor: Cesium.Color.fromCssColorString(markerColor),
                         outlineWidth: 2
                     })
                     break;
