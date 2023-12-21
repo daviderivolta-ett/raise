@@ -1,8 +1,27 @@
+:host {
+    position: fixed;
+    top: 80px;
+    left: 24px;
+    width: 356px;
+}
+
+div {
+    max-height: 192px;
+    overflow-y: auto;
+    border-radius: 16px;
+    background-color: var(--dark-blue-90);
+}
+
+div::-webkit-scrollbar {
+    width: 0px;
+}
+
 span {
     cursor: pointer;
     color: var(--white);
     display: block;
     padding: 12px 16px;
+    /* background-color: var(--dark-blue-90); */
 }
 
 span:focus {
@@ -14,6 +33,10 @@ span:hover {
     background-color: var(--dark-blue-100);
 }
 
+/* span:first-child {
+    border-radius: 20px 20px 0 0;
+}
+
 span:last-child {
     border-radius: 0 0 20px 20px;
-}
+} */

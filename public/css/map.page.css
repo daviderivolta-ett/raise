@@ -17,14 +17,11 @@
 }
 
 .search {
+    display: flex;
     min-width: 356px;
     backdrop-filter: blur(2px);
     background-color: var(--dark-blue-90);
     border-radius: 20px;
-}
-
-.upper-search {
-    display: flex;
 }
 
 .divider {

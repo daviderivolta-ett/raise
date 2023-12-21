@@ -10,6 +10,7 @@ input {
     background-color: transparent;
     color: var(--white);
     border: none;
+    padding: 0 8px;
 }
 
 input::placeholder {

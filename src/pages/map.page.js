@@ -42,19 +42,15 @@ export class PageMap extends HTMLElement {
             `
             <app-cesium></app-cesium>
             <div class="header">
-                <div class="search">
-                    <div class="upper-search">
-                        <app-bench-toggle></app-bench-toggle>
-                        <app-searchbar></app-searchbar>
-                        <div class="divider"><span class="vr"></span></div>
-                        <app-link icon='apps' link ="/"></app-link>
-                    </div>
-                    <div class="lower-search">
-                        <app-autocomplete></app-autocomplete>
-                    </div>
+                <div class="search">    
+                    <app-bench-toggle></app-bench-toggle>
+                    <app-searchbar></app-searchbar>
+                    <div class="divider"><span class="vr"></span></div>
+                    <app-link icon='apps' link ="/"></app-link>   
                 </div>
                 <app-carousel></app-carousel>
             </div>
+            <app-autocomplete></app-autocomplete>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
             <app-theme-icon></app-theme-icon>
@@ -78,6 +74,8 @@ export class PageMap extends HTMLElement {
         // map
         this.map.addEventListener('clickonmap', () => {
             this.benchToggle.setAttribute('is-open', false);
+            this.searchbar.setAttribute('value', '');
+            this.searchbar.selectedTag = '';
         });
 
         // searchbar
