@@ -1,3 +1,5 @@
+import { SearchObservable } from '../observables/SearchObservable.js';
+
 export class Carousel extends HTMLElement {
     _data;
     _output;
@@ -55,6 +57,10 @@ export class Carousel extends HTMLElement {
         this.addEventListener('mouseup', this.end);
         this.addEventListener('touchend', this.end);
         this.addEventListener('mouseleave', this.end);
+
+        SearchObservable.instance.subscribe('addlayer', layer => {
+            this.addLayer(layer);
+        });
 
         // css
         const style = document.createElement('link');

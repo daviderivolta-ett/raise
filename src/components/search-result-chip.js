@@ -1,4 +1,5 @@
-import { ColorManager } from "../services/ColorManager.js";
+import { SearchObservable } from '../observables/SearchObservable.js';
+import { ColorManager } from '../services/ColorManager.js';
 
 export class SearchResultChip extends HTMLElement {
     _layer;
@@ -50,9 +51,7 @@ export class SearchResultChip extends HTMLElement {
 
         // js
         this.chip.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('addlayer', {
-                detail: { layer: this.layer }
-            }));
+            SearchObservable.instance.publish('addlayer', this.layer);
         });
 
         // css
