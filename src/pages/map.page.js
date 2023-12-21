@@ -1,3 +1,4 @@
+import { LayersManager } from '../services/LayersManager.js';
 import { LocalStorageService } from '../services/LocalStorageService.js';
 import { SettingService } from '../services/SettingService.js';
 import { ThemeService } from '../services/ThemeService.js';
@@ -31,6 +32,7 @@ export class PageMap extends HTMLElement {
     async connectedCallback() {
         // services
         this.data = await SettingService.instance.getData();
+        this.data = await LayersManager.instance.getData();
 
         let p = await UserPositionService.instance.getPosition();
         this.position = {};

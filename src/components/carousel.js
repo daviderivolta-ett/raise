@@ -1,4 +1,4 @@
-import { SearchObservable } from '../observables/SearchObservable.js';
+import { LayersManager } from '../services/LayersManager.js';
 
 export class Carousel extends HTMLElement {
     _data;
@@ -20,6 +20,7 @@ export class Carousel extends HTMLElement {
     set data(data) {
         this._data = data;
         this.render();
+        this.data.forEach(layer => LayersManager.instance.layers.active.push(layer));
         this.output = this.data;
     }
 
@@ -58,7 +59,7 @@ export class Carousel extends HTMLElement {
         this.addEventListener('touchend', this.end);
         this.addEventListener('mouseleave', this.end);
 
-        SearchObservable.instance.subscribe('addlayer', layer => {
+        LayersManager.instance.subscribe('addlayer', layer => {
             this.addLayer(layer);
         });
 

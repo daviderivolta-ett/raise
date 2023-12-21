@@ -1,5 +1,4 @@
-import { SearchObservable } from '../observables/SearchObservable.js';
-import { SettingService } from '../services/SettingService.js';
+import { LayersManager } from '../services/LayersManager.js';
 
 export class SearchResult extends HTMLElement {
     _layers;
@@ -49,10 +48,10 @@ export class SearchResult extends HTMLElement {
         this.div = this.shadow.querySelector('div');
 
         // js
-        SearchObservable.instance.subscribe('search', search => {
+        LayersManager.instance.subscribe('search', search => {
             this.searchValue = search;
             this.searchValue.length != 0 ? this.setAttribute('is-open', true) : this.setAttribute('is-open', false);
-            let layers = this.filterLayersByNameAndTag(SettingService.instance.data, this.searchValue);
+            let layers = this.filterLayersByNameAndTag(LayersManager.instance.data, this.searchValue);
             this.layers = layers;
             this.div.scrollTop = 0;
         });

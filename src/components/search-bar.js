@@ -1,4 +1,4 @@
-import { SearchObservable } from '../observables/SearchObservable.js';
+import { LayersManager } from '../services/LayersManager.js';
 
 export class Searchbar extends HTMLElement {
     constructor() {
@@ -50,7 +50,7 @@ export class Searchbar extends HTMLElement {
 
             if (name == 'value') {
                 newValue = newValue.toLowerCase();
-                SearchObservable.instance.publish('search', newValue);
+                LayersManager.instance.publish('search', newValue);
                 this.render();
             }
         }

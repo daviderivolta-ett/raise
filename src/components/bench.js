@@ -59,7 +59,7 @@ export class Bench extends HTMLElement {
             this.dispatchEvent(new CustomEvent('restorelayer', {
                 detail: { layer: e.detail.layer }
             }));
-        });;
+        });
 
         benchLayer.addEventListener('deletelayer', e => {
             this.removeLayer(e.detail.layer);
