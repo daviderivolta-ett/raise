@@ -11,7 +11,7 @@ export class SearchResult extends HTMLElement {
         if (!this.hasAttribute('is-open')) this.setAttribute('is-open', false);
     }
 
-    get layers(){
+    get layers() {
         return this._layers;
     }
 
@@ -20,7 +20,7 @@ export class SearchResult extends HTMLElement {
         this.render();
     }
 
-    get searchValue(){
+    get searchValue() {
         return this._searchValue;
     }
 
@@ -29,33 +29,31 @@ export class SearchResult extends HTMLElement {
     }
 
     render() {
-        this.text.innerText = this.searchValue;
         this.div.innerHTML = '';
-        this.layers.forEach(layer => {
-            let chip = document.createElement('app-search-result-chip');
-            chip.layer = layer;
-            this.div.append(chip);
-        });
+        if (this.layers.length == 0) {
+            let msg = document.createElement('p');
+            msg.innerText = 'Nessun livello trovato'
+            this.div.append(msg);
+        } else {
+            this.layers.forEach(layer => {
+                let chip = document.createElement('app-search-result-chip');
+                chip.layer = layer;
+                this.div.append(chip);
+            });
+        }
     }
 
     connectedCallback() {
         // html
-        this.shadow.innerHTML =
-            `
-            <h3>Risultati per: <span class="search-result"></span></h3>
-            <div></div>
-            `
-        ;
-
-        this.text = this.shadow.querySelector('.search-result');
+        this.shadow.innerHTML = `<div></div>`;
         this.div = this.shadow.querySelector('div');
 
         // js
-        SearchObservable.instance.subscribe('filterlayers', search => {
-            search.layers.length != 0 ? this.setAttribute('is-open', true) : this.setAttribute('is-open', false);
-            this.searchValue = search.value;
-            this.layers = search.layers;
-            // this.layers = this.filterLayersBySelectedTags(SettingService.instance.data, search.tags);
+        SearchObservable.instance.subscribe('search', search => {
+            this.searchValue = search;
+            this.searchValue.length != 0 ? this.setAttribute('is-open', true) : this.setAttribute('is-open', false);
+            let layers = this.filterLayersByNameAndTag(SettingService.instance.data, this.searchValue);
+            this.layers = layers;
         });
 
         // css
@@ -74,22 +72,19 @@ export class SearchResult extends HTMLElement {
         }
     }
 
-    filterLayersBySelectedTags(dataToFilter, array) {
-        const filteredLayers = [];
-
-        dataToFilter.categories.forEach(category => {
+    filterLayersByNameAndTag(obj, value) {
+        let layers = [];
+        obj.categories.forEach(category => {
             category.groups.forEach(group => {
-                const filteredGroupLayers = group.layers.filter(layer => {
-                    if (layer.tags) {
-                        return array.some(value => layer.tags.includes(value));
+                group.layers.forEach(layer => {
+                    if (layer.name.toLowerCase().includes(value) || layer.tags.some(tag => tag.includes(value))) {
+                        layers.push(layer);
                     }
-                    return false;
                 });
-                filteredLayers.push(...filteredGroupLayers);
             });
         });
 
-        return filteredLayers;
+        return layers;
     }
 
 }

@@ -4,15 +4,27 @@
 
 .chip {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     background-color: var(--dark-blue-100);
     border-radius: 100px;
-    align-items: center;
     padding: 6px 16px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+.legend {
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
 }
 
 label {
     cursor: pointer;
+    margin: 0 0 0 8px;
 }
 
 .icon {

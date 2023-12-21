@@ -1,21 +1,9 @@
 import { SearchObservable } from '../observables/SearchObservable.js';
 
 export class Searchbar extends HTMLElement {
-    _selectedTag;
-
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
-    }
-
-    get selectedTag() {
-        return this._selectedTag;
-    }
-
-    set selectedTag(selectedTag) {
-        this._selectedTag = selectedTag;
-        this.setAttribute('selected', this.selectedTag);
-        this._selectedTag = null;
     }
 
     focusInput() {
@@ -37,7 +25,6 @@ export class Searchbar extends HTMLElement {
 
         this.input = this.shadow.querySelector('input');
         if (!this.hasAttribute('value')) this.setAttribute('value', '');
-        if (!this.hasAttribute('selected')) this.setAttribute('selected', '');
 
         // js
         this.input.addEventListener('input', event => {
@@ -57,7 +44,7 @@ export class Searchbar extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['value', 'selected'];
+    static observedAttributes = ['value'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue && oldValue != null) {
 
@@ -65,10 +52,6 @@ export class Searchbar extends HTMLElement {
                 newValue = newValue.toLowerCase();
                 SearchObservable.instance.publish('search', newValue);
                 this.render();
-            }
-
-            if (name == 'selected') {
-                this.setAttribute('value', newValue.toLowerCase());
             }
         }
     }

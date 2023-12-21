@@ -1,6 +1,6 @@
 :host {
     position: fixed;
-    bottom: 24px;
+    top: 80px;
     left: -356px;
     width: 356px;
     background-color: white;
@@ -30,4 +30,8 @@ div::-webkit-scrollbar {
 
 h3 {
     margin: 0 0 16px 0;
+}
+
+p {
+    margin: 0;
 }

@@ -1,9 +1,12 @@
+import { ColorManager } from "../services/ColorManager.js";
+
 export class SearchResultChip extends HTMLElement {
     _layer;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
+        this.colorManager = new ColorManager();
     }
 
     get layer() {
@@ -22,7 +25,10 @@ export class SearchResultChip extends HTMLElement {
             `
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="chip">
-                <label>${this.layer.name}</label>
+                <div class="info">
+                    <span class="legend"></span>
+                    <label>${this.layer.name}</label>
+                </div>
                 <span class="icon add-icon">
                     <span class="material-symbols-outlined">add</span>
                 </span>
@@ -31,6 +37,16 @@ export class SearchResultChip extends HTMLElement {
         ;
 
         this.chip = this.shadow.querySelector('.chip');
+        this.label = this.shadow.querySelector('label');
+        this.legend = this.shadow.querySelector('.legend');
+
+        this.colorManager.hex = this.layer.style.color;
+        this.colorManager.rgba = this.colorManager.convertHexToRgba(this.colorManager.hex);
+
+        this.legend.style.backgroundColor = this.colorManager.changeOpacity(this.colorManager.rgba, 0.25);
+        this.legend.style.borderColor = this.colorManager.rgba;
+        this.legend.style.borderWidth = "2px";
+        this.legend.style.borderStyle = "solid";
 
         // js
         this.chip.addEventListener('click', () => {

@@ -50,7 +50,6 @@ export class PageMap extends HTMLElement {
                 </div>
                 <app-carousel></app-carousel>
             </div>
-            <app-autocomplete></app-autocomplete>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
             <app-theme-icon></app-theme-icon>
@@ -75,24 +74,6 @@ export class PageMap extends HTMLElement {
         this.map.addEventListener('clickonmap', () => {
             this.benchToggle.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
-            this.searchbar.selectedTag = '';
-        });
-
-        // searchbar
-        this.searchbar.addEventListener('lastKey', event => {
-            if (event.detail.lastKey == 'ArrowDown') this.autocomplete.setAttribute('last-key', event.detail.lastKey);
-        });
-
-        this.autocomplete.addEventListener('changeFocus', () => {
-            this.searchbar.focusInput();
-        });
-
-        this.searchbar.addEventListener('click', () => {
-            this.autocomplete.selectedSpan = 0;
-        });
-
-        this.autocomplete.addEventListener('selectedtag', event => {
-            this.searchbar.selectedTag = event.detail.selectedTag;
         });
 
         // layers bench
