@@ -54,6 +54,7 @@ export class SearchResult extends HTMLElement {
             this.searchValue.length != 0 ? this.setAttribute('is-open', true) : this.setAttribute('is-open', false);
             let layers = this.filterLayersByNameAndTag(SettingService.instance.data, this.searchValue);
             this.layers = layers;
+            this.div.scrollTop = 0;
         });
 
         // css

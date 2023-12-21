@@ -34,7 +34,7 @@ export class SearchResultChip extends HTMLElement {
                 </span>
             </div>
             `
-        ;
+            ;
 
         this.chip = this.shadow.querySelector('.chip');
         this.label = this.shadow.querySelector('label');
@@ -50,7 +50,9 @@ export class SearchResultChip extends HTMLElement {
 
         // js
         this.chip.addEventListener('click', () => {
-
+            this.dispatchEvent(new CustomEvent('addlayer', {
+                detail: { layer: this.layer }
+            }));
         });
 
         // css
