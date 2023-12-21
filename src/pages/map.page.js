@@ -63,6 +63,8 @@ export class PageMap extends HTMLElement {
 
         /** @type {CesiumViewer} */
         this.map = this.shadow.querySelector('app-cesium');
+        this.searchbar = this.shadow.querySelector('app-searchbar');
+        this.autocomplete = this.shadow.querySelector('app-autocomplete');
         this.bench = this.shadow.querySelector('app-bench');
         this.benchToggle = this.shadow.querySelector('app-bench-toggle');
         this.carousel = this.shadow.querySelector('app-carousel');
@@ -76,6 +78,19 @@ export class PageMap extends HTMLElement {
         // map
         this.map.addEventListener('clickonmap', () => {
             this.benchToggle.setAttribute('is-open', false);
+        });
+
+        // searchbar
+        this.searchbar.addEventListener('lastKey', event => {
+            if (event.detail.lastKey == 'ArrowDown') this.autocomplete.setAttribute('last-key', event.detail.lastKey);
+        });
+
+        this.autocomplete.addEventListener('changeFocus', () => {
+            this.searchbar.focusInput();
+        });
+
+        this.autocomplete.addEventListener('selectedtag', event => {
+            this.searchbar.selectedTag = event.detail.selectedTag;
         });
 
         // layers bench

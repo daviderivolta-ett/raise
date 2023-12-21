@@ -51,10 +51,11 @@ export class SearchResult extends HTMLElement {
         this.div = this.shadow.querySelector('div');
 
         // js
-        SearchObservable.instance.subscribe('filtertags', search => {
-            search.tags.length != 0 ? this.setAttribute('is-open', true) : this.setAttribute('is-open', false);
+        SearchObservable.instance.subscribe('filterlayers', search => {
+            search.layers.length != 0 ? this.setAttribute('is-open', true) : this.setAttribute('is-open', false);
             this.searchValue = search.value;
-            this.layers = this.filterLayersBySelectedTags(SettingService.instance.data, search.tags);
+            this.layers = search.layers;
+            // this.layers = this.filterLayersBySelectedTags(SettingService.instance.data, search.tags);
         });
 
         // css

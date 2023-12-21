@@ -14,7 +14,7 @@ export class Searchbar extends HTMLElement {
 
     set selectedTag(selectedTag) {
         this._selectedTag = selectedTag;
-        this.input.value = selectedTag;
+        this.setAttribute('selected', this.selectedTag);
         this._selectedTag = null;
     }
 
@@ -25,9 +25,6 @@ export class Searchbar extends HTMLElement {
     render() {
         this.input.setAttribute('value', this.getAttribute('value'));
         this.input.value = this.getAttribute('value');
-
-        let isActive = JSON.parse(this.getAttribute('is-active'));
-        isActive == true ? this.classList.add('visible') : this.classList.remove('visible');
     }
 
     connectedCallback() {
@@ -39,8 +36,8 @@ export class Searchbar extends HTMLElement {
             ;
 
         this.input = this.shadow.querySelector('input');
-        if (!this.hasAttribute('is-active')) this.setAttribute('is-active', 'false');
         if (!this.hasAttribute('value')) this.setAttribute('value', '');
+        if (!this.hasAttribute('selected')) this.setAttribute('selected', '');
 
         // js
         this.input.addEventListener('input', event => {
@@ -60,18 +57,18 @@ export class Searchbar extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['value', 'is-active'];
+    static observedAttributes = ['value', 'selected'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue && oldValue != null) {
-
-            if (name == 'is-active') {
-                this.render();
-            }
 
             if (name == 'value') {
                 newValue = newValue.toLowerCase();
                 SearchObservable.instance.publish('search', newValue);
                 this.render();
+            }
+
+            if (name == 'selected') {
+                this.setAttribute('value', newValue.toLowerCase());
             }
         }
     }

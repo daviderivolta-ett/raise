@@ -28,8 +28,8 @@ export class SearchAutocomplete extends HTMLElement {
 
         for (let i = 0; i < this.input.length; i++) {
             this.span = document.createElement('span');
-            this.span.textContent = this.input[i];
-            this.span.setAttribute('name', this.input[i]);
+            this.span.textContent = this.input[i].name;
+            this.span.setAttribute('name', this.input[i].name);
             this.span.setAttribute('tabindex', i + 1);
             this.div.append(this.span);
         }
@@ -58,16 +58,23 @@ export class SearchAutocomplete extends HTMLElement {
             let search = {};
             search.value = searchValue;
 
-            if (searchValue.length >= 2) {
-                let tags = this.filterTag(SettingService.instance.data, searchValue);
-                search.tags = tags;
-                SearchObservable.instance.publish('filtertags', search);
-                this.input = tags;
+            if (searchValue.length > 2) {
+                let layers = this.filterLayersByNameAndTag(SettingService.instance.data, searchValue);
+                
+
+                // let tags = this.filterTag(SettingService.instance.data, searchValue);
+                // search.tags = tags;
+                search.layers = layers;
+                SearchObservable.instance.publish('filterlayers', search);
+                // this.input = tags;
+                this.input = layers;
             } else {
-                search.tags = [];
-                SearchObservable.instance.publish('filtertags', search);
+                // search.tags = [];
+                search.layers = [];
+                SearchObservable.instance.publish('filterlayers', search);
+                // this.input = [];
                 this.input = [];
-            }            
+            }
         });
 
         // css
@@ -151,6 +158,21 @@ export class SearchAutocomplete extends HTMLElement {
 
         const uniqueFoundTags = [...new Set(foundTags)];
         return uniqueFoundTags;
+    }
+
+    filterLayersByNameAndTag(obj, value) {
+        let layers = [];
+        obj.categories.forEach(category => {
+            category.groups.forEach(group => {
+                group.layers.forEach(layer => {
+                    if (layer.name.toLowerCase().includes(value) || layer.tags.some(tag => tag.includes(value))) {
+                        layers.push(layer);
+                    }
+                });
+            });
+        });
+
+        return layers;
     }
 }
 
