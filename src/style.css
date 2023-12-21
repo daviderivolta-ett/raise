@@ -16,6 +16,7 @@ app-rail {
   --dark-blue-100: rgba(15, 29, 42, 1);
   --dark-blue-90: rgba(15, 29, 42, .9);
   --white: rgba(241, 245, 244, 1);
+  --white-50: rgba(241, 245, 244, .5);
   --light-blue: rgba(178, 224, 222, 1);
 }
 
@@ -28,7 +29,7 @@ body,
 html {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   height: 100%;
 }
 

@@ -14,7 +14,7 @@ input {
 }
 
 input::placeholder {
-    color: var(--white);
+    color: var(--white-50);
 }
 
 input:active,

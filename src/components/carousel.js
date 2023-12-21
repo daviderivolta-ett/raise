@@ -26,14 +26,14 @@ export class Carousel extends HTMLElement {
     get output() {
         return this._output;
     }
-    
+
     set output(output) {
         this._output = output;
         this.dispatchEvent(new CustomEvent('loadlayers', {
             detail: { activeLayers: this.data }
         }));
         this._output = null;
-    }    
+    }
 
     get isGrabbed() {
         return this._isGrabbed;
@@ -94,6 +94,14 @@ export class Carousel extends HTMLElement {
     }
 
     addLayer(layer) {
+        if (this.checkLayers(layer)) {
+            let snackbar = document.createElement('app-snackbar');
+            snackbar.setAttribute('text', 'Layer già presente sulla mappa');
+            snackbar.setAttribute('type', 'closable');
+            document.body.append(snackbar);
+            return;
+        }
+
         this._data.push(layer);
         this.createChip(layer);
         this.output = this.data;
@@ -116,6 +124,11 @@ export class Carousel extends HTMLElement {
             this.removeLayer(layerToBench);
         });
     }
+
+    checkLayers(layer) {
+        return this.data.some(item => item.name === layer.name);
+    }
+
 }
 
 customElements.define('app-carousel', Carousel);

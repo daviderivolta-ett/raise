@@ -51,6 +51,7 @@ export class LayerChip extends HTMLElement {
             `
         ;
 
+        this.select = this.shadow.querySelector('.select');
         this.legend = this.shadow.querySelector('.legend');
         this.label = this.shadow.querySelector('label');
         this.icon = this.shadow.querySelector('.icon');
@@ -65,11 +66,11 @@ export class LayerChip extends HTMLElement {
         this.legend.style.borderStyle = "solid";
 
         // js
-        this.addEventListener('mousedown', () => {
+        this.addEventListener('mousedown', e => {
             this.isGrabbed = true;
         });
 
-        this.addEventListener('mouseup', () => {
+        this.addEventListener('mouseup', e => {
             this.isGrabbed = false;
         });
 
