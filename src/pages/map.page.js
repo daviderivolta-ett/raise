@@ -87,6 +87,10 @@ export class PageMap extends HTMLElement {
             this.searchbar.focusInput();
         });
 
+        this.searchbar.addEventListener('click', () => {
+            this.autocomplete.selectedSpan = 0;
+        });
+
         this.autocomplete.addEventListener('selectedtag', event => {
             this.searchbar.selectedTag = event.detail.selectedTag;
         });

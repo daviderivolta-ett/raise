@@ -36,6 +36,12 @@ export class SearchResultChip extends HTMLElement {
         this.chip.addEventListener('click', () => {
 
         });
+
+        // css
+        const style = document.createElement('link');
+        style.setAttribute('rel', 'stylesheet');
+        style.setAttribute('href', './css/search-result-chip.css');
+        this.shadow.append(style);
     }
 }
 

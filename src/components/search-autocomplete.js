@@ -2,12 +2,13 @@ import { SearchObservable } from '../observables/SearchObservable.js';
 import { SettingService } from '../services/SettingService.js';
 
 export class SearchAutocomplete extends HTMLElement {
-    static selectedSpan = 0;
+    _selectedSpan;;
     _input;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'open' });
+        this.selectedSpan = 0;
         this._input = [];
     }
 
@@ -20,8 +21,16 @@ export class SearchAutocomplete extends HTMLElement {
         this.render();
     }
 
+    get selectedSpan() {
+        return this._selectedSpan;
+    }
+
+    set selectedSpan(selectedSpan) {
+        this._selectedSpan = selectedSpan;
+    }
+
     render() {
-        SearchAutocomplete.selectedSpan = 0;
+        this.selectedSpan = 0;
         this.div.innerHTML = '';
 
         if (this.input.length == 0) return;
@@ -60,19 +69,12 @@ export class SearchAutocomplete extends HTMLElement {
 
             if (searchValue.length > 2) {
                 let layers = this.filterLayersByNameAndTag(SettingService.instance.data, searchValue);
-                
-
-                // let tags = this.filterTag(SettingService.instance.data, searchValue);
-                // search.tags = tags;
                 search.layers = layers;
                 SearchObservable.instance.publish('filterlayers', search);
-                // this.input = tags;
                 this.input = layers;
             } else {
-                // search.tags = [];
                 search.layers = [];
                 SearchObservable.instance.publish('filterlayers', search);
-                // this.input = [];
                 this.input = [];
             }
         });
@@ -98,17 +100,17 @@ export class SearchAutocomplete extends HTMLElement {
 
         if (name == 'last-key') {
             if (newValue == 'ArrowDown') {
-                SearchAutocomplete.selectedSpan++;
-                if (SearchAutocomplete.selectedSpan == this.spans.length + 1) SearchAutocomplete.selectedSpan = 1;
-                this.shadow.querySelector(`span[tabIndex="${SearchAutocomplete.selectedSpan}"]`).focus();
+                this.selectedSpan++;
+                if (this.selectedSpan == this.spans.length + 1) this.selectedSpan = 1;
+                this.shadow.querySelector(`span[tabIndex="${this.selectedSpan}"]`).focus();
             }
 
             if (newValue == 'ArrowUp') {
-                SearchAutocomplete.selectedSpan--;
-                if (SearchAutocomplete.selectedSpan == 0) {
+                this.selectedSpan--;
+                if (this.selectedSpan == 0) {
                     this.dispatchEvent(new CustomEvent('changeFocus'));
                 } else {
-                    this.shadow.querySelector(`span[tabIndex="${SearchAutocomplete.selectedSpan}"]`).focus();
+                    this.shadow.querySelector(`span[tabIndex="${this.selectedSpan}"]`).focus();
                 }
             }
 

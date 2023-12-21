@@ -59,7 +59,7 @@ export class Searchbar extends HTMLElement {
 
     static observedAttributes = ['value', 'selected'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue) {
+        if (newValue != oldValue && oldValue != null) {
 
             if (name == 'value') {
                 newValue = newValue.toLowerCase();
