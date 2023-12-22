@@ -1,8 +1,5 @@
-import { LayersManager } from '../services/LayersManager.js';
-
 export class SearchResult extends HTMLElement {
     _layers;
-    _searchValue;
 
     constructor() {
         super();
@@ -19,14 +16,6 @@ export class SearchResult extends HTMLElement {
         this.render();
     }
 
-    get searchValue() {
-        return this._searchValue;
-    }
-
-    set searchValue(searchValue) {
-        this._searchValue = searchValue;
-    }
-
     render() {
         this.div.innerHTML = '';
         if (this.layers.length == 0) {
@@ -38,6 +27,7 @@ export class SearchResult extends HTMLElement {
                 let chip = document.createElement('app-search-result-chip');
                 chip.layer = layer;
                 this.div.append(chip);
+                this.div.scrollTop = 0;
             });
         }
     }
@@ -48,13 +38,6 @@ export class SearchResult extends HTMLElement {
         this.div = this.shadow.querySelector('div');
 
         // js
-        LayersManager.instance.subscribe('search', search => {
-            this.searchValue = search;
-            this.searchValue.length != 0 ? this.setAttribute('is-open', true) : this.setAttribute('is-open', false);
-            let layers = this.filterLayersByNameAndTag(LayersManager.instance.data, this.searchValue);
-            this.layers = layers;
-            this.div.scrollTop = 0;
-        });
 
         // css
         const style = document.createElement('link');
@@ -70,23 +53,7 @@ export class SearchResult extends HTMLElement {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
             }
         }
-    }
-
-    filterLayersByNameAndTag(obj, value) {
-        let layers = [];
-        obj.categories.forEach(category => {
-            category.groups.forEach(group => {
-                group.layers.forEach(layer => {
-                    if (layer.name.toLowerCase().includes(value) || layer.tags.some(tag => tag.includes(value))) {
-                        layers.push(layer);
-                    }
-                });
-            });
-        });
-
-        return layers;
-    }
-
+    }   
 }
 
 customElements.define('app-search-result', SearchResult);

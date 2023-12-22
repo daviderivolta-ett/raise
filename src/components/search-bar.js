@@ -1,4 +1,5 @@
 import { LayersManager } from '../services/LayersManager.js';
+import { SettingService } from '../services/SettingService.js';
 
 export class Searchbar extends HTMLElement {
     constructor() {
@@ -31,12 +32,6 @@ export class Searchbar extends HTMLElement {
             this.setAttribute('value', this.input.value);
         });
 
-        this.input.addEventListener('keydown', event => {
-            this.dispatchEvent(new CustomEvent('lastKey', {
-                detail: { lastKey: event.key }
-            }));
-        });
-
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
@@ -50,10 +45,26 @@ export class Searchbar extends HTMLElement {
 
             if (name == 'value') {
                 newValue = newValue.toLowerCase();
-                LayersManager.instance.publish('search', newValue);
+                let layers = this.filterLayersByNameAndTag(SettingService.instance.data, newValue);
+                this.dispatchEvent(new CustomEvent('search', { detail: { searchValue: newValue, layers } }));
                 this.render();
             }
         }
+    }
+
+    filterLayersByNameAndTag(obj, value) {
+        let layers = [];
+        obj.categories.forEach(category => {
+            category.groups.forEach(group => {
+                group.layers.forEach(layer => {
+                    if (layer.name.toLowerCase().includes(value) || layer.tags.some(tag => tag.includes(value))) {
+                        layers.push(layer);
+                    }
+                });
+            });
+        });
+
+        return layers;
     }
 }
 
