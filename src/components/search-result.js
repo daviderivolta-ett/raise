@@ -27,6 +27,11 @@ export class SearchResult extends HTMLElement {
                 let chip = document.createElement('app-search-result-chip');
                 chip.layer = layer;
                 this.div.append(chip);
+                chip.addEventListener('add-layer', e => {
+                    document.dispatchEvent(new CustomEvent('add-layer', {
+                        detail: { layers: [e.detail.layer] }
+                    }));
+                });
                 this.div.scrollTop = 0;
             });
         }
@@ -36,8 +41,6 @@ export class SearchResult extends HTMLElement {
         // html
         this.shadow.innerHTML = `<div></div>`;
         this.div = this.shadow.querySelector('div');
-
-        // js
 
         // css
         const style = document.createElement('link');
@@ -53,7 +56,7 @@ export class SearchResult extends HTMLElement {
                 newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
             }
         }
-    }   
+    }
 }
 
 customElements.define('app-search-result', SearchResult);

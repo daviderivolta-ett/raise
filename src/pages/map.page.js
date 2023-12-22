@@ -120,7 +120,8 @@ export class PageMap extends HTMLElement {
 
         // populate carousel
         let layers = this.filterLayersByTags(this.data, LocalStorageService.instance.getData().selectedTags);
-        this.carousel.data = layers;
+        // this.carousel.data = layers;
+        this.carousel.layers = layers;
 
         // set themes
         this.themeIcon.themes = await ThemeService.instance.getThemes();
@@ -130,8 +131,6 @@ export class PageMap extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/map.page.css');
         this.shadow.append(style);
-
-
     }
 
     render() {

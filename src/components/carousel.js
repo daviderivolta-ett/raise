@@ -1,39 +1,24 @@
-import { LayersManager } from '../services/LayersManager.js';
-
 export class Carousel extends HTMLElement {
-    _data;
-    _output;
     _isGrabbed;
     _startX;
     _scrollLeft;
+    _layers;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
         this.isGrabbed = false;
+        this._layers = [];
     }
 
-    get data() {
-        return this._data;
+    get layers() {
+        return this._layers;
     }
 
-    set data(data) {
-        this._data = data;
+    set layers(layers) {
+        this._layers = layers;
+        this.dispatchEvent(new CustomEvent('loadlayers', { detail: { activeLayers: this.layers } }));
         this.render();
-        this.data.forEach(layer => LayersManager.instance.layers.active.push(layer));
-        this.output = this.data;
-    }
-
-    get output() {
-        return this._output;
-    }
-
-    set output(output) {
-        this._output = output;
-        this.dispatchEvent(new CustomEvent('loadlayers', {
-            detail: { activeLayers: this.data }
-        }));
-        this._output = null;
     }
 
     get isGrabbed() {
@@ -59,8 +44,10 @@ export class Carousel extends HTMLElement {
         this.addEventListener('touchend', this.end);
         this.addEventListener('mouseleave', this.end);
 
-        LayersManager.instance.subscribe('addlayer', layer => {
-            this.addLayer(layer);
+        document.addEventListener('add-layer', e => {
+            let newLayers = this.checkLayers(this._layers, e.detail.layers);
+            newLayers.forEach(layer => this._layers.push(layer));
+            this.layers = this._layers;
         });
 
         // css
@@ -89,28 +76,9 @@ export class Carousel extends HTMLElement {
     }
 
     render() {
-        this.data.forEach(layer => {
+        this.layers.forEach(layer => {
             this.createChip(layer);
         });
-    }
-
-    addLayer(layer) {
-        if (this.checkLayers(layer)) {
-            let snackbar = document.createElement('app-snackbar');
-            snackbar.setAttribute('text', 'Layer già presente sulla mappa');
-            snackbar.setAttribute('type', 'closable');
-            document.body.append(snackbar);
-            return;
-        }
-
-        this._data.push(layer);
-        this.createChip(layer);
-        this.output = this.data;
-    }
-
-    removeLayer(layerToRemove) {
-        this._data = this._data.filter(layer => layerToRemove.layer !== layer.layer);
-        this.output = this.data;
     }
 
     createChip(layer) {
@@ -126,10 +94,9 @@ export class Carousel extends HTMLElement {
         });
     }
 
-    checkLayers(layer) {
-        return this.data.some(item => item.name === layer.name);
+    checkLayers(oldArray, newArray) {
+        return newArray.filter(newArrayItem => !oldArray.some(oldArrayItem => newArrayItem.name == oldArrayItem.name));
     }
-
 }
 
 customElements.define('app-carousel', Carousel);

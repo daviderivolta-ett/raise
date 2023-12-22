@@ -89,6 +89,7 @@ export class LayerChip extends HTMLElement {
         this.dispatchEvent(new CustomEvent('benchlayer', {
             detail: { layer: this.layer }
         }));
+
     }
 }
 
