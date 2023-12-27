@@ -87,7 +87,6 @@ export class LayerChip extends HTMLElement {
 
     disconnectedCallback() {
         this.dispatchEvent(new CustomEvent('bench-layer', { detail: { layer: this.layer } }));
-
     }
 }
 

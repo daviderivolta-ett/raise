@@ -55,17 +55,9 @@ export class InfoDrawer extends HTMLElement {
         this.goToBtn.coordinates = coordinates;
         this.tools.insertBefore(this.goToBtn, this.playBtn);
 
-        // this.addToRouteBtn = document.createElement('app-add-to-route');
-        // this.tools.insertBefore(this.addToRouteBtn, this.playBtn);
-
         this.goToBtn.addEventListener('go-to', e => {
             this.goTo(e.detail.coordinates);
         });
-
-        // this.addToRouteBtn.addEventListener('click', () => {
-        //     this.feature = JSON.parse(this.getAttribute('data'));
-        //     this.dispatchEvent(new CustomEvent('addToRoute', { detail: { data: this.feature } }));
-        // });
 
         this.playBtn.addEventListener('read-info', () => {
             const speaker = new SpeechSynthesisUtterance();
@@ -73,6 +65,13 @@ export class InfoDrawer extends HTMLElement {
             const textToRead = this.shadow.querySelector('.content').innerHTML;
             speaker.text = textToRead;
             window.speechSynthesis.speak(speaker);
+        });
+
+        this.addToRouteBtn = document.createElement('app-add-to-route');
+        this.tools.append(this.addToRouteBtn);
+
+        this.addToRouteBtn.addEventListener('click', () => {
+            this.dispatchEvent(new CustomEvent('add-to-route', { detail: { feature: this.feature } }));
         });
 
     }

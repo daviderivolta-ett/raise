@@ -1,5 +1,4 @@
 import { ColorManager } from '../services/ColorManager.js';
-import { LayersManager } from '../services/LayersManager.js';
 
 export class SearchResultChip extends HTMLElement {
     _layer;
@@ -52,7 +51,6 @@ export class SearchResultChip extends HTMLElement {
         // js
         this.chip.addEventListener('click', () => {
             this.dispatchEvent(new CustomEvent('add-layer', { detail: { layer: this.layer } }));
-            LayersManager.instance.publish('addlayer', this.layer);
         });
 
         // css

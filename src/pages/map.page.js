@@ -51,6 +51,7 @@ export class PageMap extends HTMLElement {
                 <app-carousel></app-carousel>
             </div>
             <app-info-drawer></app-info-drawer>
+            <app-path-drawer></app-path-drawer>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
             <app-theme-icon></app-theme-icon>
@@ -60,13 +61,14 @@ export class PageMap extends HTMLElement {
         /** @type {CesiumViewer} */
         this.map = this.shadow.querySelector('app-cesium');
         this.searchbar = this.shadow.querySelector('app-searchbar');
-        this.info = this.shadow.querySelector('app-info-drawer');
         this.searchResult = this.shadow.querySelector('app-search-result');
         this.autocomplete = this.shadow.querySelector('app-autocomplete');
         this.bench = this.shadow.querySelector('app-bench');
         this.benchToggle = this.shadow.querySelector('app-bench-toggle');
         this.carousel = this.shadow.querySelector('app-carousel');
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
+        this.info = this.shadow.querySelector('app-info-drawer');
+        this.path = this.shadow.querySelector('app-path-drawer');
 
         // js
         // map
@@ -76,6 +78,7 @@ export class PageMap extends HTMLElement {
         this.map.addEventListener('map-click', event => {
             this.benchToggle.setAttribute('is-open', false);
             this.info.setAttribute('is-open', false);
+            this.path.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
 
             const feature = this.map.getFeature(event.detail.movement, this.data);
@@ -92,10 +95,11 @@ export class PageMap extends HTMLElement {
 
         this.searchbar.shadowRoot.querySelector('input').addEventListener('click', () => {
             this.info.setAttribute('is-open', false);
+            this.path.setAttribute('is-open', false);
         });
 
         // carousel & bench
-        this.benchToggle.addEventListener('drawerToggled', event => {
+        this.benchToggle.addEventListener('drawer-toggle', event => {
             const isOpen = event.detail.isOpen;
             this.bench.setAttribute('is-open', isOpen);
         });
@@ -119,6 +123,18 @@ export class PageMap extends HTMLElement {
         // theme icon
         this.themeIcon.addEventListener('themechange', event => {
             this.map.changeTheme(event.detail.theme);
+        });
+
+        // info
+        this.info.addEventListener('add-to-route', event => {
+            console.log(event.detail);
+            let features = this.path.features;
+            let feature = event.detail.feature;
+
+            if (!features.some(obj => JSON.stringify(obj) === JSON.stringify(feature))) features.push(feature);
+
+            this.path.features = features;
+            this.path.setAttribute('is-open', true);
         });
 
         // populate carousel

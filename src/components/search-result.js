@@ -29,7 +29,7 @@ export class SearchResult extends HTMLElement {
                 this.div.append(chip);
                 chip.addEventListener('add-layer', e => {
                     document.dispatchEvent(new CustomEvent('add-layer', {
-                        detail: { layers: [e.detail.layer] }
+                        detail: { layers: [ e.detail.layer ] }
                     }));
                 });
                 this.div.scrollTop = 0;

@@ -49,7 +49,7 @@ export class BenchToggle extends HTMLElement {
         if (newValue != oldValue) {
 
             if (name == 'is-open') {
-                const event = new CustomEvent('drawerToggled', { detail: { isOpen: newValue } });
+                const event = new CustomEvent('drawer-toggle', { detail: { isOpen: newValue } });
                 this.dispatchEvent(event);
             }
         }
