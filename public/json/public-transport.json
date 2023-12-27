@@ -77,7 +77,7 @@
             "relevant_properties": [
                 {
                     "property_name": "NOME_STAZ",
-                    "display_name": "nome stazione",
+                    "display_name": "Nome stazione",
                     "type": "string"
                 },
                 {

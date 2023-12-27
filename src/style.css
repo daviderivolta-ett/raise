@@ -17,6 +17,8 @@ app-rail {
   --dark-blue-90: rgba(15, 29, 42, .9);
   --white: rgba(241, 245, 244, 1);
   --white-50: rgba(241, 245, 244, .5);
+  --green-blue: rgba(12, 74, 85, 1);
+  --neon-blue: rgba(2, 255, 253, 1);
   --light-blue: rgba(178, 224, 222, 1);
 }
 

@@ -1,4 +1,3 @@
-import { LayersManager } from '../services/LayersManager.js';
 import { LocalStorageService } from '../services/LocalStorageService.js';
 import { SettingService } from '../services/SettingService.js';
 import { ThemeService } from '../services/ThemeService.js';
@@ -32,7 +31,6 @@ export class PageMap extends HTMLElement {
     async connectedCallback() {
         // services
         this.data = await SettingService.instance.getData();
-        this.data = await LayersManager.instance.getData();
 
         let p = await UserPositionService.instance.getPosition();
         this.position = {};
@@ -52,6 +50,7 @@ export class PageMap extends HTMLElement {
                 </div>
                 <app-carousel></app-carousel>
             </div>
+            <app-info-drawer></app-info-drawer>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
             <app-theme-icon></app-theme-icon>
@@ -61,6 +60,7 @@ export class PageMap extends HTMLElement {
         /** @type {CesiumViewer} */
         this.map = this.shadow.querySelector('app-cesium');
         this.searchbar = this.shadow.querySelector('app-searchbar');
+        this.info = this.shadow.querySelector('app-info-drawer');
         this.searchResult = this.shadow.querySelector('app-search-result');
         this.autocomplete = this.shadow.querySelector('app-autocomplete');
         this.bench = this.shadow.querySelector('app-bench');
@@ -73,15 +73,25 @@ export class PageMap extends HTMLElement {
         this.map.setCameraToPosition(this.position);
         this.map.createUserPin(this.position);
 
-        this.map.addEventListener('clickonmap', () => {
+        this.map.addEventListener('map-click', event => {
             this.benchToggle.setAttribute('is-open', false);
+            this.info.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
+
+            const feature = this.map.getFeature(event.detail.movement, this.data);
+            if (feature == undefined) return;
+            this.info.feature = feature;
+            this.info.setAttribute('is-open', true);
         });
 
         // search
         this.searchbar.addEventListener('search', event => {
             event.detail.searchValue.length == 0 ? this.searchResult.setAttribute('is-open', false) : this.searchResult.setAttribute('is-open', true);
             this.searchResult.layers = event.detail.layers;
+        });
+
+        this.searchbar.shadowRoot.querySelector('input').addEventListener('click', () => {
+            this.info.setAttribute('is-open', false);
         });
 
         // carousel & bench

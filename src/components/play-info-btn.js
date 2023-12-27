@@ -24,7 +24,7 @@ export class PlayInfoBtn extends HTMLElement {
 
         // js
         this.button.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('readInfo'));
+            this.dispatchEvent(new CustomEvent('read-info'));
         });
 
         // css

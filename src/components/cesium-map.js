@@ -23,7 +23,7 @@ export default class CesiumViewer extends HTMLElement {
         });
 
         this.viewer.screenSpaceEventHandler.setInputAction(movement => {
-            this.dispatchEvent(new CustomEvent('clickonmap'));
+            this.dispatchEvent(new CustomEvent('map-click', { detail: { movement } }));
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
         this.viewer.screenSpaceEventHandler.setInputAction(movement => {
@@ -34,6 +34,94 @@ export default class CesiumViewer extends HTMLElement {
         const style = document.createElement('style');
         style.innerHTML = cesiumCss;
         this.shadow.append(style);
+    }
+
+    getFeature(movement, data) {
+        const windowPosition = movement.position;
+        const pickedEntity = this.viewer.scene.pick(windowPosition);
+
+        if (!pickedEntity || pickedEntity == null) return;
+
+        const layerToFind = this.getLayerName(pickedEntity.id.id);
+        const layer = this.getLayerByName(data, layerToFind);
+        
+        let coordinates;
+        if (pickedEntity.primitive._position) {
+            let cartesian = pickedEntity.primitive._position;
+            coordinates = this.cartesianToCartographic(cartesian);
+        }
+
+        const properties = pickedEntity.id.properties;
+        const propertiesToFind = layer.relevant_properties;
+        const layerName = layer.name;
+        const relevantProperties = this.getRelevantProperties(properties, propertiesToFind, layerName);
+
+        let feature = {};
+        feature.properties = relevantProperties;
+        feature.layer = layer;
+        if (coordinates) {
+            feature.coordinates = coordinates;
+            this.setCameraToPosition(coordinates);
+        };
+        return feature;
+    }
+
+    getLayerName(id) {
+        let layer;
+        switch (true) {
+            case id.includes('.'):
+                layer = id.split('.')[0];
+                break;
+            case id.includes('/'):
+                layer = id.split('/')[0];
+                break;
+            default:
+                break;
+        }
+        return layer;
+    }
+
+    getLayerByName(data, layerName) {
+        for (const key in data) {
+            const currentValue = data[key];
+            if (Array.isArray(currentValue) || typeof currentValue === 'object') {
+                const result = this.getLayerByName(currentValue, layerName);
+                if (result) return result;
+            } else if (typeof currentValue === 'string' && currentValue.includes(layerName)) {
+                return data;
+            }
+        }
+        return null;
+    }
+
+    getRelevantProperties(data, properties, title) {
+        const risultati = {};
+
+        if (properties) {
+            for (const obj of properties) {
+                if (obj.property_name && data[obj.property_name]) {
+                    if (data[obj.property_name]._value) {
+                        risultati[obj.display_name] = data[obj.property_name]._value;
+                    } else {
+                        risultati[obj.display_name] = data[obj.property_name];
+                    }
+                }
+            }
+
+            risultati["Title"] = title;
+            return risultati;
+        }
+
+        return risultati;
+    }
+
+    cartesianToCartographic(cartesian) {
+        const cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+        let longitude = Cesium.Math.toDegrees(cartographic.longitude);
+        let latitude = Cesium.Math.toDegrees(cartographic.latitude);
+        longitude = parseFloat(longitude.toFixed(8));
+        latitude = parseFloat(latitude.toFixed(8));
+        return { longitude, latitude };
     }
 
     setCameraToPosition(position) {
@@ -50,7 +138,7 @@ export default class CesiumViewer extends HTMLElement {
                 pitch: Cesium.Math.toRadians(-90.0),
                 roll: 0
             },
-            duration: 0
+            duration: 0.5
         })
     }
 
@@ -81,7 +169,7 @@ export default class CesiumViewer extends HTMLElement {
         }
     }
 
-    
+
     changeTheme(theme) {
         const themeLayerToRemove = this.viewer.imageryLayers._layers[1];
         this.viewer.imageryLayers.remove(themeLayerToRemove);

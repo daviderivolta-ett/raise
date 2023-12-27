@@ -1,20 +1,27 @@
-import { DataSource } from "cesium";
-
 export class InfoDrawer extends HTMLElement {
+    _feature;
+
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
     }
 
-    render() {
-        this.data = JSON.parse(this.getAttribute('data'));
+    get feature() {
+        return this._feature;
+    }
 
+    set feature(feature) {
+        this._feature = feature;
+        this.render();
+    }
+
+    render() {
         this.category.innerText = '';
         this.name.innerText = '';
         this.tools.innerHTML = '';
         this.content.innerHTML = '';
 
-        const properties = this.data.properties;
+        const properties = this.feature.properties;
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
                 const value = properties[key];
@@ -38,29 +45,29 @@ export class InfoDrawer extends HTMLElement {
         this.playBtn = document.createElement('app-play-info-btn');
         this.tools.append(this.playBtn);
 
-        if (!this.data.coordinates || !typeof this.data.coordinates == 'object') return;
+        if (!this.feature.coordinates || !typeof this.feature.coordinates == 'object') return;
 
         const coordinates = {};
-        coordinates.longitude = this.data.coordinates.longitude;
-        coordinates.latitude = this.data.coordinates.latitude;
+        coordinates.longitude = this.feature.coordinates.longitude;
+        coordinates.latitude = this.feature.coordinates.latitude;
 
         this.goToBtn = document.createElement('app-goto');
-        this.goToBtn.setAttribute('coordinates', JSON.stringify(coordinates));
+        this.goToBtn.coordinates = coordinates;
         this.tools.insertBefore(this.goToBtn, this.playBtn);
 
-        this.addToRouteBtn = document.createElement('app-add-to-route');
-        this.tools.insertBefore(this.addToRouteBtn, this.playBtn);
+        // this.addToRouteBtn = document.createElement('app-add-to-route');
+        // this.tools.insertBefore(this.addToRouteBtn, this.playBtn);
 
-        this.goToBtn.addEventListener('goto', (e) => {
-            this.dispatchEvent(new CustomEvent('goto', { detail: e.detail.coordinates }));
+        this.goToBtn.addEventListener('go-to', e => {
+            this.goTo(e.detail.coordinates);
         });
 
-        this.addToRouteBtn.addEventListener('click', () => {
-            this.data = JSON.parse(this.getAttribute('data'));
-            this.dispatchEvent(new CustomEvent('addToRoute', { detail: { data: this.data } }));
-        });
+        // this.addToRouteBtn.addEventListener('click', () => {
+        //     this.feature = JSON.parse(this.getAttribute('data'));
+        //     this.dispatchEvent(new CustomEvent('addToRoute', { detail: { data: this.feature } }));
+        // });
 
-        this.playBtn.addEventListener('readInfo', () => {
+        this.playBtn.addEventListener('read-info', () => {
             const speaker = new SpeechSynthesisUtterance();
             speaker.lang = 'it';
             const textToRead = this.shadow.querySelector('.content').innerHTML;
@@ -71,9 +78,6 @@ export class InfoDrawer extends HTMLElement {
     }
 
     connectedCallback() {
-        this.setAttribute('is-open', 'false');
-        this.setAttribute('data', '');
-
         // html
         this.shadow.innerHTML =
             `
@@ -87,15 +91,14 @@ export class InfoDrawer extends HTMLElement {
                         <h4 class="name"></h4>
                         <p class="category"></p>
                     </div>
-                    <div class="tools">
-                        <app-add-to-route></app-add-to-route>
-                        <app-play-info-btn></app-play-info-btn>
-                    </div>
+                    <div class="tools"></div>
                 </div>
                 <div class="content"></div>
             </div>
             `
             ;
+
+        this.setAttribute('is-open', false);
 
         this.close = this.shadow.querySelector('.close-icon');
         this.info = this.shadow.querySelector('.info');
@@ -114,22 +117,12 @@ export class InfoDrawer extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-open', 'data'];
+    static observedAttributes = ['is-open'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue && newValue != null && oldValue != null) {
-
+        if (newValue != oldValue && oldValue != null) {
             if (name == 'is-open') {
                 newValue == 'true' ? this.openDrawer() : this.closeDrawer();
             }
-
-            if (name == 'data') {
-                this.closeDrawer();
-                setTimeout(() => {
-                    this.render();
-                    this.openDrawer();
-                }, 0);
-            }
-
         }
     }
 
@@ -141,6 +134,12 @@ export class InfoDrawer extends HTMLElement {
     closeDrawer() {
         this.classList.remove('open');
         this.classList.add('close');
+    }
+
+    goTo(coordinates) {
+        const url = `https://www.google.com/maps/dir/?api=1` +
+            `&destination=${coordinates.latitude},${coordinates.longitude}`;
+        window.open(url, '_blank');
     }
 }
 
