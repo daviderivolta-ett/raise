@@ -104,6 +104,10 @@ export class PageMap extends HTMLElement {
             this.benchToggle.setAttribute('is-open', false);
         });
 
+        document.addEventListener('bench-layer', event => {
+            this.benchToggle.setAttribute('is-open', true);
+        });
+
         this.carousel.addEventListener('loadlayers', event => {
             this.map.loadLayers(event.detail.activeLayers);
         });
@@ -120,8 +124,8 @@ export class PageMap extends HTMLElement {
 
         // populate carousel
         let layers = this.filterLayersByTags(this.data, LocalStorageService.instance.getData().selectedTags);
-        // this.carousel.data = layers;
         this.carousel.layers = layers;
+        layers.forEach(layer => this.carousel.createChip(layer));
 
         // set themes
         this.themeIcon.themes = await ThemeService.instance.getThemes();

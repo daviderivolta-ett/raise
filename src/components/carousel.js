@@ -18,7 +18,6 @@ export class Carousel extends HTMLElement {
     set layers(layers) {
         this._layers = layers;
         this.dispatchEvent(new CustomEvent('loadlayers', { detail: { activeLayers: this.layers } }));
-        this.render();
     }
 
     get isGrabbed() {
@@ -46,8 +45,7 @@ export class Carousel extends HTMLElement {
 
         document.addEventListener('add-layer', e => {
             let newLayers = this.checkLayers(this._layers, e.detail.layers);
-            newLayers.forEach(layer => this._layers.push(layer));
-            this.layers = this._layers;
+            newLayers.forEach(layer => this.addLayer(layer));
         });
 
         // css
@@ -75,22 +73,25 @@ export class Carousel extends HTMLElement {
         this.isGrabbed = false;
     }
 
-    render() {
-        this.layers.forEach(layer => {
-            this.createChip(layer);
-        });
+    addLayer(layer) {
+        this._layers.push(layer);
+        this.createChip(layer);
+        this.layers = this._layers;
+    }
+
+    removeLayer(layerToRemove) {
+        this._layers = this._layers.filter(layer => layerToRemove.layer !== layer.layer);
+        this.layers = this._layers;
     }
 
     createChip(layer) {
         let chip = document.createElement('app-layer-chip');
         chip.layer = layer;
         this.div.append(chip);
-        chip.addEventListener('benchlayer', e => {
+        chip.addEventListener('bench-layer', e => {
             const layerToBench = e.detail.layer;
-            this.dispatchEvent(new CustomEvent('benchlayer', {
-                detail: { layer: layerToBench }
-            }));
             this.removeLayer(layerToBench);
+            document.dispatchEvent(new CustomEvent('bench-layer', { detail: { layers: [layerToBench] } }));
         });
     }
 

@@ -36,7 +36,7 @@ export class BenchLayer extends HTMLElement {
                 </div>
             </div>
             `
-        ;
+            ;
 
         this.add = this.shadow.querySelector('.add');
         this.delete = this.shadow.querySelector('.delete');
@@ -44,9 +44,6 @@ export class BenchLayer extends HTMLElement {
         // js
         this.add.addEventListener('click', e => {
             e.stopPropagation();
-            this.dispatchEvent(new CustomEvent('restorelayer', {
-                detail: { layer: this.layer }
-            }));
             this.remove();
         });
 
@@ -63,6 +60,10 @@ export class BenchLayer extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/bench-layer.css');
         this.shadow.append(style);
+    }
+
+    disconnectedCallback() {
+        this.dispatchEvent(new CustomEvent('restore-layer', { detail: { layer: this.layer } }));
     }
 }
 

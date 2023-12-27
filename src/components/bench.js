@@ -1,19 +1,19 @@
 export class Bench extends HTMLElement {
-    _data;
+    _layers;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        this._data = [];
+        this._layers = [];
     }
 
-    get data() {
-        return this._data;
+    get layers() {
+        return this._layers;
     }
 
-    set data(data) {
-        this._data = data;      
-        if (this._data.length == 0) this.dispatchEvent(new CustomEvent('benchempty'));
+    set layers(layers) {
+        this._layers = layers;
+        if (this._layers.length == 0) this.dispatchEvent(new CustomEvent('benchempty'));
     }
 
     connectedCallback() {
@@ -21,6 +21,12 @@ export class Bench extends HTMLElement {
         this.shadow.innerHTML = `<div></div>`;
         this.div = this.shadow.querySelector('div');
         if (!this.hasAttribute('is-open')) this.setAttribute('is-open', 'false');
+
+        // js
+        document.addEventListener('bench-layer', e => {
+            let newLayers = this.checkLayers(this._layers, e.detail.layers);
+            newLayers.forEach(layer => { this.addLayer(layer); });
+        });
 
         // css
         const style = document.createElement('link');
@@ -39,14 +45,14 @@ export class Bench extends HTMLElement {
     }
 
     addLayer(layer) {
-        this._data.push(layer);
+        this._layers.push(layer);
         this.createChip(layer);
-        this.data = this._data;
+        this.layers = this._layers;
     }
 
     removeLayer(layerToRemove) {
-        this._data = this._data.filter(layer => layerToRemove.layer !== layer.layer);
-        this.data = this._data;
+        this._layers = this._layers.filter(layer => layerToRemove.layer !== layer.layer);
+        this.layers = this._layers;
     }
 
     createChip(layer) {
@@ -54,16 +60,18 @@ export class Bench extends HTMLElement {
         benchLayer.layer = layer;
         this.div.append(benchLayer);
 
-        benchLayer.addEventListener('restorelayer', e => {
+        benchLayer.addEventListener('restore-layer', e => {
             this.removeLayer(e.detail.layer);
-            this.dispatchEvent(new CustomEvent('restorelayer', {
-                detail: { layer: e.detail.layer }
-            }));
+            document.dispatchEvent(new CustomEvent('add-layer', { detail: { layers: [ e.detail.layer ] } }));
         });
 
         benchLayer.addEventListener('deletelayer', e => {
             this.removeLayer(e.detail.layer);
         });
+    }
+
+    checkLayers(oldArray, newArray) {
+        return newArray.filter(newArrayItem => !oldArray.some(oldArrayItem => newArrayItem.name == oldArrayItem.name));
     }
 }
 

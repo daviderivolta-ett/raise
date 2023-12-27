@@ -1,4 +1,4 @@
-import { ColorManager } from "../services/ColorManager";
+import { ColorManager } from '../services/ColorManager';
 
 export class LayerChip extends HTMLElement {
     _layer;
@@ -49,7 +49,7 @@ export class LayerChip extends HTMLElement {
                 </div>
             </div>
             `
-        ;
+            ;
 
         this.select = this.shadow.querySelector('.select');
         this.legend = this.shadow.querySelector('.legend');
@@ -86,9 +86,7 @@ export class LayerChip extends HTMLElement {
     }
 
     disconnectedCallback() {
-        this.dispatchEvent(new CustomEvent('benchlayer', {
-            detail: { layer: this.layer }
-        }));
+        this.dispatchEvent(new CustomEvent('bench-layer', { detail: { layer: this.layer } }));
 
     }
 }
