@@ -14,7 +14,6 @@ export class Bench extends HTMLElement {
     set layers(layers) {
         this._layers = layers;
         if (this._layers.length == 0) this.dispatchEvent(new CustomEvent('bench-empty'));
-        console.log('Bench: ', this.layers);
     }
 
     connectedCallback() {

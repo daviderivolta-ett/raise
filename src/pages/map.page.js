@@ -69,9 +69,14 @@ export class PageMap extends HTMLElement {
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
 
         // js
-        // services
+        // map
         this.map.setCameraToPosition(this.position);
         this.map.createUserPin(this.position);
+
+        this.map.addEventListener('clickonmap', () => {
+            this.benchToggle.setAttribute('is-open', false);
+            this.searchbar.setAttribute('value', '');
+        });
 
         // search
         this.searchbar.addEventListener('search', event => {
@@ -79,21 +84,10 @@ export class PageMap extends HTMLElement {
             this.searchResult.layers = event.detail.layers;
         });
 
-        // map
-        this.map.addEventListener('clickonmap', () => {
-            this.benchToggle.setAttribute('is-open', false);
-            this.searchbar.setAttribute('value', '');
-        });
-
-        // layers bench
+        // carousel & bench
         this.benchToggle.addEventListener('drawerToggled', event => {
             const isOpen = event.detail.isOpen;
             this.bench.setAttribute('is-open', isOpen);
-        });
-
-        this.bench.addEventListener('restorelayer', event => {
-            let layer = event.detail.layer;
-            this.carousel.addLayer(layer);
         });
 
         this.bench.addEventListener('click', () => {
@@ -104,17 +98,12 @@ export class PageMap extends HTMLElement {
             this.benchToggle.setAttribute('is-open', false);
         });
 
-        document.addEventListener('bench-layer', event => {
+        document.addEventListener('bench-layer', () => {
             this.benchToggle.setAttribute('is-open', true);
         });
 
         this.carousel.addEventListener('load-layers', event => {
             this.map.loadLayers(event.detail.activeLayers);
-        });
-
-        this.carousel.addEventListener('benchlayer', event => {
-            this.bench.addLayer(event.detail.layer);
-            this.benchToggle.setAttribute('is-open', true);
         });
 
         // theme icon
@@ -127,7 +116,7 @@ export class PageMap extends HTMLElement {
         this.carousel.layers = layers;
         layers.forEach(layer => this.carousel.createChip(layer));
 
-        // set themes
+        // themes
         this.themeIcon.themes = await ThemeService.instance.getThemes();
 
         // css
