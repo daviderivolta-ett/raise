@@ -13,7 +13,8 @@ export class Bench extends HTMLElement {
 
     set layers(layers) {
         this._layers = layers;
-        if (this._layers.length == 0) this.dispatchEvent(new CustomEvent('benchempty'));
+        if (this._layers.length == 0) this.dispatchEvent(new CustomEvent('bench-empty'));
+        console.log('Bench: ', this.layers);
     }
 
     connectedCallback() {
@@ -65,7 +66,7 @@ export class Bench extends HTMLElement {
             document.dispatchEvent(new CustomEvent('add-layer', { detail: { layers: [ e.detail.layer ] } }));
         });
 
-        benchLayer.addEventListener('deletelayer', e => {
+        benchLayer.addEventListener('delete-layer', e => {
             this.removeLayer(e.detail.layer);
         });
     }

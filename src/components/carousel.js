@@ -17,7 +17,7 @@ export class Carousel extends HTMLElement {
 
     set layers(layers) {
         this._layers = layers;
-        this.dispatchEvent(new CustomEvent('loadlayers', { detail: { activeLayers: this.layers } }));
+        this.dispatchEvent(new CustomEvent('load-layers', { detail: { activeLayers: this.layers } }));
     }
 
     get isGrabbed() {

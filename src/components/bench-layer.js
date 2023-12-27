@@ -43,15 +43,12 @@ export class BenchLayer extends HTMLElement {
 
         // js
         this.add.addEventListener('click', e => {
-            e.stopPropagation();
+            this.dispatchEvent(new CustomEvent('restore-layer', { detail: { layer: this.layer } }));
             this.remove();
         });
 
         this.delete.addEventListener('click', e => {
-            e.stopPropagation();
-            this.dispatchEvent(new CustomEvent('deletelayer', {
-                detail: { layer: this.layer }
-            }));
+            this.dispatchEvent(new CustomEvent('delete-layer', { detail: { layer: this.layer } }));
             this.remove();
         });
 
@@ -60,10 +57,6 @@ export class BenchLayer extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/bench-layer.css');
         this.shadow.append(style);
-    }
-
-    disconnectedCallback() {
-        this.dispatchEvent(new CustomEvent('restore-layer', { detail: { layer: this.layer } }));
     }
 }
 

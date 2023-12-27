@@ -100,7 +100,7 @@ export class PageMap extends HTMLElement {
             this.benchToggle.setAttribute('is-open', false);
         });
 
-        this.bench.addEventListener('benchempty', () => {
+        this.bench.addEventListener('bench-empty', () => {
             this.benchToggle.setAttribute('is-open', false);
         });
 
@@ -108,7 +108,7 @@ export class PageMap extends HTMLElement {
             this.benchToggle.setAttribute('is-open', true);
         });
 
-        this.carousel.addEventListener('loadlayers', event => {
+        this.carousel.addEventListener('load-layers', event => {
             this.map.loadLayers(event.detail.activeLayers);
         });
 
