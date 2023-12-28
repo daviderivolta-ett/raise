@@ -51,7 +51,7 @@ export class PageMap extends HTMLElement {
                 </div>
                 <app-carousel></app-carousel>
             </div>
-            <app-info-drawer></app-info-drawer>
+
             <app-path-drawer></app-path-drawer>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
@@ -69,7 +69,7 @@ export class PageMap extends HTMLElement {
         this.benchToggle = this.shadow.querySelector('app-bench-toggle');
         this.carousel = this.shadow.querySelector('app-carousel');
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
-        this.info = this.shadow.querySelector('app-info-drawer');
+        // this.info = this.shadow.querySelector('app-info-drawer');
         this.path = this.shadow.querySelector('app-path-drawer');
 
         // js
@@ -79,14 +79,17 @@ export class PageMap extends HTMLElement {
 
         this.map.addEventListener('map-click', event => {
             this.benchToggle.setAttribute('is-open', false);
-            this.info.setAttribute('is-open', false);
+            // this.info.setAttribute('is-open', false);
             this.path.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
 
             const feature = this.map.getFeature(event.detail.movement, this.data);
             if (feature == undefined) return;
-            this.info.feature = feature;
-            this.info.setAttribute('is-open', true);
+            // this.info.feature = feature;
+            // this.info.setAttribute('is-open', true);
+
+            this.tabs.addFeature(feature);
+            this.tabs.setAttribute('is-open', true);
         });
 
         // tabs
@@ -102,7 +105,7 @@ export class PageMap extends HTMLElement {
         });
 
         this.searchbar.shadowRoot.querySelector('input').addEventListener('click', () => {
-            this.info.setAttribute('is-open', false);
+            // this.info.setAttribute('is-open', false);
             this.path.setAttribute('is-open', false);
         });
 
@@ -110,6 +113,7 @@ export class PageMap extends HTMLElement {
         this.benchToggle.addEventListener('drawer-toggle', event => {
             const isOpen = event.detail.isOpen;
             this.bench.setAttribute('is-open', isOpen);
+            this.tabs.setAttribute('is-open', isOpen);
         });
 
         this.bench.addEventListener('click', () => {
@@ -134,16 +138,6 @@ export class PageMap extends HTMLElement {
         });
 
         // info
-        this.info.addEventListener('add-to-route', event => {
-            console.log(event.detail);
-            let features = this.path.features;
-            let feature = event.detail.feature;
-
-            if (!features.some(obj => JSON.stringify(obj) === JSON.stringify(feature))) features.push(feature);
-
-            this.path.features = features;
-            this.path.setAttribute('is-open', true);
-        });
 
         // populate carousel
         let layers = this.filterLayersByTags(this.data, LocalStorageService.instance.getData().selectedTags);

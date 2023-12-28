@@ -2,6 +2,7 @@ export class TabsController extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
+        this.features = [];
     }
 
     render() {
@@ -39,6 +40,9 @@ export class TabsController extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
+            <div class="toggle">
+                <div class="close"></div>
+            </div>
             <div class="controller">
                 <ul class="tabs">
                     <li class="tab" id="info-tab">INFO</li>
@@ -47,7 +51,7 @@ export class TabsController extends HTMLElement {
                 </ul>
             </div>
             <div class="contents">
-                <div class="content info-content">INFO</div>
+                <div class="content info-content"><app-tab-info></app-tab-info></div>
                 <div class="content suggested-route-content">PERCORSI SUGGERITI</div>
                 <div class="content custom-route-content">PERCORSO CUSTOM</div>
             </div>
@@ -58,6 +62,7 @@ export class TabsController extends HTMLElement {
         if (!this.hasAttribute('active-tab')) this.setAttribute('active-tab', 'info');
         this.isOpen = JSON.parse(this.getAttribute('is-open'));
 
+        this.toggle = this.shadow.querySelector('.toggle');
         this.infoTab = this.shadow.querySelector('#info-tab');
         this.suggestedRouteTab = this.shadow.querySelector('#suggested-route-tab');
         this.customRouteTab = this.shadow.querySelector('#custom-route-tab');
@@ -68,6 +73,11 @@ export class TabsController extends HTMLElement {
         this.infoTab.addEventListener('click', () => this.setAttribute('active-tab', 'info'));
         this.suggestedRouteTab.addEventListener('click', () => this.setAttribute('active-tab', 'suggested-route'));
         this.customRouteTab.addEventListener('click', () => this.setAttribute('active-tab', 'custom-route'));
+        this.toggle.addEventListener('click', () => this.setAttribute('is-open', !this.isOpen));
+
+        this.infoList = this.shadow.querySelector('app-tab-info');
+
+        // js
 
         // css
         const style = document.createElement('link');
@@ -91,7 +101,9 @@ export class TabsController extends HTMLElement {
         }
     }
 
-
+    addFeature(feature) {
+        this.infoList.addFeature(feature);
+    }
 }
 
 customElements.define('app-tabs', TabsController);

@@ -5,5 +5,5 @@
 }
 
 :host(.minimize) {
-    height: 75%;
+    height: 50%;
 }

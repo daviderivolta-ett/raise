@@ -1,0 +1,66 @@
+:host {
+    display: block;
+    width: 48%;
+    flex: 0 0 auto;
+}
+
+.content {
+    max-height: 88px;
+    overflow-y: auto;
+}
+
+/* :host {
+    width: 33%;
+}
+
+.wrapper {
+    background-color: var(--dark-blue-100);
+    border-radius: 12px;
+    color: var(--white);
+    padding: 24px;
+}
+
+.close-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: fit-content;
+    float: right;
+}
+
+.info {
+
+}
+
+.title {
+
+}
+
+.title .name {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.title .category {
+    margin: 0 0 16px 0;
+    color: var(--light-blue);
+}
+
+.tools {
+    display: flex;
+    gap: 4%;
+    flex-wrap: wrap;
+}
+
+app-goto,
+app-play-info-btn {
+    width: 48%;
+}
+
+.content {
+    white-space: normal;
+    overflow-y: auto;
+    max-height: 175px;
+} */
