@@ -41,6 +41,7 @@ export class PageMap extends HTMLElement {
         this.shadow.innerHTML =
             `
             <app-cesium></app-cesium>
+            <app-tabs></app-tabs>
             <div class="header">
                 <div class="search">    
                     <app-bench-toggle></app-bench-toggle>
@@ -60,6 +61,7 @@ export class PageMap extends HTMLElement {
 
         /** @type {CesiumViewer} */
         this.map = this.shadow.querySelector('app-cesium');
+        this.tabs = this.shadow.querySelector('app-tabs');
         this.searchbar = this.shadow.querySelector('app-searchbar');
         this.searchResult = this.shadow.querySelector('app-search-result');
         this.autocomplete = this.shadow.querySelector('app-autocomplete');
@@ -85,6 +87,12 @@ export class PageMap extends HTMLElement {
             if (feature == undefined) return;
             this.info.feature = feature;
             this.info.setAttribute('is-open', true);
+        });
+
+        // tabs
+        this.tabs.addEventListener('tabs-toggle', event => {
+            const isOpen = event.detail.isOpen;
+            isOpen == true ? this.map.classList.add('minimize') : this.map.classList.remove('minimize');
         });
 
         // search

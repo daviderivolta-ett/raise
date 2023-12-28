@@ -69,6 +69,7 @@ import './src/components/reset-tags-btn.js';
 
 import './src/pages/map.page.js';
 import './src/components/cesium-map.js';
+import './src/components/tabs-controller.js';
 
 // Import services
 import { SettingService } from './src/services/SettingService.js';

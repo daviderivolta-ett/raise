@@ -34,6 +34,11 @@ export default class CesiumViewer extends HTMLElement {
         const style = document.createElement('style');
         style.innerHTML = cesiumCss;
         this.shadow.append(style);
+
+        const customStyle = document.createElement('link');
+        customStyle.setAttribute('rel', 'stylesheet');
+        customStyle.setAttribute('href', './css/cesium.css');
+        this.shadow.append(customStyle);
     }
 
     getFeature(movement, data) {
