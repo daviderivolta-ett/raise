@@ -60,13 +60,10 @@ export class TabInfo extends HTMLElement {
     addFeature(feature) {
         let isPresent = this.features.some(item => item.coordinates.latitude == feature.coordinates.latitude && item.coordinates.longitude == feature.coordinates.longitude);
         if (!isPresent) {
-            this.features.unshift(feature);
             this.createCard(feature);
         } else {
             let index = this.features.findIndex(item => item.coordinates.latitude == feature.coordinates.latitude && item.coordinates.longitude == feature.coordinates.longitude);
-            this.features.splice(index, 1);
-            this.removeCard(index, 1);
-            this.features.unshift(feature);
+            this.removeCard(index);            
             this.createCard(feature);
         }
     }
@@ -75,11 +72,18 @@ export class TabInfo extends HTMLElement {
         let card = document.createElement('app-info-card');
         this.shadow.prepend(card);
         card.feature = feature;
+        this.features.unshift(feature);
+
+        card.addEventListener('remove-card', () => {
+            let index = this.features.findIndex(item => item.coordinates.latitude == feature.coordinates.latitude && item.coordinates.longitude == feature.coordinates.longitude);
+            this.removeCard(index);
+        });
     }
 
     removeCard(index) {
         let cards = this.shadow.querySelectorAll('app-info-card');
         cards[index].remove();
+        this.features.splice(index, 1);
     }
 }
 

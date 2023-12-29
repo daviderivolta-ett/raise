@@ -43,6 +43,9 @@ export class InfoCard extends HTMLElement {
         this.tools = this.shadow.querySelector('.tools');
         this.content = this.shadow.querySelector('.content');
 
+        // js
+        this.close.addEventListener('click', () => { this.dispatchEvent(new CustomEvent('remove-card')); });
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
