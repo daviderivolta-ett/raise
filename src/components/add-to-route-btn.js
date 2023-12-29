@@ -16,7 +16,7 @@ export class AddToRouteBtn extends HTMLElement {
         this.button.innerHTML =
             `
             <span class="material-symbols-outlined">add</span>
-            <span class="label">Aggiungi a percorso</span>
+            <span class="label">Aggiungi</span>
             `
         ;
 

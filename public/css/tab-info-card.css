@@ -45,12 +45,12 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 4%;
+    gap: 8px;
 }
 
 app-goto,
-app-play-info-btn {
-    width: 48%;
+app-add-to-route {
+    width: 100%;
 }
 
 .info {
@@ -59,6 +59,10 @@ app-play-info-btn {
 
 .header {
     margin: 0 0 12px 0;
+}
+
+.tools {
+    margin: 0 0 8px 0;
 }
 
 .title {

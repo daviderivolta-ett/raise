@@ -84,30 +84,32 @@ export class InfoCard extends HTMLElement {
         }
         if (arr.length == 0) this.content.remove();
 
-        this.playBtn = document.createElement('app-play-info-btn');
-        this.tools.append(this.playBtn);
-
-        const coordinates = {};
-        if (this.feature.coordinatesArray.length === 1) {
-            coordinates.longitude = this.feature.startingcoordinates.longitude;
-            coordinates.latitude = this.feature.startingcoordinates.latitude;
-    
-            this.goToBtn = document.createElement('app-goto');
-            this.goToBtn.coordinates = coordinates;
-            this.tools.insertBefore(this.goToBtn, this.playBtn);
-    
-            this.goToBtn.addEventListener('go-to', e => {
-                this.goTo(e.detail.coordinates);
-            });
-        }
-
         this.colorManager.hex = this.feature.layer.style.color;
         this.colorManager.rgba = this.colorManager.convertHexToRgba(this.colorManager.hex);
-
         this.legend.style.backgroundColor = this.colorManager.changeOpacity(this.colorManager.rgba, 0.25);
         this.legend.style.borderColor = this.colorManager.rgba;
         this.legend.style.borderWidth = "2px";
         this.legend.style.borderStyle = "solid";
+
+        this.playBtn = document.createElement('app-play-info-btn');
+        this.info.append(this.playBtn);
+
+        if (this.feature.coordinatesArray.length > 1) return;
+
+        const coordinates = {};
+        coordinates.longitude = this.feature.startingcoordinates.longitude;
+        coordinates.latitude = this.feature.startingcoordinates.latitude;
+
+        this.goToBtn = document.createElement('app-goto');
+        this.goToBtn.coordinates = coordinates;
+        this.tools.append(this.goToBtn);
+
+        this.goToBtn.addEventListener('go-to', e => {
+            this.goTo(e.detail.coordinates);
+        });
+
+        this.addToRouteBtn = document.createElement('app-add-to-route');
+        this.tools.append(this.addToRouteBtn);
     }
 
     goTo(coordinates) {
