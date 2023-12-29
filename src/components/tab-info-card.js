@@ -51,27 +51,30 @@ export class InfoCard extends HTMLElement {
     }
 
     render() {
-        console.log(this.feature);
         const properties = this.feature.properties;
+        let arr = [];
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
                 const value = properties[key];
 
                 if (key == 'Title') {
-                    this.category.innerText = value;
+                    this.name.innerText = `${value} - ${this.feature.id}`;
                     continue;
                 };
 
                 if (key == 'Nome') {
-                    this.name.innerText = value;
+                    this.category.innerText = value;
                     continue;
                 }
 
                 const p = document.createElement('p');
                 p.innerText = value;
                 this.content.append(p);
+                arr.push(p);
             }
         }
+
+        if (arr.length == 0) this.content.remove();
 
         this.playBtn = document.createElement('app-play-info-btn');
         this.tools.append(this.playBtn);

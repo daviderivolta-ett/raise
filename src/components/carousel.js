@@ -65,7 +65,7 @@ export class Carousel extends HTMLElement {
         if (this.isGrabbed == false) return;
         e.preventDefault();
         const x = e.pageX || e.touches[0].pageX - this.offsetLeft;
-        const walk = (x - this._startX);
+        const walk = (x - this._startX) * 3;
         this.scrollLeft = this._scrollLeft - walk;
     }
 

@@ -84,7 +84,10 @@ export class PageMap extends HTMLElement {
             this.searchbar.setAttribute('value', '');
 
             const feature = this.map.getFeature(event.detail.movement, this.data);
-            if (feature == undefined) return;
+            if (feature == undefined) {
+                this.tabs.setAttribute('is-open', false);
+                return;
+            }
             // this.info.feature = feature;
             // this.info.setAttribute('is-open', true);
 

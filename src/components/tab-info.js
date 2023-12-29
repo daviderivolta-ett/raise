@@ -1,4 +1,7 @@
 export class TabInfo extends HTMLElement {
+    _isGrabbed;
+    _startX;
+    _scrollLeft;
     _features;
 
     constructor() {
@@ -20,6 +23,15 @@ export class TabInfo extends HTMLElement {
     }
 
     connectedCallback() {
+        // js
+        this.addEventListener('mousedown', e => this.start(e));
+        this.addEventListener('touchstart', e => this.start(e));
+        this.addEventListener('mousemove', e => this.move(e));
+        this.addEventListener('touchmove', e => this.move(e));
+        this.addEventListener('mouseup', this.end);
+        this.addEventListener('touchend', this.end);
+        this.addEventListener('mouseleave', this.end);
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
@@ -27,19 +39,47 @@ export class TabInfo extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = [];
-    attributeChangedCallback(name, oldValue, newValue) {
+    start(e) {
+        this.isGrabbed = true;
+        this._startX = e.pageX || e.touches[0].pageX - this.offsetLeft;
+        this._scrollLeft = this.scrollLeft;
+    }
+
+    move(e) {
+        if (this.isGrabbed == false) return;
+        e.preventDefault();
+        const x = e.pageX || e.touches[0].pageX - this.offsetLeft;
+        const walk = (x - this._startX);
+        this.scrollLeft = this._scrollLeft - walk;
+    }
+
+    end() {
+        this.isGrabbed = false;
     }
 
     addFeature(feature) {
-        this.features.push(feature);
-        this.createCard(feature);
+        let isPresent = this.features.some(item => item.coordinates.latitude == feature.coordinates.latitude && item.coordinates.longitude == feature.coordinates.longitude);
+        if (!isPresent) {
+            this.features.unshift(feature);
+            this.createCard(feature);
+        } else {
+            let index = this.features.findIndex(item => item.coordinates.latitude == feature.coordinates.latitude && item.coordinates.longitude == feature.coordinates.longitude);
+            this.features.splice(index, 1);
+            this.removeCard(index, 1);
+            this.features.unshift(feature);
+            this.createCard(feature);
+        }
     }
 
     createCard(feature) {
         let card = document.createElement('app-info-card');
-        this.shadow.append(card);
+        this.shadow.prepend(card);
         card.feature = feature;
+    }
+
+    removeCard(index) {
+        let cards = this.shadow.querySelectorAll('app-info-card');
+        cards[index].remove();
     }
 }
 

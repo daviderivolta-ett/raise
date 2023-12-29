@@ -49,7 +49,8 @@ export default class CesiumViewer extends HTMLElement {
 
         const layerToFind = this.getLayerName(pickedEntity.id.id);
         const layer = this.getLayerByName(data, layerToFind);
-        
+        const id = this.getFeatureId(pickedEntity.id.id);
+
         let coordinates;
         if (pickedEntity.primitive._position) {
             let cartesian = pickedEntity.primitive._position;
@@ -64,6 +65,7 @@ export default class CesiumViewer extends HTMLElement {
         let feature = {};
         feature.properties = relevantProperties;
         feature.layer = layer;
+        feature.id = id;
         if (coordinates) {
             feature.coordinates = coordinates;
             this.setCameraToPosition(coordinates);
@@ -84,6 +86,21 @@ export default class CesiumViewer extends HTMLElement {
                 break;
         }
         return layer;
+    }
+
+    getFeatureId(entity) {
+        let id;
+        switch (true) {
+            case entity.includes('.'):
+                id = entity.split('.')[1];
+                break;
+            case entity.includes('/'):
+                id = entity.split('/')[1];
+                break;
+            default:
+                break;
+        }
+        return id;
     }
 
     getLayerByName(data, layerName) {

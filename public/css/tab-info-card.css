@@ -1,57 +1,42 @@
 :host {
     display: block;
-    width: 48%;
+    width: 32%;
+    height: fit-content;
+    max-height: 100%;
     flex: 0 0 auto;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: red;
+    position: relative;
 }
 
-.content {
-    max-height: 88px;
-    overflow-y: auto;
+h4 {
+    margin: 0 0 4px 0;
 }
 
-/* :host {
-    width: 33%;
+p {
+    margin: 0;
 }
 
 .wrapper {
-    background-color: var(--dark-blue-100);
-    border-radius: 12px;
-    color: var(--white);
-    padding: 24px;
+    padding: 0 0 24px 0;
 }
 
 .close-icon {
     cursor: pointer;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 16px;
     right: 16px;
-    width: fit-content;
-    float: right;
-}
-
-.info {
-
-}
-
-.title {
-
-}
-
-.title .name {
-    margin: 0 0 4px 0;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.title .category {
-    margin: 0 0 16px 0;
-    color: var(--light-blue);
 }
 
 .tools {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 4%;
-    flex-wrap: wrap;
 }
 
 app-goto,
@@ -59,8 +44,24 @@ app-play-info-btn {
     width: 48%;
 }
 
+.info {
+    padding: 24px 24px 0 24px;
+}
+
+.title {
+    margin: 0 0 12px 0;
+}
+
 .content {
-    white-space: normal;
     overflow-y: auto;
-    max-height: 175px;
-} */
+    max-height: 80px;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+    :host {
+        width: 100%;
+        gap: 24px;
+    }
+}
