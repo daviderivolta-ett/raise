@@ -83,13 +83,15 @@ export class PageMap extends HTMLElement {
             this.searchbar.setAttribute('value', '');
 
             const entity = this.map.getEntity(event.detail.movement);
-            
+
             if (entity == undefined) {
                 this.tabs.setAttribute('is-open', false);
                 return;
             }
 
             const feature = FeatureService.instance.getFeature(entity, this.data);
+            console.log(feature);
+            this.map.setCameraToPosition(feature.startingcoordinates);
             this.tabs.addFeature(feature);
             this.tabs.setAttribute('is-open', true);
         });

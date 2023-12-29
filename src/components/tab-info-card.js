@@ -61,7 +61,6 @@ export class InfoCard extends HTMLElement {
     }
 
     render() {
-        console.log(this.feature);
         const properties = this.feature.properties;
 
         let arr = [];
