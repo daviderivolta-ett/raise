@@ -21,7 +21,7 @@
             "relevant_properties": [
                 {
                     "property_name": "NOME",
-                    "display_name": "Nome",
+                    "display_name": "nome",
                     "type": "string" 
                 }
             ],
@@ -51,17 +51,17 @@
             "relevant_properties": [
                 {
                     "property_name": "NOME_TRATTA",
-                    "display_name": "Tratta",
+                    "display_name": "tratta",
                     "type": "string" 
                 },
                 {
                     "property_name": "TIPO",
-                    "display_name": "Tipologia",
+                    "display_name": "tipologia",
                     "type": "string" 
                 },
                 {
                     "property_name": "STATO",
-                    "display_name": "Condizione",
+                    "display_name": "condizione",
                     "type": "string" 
                 }
             ],
@@ -85,7 +85,7 @@
             "relevant_properties": [
                 {
                     "property_name": "NOME_VIA",
-                    "display_name": "Indirizzo",
+                    "display_name": "indirizzo",
                     "type": "string"
                 }
             ],

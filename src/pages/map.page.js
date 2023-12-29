@@ -1,3 +1,4 @@
+import { Feature } from '../models/Feature.js';
 import { LocalStorageService } from '../services/LocalStorageService.js';
 import { SettingService } from '../services/SettingService.js';
 import { ThemeService } from '../services/ThemeService.js';
@@ -69,7 +70,6 @@ export class PageMap extends HTMLElement {
         this.benchToggle = this.shadow.querySelector('app-bench-toggle');
         this.carousel = this.shadow.querySelector('app-carousel');
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
-        // this.info = this.shadow.querySelector('app-info-drawer');
         this.path = this.shadow.querySelector('app-path-drawer');
 
         // js
@@ -79,18 +79,17 @@ export class PageMap extends HTMLElement {
 
         this.map.addEventListener('map-click', event => {
             this.benchToggle.setAttribute('is-open', false);
-            // this.info.setAttribute('is-open', false);
+
             this.path.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
 
             const feature = this.map.getFeature(event.detail.movement, this.data);
+            
             if (feature == undefined) {
                 this.tabs.setAttribute('is-open', false);
                 return;
             }
-            // this.info.feature = feature;
-            // this.info.setAttribute('is-open', true);
-            console.log(feature);
+
             this.tabs.addFeature(feature);
             this.tabs.setAttribute('is-open', true);
         });
@@ -108,7 +107,6 @@ export class PageMap extends HTMLElement {
         });
 
         this.searchbar.shadowRoot.querySelector('input').addEventListener('click', () => {
-            // this.info.setAttribute('is-open', false);
             this.path.setAttribute('is-open', false);
         });
 

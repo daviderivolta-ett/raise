@@ -32,6 +32,15 @@ p {
     right: 16px;
 }
 
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 16px;
+}
+
 .tools {
     display: flex;
     justify-content: space-between;
@@ -67,6 +76,7 @@ app-play-info-btn {
     height: 12px;
     border-radius: 100%;
     margin: 0 8px 0 0;
+    flex: 0 0 auto;
 }
 
 .content {
@@ -74,6 +84,15 @@ app-play-info-btn {
     max-height: 80px;
     padding: 24px;
     box-sizing: border-box;
+}
+
+.content::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: var(--light-blue-100);
 }
 
 @media screen and (max-width: 768px) {

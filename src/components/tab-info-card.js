@@ -61,47 +61,45 @@ export class InfoCard extends HTMLElement {
     }
 
     render() {
+        console.log(this.feature);
         const properties = this.feature.properties;
+
         let arr = [];
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
                 const value = properties[key];
-
-                if (key == 'Title') {
-                    this.name.innerText = `${value} - ${this.feature.id}`;
+                if (key == 'raiseName') {
+                    this.name.innerText = properties.raiseName;
                     continue;
                 };
-
-                if (key == 'Nome') {
+                if (key == 'nome') {
                     this.category.innerText = value;
                     continue;
                 }
-
                 const p = document.createElement('p');
                 p.innerText = value;
                 this.content.append(p);
                 arr.push(p);
             }
         }
-
         if (arr.length == 0) this.content.remove();
 
         this.playBtn = document.createElement('app-play-info-btn');
         this.tools.append(this.playBtn);
 
-        if (!this.feature.coordinates || !typeof this.feature.coordinates == 'object') return;
-
         const coordinates = {};
-        coordinates.longitude = this.feature.coordinates.longitude;
-        coordinates.latitude = this.feature.coordinates.latitude;
-
-        this.goToBtn = document.createElement('app-goto');
-        this.goToBtn.coordinates = coordinates;
-        this.tools.insertBefore(this.goToBtn, this.playBtn);
-
-        this.goToBtn.addEventListener('go-to', e => {
-            this.goTo(e.detail.coordinates);
-        });
+        if (this.feature.coordinatesArray.length === 1) {
+            coordinates.longitude = this.feature.startingcoordinates.longitude;
+            coordinates.latitude = this.feature.startingcoordinates.latitude;
+    
+            this.goToBtn = document.createElement('app-goto');
+            this.goToBtn.coordinates = coordinates;
+            this.tools.insertBefore(this.goToBtn, this.playBtn);
+    
+            this.goToBtn.addEventListener('go-to', e => {
+                this.goTo(e.detail.coordinates);
+            });
+        }
 
         this.colorManager.hex = this.feature.layer.style.color;
         this.colorManager.rgba = this.colorManager.convertHexToRgba(this.colorManager.hex);

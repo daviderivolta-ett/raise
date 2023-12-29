@@ -3,7 +3,6 @@
     top: 80px;
     left: -356px;
     width: 356px;
-    background-color: white;
     transition: .2s ease-in-out;
     box-sizing: border-box;
     background-color: var(--blue-90);
@@ -30,7 +29,7 @@ div::-webkit-scrollbar {
 }
 
 div::-webkit-scrollbar-thumb {
-    background-color: var(--blue-100);
+    background-color: var(--light-blue-100);
 }
 
 h3 {

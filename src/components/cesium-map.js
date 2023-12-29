@@ -1,5 +1,6 @@
 import * as Cesium from 'cesium';
 import cesiumCss from 'cesium/Build/Cesium/Widgets/widgets.css?raw';
+import { Feature } from '../models/Feature.js';
 
 export default class CesiumViewer extends HTMLElement {
     constructor() {
@@ -49,27 +50,23 @@ export default class CesiumViewer extends HTMLElement {
 
         const layerToFind = this.getLayerName(pickedEntity.id.id);
         const layer = this.getLayerByName(data, layerToFind);
-        const id = this.getFeatureId(pickedEntity.id.id);
+
+        const properties = this.getRelevantProperties(pickedEntity.id.properties, layer.relevant_properties);
+        let feature;
 
         let coordinates;
-        if (pickedEntity.primitive._position) {
-            let cartesian = pickedEntity.primitive._position;
-            coordinates = this.cartesianToCartographic(cartesian);
+        if (pickedEntity.id.point) {
+            let cartesian = pickedEntity.id.position._value;
+            coordinates = this.checkCoordinates(cartesian);
+            feature = Feature.fromPoint(properties, layer, coordinates);
         }
 
-        const properties = pickedEntity.id.properties;
-        const propertiesToFind = layer.relevant_properties;
-        const layerName = layer.name;
-        const relevantProperties = this.getRelevantProperties(properties, propertiesToFind, layerName);
+        if (pickedEntity.id.polyline) {
+            let cartesian = pickedEntity.id.polyline.positions._value;
+            coordinates = this.checkCoordinates(cartesian);
+            feature = Feature.fromPolyline(properties, layer, coordinates);
+        }
 
-        let feature = {};
-        feature.properties = relevantProperties;
-        feature.layer = layer;
-        feature.id = id;
-        if (coordinates) {
-            feature.coordinates = coordinates;
-            this.setCameraToPosition(coordinates);
-        };
         return feature;
     }
 
@@ -88,21 +85,6 @@ export default class CesiumViewer extends HTMLElement {
         return layer;
     }
 
-    getFeatureId(entity) {
-        let id;
-        switch (true) {
-            case entity.includes('.'):
-                id = entity.split('.')[1];
-                break;
-            case entity.includes('/'):
-                id = entity.split('/')[1];
-                break;
-            default:
-                break;
-        }
-        return id;
-    }
-
     getLayerByName(data, layerName) {
         for (const key in data) {
             const currentValue = data[key];
@@ -116,7 +98,7 @@ export default class CesiumViewer extends HTMLElement {
         return null;
     }
 
-    getRelevantProperties(data, properties, title) {
+    getRelevantProperties(data, properties) {
         const risultati = {};
 
         if (properties) {
@@ -130,11 +112,26 @@ export default class CesiumViewer extends HTMLElement {
                 }
             }
 
-            risultati["Title"] = title;
+            risultati["raiseName"] = data.raiseName._value;
+
             return risultati;
         }
 
         return risultati;
+    }
+
+    checkCoordinates(cartesian) {
+        if (Array.isArray(cartesian)) {
+            let coordinates = []
+            cartesian.map(item => {
+                let pair = this.cartesianToCartographic(item);
+                coordinates.push(pair);
+            });
+            return coordinates;
+        } else {
+            let coordinates = this.cartesianToCartographic(cartesian);
+            return coordinates;
+        }
     }
 
     cartesianToCartographic(cartesian) {
@@ -232,6 +229,7 @@ export default class CesiumViewer extends HTMLElement {
         const url = `${layer.layer_url_wfs}?service=WFS&typeName=${layer.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;
         return fetch(url)
             .then(res => res.json())
+            .then(geoJson => this.createAdditionalProperties(geoJson, layer.name))
             .then(geoJson => ({
                 features: geoJson.features,
                 layer: Cesium.GeoJsonDataSource.load(geoJson)
@@ -240,6 +238,14 @@ export default class CesiumViewer extends HTMLElement {
                 console.error(err);
                 throw err;
             });
+    }
+
+    createAdditionalProperties(geoJson, name) {
+        geoJson.features = geoJson.features.map((f, i) => {
+            f.properties.raiseName = name + ' ' + i;
+            return f;
+        });
+        return geoJson;
     }
 
     styleEntities(dataSource, style) {

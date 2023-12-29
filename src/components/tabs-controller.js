@@ -46,7 +46,7 @@ export class TabsController extends HTMLElement {
             <div class="controller">
                 <ul class="tabs">
                     <li class="tab" id="info-tab">INFO</li>
-                    <li class="tab" id="suggested-route-tab">PERCORSI SUGGGERITI</li>
+                    <li class="tab" id="suggested-route-tab">PERCORSI SUGGERITI</li>
                     <li class="tab" id="custom-route-tab">PERCORSO CUSTOM</li>
                 </ul>
             </div>
