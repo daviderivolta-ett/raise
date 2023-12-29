@@ -24,7 +24,7 @@ export class AddToRouteBtn extends HTMLElement {
 
         // js
         this.button.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('startNavigation'));
+            this.dispatchEvent(new CustomEvent('add-route'));
         });
 
         // css

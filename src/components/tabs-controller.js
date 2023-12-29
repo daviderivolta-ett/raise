@@ -53,7 +53,7 @@ export class TabsController extends HTMLElement {
             <div class="contents">
                 <div class="content info-content"><app-tab-info></app-tab-info></div>
                 <div class="content suggested-route-content">PERCORSI SUGGERITI</div>
-                <div class="content custom-route-content">PERCORSO CUSTOM</div>
+                <div class="content custom-route-content"><app-tab-custom-route></app-tab-custom-route></div>
             </div>
             `
             ;

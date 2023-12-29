@@ -110,6 +110,9 @@ export class InfoCard extends HTMLElement {
 
         this.addToRouteBtn = document.createElement('app-add-to-route');
         this.tools.append(this.addToRouteBtn);
+        this.addToRouteBtn.addEventListener('add-route', () => {
+            document.dispatchEvent(new CustomEvent('add-route', { detail: { feature: this.feature } }));
+        });
     }
 
     goTo(coordinates) {
