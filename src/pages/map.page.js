@@ -1,4 +1,4 @@
-import { Feature } from '../models/Feature.js';
+import { FeatureService } from '../services/FeatureService.js';
 import { LocalStorageService } from '../services/LocalStorageService.js';
 import { SettingService } from '../services/SettingService.js';
 import { ThemeService } from '../services/ThemeService.js';
@@ -79,17 +79,17 @@ export class PageMap extends HTMLElement {
 
         this.map.addEventListener('map-click', event => {
             this.benchToggle.setAttribute('is-open', false);
-
             this.path.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
 
-            const feature = this.map.getFeature(event.detail.movement, this.data);
+            const entity = this.map.getEntity(event.detail.movement);
             
-            if (feature == undefined) {
+            if (entity == undefined) {
                 this.tabs.setAttribute('is-open', false);
                 return;
             }
 
+            const feature = FeatureService.instance.getFeature(entity, this.data);
             this.tabs.addFeature(feature);
             this.tabs.setAttribute('is-open', true);
         });

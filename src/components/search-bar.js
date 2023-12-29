@@ -1,4 +1,3 @@
-import { LayersManager } from '../services/LayersManager.js';
 import { SettingService } from '../services/SettingService.js';
 
 export class Searchbar extends HTMLElement {
