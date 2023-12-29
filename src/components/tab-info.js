@@ -57,7 +57,7 @@ export class TabInfo extends HTMLElement {
         this.isGrabbed = false;
     }
 
-    addFeature(feature) {
+    checkFeature(feature) {
         let isPresent = this.features.some(item => item.coordinates.latitude == feature.coordinates.latitude && item.coordinates.longitude == feature.coordinates.longitude);
         if (!isPresent) {
             this.createCard(feature);

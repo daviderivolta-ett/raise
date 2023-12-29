@@ -20,7 +20,7 @@
 }
 
 .wrapper {
-    background-color: var(--dark-blue-90);
+    background-color: var(--blue-90);
     border-radius: 12px;
     color: var(--white);
     padding: 24px 0;
@@ -77,7 +77,7 @@ app-play-info-btn {
 }
 
 .content::-webkit-scrollbar-thumb {
-    background-color: var(--dark-blue-100);
+    background-color: var(--blue-100);
 }
 
 @keyframes open {

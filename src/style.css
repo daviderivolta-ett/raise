@@ -13,12 +13,16 @@ app-rail {
 }
 
 :root {
-  --dark-blue-100: rgba(15, 29, 42, 1);
-  --dark-blue-90: rgba(15, 29, 42, .9);
+  --dark-blue-100: rgba(20, 20, 50, 1);
+  --dark-blue-90: rgba(20, 20, 50, .9);
+  --blue-100: rgba(29, 29, 66, 1);
+  --blue-90: rgba(29, 29, 66, .9);
+  --light-blue-100: rgba(38, 38, 78, 1);
+  --light-blue-90: rgba(38, 38, 78, .9);
   --white: rgba(241, 245, 244, 1);
   --white-50: rgba(241, 245, 244, .5);
-  --green-blue: rgba(12, 74, 85, 1);
-  --neon-blue: rgba(2, 255, 253, 1);
+  --neon-blue-100: rgba(1, 253, 192, 1);
+  --green-blue-25: rgba(1, 253, 192, .25);
   --light-blue: rgba(178, 224, 222, 1);
 }
 
@@ -170,7 +174,7 @@ main#onboard {
 .search {
   min-width: 356px;
   backdrop-filter: blur(2px);
-  background-color: var(--dark-blue-90);
+  background-color: var(--blue-90);
   border-radius: 20px;
 }
 

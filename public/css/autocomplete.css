@@ -9,7 +9,7 @@ div {
     max-height: 192px;
     overflow-y: auto;
     border-radius: 16px;
-    background-color: var(--dark-blue-90);
+    background-color: var(--blue-90);
 }
 
 div::-webkit-scrollbar {
@@ -21,16 +21,16 @@ span {
     color: var(--white);
     display: block;
     padding: 12px 16px;
-    /* background-color: var(--dark-blue-90); */
+    /* background-color: var(--blue-90); */
 }
 
 span:focus {
-    background-color: var(--dark-blue-100);
+    background-color: var(--blue-100);
     outline: none;
 }
 
 span:hover {
-    background-color: var(--dark-blue-100);
+    background-color: var(--blue-100);
 }
 
 /* span:first-child {

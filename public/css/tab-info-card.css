@@ -6,12 +6,12 @@
     flex: 0 0 auto;
     border-radius: 12px;
     box-sizing: border-box;
-    background-color: red;
+    background-color: var(--blue-100);
     position: relative;
 }
 
 h4 {
-    margin: 0 0 4px 0;
+    margin: 0;
 }
 
 p {
@@ -48,8 +48,25 @@ app-play-info-btn {
     padding: 24px 24px 0 24px;
 }
 
-.title {
+.header {
     margin: 0 0 12px 0;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.category {
+    padding: 0 0 0 24px;
+}
+
+.legend {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    margin: 0 8px 0 0;
 }
 
 .content {

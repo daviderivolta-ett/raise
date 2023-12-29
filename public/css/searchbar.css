@@ -20,7 +20,7 @@ input::placeholder {
 input:active,
 input:focus {
     outline: none;
-    background-color: var(--dark-blue-100);
+    background-color: var(--blue-100);
 }
 
 input::-webkit-search-cancel-button {

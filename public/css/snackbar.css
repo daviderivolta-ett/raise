@@ -7,7 +7,7 @@
 }
 
 .snackbar {
-  background-color: var(--dark-blue-90);
+  background-color: var(--blue-90);
   border-radius: 24px;
   width: 350px;
 }
@@ -36,7 +36,7 @@ button {
 }
 
 button:hover {
-  background-color: var(--dark-blue-100);
+  background-color: var(--blue-100);
 }
 
 .close-icon {

@@ -6,7 +6,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--green-blue);
+    background-color: var(--green-blue-25);
     color: var(--light-blue);
     border: none;
     border-radius: 100px;

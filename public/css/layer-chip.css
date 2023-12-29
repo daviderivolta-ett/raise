@@ -12,7 +12,7 @@
     align-items: center;
     border-radius: 50px;
     backdrop-filter: blur(2px);
-    background-color: var(--dark-blue-90);
+    background-color: var(--blue-90);
 }
 
 .icon {
@@ -38,7 +38,7 @@
 }
 
 .select:hover {
-    background-color: var(--dark-blue-100);
+    background-color: var(--blue-100);
 }
 
 .legend {
@@ -73,7 +73,7 @@ label {
 }
 
 .delete:hover {
-    background-color: rgba(15, 29, 42, 1);
+    background-color: var(--blue-100);
 }
 
 .delete .icon {

@@ -12,7 +12,7 @@ button {
 }
 
 button:hover {
-    background-color: var(--dark-blue-100);
+    background-color: var(--blue-100);
 }
 
 .icon {

@@ -90,7 +90,7 @@ export class PageMap extends HTMLElement {
             }
             // this.info.feature = feature;
             // this.info.setAttribute('is-open', true);
-
+            console.log(feature);
             this.tabs.addFeature(feature);
             this.tabs.setAttribute('is-open', true);
         });

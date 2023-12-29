@@ -1,9 +1,12 @@
+import { ColorManager } from '../services/ColorManager';
+
 export class InfoCard extends HTMLElement {
     _feature;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
+        this.colorManager = new ColorManager();
     }
 
     get feature() {
@@ -25,8 +28,11 @@ export class InfoCard extends HTMLElement {
                     <span class="material-symbols-outlined">close</span>
                 </div>
                 <div class="info">
-                    <div class="title">
-                        <h4 class="name"></h4>
+                    <div class="header">
+                        <div class="title">
+                            <span class="legend"></span>
+                            <h4 class="name"></h4>
+                        </div>
                         <p class="category"></p>
                     </div>
                     <div class="tools"></div>
@@ -38,6 +44,7 @@ export class InfoCard extends HTMLElement {
 
         this.close = this.shadow.querySelector('.close-icon');
         this.info = this.shadow.querySelector('.info');
+        this.legend = this.shadow.querySelector('.legend');
         this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
         this.tools = this.shadow.querySelector('.tools');
@@ -95,6 +102,14 @@ export class InfoCard extends HTMLElement {
         this.goToBtn.addEventListener('go-to', e => {
             this.goTo(e.detail.coordinates);
         });
+
+        this.colorManager.hex = this.feature.layer.style.color;
+        this.colorManager.rgba = this.colorManager.convertHexToRgba(this.colorManager.hex);
+
+        this.legend.style.backgroundColor = this.colorManager.changeOpacity(this.colorManager.rgba, 0.25);
+        this.legend.style.borderColor = this.colorManager.rgba;
+        this.legend.style.borderWidth = "2px";
+        this.legend.style.borderStyle = "solid";
     }
 
     goTo(coordinates) {
