@@ -73,6 +73,7 @@ import './src/components/tabs-controller.js';
 import './src/components/tab-info.js';
 import './src/components/tab-info-card.js';
 import './src/components/tab-custom-route.js';
+import './src/components/tab.customroute.card.component.js';
 
 // Import services
 import { SettingService } from './src/services/SettingService.js';

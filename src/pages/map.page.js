@@ -90,7 +90,6 @@ export class PageMap extends HTMLElement {
             }
 
             const feature = FeatureService.instance.getFeature(entity, this.data);
-            console.log(feature);
             this.map.setCameraToPosition(feature.startingcoordinates);
             this.tabs.addFeature(feature);
             this.tabs.setAttribute('is-open', true);

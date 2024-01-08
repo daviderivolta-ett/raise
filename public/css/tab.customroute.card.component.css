@@ -1,0 +1,67 @@
+:host {
+    display: block;
+    width: 32%;
+    height: fit-content;
+    max-height: 100%;
+    flex: 0 0 auto;
+    border-radius: 12px;
+    box-sizing: border-box;
+    background-color: var(--blue-100);
+    position: relative;
+}
+
+h4 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.component {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+}
+
+.legend {
+    margin: 0 16px 0 0;
+}
+
+.remove-icon {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 16px;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 16px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.legend {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+    flex: 0 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+    :host {
+        width: 100%;
+        gap: 24px;
+    }
+}
