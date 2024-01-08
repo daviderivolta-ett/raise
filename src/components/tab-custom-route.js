@@ -102,6 +102,10 @@ export class TabCustomRoute extends HTMLElement {
             this.shadow.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
             this.resetOrder();
         });
+
+        card.addEventListener('customroutecard-clicked', e => {
+            this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: e.detail.feature } }));
+        });
     }
 
     removeCard(index) {

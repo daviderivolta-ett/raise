@@ -53,6 +53,7 @@ export class TabCustomRouteCardComponent extends HTMLElement {
             `
             ;
 
+        this.wrapper = this.shadow.querySelector('.component');
         this.upArrow = this.shadow.querySelector('.up-arrow');
         this.downArrow = this.shadow.querySelector('.down-arrow');
         this.num = this.shadow.querySelector('.number');
@@ -60,11 +61,13 @@ export class TabCustomRouteCardComponent extends HTMLElement {
         this.category = this.shadow.querySelector('.category');
         this.close = this.shadow.querySelector('.remove-icon');
 
-        this.upArrow.addEventListener('click', () => {
+        this.upArrow.addEventListener('click', e => {
+            e.stopImmediatePropagation();
             this.dispatchEvent(new CustomEvent('increase-order'));
         });
 
-        this.downArrow.addEventListener('click', () => {
+        this.downArrow.addEventListener('click', e => {
+            e.stopImmediatePropagation();
             this.dispatchEvent(new CustomEvent('decrease-order'));
         });
 
@@ -72,7 +75,12 @@ export class TabCustomRouteCardComponent extends HTMLElement {
         this.category.innerHTML = this.feature.layer.name;
 
         // js
-        this.close.addEventListener('click', () => {
+        this.wrapper.addEventListener('click', e => {
+            e.stopImmediatePropagation();
+            this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: this.feature } }));
+        });
+
+        this.close.addEventListener('click', e => {
             this.dispatchEvent(new CustomEvent('remove-card'));
         });
 

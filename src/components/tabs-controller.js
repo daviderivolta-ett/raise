@@ -63,12 +63,18 @@ export class TabsController extends HTMLElement {
         this.isOpen = JSON.parse(this.getAttribute('is-open'));
 
         this.toggle = this.shadow.querySelector('.toggle');
+
         this.infoTab = this.shadow.querySelector('#info-tab');
         this.suggestedRouteTab = this.shadow.querySelector('#suggested-route-tab');
         this.customRouteTab = this.shadow.querySelector('#custom-route-tab');
+
         this.infoContent = this.shadow.querySelector('.info-content');
+        this.infoComponent = this.shadow.querySelector('app-tab-info');
+
         this.suggestedRouteContent = this.shadow.querySelector('.suggested-route-content');
+
         this.customRouteContent = this.shadow.querySelector('.custom-route-content');
+        this.customRouteComponent = this.shadow.querySelector('app-tab-custom-route');
 
         this.infoTab.addEventListener('click', () => this.setAttribute('active-tab', 'info'));
         this.suggestedRouteTab.addEventListener('click', () => this.setAttribute('active-tab', 'suggested-route'));
@@ -78,6 +84,10 @@ export class TabsController extends HTMLElement {
         this.infoList = this.shadow.querySelector('app-tab-info');
 
         // js
+        this.customRouteComponent.addEventListener('customroutecard-clicked', e => {
+            this.setAttribute('active-tab', 'info');
+            this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: e.detail.feature } }));
+        });
 
         // css
         const style = document.createElement('link');

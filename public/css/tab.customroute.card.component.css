@@ -19,6 +19,7 @@ p {
 }
 
 .component {
+    cursor: pointer;
     display: flex;
     align-items: center;
     padding: 24px;

@@ -49,7 +49,6 @@ export default class CesiumViewer extends HTMLElement {
     }
 
     setCameraToPosition(position) {
-        console.log(position);
         const initialPosition = Cesium.Cartesian3.fromDegrees(
             position.longitude,
             position.latitude,

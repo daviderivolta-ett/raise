@@ -101,6 +101,10 @@ export class PageMap extends HTMLElement {
             isOpen == true ? this.map.classList.add('minimize') : this.map.classList.remove('minimize');
         });
 
+        this.tabs.addEventListener('customroutecard-clicked', event => {
+            this.map.setCameraToPosition(event.detail.feature.startingcoordinates);
+        });
+
         // search
         this.searchbar.addEventListener('search', event => {
             event.detail.searchValue.length == 0 ? this.searchResult.setAttribute('is-open', false) : this.searchResult.setAttribute('is-open', true);
