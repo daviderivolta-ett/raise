@@ -1,9 +1,11 @@
 export class TabCustomRoute extends HTMLElement {
+    _isGrabbed;
     _features;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
+        this.isGrabbed = false;
         this.features = [];
     }
 
@@ -13,6 +15,14 @@ export class TabCustomRoute extends HTMLElement {
 
     set features(features) {
         this._features = features;
+    }
+
+    get isGrabbed() {
+        return this._isGrabbed;
+    }
+
+    set isGrabbed(isGrabbed) {
+        this._isGrabbed = isGrabbed;
     }
 
     connectedCallback() {
@@ -103,9 +113,9 @@ export class TabCustomRoute extends HTMLElement {
             this.resetOrder();
         });
 
-        card.addEventListener('customroutecard-clicked', e => {
-            this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: e.detail.feature } }));
-        });
+        // card.addEventListener('customroutecard-clicked', e => {
+        //     this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: e.detail.feature } }));
+        // });
     }
 
     removeCard(index) {

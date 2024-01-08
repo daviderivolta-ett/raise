@@ -12,24 +12,36 @@ export class TabsController extends HTMLElement {
                 this.suggestedRouteContent.classList.remove('active');
                 this.customRouteContent.classList.remove('active');
                 this.infoContent.classList.add('active');
+                this.tabs.forEach(tab => {
+                    tab.id === 'info-tab' ? tab.classList.add('active-tab') : tab.classList.remove('active-tab');
+                });
                 break;
 
             case 'suggested-route':
                 this.suggestedRouteContent.classList.add('active');
                 this.customRouteContent.classList.remove('active');
                 this.infoContent.classList.remove('active');
+                this.tabs.forEach(tab => {
+                    tab.id === 'suggested-route-tab' ? tab.classList.add('active-tab') : tab.classList.remove('active-tab');
+                });
                 break;
 
             case 'custom-route':
                 this.suggestedRouteContent.classList.remove('active');
                 this.customRouteContent.classList.add('active');
                 this.infoContent.classList.remove('active');
+                this.tabs.forEach(tab => {
+                    tab.id === 'custom-route-tab' ? tab.classList.add('active-tab') : tab.classList.remove('active-tab');
+                });
                 break;
 
             default:
                 this.suggestedRouteContent.classList.remove('active');
                 this.customRouteContent.classList.remove('active');
                 this.infoContent.classList.add('active');
+                this.tabs.forEach(tab => {
+                    tab.id === 'info-tab' ? tab.classList.add('active-tab') : tab.classList.remove('active-tab');
+                });
                 break;
         }
 
@@ -63,6 +75,7 @@ export class TabsController extends HTMLElement {
         this.isOpen = JSON.parse(this.getAttribute('is-open'));
 
         this.toggle = this.shadow.querySelector('.toggle');
+        this.tabs = this.shadow.querySelectorAll('.tab');
 
         this.infoTab = this.shadow.querySelector('#info-tab');
         this.suggestedRouteTab = this.shadow.querySelector('#suggested-route-tab');
@@ -84,10 +97,10 @@ export class TabsController extends HTMLElement {
         this.infoList = this.shadow.querySelector('app-tab-info');
 
         // js
-        this.customRouteComponent.addEventListener('customroutecard-clicked', e => {
-            this.setAttribute('active-tab', 'info');
-            this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: e.detail.feature } }));
-        });
+        // this.customRouteComponent.addEventListener('customroutecard-clicked', e => {
+        //     this.setAttribute('active-tab', 'info');
+        //     this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: e.detail.feature } }));
+        // });
 
         // css
         const style = document.createElement('link');

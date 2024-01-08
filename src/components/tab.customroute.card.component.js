@@ -75,10 +75,9 @@ export class TabCustomRouteCardComponent extends HTMLElement {
         this.category.innerHTML = this.feature.layer.name;
 
         // js
-        this.wrapper.addEventListener('click', e => {
-            e.stopImmediatePropagation();
-            this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: this.feature } }));
-        });
+        // this.wrapper.addEventListener('click', e => {
+        //     this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: this.feature } }));
+        // });
 
         this.close.addEventListener('click', e => {
             this.dispatchEvent(new CustomEvent('remove-card'));

@@ -48,6 +48,12 @@
     cursor: pointer;
     width: 33%;
     text-align: center;
+    border-bottom: 2px solid transparent;
+    padding: 8px;
+}
+
+.active-tab {
+    border-bottom: 2px solid var(--neon-blue-100);
 }
 
 .content {
