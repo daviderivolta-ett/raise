@@ -20,6 +20,7 @@ export class TabCustomRoute extends HTMLElement {
         document.addEventListener('add-route', e => {
             let feature = e.detail.feature;
             this.checkFeature(feature);
+            this.resetOrder();
         });
 
         this.addEventListener('mousedown', e => this.start(e));
@@ -36,7 +37,7 @@ export class TabCustomRoute extends HTMLElement {
         style.setAttribute('href', './css/tab.customroute.component.css');
         this.shadow.append(style);
     }
-    
+
     start(e) {
         this.isGrabbed = true;
         this._startX = e.pageX || e.touches[0].pageX - this.offsetLeft;
@@ -57,7 +58,7 @@ export class TabCustomRoute extends HTMLElement {
 
     checkFeature(feature) {
         let isPresent = this.features.some(item => item.id === feature.id);
-        if(!isPresent) {
+        if (!isPresent) {
             this.createCard(feature);
         } else {
             let index = this.features.findIndex(item => item.id === feature.id);
@@ -77,14 +78,45 @@ export class TabCustomRoute extends HTMLElement {
             let index = this.features.findIndex(item => item.id === feature.id);
             this.removeCard(index);
         });
-        console.log(this.features);
+
+        card.addEventListener('increase-order', () => {
+            let eventCardIndex = this.features.findIndex(item => item.id === feature.id);
+            let followingCardIndex = eventCardIndex + 1;
+            this.features.splice(eventCardIndex, 1);
+            this.features.splice(followingCardIndex, 0, feature);
+
+            let cards = this.shadow.querySelectorAll('app-tab-custom-route-card');
+            if (!cards[followingCardIndex]) return;
+            cards[followingCardIndex].insertAdjacentElement('afterend', cards[eventCardIndex]);
+            this.resetOrder();
+        });
+
+        card.addEventListener('decrease-order', () => {
+            let eventCardIndex = this.features.findIndex(item => item.id === feature.id);
+            let previousCardIndex = eventCardIndex - 1;
+            this.features.splice(eventCardIndex, 1);
+            this.features.splice(previousCardIndex, 0, feature);
+
+            let cards = this.shadow.querySelectorAll('app-tab-custom-route-card');
+            if (!cards[previousCardIndex]) return;
+            this.shadow.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
+            this.resetOrder();
+        });
     }
 
     removeCard(index) {
         let cards = this.shadow.querySelectorAll('app-tab-custom-route-card');
         cards[index].remove();
         this.features.splice(index, 1);
-        console.log(this.features);
+    }
+
+    resetOrder() {
+        this.cards = this.shadow.querySelectorAll('app-tab-custom-route-card');
+        let order = 1;
+        this.cards.forEach(card => {
+            card.setAttribute('order', order);
+            order++;
+        });
     }
 }
 

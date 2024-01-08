@@ -24,8 +24,18 @@ p {
     padding: 24px;
 }
 
-.legend {
+.change-order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0 16px 0 0;
+}
+
+.icon {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .remove-icon {
