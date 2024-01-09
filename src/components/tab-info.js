@@ -65,7 +65,7 @@ export class TabInfo extends HTMLElement {
         });
 
         this.rightArrow.addEventListener('click', () => {
-            const scrollAmount = this.scrollLeft + this.clientWidth - 24;
+            const scrollAmount = this.scrollLeft + this.clientWidth + 24;
             this.scrollTo({
                 left: scrollAmount,
                 behavior: 'smooth'
