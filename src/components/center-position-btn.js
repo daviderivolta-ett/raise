@@ -1,4 +1,4 @@
-export class CenterPositionBtn extends HTMLElement {
+export class CenterPositionBtnComponent extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
@@ -17,7 +17,7 @@ export class CenterPositionBtn extends HTMLElement {
         this.shadow.append(this.button);
 
         // js
-        this.button.addEventListener('click', () => this.dispatchEvent(new CustomEvent('centerPosition')));
+        this.button.addEventListener('click', () => this.dispatchEvent(new CustomEvent('center-position')));
 
         // css
         const style = document.createElement('link');
@@ -27,4 +27,4 @@ export class CenterPositionBtn extends HTMLElement {
     }
 }
 
-customElements.define('app-center-position', CenterPositionBtn);
+customElements.define('app-center-position', CenterPositionBtnComponent);

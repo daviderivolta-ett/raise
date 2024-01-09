@@ -1,4 +1,4 @@
-export class MapControls extends HTMLElement {
+export class MapControlsComponent extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
@@ -52,4 +52,4 @@ export class MapControls extends HTMLElement {
     }
 }
 
-customElements.define('app-map-controls', MapControls);
+customElements.define('app-map-controls', MapControlsComponent);

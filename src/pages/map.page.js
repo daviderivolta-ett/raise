@@ -58,6 +58,7 @@ export class PageMap extends HTMLElement {
             <app-search-result></app-search-result>
             <app-bench></app-bench>
             <app-info></app-info>
+            <app-center-position></app-center-position>
             `
             ;
 
@@ -74,6 +75,7 @@ export class PageMap extends HTMLElement {
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
         this.path = this.shadow.querySelector('app-path-drawer');
         this.info = this.shadow.querySelector('app-info');
+        this.centerPosition = this.shadow.querySelector('app-center-position');
 
         // js
         // map
@@ -155,7 +157,10 @@ export class PageMap extends HTMLElement {
             this.map.changeTheme(event.detail.theme);
         });
 
-        // info
+        // zoom icon
+        this.centerPosition.addEventListener('center-position', event => {
+            console.log(event);
+        });
 
         // populate carousel
         let layers = this.filterLayersByTags(this.data, LocalStorageService.instance.getData().selectedTags);
