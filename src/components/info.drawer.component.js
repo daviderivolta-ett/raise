@@ -101,7 +101,7 @@ export class InfoDrawerComponent extends HTMLElement {
         this.playBtn = this.shadow.querySelector('app-play-info-btn');
 
         // js
-        document.addEventListener('expandinfo-click', e => {
+        document.addEventListener('expand-info', e => {
             this.setAttribute('is-open', true);
             this.feature = e.detail.feature;
         });

@@ -25,9 +25,9 @@
     height: 12%;
 }
 
-/* .contents {
+.contents {
     height: 78%;
-} */
+}
 
 .close {
     background-color: var(--white-50);

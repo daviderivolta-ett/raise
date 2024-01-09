@@ -83,11 +83,19 @@ app-add-to-route {
 }
 
 .info-btn {
+    font-family: inherit;
+    font-size: 12px;
     width: 100%;
-    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--light-blue-100);
-    color: white;
-    height: 24px;
+    color: var(--white);
+    border: none;
+    border-radius: 100px;
+    height: 32px;
+    padding: 8px 16px 8px 8px;
 }
 
 .content {

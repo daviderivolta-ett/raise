@@ -7,12 +7,12 @@
     z-index: 9999;
     transition: .2s ease-in-out;
     border-radius: 16px 16px 0 0;
-    background-color: var(--blue-100);
+    background-color: var(--dark-blue-100);
     color: var(--white);
 }
 
 :host(.open) {
-    height: 80%;
+    height: 37%;
 }
 
 h4 {
@@ -24,7 +24,19 @@ p {
 }
 
 .component {
+    overflow: auto;
+    height: 100%;
     padding: 24px;
+    box-sizing: border-box;
+}
+
+.component::-webkit-scrollbar-thumb {
+    background-color: var(--light-blue-100);
+}
+
+.component::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
 }
 
 .close-icon {

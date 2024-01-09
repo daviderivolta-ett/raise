@@ -1,0 +1,30 @@
+button {
+    font-family: inherit;
+    font-size: 12px;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-blue-100);
+    color: var(--white);
+    border: none;
+    border-radius: 100px;
+    height: 32px;
+    padding: 8px 16px 8px 8px;
+}
+
+button:hover {}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 14px;
+}
+
+.label {
+    margin: 0 0 0 4px;
+}

@@ -36,7 +36,7 @@ export class InfoCard extends HTMLElement {
                         <p class="category"></p>
                     </div>
                     <div class="tools"></div>
-                    <button class="info-btn">Info</button>
+                    <app-expand-info-btn></app-expand-info-btn>
                 </div>
                 <div class="content"></div>
             </div>
@@ -49,13 +49,13 @@ export class InfoCard extends HTMLElement {
         this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
         this.tools = this.shadow.querySelector('.tools');
-        this.infoBtn = this.shadow.querySelector('.info-btn');
+        this.infoBtn = this.shadow.querySelector('app-expand-info-btn');
         this.content = this.shadow.querySelector('.content');
 
         // js
         this.close.addEventListener('click', () => { this.dispatchEvent(new CustomEvent('remove-card')); });
-        this.infoBtn.addEventListener('click', () => {
-            document.dispatchEvent(new CustomEvent('expandinfo-click', {
+        this.infoBtn.addEventListener('expand-info', () => {
+            document.dispatchEvent(new CustomEvent('expand-info', {
                 detail: { feature: this.feature }
             }));
         });
