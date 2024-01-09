@@ -123,9 +123,15 @@ export class PageMap extends HTMLElement {
 
         // carousel & bench
         this.tabsToggle.addEventListener('drawer-toggle', event => {
-            const isOpen = event.detail.isOpen;
-            // this.bench.setAttribute('is-open', isOpen);
+            const isOpen = JSON.parse(event.detail.isOpen);
             this.tabs.setAttribute('is-open', isOpen);
+            if (isOpen === true) this.benchToggle.setAttribute('is-open', false);
+        });
+
+        this.benchToggle.addEventListener('bench-toggle', event => {
+            const isOpen = JSON.parse(event.detail.isOpen);
+            this.bench.setAttribute('is-open', isOpen);
+            if (isOpen === true) this.tabsToggle.setAttribute('is-open', false);
         });
 
         this.bench.addEventListener('click', () => {
@@ -142,11 +148,6 @@ export class PageMap extends HTMLElement {
 
         this.carousel.addEventListener('load-layers', event => {
             this.map.loadLayers(event.detail.activeLayers);
-        });
-
-        this.benchToggle.addEventListener('bench-toggle', event => {
-            const isOpen = event.detail.isOpen;
-            this.bench.setAttribute('is-open', isOpen);
         });
 
         // theme icon

@@ -26,7 +26,7 @@ import './src/components/rail.js';
 import './src/components/tabs.toggle.component.js';
 import './src/components/settings.js';
 import './src/components/link-icon.js';
-import './src/components/theme-icon.js';
+import './src/components/themeIcon.component.js';
 import './src/components/search-bar.js';
 import './src/components/search-autocomplete.js';
 import './src/components/search-result.js';

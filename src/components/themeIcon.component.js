@@ -1,4 +1,4 @@
-export class ThemeIcon extends HTMLElement {
+export class ThemeIconComponent extends HTMLElement {
     _themes;
     _theme;
     _themeIndex;
@@ -69,10 +69,10 @@ export class ThemeIcon extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/theme-icon.css');
+        style.setAttribute('href', './css/themeIcon.component.css');
         this.shadow.append(style);
 
     }
 }
 
-customElements.define('app-theme-icon', ThemeIcon);
+customElements.define('app-theme-icon', ThemeIconComponent);
