@@ -38,7 +38,6 @@ export class InfoCard extends HTMLElement {
                     <div class="tools"></div>
                     <app-expand-info-btn></app-expand-info-btn>
                 </div>
-                <div class="content"></div>
             </div>
             `
             ;
@@ -50,7 +49,6 @@ export class InfoCard extends HTMLElement {
         this.category = this.shadow.querySelector('.category');
         this.tools = this.shadow.querySelector('.tools');
         this.infoBtn = this.shadow.querySelector('app-expand-info-btn');
-        this.content = this.shadow.querySelector('.content');
 
         // js
         this.close.addEventListener('click', () => { this.dispatchEvent(new CustomEvent('remove-card')); });
@@ -70,7 +68,6 @@ export class InfoCard extends HTMLElement {
     render() {
         const properties = this.feature.properties;
 
-        let arr = [];
         let isName = false;
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
@@ -83,13 +80,8 @@ export class InfoCard extends HTMLElement {
                     isName = true;
                 }
                 if (!isName) this.category.innerText = properties.raiseName;
-                // const p = document.createElement('p');
-                // p.innerText = value;
-                // this.content.append(p);
-                // arr.push(p);
             }
         }
-        if (arr.length == 0) this.content.remove();
 
         this.colorManager.hex = this.feature.layer.style.color;
         this.colorManager.rgba = this.colorManager.convertHexToRgba(this.colorManager.hex);

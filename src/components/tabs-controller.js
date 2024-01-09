@@ -97,10 +97,9 @@ export class TabsController extends HTMLElement {
         this.infoList = this.shadow.querySelector('app-tab-info');
 
         // js
-        // this.customRouteComponent.addEventListener('customroutecard-clicked', e => {
-        //     this.setAttribute('active-tab', 'info');
-        //     this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: e.detail.feature } }));
-        // });
+        this.customRouteComponent.addEventListener('customroutecard-click', e => {
+            this.dispatchEvent(new CustomEvent('customroutecard-click', { detail: { feature: e.detail.feature } }));
+        });
 
         // css
         const style = document.createElement('link');

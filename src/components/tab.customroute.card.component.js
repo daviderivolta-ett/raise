@@ -1,3 +1,5 @@
+import { ColorManager } from '../services/ColorManager';
+
 export class TabCustomRouteCardComponent extends HTMLElement {
     _feature;
     _order;
@@ -5,6 +7,7 @@ export class TabCustomRouteCardComponent extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
+        this.colorManager = new ColorManager();
     }
 
     get feature() {
@@ -43,7 +46,10 @@ export class TabCustomRouteCardComponent extends HTMLElement {
                     </div>
                 </div>
                 <div class="info">
-                    <h4 class="title"></h4>
+                    <div class="title">
+                        <span class="legend"></span>
+                        <h4 class="name"></h4>
+                    </div>
                     <p class="category"></p>
                 </div>
                 <div class="remove-icon">
@@ -57,7 +63,8 @@ export class TabCustomRouteCardComponent extends HTMLElement {
         this.upArrow = this.shadow.querySelector('.up-arrow');
         this.downArrow = this.shadow.querySelector('.down-arrow');
         this.num = this.shadow.querySelector('.number');
-        this.name = this.shadow.querySelector('.title');
+        this.legend = this.shadow.querySelector('.legend');
+        this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
         this.close = this.shadow.querySelector('.remove-icon');
 
@@ -74,10 +81,17 @@ export class TabCustomRouteCardComponent extends HTMLElement {
         this.name.innerHTML = this.feature.properties.raiseName;
         this.category.innerHTML = this.feature.layer.name;
 
+        this.colorManager.hex = this.feature.layer.style.color;
+        this.colorManager.rgba = this.colorManager.convertHexToRgba(this.colorManager.hex);
+        this.legend.style.backgroundColor = this.colorManager.changeOpacity(this.colorManager.rgba, 0.25);
+        this.legend.style.borderColor = this.colorManager.rgba;
+        this.legend.style.borderWidth = "2px";
+        this.legend.style.borderStyle = "solid";
+
         // js
-        // this.wrapper.addEventListener('click', e => {
-        //     this.dispatchEvent(new CustomEvent('customroutecard-clicked', { detail: { feature: this.feature } }));
-        // });
+        this.wrapper.addEventListener('click', e => {
+            this.dispatchEvent(new CustomEvent('customroutecard-click', { detail: { feature: this.feature } }));
+        });
 
         this.close.addEventListener('click', e => {
             this.dispatchEvent(new CustomEvent('remove-card'));
