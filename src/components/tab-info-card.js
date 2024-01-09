@@ -64,21 +64,22 @@ export class InfoCard extends HTMLElement {
         const properties = this.feature.properties;
 
         let arr = [];
+        let isName = false;
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
                 const value = properties[key];
                 if (key == 'raiseName') {
                     this.name.innerText = properties.raiseName;
-                    continue;
                 };
                 if (key == 'nome') {
                     this.category.innerText = value;
-                    continue;
+                    isName = true;
                 }
-                const p = document.createElement('p');
-                p.innerText = value;
-                this.content.append(p);
-                arr.push(p);
+                if (!isName) this.category.innerText = properties.raiseName;
+                // const p = document.createElement('p');
+                // p.innerText = value;
+                // this.content.append(p);
+                // arr.push(p);
             }
         }
         if (arr.length == 0) this.content.remove();

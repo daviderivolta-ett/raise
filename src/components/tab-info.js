@@ -31,14 +31,38 @@ export class TabInfo extends HTMLElement {
     }
 
     connectedCallback() {
+        // html
+        this.shadow.innerHTML =
+            `
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+            <div class="left-arrow icon">
+                <span class="material-symbols-outlined">keyboard_arrow_left</span>
+            </div>
+            <div class="right-arrow icon">
+                <span class="material-symbols-outlined">keyboard_arrow_right</span>
+            </div>
+            `
+        ;
+
+        this.leftArrow = this.shadow.querySelector('.left-arrow');
+        this.rightArrow = this.shadow.querySelector('.right-arrow');
+
         // js
-        this.addEventListener('mousedown', e => this.start(e));
         this.addEventListener('touchstart', e => this.start(e));
+        this.addEventListener('mousedown', e => this.start(e));
         this.addEventListener('mousemove', e => this.move(e));
         this.addEventListener('touchmove', e => this.move(e));
         this.addEventListener('mouseup', this.end);
         this.addEventListener('touchend', this.end);
         this.addEventListener('mouseleave', this.end);
+
+        this.leftArrow.addEventListener('click', () => {
+            this.scrollLeft -= this.clientWidth - 24;
+        });
+
+        this.rightArrow.addEventListener('click', () => {
+            this.scrollLeft += this.clientWidth - 24;
+        });
 
         // css
         const style = document.createElement('link');
@@ -57,7 +81,7 @@ export class TabInfo extends HTMLElement {
         if (this.isGrabbed == false) return;
         e.preventDefault();
         const x = e.pageX || e.touches[0].pageX - this.offsetLeft;
-        const walk = (x - this._startX);
+        const walk = (x - this._startX) * 3;
         this.scrollLeft = this._scrollLeft - walk;
     }
 

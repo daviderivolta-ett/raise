@@ -1,13 +1,13 @@
 :host {
     display: block;
-    width: 32%;
-    height: fit-content;
-    max-height: 100%;
-    flex: 0 0 auto;
+    /* height: fit-content; */
+    /* max-height: 100%; */
+    /* flex: 0 0 auto; */
     border-radius: 12px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     background-color: var(--blue-100);
     position: relative;
+    margin: 0 0 8px 0;
 }
 
 h4 {
@@ -22,7 +22,7 @@ p {
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 24px;
+    padding: 16px;
 }
 
 .change-order {

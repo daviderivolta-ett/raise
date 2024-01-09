@@ -63,12 +63,12 @@ export class TabCustomRouteCardComponent extends HTMLElement {
 
         this.upArrow.addEventListener('click', e => {
             e.stopImmediatePropagation();
-            this.dispatchEvent(new CustomEvent('increase-order'));
+            this.dispatchEvent(new CustomEvent('decrease-order'));
         });
 
         this.downArrow.addEventListener('click', e => {
             e.stopImmediatePropagation();
-            this.dispatchEvent(new CustomEvent('decrease-order'));
+            this.dispatchEvent(new CustomEvent('increase-order'));
         });
 
         this.name.innerHTML = this.feature.properties.raiseName;
