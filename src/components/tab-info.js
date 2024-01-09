@@ -57,11 +57,19 @@ export class TabInfo extends HTMLElement {
         this.addEventListener('mouseleave', this.end);
 
         this.leftArrow.addEventListener('click', () => {
-            this.scrollLeft -= this.clientWidth - 24;
+            const scrollAmount = this.scrollLeft - this.clientWidth - 24;
+            this.scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
         });
 
         this.rightArrow.addEventListener('click', () => {
-            this.scrollLeft += this.clientWidth - 24;
+            const scrollAmount = this.scrollLeft + this.clientWidth - 24;
+            this.scrollTo({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
         });
 
         // css

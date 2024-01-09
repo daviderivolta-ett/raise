@@ -93,6 +93,7 @@ export class PageMap extends HTMLElement {
             this.map.setCameraToPosition(feature.startingcoordinates);
             this.tabs.addFeature(feature);
             this.tabs.setAttribute('is-open', true);
+            this.tabs.setAttribute('active-tab', 'info-tab');
         });
 
         // tabs

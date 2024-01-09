@@ -8,9 +8,11 @@
 }
 
 .icon {
+    cursor: pointer;
     position: absolute;
     top: 61%;
     z-index: 999;
+    height: 78%;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
