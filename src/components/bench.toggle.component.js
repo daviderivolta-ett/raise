@@ -1,4 +1,4 @@
-export class BenchToggle extends HTMLElement {
+export class BenchToggleComponent extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
@@ -20,7 +20,7 @@ export class BenchToggle extends HTMLElement {
         this.button.innerHTML =
             `
             <span class="icon">
-                <span class="material-symbols-outlined">menu</span>
+                <span class="material-symbols-outlined">layers</span>
             </span>
             `
         ;
@@ -34,7 +34,7 @@ export class BenchToggle extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/bench-toggle.css');
+        style.setAttribute('href', './css/bench.toggle.component.css');
         this.shadow.append(style);
 
         // js
@@ -49,11 +49,11 @@ export class BenchToggle extends HTMLElement {
         if (newValue != oldValue) {
 
             if (name == 'is-open') {
-                const event = new CustomEvent('drawer-toggle', { detail: { isOpen: newValue } });
+                const event = new CustomEvent('bench-toggle', { detail: { isOpen: newValue } });
                 this.dispatchEvent(event);
             }
         }
     }
 }
 
-customElements.define('app-bench-toggle', BenchToggle);
+customElements.define('app-bench-toggle', BenchToggleComponent);

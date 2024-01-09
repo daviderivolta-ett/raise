@@ -131,6 +131,7 @@ export default class CesiumViewer extends HTMLElement {
     }
 
     async createlayer(layer) {
+        console.log(layer);
         const url = `${layer.layer_url_wfs}?service=WFS&typeName=${layer.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;
         return fetch(url)
             .then(res => res.json())

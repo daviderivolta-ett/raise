@@ -1,4 +1,4 @@
-export class BenchLayer extends HTMLElement {
+export class BenchChipComponent extends HTMLElement {
     _layer;
 
     constructor() {
@@ -57,9 +57,9 @@ export class BenchLayer extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/bench-layer.css');
+        style.setAttribute('href', './css/bench.chip.component.css');
         this.shadow.append(style);
     }
 }
 
-customElements.define('app-bench-layer', BenchLayer);
+customElements.define('app-bench-layer', BenchChipComponent);

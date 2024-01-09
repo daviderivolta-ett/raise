@@ -1,4 +1,4 @@
-export class Bench extends HTMLElement {
+export class BenchComponent extends HTMLElement {
     _layers;
 
     constructor() {
@@ -31,7 +31,7 @@ export class Bench extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/bench.css');
+        style.setAttribute('href', './css/bench.component.css');
         this.shadow.append(style);
     }
 
@@ -75,4 +75,4 @@ export class Bench extends HTMLElement {
     }
 }
 
-customElements.define('app-bench', Bench);
+customElements.define('app-bench', BenchComponent);

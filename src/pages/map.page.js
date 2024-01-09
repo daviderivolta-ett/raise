@@ -45,19 +45,19 @@ export class PageMap extends HTMLElement {
             <app-tabs></app-tabs>
             <div class="header">
                 <div class="search">    
-                    <app-bench-toggle></app-bench-toggle>
+                    <app-tabs-toggle></app-tabs-toggle>
                     <app-searchbar></app-searchbar>
                     <div class="divider"><span class="vr"></span></div>
+                    <app-bench-toggle></app-bench-toggle>
+                    <app-theme-icon></app-theme-icon>
                     <app-link icon='apps' link ="/"></app-link>   
                 </div>
                 <app-carousel></app-carousel>
             </div>
-
             <app-path-drawer></app-path-drawer>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
             <app-info></app-info>
-            <app-theme-icon></app-theme-icon>
             `
             ;
 
@@ -68,6 +68,7 @@ export class PageMap extends HTMLElement {
         this.searchResult = this.shadow.querySelector('app-search-result');
         this.autocomplete = this.shadow.querySelector('app-autocomplete');
         this.bench = this.shadow.querySelector('app-bench');
+        this.tabsToggle = this.shadow.querySelector('app-tabs-toggle');
         this.benchToggle = this.shadow.querySelector('app-bench-toggle');
         this.carousel = this.shadow.querySelector('app-carousel');
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
@@ -82,6 +83,7 @@ export class PageMap extends HTMLElement {
         this.map.addEventListener('map-click', event => {
             this.info.setAttribute('is-open', false);
             this.benchToggle.setAttribute('is-open', false);
+            this.tabsToggle.setAttribute('is-open', false);
             this.path.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
 
@@ -120,18 +122,18 @@ export class PageMap extends HTMLElement {
         });
 
         // carousel & bench
-        this.benchToggle.addEventListener('drawer-toggle', event => {
+        this.tabsToggle.addEventListener('drawer-toggle', event => {
             const isOpen = event.detail.isOpen;
-            this.bench.setAttribute('is-open', isOpen);
+            // this.bench.setAttribute('is-open', isOpen);
             this.tabs.setAttribute('is-open', isOpen);
         });
 
         this.bench.addEventListener('click', () => {
-            this.benchToggle.setAttribute('is-open', false);
+            this.tabsToggle.setAttribute('is-open', false);
         });
 
         this.bench.addEventListener('bench-empty', () => {
-            this.benchToggle.setAttribute('is-open', false);
+            this.tabsToggle.setAttribute('is-open', false);
         });
 
         document.addEventListener('bench-layer', () => {
@@ -140,6 +142,11 @@ export class PageMap extends HTMLElement {
 
         this.carousel.addEventListener('load-layers', event => {
             this.map.loadLayers(event.detail.activeLayers);
+        });
+
+        this.benchToggle.addEventListener('bench-toggle', event => {
+            const isOpen = event.detail.isOpen;
+            this.bench.setAttribute('is-open', isOpen);
         });
 
         // theme icon

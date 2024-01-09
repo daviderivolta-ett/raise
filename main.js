@@ -23,7 +23,7 @@ import './src/pages/map.page.js';
 
 import './src/components/map.js';
 import './src/components/rail.js';
-import './src/components/bench-toggle.js';
+import './src/components/tabs.toggle.component.js';
 import './src/components/settings.js';
 import './src/components/link-icon.js';
 import './src/components/theme-icon.js';
@@ -33,8 +33,8 @@ import './src/components/search-result.js';
 import './src/components/search-result-chip.js';
 import './src/components/carousel.js';
 import './src/components/layer-chip.js';
-import './src/components/bench.js';
-import './src/components/bench-layer.js';
+import './src/components/bench.component.js';
+import './src/components/bench.chip.component.js';
 import './src/components/drawer.js';
 import './src/components/accordion.js';
 import './src/components/checkbox-list.js';
@@ -76,6 +76,7 @@ import './src/components/tab-custom-route.js';
 import './src/components/tab.customroute.card.component.js';
 import './src/components/info.drawer.component.js';
 import './src/components/expandInfoBtn.component.js';
+import './src/components/bench.toggle.component.js';
 
 // Import services
 import { SettingService } from './src/services/SettingService.js';

@@ -1,5 +1,5 @@
 :host {
-    user-select: none;  
+    user-select: none;
     position: fixed;
     right: -356px;
     top: 50%;
@@ -26,4 +26,18 @@ div {
 
 div::-webkit-scrollbar {
     width: 0px;
+}
+
+@media screen and (max-width: 768px) {
+    :host {
+        top: unset;
+        bottom: -100vh;
+        right: 0;
+        transform: none;
+        max-width: 100%;
+    }
+
+    :host(.visible) {
+        bottom: 24px;
+    }
 }

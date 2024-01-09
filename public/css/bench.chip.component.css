@@ -2,7 +2,7 @@
     user-select: none;
     max-width: fit-content;
     display: inline-block;
-    color: rgba(241, 245, 244, 1);
+    color: var(--white);
 }
 
 .chip {
@@ -11,7 +11,7 @@
     backdrop-filter: blur(2px);
     border-radius: 50px;
     max-width: fit-content;
-    background-color: rgba(15, 29, 42, .9);
+    background-color: var(--blue-90);
 }
 
 .icon {
@@ -38,11 +38,11 @@
 }
 
 .add:hover {
-    background-color: rgba(15, 29, 42, 1);
+    background-color: var(--blue-100);
 }
 
 .add .icon {
-    color: rgba(241, 245, 244, 1);
+    color: var(--white);
 }
 
 label {
@@ -71,7 +71,7 @@ label {
 }
 
 .delete:hover {
-    background-color: rgba(15, 29, 42, 1);
+    background-color: var(--blue-100);
 }
 
 .delete .icon {
