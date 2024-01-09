@@ -36,6 +36,7 @@ export class InfoCard extends HTMLElement {
                         <p class="category"></p>
                     </div>
                     <div class="tools"></div>
+                    <button class="info-btn">Info</button>
                 </div>
                 <div class="content"></div>
             </div>
@@ -48,10 +49,16 @@ export class InfoCard extends HTMLElement {
         this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
         this.tools = this.shadow.querySelector('.tools');
+        this.infoBtn = this.shadow.querySelector('.info-btn');
         this.content = this.shadow.querySelector('.content');
 
         // js
         this.close.addEventListener('click', () => { this.dispatchEvent(new CustomEvent('remove-card')); });
+        this.infoBtn.addEventListener('click', () => {
+            document.dispatchEvent(new CustomEvent('expandinfo-click', {
+                detail: { feature: this.feature }
+            }));
+        });
 
         // css
         const style = document.createElement('link');
@@ -91,8 +98,8 @@ export class InfoCard extends HTMLElement {
         this.legend.style.borderWidth = "2px";
         this.legend.style.borderStyle = "solid";
 
-        this.playBtn = document.createElement('app-play-info-btn');
-        this.info.append(this.playBtn);
+        // this.playBtn = document.createElement('app-play-info-btn');
+        // this.info.append(this.playBtn);
 
         if (this.feature.coordinatesArray.length > 1) return;
 

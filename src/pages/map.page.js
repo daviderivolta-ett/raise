@@ -56,6 +56,7 @@ export class PageMap extends HTMLElement {
             <app-path-drawer></app-path-drawer>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
+            <app-info></app-info>
             <app-theme-icon></app-theme-icon>
             `
             ;
@@ -71,6 +72,7 @@ export class PageMap extends HTMLElement {
         this.carousel = this.shadow.querySelector('app-carousel');
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
         this.path = this.shadow.querySelector('app-path-drawer');
+        this.info = this.shadow.querySelector('app-info');
 
         // js
         // map
@@ -78,6 +80,7 @@ export class PageMap extends HTMLElement {
         this.map.createUserPin(this.position);
 
         this.map.addEventListener('map-click', event => {
+            this.info.setAttribute('is-open', false);
             this.benchToggle.setAttribute('is-open', false);
             this.path.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');

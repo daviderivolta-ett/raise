@@ -82,6 +82,14 @@ app-add-to-route {
     flex: 0 0 auto;
 }
 
+.info-btn {
+    width: 100%;
+    border: none;
+    background-color: var(--light-blue-100);
+    color: white;
+    height: 24px;
+}
+
 .content {
     overflow-y: auto;
     max-height: 80px;
