@@ -125,7 +125,7 @@ export class TabsController extends HTMLElement {
     }
 
     addFeature(feature) {
-        this.infoList.checkFeature(feature);
+        this.infoList.feature = feature;
     }
 }
 
