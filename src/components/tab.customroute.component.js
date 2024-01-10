@@ -1,4 +1,4 @@
-import { EventObservable } from "../observables/EventObservable";
+import { EventObservable } from '../observables/EventObservable.js';
 
 export class TabCustomRoute extends HTMLElement {
     _isGrabbed;
@@ -88,6 +88,7 @@ export class TabCustomRoute extends HTMLElement {
         card.addEventListener('remove-card', () => {
             let index = this.features.findIndex(item => item.id === feature.id);
             this.removeCard(index);
+            this.resetOrder();
         });
 
         card.addEventListener('increase-order', () => {
