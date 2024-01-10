@@ -1,0 +1,14 @@
+:host {
+    position: fixed;
+    top: 600px;
+    left: -360px;
+    width: 360px;
+    background-color: white;
+    transition: .2s ease-in-out;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+:host(.visible) {
+    left: 24px;
+}

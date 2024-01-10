@@ -30,9 +30,8 @@
 }
 
 .accordion-icon-active {
-    transform: rotate(180deg);
-    transform-origin: center 8px;
-    transition: all .1s ease-in-out;
+    transform: scaleY(-1);
+    transform-origin: center 11px;
 }
 
 .accordion-content {
@@ -50,7 +49,7 @@
     max-height: fit-content;
 }
 
-.last-accordion {
+:host(.last-accordion) .accordion-content {
     border: none;
 }
 

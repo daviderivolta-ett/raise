@@ -1,0 +1,89 @@
+:host {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: var(--dark-blue-100);
+    color: var(--white);
+    transition: .2s ease-in-out;
+}
+
+:host(.visible) {
+    height: 38%;
+}
+
+.toggle {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+
+.controller {
+    height: 12%;
+}
+
+.contents {
+    height: 78%;
+}
+
+.close {
+    background-color: var(--white-50);
+    border-radius: 50px;
+    height: 4px;
+    width: 40px;
+}
+
+.tabs {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.tab {
+    cursor: pointer;
+    position: relative;
+    font-size: 10px;
+    width: 33%;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    padding: 8px;
+}
+
+.tab::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--neon-blue-100);
+    bottom: 0;
+    left: 0;
+    transition: .2s ease-in-out;
+}
+
+.active-tab::before {
+    width: 100%;
+}
+
+.content {
+    display: none;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: var(--light-blue-100);
+}
+
+.content::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+.active {
+    display: block;
+}

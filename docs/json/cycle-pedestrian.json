@@ -6,7 +6,7 @@
             "layer": "SITGEO:V_MOB_PARKS_BIKESHARING",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -21,12 +21,13 @@
             "relevant_properties": [
                 {
                     "property_name": "NOME",
-                    "display_name": "Nome",
+                    "display_name": "nome",
                     "type": "string" 
                 }
             ],
             "components": [
-                "app-opacity-slider"
+                "app-opacity-slider",
+                "app-navigation-btn"
             ]
         },
         {
@@ -34,7 +35,7 @@
             "layer": "SITGEO:V_MOB_PISTE_CICLABILI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -50,17 +51,17 @@
             "relevant_properties": [
                 {
                     "property_name": "NOME_TRATTA",
-                    "display_name": "Tratta",
+                    "display_name": "tratta",
                     "type": "string" 
                 },
                 {
                     "property_name": "TIPO",
-                    "display_name": "Tipologia",
+                    "display_name": "tipologia",
                     "type": "string" 
                 },
                 {
                     "property_name": "STATO",
-                    "display_name": "Condizione",
+                    "display_name": "condizione",
                     "type": "string" 
                 }
             ],
@@ -73,7 +74,7 @@
             "layer": "SITGEO:V_MOB_AREE_PEDONALI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [
@@ -84,7 +85,7 @@
             "relevant_properties": [
                 {
                     "property_name": "NOME_VIA",
-                    "display_name": "Indirizzo",
+                    "display_name": "indirizzo",
                     "type": "string"
                 }
             ],

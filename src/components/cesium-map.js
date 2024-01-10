@@ -52,7 +52,7 @@ export default class CesiumViewer extends HTMLElement {
         const initialPosition = Cesium.Cartesian3.fromDegrees(
             position.longitude,
             position.latitude,
-            4000
+            2000
         )
 
         this.viewer.camera.flyTo({

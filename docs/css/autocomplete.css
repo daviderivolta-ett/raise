@@ -1,23 +1,42 @@
+:host {
+    position: fixed;
+    top: 80px;
+    left: 24px;
+    width: 356px;
+}
+
 div {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    border-radius: 0 0 4px 4px;
+    max-height: 192px;
+    overflow-y: auto;
+    border-radius: 16px;
+    background-color: var(--blue-90);
+}
+
+div::-webkit-scrollbar {
+    width: 0px;
 }
 
 span {
     cursor: pointer;
+    color: var(--white);
     display: block;
     padding: 12px 16px;
-}
-
-span:hover {
-    background-color: rgba(0, 0, 0, .04);
+    /* background-color: var(--blue-90); */
 }
 
 span:focus {
-    background-color: rgba(0, 0, 0, .04);
+    background-color: var(--blue-100);
     outline: none;
 }
 
-span:last-child {
-    border-radius: 0 0 4px 4px;
+span:hover {
+    background-color: var(--blue-100);
 }
+
+/* span:first-child {
+    border-radius: 20px 20px 0 0;
+}
+
+span:last-child {
+    border-radius: 0 0 20px 20px;
+} */

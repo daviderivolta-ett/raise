@@ -6,7 +6,7 @@
             "layer": "L7999",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -23,7 +23,7 @@
             "layer": "L8001",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -40,7 +40,7 @@
             "layer": "L8018",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -57,7 +57,7 @@
             "layer": "L8022",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -74,7 +74,7 @@
             "layer": "L8017",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [
@@ -113,7 +113,7 @@
             "layer": "L8019",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [
@@ -157,7 +157,7 @@
             "layer": "L8020",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -190,7 +190,7 @@
             "layer": "L8322",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2277/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -213,7 +213,7 @@
             "layer": "L8320",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2276/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -236,7 +236,7 @@
             "layer": "L8324",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2269/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [

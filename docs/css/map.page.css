@@ -1,0 +1,50 @@
+:host {
+    width: 100%;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+}
+
+.search {
+    display: flex;
+    min-width: 356px;
+    backdrop-filter: blur(2px);
+    background-color: var(--blue-90);
+    border-radius: 20px;
+}
+
+.divider {
+    width: 1px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vr {
+    width: 1px;
+    height: 24px;
+    background-color: var(--light-blue);
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        display: block;
+    }
+
+    .search {
+        margin: 0 0 8px 0;
+        min-width: 100%;
+    }
+}

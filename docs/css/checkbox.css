@@ -1,7 +1,18 @@
+:host {
+    display: block;
+    margin: 8px 0;
+}
+
 * {
     font-family: 'Roboto', sans-serif;
     font-size: .9rem;
     color: rgba(0, 0, 0, 0.87);
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 label {
@@ -12,7 +23,6 @@ label {
 div.checkbox {
     display: flex;
     align-items: center;
-    margin: 0 0 8px 0;
 }
 
 input[type="checkbox"] {
@@ -61,32 +71,26 @@ input:checked {
     margin: 0 8px 0 0;
 }
 
-details {
-    padding: 0 0 0 26px;
-    margin: 0 0 16px 0;
-}
-
-summary {
-    position: relative;
-    cursor: pointer;
-    list-style: none;
+.tools {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
 }
 
-summary::-webkit-details-marker {
+.icon {
+    cursor: pointer;
+    display: flex;
+}
+
+:host-context(app-checkbox-new[is-open="true"]) .icon {
+    transform: scaleY(-1);
+    transform-origin: center 11px;
+}
+
+.components {
     display: none;
 }
 
-svg {
-    position: absolute;
-    top: -24px;
-    right: 0;
-    transition: all .1s ease-in-out;
-}
-
-details[open] > summary svg {
-    transform: rotate(180deg);
-    transform-origin: center 8px;
-    transition: all .1s ease-in-out;
+.components.active {
+    display: block;
+    margin: 4px 0 8px 0;
 }

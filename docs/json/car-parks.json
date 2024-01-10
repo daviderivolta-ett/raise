@@ -6,7 +6,7 @@
             "layer": "V_MOB_PARKS_CARSHARING",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -35,7 +35,7 @@
             "layer": "V_MOB_PARKS_INTERSCAMBIO",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -64,7 +64,7 @@
             "layer": "SITGEO:V_MOB_BLUAREA",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [
@@ -93,7 +93,7 @@
             "layer": "SITGEO:V_MOB_ZTL_AMBIENTE",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [

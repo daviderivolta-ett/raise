@@ -1,0 +1,9 @@
+:host {
+    display: block;
+    height: 100%;
+    transition: .2s ease-in-out;
+}
+
+:host(.minimize) {
+    height: 62%;
+}

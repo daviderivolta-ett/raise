@@ -1,0 +1,15 @@
+:host {
+    overflow: hidden;
+    display: flex;
+}
+
+:host::-webkit-scrollbar {
+    width: 0.5px;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+}

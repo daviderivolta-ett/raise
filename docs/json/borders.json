@@ -6,7 +6,7 @@
             "layer": "SITGEO:V_MUNICIPI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [
@@ -35,7 +35,7 @@
             "layer": "SITGEO:V_UNITA_URBANISTICHE",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [

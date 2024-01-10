@@ -1,10 +1,9 @@
-import { EventObservable } from "../observables/EventObservable";
+import { EventObservable } from '../observables/EventObservable.js';
 
 export class TabsController extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        this.features = [];
     }
 
     render() {

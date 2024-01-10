@@ -1,0 +1,79 @@
+:host {
+    user-select: none;
+    max-width: fit-content;
+    display: inline-block;
+    color: var(--white);
+}
+
+.chip {
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    border-radius: 50px;
+    max-width: fit-content;
+    background-color: var(--blue-90);
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 20px;
+}
+
+.add {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 50px 0 0 50px;
+    padding: 8px 12px 8px 12px;
+}
+
+.add:hover {
+    background-color: var(--blue-100);
+}
+
+.add .icon {
+    color: var(--white);
+}
+
+label {
+    cursor: pointer;
+    padding: 0 0 0 4px;
+}
+
+.divider {
+    width: 1px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vr {
+    width: 1px;
+    height: 24px;
+    background-color: rgba(241, 245, 244, 1);
+}
+
+.delete {
+    cursor: pointer;
+    border-radius: 0 50px 50px 0;
+    padding: 8px 12px 8px 8px;
+}
+
+.delete:hover {
+    background-color: var(--blue-100);
+}
+
+.delete .icon {
+    color: rgba(190, 15, 58, 1);
+}

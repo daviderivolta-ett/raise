@@ -1,0 +1,49 @@
+:host {
+    position: fixed;
+    top: 80px;
+    left: -356px;
+    width: 356px;
+    transition: .2s ease-in-out;
+    box-sizing: border-box;
+    background-color: var(--blue-90);
+    border-radius: 16px;
+    color: var(--white);
+}
+
+:host(.visible) {
+    left: 24px;
+}
+
+div {
+    max-height: 192px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px 16px;
+}
+
+div::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+div::-webkit-scrollbar-thumb {
+    background-color: var(--light-blue-100);
+}
+
+h3 {
+    margin: 0 0 16px 0;
+}
+
+p {
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    :host {
+        top: 114px;
+        left: -100%;
+        width: calc(100% - 48px);
+    }
+}

@@ -18,18 +18,6 @@ export class TabInfo extends HTMLElement {
         this._features = features;
     }
 
-    get customRoute() {
-        return this._customRoute;
-    }
-
-    set customRoute(customRoute) {
-        this._customRoute = customRoute;
-    }
-
-    render() {
-
-    }
-
     connectedCallback() {
         // html
         this.shadow.innerHTML =

@@ -6,7 +6,7 @@
             "layer": "SITGEO:V_IMPIANTI_SPORTIVI",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 1
             },
             "tags": [
@@ -80,7 +80,7 @@
             "layer": "URBANISTICA:V_VAS_SPORT",
             "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [
@@ -119,7 +119,7 @@
             "layer": "L8814",
             "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2364/wfs",
             "style": {
-                "color": "red",
+                "color": "#ff0000",
                 "opacity": 0.5
             },
             "tags": [
