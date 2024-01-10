@@ -1,3 +1,4 @@
+import { EventObservable } from '../observables/EventObservable';
 import { ColorManager } from '../services/ColorManager';
 
 export class TabCustomRouteCardComponent extends HTMLElement {
@@ -90,10 +91,11 @@ export class TabCustomRouteCardComponent extends HTMLElement {
 
         // js
         this.wrapper.addEventListener('click', e => {
-            this.dispatchEvent(new CustomEvent('customroutecard-click', { detail: { feature: this.feature } }));
+            EventObservable.instance.publish('customroutecard-click', this.feature);
         });
 
         this.close.addEventListener('click', e => {
+            e.stopPropagation();
             this.dispatchEvent(new CustomEvent('remove-card'));
         });
 

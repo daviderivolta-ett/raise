@@ -116,6 +116,10 @@ export class PageMap extends HTMLElement {
             this.map.setCameraToPosition(feature.startingcoordinates);
         });
 
+        EventObservable.instance.subscribe('customroutecard-click', feature => {
+            this.map.setCameraToPosition(feature.startingcoordinates);
+        });
+
         // search
         this.searchbar.addEventListener('search', event => {
             event.detail.searchValue.length == 0 ? this.searchResult.setAttribute('is-open', false) : this.searchResult.setAttribute('is-open', true);
