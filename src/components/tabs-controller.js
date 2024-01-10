@@ -45,8 +45,6 @@ export class TabsController extends HTMLElement {
                 });
                 break;
         }
-
-        this.isOpen == true ? this.classList.add('visible') : this.classList.remove('visible');
     }
 
     connectedCallback() {
@@ -72,8 +70,10 @@ export class TabsController extends HTMLElement {
             ;
 
         if (!this.hasAttribute('is-open')) this.setAttribute('is-open', false);
+        if (!this.hasAttribute('is-maximized')) this.setAttribute('is-maximized', false);
         if (!this.hasAttribute('active-tab')) this.setAttribute('active-tab', 'info');
         this.isOpen = JSON.parse(this.getAttribute('is-open'));
+        this.isMaximized = JSON.parse(this.getAttribute('is-maximized'));
 
         this.toggle = this.shadow.querySelector('.toggle');
         this.tabs = this.shadow.querySelectorAll('.tab');
@@ -102,6 +102,10 @@ export class TabsController extends HTMLElement {
             this.setAttribute('active-tab', 'custom-route');
         });
 
+        this.customRouteContent.addEventListener('scroll', () => {
+            this.setAttribute('is-maximized', true);
+        });
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
@@ -109,17 +113,30 @@ export class TabsController extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-open', 'active-tab'];
+    static observedAttributes = ['is-open', 'active-tab', 'is-maximized'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue && oldValue != null) {
-            if (name == 'is-open') {
-                this.isOpen = JSON.parse(newValue);
-                this.dispatchEvent(new CustomEvent('tabs-toggle', { detail: { isOpen: this.isOpen } }));
+            if (name == 'active-tab') {
                 this.render();
             }
 
-            if (name == 'active-tab') {
-                this.render();
+            if (name == 'is-open') {
+                this.isOpen = JSON.parse(newValue);
+                
+                if (this.isOpen == true) {
+                    this.classList.add('visible')
+                } else {
+                    this.classList.remove('visible');
+                    this.setAttribute('is-maximized', this.isOpen);
+                }
+
+                this.dispatchEvent(new CustomEvent('tabs-toggle', { detail: { isOpen: this.isOpen } }));
+            }
+
+            if (name == 'is-maximized') {
+                this.isMaximized = JSON.parse(newValue);
+                this.isMaximized == true ? this.classList.add('maximized') : this.classList.remove('maximized');
+                this.dispatchEvent(new CustomEvent('maximize-tabs', { detail: { isMaximized: this.isMaximized } }));
             }
         }
     }

@@ -43,3 +43,7 @@ button:hover {
         'opsz' 24;
     font-size: 20px;
 }
+
+:host(.maximized) {
+    display: none;
+}

@@ -109,7 +109,17 @@ export class PageMap extends HTMLElement {
         // tabs
         this.tabs.addEventListener('tabs-toggle', event => {
             const isOpen = event.detail.isOpen;
-            isOpen == true ? this.map.classList.add('minimize') : this.map.classList.remove('minimize');
+            if (isOpen == true) {
+                this.map.classList.add('minimize')
+            } else {
+                this.map.classList.remove('minimize');
+                this.tabsToggle.setAttribute('is-open', false);
+            }
+        });
+
+        this.tabs.addEventListener('maximize-tabs', event => {
+            const isMaximized = event.detail.isMaximized;
+            isMaximized == true ? this.centerPosition.setAttribute('is-maximized', true) : this.centerPosition.setAttribute('is-maximized', false);
         });
 
         EventObservable.instance.subscribe('tabinfocard-click', feature => {

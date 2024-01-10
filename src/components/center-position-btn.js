@@ -18,6 +18,7 @@ export class CenterPositionBtnComponent extends HTMLElement {
 
         this.shadow.append(this.button);
         if (!this.hasAttribute('is-open')) this.setAttribute('is-open', false);
+        if (!this.hasAttribute('is-maximized')) this.setAttribute('is-maximized', false);
 
         // js
         this.button.addEventListener('click', () => this.dispatchEvent(new CustomEvent('center-position')));
@@ -29,11 +30,15 @@ export class CenterPositionBtnComponent extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-open'];
+    static observedAttributes = ['is-open', 'is-maximized'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue && oldValue != null) {
             if (name == 'is-open') {
                 newValue === 'true' ? this.classList.add('open') : this.classList.remove('open');
+            }
+
+            if (name == 'is-maximized') {
+                newValue === 'true' ? this.classList.add('maximized') : this.classList.remove('maximized');
             }
         }
     }
