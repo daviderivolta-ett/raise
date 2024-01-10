@@ -119,10 +119,6 @@ export class TabInfo extends HTMLElement {
             let index = this.features.findIndex(item => item.id === feature.id);
             this.removeCard(index);
         });
-
-        card.addEventListener('centerpositiononfeature-click', e => {
-            this.dispatchEvent(new CustomEvent('centerpositiononfeature-click', { detail: { feature: e.detail.feature } }));
-        });
     }
 
     removeCard(index) {

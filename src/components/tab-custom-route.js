@@ -1,3 +1,5 @@
+import { EventObservable } from "../observables/EventObservable";
+
 export class TabCustomRoute extends HTMLElement {
     _isGrabbed;
     _features;
@@ -27,8 +29,7 @@ export class TabCustomRoute extends HTMLElement {
 
     connectedCallback() {
         // js
-        document.addEventListener('add-route', e => {
-            let feature = e.detail.feature;
+        EventObservable.instance.subscribe('addtoroutebtn-click', feature => {
             this.checkFeature(feature);
             this.resetOrder();
         });

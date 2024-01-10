@@ -1,4 +1,4 @@
-import { SearchObservable } from '../observables/SearchObservable.js';
+import { EventObservable } from '../observables/EventObservable.js';
 import { SettingService } from '../services/SettingService.js';
 
 export class SearchAutocomplete extends HTMLElement {
@@ -62,7 +62,7 @@ export class SearchAutocomplete extends HTMLElement {
         this.setAttribute('selected', '');
 
         // js
-        SearchObservable.instance.subscribe('search', searchValue => {
+        EventObservable.instance.subscribe('search', searchValue => {
             searchValue = searchValue.toLowerCase();
             let search = {};
             search.value = searchValue;
@@ -70,11 +70,11 @@ export class SearchAutocomplete extends HTMLElement {
             if (searchValue.length > 2) {
                 let layers = this.filterLayersByNameAndTag(SettingService.instance.data, searchValue);
                 search.layers = layers;
-                SearchObservable.instance.publish('filterlayers', search);
+                EventObservable.instance.publish('filterlayers', search);
                 this.input = layers;
             } else {
                 search.layers = [];
-                SearchObservable.instance.publish('filterlayers', search);
+                EventObservable.instance.publish('filterlayers', search);
                 this.input = [];
             }
         });

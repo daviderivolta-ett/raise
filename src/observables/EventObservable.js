@@ -1,17 +1,15 @@
-export class SearchObservable {
+export class EventObservable {
     constructor() {
-        if (SearchObservable._instance) {
-            return SearchObservable._instance;
-        }
+        if (EventObservable._instance) return EventObservable._instance;
         this.listeners = [];
-        SearchObservable._instance = this;
+        EventObservable._instance = this;
     }
 
     static get instance() {
-        if (!SearchObservable._instance) {
-            SearchObservable._instance = new SearchObservable();
+        if (!EventObservable._instance) {
+            EventObservable._instance = new EventObservable();
         }
-        return SearchObservable._instance;
+        return EventObservable._instance;
     }
 
     subscribe(eventType, callback) {

@@ -1,4 +1,5 @@
 import { ColorManager } from '../services/ColorManager';
+import { EventObservable } from '../observables/EventObservable.js';
 
 export class InfoCard extends HTMLElement {
     _feature;
@@ -61,9 +62,7 @@ export class InfoCard extends HTMLElement {
         });
 
         this.header.addEventListener('click', () => {
-            this.dispatchEvent(new CustomEvent('centerpositiononfeature-click', {
-                detail: { feature: this.feature }
-            }));
+            EventObservable.instance.publish('tabinfocard-click', this.feature);
         });
 
         // css
@@ -111,12 +110,14 @@ export class InfoCard extends HTMLElement {
         this.goToBtn.coordinates = coordinates;
         this.tools.append(this.goToBtn);
 
-        this.goToBtn.addEventListener('go-to', e => this.goTo(e.detail.coordinates));
+        this.goToBtn.addEventListener('go-to', e => {
+            this.goTo(e.detail.coordinates)
+        });
 
         this.addToRouteBtn = document.createElement('app-add-to-route');
         this.tools.append(this.addToRouteBtn);
         this.addToRouteBtn.addEventListener('add-route', () => {
-            document.dispatchEvent(new CustomEvent('add-route', { detail: { feature: this.feature } }));
+            EventObservable.instance.publish('addtoroutebtn-click', this.feature);
         });
     }
 

@@ -1,3 +1,4 @@
+import { EventObservable } from '../observables/EventObservable.js';
 import { FeatureService } from '../services/FeatureService.js';
 import { LocalStorageService } from '../services/LocalStorageService.js';
 import { SettingService } from '../services/SettingService.js';
@@ -111,12 +112,8 @@ export class PageMap extends HTMLElement {
             isOpen == true ? this.map.classList.add('minimize') : this.map.classList.remove('minimize');
         });
 
-        this.tabs.addEventListener('customroutecard-click', event => {
-            this.map.setCameraToPosition(event.detail.feature.startingcoordinates);
-        });
-
-        this.tabs.addEventListener('centerpositiononfeature-click', event => {
-            this.map.setCameraToPosition(event.detail.feature.startingcoordinates)
+        EventObservable.instance.subscribe('tabinfocard-click', feature => {
+            this.map.setCameraToPosition(feature.startingcoordinates);
         });
 
         // search
