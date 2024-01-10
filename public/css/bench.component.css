@@ -32,12 +32,19 @@ div::-webkit-scrollbar {
     :host {
         top: unset;
         bottom: -100vh;
-        right: 0;
+        right: unset;
+        left: 0;
         transform: none;
         max-width: 100%;
     }
 
     :host(.visible) {
         bottom: 24px;
+        right: unset;
+        left: 24px;
+    }
+
+    div {
+        justify-content: flex-start;
     }
 }

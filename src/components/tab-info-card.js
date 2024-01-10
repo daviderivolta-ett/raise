@@ -44,6 +44,7 @@ export class InfoCard extends HTMLElement {
 
         this.close = this.shadow.querySelector('.close-icon');
         this.info = this.shadow.querySelector('.info');
+        this.header = this.shadow.querySelector('.header');
         this.legend = this.shadow.querySelector('.legend');
         this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
@@ -52,8 +53,15 @@ export class InfoCard extends HTMLElement {
 
         // js
         this.close.addEventListener('click', () => { this.dispatchEvent(new CustomEvent('remove-card')); });
+
         this.infoBtn.addEventListener('expand-info', () => {
             document.dispatchEvent(new CustomEvent('expand-info', {
+                detail: { feature: this.feature }
+            }));
+        });
+
+        this.header.addEventListener('click', () => {
+            this.dispatchEvent(new CustomEvent('centerpositiononfeature-click', {
                 detail: { feature: this.feature }
             }));
         });

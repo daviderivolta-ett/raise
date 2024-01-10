@@ -86,6 +86,7 @@ export class PageMap extends HTMLElement {
             this.info.setAttribute('is-open', false);
             this.benchToggle.setAttribute('is-open', false);
             this.tabsToggle.setAttribute('is-open', false);
+            this.centerPosition.setAttribute('is-open', false);
             this.path.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
 
@@ -99,7 +100,8 @@ export class PageMap extends HTMLElement {
             const feature = FeatureService.instance.getFeature(entity, this.data);
             this.map.setCameraToPosition(feature.startingcoordinates);
             this.tabs.addFeature(feature);
-            this.tabs.setAttribute('is-open', true);
+            this.tabsToggle.setAttribute('is-open', true);
+            this.centerPosition.setAttribute('is-open', true);
             this.tabs.setAttribute('active-tab', 'info-tab');
         });
 
@@ -111,6 +113,10 @@ export class PageMap extends HTMLElement {
 
         this.tabs.addEventListener('customroutecard-click', event => {
             this.map.setCameraToPosition(event.detail.feature.startingcoordinates);
+        });
+
+        this.tabs.addEventListener('centerpositiononfeature-click', event => {
+            this.map.setCameraToPosition(event.detail.feature.startingcoordinates)
         });
 
         // search
@@ -127,6 +133,7 @@ export class PageMap extends HTMLElement {
         this.tabsToggle.addEventListener('drawer-toggle', event => {
             const isOpen = JSON.parse(event.detail.isOpen);
             this.tabs.setAttribute('is-open', isOpen);
+            this.centerPosition.setAttribute('is-open', isOpen);
             if (isOpen === true) this.benchToggle.setAttribute('is-open', false);
         });
 
@@ -157,9 +164,9 @@ export class PageMap extends HTMLElement {
             this.map.changeTheme(event.detail.theme);
         });
 
-        // zoom icon
+        // center position icon
         this.centerPosition.addEventListener('center-position', event => {
-            console.log(event);
+            this.map.setCameraToPosition(this.position);
         });
 
         // populate carousel
