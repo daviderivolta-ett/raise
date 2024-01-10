@@ -109,7 +109,7 @@ export class TabsController extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/tabs-controller.css');
+        style.setAttribute('href', './css/tab.controller.component.css');
         this.shadow.append(style);
     }
 

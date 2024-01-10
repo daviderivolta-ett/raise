@@ -1,8 +1,7 @@
 :host {
+    padding: 24px;
+    box-sizing: border-box;
     display: block;
-    border-radius: 12px;
-    background-color: var(--blue-100);
-    position: relative;
 }
 
 h4 {
@@ -11,29 +10,6 @@ h4 {
 
 p {
     margin: 0;
-}
-
-.wrapper {
-    padding: 0 0 24px 0;
-}
-
-.close-icon {
-    cursor: pointer;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 16px;
-    right: 16px;
-}
-
-.material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
-    font-size: 16px;
 }
 
 .tools {
@@ -46,10 +22,6 @@ p {
 app-goto,
 app-add-to-route {
     width: 100%;
-}
-
-.info {
-    padding: 24px 24px 0 24px;
 }
 
 .header {
@@ -92,27 +64,4 @@ app-add-to-route {
     border-radius: 100px;
     height: 32px;
     padding: 8px 16px 8px 8px;
-}
-
-.content {
-    overflow-y: auto;
-    max-height: 80px;
-    padding: 24px;
-    box-sizing: border-box;
-}
-
-.content::-webkit-scrollbar {
-    width: 6px;
-    background-color: transparent;
-}
-
-.content::-webkit-scrollbar-thumb {
-    background-color: var(--light-blue-100);
-}
-
-@media screen and (max-width: 768px) {
-    :host {
-        width: 100%;
-        gap: 24px;
-    }
 }

@@ -69,14 +69,14 @@ import './src/components/reset-tags-btn.js';
 
 import './src/pages/map.page.js';
 import './src/components/cesium-map.js';
-import './src/components/tabs-controller.js';
-import './src/components/tab-info.js';
-import './src/components/tab-info-card.js';
+import './src/components/tab.controller.component.js';
+import './src/components/tab.info.component.js';
 import './src/components/tab-custom-route.js';
 import './src/components/tab.customroute.card.component.js';
 import './src/components/info.drawer.component.js';
 import './src/components/expandInfoBtn.component.js';
 import './src/components/bench.toggle.component.js';
+import './src/components/tab.info.card.expansionpanel.component.js';
 
 // Import services
 import { SettingService } from './src/services/SettingService.js';
