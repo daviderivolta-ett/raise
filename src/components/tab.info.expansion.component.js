@@ -1,4 +1,4 @@
-export class TabInfoCardInfoComponent extends HTMLElement {
+export class TabInfoExpansionComponent extends HTMLElement {
     _feature;
 
     constructor() {
@@ -45,7 +45,7 @@ export class TabInfoCardInfoComponent extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/tab.info.card.expansionpanel.component.css');
+        style.setAttribute('href', './css/tab.info.expansion.component.css');
         this.shadow.append(style);
     }
 
@@ -69,4 +69,4 @@ export class TabInfoCardInfoComponent extends HTMLElement {
     }
 }
 
-customElements.define('app-infos', TabInfoCardInfoComponent);
+customElements.define('app-info-expansion', TabInfoExpansionComponent);

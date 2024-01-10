@@ -102,6 +102,10 @@ export class TabsController extends HTMLElement {
             this.setAttribute('active-tab', 'custom-route');
         });
 
+        this.infoContent.addEventListener('mousewheel', () => {
+            this.setAttribute('is-maximized', true);
+        });
+
         this.customRouteContent.addEventListener('scroll', () => {
             this.setAttribute('is-maximized', true);
         });

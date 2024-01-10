@@ -58,7 +58,6 @@ export class PageMap extends HTMLElement {
             <app-path-drawer></app-path-drawer>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
-            <app-info></app-info>
             <app-center-position></app-center-position>
             `
             ;
@@ -75,7 +74,6 @@ export class PageMap extends HTMLElement {
         this.carousel = this.shadow.querySelector('app-carousel');
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
         this.path = this.shadow.querySelector('app-path-drawer');
-        this.info = this.shadow.querySelector('app-info');
         this.centerPosition = this.shadow.querySelector('app-center-position');
 
         // js
@@ -84,7 +82,6 @@ export class PageMap extends HTMLElement {
         this.map.createUserPin(this.position);
 
         this.map.addEventListener('map-click', event => {
-            this.info.setAttribute('is-open', false);
             this.benchToggle.setAttribute('is-open', false);
             this.tabsToggle.setAttribute('is-open', false);
             this.centerPosition.setAttribute('is-open', false);

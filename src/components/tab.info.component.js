@@ -32,12 +32,9 @@ export class TabInfo extends HTMLElement {
             </div>
             <div class="tools"></div>
             <app-expand-info-btn></app-expand-info-btn>
-            <app-infos></app-infos>
+            <app-info-expansion></app-info-expansion>
             `
             ;
-        // let card = document.createElement('app-info-card');
-        // this.component.append(card);
-        // card.feature = this.feature;
 
         this.header = this.shadow.querySelector('.header');
         this.legend = this.shadow.querySelector('.legend');
@@ -45,6 +42,7 @@ export class TabInfo extends HTMLElement {
         this.category = this.shadow.querySelector('.category');
         this.tools = this.shadow.querySelector('.tools');
         this.infoBtn = this.shadow.querySelector('app-expand-info-btn');
+        this.info = this.shadow.querySelector('app-info-expansion');
 
         const properties = this.feature.properties;
 
@@ -86,8 +84,13 @@ export class TabInfo extends HTMLElement {
 
         this.addToRouteBtn = document.createElement('app-add-to-route');
         this.tools.append(this.addToRouteBtn);
+
         this.addToRouteBtn.addEventListener('add-route', () => {
             EventObservable.instance.publish('addtoroutebtn-click', this.feature);
+        });
+
+        this.infoBtn.addEventListener('expand-info', () => {
+            this.info.feature = this.feature;
         });
     }
 
