@@ -29,13 +29,14 @@ export class TabInfoPanelComponent extends HTMLElement {
 
     render() {
         const properties = this.feature.properties;
+
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
                 const value = properties[key];
                 if (key == 'raiseName' || key == 'nome') continue;
 
                 const div = document.createElement('div');
-                div.classList.add('argument');
+                div.classList.add('topic');
                 const h = document.createElement('h4');
                 const separatedKey = key.replace(/([A-Z])/g, ' $1');
                 const capitalizedKey = separatedKey.charAt(0).toUpperCase() + separatedKey.slice(1);
@@ -44,9 +45,12 @@ export class TabInfoPanelComponent extends HTMLElement {
                 const p = document.createElement('p');
                 p.innerText = value;
                 div.append(p);
-                this.info.append(div);
+                this.topics.append(div);
             }
         }
+
+        this.playBtn = document.createElement('app-play-info-btn');
+        this.info.prepend(this.playBtn);
     }
 
     connectedCallback() {
@@ -54,13 +58,16 @@ export class TabInfoPanelComponent extends HTMLElement {
         this.shadow.innerHTML =
             `
             <button>Leggi info</button>
-            <div class="info"></div>
+            <div class="info">
+                <div class="topics"></div>
+            </div>
             `
             ;
 
         this.setAttribute('is-open', this.isOpen);
         this.button = this.shadow.querySelector('button');
         this.info = this.shadow.querySelector('.info');
+        this.topics = this.shadow.querySelector('.topics');
 
         // js
         this.button.addEventListener('click', () => {

@@ -30,10 +30,15 @@ button {
     padding: 8px 16px 8px 8px;
 }
 
-.info {
+.topics {
     margin: 32px 0 0 0;
 }
 
-.argument {
+.topic {
     margin: 0 0 16px 0;
+}
+
+app-play-info-btn {
+    display: block;
+    margin: 8px 0 0 0;
 }

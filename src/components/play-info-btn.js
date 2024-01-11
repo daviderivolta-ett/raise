@@ -1,4 +1,4 @@
-export class PlayInfoBtn extends HTMLElement {
+export class PlayInfoBtnComponent extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
@@ -35,4 +35,4 @@ export class PlayInfoBtn extends HTMLElement {
     }
 }
 
-customElements.define('app-play-info-btn', PlayInfoBtn);
+customElements.define('app-play-info-btn', PlayInfoBtnComponent);
