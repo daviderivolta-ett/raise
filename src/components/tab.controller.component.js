@@ -102,8 +102,16 @@ export class TabsController extends HTMLElement {
             this.setAttribute('active-tab', 'custom-route');
         });
 
-        this.infoContent.addEventListener('mousewheel', () => {
+        EventObservable.instance.subscribe('tab-maximize', () => {
             this.setAttribute('is-maximized', true);
+        });
+
+        EventObservable.instance.subscribe('tab-minimize', () => {
+            this.setAttribute('is-maximized', false);
+        });
+
+        this.infoContent.addEventListener('mousewheel', () => {
+            EventObservable.instance.publish('tab-scroll');
         });
 
         this.customRouteContent.addEventListener('scroll', () => {

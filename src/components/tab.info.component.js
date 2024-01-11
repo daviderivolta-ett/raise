@@ -1,7 +1,7 @@
 import { ColorManager } from '../services/ColorManager.js';
 import { EventObservable } from '../observables/EventObservable.js';
 
-export class TabInfo extends HTMLElement {
+export class TabInfoComponent extends HTMLElement {
     _feature;
 
     constructor() {
@@ -31,8 +31,7 @@ export class TabInfo extends HTMLElement {
                 <p class="category"></p>
             </div>
             <div class="tools"></div>
-            <app-expand-info-btn></app-expand-info-btn>
-            <app-info-expansion></app-info-expansion>
+            <app-info-panel></app-info-panel>
             `
             ;
 
@@ -41,8 +40,7 @@ export class TabInfo extends HTMLElement {
         this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
         this.tools = this.shadow.querySelector('.tools');
-        this.infoBtn = this.shadow.querySelector('app-expand-info-btn');
-        this.info = this.shadow.querySelector('app-info-expansion');
+        this.info = this.shadow.querySelector('app-info-panel');
 
         const properties = this.feature.properties;
 
@@ -68,6 +66,8 @@ export class TabInfo extends HTMLElement {
         this.legend.style.borderWidth = "2px";
         this.legend.style.borderStyle = "solid";
 
+        this.info.feature = this.feature;
+
         if (this.feature.coordinatesArray.length > 1) return;
 
         const coordinates = {};
@@ -87,10 +87,6 @@ export class TabInfo extends HTMLElement {
 
         this.addToRouteBtn.addEventListener('add-route', () => {
             EventObservable.instance.publish('addtoroutebtn-click', this.feature);
-        });
-
-        this.infoBtn.addEventListener('expand-info', () => {
-            this.info.feature = this.feature;
         });
     }
 
@@ -113,4 +109,4 @@ export class TabInfo extends HTMLElement {
     }
 }
 
-customElements.define('app-tab-info', TabInfo);
+customElements.define('app-tab-info', TabInfoComponent);

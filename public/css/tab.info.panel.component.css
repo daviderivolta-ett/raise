@@ -1,3 +1,17 @@
+.info {
+    height: 0;
+    overflow: hidden;
+}
+
+:host(.open) .info {
+    height: fit-content;
+}
+
+h4,
+p {
+    margin: 0;
+}
+
 button {
     font-family: inherit;
     font-size: 12px;
@@ -14,17 +28,10 @@ button {
     padding: 8px 16px 8px 8px;
 }
 
-button:hover {}
-
-.material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 1,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
-    font-size: 14px;
+.info {
+    margin: 32px 0 0 0;
 }
 
-.label {
-    margin: 0 0 0 4px;
+.argument {
+    margin: 0 0 16px 0;
 }
