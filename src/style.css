@@ -158,6 +158,10 @@ main#onboard {
 
 
 /* NEW UI */
+main {
+  overflow: hidden;
+}
+
 .header {
   position: fixed;
   top: 0;

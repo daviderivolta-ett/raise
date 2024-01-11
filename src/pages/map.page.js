@@ -135,6 +135,10 @@ export class PageMap extends HTMLElement {
             this.map.setCameraToPosition(feature.startingcoordinates);
         });
 
+        EventObservable.instance.subscribe('addtocustomroutebtn-click', feature => {
+            console.log(EventObservable.instance.listeners);
+        });
+
         // search
         this.searchbar.addEventListener('search', event => {
             event.detail.searchValue.length == 0 ? this.searchResult.setAttribute('is-open', false) : this.searchResult.setAttribute('is-open', true);

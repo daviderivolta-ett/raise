@@ -63,7 +63,9 @@ export class TabInfoComponent extends HTMLElement {
         this.goToBtn.coordinates = coordinates;
         this.goToBtn.addEventListener('go-to', e => this.goTo(e.detail.coordinates));
 
-        this.addToRouteBtn.addEventListener('add-route', () => EventObservable.instance.publish('addtocustomroutebtn-click', this.feature));
+        this.addToRouteBtn.addEventListener('add-route', () => {
+            EventObservable.instance.publish('addtocustomroutebtn-click', this.feature)
+        });
     }
 
     connectedCallback() {
