@@ -31,6 +31,9 @@ export class PageMap extends HTMLElement {
     }
 
     async connectedCallback() {
+        let splash = document.createElement('app-splash');
+        this.shadow.append(splash);
+
         // services
         this.data = await SettingService.instance.getData();
 
@@ -40,7 +43,7 @@ export class PageMap extends HTMLElement {
         this.position.longitude = p.coords.longitude;
 
         // html
-        this.shadow.innerHTML =
+        this.shadow.innerHTML +=
             `
             <app-cesium></app-cesium>
             <app-tabs></app-tabs>
@@ -196,6 +199,9 @@ export class PageMap extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/map.page.css');
         this.shadow.append(style);
+
+        splash = this.shadow.querySelector('app-splash');
+        splash.remove();
     }
 
     render() {

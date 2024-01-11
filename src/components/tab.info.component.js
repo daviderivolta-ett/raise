@@ -78,11 +78,11 @@ export class TabInfoComponent extends HTMLElement {
                     </div>
                     <p class="category"></p>
                 </div>
-                <div class="tools">
+                <div class="tools" style="display:none;">
                     <app-goto></app-goto>
                     <app-add-to-route></app-add-to-route>
                 </div>
-                <app-info-panel></app-info-panel>
+                <app-info-panel style="display:none;"></app-info-panel>
             </div>
             `
             ;

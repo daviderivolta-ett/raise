@@ -76,6 +76,7 @@ import './src/components/tab.customroute.card.component.js';
 import './src/components/info.drawer.component.js';
 import './src/components/bench.toggle.component.js';
 import './src/components/tab.info.panel.component.js';
+import './src/components/splash.component.js';
 
 // Import services
 import { SettingService } from './src/services/SettingService.js';
