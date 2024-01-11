@@ -6,7 +6,7 @@
 }
 
 :host(.open) {
-    bottom: calc(38% + 24px);
+    bottom: calc(32% + 24px);
 }
 
 button {

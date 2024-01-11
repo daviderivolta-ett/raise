@@ -9,14 +9,14 @@ export class TabsController extends HTMLElement {
     render() {
         const activeTab = this.getAttribute('active-tab');
         switch (activeTab) {
-            case 'info':
-                this.suggestedRouteContent.classList.remove('active');
-                this.customRouteContent.classList.remove('active');
-                this.infoContent.classList.add('active');
-                this.tabs.forEach(tab => {
-                    tab.id === 'info-tab' ? tab.classList.add('active-tab') : tab.classList.remove('active-tab');
-                });
-                break;
+            // case 'info':
+            //     this.suggestedRouteContent.classList.remove('active');
+            //     this.customRouteContent.classList.remove('active');
+            //     this.infoContent.classList.add('active');
+            //     this.tabs.forEach(tab => {
+            //         tab.id === 'info-tab' ? tab.classList.add('active-tab') : tab.classList.remove('active-tab');
+            //     });
+            //     break;
 
             case 'suggested-route':
                 this.suggestedRouteContent.classList.add('active');
@@ -71,7 +71,7 @@ export class TabsController extends HTMLElement {
 
         if (!this.hasAttribute('is-open')) this.setAttribute('is-open', false);
         if (!this.hasAttribute('is-maximized')) this.setAttribute('is-maximized', false);
-        if (!this.hasAttribute('active-tab')) this.setAttribute('active-tab', 'info');
+
         this.isOpen = JSON.parse(this.getAttribute('is-open'));
         this.isMaximized = JSON.parse(this.getAttribute('is-maximized'));
 
@@ -115,11 +115,13 @@ export class TabsController extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/tab.controller.component.css');
         this.shadow.append(style);
+
+        if (!this.hasAttribute('active-tab')) this.setAttribute('active-tab', 'info');
     }
 
     static observedAttributes = ['is-open', 'active-tab', 'is-maximized'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue && oldValue != null) {
+        if (newValue != oldValue) {
             if (name == 'active-tab') {
                 this.render();
             }

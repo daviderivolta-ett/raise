@@ -162,7 +162,7 @@ export class PageMap extends HTMLElement {
         });
 
         this.bench.addEventListener('bench-empty', () => {
-            this.tabsToggle.setAttribute('is-open', false);
+            this.benchToggle.setAttribute('is-open', false);
         });
 
         document.addEventListener('bench-layer', () => {

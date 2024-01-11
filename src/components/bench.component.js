@@ -39,7 +39,12 @@ export class BenchComponent extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue && oldValue != null) {
             if (name == 'is-open') {
-                newValue == 'true' ? this.classList.add('visible') : this.classList.remove('visible');
+                if (newValue == 'true') {
+                    if (this._layers.length == 0) this.dispatchEvent(new CustomEvent('bench-empty'));
+                    this.classList.add('visible');
+                } else {
+                    this.classList.remove('visible');
+                }
             }
         }
     }
@@ -62,7 +67,7 @@ export class BenchComponent extends HTMLElement {
 
         benchLayer.addEventListener('restore-layer', e => {
             this.removeLayer(e.detail.layer);
-            document.dispatchEvent(new CustomEvent('add-layer', { detail: { layers: [ e.detail.layer ] } }));
+            document.dispatchEvent(new CustomEvent('add-layer', { detail: { layers: [e.detail.layer] } }));
         });
 
         benchLayer.addEventListener('delete-layer', e => {

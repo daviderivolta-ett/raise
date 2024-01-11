@@ -1,10 +1,12 @@
 .info {
     height: 0;
+    display: none;
     overflow: hidden;
 }
 
 :host(.open) .info {
     height: fit-content;
+    display: block;
 }
 
 h4,

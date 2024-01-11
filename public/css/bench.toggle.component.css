@@ -35,6 +35,6 @@ button:hover {
 }
 
 
-:host(app-tabs-toggle[is-open="true"]) button {
+:host(app-bench-toggle[is-open="true"]) button {
     background-color: var(--blue-100);
 }
