@@ -39,11 +39,11 @@ export class TabCustomRouteCardComponent extends HTMLElement {
             <div class="component">
                 <div class="change-order">
                     <div class="up-arrow icon">
-                        <span class="material-symbols-outlined">keyboard_arrow_up</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>     
                     </div>
                     <div class="number"></div>
                     <div class="down-arrow icon">
-                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
                     </div>
                 </div>
                 <div class="info">
@@ -53,8 +53,8 @@ export class TabCustomRouteCardComponent extends HTMLElement {
                     </div>
                     <p class="category"></p>
                 </div>
-                <div class="remove-icon">
-                    <span class="material-symbols-outlined">close</span>
+                <div class="remove icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
                 </div>
             </div>
             `
@@ -67,7 +67,7 @@ export class TabCustomRouteCardComponent extends HTMLElement {
         this.legend = this.shadow.querySelector('.legend');
         this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
-        this.close = this.shadow.querySelector('.remove-icon');
+        this.close = this.shadow.querySelector('.remove');
 
         this.upArrow.addEventListener('click', e => {
             e.stopImmediatePropagation();
