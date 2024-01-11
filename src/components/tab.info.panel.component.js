@@ -16,6 +16,7 @@ export class TabInfoPanelComponent extends HTMLElement {
 
     set feature(feature) {
         this._feature = feature;
+        console.log(this.feature);
         this.render();
     }
 
@@ -28,6 +29,7 @@ export class TabInfoPanelComponent extends HTMLElement {
     }
 
     render() {
+        this.content.innerHTML = '';
         const properties = this.feature.properties;
 
         let moreProperties = [];
@@ -47,7 +49,7 @@ export class TabInfoPanelComponent extends HTMLElement {
                 const p = document.createElement('p');
                 p.innerText = value;
                 div.append(p);
-                this.topics.append(div);
+                this.content.append(div);
 
                 moreProperties.push(key);
             }
@@ -56,10 +58,9 @@ export class TabInfoPanelComponent extends HTMLElement {
         if (moreProperties.length === 0) {
             this.style.display = 'none';
             return;
+        } else {
+            this.style.display = 'block';
         };
-
-        this.playBtn = document.createElement('app-play-info-btn');
-        this.info.prepend(this.playBtn);
 
         this.playBtn.addEventListener('read-info', () => {
             const speaker = new SpeechSynthesisUtterance();
@@ -76,7 +77,8 @@ export class TabInfoPanelComponent extends HTMLElement {
             `
             <button>Leggi info</button>
             <div class="info">
-                <div class="topics"></div>
+                <app-play-info-btn></app-play-info-btn>
+                <div class="content"></div>
             </div>
             `
             ;
@@ -84,7 +86,8 @@ export class TabInfoPanelComponent extends HTMLElement {
         this.setAttribute('is-open', this.isOpen);
         this.button = this.shadow.querySelector('button');
         this.info = this.shadow.querySelector('.info');
-        this.topics = this.shadow.querySelector('.topics');
+        this.playBtn = this.shadow.querySelector('app-play-info-btn');
+        this.content = this.shadow.querySelector('.content');
 
         // js
         this.button.addEventListener('click', () => {

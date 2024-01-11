@@ -20,27 +20,10 @@ export class TabInfoComponent extends HTMLElement {
     }
 
     render() {
-        this.component.innerHTML = '';
-        this.component.innerHTML =
-            `
-            <div class="header">
-                <div class="title">
-                    <span class="legend"></span>
-                    <h4 class="name"></h4>
-                </div>
-                <p class="category"></p>
-            </div>
-            <div class="tools"></div>
-            <app-info-panel></app-info-panel>
-            `
-            ;
-
-        this.header = this.shadow.querySelector('.header');
-        this.legend = this.shadow.querySelector('.legend');
-        this.name = this.shadow.querySelector('.name');
-        this.category = this.shadow.querySelector('.category');
-        this.tools = this.shadow.querySelector('.tools');
-        this.info = this.shadow.querySelector('app-info-panel');
+        this.legend.innerHTML = '';
+        this.name.innerHTML = '';
+        this.category.innerHTML = '';
+        this.tools.innerHTML = '';
 
         const properties = this.feature.properties;
 
@@ -49,13 +32,13 @@ export class TabInfoComponent extends HTMLElement {
             if (properties.hasOwnProperty(key)) {
                 const value = properties[key];
                 if (key == 'raiseName') {
-                    this.name.innerText = properties.raiseName;
+                    this.name.innerHTML = properties.raiseName;
                 };
                 if (key == 'nome') {
-                    this.category.innerText = value;
+                    this.category.innerHTML = value;
                     isName = true;
                 }
-                if (!isName) this.category.innerText = properties.raiseName;
+                if (!isName) this.category.innerHTML = properties.raiseName;
             }
         }
 
@@ -92,8 +75,29 @@ export class TabInfoComponent extends HTMLElement {
 
     connectedCallback() {
         // html
-        this.shadow.innerHTML = '<div class="component"></div>';
+        this.shadow.innerHTML =
+            `
+            <div class="component">
+                <div class="header">
+                    <div class="title">
+                        <span class="legend"></span>
+                        <h4 class="name"></h4>
+                    </div>
+                    <p class="category"></p>
+                </div>
+                <div class="tools"></div>
+                <app-info-panel></app-info-panel>
+            </div>
+            `
+            ;
+
         this.component = this.shadow.querySelector('.component');
+        this.header = this.shadow.querySelector('.header');
+        this.legend = this.shadow.querySelector('.legend');
+        this.name = this.shadow.querySelector('.name');
+        this.category = this.shadow.querySelector('.category');
+        this.tools = this.shadow.querySelector('.tools');
+        this.info = this.shadow.querySelector('app-info-panel');
 
         // css
         const style = document.createElement('link');
