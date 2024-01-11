@@ -86,7 +86,7 @@ export class TabInfoComponent extends HTMLElement {
         this.tools.append(this.addToRouteBtn);
 
         this.addToRouteBtn.addEventListener('add-route', () => {
-            EventObservable.instance.publish('addtoroutebtn-click', this.feature);
+            EventObservable.instance.publish('addtocustomroutebtn-click', this.feature);
         });
     }
 

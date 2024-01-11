@@ -114,9 +114,14 @@ export class PageMap extends HTMLElement {
             }
         });
 
-        this.tabs.addEventListener('maximize-tabs', event => {
-            const isMaximized = event.detail.isMaximized;
-            isMaximized == true ? this.centerPosition.setAttribute('is-maximized', true) : this.centerPosition.setAttribute('is-maximized', false);
+        EventObservable.instance.subscribe('tab-maximize', isMaximized => {
+            if (isMaximized == true) {
+                this.tabs.setAttribute('is-maximized', true);
+                this.centerPosition.setAttribute('is-maximized', true);
+            } else {
+                this.tabs.setAttribute('is-maximized', false);
+                this.centerPosition.setAttribute('is-maximized', false);
+            }
         });
 
         EventObservable.instance.subscribe('tabinfocard-click', feature => {
@@ -143,6 +148,7 @@ export class PageMap extends HTMLElement {
             this.tabs.setAttribute('is-open', isOpen);
             this.centerPosition.setAttribute('is-open', isOpen);
             if (isOpen === true) this.benchToggle.setAttribute('is-open', false);
+            if (isOpen === false) this.tabs.setAttribute('is-maximized', false);
         });
 
         this.benchToggle.addEventListener('bench-toggle', event => {

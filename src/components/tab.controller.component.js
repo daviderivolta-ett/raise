@@ -98,23 +98,15 @@ export class TabsController extends HTMLElement {
         this.infoList = this.shadow.querySelector('app-tab-info');
 
         // js
-        EventObservable.instance.subscribe('addtoroutebtn-click', feature => {
+        EventObservable.instance.subscribe('addtocustomroutebtn-click', feature => {
             this.setAttribute('active-tab', 'custom-route');
         });
 
-        EventObservable.instance.subscribe('tab-maximize', () => {
+        this.infoContent.addEventListener('mousewheel', () => {
             this.setAttribute('is-maximized', true);
         });
 
-        EventObservable.instance.subscribe('tab-minimize', () => {
-            this.setAttribute('is-maximized', false);
-        });
-
-        this.infoContent.addEventListener('mousewheel', () => {
-            EventObservable.instance.publish('tab-scroll');
-        });
-
-        this.customRouteContent.addEventListener('scroll', () => {
+        this.customRouteContent.addEventListener('mousewheel', () => {
             this.setAttribute('is-maximized', true);
         });
 
@@ -134,7 +126,7 @@ export class TabsController extends HTMLElement {
 
             if (name == 'is-open') {
                 this.isOpen = JSON.parse(newValue);
-                
+
                 if (this.isOpen == true) {
                     this.classList.add('visible')
                 } else {
@@ -148,7 +140,7 @@ export class TabsController extends HTMLElement {
             if (name == 'is-maximized') {
                 this.isMaximized = JSON.parse(newValue);
                 this.isMaximized == true ? this.classList.add('maximized') : this.classList.remove('maximized');
-                this.dispatchEvent(new CustomEvent('maximize-tabs', { detail: { isMaximized: this.isMaximized } }));
+                EventObservable.instance.publish('tab-maximize', this.isMaximized);
             }
         }
     }

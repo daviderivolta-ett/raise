@@ -29,7 +29,7 @@ export class TabCustomRoute extends HTMLElement {
 
     connectedCallback() {
         // js
-        EventObservable.instance.subscribe('addtoroutebtn-click', feature => {
+        EventObservable.instance.subscribe('addtocustomroutebtn-click', feature => {
             this.checkFeature(feature);
             this.resetOrder();
         });

@@ -68,8 +68,8 @@ export class TabInfoPanelComponent extends HTMLElement {
             this.setAttribute('is-open', !isOpen + '');
         });
 
-        EventObservable.instance.subscribe('tab-scroll', () => {
-            this.setAttribute('is-open', true);
+        EventObservable.instance.subscribe('tab-maximize', isMaximized => {
+            this.setAttribute('is-open', isMaximized + '');
         });
 
         // css
@@ -86,7 +86,7 @@ export class TabInfoPanelComponent extends HTMLElement {
                 this.isOpen = JSON.parse(newValue);
                 this.isOpen == true ? this.classList.add('open') : this.classList.remove('open');
                 this.isOpen == true ? this.button.innerHTML = 'Mostra meno' : this.button.innerHTML = 'Leggi info';
-                this.isOpen == true ? EventObservable.instance.publish('tab-maximize') : EventObservable.instance.publish('tab-minimize');
+                EventObservable.instance.publish('tab-maximize', this.isOpen);
             }
         }
     }
