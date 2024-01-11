@@ -16,7 +16,6 @@ export class TabInfoPanelComponent extends HTMLElement {
 
     set feature(feature) {
         this._feature = feature;
-        console.log(this.feature);
         this.render();
     }
 

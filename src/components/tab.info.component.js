@@ -23,7 +23,6 @@ export class TabInfoComponent extends HTMLElement {
         this.legend.innerHTML = '';
         this.name.innerHTML = '';
         this.category.innerHTML = '';
-        this.tools.innerHTML = '';
 
         const properties = this.feature.properties;
 
@@ -51,26 +50,20 @@ export class TabInfoComponent extends HTMLElement {
 
         this.info.feature = this.feature;
 
-        if (this.feature.coordinatesArray.length > 1) return;
+        if (this.feature.coordinatesArray.length > 1) {
+            this.tools.style.display = 'none';
+            return;
+        } else {
+            this.tools.style.display = 'flex';
+        }
 
         const coordinates = {};
         coordinates.longitude = this.feature.startingcoordinates.longitude;
         coordinates.latitude = this.feature.startingcoordinates.latitude;
-
-        this.goToBtn = document.createElement('app-goto');
         this.goToBtn.coordinates = coordinates;
-        this.tools.append(this.goToBtn);
+        this.goToBtn.addEventListener('go-to', e => this.goTo(e.detail.coordinates));
 
-        this.goToBtn.addEventListener('go-to', e => {
-            this.goTo(e.detail.coordinates)
-        });
-
-        this.addToRouteBtn = document.createElement('app-add-to-route');
-        this.tools.append(this.addToRouteBtn);
-
-        this.addToRouteBtn.addEventListener('add-route', () => {
-            EventObservable.instance.publish('addtocustomroutebtn-click', this.feature);
-        });
+        this.addToRouteBtn.addEventListener('add-route', () => EventObservable.instance.publish('addtocustomroutebtn-click', this.feature));
     }
 
     connectedCallback() {
@@ -85,7 +78,10 @@ export class TabInfoComponent extends HTMLElement {
                     </div>
                     <p class="category"></p>
                 </div>
-                <div class="tools"></div>
+                <div class="tools">
+                    <app-goto></app-goto>
+                    <app-add-to-route></app-add-to-route>
+                </div>
                 <app-info-panel></app-info-panel>
             </div>
             `
@@ -97,6 +93,8 @@ export class TabInfoComponent extends HTMLElement {
         this.name = this.shadow.querySelector('.name');
         this.category = this.shadow.querySelector('.category');
         this.tools = this.shadow.querySelector('.tools');
+        this.goToBtn = this.shadow.querySelector('app-goto');
+        this.addToRouteBtn = this.shadow.querySelector('app-add-to-route');
         this.info = this.shadow.querySelector('app-info-panel');
 
         // css
