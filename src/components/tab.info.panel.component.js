@@ -30,6 +30,8 @@ export class TabInfoPanelComponent extends HTMLElement {
     render() {
         const properties = this.feature.properties;
 
+        let moreProperties = [];
+
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
                 const value = properties[key];
@@ -46,11 +48,26 @@ export class TabInfoPanelComponent extends HTMLElement {
                 p.innerText = value;
                 div.append(p);
                 this.topics.append(div);
+
+                moreProperties.push(key);
             }
         }
 
+        if (moreProperties.length === 0) {
+            this.style.display = 'none';
+            return;
+        };
+
         this.playBtn = document.createElement('app-play-info-btn');
         this.info.prepend(this.playBtn);
+
+        this.playBtn.addEventListener('read-info', () => {
+            const speaker = new SpeechSynthesisUtterance();
+            speaker.lang = 'it';
+            const textToRead = this.shadow.querySelector('.content').innerHTML;
+            speaker.text = textToRead;
+            window.speechSynthesis.speak(speaker);
+        });
     }
 
     connectedCallback() {
