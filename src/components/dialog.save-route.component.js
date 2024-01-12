@@ -15,7 +15,7 @@ export class SaveRouteDialogComponent extends HTMLElement {
             `
             <dialog>
                 <div class="content">
-                    <input type="text">
+                    <input type="text" placeholder="Nuovo percorso">
                     <div class="buttons">
                         <button class="close" type="button">Annulla</button>
                         <button class="delete" type="button">Elimina</button>
@@ -75,10 +75,9 @@ export class SaveRouteDialogComponent extends HTMLElement {
             this.features = route.features;
             this.route = new Route(this.name, this.features);
             this.input.value = this.name;
-        } else {
-            this.setAttribute('value', 'Nuovo percorso');
-            this.input.value = this.getAttribute('value');
         }
+
+        if (this.input.value.length === 0) this.saveBtn.disabled = true;
 
         // js
         this.input.addEventListener('input', () => {
