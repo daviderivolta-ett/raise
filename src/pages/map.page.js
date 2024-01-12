@@ -206,7 +206,9 @@ export class PageMap extends HTMLElement {
         this.shadow.append(style);
 
         splash = this.shadow.querySelector('app-splash');
-        splash.remove();
+        setTimeout(() => {
+            splash.remove();
+        }, 2000);
     }
 
     render() {

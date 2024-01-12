@@ -9,6 +9,7 @@ export class SplashComponent extends HTMLElement {
         this.shadow.innerHTML =
             `
             <div class="component">
+                <img src="../../images/RAISE_pictogram_nobg.svg">
                 <p>Caricamento...</p>
             </div>
             `

@@ -1,5 +1,21 @@
-:host {
+.list {
     padding: 24px;
+}
+
+.tools {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    padding: 16px;
+    background-color: var(--blue-100);
+    color: var(--white-100);
     box-sizing: border-box;
-    display: block;
+    width: 100%;
+}
+
+p {
+    margin: 0;
+    text-align: center;
 }

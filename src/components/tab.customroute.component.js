@@ -28,6 +28,18 @@ export class TabCustomRoute extends HTMLElement {
     }
 
     connectedCallback() {
+        // html
+        this.shadow.innerHTML =
+            `
+            <div class="list"></div>
+            <div class="tools">
+                <button type="button">Salva percorso</button>
+            </div>
+            `
+            ;
+        
+        this.list = this.shadow.querySelector('.list');
+
         // js
         EventObservable.instance.subscribe('addtocustomroutebtn-click', feature => {
             let isPresent = this.checkFeature(feature);
@@ -41,7 +53,7 @@ export class TabCustomRoute extends HTMLElement {
 
                 let snackbar = document.createElement('app-snackbar');
                 snackbar.setAttribute('type', 'temporary');
-                snackbar.setAttribute('text', 'Punto di interesse già presente nel percorso personalizzato')
+                snackbar.setAttribute('text', 'Tappa già presente nel percorso');
                 document.body.append(snackbar);
             }
 
@@ -90,7 +102,7 @@ export class TabCustomRoute extends HTMLElement {
         let card = document.createElement('app-tab-custom-route-card');
         card.feature = feature;
         this.features.unshift(feature);
-        this.shadow.prepend(card);
+        this.list.prepend(card);
         this.scrollLeft = 0;
 
         card.addEventListener('remove-card', () => {
@@ -105,7 +117,7 @@ export class TabCustomRoute extends HTMLElement {
             this.features.splice(eventCardIndex, 1);
             this.features.splice(followingCardIndex, 0, feature);
 
-            let cards = this.shadow.querySelectorAll('app-tab-custom-route-card');
+            let cards = this.list.querySelectorAll('app-tab-custom-route-card');
             if (!cards[followingCardIndex]) return;
             cards[followingCardIndex].insertAdjacentElement('afterend', cards[eventCardIndex]);
             this.resetOrder();
@@ -117,21 +129,21 @@ export class TabCustomRoute extends HTMLElement {
             this.features.splice(eventCardIndex, 1);
             this.features.splice(previousCardIndex, 0, feature);
 
-            let cards = this.shadow.querySelectorAll('app-tab-custom-route-card');
+            let cards = this.list.querySelectorAll('app-tab-custom-route-card');
             if (!cards[previousCardIndex]) return;
-            this.shadow.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
+            this.this.list.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
             this.resetOrder();
         });
     }
 
     removeCard(index) {
-        let cards = this.shadow.querySelectorAll('app-tab-custom-route-card');
+        let cards = this.list.querySelectorAll('app-tab-custom-route-card');
         cards[index].remove();
         this.features.splice(index, 1);
     }
 
     resetOrder() {
-        this.cards = this.shadow.querySelectorAll('app-tab-custom-route-card');
+        this.cards = this.list.querySelectorAll('app-tab-custom-route-card');
         let order = 1;
         this.cards.forEach(card => {
             card.setAttribute('order', order);

@@ -85,7 +85,7 @@ export class SnackBarComponent extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/snackbar.css');
+        style.setAttribute('href', './css/snackbar.component.css');
         this.shadow.append(style);
 
         // this.style.setProperty('transform', 'translateX(-50%)');
