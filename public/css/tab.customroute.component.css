@@ -5,17 +5,24 @@
 .tools {
     position: absolute;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     bottom: 0;
-    padding: 16px;
     background-color: var(--blue-100);
     color: var(--white-100);
     box-sizing: border-box;
     width: 100%;
 }
 
-p {
+.tools button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    fill: var(--white-100);
     margin: 0;
-    text-align: center;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }

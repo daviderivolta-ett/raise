@@ -1,4 +1,5 @@
 import { EventObservable } from '../observables/EventObservable.js';
+import { LocalStorageService } from '../services/LocalStorageService.js';
 
 export class TabCustomRoute extends HTMLElement {
     _isGrabbed;
@@ -33,15 +34,32 @@ export class TabCustomRoute extends HTMLElement {
             `
             <div class="list"></div>
             <div class="tools">
-                <button type="button">Salva percorso</button>
+                <button type="button" class="save">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg>
+                </button>
+                <button type="button" class="sort">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z"/></svg>
+                </button>
+                <button type="button" class="delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                </button>
             </div>
             <app-save-route-dialog></app-save-route-dialog>
+            <app-empty-route></app-empty-route>
             `
             ;
-        
+
         this.list = this.shadow.querySelector('.list');
-        this.btn = this.shadow.querySelector('button');
-        this.dialog = this.shadow.querySelector('app-save-route-dialog');
+        this.saveBtn = this.shadow.querySelector('.save');
+        this.deleteBtn = this.shadow.querySelector('.delete');
+        this.saveDialog = this.shadow.querySelector('app-save-route-dialog');
+        this.deleteDialog = this.shadow.querySelector('app-empty-route');
+
+        // service
+        if (LocalStorageService.instance.getData().route) {
+            const route = LocalStorageService.instance.getData().route;
+            route.features.forEach(feature => this.createCard(feature));
+        }
 
         // js
         EventObservable.instance.subscribe('addtocustomroutebtn-click', feature => {
@@ -63,9 +81,21 @@ export class TabCustomRoute extends HTMLElement {
             this.resetOrder();
         });
 
-        this.btn.addEventListener('click', () => {
-            this.dialog.features = this.features;
-            this.dialog.openDialog();
+        this.saveBtn.addEventListener('click', () => {
+            this.saveDialog.features = this.features;
+            this.saveDialog.openDialog();
+        });
+
+        this.saveDialog.addEventListener('empty-route', () => {
+            this.features = [];
+            this.list.innerHTML = '';
+        });
+
+        this.deleteBtn.addEventListener('click', () => this.deleteDialog.openDialog());
+
+        this.deleteDialog.addEventListener('empty-route', () => {
+            this.features = [];
+            this.list.innerHTML = '';
         });
 
         // css

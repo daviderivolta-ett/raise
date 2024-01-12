@@ -7,11 +7,12 @@ dialog {
     box-sizing: border-box;
 }
 
-input {
-    width: 100%;
-    border: none;
-    box-sizing: border-box;
-    margin: 0 0 4px 0;
+dialog::backdrop {
+    background: rgba(0, 0, 0, .5);
+}
+
+.content {
+    color: var(--white-100);
 }
 
 .buttons {

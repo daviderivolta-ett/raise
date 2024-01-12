@@ -9,15 +9,6 @@ export class TabsController extends HTMLElement {
     render() {
         const activeTab = this.getAttribute('active-tab');
         switch (activeTab) {
-            // case 'info':
-            //     this.suggestedRouteContent.classList.remove('active');
-            //     this.customRouteContent.classList.remove('active');
-            //     this.infoContent.classList.add('active');
-            //     this.tabs.forEach(tab => {
-            //         tab.id === 'info-tab' ? tab.classList.add('active-tab') : tab.classList.remove('active-tab');
-            //     });
-            //     break;
-
             case 'suggested-route':
                 this.suggestedRouteContent.classList.add('active');
                 this.customRouteContent.classList.remove('active');
@@ -63,7 +54,7 @@ export class TabsController extends HTMLElement {
             </div>
             <div class="contents">
                 <div class="content info-content"><app-tab-info></app-tab-info></div>
-                <div class="content suggested-route-content">Percorsi suggeriti</div>
+                <div class="content suggested-route-content"></div>
                 <div class="content custom-route-content"><app-tab-custom-route></app-tab-custom-route></div>
             </div>
             `

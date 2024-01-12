@@ -17,8 +17,9 @@ export class SaveRouteDialogComponent extends HTMLElement {
                 <div class="content">
                     <input type="text">
                     <div class="buttons">
-                        <button class="submit" type="submit">Salva</button>
                         <button class="close" type="button">Annulla</button>
+                        <button class="delete" type="button">Elimina</button>
+                        <button class="submit" type="submit">Salva</button>
                     </div>
                 </div>
             </dialog>
@@ -27,13 +28,14 @@ export class SaveRouteDialogComponent extends HTMLElement {
 
         this.dialog = this.shadow.querySelector('dialog');
         this.input = this.shadow.querySelector('input');
-        this.close = this.shadow.querySelector('.close');
-        this.save = this.shadow.querySelector('.submit');
+        this.closeBtn = this.shadow.querySelector('.close');
+        this.deleteBtn = this.shadow.querySelector('.delete');
+        this.saveBtn = this.shadow.querySelector('.submit');
 
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/save-route-dialog.component.css')
+        style.setAttribute('href', './css/dialog.save-route.component.css')
         this.shadow.append(style);
     }
 
@@ -83,11 +85,17 @@ export class SaveRouteDialogComponent extends HTMLElement {
             this.setAttribute('value', this.input.value);
         });
 
-        this.close.addEventListener('click', () => {
+        this.closeBtn.addEventListener('click', () => {
             this.closeDialog();
         });
 
-        this.save.addEventListener('click', () => {
+        this.deleteBtn.addEventListener('click', () => {
+            localStorage.removeItem('route');
+            this.dispatchEvent(new CustomEvent('empty-route'));
+            this.closeDialog();
+        });
+
+        this.saveBtn.addEventListener('click', () => {
             this.closeDialog();
             this.name = this.input.value;
             this.route = new Route(this.name, this.features);
@@ -99,7 +107,7 @@ export class SaveRouteDialogComponent extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue) {
             if (name == 'value') {
-                newValue.length == 0 ? this.save.disabled = true : this.save.disabled = false;
+                newValue.length == 0 ? this.saveBtn.disabled = true : this.saveBtn.disabled = false;
             }
         }
     }
