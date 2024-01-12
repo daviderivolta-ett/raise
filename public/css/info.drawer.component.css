@@ -8,7 +8,7 @@
     transition: .2s ease-in-out;
     border-radius: 16px 16px 0 0;
     background-color: var(--dark-blue-100);
-    color: var(--white);
+    color: var(--white-100);
 }
 
 :host(.open) {

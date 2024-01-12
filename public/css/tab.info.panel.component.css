@@ -2,6 +2,7 @@
     height: 0;
     display: none;
     overflow: hidden;
+    color: var(--white-100s);
 }
 
 :host(.open) .info {
@@ -23,7 +24,7 @@ button {
     justify-content: center;
     align-items: center;
     background-color: var(--light-blue-100);
-    color: var(--white);
+    color: var(--white-100);
     border: none;
     border-radius: 100px;
     height: 32px;

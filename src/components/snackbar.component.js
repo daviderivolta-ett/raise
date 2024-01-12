@@ -1,10 +1,10 @@
-export class SnackBar extends HTMLElement {
+export class SnackBarComponent extends HTMLElement {
     static snackbars = [];
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        SnackBar.snackbars.push(this);
+        SnackBarComponent.snackbars.push(this);
     }
 
     render() {
@@ -12,7 +12,7 @@ export class SnackBar extends HTMLElement {
     }
 
     connectedCallback() {
-        const index = SnackBar.snackbars.indexOf(this);
+        const index = SnackBarComponent.snackbars.indexOf(this);
 
         // html
         this.shadow.innerHTML =
@@ -110,18 +110,18 @@ export class SnackBar extends HTMLElement {
     }
 
     disconnectedCallback() {
-        const index = SnackBar.snackbars.indexOf(this);
+        const index = SnackBarComponent.snackbars.indexOf(this);
         if (index !== -1) {
-            SnackBar.snackbars.splice(index, 1);
+            SnackBarComponent.snackbars.splice(index, 1);
             this.updatePosition();
         }
     }
 
     updatePosition() {
-        SnackBar.snackbars.forEach((snackbar, index) => {
+        SnackBarComponent.snackbars.forEach((snackbar, index) => {
             snackbar.style.setProperty('bottom', `${24 + 64 * index}px`);
         });
     }
 }
 
-customElements.define('app-snackbar', SnackBar);
+customElements.define('app-snackbar', SnackBarComponent);

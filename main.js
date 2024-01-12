@@ -60,7 +60,7 @@ import './src/components/map-controls.js';
 import './src/components/path-drawer-toggle.js';
 import './src/components/center-position-btn.js';
 import './src/components/zoom-button.js';
-import './src/components/snackbar.js';
+import './src/components/snackbar.component.js';
 import './src/components/tag-selection.js';
 import './src/components/chip.js';
 import './src/components/submit-tags-btn.js';

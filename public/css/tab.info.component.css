@@ -2,6 +2,7 @@
     padding: 24px;
     box-sizing: border-box;
     display: block;
+    color: var(--white-100);
 }
 
 h4 {
@@ -56,7 +57,7 @@ app-add-to-route {
     justify-content: center;
     align-items: center;
     background-color: var(--light-blue-100);
-    color: var(--white);
+    color: var(--white-100);
     border: none;
     border-radius: 100px;
     height: 32px;

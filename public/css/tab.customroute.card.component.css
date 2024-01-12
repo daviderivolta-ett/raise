@@ -4,6 +4,7 @@
     background-color: var(--blue-100);
     position: relative;
     margin: 0 0 8px 0;
+    color: var(--white-100);
 }
 
 h4 {

@@ -7,7 +7,7 @@ button {
     justify-content: center;
     align-items: center;
     background-color: var(--green-blue-25);
-    color: var(--white);
+    color: var(--white-100);
     border: none;
     border-radius: 100px;
     height: 32px;

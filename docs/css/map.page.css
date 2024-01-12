@@ -35,7 +35,7 @@
 .vr {
     width: 1px;
     height: 24px;
-    background-color: var(--light-blue);
+    background-color: var(--pale-light-blue-100);
 }
 
 @media screen and (max-width: 768px) {

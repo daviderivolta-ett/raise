@@ -30,7 +30,21 @@ export class TabCustomRoute extends HTMLElement {
     connectedCallback() {
         // js
         EventObservable.instance.subscribe('addtocustomroutebtn-click', feature => {
-            this.checkFeature(feature);
+            let isPresent = this.checkFeature(feature);
+
+            if (!isPresent) {
+                this.createCard(feature);
+            } else {
+                let index = this.features.findIndex(item => item.id === feature.id);
+                this.removeCard(index);
+                this.createCard(feature);
+
+                let snackbar = document.createElement('app-snackbar');
+                snackbar.setAttribute('type', 'temporary');
+                snackbar.setAttribute('text', 'Punto di interesse già presente nel percorso personalizzato')
+                document.body.append(snackbar);
+            }
+
             this.resetOrder();
         });
 
@@ -69,13 +83,7 @@ export class TabCustomRoute extends HTMLElement {
 
     checkFeature(feature) {
         let isPresent = this.features.some(item => item.id === feature.id);
-        if (!isPresent) {
-            this.createCard(feature);
-        } else {
-            let index = this.features.findIndex(item => item.id === feature.id);
-            this.removeCard(index);
-            this.createCard(feature);
-        }
+        return isPresent;
     }
 
     createCard(feature) {

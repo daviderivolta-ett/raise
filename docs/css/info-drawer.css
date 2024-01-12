@@ -22,7 +22,7 @@
 .wrapper {
     background-color: var(--blue-90);
     border-radius: 12px;
-    color: var(--white);
+    color: var(--white-100);
     padding: 24px 0;
 }
 
@@ -51,7 +51,7 @@
 
 .title .category {
     margin: 0 0 16px 0;
-    color: var(--light-blue);
+    color: var(--pale-light-blue-100);
 }
 
 .tools {

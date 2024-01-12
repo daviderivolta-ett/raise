@@ -7,7 +7,7 @@
     box-sizing: border-box;
     background-color: var(--blue-90);
     border-radius: 16px;
-    color: var(--white);
+    color: var(--white-100);
 }
 
 :host(.visible) {

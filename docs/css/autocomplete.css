@@ -18,7 +18,7 @@ div::-webkit-scrollbar {
 
 span {
     cursor: pointer;
-    color: var(--white);
+    color: var(--white-100);
     display: block;
     padding: 12px 16px;
     /* background-color: var(--blue-90); */

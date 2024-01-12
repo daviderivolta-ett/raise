@@ -6,7 +6,7 @@
     width: 100%;
     height: 0;
     background-color: var(--dark-blue-100);
-    color: var(--white);
+    color: var();
     transition: .2s ease-in-out;
 }
 
@@ -49,6 +49,7 @@
     margin: 0;
     list-style-type: none;
     height: 100%;
+    color: var(--white-100);
 }
 
 .tab {
@@ -69,7 +70,7 @@
     position: absolute;
     width: 0;
     height: 2px;
-    background-color: var(--neon-blue-100);
+    background-color: var(--green-blue-100);
     bottom: 0;
     left: 0;
     transition: .2s ease-in-out;

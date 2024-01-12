@@ -61,11 +61,6 @@ export class TabInfoComponent extends HTMLElement {
         coordinates.longitude = this.feature.startingcoordinates.longitude;
         coordinates.latitude = this.feature.startingcoordinates.latitude;
         this.goToBtn.coordinates = coordinates;
-        this.goToBtn.addEventListener('go-to', e => this.goTo(e.detail.coordinates));
-
-        this.addToRouteBtn.addEventListener('add-route', () => {
-            EventObservable.instance.publish('addtocustomroutebtn-click', this.feature)
-        });
     }
 
     connectedCallback() {
@@ -98,6 +93,13 @@ export class TabInfoComponent extends HTMLElement {
         this.goToBtn = this.shadow.querySelector('app-goto');
         this.addToRouteBtn = this.shadow.querySelector('app-add-to-route');
         this.info = this.shadow.querySelector('app-info-panel');
+
+        // js
+        this.goToBtn.addEventListener('go-to', e => this.goTo(e.detail.coordinates));
+        
+        this.addToRouteBtn.addEventListener('add-route', () => {
+            EventObservable.instance.publish('addtocustomroutebtn-click', this.feature)
+        });
 
         // css
         const style = document.createElement('link');
