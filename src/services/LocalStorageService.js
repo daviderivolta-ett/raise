@@ -18,9 +18,8 @@ export class LocalStorageService {
     getData() {
         if (!this.data) {
             this.data = {}
-            let tags = localStorage.selectedTags;
-            tags = JSON.parse(tags);
-            this.data.selectedTags = tags;
+            this.data.selectedTags = JSON.parse(localStorage.getItem('selectedTags'));
+            this.data.route = JSON.parse(localStorage.getItem('route'));
         }
         return this.data;
     }

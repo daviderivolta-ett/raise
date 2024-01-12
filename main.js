@@ -77,6 +77,7 @@ import './src/components/info.drawer.component.js';
 import './src/components/bench.toggle.component.js';
 import './src/components/tab.info.panel.component.js';
 import './src/components/splash.component.js';
+import './src/components/save-route-dialog.component.js';
 
 // Import services
 import { SettingService } from './src/services/SettingService.js';

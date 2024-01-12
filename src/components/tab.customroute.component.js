@@ -35,10 +35,13 @@ export class TabCustomRoute extends HTMLElement {
             <div class="tools">
                 <button type="button">Salva percorso</button>
             </div>
+            <app-save-route-dialog></app-save-route-dialog>
             `
             ;
         
         this.list = this.shadow.querySelector('.list');
+        this.btn = this.shadow.querySelector('button');
+        this.dialog = this.shadow.querySelector('app-save-route-dialog');
 
         // js
         EventObservable.instance.subscribe('addtocustomroutebtn-click', feature => {
@@ -60,37 +63,16 @@ export class TabCustomRoute extends HTMLElement {
             this.resetOrder();
         });
 
-        this.addEventListener('mousedown', e => this.start(e));
-        this.addEventListener('touchstart', e => this.start(e));
-        this.addEventListener('mousemove', e => this.move(e));
-        this.addEventListener('touchmove', e => this.move(e));
-        this.addEventListener('mouseup', this.end);
-        this.addEventListener('touchend', this.end);
-        this.addEventListener('mouseleave', this.end);
+        this.btn.addEventListener('click', () => {
+            this.dialog.features = this.features;
+            this.dialog.openDialog();
+        });
 
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/tab.customroute.component.css');
         this.shadow.append(style);
-    }
-
-    start(e) {
-        this.isGrabbed = true;
-        this._startX = e.pageX || e.touches[0].pageX - this.offsetLeft;
-        this._scrollLeft = this.scrollLeft;
-    }
-
-    move(e) {
-        if (this.isGrabbed == false) return;
-        e.preventDefault();
-        const x = e.pageX || e.touches[0].pageX - this.offsetLeft;
-        const walk = (x - this._startX);
-        this.scrollLeft = this._scrollLeft - walk;
-    }
-
-    end() {
-        this.isGrabbed = false;
     }
 
     checkFeature(feature) {
@@ -131,7 +113,7 @@ export class TabCustomRoute extends HTMLElement {
 
             let cards = this.list.querySelectorAll('app-tab-custom-route-card');
             if (!cards[previousCardIndex]) return;
-            this.this.list.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
+            this.list.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
             this.resetOrder();
         });
     }

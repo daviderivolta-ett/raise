@@ -1,0 +1,26 @@
+dialog {
+    width: 80%;
+    background-color: var(--dark-blue-100);
+    border: none;
+    border-radius: 12px;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+input {
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    margin: 0 0 4px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+}
+
+button {
+    width: 100%;
+}

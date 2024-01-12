@@ -135,11 +135,6 @@ export class PageMap extends HTMLElement {
             this.map.setCameraToPosition(feature.startingcoordinates);
         });
 
-        // EventObservable.instance.subscribe('addtocustomroutebtn-click', feature => {
-        //     let snackbar = document.createElement('app-snackbar');
-        //     this.shadow.append(snackbar);
-        // });
-
         // search
         this.searchbar.addEventListener('search', event => {
             event.detail.searchValue.length == 0 ? this.searchResult.setAttribute('is-open', false) : this.searchResult.setAttribute('is-open', true);

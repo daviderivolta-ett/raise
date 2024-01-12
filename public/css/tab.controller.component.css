@@ -83,6 +83,7 @@
 
 .active-tab {
     background-color: var(--blue-100);
+    color: var(--green-blue-100);
 }
 
 .content {
