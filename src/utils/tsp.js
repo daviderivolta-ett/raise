@@ -1,23 +1,24 @@
 // Funzione per calcolare la distanza tra due punti
 function calculateDistance(point1, point2) {
-    const coordinates1 = point1.coordinates;
-    const coordinates2 = point2.coordinates;
+    const coordinates1 = point1;
+    const coordinates2 = point2;
     const dx = coordinates1.longitude - coordinates2.longitude;
     const dy = coordinates1.latitude - coordinates2.latitude;
     return Math.sqrt(dx * dx + dy * dy);
-  }
+}
 
 // Funzione per calcolare la distanza totale di un percorso
 function calculateTotalDistance(path) {
     let totalDistance = 0;
     for (let i = 1; i < path.length; i++) {
-      totalDistance += calculateDistance(path[i - 1], path[i]);
+        totalDistance += calculateDistance(path[i - 1], path[i]);
     }
     return totalDistance;
-  }
+}
 
 // Funzione per creare una popolazione iniziale di percorsi casuali
 export function createRandomPopulation(points, populationSize) {
+
     const population = [];
     for (let i = 0; i < populationSize; i++) {
         const shuffledPoints = [...points];
@@ -78,7 +79,7 @@ function crossover(parent1, parent2) {
 
     const crossoverPoint = Math.floor(Math.random() * parent1.length);
     const child = [];
-    
+
     for (let i = 0; i < crossoverPoint; i++) {
         child.push(parent1[i]);
     }
