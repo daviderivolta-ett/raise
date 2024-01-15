@@ -8,8 +8,10 @@ export class EmptyRouteDialogComponent extends HTMLElement {
             `
             <dialog>
                 <div class="content">
-                    <p>Sicuro di voler eliminare tutte le tappe?</p>
-                    <p>Questo non eliminerà il percorso salvato in memoria.</p>
+                    <div class="message">
+                        <p>Sicuro di voler eliminare tutte le tappe?</p>
+                        <p>Questo non eliminerà il percorso salvato in memoria.</p>
+                    </div>
                     <div class="buttons">
                         <button class="cancel" type="button">Annulla</button>
                         <button class="delete" type="submit">Elimina</button>

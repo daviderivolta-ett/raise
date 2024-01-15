@@ -1,9 +1,13 @@
+p {
+    margin: 0;
+}
+
 dialog {
     width: 80%;
     background-color: var(--dark-blue-100);
     border: none;
     border-radius: 12px;
-    padding: 24px;
+    padding: 40px;
     box-sizing: border-box;
 }
 
@@ -15,13 +19,31 @@ dialog::backdrop {
     color: var(--white-100);
 }
 
+.message {
+    margin: 0 0 24px 0;
+}
+
 .buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
 }
 
 button {
+    cursor: pointer;
     width: 100%;
+    padding: 8px 0;
+    border-radius: 50px;
+    color: var(--white-100);
+}
+
+button.cancel {
+    background-color: var(--blue-90);
+    border: none;
+}
+
+button.delete {
+    background-color: rgba(190, 15, 58, 1);
+    border: none;
 }
