@@ -151,11 +151,11 @@ export class TabCustomRoute extends HTMLElement {
             cards[followingCardIndex].insertAdjacentElement('afterend', cards[eventCardIndex]);
             this.resetOrder();
         });
-        
+
         card.addEventListener('decrease-order', () => {
             let eventCardIndex = this.features.findIndex(item => item.id === feature.id);
             let previousCardIndex = eventCardIndex - 1;
-            
+
             let cards = this.list.querySelectorAll('app-tab-custom-route-card');
             if (!cards[previousCardIndex]) return;
 
@@ -165,6 +165,10 @@ export class TabCustomRoute extends HTMLElement {
             this.list.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
             this.resetOrder();
         });
+
+        console.log(this.features);
+        let geoJson = this.createGeoJson(this.features);
+        console.log(geoJson);
     }
 
     removeCard(index) {
@@ -180,6 +184,27 @@ export class TabCustomRoute extends HTMLElement {
             card.setAttribute('order', order);
             order++;
         });
+    }
+
+    createGeoJson(features) {
+        const geoJsonFeatures = [];
+
+        features.forEach(f => {
+            let feature = {};
+            feature.type = "Feature";
+            feature.geometry = {};
+            feature.geometry.coordinates = [f.startingcoordinates.longitude, f.startingcoordinates.latitude];
+            feature.geometry.type = "Point"
+            feature.properties = f.properties;
+            geoJsonFeatures.push(feature);
+        });
+
+        const geoJson = {
+            type: "FeatureCollection",
+            features: geoJsonFeatures
+        };
+
+        return geoJson;
     }
 }
 
