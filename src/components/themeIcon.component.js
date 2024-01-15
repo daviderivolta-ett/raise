@@ -71,7 +71,11 @@ export class ThemeIconComponent extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/themeIcon.component.css');
         this.shadow.append(style);
+    }
 
+    setTheme(index) {
+        this.themeIndex = index;
+        this.theme = this.themes[this.themeIndex];
     }
 }
 

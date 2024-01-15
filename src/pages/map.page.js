@@ -193,6 +193,7 @@ export class PageMap extends HTMLElement {
 
         // themes
         this.themeIcon.themes = await ThemeService.instance.getThemes();
+        this.themeIcon.setTheme(1);
 
         // css
         const style = document.createElement('link');
