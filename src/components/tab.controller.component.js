@@ -93,12 +93,20 @@ export class TabsController extends HTMLElement {
             this.setAttribute('active-tab', 'custom-route');
         });
 
-        this.infoContent.addEventListener('mousewheel', () => {
-            this.setAttribute('is-maximized', true);
+        this.toggle.addEventListener('wheel', e => {
+            if (e.deltaY > 0) {
+                this.setAttribute('is-maximized', true);
+            } else {
+                this.setAttribute('is-maximized', false);
+            }
         });
 
-        this.customRouteContent.addEventListener('mousewheel', () => {
-            this.setAttribute('is-maximized', true);
+        this.infoContent.addEventListener('wheel', e => {
+            if (e.deltaY > 0) this.setAttribute('is-maximized', true);
+        });
+
+        this.customRouteComponent.addEventListener('wheel', e => {
+            if (e.deltaY > 0) this.setAttribute('is-maximized', true);
         });
 
         // css
