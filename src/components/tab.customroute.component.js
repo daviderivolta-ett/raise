@@ -100,8 +100,8 @@ export class TabCustomRoute extends HTMLElement {
             const optimizedPath = this.nearestInsertion(this.features, position);
             this.list.innerHTML = '';
             optimizedPath.reverse();
-            optimizedPath.map(feature => this.createCard(feature));
-            this.features = [...optimizedPath];
+            this._features = [];
+            optimizedPath.forEach(feature => this.createCard(feature));
             this.resetOrder();
         });
 
@@ -140,23 +140,27 @@ export class TabCustomRoute extends HTMLElement {
         card.addEventListener('increase-order', () => {
             let eventCardIndex = this.features.findIndex(item => item.id === feature.id);
             let followingCardIndex = eventCardIndex + 1;
-            this.features.splice(eventCardIndex, 1);
-            this.features.splice(followingCardIndex, 0, feature);
 
             let cards = this.list.querySelectorAll('app-tab-custom-route-card');
             if (!cards[followingCardIndex]) return;
+
+            this.features.splice(eventCardIndex, 1);
+            this.features.splice(followingCardIndex, 0, feature);
+
             cards[followingCardIndex].insertAdjacentElement('afterend', cards[eventCardIndex]);
             this.resetOrder();
         });
-
+        
         card.addEventListener('decrease-order', () => {
             let eventCardIndex = this.features.findIndex(item => item.id === feature.id);
             let previousCardIndex = eventCardIndex - 1;
+            
+            let cards = this.list.querySelectorAll('app-tab-custom-route-card');
+            if (!cards[previousCardIndex]) return;
+
             this.features.splice(eventCardIndex, 1);
             this.features.splice(previousCardIndex, 0, feature);
 
-            let cards = this.list.querySelectorAll('app-tab-custom-route-card');
-            if (!cards[previousCardIndex]) return;
             this.list.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
             this.resetOrder();
         });

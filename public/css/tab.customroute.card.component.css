@@ -29,12 +29,24 @@ p {
     margin: 0 8px 0 0;
 }
 
+.number {
+    background-color: var(--light-blue-100);
+    width: 100%;
+    text-align: center;
+    border-radius: 4px
+}
+
 .icon {
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     fill: white;
+    border-radius: 4px;
+}
+
+.icon:hover {
+    background-color: var(--light-blue-100);
 }
 
 .remove {
