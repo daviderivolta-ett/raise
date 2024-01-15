@@ -93,6 +93,12 @@ export class TabsController extends HTMLElement {
             this.setAttribute('active-tab', 'custom-route');
         });
 
+        EventObservable.instance.subscribe('customroutecard-click', feature => {
+            this.infoList.feature = feature;
+            this.setAttribute('active-tab', 'info');
+            this.setAttribute('is-maximized', false);
+        });
+
         this.toggle.addEventListener('wheel', e => {
             if (e.deltaY > 0) {
                 this.setAttribute('is-maximized', true);
