@@ -165,10 +165,6 @@ export class TabCustomRoute extends HTMLElement {
             this.list.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
             this.resetOrder();
         });
-
-        console.log(this.features);
-        let geoJson = this.createGeoJson(this.features);
-        console.log(geoJson);
     }
 
     removeCard(index) {
@@ -184,20 +180,20 @@ export class TabCustomRoute extends HTMLElement {
             card.setAttribute('order', order);
             order++;
         });
+
+        let geoJson = this.createGeoJson(this.features);
+        EventObservable.instance.publish('customroute-load', geoJson);
     }
 
     createGeoJson(features) {
-        const geoJsonFeatures = [];
-
-        features.forEach(f => {
-            let feature = {};
-            feature.type = "Feature";
-            feature.geometry = {};
-            feature.geometry.coordinates = [f.startingcoordinates.longitude, f.startingcoordinates.latitude];
-            feature.geometry.type = "Point"
-            feature.properties = f.properties;
-            geoJsonFeatures.push(feature);
-        });
+        const geoJsonFeatures = features.map(f => ({
+            type: "Feature",
+            geometry: {
+                type: "Point",
+                coordinates: [f.startingcoordinates.longitude, f.startingcoordinates.latitude]
+            },
+            properties: f.properties
+        }));
 
         const geoJson = {
             type: "FeatureCollection",
@@ -206,6 +202,7 @@ export class TabCustomRoute extends HTMLElement {
 
         return geoJson;
     }
+
 }
 
 customElements.define('app-tab-custom-route', TabCustomRoute);

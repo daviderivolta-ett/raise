@@ -1,6 +1,7 @@
 import * as Cesium from 'cesium';
 import cesiumCss from 'cesium/Build/Cesium/Widgets/widgets.css?raw';
 import { Feature } from '../models/Feature.js';
+import { EventObservable } from '../observables/EventObservable.js';
 
 export default class CesiumViewer extends HTMLElement {
     constructor() {
@@ -23,6 +24,7 @@ export default class CesiumViewer extends HTMLElement {
             infoBox: false,
         });
 
+        // js
         this.viewer.screenSpaceEventHandler.setInputAction(movement => {
             this.dispatchEvent(new CustomEvent('map-click', { detail: { movement } }));
         }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
@@ -30,6 +32,10 @@ export default class CesiumViewer extends HTMLElement {
         this.viewer.screenSpaceEventHandler.setInputAction(movement => {
             this.mouseOver(movement)
         }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
+        EventObservable.instance.subscribe('customroute-load', geoJson => {
+            this.customRouteLayer(geoJson);
+        });
 
         // css
         const style = document.createElement('style');
@@ -152,6 +158,38 @@ export default class CesiumViewer extends HTMLElement {
             return f;
         });
         return geoJson;
+    }
+
+    customRouteLayer(geoJson) {
+        const dataSourceName = 'custom-route';
+        const existingDataSources = this.viewer.dataSources.getByName(dataSourceName);
+
+        existingDataSources.forEach(existingDataSource => {
+            this.viewer.dataSources.remove(existingDataSource);
+        });
+
+        Cesium.GeoJsonDataSource.load(geoJson)
+            .then(newDataSource => {
+                newDataSource.name = dataSourceName;
+                this.viewer.dataSources.add(newDataSource);
+                this.styleCustomRoute(newDataSource);
+                console.log(this.viewer.dataSources);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    }
+
+    styleCustomRoute(dataSource) {
+        dataSource.entities.values.forEach(entity => {
+            entity.billboard = undefined;
+            entity.point = new Cesium.PointGraphics({
+                pixelSize: 16,
+                color: Cesium.Color.TRANSPARENT,
+                outlineColor: Cesium.Color.YELLOW,
+                outlineWidth: 3
+            })
+        });
     }
 
     styleEntities(dataSource, style) {
