@@ -20,7 +20,7 @@ export class Chip extends HTMLElement {
             `
             <label for="chip">
                 <input type="checkbox" id="chip">
-                <span class="chip-title"></span>               
+                <span class="chip-title"></span>
             </label>
             `
             ;
@@ -30,7 +30,9 @@ export class Chip extends HTMLElement {
         this.checkbox = this.shadow.querySelector('input');
 
         if (this.hasAttribute('tag')) {
-            this.span.innerText = this.getAttribute('tag');
+            let text = this.getAttribute('tag');
+            text = text.charAt(0).toUpperCase() + text.slice(1);
+            this.span.innerText = text
         }
 
         // css

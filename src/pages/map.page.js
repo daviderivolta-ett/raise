@@ -205,7 +205,7 @@ export class MapPage extends HTMLElement {
 
         // themes
         this.themeIcon.themes = await ThemeService.instance.getThemes();
-        this.themeIcon.setTheme(1);
+        this.themeIcon.setTheme(2);
 
         // css
         const style = document.createElement('link');

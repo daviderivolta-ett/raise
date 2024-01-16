@@ -1,20 +1,17 @@
-* {
-    font-family: 'Roboto', sans-serif;
-    font-size: .9rem;
-    color: rgba(0, 0, 0, 0.87);
-}
-
 label {
     cursor: pointer;
-    padding: 8px 16px;
     border-radius: 50px;
-    background-color: #f1f1f1;
-    line-height: 2.5rem;
-    white-space: nowrap;
+    background-color: var(--dark-blue-100);
+    color: var(--white-100);
+    display: block;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 label:hover {
-    background-color: #e0e0e0;
+    background-color: var(--light-blue-100);
 }
 
 input[type="checkbox"] {
@@ -22,5 +19,5 @@ input[type="checkbox"] {
 }
 
 .selected {
-    background-color: #e0e0e0;
+    background-color: var(--light-blue-100);
 }

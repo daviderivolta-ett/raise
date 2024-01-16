@@ -6,7 +6,8 @@ import './src/components/router.js';
 
 // Import web components
 import './src/pages/map.page.js';
-import './src/components/tag-selection.js';
+import './src/components/tags.component.js';
+import './src/pages/tags.page.js';
 
 import './src/components/tabs.toggle.component.js';
 import './src/components/link-icon.component.js';
@@ -23,10 +24,12 @@ import './src/components/goto-btn.component.js';
 import './src/components/add-to-route-btn.component.js';
 import './src/components/center-position-btn.component.js';
 import './src/components/snackbar.component.js';
+
 import './src/components/chip.js';
 import './src/components/submit-tags-btn.js';
 import './src/components/select-all-tags-btn.js';
 import './src/components/reset-tags-btn.js';
+
 import './src/components/cesium-map.js';
 import './src/components/tab.controller.component.js';
 import './src/components/tab.info.component.js';
@@ -41,7 +44,7 @@ import './src/components/dialog.empty-route.component.js';
 
 // Routing
 let loadMap = () => '<page-map></page-map>';
-let loadIndex = () => `<app-tag-selection></app-tag-selection>`;
+let loadIndex = () => `<page-tags></page-tags>`;
 const router = document.querySelector('app-router');
 const routes = {
   index: { routingFunction: loadIndex, type: 'default' },
