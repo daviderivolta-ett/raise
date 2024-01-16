@@ -126,12 +126,22 @@ export default class CesiumViewer extends HTMLElement {
         const requests = layers.map(layer => this.createlayer(layer).then((data) => ({ layer, data })));
 
         await Promise.all(requests).then(async sources => {
-            this.viewer.dataSources.removeAll();
+            
+            const existingDataSourceNames = this.viewer.dataSources._dataSources.map(dataSource => dataSource.name);
+            existingDataSourceNames.forEach(existingDataSourceName => {
+                if (existingDataSourceName !== 'custom-route') {
+                    const existingDataSource = this.viewer.dataSources.getByName(existingDataSourceName);
+                    this.viewer.dataSources.remove(existingDataSource);
+                }
+            });
+
+            // this.viewer.dataSources.removeAll();
 
             await Promise.all(sources.map(async source => {
-                const layer = await source.data.layer;
-                this.viewer.dataSources.add(layer);
-                this.styleEntities(layer, source.layer.style);
+                const dataSource = await source.data.layer;
+                dataSource.name = source.layer.layer;
+                this.viewer.dataSources.add(dataSource);
+                this.styleEntities(dataSource, source.layer.style);
             }));
         });
     }
@@ -160,7 +170,7 @@ export default class CesiumViewer extends HTMLElement {
         return geoJson;
     }
 
-    customRouteLayer(geoJson) {
+    async customRouteLayer(geoJson) {
         const dataSourceName = 'custom-route';
         const existingDataSources = this.viewer.dataSources.getByName(dataSourceName);
 
@@ -168,16 +178,10 @@ export default class CesiumViewer extends HTMLElement {
             this.viewer.dataSources.remove(existingDataSource);
         });
 
-        Cesium.GeoJsonDataSource.load(geoJson)
-            .then(newDataSource => {
-                newDataSource.name = dataSourceName;
-                this.viewer.dataSources.add(newDataSource);
-                this.styleCustomRoute(newDataSource);
-                console.log(this.viewer.dataSources);
-            })
-            .catch(err => {
-                console.error(err);
-            });
+        let dataSource = await Cesium.GeoJsonDataSource.load(geoJson);
+        dataSource.name = dataSourceName;
+        await this.viewer.dataSources.add(dataSource);
+        this.styleCustomRoute(dataSource);
     }
 
     styleCustomRoute(dataSource) {
