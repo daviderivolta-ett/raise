@@ -9,7 +9,7 @@
 }
 
 .snackbar {
-  background-color: #165561;
+  background-color: var(--green-blue-25);
   border: 1px solid var(--green-blue-100);
   border-radius: 12px;
   width: 100%;
