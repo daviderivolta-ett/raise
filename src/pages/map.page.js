@@ -5,7 +5,7 @@ import { SettingService } from '../services/data.service.js';
 import { ThemeService } from '../services/theme.service.js';
 import { UserPositionService } from '../services/user-position.service.js';
 
-export class PageMap extends HTMLElement {
+export class MapPage extends HTMLElement {
     _data;
     _position;
 
@@ -238,4 +238,4 @@ export class PageMap extends HTMLElement {
     }
 }
 
-customElements.define('app-map', PageMap);
+customElements.define('page-map', MapPage);

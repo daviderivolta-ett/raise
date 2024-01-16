@@ -1,6 +1,6 @@
 import * as Cesium from 'cesium';
 import cesiumCss from 'cesium/Build/Cesium/Widgets/widgets.css?raw';
-import { Feature } from '../models/Feature.js';
+
 import { EventObservable } from '../observables/EventObservable.js';
 
 export default class CesiumViewer extends HTMLElement {
@@ -11,6 +11,8 @@ export default class CesiumViewer extends HTMLElement {
 
     connectedCallback() {
         // html
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5MjY2YmYxNy1mNTM2LTRlOWYtYTUyZC01ZmY0NjBhNzllMWEiLCJpZCI6MTY5MDU3LCJpYXQiOjE2OTU4ODQ4NzB9.bN66rOR5h37xuKVsuUSYRSLOGJy-34IhH9S1hr4NOOE';
+        
         this.viewer = new Cesium.Viewer(this.shadow, {
             baseLayerPicker: false,
             geocoder: false,
