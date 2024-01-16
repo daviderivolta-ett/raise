@@ -126,12 +126,12 @@ export default class CesiumViewer extends HTMLElement {
         const requests = layers.map(layer => this.createlayer(layer).then((data) => ({ layer, data })));
 
         await Promise.all(requests).then(async sources => {
-            
+
             const existingDataSourceNames = this.viewer.dataSources._dataSources.map(dataSource => dataSource.name);
             existingDataSourceNames.forEach(existingDataSourceName => {
                 if (existingDataSourceName !== 'custom-route') {
                     const existingDataSource = this.viewer.dataSources.getByName(existingDataSourceName);
-                    this.viewer.dataSources.remove(existingDataSource);
+                    existingDataSource.forEach(dataSource => this.viewer.dataSources.remove(dataSource));
                 }
             });
 
@@ -144,6 +144,7 @@ export default class CesiumViewer extends HTMLElement {
                 this.styleEntities(dataSource, source.layer.style);
             }));
         });
+        console.log(this.viewer.dataSources);
     }
 
     async createlayer(layer) {
