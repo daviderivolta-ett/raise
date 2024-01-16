@@ -91,7 +91,7 @@ export class SnackBarComponent extends HTMLElement {
         // this.style.setProperty('transform', 'translateX(-50%)');
         // this.style.setProperty('position', 'fixed');
         // this.style.setProperty('left', '50%');
-        this.style.setProperty('bottom', `${24 + 64 * index}px`);
+        this.style.setProperty('bottom', `${56 + 64 * index}px`);
         // this.style.setProperty('z-index', '9999');
     }
 
@@ -119,7 +119,7 @@ export class SnackBarComponent extends HTMLElement {
 
     updatePosition() {
         SnackBarComponent.snackbars.forEach((snackbar, index) => {
-            snackbar.style.setProperty('bottom', `${24 + 64 * index}px`);
+            snackbar.style.setProperty('bottom', `${56 + 64 * index}px`);
         });
     }
 }
