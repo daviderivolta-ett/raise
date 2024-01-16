@@ -36,7 +36,7 @@ export class TabInfoPanelComponent extends HTMLElement {
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
                 const value = properties[key];
-                if (key == 'raiseName' || key == 'nome') continue;
+                if (key == 'raiseName' || key == 'nome' || key == 'layerName') continue;
 
                 const div = document.createElement('div');
                 div.classList.add('topic');

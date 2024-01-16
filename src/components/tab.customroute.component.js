@@ -180,7 +180,7 @@ export class TabCustomRoute extends HTMLElement {
             card.setAttribute('order', order);
             order++;
         });
-
+        
         let geoJson = this.createGeoJson(this.features);
         EventObservable.instance.publish('customroute-load', geoJson);
     }

@@ -99,6 +99,7 @@ export class PageMap extends HTMLElement {
             }
 
             const feature = FeatureService.instance.getFeature(entity, this.data);
+
             this.map.setCameraToPosition(feature.startingcoordinates);
             this.tabs.addFeature(feature);
             this.tabsToggle.setAttribute('is-open', true);

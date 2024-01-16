@@ -19,8 +19,7 @@ export class FeatureService {
     }
 
     getFeature(pickedEntity, data) {
-        console.log(pickedEntity);
-        const layerToFind = this.getLayerName(pickedEntity.id.id);
+        const layerToFind = this.getLayerName(pickedEntity.id);
         const layer = this.getLayerByName(data, layerToFind);
 
         const properties = this.getRelevantProperties(pickedEntity.id.properties, layer.relevant_properties);
@@ -44,16 +43,7 @@ export class FeatureService {
 
     getLayerName(id) {
         let layer;
-        switch (true) {
-            case id.includes('.'):
-                layer = id.split('.')[0];
-                break;
-            case id.includes('/'):
-                layer = id.split('/')[0];
-                break;
-            default:
-                break;
-        }
+        layer = id.properties.layerName._value;
         return layer;
     }
 
@@ -85,6 +75,7 @@ export class FeatureService {
             }
 
             risultati["raiseName"] = data.raiseName._value;
+            risultati["layerName"] = data.layerName._value;
 
             return risultati;
         }

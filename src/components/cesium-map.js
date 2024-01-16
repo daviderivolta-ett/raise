@@ -151,7 +151,7 @@ export default class CesiumViewer extends HTMLElement {
         const url = `${layer.layer_url_wfs}?service=WFS&typeName=${layer.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;
         return fetch(url)
             .then(res => res.json())
-            .then(geoJson => this.createAdditionalProperties(geoJson, layer.name))
+            .then(geoJson => this.createAdditionalProperties(geoJson, layer))
             .then(geoJson => ({
                 features: geoJson.features,
                 layer: Cesium.GeoJsonDataSource.load(geoJson)
@@ -162,9 +162,10 @@ export default class CesiumViewer extends HTMLElement {
             });
     }
 
-    createAdditionalProperties(geoJson, name) {
+    createAdditionalProperties(geoJson, layer) {
         geoJson.features = geoJson.features.map((f, i) => {
-            f.properties.raiseName = name + ' ' + i;
+            f.properties.raiseName = layer.name + ' ' + i;
+            f.properties.layerName = layer.layer;
             return f;
         });
         return geoJson;
