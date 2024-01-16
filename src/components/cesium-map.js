@@ -144,7 +144,6 @@ export default class CesiumViewer extends HTMLElement {
                 this.styleEntities(dataSource, source.layer.style);
             }));
         });
-        console.log(this.viewer.dataSources);
     }
 
     async createlayer(layer) {
@@ -190,7 +189,7 @@ export default class CesiumViewer extends HTMLElement {
             entity.billboard = undefined;
             entity.point = new Cesium.PointGraphics({
                 pixelSize: 16,
-                color: Cesium.Color.TRANSPARENT,
+                color: Cesium.Color.YELLOW.withAlpha(0.01),
                 outlineColor: Cesium.Color.YELLOW,
                 outlineWidth: 3
             })

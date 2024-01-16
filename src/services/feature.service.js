@@ -19,6 +19,7 @@ export class FeatureService {
     }
 
     getFeature(pickedEntity, data) {
+        console.log(pickedEntity);
         const layerToFind = this.getLayerName(pickedEntity.id.id);
         const layer = this.getLayerByName(data, layerToFind);
 
