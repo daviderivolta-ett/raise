@@ -10,7 +10,7 @@ export class SplashComponent extends HTMLElement {
             `
             <div class="component">
                 <img src="../../images/RAISE_pictogram_nobg.svg">
-                <p>Caricamento...</p>
+                <div class="loader"></div>
             </div>
             `
             ;
