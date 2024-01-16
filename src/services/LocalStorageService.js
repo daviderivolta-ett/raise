@@ -11,7 +11,7 @@ export class LocalStorageService {
         LocalStorageService._instance = this;
     }
 
-    static get instance(){
+    static get instance() {
         if (!LocalStorageService._instance) {
             LocalStorageService._instance = new LocalStorageService();
         }
@@ -23,8 +23,12 @@ export class LocalStorageService {
             this.data = {}
             this.data.selectedTags = JSON.parse(localStorage.getItem('selectedTags'));
             let r = JSON.parse(localStorage.getItem('route'));
-            let f = r.features.map(feature => new Feature(feature.properties, feature.layer, feature.startingcoordinates, feature.coordinatesArray));
-            this.data.route = new Route(r.name, f);
+            if (!r) {
+                this.data.route = new Route('', []);
+            } else {
+                let f = r.features.map(feature => new Feature(feature.properties, feature.layer, feature.startingcoordinates, feature.coordinatesArray));
+                this.data.route = new Route(r.name, f);
+            }
         }
         return this.data;
     }
