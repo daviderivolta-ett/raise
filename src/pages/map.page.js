@@ -216,7 +216,7 @@ export class MapPage extends HTMLElement {
         splash = this.shadow.querySelector('app-splash');
         setTimeout(() => {
             splash.remove();
-        }, 2000);
+        }, 3000);
     }
 
     render() {
