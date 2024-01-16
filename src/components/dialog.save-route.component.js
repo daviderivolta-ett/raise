@@ -1,5 +1,5 @@
 import { Route } from '../models/Route.js';
-import { LocalStorageService } from '../services/LocalStorageService.js';
+import { LocalStorageService } from '../services/local-storage.service.js';
 
 export class SaveRouteDialogComponent extends HTMLElement {
     _route;

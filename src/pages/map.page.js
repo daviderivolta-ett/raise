@@ -1,9 +1,9 @@
 import { EventObservable } from '../observables/EventObservable.js';
-import { FeatureService } from '../services/FeatureService.js';
-import { LocalStorageService } from '../services/LocalStorageService.js';
-import { SettingService } from '../services/SettingService.js';
-import { ThemeService } from '../services/ThemeService.js';
-import { UserPositionService } from '../services/UserPositionService.js';
+import { FeatureService } from '../services/feature.service.js';
+import { LocalStorageService } from '../services/local-storage.service.js';
+import { SettingService } from '../services/data.service.js';
+import { ThemeService } from '../services/theme.service.js';
+import { UserPositionService } from '../services/user-position.service.js';
 
 export class PageMap extends HTMLElement {
     _data;

@@ -1,5 +1,5 @@
 import { EventObservable } from '../observables/EventObservable';
-import { ColorManager } from '../services/ColorManager';
+import { ColorManager } from '../services/color-manager.service.js';
 
 export class TabCustomRouteCardComponent extends HTMLElement {
     _feature;

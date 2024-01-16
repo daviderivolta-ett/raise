@@ -1,4 +1,4 @@
-import { ColorManager } from '../services/ColorManager';
+import { ColorManager } from '../services/color-manager.service.js';
 
 export class InfoDrawerComponent extends HTMLElement {
     _feature;

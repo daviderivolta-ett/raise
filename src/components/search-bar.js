@@ -1,4 +1,4 @@
-import { SettingService } from '../services/SettingService.js';
+import { SettingService } from '../services/data.service.js';
 
 export class Searchbar extends HTMLElement {
     constructor() {

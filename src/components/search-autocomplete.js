@@ -1,5 +1,5 @@
 import { EventObservable } from '../observables/EventObservable.js';
-import { SettingService } from '../services/SettingService.js';
+import { SettingService } from '../services/data.service.js';
 
 export class SearchAutocomplete extends HTMLElement {
     _selectedSpan;;

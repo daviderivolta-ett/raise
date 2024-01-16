@@ -1,4 +1,4 @@
-import { SettingService } from "../services/SettingService";
+import { SettingService } from "../services/data.service.js";
 
 export class TagSelection extends HTMLElement {
     constructor() {

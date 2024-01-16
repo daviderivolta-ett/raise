@@ -1,4 +1,4 @@
-import { ColorManager } from '../services/ColorManager.js';
+import { ColorManager } from '../services/color-manager.service.js';
 import { EventObservable } from '../observables/EventObservable.js';
 
 export class TabInfoComponent extends HTMLElement {

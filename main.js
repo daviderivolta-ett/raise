@@ -81,7 +81,7 @@ import './src/components/dialog.save-route.component.js';
 import './src/components/dialog.empty-route.component.js';
 
 // Import services
-import { SettingService } from './src/services/SettingService.js';
+import { SettingService } from './src/services/data.service.js';
 
 // Routing
 let loadMap = () => '<app-map></app-map>';

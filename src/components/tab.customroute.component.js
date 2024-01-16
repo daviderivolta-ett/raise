@@ -1,6 +1,6 @@
 import { EventObservable } from '../observables/EventObservable.js';
-import { LocalStorageService } from '../services/LocalStorageService.js';
-import { UserPositionService } from '../services/UserPositionService.js';
+import { LocalStorageService } from '../services/local-storage.service.js';
+import { UserPositionService } from '../services/user-position.service.js';
 import { TspService } from '../services/tsp.service.js';
 
 export class TabCustomRoute extends HTMLElement {

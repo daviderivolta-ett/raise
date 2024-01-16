@@ -1,4 +1,4 @@
-import { ColorManager } from '../services/ColorManager.js';
+import { ColorManager } from '../services/color-manager.service.js';
 
 export class SearchResultChip extends HTMLElement {
     _layer;
