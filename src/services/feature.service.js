@@ -61,26 +61,24 @@ export class FeatureService {
     }
 
     getRelevantProperties(data, properties) {
-        const risultati = {};
+        const relevantProperties = {};
 
-        if (properties) {
-            for (const obj of properties) {
-                if (obj.property_name && data[obj.property_name]) {
-                    if (data[obj.property_name]._value) {
-                        risultati[obj.display_name] = data[obj.property_name]._value;
-                    } else {
-                        risultati[obj.display_name] = data[obj.property_name];
-                    }
-                }
+        if (!properties) return;
+
+        for (const property of properties) {
+            if (data[property.property_name]) {
+                relevantProperties[property.display_name] = data[property.property_name]._value;
             }
 
-            risultati["raiseName"] = data.raiseName._value;
-            risultati["layerName"] = data.layerName._value;
-
-            return risultati;
+            if (data[property.display_name]) {
+                relevantProperties[property.display_name] = data[property.display_name]._value;
+            }
         }
 
-        return risultati;
+        relevantProperties["raiseName"] = data.raiseName._value;
+        relevantProperties["layerName"] = data.layerName._value;
+
+        return relevantProperties;
     }
 
     checkCoordinates(cartesian) {
