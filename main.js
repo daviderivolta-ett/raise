@@ -41,6 +41,7 @@ import './src/components/tab.info.panel.component.js';
 import './src/components/splash.component.js';
 import './src/components/dialog.edit-name-route.component.js';
 import './src/components/dialog.empty-route.component.js';
+import './src/components/dialog.save-route.component.js';
 
 // Routing
 let loadMap = () => '<page-map></page-map>';

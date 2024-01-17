@@ -18,27 +18,24 @@ export class TabCustomRoute extends HTMLElement {
             <div class="route-title"><h4 class="title">Percorso selezionato: <span class="route-name"></span></h4></div>
             <div class="list"></div>
             <div class="tools">
-                <div class="left-tools">
-                    <button type="button" class="sort">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z"/></svg>
-                    </button>
-                    <button type="button" class="delete">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
-                    </button>
-                    <button type="button" class="manage">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"/></svg>
-                    </button>
-                    <button type="button" class="edit">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
-                    </button>
-                </div>
-                <div class="featured-tool">
-                    <button type="button" class="save">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg>
-                    </button>
-                </div>
+                <button type="button" class="sort">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z"/></svg>
+                </button>
+                <button type="button" class="edit">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                </button>
+                <button type="button" class="add">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+                </button>
+                <button type="button" class="save">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-120v-640q0-33 23.5-56.5T280-840h400q33 0 56.5 23.5T760-760v640L480-240 200-120Zm80-122 200-86 200 86v-518H280v518Zm0-518h400-400Z"/></svg>
+                </button>
+                <button type="button" class="manage">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"/></svg>
+                </button>
             </div>
             <app-edit-name-dialog></app-edit-name-dialog>
+            <app-save-route-dialog></app-save-route-dialog>
             `
             ;
 
@@ -48,6 +45,7 @@ export class TabCustomRoute extends HTMLElement {
         this.editDialog = this.shadow.querySelector('app-edit-name-dialog');
         this.sortBtn = this.shadow.querySelector('.sort');
         this.saveBtn = this.shadow.querySelector('.save');
+        this.saveDialog = this.shadow.querySelector('app-save-route-dialog');
 
         // css
         const style = document.createElement('link');
@@ -123,31 +121,22 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         this.saveBtn.addEventListener('click', () => {
-            // let updatedRoute = this._route;
-            // updatedRoute.features = [...this._features];
-            // let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+            this.saveDialog.route = this.route;
+            this.saveDialog.openDialog();
 
-            // for (let i = 0; i < savedRoutes.length; i++) {
-            //     if (savedRoutes[i].name === updatedRoute.name) {
-            //         savedRoutes[i] = updatedRoute;
-            //     }
-            // }
-            // localStorage.setItem('routes', JSON.stringify(savedRoutes));
-            // this._route = updatedRoute;
+        });
 
+        this.saveDialog.addEventListener('save-route', () => {
             this.route.features = this.features;
             let savedRoutes = JSON.parse(localStorage.getItem('routes'));
-
             for (let i = 0; i < savedRoutes.length; i++) {
                 if (savedRoutes[i].name === this.route.name) {
                     savedRoutes[i] = this.route;
                 }
             }
-
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
-            console.log(this.features);
+            console.log('Percorso salvato', JSON.parse(localStorage.getItem('routes')));
         });
-
     }
 
     checkFeature(feature) {
@@ -243,7 +232,6 @@ export class TabCustomRoute extends HTMLElement {
         });
         
         this.resetOrder();
-        console.log(this.features);
     }
 }
 
