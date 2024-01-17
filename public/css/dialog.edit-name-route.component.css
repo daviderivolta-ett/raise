@@ -49,11 +49,6 @@ button.close {
     border: none;
 }
 
-button.delete {
-    background-color: rgba(190, 15, 58, 1);
-    border: none;
-}
-
 button.submit {
     border: 1px solid var(--green-blue-100);
     background-color: var(--green-blue-25);

@@ -1,7 +1,7 @@
 import { Route } from '../models/Route.js';
 import { LocalStorageService } from '../services/local-storage.service.js';
 
-export class SaveRouteDialogComponent extends HTMLElement {
+export class EditNameDialogComponent extends HTMLElement {
     _route;
     _features;
     _name;
@@ -18,7 +18,6 @@ export class SaveRouteDialogComponent extends HTMLElement {
                     <input type="text" placeholder="Nuovo percorso">
                     <div class="buttons">
                         <button class="close" type="button">Annulla</button>
-                        <button class="delete" type="button">Elimina</button>
                         <button class="submit" type="submit">Salva</button>
                     </div>
                 </div>
@@ -29,13 +28,12 @@ export class SaveRouteDialogComponent extends HTMLElement {
         this.dialog = this.shadow.querySelector('dialog');
         this.input = this.shadow.querySelector('input');
         this.closeBtn = this.shadow.querySelector('.close');
-        this.deleteBtn = this.shadow.querySelector('.delete');
         this.saveBtn = this.shadow.querySelector('.submit');
 
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/dialog.save-route.component.css')
+        style.setAttribute('href', './css/dialog.edit-name-route.component.css')
         this.shadow.append(style);
     }
 
@@ -88,12 +86,6 @@ export class SaveRouteDialogComponent extends HTMLElement {
             this.closeDialog();
         });
 
-        this.deleteBtn.addEventListener('click', () => {
-            localStorage.removeItem('route');
-            this.dispatchEvent(new CustomEvent('empty-route'));
-            this.closeDialog();
-        });
-
         this.saveBtn.addEventListener('click', () => {
             this.closeDialog();
             this.name = this.input.value;
@@ -128,4 +120,4 @@ export class SaveRouteDialogComponent extends HTMLElement {
     }
 }
 
-customElements.define('app-save-route-dialog', SaveRouteDialogComponent);
+customElements.define('app-edit-name-dialog', EditNameDialogComponent);

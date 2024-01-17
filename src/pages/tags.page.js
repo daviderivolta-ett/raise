@@ -40,16 +40,20 @@ export class TagsPage extends HTMLElement {
         this.chips.forEach(chip => {
             chip.addEventListener('chipChanged', e => {
                 if (e.detail.newValue == 'true') {
-                    this.selected.push(e.detail.tag);
+                    if (this.selected.includes(e.detail.tag)) return;
+                    this.selected.push(e.detail.tag);    
                 } else {
                     this.selected = this.selected.filter(item => item !== e.detail.tag);
                 }
                 this.selected.length === 0 ? this.submit.disabled = true : this.submit.disabled = false;
+                console.log(this.selected);
             });
         });
 
         if (localStorage.selectedTags) {
+            console.log(this.selected);
             this.selected = JSON.parse(localStorage.selectedTags);
+            console.log(this.selected);
             this.selected.forEach(tag => {
                 this.chips.forEach(chip => {
                     if (chip.getAttribute('tag') == tag) {
@@ -96,7 +100,6 @@ export class TagsPage extends HTMLElement {
         this.submit.addEventListener('click', () => {
             localStorage.setItem('selectedTags', JSON.stringify(this.selected));
             window.location.href = '/#/map';
-            console.log(localStorage);
         });
 
         this.clear.addEventListener('click', () => localStorage.clear());
