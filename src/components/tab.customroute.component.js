@@ -2,6 +2,7 @@ import { EventObservable } from '../observables/EventObservable.js';
 import { LocalStorageService } from '../services/local-storage.service.js';
 import { UserPositionService } from '../services/user-position.service.js';
 import { TspService } from '../services/tsp.service.js';
+import { Route } from '../models/Route.js';
 
 export class TabCustomRoute extends HTMLElement {
     _route;
@@ -24,7 +25,7 @@ export class TabCustomRoute extends HTMLElement {
                 <button type="button" class="edit">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
                 </button>
-                <button type="button" class="add">
+                <button type="button" class="new">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
                 </button>
                 <button type="button" class="save">
@@ -36,6 +37,7 @@ export class TabCustomRoute extends HTMLElement {
             </div>
             <app-sort-route-dialog></app-sort-route-dialog>
             <app-edit-name-dialog></app-edit-name-dialog>
+            <app-new-route-dialog></app-new-route-dialog>
             <app-save-route-dialog></app-save-route-dialog>
             `
             ;
@@ -49,6 +51,9 @@ export class TabCustomRoute extends HTMLElement {
         this.editBtn = this.shadow.querySelector('.edit');
         this.editDialog = this.shadow.querySelector('app-edit-name-dialog');
 
+        this.newBtn = this.shadow.querySelector('.new');
+        this.newDialog = this.shadow.querySelector('app-new-route-dialog');
+        
         this.saveBtn = this.shadow.querySelector('.save');
         this.saveDialog = this.shadow.querySelector('app-save-route-dialog');
 
@@ -128,6 +133,25 @@ export class TabCustomRoute extends HTMLElement {
         this.editBtn.addEventListener('click', () => {
             this.editDialog.features = this.features;
             this.editDialog.openDialog();
+        });
+
+        this.newBtn.addEventListener('click', () => {
+            this.newDialog.openDialog();
+        });
+
+        this.newDialog.addEventListener('create-route', e => {
+            let route = new Route(e.detail.name, [], 'user-route', true);
+            let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+            savedRoutes.push(route);
+            for (let i = 0; i < savedRoutes.length; i++) {
+                if (savedRoutes[i].name !== route.name) {
+                    savedRoutes[i].lastSelected = false;
+                }                    
+            }
+            this.route = route;
+            localStorage.setItem('routes', JSON.stringify(savedRoutes));
+            console.log('Percorsi salvati', JSON.parse(localStorage.getItem('routes')));
+            this.render();
         });
 
         this.saveBtn.addEventListener('click', () => {

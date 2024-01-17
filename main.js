@@ -43,6 +43,7 @@ import './src/components/dialog.edit-name-route.component.js';
 import './src/components/dialog.empty-route.component.js';
 import './src/components/dialog.save-route.component.js';
 import './src/components/dialog.sort-route.component.js';
+import './src/components/dialog.new-route.component.js';
 
 // Routing
 let loadMap = () => '<page-map></page-map>';
