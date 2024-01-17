@@ -34,6 +34,7 @@ export class TabCustomRoute extends HTMLElement {
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v400q0 33-23.5 56.5T800-160H160Zm0-80h640v-400H447l-80-80H160v480Zm0 0v-480 480Z"/></svg>
                 </button>
             </div>
+            <app-sort-route-dialog></app-sort-route-dialog>
             <app-edit-name-dialog></app-edit-name-dialog>
             <app-save-route-dialog></app-save-route-dialog>
             `
@@ -41,9 +42,13 @@ export class TabCustomRoute extends HTMLElement {
 
         this.routeTitle = this.shadow.querySelector('.route-name');
         this.list = this.shadow.querySelector('.list');
+
+        this.sortBtn = this.shadow.querySelector('.sort');
+        this.sortDialog = this.shadow.querySelector('app-sort-route-dialog');
+
         this.editBtn = this.shadow.querySelector('.edit');
         this.editDialog = this.shadow.querySelector('app-edit-name-dialog');
-        this.sortBtn = this.shadow.querySelector('.sort');
+
         this.saveBtn = this.shadow.querySelector('.save');
         this.saveDialog = this.shadow.querySelector('app-save-route-dialog');
 
@@ -104,12 +109,12 @@ export class TabCustomRoute extends HTMLElement {
             this.resetOrder();
         });
 
-        this.editBtn.addEventListener('click', () => {
-            this.editDialog.features = this.features;
-            this.editDialog.openDialog();
+        this.sortBtn.addEventListener('click', () => {
+            this.sortDialog.route = this.route;
+            this.sortDialog.openDialog();
         });
 
-        this.sortBtn.addEventListener('click', async () => {
+        this.sortDialog.addEventListener('sort-route', async () => {
             const p = await UserPositionService.instance.getPosition();
             const position = { longitude: p.coords.longitude, latitude: p.coords.latitude };
             const optimizedPath = TspService.instance.nearestInsertion(this.features, position);
@@ -120,10 +125,14 @@ export class TabCustomRoute extends HTMLElement {
             this.resetOrder();
         });
 
+        this.editBtn.addEventListener('click', () => {
+            this.editDialog.features = this.features;
+            this.editDialog.openDialog();
+        });
+
         this.saveBtn.addEventListener('click', () => {
             this.saveDialog.route = this.route;
             this.saveDialog.openDialog();
-
         });
 
         this.saveDialog.addEventListener('save-route', () => {
