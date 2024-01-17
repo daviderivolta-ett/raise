@@ -9,6 +9,7 @@ export class SortRouteDialogComponent extends HTMLElement {
             <dialog>
                 <div class="content">
                     <div class="message">
+                        <h3 class="title">Riordina</h3>
                         <p>Riordinare i punti di interesse del percorso <span class="route-name"></span>?</p>
                     </div>
                     <div class="buttons">

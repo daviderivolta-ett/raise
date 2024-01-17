@@ -11,6 +11,7 @@ export class SaveRouteDialogComponent extends HTMLElement {
             <dialog>
                 <div class="content">
                     <div class="message">
+                        <h3 class="title">Salva</h3>
                         <p>Questa sovrascriverà i dati relativi al percorso <span class="route-name"></span>. Procedere?</p>
                     </div>
                     <div class="buttons">
