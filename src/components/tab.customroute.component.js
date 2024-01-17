@@ -39,6 +39,7 @@ export class TabCustomRoute extends HTMLElement {
             <app-edit-name-dialog></app-edit-name-dialog>
             <app-new-route-dialog></app-new-route-dialog>
             <app-save-route-dialog></app-save-route-dialog>
+            <app-manage-routes-dialog></app-manage-routes-dialog>
             `
             ;
 
@@ -53,9 +54,12 @@ export class TabCustomRoute extends HTMLElement {
 
         this.newBtn = this.shadow.querySelector('.new');
         this.newDialog = this.shadow.querySelector('app-new-route-dialog');
-        
+
         this.saveBtn = this.shadow.querySelector('.save');
         this.saveDialog = this.shadow.querySelector('app-save-route-dialog');
+
+        this.manageBtn = this.shadow.querySelector('.manage');
+        this.manageDialog = this.shadow.querySelector('app-manage-routes-dialog');
 
         // css
         const style = document.createElement('link');
@@ -146,7 +150,7 @@ export class TabCustomRoute extends HTMLElement {
             for (let i = 0; i < savedRoutes.length; i++) {
                 if (savedRoutes[i].name !== route.name) {
                     savedRoutes[i].lastSelected = false;
-                }                    
+                }
             }
             this.route = route;
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
@@ -169,6 +173,11 @@ export class TabCustomRoute extends HTMLElement {
             }
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
             console.log('Percorso salvato', JSON.parse(localStorage.getItem('routes')));
+        });
+
+        this.manageBtn.addEventListener('click', () => {
+            this.manageDialog.routes = JSON.parse(localStorage.getItem('routes'));
+            this.manageDialog.openDialog();
         });
     }
 
@@ -263,7 +272,7 @@ export class TabCustomRoute extends HTMLElement {
         this.route.features.forEach(feature => {
             this.createCard(feature);
         });
-        
+
         this.resetOrder();
     }
 }
