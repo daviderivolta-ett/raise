@@ -46,14 +46,11 @@ export class TagsPage extends HTMLElement {
                     this.selected = this.selected.filter(item => item !== e.detail.tag);
                 }
                 this.selected.length === 0 ? this.submit.disabled = true : this.submit.disabled = false;
-                console.log(this.selected);
             });
         });
 
         if (localStorage.selectedTags) {
-            console.log(this.selected);
             this.selected = JSON.parse(localStorage.selectedTags);
-            console.log(this.selected);
             this.selected.forEach(tag => {
                 this.chips.forEach(chip => {
                     if (chip.getAttribute('tag') == tag) {
