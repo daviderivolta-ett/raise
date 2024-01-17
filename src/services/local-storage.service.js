@@ -22,13 +22,20 @@ export class LocalStorageService {
         if (!this.data) {
             this.data = {}
             this.data.selectedTags = JSON.parse(localStorage.getItem('selectedTags'));
-            let r = JSON.parse(localStorage.getItem('route'));
-            if (!r) {
-                this.data.route = new Route('', []);
-            } else {
-                let f = r.features.map(feature => new Feature(feature.properties, feature.layer, feature.startingcoordinates, feature.coordinatesArray));
-                this.data.route = new Route(r.name, f);
+            let routes = JSON.parse(localStorage.getItem('routes'));
+            if (!routes) {
+                routes = [];
+                let defaultRoute = new Route('Default', [], 'default', true);
+                routes.push(defaultRoute);
+                localStorage.setItem('routes', JSON.stringify(routes));
             }
+            this.data.routes = routes;
+            // if (!r) {
+            //     this.data.route = new Route('', []);
+            // } else {
+            //     let f = r.features.map(feature => new Feature(feature.properties, feature.layer, feature.startingcoordinates, feature.coordinatesArray));
+            //     this.data.route = new Route(r.name, f);
+            // }
         }
         return this.data;
     }

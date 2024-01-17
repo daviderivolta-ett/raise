@@ -4,36 +4,18 @@ import { UserPositionService } from '../services/user-position.service.js';
 import { TspService } from '../services/tsp.service.js';
 
 export class TabCustomRoute extends HTMLElement {
-    _isGrabbed;
+    _route;
     _features;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        this.isGrabbed = false;
         this.features = [];
-    }
 
-    get features() {
-        return this._features;
-    }
-
-    set features(features) {
-        this._features = features;
-    }
-
-    get isGrabbed() {
-        return this._isGrabbed;
-    }
-
-    set isGrabbed(isGrabbed) {
-        this._isGrabbed = isGrabbed;
-    }
-
-    connectedCallback() {
         // html
         this.shadow.innerHTML =
             `
+            <div class="route-title"><h4 class="title">Percorso selezionato: <span class="route-name"></span></h4></div>
             <div class="list"></div>
             <div class="tools">
                 <div class="left-tools">
@@ -60,17 +42,49 @@ export class TabCustomRoute extends HTMLElement {
             `
             ;
 
+        this.routeTitle = this.shadow.querySelector('.route-name');
         this.list = this.shadow.querySelector('.list');
         this.editBtn = this.shadow.querySelector('.edit');
-        this.sortBtn = this.shadow.querySelector('.sort');
         this.editDialog = this.shadow.querySelector('app-edit-name-dialog');
+        this.sortBtn = this.shadow.querySelector('.sort');
+        this.saveBtn = this.shadow.querySelector('.save');
 
+        // css
+        const style = document.createElement('link');
+        style.setAttribute('rel', 'stylesheet');
+        style.setAttribute('href', './css/tab.customroute.component.css');
+        this.shadow.append(style);
+    }
+
+    get features() {
+        return this._features;
+    }
+
+    set features(features) {
+        this._features = features;
+    }
+
+    get route() {
+        return this._route;
+    }
+
+    set route(route) {
+        this._route = route;
+    }
+
+    connectedCallback() {
         // service
-        if (LocalStorageService.instance.getData().route) {
-            const route = LocalStorageService.instance.getData().route;
-            route.features.forEach(feature => this.createCard(feature));
-            this.resetOrder();
+        if (LocalStorageService.instance.getData().routes) {
+            const routes = LocalStorageService.instance.getData().routes;
+            routes.forEach(route => {
+                if (route.lastSelected === true) {
+                    this.route = route;
+                    this.render();
+                }
+            });
         }
+
+        if (this.route.type === 'default') this.editBtn.disabled = true;
 
         // js
         EventObservable.instance.subscribe('addtocustomroutebtn-click', feature => {
@@ -108,11 +122,32 @@ export class TabCustomRoute extends HTMLElement {
             this.resetOrder();
         });
 
-        // css
-        const style = document.createElement('link');
-        style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/tab.customroute.component.css');
-        this.shadow.append(style);
+        this.saveBtn.addEventListener('click', () => {
+            // let updatedRoute = this._route;
+            // updatedRoute.features = [...this._features];
+            // let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+
+            // for (let i = 0; i < savedRoutes.length; i++) {
+            //     if (savedRoutes[i].name === updatedRoute.name) {
+            //         savedRoutes[i] = updatedRoute;
+            //     }
+            // }
+            // localStorage.setItem('routes', JSON.stringify(savedRoutes));
+            // this._route = updatedRoute;
+
+            this.route.features = this.features;
+            let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+
+            for (let i = 0; i < savedRoutes.length; i++) {
+                if (savedRoutes[i].name === this.route.name) {
+                    savedRoutes[i] = this.route;
+                }
+            }
+
+            localStorage.setItem('routes', JSON.stringify(savedRoutes));
+            console.log(this.features);
+        });
+
     }
 
     checkFeature(feature) {
@@ -175,7 +210,7 @@ export class TabCustomRoute extends HTMLElement {
             card.setAttribute('order', order);
             order++;
         });
-        
+
         let geoJson = this.createGeoJson(this.features);
         EventObservable.instance.publish('customroute-load', geoJson);
     }
@@ -198,6 +233,18 @@ export class TabCustomRoute extends HTMLElement {
         return geoJson;
     }
 
+    render() {
+        this.list.innerHTML = '';
+        this._features = [];
+
+        this.routeTitle.innerHTML = this.route.name;
+        this.route.features.forEach(feature => {
+            this.createCard(feature);
+        });
+        
+        this.resetOrder();
+        console.log(this.features);
+    }
 }
 
 customElements.define('app-tab-custom-route', TabCustomRoute);
