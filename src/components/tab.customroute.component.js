@@ -23,7 +23,7 @@ export class TabCustomRoute extends HTMLElement {
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h240v80H120Zm0-200v-80h480v80H120Zm0-200v-80h720v80H120Z"/></svg>
                 </button>
                 <button type="button" class="edit">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M240-400q-33 0-56.5-23.5T160-480q0-33 23.5-56.5T240-560q33 0 56.5 23.5T320-480q0 33-23.5 56.5T240-400Zm240 0q-33 0-56.5-23.5T400-480q0-33 23.5-56.5T480-560q33 0 56.5 23.5T560-480q0 33-23.5 56.5T480-400Zm240 0q-33 0-56.5-23.5T640-480q0-33 23.5-56.5T720-560q33 0 56.5 23.5T800-480q0 33-23.5 56.5T720-400Z"/></svg>
                 </button>
                 <button type="button" class="new">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
@@ -36,7 +36,7 @@ export class TabCustomRoute extends HTMLElement {
                 </button>
             </div>
             <app-sort-route-dialog></app-sort-route-dialog>
-            <app-edit-name-dialog></app-edit-name-dialog>
+            <app-edit-route-dialog></app-edit-route-dialog>
             <app-new-route-dialog></app-new-route-dialog>
             <app-save-route-dialog></app-save-route-dialog>
             <app-manage-routes-dialog></app-manage-routes-dialog>
@@ -50,7 +50,7 @@ export class TabCustomRoute extends HTMLElement {
         this.sortDialog = this.shadow.querySelector('app-sort-route-dialog');
 
         this.editBtn = this.shadow.querySelector('.edit');
-        this.editDialog = this.shadow.querySelector('app-edit-name-dialog');
+        this.editDialog = this.shadow.querySelector('app-edit-route-dialog');
 
         this.newBtn = this.shadow.querySelector('.new');
         this.newDialog = this.shadow.querySelector('app-new-route-dialog');
@@ -135,8 +135,23 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         this.editBtn.addEventListener('click', () => {
-            this.editDialog.features = this.features;
+            this.editDialog.route = this.route;
             this.editDialog.openDialog();
+        });
+
+        this.editDialog.addEventListener('edit-name', e => {
+            let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+            let route;
+            for (let i = 0; i < savedRoutes.length; i++) {
+                if (savedRoutes[i].name === e.detail.oldName) {
+                    savedRoutes[i].name = e.detail.newName;
+                    route = savedRoutes[i]
+                }                
+            }
+            this.route = route;
+            localStorage.setItem('routes', JSON.stringify(savedRoutes));
+            console.log('Percorsi salvati', JSON.parse(localStorage.getItem('routes')));
+            this.render();
         });
 
         this.newBtn.addEventListener('click', () => {
@@ -289,6 +304,8 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         this.resetOrder();
+        console.log('Percorso attuale:', this.route);
+        this.route.type === 'default' ? this.editBtn.disabled = true : this.editBtn.disabled = false;
     }
 }
 

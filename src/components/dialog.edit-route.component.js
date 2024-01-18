@@ -1,10 +1,7 @@
 import { Route } from '../models/Route.js';
-import { LocalStorageService } from '../services/local-storage.service.js';
 
-export class EditNameDialogComponent extends HTMLElement {
+export class EditRouteDialogComponent extends HTMLElement {
     _route;
-    _features;
-    _name;
 
     constructor() {
         super();
@@ -15,7 +12,7 @@ export class EditNameDialogComponent extends HTMLElement {
             `
             <dialog>
                 <div class="content">
-                    <input type="text" placeholder="Nuovo percorso">
+                    <input type="text" placeholder="Nome percorso">
                     <div class="buttons">
                         <button class="close" type="button">Annulla</button>
                         <button class="submit" type="submit">Salva</button>
@@ -33,7 +30,7 @@ export class EditNameDialogComponent extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/dialog.edit-name-route.component.css')
+        style.setAttribute('href', './css/dialog.edit-route.component.css')
         this.shadow.append(style);
     }
 
@@ -43,40 +40,15 @@ export class EditNameDialogComponent extends HTMLElement {
 
     set route(route) {
         this._route = route;
-    }
-
-    get name() {
-        return this._name;
-    }
-
-    set name(name) {
-        this._name = name;
-    }
-
-    get features() {
-        return this._features;
-    }
-
-    set features(features) {
-        this._features = features;
+        this.render();
     }
 
     render() {
-
+        this.input.value = this.route.name;
+        this.input.value.length === 0 ? this.saveBtn.disabled = true : this.saveBtn.disabled = false;
     }
 
     connectedCallback() {
-        // service
-        if (LocalStorageService.instance.getData().route) {
-            const route = LocalStorageService.instance.getData().route;
-            this.name = route.name;
-            this.features = route.features;
-            this.route = new Route(this.name, this.features);
-            this.input.value = this.name;
-        }
-
-        if (this.input.value.length === 0) this.saveBtn.disabled = true;
-
         // js
         this.input.addEventListener('input', () => {
             this.setAttribute('value', this.input.value);
@@ -88,9 +60,7 @@ export class EditNameDialogComponent extends HTMLElement {
 
         this.saveBtn.addEventListener('click', () => {
             this.closeDialog();
-            this.name = this.input.value;
-            this.route = new Route(this.name, this.features);
-            localStorage.setItem('route', JSON.stringify(this.route));
+            this.dispatchEvent(new CustomEvent('edit-name', { detail: { oldName: this.route.name, newName: this.input.value} }));
         });
     }
 
@@ -120,4 +90,4 @@ export class EditNameDialogComponent extends HTMLElement {
     }
 }
 
-customElements.define('app-edit-name-dialog', EditNameDialogComponent);
+customElements.define('app-edit-route-dialog', EditRouteDialogComponent);

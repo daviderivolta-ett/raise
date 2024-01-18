@@ -39,7 +39,7 @@ import './src/components/info.drawer.component.js';
 import './src/components/bench.toggle.component.js';
 import './src/components/tab.info.panel.component.js';
 import './src/components/splash.component.js';
-import './src/components/dialog.edit-name-route.component.js';
+import './src/components/dialog.edit-route.component.js';
 import './src/components/dialog.empty-route.component.js';
 import './src/components/dialog.save-route.component.js';
 import './src/components/dialog.sort-route.component.js';

@@ -53,3 +53,8 @@ button.submit {
     border: 1px solid var(--green-blue-100);
     background-color: var(--green-blue-25);
 }
+
+button.submit:disabled {
+    opacity: .25;
+    cursor: not-allowed;
+}
