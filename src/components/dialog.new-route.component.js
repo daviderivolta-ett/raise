@@ -1,3 +1,5 @@
+import { LocalStorageService } from "../services/local-storage.service";
+
 export class NewRouteDialogComponent extends HTMLElement {
     constructor() {
         super();
@@ -31,6 +33,11 @@ export class NewRouteDialogComponent extends HTMLElement {
         this.saveBtn.disabled = true;
     }
 
+    render() {
+        this.input.value.length === 0 ? this.saveBtn.disabled = true : this.saveBtn.disabled = false;
+        console.log(LocalStorageService.instance.getData());
+    }
+
     connectedCallback() {
         // js
         this.input.addEventListener('input', () => {
@@ -41,12 +48,14 @@ export class NewRouteDialogComponent extends HTMLElement {
         this.saveBtn.addEventListener('click', () => {
             this.closeDialog();
             this.dispatchEvent(new CustomEvent('create-route', { detail: { name: this.input.value } }));
+            this.input.value = '';
         });
     }
 
     openDialog() {
         if (this.dialog.showModal) {
             this.dialog.showModal();
+            this.render();
         } else {
             this.dialog.setAttribute('open', '');
         }

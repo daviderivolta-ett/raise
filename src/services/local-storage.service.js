@@ -30,12 +30,6 @@ export class LocalStorageService {
                 localStorage.setItem('routes', JSON.stringify(routes));
             }
             this.data.routes = routes;
-            // if (!r) {
-            //     this.data.route = new Route('', []);
-            // } else {
-            //     let f = r.features.map(feature => new Feature(feature.properties, feature.layer, feature.startingcoordinates, feature.coordinatesArray));
-            //     this.data.route = new Route(r.name, f);
-            // }
         }
         return this.data;
     }
