@@ -172,6 +172,7 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         this.newBtn.addEventListener('click', () => {
+            this.newDialog.routes = JSON.parse(localStorage.getItem('routes'));
             this.newDialog.openDialog();
         });
 
@@ -196,6 +197,7 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         this.saveDialog.addEventListener('save-route', () => {
+            console.log(this.features);
             this.route.features = this.features;
             let savedRoutes = JSON.parse(localStorage.getItem('routes'));
             for (let i = 0; i < savedRoutes.length; i++) {
@@ -247,31 +249,34 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         card.addEventListener('increase-order', () => {
-            let eventCardIndex = this.features.findIndex(item => item.id === feature.id);
-            let followingCardIndex = eventCardIndex + 1;
+            // let eventCardIndex = this._features.findIndex(item => item.id === feature.id);
+            // let followingCardIndex = eventCardIndex + 1;
 
-            let cards = this.list.querySelectorAll('app-tab-custom-route-card');
-            if (!cards[followingCardIndex]) return;
+            // let cards = this.list.querySelectorAll('app-tab-custom-route-card');
+            // if (!cards[followingCardIndex]) return;
 
-            this.features.splice(eventCardIndex, 1);
-            this.features.splice(followingCardIndex, 0, feature);
+            // this._features.splice(eventCardIndex, 1);
+            // this._features.splice(followingCardIndex, 0, feature);
 
-            cards[followingCardIndex].insertAdjacentElement('afterend', cards[eventCardIndex]);
-            this.resetOrder();
+            // cards[followingCardIndex].insertAdjacentElement('afterend', cards[eventCardIndex]);
+            // this.resetOrder();
+            // console.log('Features', this._features);
         });
 
         card.addEventListener('decrease-order', () => {
-            let eventCardIndex = this.features.findIndex(item => item.id === feature.id);
-            let previousCardIndex = eventCardIndex - 1;
+            let evenCardIndex = this._features.findIndex(item => item.id === feature.id);
+            // let eventCardIndex = this._features.findIndex(item => item.id === feature.id);
+            // let previousCardIndex = eventCardIndex - 1;
 
-            let cards = this.list.querySelectorAll('app-tab-custom-route-card');
-            if (!cards[previousCardIndex]) return;
+            // let cards = this.list.querySelectorAll('app-tab-custom-route-card');
+            // if (!cards[previousCardIndex]) return;
 
-            this.features.splice(eventCardIndex, 1);
-            this.features.splice(previousCardIndex, 0, feature);
+            // this._features.splice(eventCardIndex, 1);
+            // this._features.splice(previousCardIndex, 0, feature);
 
-            this.list.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
-            this.resetOrder();
+            // this.list.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
+            // this.resetOrder();
+            // console.log('Features', this._features);
         });
     }
 

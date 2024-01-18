@@ -1,5 +1,3 @@
-import { Route } from '../models/Route.js';
-
 export class EditRouteDialogComponent extends HTMLElement {
     _route;
 

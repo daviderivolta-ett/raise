@@ -1,5 +1,3 @@
-import { LocalStorageService } from "../services/local-storage.service";
-
 export class NewRouteDialogComponent extends HTMLElement {
     _routes;
 
@@ -54,15 +52,9 @@ export class NewRouteDialogComponent extends HTMLElement {
 
     render() {
         this.input.value.length === 0 ? this.saveBtn.disabled = true : this.saveBtn.disabled = false;
-        this.routes = LocalStorageService.instance.reloadData().routes;
     }
 
     connectedCallback() {
-        // services
-        if (LocalStorageService.instance.reloadData()) {
-            this.routes = LocalStorageService.instance.reloadData().routes;
-        }
-
         // js
         this.input.addEventListener('input', () => {
             if (this.input.value.length === 0) {
