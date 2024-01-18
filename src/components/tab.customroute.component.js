@@ -179,6 +179,21 @@ export class TabCustomRoute extends HTMLElement {
             this.manageDialog.routes = JSON.parse(localStorage.getItem('routes'));
             this.manageDialog.openDialog();
         });
+
+        this.manageDialog.addEventListener('load-route', e => {
+            let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+            let loadedRoute = e.detail.route;
+            for (let i = 0; i < savedRoutes.length; i++) {
+                savedRoutes[i].lastSelected = false;
+                if(savedRoutes[i].name === loadedRoute.name) {
+                    savedRoutes[i].lastSelected = true;
+                    this.route = savedRoutes[i];
+                }
+            }
+            localStorage.setItem('routes', JSON.stringify(savedRoutes));
+            console.log('Percorso caricato', JSON.parse(localStorage.getItem('routes')));
+            this.render();
+        });
     }
 
     checkFeature(feature) {
