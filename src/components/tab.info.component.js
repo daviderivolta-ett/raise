@@ -16,7 +16,6 @@ export class TabInfoComponent extends HTMLElement {
 
     set feature(feature) {
         this._feature = feature;
-        EventObservable.instance.publish('infotab-change', this.feature);
         this.render();
     }
 
