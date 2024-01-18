@@ -15,9 +15,9 @@ export class NewRouteDialogComponent extends HTMLElement {
                     <div class="message">
                         <h3 class="title">Nuovo percorso</h3>
                         <p>Scegliere il nome per il nuovo percorso.</p>
-                        <p>Attenzione: questa azione eliminerà i dati non salvati sul percorso attualmente selezionato.</p>
                         <input type="text" placeholder="Nome percorso">
                         <span class="validation">Esiste già un percorso con questo nome</span>
+                        <p>Attenzione: questa azione eliminerà i dati non salvati sul percorso attualmente selezionato.</p>
                     </div>
                     <div class="buttons">
                         <button class="cancel" type="button">Annulla</button>

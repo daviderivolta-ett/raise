@@ -103,6 +103,7 @@ export class ManageRoutesDialogComponent extends HTMLElement {
     closeDialog() {
         if (this.dialog.close) {
             this.dialog.close();
+            this.loadBtn.disabled = true;
         } else {
             this.dialog.removeAttribute('open');
         }

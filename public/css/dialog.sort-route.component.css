@@ -3,7 +3,8 @@ p {
 }
 
 dialog {
-    width: 80%;
+    width: 92%;
+    max-width: 512px;
     background-color: var(--dark-blue-100);
     border: none;
     border-radius: 12px;
