@@ -33,4 +33,12 @@ export class LocalStorageService {
         }
         return this.data;
     }
+
+    reloadData() {
+        if (!this.data) return;
+        this.data = {};
+        this.data.selectedTags = JSON.parse(localStorage.getItem('selectedTags'));
+        this.data.routes = JSON.parse(localStorage.getItem('routes'));
+        return this.data;
+    }
 }
