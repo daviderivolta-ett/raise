@@ -17,6 +17,9 @@ export class EditRouteDialogComponent extends HTMLElement {
                         <button class="close" type="button">Annulla</button>
                         <button class="submit" type="submit">Salva</button>
                     </div>
+                    <div class="other-actions">
+                        <button class="delete" type="button">Elimina percorso</button>
+                    </div>
                 </div>
             </dialog>
             `
@@ -26,6 +29,7 @@ export class EditRouteDialogComponent extends HTMLElement {
         this.input = this.shadow.querySelector('input');
         this.closeBtn = this.shadow.querySelector('.close');
         this.saveBtn = this.shadow.querySelector('.submit');
+        this.deleteBtn = this.shadow.querySelector('.delete');
 
         // css
         const style = document.createElement('link');
@@ -60,7 +64,12 @@ export class EditRouteDialogComponent extends HTMLElement {
 
         this.saveBtn.addEventListener('click', () => {
             this.closeDialog();
-            this.dispatchEvent(new CustomEvent('edit-name', { detail: { oldName: this.route.name, newName: this.input.value} }));
+            this.dispatchEvent(new CustomEvent('edit-name', { detail: { oldName: this.route.name, newName: this.input.value } }));
+        });
+
+        this.deleteBtn.addEventListener('click', () => {
+            this.closeDialog();
+            this.dispatchEvent(new CustomEvent('delete-route', { detail: { name: this.route.name } }));
         });
     }
 

@@ -146,11 +146,28 @@ export class TabCustomRoute extends HTMLElement {
                 if (savedRoutes[i].name === e.detail.oldName) {
                     savedRoutes[i].name = e.detail.newName;
                     route = savedRoutes[i]
-                }                
+                }
             }
             this.route = route;
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
             console.log('Percorsi salvati', JSON.parse(localStorage.getItem('routes')));
+            this.render();
+        });
+
+        this.editDialog.addEventListener('delete-route', e => {
+            let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+            let updatedRoutes = [];
+            updatedRoutes = savedRoutes.filter(item => item.name !== e.detail.name);
+            let defaultRoute;
+            updatedRoutes.forEach(route => {
+                if (route.type === 'default') {
+                    route.lastSelected = true;
+                    defaultRoute = route;
+                }
+            });
+            localStorage.setItem('routes', JSON.stringify(updatedRoutes));
+            console.log('Percorsi salvati', JSON.parse(localStorage.getItem('routes')));
+            this.route = defaultRoute;
             this.render();
         });
 
@@ -200,7 +217,7 @@ export class TabCustomRoute extends HTMLElement {
             let loadedRoute = e.detail.route;
             for (let i = 0; i < savedRoutes.length; i++) {
                 savedRoutes[i].lastSelected = false;
-                if(savedRoutes[i].name === loadedRoute.name) {
+                if (savedRoutes[i].name === loadedRoute.name) {
                     savedRoutes[i].lastSelected = true;
                     this.route = savedRoutes[i];
                 }
@@ -299,9 +316,11 @@ export class TabCustomRoute extends HTMLElement {
         this._features = [];
 
         this.routeTitle.innerHTML = this.route.name;
-        this.route.features.forEach(feature => {
-            this.createCard(feature);
-        });
+        if (this.route.features.length > 0) {
+            this.route.features.forEach(feature => {
+                this.createCard(feature);
+            });
+        }
 
         this.resetOrder();
         console.log('Percorso attuale:', this.route);
