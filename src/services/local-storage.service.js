@@ -32,9 +32,16 @@ export class LocalStorageService {
         } else {
             this.data = {};
             this.data.selectedTags = JSON.parse(localStorage.getItem('selectedTags'));
-            const storedRoutes = JSON.parse(localStorage.getItem('routes'));
-            this.data.routes = storedRoutes.map(route => new Route(route.name, route.features, route.type, route.lastSelected));
-            
+            let routes = JSON.parse(localStorage.getItem('routes'));
+            if (!routes) {
+                routes = [];
+                let defaultRoute = new Route('Default', [], 'default', true);
+                routes.push(defaultRoute);
+                localStorage.setItem('routes', JSON.stringify(routes));
+            } else {
+                this.data.routes = routes.map(route => new Route(route.name, route.features, route.type, route.lastSelected));
+            }
+            this.data.routes = routes;            
         }
         return this.data;
     }

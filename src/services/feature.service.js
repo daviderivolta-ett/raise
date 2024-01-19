@@ -69,17 +69,36 @@ export class FeatureService {
 
     getRelevantProperties(data, properties) {
         const relevantProperties = {};
-
         if (!properties) return;
 
         for (const property of properties) {
             if (data[property.property_name]) {
-                relevantProperties[property.display_name] = data[property.property_name]._value;
+                let p = {
+                    property_name: property.property_name,
+                    display_name: property.display_name,
+                    type: property.type,
+                    value: data[property.property_name]._value
+                }
+                relevantProperties[property.property_name] = p;
             }
 
             if (data[property.display_name]) {
-                relevantProperties[property.display_name] = data[property.display_name]._value;
+                let p = {
+                    property_name: property.property_name,
+                    display_name: property.display_name,
+                    type: property.type,
+                    value: data[property.display_name]._value
+                }
+                relevantProperties[property.property_name] = p;
             }
+
+            // if (data[property.property_name]) {
+            //     relevantProperties[property.display_name] = data[property.property_name]._value;
+            // }
+
+            // if (data[property.display_name]) {
+            //     relevantProperties[property.display_name] = data[property.display_name]._value;
+            // }
         }
 
         relevantProperties["raiseName"] = data.raiseName._value;

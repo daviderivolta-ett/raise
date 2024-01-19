@@ -35,22 +35,21 @@ export class TabInfoPanelComponent extends HTMLElement {
 
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
-                const value = properties[key];
-                if (key == 'raiseName' || key == 'nome' || key == 'layerName') continue;
+                const property = properties[key];
+                if (key == 'raiseName' || key == 'layerName') continue;
 
-                const div = document.createElement('div');
-                div.classList.add('topic');
-                const h = document.createElement('h4');
-                const separatedKey = key.replace(/([A-Z])/g, ' $1');
-                const capitalizedKey = separatedKey.charAt(0).toUpperCase() + separatedKey.slice(1);
-                h.innerHTML = capitalizedKey;
-                div.append(h);
-                const p = document.createElement('p');
-                p.innerText = value;
-                div.append(p);
-                this.content.append(div);
-
-                moreProperties.push(key);
+                if (property.value) {
+                    const div = document.createElement('div');
+                    div.classList.add('topic');
+                    const h = document.createElement('h4');
+                    h.innerHTML = property.display_name;
+                    div.append(h);
+                    const p = document.createElement('p');
+                    p.innerText = property.value;
+                    div.append(p);
+                    this.content.append(div);
+                    moreProperties.push(key);
+                }
             }
         }
 

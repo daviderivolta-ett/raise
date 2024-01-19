@@ -29,12 +29,12 @@ export class TabInfoComponent extends HTMLElement {
         let isName = false;
         for (const key in properties) {
             if (properties.hasOwnProperty(key)) {
-                const value = properties[key];
+                const property = properties[key];
                 if (key == 'raiseName') {
                     this.name.innerHTML = properties.raiseName;
                 };
-                if (key == 'nome') {
-                    this.category.innerHTML = value;
+                if (property.display_name == 'Nome') {
+                    this.category.innerHTML = property.value;
                     isName = true;
                 }
                 if (!isName) this.category.innerHTML = properties.raiseName;

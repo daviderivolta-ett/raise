@@ -51,22 +51,22 @@
             "relevant_properties": [
                 {
                     "property_name": "DESCR1",
-                    "display_name": "tipologia",
+                    "display_name": "Tipologia",
                     "type": "string"
                 },
                 {
                     "property_name": "DESCR3",
-                    "display_name": "descrizione",
+                    "display_name": "Descrizione",
                     "type": "string"
                 },
                 {
                     "property_name": "NOME",
-                    "display_name": "nome",
+                    "display_name": "Nome",
                     "type": "string"
                 },
                 {
                     "property_name": "NUMERAZIONE",
-                    "display_name": "numeroProgressivo",
+                    "display_name": "Numero progressivo",
                     "type": "number"
                 }
             ],
@@ -117,12 +117,12 @@
             "relevant_properties": [
                 {
                     "property_name": "NOME",
-                    "display_name": "indirizzo",
+                    "display_name": "Indirizzo",
                     "type": "string"
                 },
                 {
                     "property_name": "ETICHETTA",
-                    "display_name": "altezzaCivico",
+                    "display_name": "Altezza civico",
                     "type": "number"
                 }
             ],
@@ -151,12 +151,12 @@
             "relevant_properties": [
                 {
                     "property_name": "NOME",
-                    "display_name": "nome",
+                    "display_name": "Nome",
                     "type": "string"
                 },
                 {
                     "property_name": "NOTE",
-                    "display_name": "descrizione",
+                    "display_name": "Descrizione",
                     "type": "string"
                 }
             ],
