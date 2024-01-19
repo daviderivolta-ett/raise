@@ -1561,7 +1561,7 @@ span.cesium-projectionPicker-wrapper {
             </div>
             `,this.setAttribute("is-open",this.isOpen),this.button=this.shadow.querySelector("button"),this.info=this.shadow.querySelector(".info"),this.playBtn=this.shadow.querySelector("app-play-info-btn"),this.content=this.shadow.querySelector(".content"),this.button.addEventListener("click",()=>{const t=JSON.parse(this.getAttribute("is-open"));this.setAttribute("is-open",!t+"")}),h.instance.subscribe("tab-maximize",t=>{this.setAttribute("is-open",t+"")});const e=document.createElement("link");e.setAttribute("rel","stylesheet"),e.setAttribute("href","./css/tab.info.panel.component.css"),this.shadow.append(e)}attributeChangedCallback(e,t,i){i!=t&&t!=null&&e=="is-open"&&(this.isOpen=JSON.parse(i),this.isOpen==!0?this.classList.add("open"):this.classList.remove("open"),this.isOpen==!0?this.button.innerHTML="Mostra meno":this.button.innerHTML="Leggi info",h.instance.publish("tab-maximize",this.isOpen))}}r(H,"observedAttributes",["is-open"]);customElements.define("app-info-panel",H);class re extends HTMLElement{constructor(){super(),this.shadow=this.attachShadow({mode:"closed"})}connectedCallback(){this.shadow.innerHTML=`
             <div class="component">
-                <img src="../../images/RAISE_pictogram_nobg.svg">
+                <img src="./images/RAISE_pictogram_nobg.svg">
                 <div class="loader"></div>
             </div>
             `;const s=document.createElement("link");s.setAttribute("rel","stylesheet"),s.setAttribute("href","./css/splash.component.css"),this.shadow.append(s)}}customElements.define("app-splash",re);class B extends HTMLElement{constructor(){super();r(this,"_route");this.shadow=this.attachShadow({mode:"closed"}),this.shadow.innerHTML=`
