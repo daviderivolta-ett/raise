@@ -26,10 +26,10 @@ export class LocalStorageService {
             let defaultRoute = new Route('Default', [], 'default', true);
             routes.push(defaultRoute);
             localStorage.setItem('routes', JSON.stringify(routes));
+            this.data.routes = routes; 
         } else {
             this.data.routes = routes.map(route => new Route(route.name, route.features, route.type, route.lastSelected));
         }
-        this.data.routes = routes; 
 
         return this.data;
     }
