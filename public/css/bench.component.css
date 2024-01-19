@@ -36,12 +36,12 @@ div::-webkit-scrollbar {
         left: 0;
         transform: none;
         max-width: 100%;
+        padding: 24px;
     }
 
     :host(.visible) {
-        bottom: 24px;
+        bottom: 0;
         right: unset;
-        left: 24px;
     }
 
     div {

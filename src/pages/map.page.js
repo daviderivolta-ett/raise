@@ -172,6 +172,7 @@ export class MapPage extends HTMLElement {
 
         this.bench.addEventListener('click', () => {
             this.tabsToggle.setAttribute('is-open', false);
+            this.benchToggle.setAttribute('is-open', false);
         });
 
         this.bench.addEventListener('bench-empty', () => {

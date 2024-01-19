@@ -28,6 +28,8 @@ export class BenchComponent extends HTMLElement {
             newLayers.forEach(layer => { this.addLayer(layer); });
         });
 
+        this.addEventListener('click', () => this.setAttribute('is-open', false));
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
