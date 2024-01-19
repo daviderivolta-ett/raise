@@ -45,6 +45,7 @@ import './src/components/dialog.save-route.component.js';
 import './src/components/dialog.sort-route.component.js';
 import './src/components/dialog.new-route.component.js';
 import './src/components/dialog.manage-routes.component.js';
+import './src/components/dialog.no-position-error.component.js';
 
 // Routing
 let loadMap = () => '<page-map></page-map>';

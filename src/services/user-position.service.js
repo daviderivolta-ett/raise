@@ -24,7 +24,7 @@ export class UserPositionService {
                         resolve(position);
                     },
                     error => {
-                        reject(error)
+                        reject(error);
                     }
                 );
             }

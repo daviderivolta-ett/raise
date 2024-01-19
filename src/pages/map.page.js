@@ -37,10 +37,14 @@ export class MapPage extends HTMLElement {
         // services
         this.data = await SettingService.instance.getData();
 
-        let p = await UserPositionService.instance.getPosition();
         this.position = {};
-        this.position.latitude = p.coords.latitude;
-        this.position.longitude = p.coords.longitude;
+        try {
+            let p = await UserPositionService.instance.getPosition();
+            this.position.latitude = p.coords.latitude;
+            this.position.longitude = p.coords.longitude;
+        } catch (error) {
+            console.error('Impossibile recuperare la posizione', error);
+        }
 
         // html
         this.shadow.innerHTML +=
@@ -62,6 +66,7 @@ export class MapPage extends HTMLElement {
             <app-search-result></app-search-result>
             <app-bench></app-bench>
             <app-center-position></app-center-position>
+            <app-no-position-dialog></app-no-position-dialog>
             `
             ;
 
@@ -77,11 +82,16 @@ export class MapPage extends HTMLElement {
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
         this.path = this.shadow.querySelector('app-path-drawer');
         this.centerPosition = this.shadow.querySelector('app-center-position');
+        this.noPositionDialog = this.shadow.querySelector('app-no-position-dialog');
 
         // js
         // map
-        this.map.setCameraToPosition(this.position);
-        this.map.createUserPin(this.position);
+        if (this.position.latitude && this.position.longitude) {
+            this.map.setCameraToPosition(this.position);
+            this.map.createUserPin(this.position);
+        } else {
+            this.map.setCameraToPosition({ latitude: 44.40753207658791, longitude: 8.934080815653985 });
+        }
 
         this.map.addEventListener('map-click', event => {
             this.benchToggle.setAttribute('is-open', false);
@@ -182,8 +192,21 @@ export class MapPage extends HTMLElement {
         });
 
         // center position icon
-        this.centerPosition.addEventListener('center-position', event => {
-            this.map.setCameraToPosition(this.position);
+        EventObservable.instance.subscribe('no-position-found', () => {
+            this.noPositionDialog.openDialog();
+        });
+
+        this.centerPosition.addEventListener('center-position', async () => {
+            try {
+                let p = await UserPositionService.instance.getPosition();
+                this.position.latitude = p.coords.latitude;
+                this.position.longitude = p.coords.longitude;
+                this.map.setCameraToPosition(this.position); 
+                this.map.createUserPin(this.position);
+            } catch (error) {
+                console.error('Impossibile recuperare la posizione', error);
+                EventObservable.instance.publish('no-position-found');
+            }          
         });
 
         // populate carousel
@@ -201,6 +224,7 @@ export class MapPage extends HTMLElement {
         style.setAttribute('href', './css/map.page.css');
         this.shadow.append(style);
 
+        // splash removal
         splash = this.shadow.querySelector('app-splash');
         setTimeout(() => {
             splash.remove();

@@ -118,9 +118,16 @@ export class TabCustomRoute extends HTMLElement {
             this.resetOrder();
         });
 
-        this.sortBtn.addEventListener('click', () => {
-            this.sortDialog.route = this.route;
-            this.sortDialog.openDialog();
+        this.sortBtn.addEventListener('click', async () => {
+            let position;
+            try {
+                position = await UserPositionService.instance.getPosition();
+                this.sortDialog.route = this.route;
+                this.sortDialog.openDialog();
+            } catch (error) {
+                console.error('Impossibile recuperare la posizione', error);
+                EventObservable.instance.publish('no-position-found');
+            }
         });
 
         this.sortDialog.addEventListener('sort-route', async () => {

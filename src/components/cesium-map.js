@@ -78,14 +78,11 @@ export default class CesiumViewer extends HTMLElement {
         this.viewer.entities.add({
             name: 'user_pin',
             position: Cesium.Cartesian3.fromDegrees(position.longitude, position.latitude, 0.0),
-            ellipse: {
-                semiMinorAxis: 20.0,
-                semiMajorAxis: 20.0,
-                height: 0.0,
-                material: Cesium.Color.BLUE,
-                outline: true,
+            point: {
+                pixelSize: 8,
+                color: Cesium.Color.BLUE,
                 outlineColor: Cesium.Color.WHITE,
-                outlineWidth: 200
+                outlineWidth: 1
             }
         });
     }
