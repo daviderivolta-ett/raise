@@ -50,6 +50,11 @@ button {
     color: var(--white-100);
 }
 
+button:disabled {
+    opacity: .25;
+    cursor: not-allowed;
+}
+
 button.load {
     width: fit-content;
     background-color: transparent;

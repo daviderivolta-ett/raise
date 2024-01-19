@@ -1,4 +1,5 @@
 import { SettingService } from '../services/data.service.js';
+import { LocalStorageService } from '../services/local-storage.service.js';
 
 export class TagsPage extends HTMLElement {
     _tags;
@@ -58,6 +59,7 @@ export class TagsPage extends HTMLElement {
                     }
                 });
             });
+            this.selected.length === 0 ? this.submit.disabled = true : this.submit.disabled = false;
         }
     }
 
@@ -65,6 +67,7 @@ export class TagsPage extends HTMLElement {
         // services
         const data = await SettingService.instance.getData();
         this.tags = this.getTags(data);
+        console.log('Tag attualmente salvati:', LocalStorageService.instance.getData().selectedTags);
 
         // html
         this.shadow.innerHTML =
@@ -78,7 +81,6 @@ export class TagsPage extends HTMLElement {
                     </div>
                     <div class="list"></div>
                     <div class="buttons">
-                        <button type="button" class="load">Carica altri</button>
                         <button type="submit" class="submit">Avanti</button>
                     </div>
                 </div>
@@ -104,7 +106,7 @@ export class TagsPage extends HTMLElement {
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
-        style.setAttribute('href', './css/page.tags.css');
+        style.setAttribute('href', './css/tags.page.css');
         this.shadow.append(style);
 
         this.render();
