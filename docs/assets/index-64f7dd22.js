@@ -8,7 +8,7 @@ var R=Object.defineProperty;var O=(a,s,e)=>s in a?R(a,s,{enumerable:!0,configura
                     <div class="divider"><span class="vr"></span></div>
                     <app-bench-toggle></app-bench-toggle>
                     <app-theme-icon></app-theme-icon>
-                    <app-link icon='apps' link ="/"></app-link>   
+                    <app-link icon='apps' link ="/raise/"></app-link>   
                 </div>
                 <app-carousel></app-carousel>
             </div>
