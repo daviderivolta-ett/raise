@@ -107,6 +107,29 @@ export class TabsController extends HTMLElement {
             }
         });
 
+        let startY;
+        let threshold = 25;
+        this.toggle.addEventListener('touchstart', e => {
+            startY = e.touches[0].clientY;
+        });
+
+        this.toggle.addEventListener('touchmove', e => {
+            let currentY = e.touches[0].clientY;
+            let deltaY = currentY - startY;
+
+            if (Math.abs(deltaY) > threshold) {
+                if (deltaY > 0) {
+                    console.log('verso basso');
+                    this.getAttribute('is-maximized') == 'false' ? this.setAttribute('is-open', false) : this.setAttribute('is-maximized', false);
+                } else {
+                    console.log('verso alto');
+                    this.setAttribute('is-maximized', true);
+                }
+
+                startY = currentY;
+            }
+        });
+
         this.infoContent.addEventListener('wheel', e => {
             if (e.deltaY > 0) this.setAttribute('is-maximized', true);
         });
