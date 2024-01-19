@@ -18,31 +18,19 @@ export class LocalStorageService {
     }
 
     getData() {
-        if (!this.data) {
-            this.data = {}
-            this.data.selectedTags = JSON.parse(localStorage.getItem('selectedTags'));
-            let routes = JSON.parse(localStorage.getItem('routes'));
-            if (!routes) {
-                routes = [];
-                let defaultRoute = new Route('Default', [], 'default', true);
-                routes.push(defaultRoute);
-                localStorage.setItem('routes', JSON.stringify(routes));
-            }
-            this.data.routes = routes;
+        this.data = {};
+        this.data.selectedTags = JSON.parse(localStorage.getItem('selectedTags'));
+        let routes = JSON.parse(localStorage.getItem('routes'));
+        if (!routes) {
+            routes = [];
+            let defaultRoute = new Route('Default', [], 'default', true);
+            routes.push(defaultRoute);
+            localStorage.setItem('routes', JSON.stringify(routes));
         } else {
-            this.data = {};
-            this.data.selectedTags = JSON.parse(localStorage.getItem('selectedTags'));
-            let routes = JSON.parse(localStorage.getItem('routes'));
-            if (!routes) {
-                routes = [];
-                let defaultRoute = new Route('Default', [], 'default', true);
-                routes.push(defaultRoute);
-                localStorage.setItem('routes', JSON.stringify(routes));
-            } else {
-                this.data.routes = routes.map(route => new Route(route.name, route.features, route.type, route.lastSelected));
-            }
-            this.data.routes = routes;            
+            this.data.routes = routes.map(route => new Route(route.name, route.features, route.type, route.lastSelected));
         }
+        this.data.routes = routes; 
+
         return this.data;
     }
 }
