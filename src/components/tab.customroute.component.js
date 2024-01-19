@@ -130,6 +130,8 @@ export class TabCustomRoute extends HTMLElement {
             this.list.innerHTML = '';
             optimizedPath.reverse();
             this._features = [];
+            this.route.features = [];
+            this.route.features = [...optimizedPath];
             optimizedPath.forEach(feature => this.createCard(feature));
             this.resetOrder();
         });
@@ -197,7 +199,7 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         this.saveDialog.addEventListener('save-route', () => {
-            this.route.features = this.features;
+            this.route.features = this.features.reverse();
             let savedRoutes = LocalStorageService.instance.getData().routes;
             for (let i = 0; i < savedRoutes.length; i++) {
                 if (savedRoutes[i].name === this.route.name) {
