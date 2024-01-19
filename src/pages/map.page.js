@@ -199,6 +199,7 @@ export class MapPage extends HTMLElement {
         this.centerPosition.addEventListener('center-position', async () => {
             try {
                 let p = await UserPositionService.instance.getPosition();
+                console.log(p);
                 this.position.latitude = p.coords.latitude;
                 this.position.longitude = p.coords.longitude;
                 this.map.setCameraToPosition(this.position); 

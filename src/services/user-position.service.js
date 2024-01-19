@@ -15,20 +15,14 @@ export class UserPositionService {
 
     getPosition() {
         return new Promise((resolve, reject) => {
-            if (this.position) {
-                resolve(this.position);
-            } else {
-                navigator.geolocation.getCurrentPosition(
-                    position => {
-                        this.position = position;
-                        resolve(position);
-                    },
-                    error => {
-                        reject(error);
-                    }
-                );
-            }
+            navigator.geolocation.getCurrentPosition(
+                position => {
+                    resolve(position);
+                },
+                error => {
+                    reject(error);
+                }
+            );
         });
     }
-
 }
