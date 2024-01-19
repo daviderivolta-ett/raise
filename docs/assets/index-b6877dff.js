@@ -20,7 +20,7 @@ var z=Object.defineProperty;var N=(a,s,e)=>s in a?z(a,s,{enumerable:!0,configura
             <div class="page">
                 <div class="box">
                     <div class="header">
-                        <img src="../../images/RAISE_pictogram_nobg.svg" alt="Raise logo" class="logo">
+                        <img src="./images/RAISE_pictogram_nobg.svg" alt="Raise logo" class="logo">
                         <h1>Ecco alcuni dati che potrebbero interessarti:</h1>
                         <p class="info">Seleziona almeno una categoria di dati per iniziare. Non preoccuparti, potrai sceglierne altre successivamente.</p>
                     </div>
