@@ -58,8 +58,8 @@ export class TabInfoComponent extends HTMLElement {
         }
 
         const coordinates = {};
-        coordinates.longitude = this.feature.startingcoordinates.longitude;
-        coordinates.latitude = this.feature.startingcoordinates.latitude;
+        coordinates.longitude = this.feature.startingCoordinates.longitude;
+        coordinates.latitude = this.feature.startingCoordinates.latitude;
         this.goToBtn.coordinates = coordinates;
     }
 

@@ -24,10 +24,10 @@ export class TspService {
 
         // Trova l'indice della feature più vicina rispetto alle coordinate iniziali
         let currentIndex = 0;
-        let minDistance = this.calculateDistance(initialCoordinates, remainingFeatures[0].startingcoordinates);
+        let minDistance = this.calculateDistance(initialCoordinates, remainingFeatures[0].startingCoordinates);
 
         for (let i = 1; i < remainingFeatures.length; i++) {
-            const distance = this.calculateDistance(initialCoordinates, remainingFeatures[i].startingcoordinates);
+            const distance = this.calculateDistance(initialCoordinates, remainingFeatures[i].startingCoordinates);
             if (distance < minDistance) {
                 minDistance = distance;
                 currentIndex = i;
@@ -43,7 +43,7 @@ export class TspService {
 
             // Trova la feature più vicina rispetto al percorso corrente
             for (let i = 0; i < remainingFeatures.length; i++) {
-                const distance = this.calculateDistance(path[path.length - 1].startingcoordinates, remainingFeatures[i].startingcoordinates);
+                const distance = this.calculateDistance(path[path.length - 1].startingCoordinates, remainingFeatures[i].startingCoordinates);
                 if (distance < minDistance) {
                     minDistance = distance;
                     nextIndex = i;

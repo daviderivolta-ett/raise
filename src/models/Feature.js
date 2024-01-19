@@ -2,13 +2,13 @@ export class Feature {
     constructor(properties, layer, startingCoordinates, coordinatesArray = []) {
         this.properties = properties;
         this.layer = layer;
-        this.startingcoordinates = startingCoordinates;
+        this.startingCoordinates = startingCoordinates;
         this.coordinatesArray = coordinatesArray;
         if (this.coordinatesArray.length === 0) this.coordinatesArray.push(startingCoordinates);
     }
 
     get id() {
-        return this.layer.layer + this.startingcoordinates.latitude + this.startingcoordinates.longitude;
+        return this.layer.layer + this.startingCoordinates.latitude + this.startingCoordinates.longitude;
     }
 
     static fromPoint(properties, layer, startingCoordinates) {

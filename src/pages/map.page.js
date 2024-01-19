@@ -65,7 +65,6 @@ export class MapPage extends HTMLElement {
             `
             ;
 
-        /** @type {CesiumViewer} */
         this.map = this.shadow.querySelector('app-cesium');
         this.tabs = this.shadow.querySelector('app-tabs');
         this.searchbar = this.shadow.querySelector('app-searchbar');
@@ -99,8 +98,8 @@ export class MapPage extends HTMLElement {
             }
 
             const feature = FeatureService.instance.getFeature(entity, this.data);
-
-            this.map.setCameraToPosition(feature.startingcoordinates);
+            console.log('Feature cliccata:', feature);
+            this.map.setCameraToPosition(feature.startingCoordinates);
             this.tabs.addFeature(feature);
             this.tabsToggle.setAttribute('is-open', true);
             this.centerPosition.setAttribute('is-open', true);
@@ -129,11 +128,11 @@ export class MapPage extends HTMLElement {
         });
 
         EventObservable.instance.subscribe('tabinfocard-click', feature => {
-            this.map.setCameraToPosition(feature.startingcoordinates);
+            this.map.setCameraToPosition(feature.startingCoordinates);
         });
 
         EventObservable.instance.subscribe('customroutecard-click', feature => {
-            this.map.setCameraToPosition(feature.startingcoordinates);
+            this.map.setCameraToPosition(feature.startingCoordinates);
         });
 
         // search

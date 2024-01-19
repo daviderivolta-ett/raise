@@ -140,7 +140,7 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         this.editDialog.addEventListener('edit-name', e => {
-            let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+            let savedRoutes = LocalStorageService.instance.getData().routes;
             let route;
             for (let i = 0; i < savedRoutes.length; i++) {
                 if (savedRoutes[i].name === e.detail.oldName) {
@@ -150,12 +150,12 @@ export class TabCustomRoute extends HTMLElement {
             }
             this.route = route;
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
-            console.log('Percorsi salvati', JSON.parse(localStorage.getItem('routes')));
+            console.log('Percorsi salvati', LocalStorageService.instance.getData().routes);
             this.render();
         });
 
         this.editDialog.addEventListener('delete-route', e => {
-            let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+            let savedRoutes = LocalStorageService.instance.getData().routes;
             let updatedRoutes = [];
             updatedRoutes = savedRoutes.filter(item => item.name !== e.detail.name);
             let defaultRoute;
@@ -166,19 +166,19 @@ export class TabCustomRoute extends HTMLElement {
                 }
             });
             localStorage.setItem('routes', JSON.stringify(updatedRoutes));
-            console.log('Percorsi salvati', JSON.parse(localStorage.getItem('routes')));
+            console.log('Percorsi salvati', LocalStorageService.instance.getData().routes);
             this.route = defaultRoute;
             this.render();
         });
 
         this.newBtn.addEventListener('click', () => {
-            this.newDialog.routes = JSON.parse(localStorage.getItem('routes'));
+            this.newDialog.routes = LocalStorageService.instance.getData().routes;
             this.newDialog.openDialog();
         });
 
         this.newDialog.addEventListener('create-route', e => {
             let route = new Route(e.detail.name, [], 'user-route', true);
-            let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+            let savedRoutes = LocalStorageService.instance.getData().routes;
             savedRoutes.push(route);
             for (let i = 0; i < savedRoutes.length; i++) {
                 if (savedRoutes[i].name !== route.name) {
@@ -187,7 +187,7 @@ export class TabCustomRoute extends HTMLElement {
             }
             this.route = route;
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
-            console.log('Percorsi salvati', JSON.parse(localStorage.getItem('routes')));
+            console.log('Percorsi salvati', LocalStorageService.instance.getData().routes);
             this.render();
         });
 
@@ -197,25 +197,24 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         this.saveDialog.addEventListener('save-route', () => {
-            console.log(this.features);
             this.route.features = this.features;
-            let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+            let savedRoutes = LocalStorageService.instance.getData().routes;
             for (let i = 0; i < savedRoutes.length; i++) {
                 if (savedRoutes[i].name === this.route.name) {
                     savedRoutes[i] = this.route;
                 }
             }
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
-            console.log('Percorso salvato', JSON.parse(localStorage.getItem('routes')));
+            console.log('Percorso salvato', LocalStorageService.instance.getData().routes);
         });
 
         this.manageBtn.addEventListener('click', () => {
-            this.manageDialog.routes = JSON.parse(localStorage.getItem('routes'));
+            this.manageDialog.routes = LocalStorageService.instance.getData().routes;
             this.manageDialog.openDialog();
         });
 
         this.manageDialog.addEventListener('load-route', e => {
-            let savedRoutes = JSON.parse(localStorage.getItem('routes'));
+            let savedRoutes = LocalStorageService.instance.getData().routes;
             let loadedRoute = e.detail.route;
             for (let i = 0; i < savedRoutes.length; i++) {
                 savedRoutes[i].lastSelected = false;
@@ -225,7 +224,7 @@ export class TabCustomRoute extends HTMLElement {
                 }
             }
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
-            console.log('Percorso caricato', JSON.parse(localStorage.getItem('routes')));
+            console.log('Percorso caricato', LocalStorageService.instance.getData().routes);
             this.render();
         });
     }
@@ -249,34 +248,34 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         card.addEventListener('increase-order', () => {
-            // let eventCardIndex = this._features.findIndex(item => item.id === feature.id);
-            // let followingCardIndex = eventCardIndex + 1;
+            // let evenCardIndex = this._features.findIndex(item => item.id === feature.id);
+            let eventCardIndex = this._features.findIndex(item => item.id === feature.id);
+            let previousCardIndex = eventCardIndex - 1;
 
-            // let cards = this.list.querySelectorAll('app-tab-custom-route-card');
-            // if (!cards[followingCardIndex]) return;
+            let cards = this.list.querySelectorAll('app-tab-custom-route-card');
+            if (!cards[previousCardIndex]) return;
 
-            // this._features.splice(eventCardIndex, 1);
-            // this._features.splice(followingCardIndex, 0, feature);
+            this._features.splice(eventCardIndex, 1);
+            this._features.splice(previousCardIndex, 0, feature);
 
-            // cards[followingCardIndex].insertAdjacentElement('afterend', cards[eventCardIndex]);
-            // this.resetOrder();
-            // console.log('Features', this._features);
+            this.list.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
+            this.resetOrder();
+            console.log('Features', this._features);
         });
 
         card.addEventListener('decrease-order', () => {
-            let evenCardIndex = this._features.findIndex(item => item.id === feature.id);
-            // let eventCardIndex = this._features.findIndex(item => item.id === feature.id);
-            // let previousCardIndex = eventCardIndex - 1;
+            let eventCardIndex = this._features.findIndex(item => item.id === feature.id);
+            let followingCardIndex = eventCardIndex + 1;
 
-            // let cards = this.list.querySelectorAll('app-tab-custom-route-card');
-            // if (!cards[previousCardIndex]) return;
+            let cards = this.list.querySelectorAll('app-tab-custom-route-card');
+            if (!cards[followingCardIndex]) return;
 
-            // this._features.splice(eventCardIndex, 1);
-            // this._features.splice(previousCardIndex, 0, feature);
+            this._features.splice(eventCardIndex, 1);
+            this._features.splice(followingCardIndex, 0, feature);
 
-            // this.list.insertBefore(cards[eventCardIndex], cards[previousCardIndex]);
-            // this.resetOrder();
-            // console.log('Features', this._features);
+            cards[followingCardIndex].insertAdjacentElement('afterend', cards[eventCardIndex]);
+            this.resetOrder();
+            console.log('Features', this._features);
         });
     }
 
@@ -303,7 +302,7 @@ export class TabCustomRoute extends HTMLElement {
             type: "Feature",
             geometry: {
                 type: "Point",
-                coordinates: [f.startingcoordinates.longitude, f.startingcoordinates.latitude]
+                coordinates: [f.startingCoordinates.longitude, f.startingCoordinates.latitude]
             },
             properties: f.properties
         }));
