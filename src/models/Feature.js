@@ -18,4 +18,8 @@ export class Feature {
     static fromPolyline(properties, layer, coordinatesArray) {
         return new Feature(properties, layer, coordinatesArray[0], coordinatesArray);
     }
+
+    static fromPolygon(properties, layer, center, coordinatesArray) {
+        return new Feature(properties, layer, center, coordinatesArray);
+    }
 }

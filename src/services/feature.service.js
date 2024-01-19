@@ -38,6 +38,13 @@ export class FeatureService {
             feature = Feature.fromPolyline(properties, layer, coordinates);
         }
 
+        if (pickedEntity.id.polygon) {
+            let cartesian = pickedEntity.id.polygon.hierarchy._value.positions;
+            coordinates = this.checkCoordinates(cartesian);
+            let center = this.getPolygonCenter(pickedEntity.id.polygon);
+            feature = Feature.fromPolygon(properties, layer, center, coordinates);
+        }
+
         return feature;
     }
 
@@ -102,5 +109,24 @@ export class FeatureService {
         longitude = parseFloat(longitude.toFixed(8));
         latitude = parseFloat(latitude.toFixed(8));
         return { longitude, latitude };
+    }
+
+    getPolygonCenter(polygon) {
+        const positions = polygon.hierarchy.getValue().positions;
+
+        if (positions && positions.length == 0) return;
+        let sumX = 0;
+        let sumY = 0;
+
+        for (let i = 0; i < positions.length; i++) {
+            let cartographic = Cesium.Cartographic.fromCartesian(positions[i]);
+            sumX += Cesium.Math.toDegrees(cartographic.longitude);
+            sumY += Cesium.Math.toDegrees(cartographic.latitude);
+        }
+
+        let centerX = sumX / positions.length;
+        let centerY = sumY / positions.length;
+
+        return { latitude: centerY, longitude: centerX };
     }
 }
