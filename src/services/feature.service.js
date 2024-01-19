@@ -89,7 +89,7 @@ export class FeatureService {
                     type: property.type,
                     value: data[property.display_name]._value
                 }
-                relevantProperties[property.property_name] = p;
+                relevantProperties[property.display_name] = p;
             }
 
             // if (data[property.property_name]) {
