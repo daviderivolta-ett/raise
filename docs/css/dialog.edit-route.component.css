@@ -1,0 +1,78 @@
+dialog {
+    width: 92%;
+    max-width: 512px;
+    background-color: var(--dark-blue-100);
+    border: none;
+    border-radius: 12px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, .5);
+}
+
+input {
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    margin: 0 0 24px 0;
+    background-color: transparent;
+    color: var(--white-100);
+    border-bottom: 1px solid var(--white-100);
+}
+
+input::placeholder {
+    opacity: .5;
+}
+
+input:focus {
+    outline: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+button {
+    cursor: pointer;
+    width: 100%;
+    padding: 8px 0;
+    border-radius: 50px;
+    color: var(--white-100);
+}
+
+button.close {
+    background-color: var(--blue-90);
+    border: none;
+}
+
+button.submit {
+    border: 1px solid var(--green-blue-100);
+    background-color: var(--green-blue-25);
+}
+
+button.submit:disabled {
+    opacity: .25;
+    cursor: not-allowed;
+}
+
+.other-actions {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0 0 0;
+}
+
+button.delete {
+    padding: 4px 0;
+    color: rgba(190, 15, 57, 1);
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(190, 15, 57, 1);
+    width: fit-content;
+    font-weight: 600;
+}

@@ -4,12 +4,15 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 999;
+  padding: 0 24px;
+  width: 100%;
 }
 
 .snackbar {
-  background-color: var(--blue-90);
-  border-radius: 24px;
-  width: 350px;
+  background-color: var(--green-blue-25);
+  border: 1px solid var(--green-blue-100);
+  border-radius: 12px;
+  width: 100%;
 }
 
 .content {
@@ -20,7 +23,7 @@
 }
 
 p {
-  color: #F5EFF7;
+  color: var(--white-100);
   padding: 0 0 0 24px;
   margin: 0;
 }
@@ -32,11 +35,12 @@ button {
   padding: 0;
   height: 24px;
   width: 24px;
+  border-radius: 4px;
   background-color: transparent;
 }
 
 button:hover {
-  background-color: var(--blue-100);
+  background-color: var(--green-blue-25);
 }
 
 .close-icon {
@@ -51,12 +55,13 @@ button:hover {
       'wght' 400,
       'GRAD' 0,
       'opsz' 24;
-  color: #F5EFF7;
+  color: var(--white-100);
   font-size: 16px;
 }
 
 .bar-color {
   height: 2px;
   border-radius: 0px 0px 4px 4px;
-  background-color: #D0BCFF;
+  background-color: var(--green-blue-100);
+  margin: 0 12px;
 }

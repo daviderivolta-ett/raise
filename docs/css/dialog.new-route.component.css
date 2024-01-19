@@ -1,0 +1,83 @@
+dialog {
+    width: 92%;
+    max-width: 512px;
+    background-color: var(--dark-blue-100);
+    border: none;
+    border-radius: 12px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, .5);
+}
+
+.content {
+    color: var(--white-100);
+}
+
+.message {
+    margin: 0 0 16px 0;
+}
+
+h3 {
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid var(--white-100);
+    color: var(--white-100);
+    margin: 0 0 4px 0;
+}
+
+input::placeholder {
+    opacity: .5;
+}
+
+input:focus {
+    outline: none;
+}
+
+.validation {
+    display: none;
+    font-weight: 600;
+    color: rgba(190, 15, 58, 1);
+}
+
+.not-available {
+    display: block;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+button {
+    cursor: pointer;
+    width: 100%;
+    padding: 8px 0;
+    border-radius: 50px;
+    color: var(--white-100);
+}
+
+button:disabled {
+    opacity: .25;
+    cursor: not-allowed;
+}
+
+button.cancel {
+    background-color: var(--blue-90);
+    border: none;
+}
+
+button.save {
+    border: 1px solid var(--green-blue-100);
+    background-color: var(--green-blue-25);
+}
