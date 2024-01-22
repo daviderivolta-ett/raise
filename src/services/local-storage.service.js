@@ -19,7 +19,9 @@ export class LocalStorageService {
 
     getData() {
         this.data = {};
-        this.data.selectedTags = JSON.parse(localStorage.getItem('selectedTags'));
+        let tags = JSON.parse(localStorage.getItem('selectedTags'));
+        !tags ? this.data.selectedTags = [] : this.data.selectedTags = tags;
+
         let routes = JSON.parse(localStorage.getItem('routes'));
         if (!routes) {
             routes = [];
@@ -30,7 +32,7 @@ export class LocalStorageService {
         } else {
             this.data.routes = routes.map(route => new Route(route.name, route.features, route.type, route.lastSelected));
         }
-
+        console.log("Local storage:", this.data);
         return this.data;
     }
 }
