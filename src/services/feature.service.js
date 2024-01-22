@@ -67,42 +67,26 @@ export class FeatureService {
         return null;
     }
 
-    getRelevantProperties(data, properties) {
+    getRelevantProperties(entity, properties) {
         const relevantProperties = {};
         if (!properties) return;
 
         for (const property of properties) {
-            if (data[property.property_name]) {
+            if (entity[property.property_name]) {
                 let p = {
                     property_name: property.property_name,
                     display_name: property.display_name,
                     type: property.type,
-                    value: data[property.property_name]._value
                 }
+
+                typeof entity[property.property_name]._value == 'string' ? p.value = entity[property.property_name]._value : p.value = entity[property.property_name]._value.value;
+
                 relevantProperties[property.property_name] = p;
             }
-
-            if (data[property.display_name]) {
-                let p = {
-                    property_name: property.property_name,
-                    display_name: property.display_name,
-                    type: property.type,
-                    value: data[property.display_name]._value
-                }
-                relevantProperties[property.display_name] = p;
-            }
-
-            // if (data[property.property_name]) {
-            //     relevantProperties[property.display_name] = data[property.property_name]._value;
-            // }
-
-            // if (data[property.display_name]) {
-            //     relevantProperties[property.display_name] = data[property.display_name]._value;
-            // }
         }
 
-        relevantProperties["raiseName"] = data.raiseName._value;
-        relevantProperties["layerName"] = data.layerName._value;
+        relevantProperties["raiseName"] = entity.raiseName._value;
+        relevantProperties["layerName"] = entity.layerName._value;
 
         return relevantProperties;
     }

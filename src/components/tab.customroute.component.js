@@ -303,6 +303,7 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         let geoJson = this.createGeoJson(this.features);
+        console.log(geoJson);
         EventObservable.instance.publish('customroute-load', geoJson);
     }
 

@@ -106,7 +106,7 @@ export class MapPage extends HTMLElement {
                 this.tabs.setAttribute('is-open', false);
                 return;
             }
-
+            
             const feature = FeatureService.instance.getFeature(entity, this.data);
             console.log('Feature cliccata:', feature);
             this.map.setCameraToPosition(feature.startingCoordinates);
