@@ -132,4 +132,22 @@ export class FeatureService {
 
         return { latitude: centerY, longitude: centerX };
     }
+
+    createGeoJson(features) {
+        const geoJsonFeatures = features.map(f => ({
+            type: "Feature",
+            geometry: {
+                type: "Point",
+                coordinates: [f.startingCoordinates.longitude, f.startingCoordinates.latitude]
+            },
+            properties: f.properties
+        }));
+
+        const geoJson = {
+            type: "FeatureCollection",
+            features: geoJsonFeatures
+        };
+
+        return geoJson;
+    }
 }

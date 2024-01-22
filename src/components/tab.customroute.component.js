@@ -3,6 +3,7 @@ import { LocalStorageService } from '../services/local-storage.service.js';
 import { UserPositionService } from '../services/user-position.service.js';
 import { TspService } from '../services/tsp.service.js';
 import { Route } from '../models/Route.js';
+import { FeatureService } from '../services/feature.service.js';
 
 export class TabCustomRoute extends HTMLElement {
     _route;
@@ -302,27 +303,9 @@ export class TabCustomRoute extends HTMLElement {
             order++;
         });
 
-        let geoJson = this.createGeoJson(this.features);
-        console.log(geoJson);
+        // let geoJson = this.createGeoJson(this.features);
+        let geoJson = FeatureService.instance.createGeoJson(this.features);
         EventObservable.instance.publish('customroute-load', geoJson);
-    }
-
-    createGeoJson(features) {
-        const geoJsonFeatures = features.map(f => ({
-            type: "Feature",
-            geometry: {
-                type: "Point",
-                coordinates: [f.startingCoordinates.longitude, f.startingCoordinates.latitude]
-            },
-            properties: f.properties
-        }));
-
-        const geoJson = {
-            type: "FeatureCollection",
-            features: geoJsonFeatures
-        };
-
-        return geoJson;
     }
 
     render() {

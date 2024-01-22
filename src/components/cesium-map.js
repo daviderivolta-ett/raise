@@ -2,6 +2,7 @@ import * as Cesium from 'cesium';
 import cesiumCss from 'cesium/Build/Cesium/Widgets/widgets.css?raw';
 
 import { EventObservable } from '../observables/EventObservable.js';
+import { FeatureService } from '../services/feature.service.js';
 
 export default class CesiumViewer extends HTMLElement {
     constructor() {
@@ -39,7 +40,17 @@ export default class CesiumViewer extends HTMLElement {
         }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
         EventObservable.instance.subscribe('customroute-load', geoJson => {
-            this.customRouteLayer(geoJson);
+            this.loadCustomDataSource(geoJson, 'custom-route', 'yellow');
+        });
+
+        EventObservable.instance.subscribe('feature-selected', feature => {
+            const geoJson = FeatureService.instance.createGeoJson([feature]);
+            this.loadCustomDataSource(geoJson, 'selected-feature', 'orangered');
+        });
+
+        EventObservable.instance.subscribe('customroutecard-click', feature => {
+            const geoJson = FeatureService.instance.createGeoJson([feature]);
+            this.loadCustomDataSource(geoJson, 'selected-feature', 'orangered');
         });
 
         // css
@@ -194,8 +205,7 @@ export default class CesiumViewer extends HTMLElement {
         return geoJson;
     }
 
-    async customRouteLayer(geoJson) {
-        const dataSourceName = 'custom-route';
+    async loadCustomDataSource(geoJson, dataSourceName, color) {
         const existingDataSources = this.viewer.dataSources.getByName(dataSourceName);
 
         existingDataSources.forEach(existingDataSource => {
@@ -205,16 +215,16 @@ export default class CesiumViewer extends HTMLElement {
         let dataSource = await Cesium.GeoJsonDataSource.load(geoJson);
         dataSource.name = dataSourceName;
         await this.viewer.dataSources.add(dataSource);
-        this.styleCustomRoute(dataSource);
+        this.styleCustomDataSource(dataSource, color);
     }
 
-    styleCustomRoute(dataSource) {
+    styleCustomDataSource(dataSource, color) {
         dataSource.entities.values.forEach(entity => {
             entity.billboard = undefined;
             entity.point = new Cesium.PointGraphics({
                 pixelSize: 16,
-                color: Cesium.Color.YELLOW.withAlpha(0.01),
-                outlineColor: Cesium.Color.YELLOW,
+                color: Cesium.Color.fromCssColorString(color).withAlpha(0.01),
+                outlineColor: Cesium.Color.fromCssColorString(color),
                 outlineWidth: 3
             })
         });
