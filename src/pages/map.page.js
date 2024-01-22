@@ -96,6 +96,7 @@ export class MapPage extends HTMLElement {
         this.map.addEventListener('map-click', event => {
             this.benchToggle.setAttribute('is-open', false);
             this.tabsToggle.setAttribute('is-open', false);
+            this.changeMapMode.setAttribute('is-open', false);
             this.centerPosition.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
 
@@ -113,6 +114,7 @@ export class MapPage extends HTMLElement {
             this.map.setCameraToPosition(feature.startingCoordinates);
             this.tabs.addFeature(feature);
             this.tabsToggle.setAttribute('is-open', true);
+            this.changeMapMode.setAttribute('is-open', true);
             this.centerPosition.setAttribute('is-open', true);
             this.tabs.setAttribute('active-tab', 'info-tab');
         });
@@ -132,9 +134,11 @@ export class MapPage extends HTMLElement {
             if (isMaximized == true) {
                 this.tabs.setAttribute('is-maximized', true);
                 this.centerPosition.setAttribute('is-maximized', true);
+                this.changeMapMode.setAttribute('is-maximized', true);
             } else {
                 this.tabs.setAttribute('is-maximized', false);
                 this.centerPosition.setAttribute('is-maximized', false);
+                this.changeMapMode.setAttribute('is-maximized', false);
             }
         });
 
@@ -161,6 +165,7 @@ export class MapPage extends HTMLElement {
         this.tabsToggle.addEventListener('drawer-toggle', event => {
             const isOpen = JSON.parse(event.detail.isOpen);
             this.tabs.setAttribute('is-open', isOpen);
+            this.changeMapMode.setAttribute('is-open', isOpen);
             this.centerPosition.setAttribute('is-open', isOpen);
             if (isOpen === true) this.benchToggle.setAttribute('is-open', false);
             if (isOpen === false) this.tabs.setAttribute('is-maximized', false);

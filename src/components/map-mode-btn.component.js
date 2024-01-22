@@ -19,6 +19,8 @@ export class MapModeBtnComponent extends HTMLElement {
             ;
 
         this.button = this.shadow.querySelector('button');
+        if (!this.hasAttribute('is-open')) this.setAttribute('is-open', false);
+        if (!this.hasAttribute('is-maximized')) this.setAttribute('is-maximized', false);
 
         // js
         this.button.addEventListener('click', () => this.dispatchEvent(new CustomEvent('change-map-mode')));
@@ -28,6 +30,19 @@ export class MapModeBtnComponent extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/map-mode-btn.component.css');
         this.shadow.append(style);
+    }
+
+    static observedAttributes = ['is-open', 'is-maximized'];
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (newValue != oldValue && oldValue != null) {
+            if (name == 'is-open') {
+                newValue === 'true' ? this.classList.add('open') : this.classList.remove('open');
+            }
+
+            if (name == 'is-maximized') {
+                newValue === 'true' ? this.classList.add('maximized') : this.classList.remove('maximized');
+            }
+        }
     }
 }
 
