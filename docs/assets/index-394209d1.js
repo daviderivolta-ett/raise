@@ -21,7 +21,7 @@ var R=Object.defineProperty;var N=(a,s,e)=>s in a?R(a,s,{enumerable:!0,configura
             <div class="page">
                 <div class="box">
                     <div class="header">
-                        <img src="./RAISE_pictogram_nobg.svg" alt="Raise logo" class="logo">
+                        <img src="./images/RAISE_pictogram_nobg.svg" alt="Raise logo" class="logo">
                         <h1>Ecco alcuni dati che potrebbero interessarti:</h1>
                         <p class="info">Seleziona almeno una categoria di dati per iniziare. Non preoccuparti, potrai sceglierne altre successivamente.</p>
                     </div>
@@ -1569,7 +1569,7 @@ span.cesium-projectionPicker-wrapper {
             </div>
             `,this.setAttribute("is-open",this.isOpen),this.button=this.shadow.querySelector("button"),this.info=this.shadow.querySelector(".info"),this.playBtn=this.shadow.querySelector("app-play-info-btn"),this.content=this.shadow.querySelector(".content"),this.button.addEventListener("click",()=>{const t=JSON.parse(this.getAttribute("is-open"));this.setAttribute("is-open",!t+"")}),l.instance.subscribe("tab-maximize",t=>{this.setAttribute("is-open",t+"")});const e=document.createElement("link");e.setAttribute("rel","stylesheet"),e.setAttribute("href","./css/tab.info.panel.component.css"),this.shadow.append(e)}attributeChangedCallback(e,t,i){i!=t&&t!=null&&e=="is-open"&&(this.isOpen=JSON.parse(i),this.isOpen==!0?this.classList.add("open"):this.classList.remove("open"),this.isOpen==!0?this.button.innerHTML="Mostra meno":this.button.innerHTML="Leggi info",l.instance.publish("tab-maximize",this.isOpen))}}r(B,"observedAttributes",["is-open"]);customElements.define("app-info-panel",B);class ce extends HTMLElement{constructor(){super(),this.shadow=this.attachShadow({mode:"closed"})}connectedCallback(){this.shadow.innerHTML=`
             <div class="component">
-                <img src="./RAISE_pictogram_nobg.svg">
+                <img src="./images/RAISE_pictogram_nobg.svg">
                 <div class="loader"></div>
             </div>
             `;const s=document.createElement("link");s.setAttribute("rel","stylesheet"),s.setAttribute("href","./css/splash.component.css"),this.shadow.append(s)}}customElements.define("app-splash",ce);class z extends HTMLElement{constructor(){super();r(this,"_route");this.shadow=this.attachShadow({mode:"closed"}),this.shadow.innerHTML=`
