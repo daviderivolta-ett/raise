@@ -1,133 +1,133 @@
 {
-    "name": "Geomorfologia",
-    "layers": [
+  "name": "Geomorfologia",
+  "layers": [
+    {
+      "name": "Geomorfologia",
+      "layer": "SITGEO:V_GEOMORFOLOGIA",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#2e3d6c",
+        "opacity": 0.5
+      },
+      "tags": [
+        "natura",
+        "geomorfologia"
+      ],
+      "relevant_properties": [
         {
-            "name": "Geomorfologia",
-            "layer": "SITGEO:V_GEOMORFOLOGIA",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 0.5
-            },
-            "tags": [
-                "natura",
-                "geomorfologia"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DESCRIZIONE",
-                    "display_name": "Descrizione",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Geomorfologia LIN",
-            "layer": "SITGEO:V_GEOMORFO_LIN",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "natura",
-                "geomorfologia"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "TIPO",
-                    "display_name": "Tipo",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Geomorfologia SOVRA",
-            "layer": "SITGEO:V_GEOMORFO_SOVRA",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 0.5
-            },
-            "tags": [
-                "natura",
-                "geomorfologia"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "TIPO",
-                    "display_name": "Tipo",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Quote e curve di livello",
-            "layer": "L8174",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2236/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 0.5
-            },
-            "tags": [
-                "natura",
-                "geomorfologia",
-                "quote"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "COLL_CARTO",
-                    "display_name": "Coll. Carto",
-                    "type": "string"
-                },
-                {
-                    "property_name": "COLL_INFO",
-                    "display_name": "Coll. Info",
-                    "type": "string"
-                },
-                {
-                    "property_name": "COLL_RETE",
-                    "display_name": "Coll. Rete",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_SCALA_NOM",
-                    "display_name": "Scala nominale",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DITTA_ESEC",
-                    "display_name": "Ditta esecutrice",
-                    "type": "string"
-                },
-                {
-                    "property_name": "ENTE_COMM",
-                    "display_name": "Ente committente",
-                    "type": "string"
-                },
-                {
-                    "property_name": "IDENTIFIC",
-                    "display_name": "Identificatrice",
-                    "type": "string"
-                },
-                {
-                    "property_name": "METADATi",
-                    "display_name": "Metadati",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "DESCRIZIONE",
+          "display_name": "Descrizione",
+          "type": "string"
         }
-    ]
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Geomorfologia LIN",
+      "layer": "SITGEO:V_GEOMORFO_LIN",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#64a846",
+        "opacity": 1
+      },
+      "tags": [
+        "natura",
+        "geomorfologia"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "TIPO",
+          "display_name": "Tipo",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Geomorfologia SOVRA",
+      "layer": "SITGEO:V_GEOMORFO_SOVRA",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#1fb5ba",
+        "opacity": 0.5
+      },
+      "tags": [
+        "natura",
+        "geomorfologia"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "TIPO",
+          "display_name": "Tipo",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Quote e curve di livello",
+      "layer": "L8174",
+      "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2236/wfs",
+      "style": {
+        "color": "#a980cf",
+        "opacity": 0.5
+      },
+      "tags": [
+        "natura",
+        "geomorfologia",
+        "quote"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "COLL_CARTO",
+          "display_name": "Coll. Carto",
+          "type": "string"
+        },
+        {
+          "property_name": "COLL_INFO",
+          "display_name": "Coll. Info",
+          "type": "string"
+        },
+        {
+          "property_name": "COLL_RETE",
+          "display_name": "Coll. Rete",
+          "type": "string"
+        },
+        {
+          "property_name": "DEF_SCALA_NOM",
+          "display_name": "Scala nominale",
+          "type": "string"
+        },
+        {
+          "property_name": "DITTA_ESEC",
+          "display_name": "Ditta esecutrice",
+          "type": "string"
+        },
+        {
+          "property_name": "ENTE_COMM",
+          "display_name": "Ente committente",
+          "type": "string"
+        },
+        {
+          "property_name": "IDENTIFIC",
+          "display_name": "Identificatrice",
+          "type": "string"
+        },
+        {
+          "property_name": "METADATi",
+          "display_name": "Metadati",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    }
+  ]
 }

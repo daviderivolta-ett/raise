@@ -1,74 +1,74 @@
 {
-    "name": "Zonizzazione acustica",
-    "layers": [
+  "name": "Zonizzazione acustica",
+  "layers": [
+    {
+      "name": "Misure fonometriche",
+      "layer": "SITGEO:V_ZA_MISURE_FONOM",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#8d9310",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "acustica"
+      ],
+      "relevant_properties": [
         {
-            "name": "Misure fonometriche",
-            "layer": "SITGEO:V_ZA_MISURE_FONOM",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "acustica"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DATA_RILIEVO",
-                    "display_name": "Data rilievo",
-                    "type": "string"
-                },
-                {
-                    "property_name": "LIVELLO_DB",
-                    "display_name": "Livello decibel (dB)",
-                    "type": "number"
-                },
-                {
-                    "property_name": "TEMPO_MISURA",
-                    "display_name": "Durata misurazione",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "DATA_RILIEVO",
+          "display_name": "Data rilievo",
+          "type": "string"
         },
         {
-            "name": "Vicinanza autostrada",
-            "layer": "SITGEO:V_ZA_FR_AUTO",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 0.5
-            },
-            "tags": [
-                "città",
-                "acustica",
-                "strada"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "LIVELLO_DB",
+          "display_name": "Livello decibel (dB)",
+          "type": "number"
         },
         {
-            "name": "Vicinanza ferrovia",
-            "layer": "SITGEO:V_ZA_FR_FERR",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 0.5
-            },
-            "tags": [
-                "città",
-                "acustica",
-                "ferrovia"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "TEMPO_MISURA",
+          "display_name": "Durata misurazione",
+          "type": "string"
         }
-    ]
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Vicinanza autostrada",
+      "layer": "SITGEO:V_ZA_FR_AUTO",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#453e1d",
+        "opacity": 0.5
+      },
+      "tags": [
+        "città",
+        "acustica",
+        "strada"
+      ],
+      "relevant_properties": [],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Vicinanza ferrovia",
+      "layer": "SITGEO:V_ZA_FR_FERR",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#531680",
+        "opacity": 0.5
+      },
+      "tags": [
+        "città",
+        "acustica",
+        "ferrovia"
+      ],
+      "relevant_properties": [],
+      "components": [
+        "app-opacity-slider"
+      ]
+    }
+  ]
 }

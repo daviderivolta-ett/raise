@@ -1,97 +1,97 @@
 {
-    "name": "Aree ciclopedonali",
-    "layers": [
+  "name": "Aree ciclopedonali",
+  "layers": [
+    {
+      "name": "Parcheggi Bike Sharing",
+      "layer": "SITGEO:V_MOB_PARKS_BIKESHARING",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#51fa67",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "bicicletta",
+        "ciclabile",
+        "pista",
+        "parcheggio",
+        "sharing",
+        "bike sharing"
+      ],
+      "relevant_properties": [
         {
-            "name": "Parcheggi Bike Sharing",
-            "layer": "SITGEO:V_MOB_PARKS_BIKESHARING",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "bicicletta",
-                "ciclabile",
-                "pista",
-                "parcheggio",
-                "sharing",
-                "bike sharing"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME",
-                    "display_name": "Nome",
-                    "type": "string" 
-                }
-            ],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
-        },
-        {
-            "name": "Piste ciclabili",
-            "layer": "SITGEO:V_MOB_PISTE_CICLABILI",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "bicicletta",
-                "ciclabile",
-                "percorso",
-                "pista",
-                "sentiero",
-                "sharing",
-                "bike sharing"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME_TRATTA",
-                    "display_name": "Tratta",
-                    "type": "string" 
-                },
-                {
-                    "property_name": "TIPO",
-                    "display_name": "Tipologia",
-                    "type": "string" 
-                },
-                {
-                    "property_name": "STATO",
-                    "display_name": "Condizione",
-                    "type": "string" 
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Aree pedonali",
-            "layer": "SITGEO:V_MOB_AREE_PEDONALI",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 0.5
-            },
-            "tags": [
-                "città",
-                "aree",
-                "pedonali"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME_VIA",
-                    "display_name": "Indirizzo",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "NOME",
+          "display_name": "Nome",
+          "type": "string"
         }
-    ]
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
+      "name": "Piste ciclabili",
+      "layer": "SITGEO:V_MOB_PISTE_CICLABILI",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#51b6b0",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "bicicletta",
+        "ciclabile",
+        "percorso",
+        "pista",
+        "sentiero",
+        "sharing",
+        "bike sharing"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME_TRATTA",
+          "display_name": "Tratta",
+          "type": "string"
+        },
+        {
+          "property_name": "TIPO",
+          "display_name": "Tipologia",
+          "type": "string"
+        },
+        {
+          "property_name": "STATO",
+          "display_name": "Condizione",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Aree pedonali",
+      "layer": "SITGEO:V_MOB_AREE_PEDONALI",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#b3e27d",
+        "opacity": 0.5
+      },
+      "tags": [
+        "città",
+        "aree",
+        "pedonali"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME_VIA",
+          "display_name": "Indirizzo",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    }
+  ]
 }

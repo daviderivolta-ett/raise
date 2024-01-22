@@ -1,163 +1,163 @@
 {
-    "name": "Strade",
-    "layers": [
+  "name": "Strade",
+  "layers": [
+    {
+      "name": "Tracciato autostradale",
+      "layer": "L8285",
+      "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2268/wfs",
+      "style": {
+        "color": "#455cd7",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "strada"
+      ],
+      "relevant_properties": [
         {
-            "name": "Tracciato autostradale",
-            "layer": "L8285",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2268/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "COD_STRADA_BREVE",
-                    "display_name": "Autostrada",
-                    "type": "number"
-                },
-                {
-                    "property_name": "NOME_STRADA",
-                    "display_name": "Nome",
-                    "type": "number"
-                },
-                {
-                    "property_name": "DIREZ_AUTOS",
-                    "display_name": "Direzione",
-                    "type": "number"
-                },
-                {
-                    "property_name": "GESTORE",
-                    "display_name": "Gestore",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "COD_STRADA_BREVE",
+          "display_name": "Autostrada",
+          "type": "number"
         },
         {
-            "name": "Caselli autostrada",
-            "layer": "L8287",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2268/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NAME",
-                    "display_name": "Nome stazione",
-                    "type": "number"
-                },
-                {
-                    "property_name": "PROGR_KM",
-                    "display_name": "Progressione (Km)",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "NOME_STRADA",
+          "display_name": "Nome",
+          "type": "number"
         },
         {
-            "name": "Strade Statali cittadine",
-            "layer": "L8324",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2269/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME_STRADA",
-                    "display_name": "Nome strada",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "DIREZ_AUTOS",
+          "display_name": "Direzione",
+          "type": "number"
         },
         {
-            "name": "Strade Statali extracittadine",
-            "layer": "L8289",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2269/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME_STRADA",
-                    "display_name": "Nome strada",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Strade/vie",
-            "layer": "MEDIATORE:MV_TRACCIATO_STRADALE",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME_VIA",
-                    "display_name": "Nome via",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Toponomastica",
-            "layer": "L8179",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2238/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "TOPONIMO",
-                    "display_name": "Nome",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "GESTORE",
+          "display_name": "Gestore",
+          "type": "number"
         }
-    ]
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Caselli autostrada",
+      "layer": "L8287",
+      "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2268/wfs",
+      "style": {
+        "color": "#557d9a",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "strada"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NAME",
+          "display_name": "Nome stazione",
+          "type": "number"
+        },
+        {
+          "property_name": "PROGR_KM",
+          "display_name": "Progressione (Km)",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Strade Statali cittadine",
+      "layer": "L8324",
+      "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2269/wfs",
+      "style": {
+        "color": "#c47d0a",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "strada"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME_STRADA",
+          "display_name": "Nome strada",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Strade Statali extracittadine",
+      "layer": "L8289",
+      "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2269/wfs",
+      "style": {
+        "color": "#467168",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "strada"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME_STRADA",
+          "display_name": "Nome strada",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Strade/vie",
+      "layer": "MEDIATORE:MV_TRACCIATO_STRADALE",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#fc9632",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "strada"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME_VIA",
+          "display_name": "Nome via",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Toponomastica",
+      "layer": "L8179",
+      "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2238/wfs",
+      "style": {
+        "color": "#ff4114",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "strada"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "TOPONIMO",
+          "display_name": "Nome",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    }
+  ]
 }

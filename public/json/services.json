@@ -1,507 +1,507 @@
 {
-    "name": "Servizi",
-    "layers": [
+  "name": "Servizi",
+  "layers": [
+    {
+      "name": "Bagni pubblici",
+      "layer": "SITGEO:V_BAGNI",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#febfa4",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "bagno",
+        "pubblico"
+      ],
+      "relevant_properties": [
         {
-            "name": "Bagni pubblici",
-            "layer": "SITGEO:V_BAGNI",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "bagno",
-                "pubblico"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DATI",
-                    "display_name": "Posizione",
-                    "type": "string"
-                },
-                {
-                    "property_name": "NOTE",
-                    "display_name": "Tipologia",
-                    "type": "string"
-                },
-                {
-                    "property_name": "ACCESSIBILE",
-                    "display_name": "Accessibile",
-                    "type": "string"
-                },
-                {
-                    "property_name": "AUTOPUL",
-                    "display_name": "Autopulente",
-                    "type": "string"
-                },
-                {
-                    "property_name": "OPERATIVO",
-                    "display_name": "Operatività",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "DATI",
+          "display_name": "Posizione",
+          "type": "string"
         },
         {
-            "name": "Ospedali",
-            "layer": "SITGEO:V_PC_OSPEDALI",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "ospedali"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DENOMINAZIONE",
-                    "display_name": "Nome",
-                    "type": "string"
-                },
-                {
-                    "property_name": "INDIRIZZO",
-                    "display_name": "Indirizzo",
-                    "type": "number"
-                },
-                {
-                    "property_name": "PRONTO_SOC",
-                    "display_name": "Pronto soccorso",
-                    "type": "string"
-                },
-                {
-                    "property_name": "TIPO_STRUTTURA",
-                    "display_name": "Tipologia",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
+          "property_name": "NOTE",
+          "display_name": "Tipologia",
+          "type": "string"
         },
         {
-            "name": "Farmacie",
-            "layer": "L807",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M452/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "farmacie"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "nome_farmacia",
-                    "display_name": "Nome",
-                    "type": "string"
-                },
-                {
-                    "property_name": "indirizzo",
-                    "display_name": "Indirizzo",
-                    "type": "string"
-                },
-                {
-                    "property_name": "civico",
-                    "display_name": "n",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "ACCESSIBILE",
+          "display_name": "Accessibile",
+          "type": "string"
         },
         {
-            "name": "Musei, biblioteche e cinema",
-            "layer": "SITGEO:V_COLLETTIVE_GEO",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "ospedali"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DESCRIZIONE",
-                    "display_name": "Descrizione",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DENOMINAZIONE",
-                    "display_name": "Nome",
-                    "type": "string"
-                },
-                {
-                    "property_name": "INDIRIZZO",
-                    "display_name": "Indirizzo",
-                    "type": "number"
-                },
-                {
-                    "property_name": "PERICOLOS_FRANE",
-                    "display_name": "Pericolo frane",
-                    "type": "string"
-                },
-                {
-                    "property_name": "PERICOLOS_IDRO",
-                    "display_name": "Pericolo idrologico",
-                    "type": "string"
-                },
-                {
-                    "property_name": "PERICOLOS_INC",
-                    "display_name": "Pericolo incendio",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "AUTOPUL",
+          "display_name": "Autopulente",
+          "type": "string"
         },
         {
-            "name": "Cinema",
-            "layer": "GEOJSON_CINEMA",
-            "layer_url_wfs": "./GeoJson/cinemas.geojson",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "cinema"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "name",
-                    "display_name": "Nome",
-                    "type": "string"
-                },
-                {
-                    "property_name": "url",
-                    "display_name": "Sito web",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
-        },
-        {
-            "name": "Teatri",
-            "layer": "GEOJSON_TEATRI",
-            "layer_url_wfs": "./GeoJson/theatre.geojson",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "teatri"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "name",
-                    "display_name": "Nome",
-                    "type": "string"
-                },
-                {
-                    "property_name": "addr:street",
-                    "display_name": "Via",
-                    "type": "string"
-                },
-                {
-                    "property_name": "addr:housenumber",
-                    "display_name": "n",
-                    "type": "string"
-                },
-                {
-                    "property_name": "website",
-                    "display_name": "Sito web",
-                    "type": "string"
-                },
-                {
-                    "property_name": "wikidata",
-                    "display_name": "Wikidata",
-                    "type": "string"
-                },
-                {
-                    "property_name": "P154",
-                    "display_name": "Logo",
-                    "type": "img"
-                },
-                {
-                    "property_name": "P18",
-                    "display_name": "Foto",
-                    "type": "img"
-                },
-                {
-                    "property_name": "P856",
-                    "display_name": "Sito web",
-                    "type": "url"
-                }
-            ],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
-        },
-        {
-            "name": "Scuole",
-            "layer": "SITGEO:SCUOLE_AGG_GEO",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "ospedali"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "CATEGORIA",
-                    "display_name": "Categoria",
-                    "type": "number"
-                },
-                {
-                    "property_name": "NOME",
-                    "display_name": "Nome",
-                    "type": "number"
-                },
-                {
-                    "property_name": "TIPO_DIREZ_TERRITORIALE",
-                    "display_name": "Tipo direzione territoriale",
-                    "type": "number"
-                },
-                {
-                    "property_name": "DIREZ_TERRITORIALE",
-                    "display_name": "Direzione territoriale",
-                    "type": "number"
-                },
-                {
-                    "property_name": "MUNICIPIO",
-                    "display_name": "Municipio",
-                    "type": "number"
-                },
-                {
-                    "property_name": "INDIRIZZO",
-                    "display_name": "Indirizzo",
-                    "type": "number"
-                },
-                {
-                    "property_name": "UNITA_URBANISTICA",
-                    "display_name": "Unità urbanistica",
-                    "type": "number"
-                },
-                {
-                    "property_name": "CAP",
-                    "display_name": "CAP",
-                    "type": "string"
-                },
-                {
-                    "property_name": "EMAIL",
-                    "display_name": "Email",
-                    "type": "string"
-                },
-                {
-                    "property_name": "TELEFONO",
-                    "display_name": "Telefono",
-                    "type": "string"
-                },
-                {
-                    "property_name": "FAX",
-                    "display_name": "Fax",
-                    "type": "string"
-                },
-                {
-                    "property_name": "PERICOLOS_FRANE",
-                    "display_name": "Pericolo frane",
-                    "type": "string"
-                },
-                {
-                    "property_name": "PERICOLOS_IDRO",
-                    "display_name": "Pericolo idrologico",
-                    "type": "string"
-                },
-                {
-                    "property_name": "PERICOLOS_INC",
-                    "display_name": "Pericolo incendio",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Mercati rionali",
-            "layer": "SITGEO:V_COM_MERCATI",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "ospedali"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "INDIRIZZO",
-                    "display_name": "Indirizzo",
-                    "type": "number"
-                },
-                {
-                    "property_name": "TIPO",
-                    "display_name": "Tipo",
-                    "type": "string"
-                },
-                {
-                    "property_name": "APERTURA",
-                    "display_name": "Apertura",
-                    "type": "string"
-                },
-                {
-                    "property_name": "GIORNI",
-                    "display_name": "Giorni",
-                    "type": "string"
-                },
-                {
-                    "property_name": "ZONA",
-                    "display_name": "Zona",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Strutture ricettive turistiche",
-            "layer": "SITGEO:V_RIC_TURISTICHE",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "strada"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "TIPOLOGIA",
-                    "display_name": "Tipologia",
-                    "type": "string"
-                },
-                {
-                    "property_name": "INDIRIZZO",
-                    "display_name": "Indirizzo",
-                    "type": "string"
-                },
-                {
-                    "property_name": "CIVICO",
-                    "display_name": "n",
-                    "type": "number"
-                },
-                {
-                    "property_name": "CLAS",
-                    "display_name": "Valutazione",
-                    "type": "string"
-                },
-                {
-                    "property_name": "CAMERE",
-                    "display_name": "Camere",
-                    "type": "number"
-                },
-                {
-                    "property_name": "LETTI",
-                    "display_name": "Letti",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Acqua potabile",
-            "layer": "GEOJSON_ACQUA_POTABILE",
-            "layer_url_wfs": "./GeoJson/drinking-water.geojson",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "acqua",
-                "potabile",
-                "fontane"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Camere di sorveglianza",
-            "layer": "GEOJSON_SURVEILLANCE_CAMERAS",
-            "layer_url_wfs": "./GeoJson/surveillance-cameras.geojson",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "sicurezza"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "ATM",
-            "layer": "GEOJSON_ATM",
-            "layer_url_wfs": "./GeoJson/atm.geojson",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "servizi",
-                "sicurezza"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "name",
-                    "display_name": "Banca",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
+          "property_name": "OPERATIVO",
+          "display_name": "Operatività",
+          "type": "string"
         }
-    ]
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Ospedali",
+      "layer": "SITGEO:V_PC_OSPEDALI",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#6ab58d",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "ospedali"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "DENOMINAZIONE",
+          "display_name": "Nome",
+          "type": "string"
+        },
+        {
+          "property_name": "INDIRIZZO",
+          "display_name": "Indirizzo",
+          "type": "number"
+        },
+        {
+          "property_name": "PRONTO_SOC",
+          "display_name": "Pronto soccorso",
+          "type": "string"
+        },
+        {
+          "property_name": "TIPO_STRUTTURA",
+          "display_name": "Tipologia",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
+      "name": "Farmacie",
+      "layer": "L807",
+      "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M452/wfs",
+      "style": {
+        "color": "#cb1648",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "farmacie"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "nome_farmacia",
+          "display_name": "Nome",
+          "type": "string"
+        },
+        {
+          "property_name": "indirizzo",
+          "display_name": "Indirizzo",
+          "type": "string"
+        },
+        {
+          "property_name": "civico",
+          "display_name": "n",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Musei, biblioteche e cinema",
+      "layer": "SITGEO:V_COLLETTIVE_GEO",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#c88657",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "ospedali"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "DESCRIZIONE",
+          "display_name": "Descrizione",
+          "type": "string"
+        },
+        {
+          "property_name": "DENOMINAZIONE",
+          "display_name": "Nome",
+          "type": "string"
+        },
+        {
+          "property_name": "INDIRIZZO",
+          "display_name": "Indirizzo",
+          "type": "number"
+        },
+        {
+          "property_name": "PERICOLOS_FRANE",
+          "display_name": "Pericolo frane",
+          "type": "string"
+        },
+        {
+          "property_name": "PERICOLOS_IDRO",
+          "display_name": "Pericolo idrologico",
+          "type": "string"
+        },
+        {
+          "property_name": "PERICOLOS_INC",
+          "display_name": "Pericolo incendio",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Cinema",
+      "layer": "GEOJSON_CINEMA",
+      "layer_url_wfs": "./GeoJson/cinemas.geojson",
+      "style": {
+        "color": "#b795d2",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "cinema"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "name",
+          "display_name": "Nome",
+          "type": "string"
+        },
+        {
+          "property_name": "url",
+          "display_name": "Sito web",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
+      "name": "Teatri",
+      "layer": "GEOJSON_TEATRI",
+      "layer_url_wfs": "./GeoJson/theatre.geojson",
+      "style": {
+        "color": "#c06156",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "teatri"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "name",
+          "display_name": "Nome",
+          "type": "string"
+        },
+        {
+          "property_name": "addr:street",
+          "display_name": "Via",
+          "type": "string"
+        },
+        {
+          "property_name": "addr:housenumber",
+          "display_name": "n",
+          "type": "string"
+        },
+        {
+          "property_name": "website",
+          "display_name": "Sito web",
+          "type": "string"
+        },
+        {
+          "property_name": "wikidata",
+          "display_name": "Wikidata",
+          "type": "string"
+        },
+        {
+          "property_name": "P154",
+          "display_name": "Logo",
+          "type": "img"
+        },
+        {
+          "property_name": "P18",
+          "display_name": "Foto",
+          "type": "img"
+        },
+        {
+          "property_name": "P856",
+          "display_name": "Sito web",
+          "type": "url"
+        }
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
+      "name": "Scuole",
+      "layer": "SITGEO:SCUOLE_AGG_GEO",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#97424c",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "ospedali"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "CATEGORIA",
+          "display_name": "Categoria",
+          "type": "number"
+        },
+        {
+          "property_name": "NOME",
+          "display_name": "Nome",
+          "type": "number"
+        },
+        {
+          "property_name": "TIPO_DIREZ_TERRITORIALE",
+          "display_name": "Tipo direzione territoriale",
+          "type": "number"
+        },
+        {
+          "property_name": "DIREZ_TERRITORIALE",
+          "display_name": "Direzione territoriale",
+          "type": "number"
+        },
+        {
+          "property_name": "MUNICIPIO",
+          "display_name": "Municipio",
+          "type": "number"
+        },
+        {
+          "property_name": "INDIRIZZO",
+          "display_name": "Indirizzo",
+          "type": "number"
+        },
+        {
+          "property_name": "UNITA_URBANISTICA",
+          "display_name": "Unità urbanistica",
+          "type": "number"
+        },
+        {
+          "property_name": "CAP",
+          "display_name": "CAP",
+          "type": "string"
+        },
+        {
+          "property_name": "EMAIL",
+          "display_name": "Email",
+          "type": "string"
+        },
+        {
+          "property_name": "TELEFONO",
+          "display_name": "Telefono",
+          "type": "string"
+        },
+        {
+          "property_name": "FAX",
+          "display_name": "Fax",
+          "type": "string"
+        },
+        {
+          "property_name": "PERICOLOS_FRANE",
+          "display_name": "Pericolo frane",
+          "type": "string"
+        },
+        {
+          "property_name": "PERICOLOS_IDRO",
+          "display_name": "Pericolo idrologico",
+          "type": "string"
+        },
+        {
+          "property_name": "PERICOLOS_INC",
+          "display_name": "Pericolo incendio",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Mercati rionali",
+      "layer": "SITGEO:V_COM_MERCATI",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#37f58e",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "ospedali"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "INDIRIZZO",
+          "display_name": "Indirizzo",
+          "type": "number"
+        },
+        {
+          "property_name": "TIPO",
+          "display_name": "Tipo",
+          "type": "string"
+        },
+        {
+          "property_name": "APERTURA",
+          "display_name": "Apertura",
+          "type": "string"
+        },
+        {
+          "property_name": "GIORNI",
+          "display_name": "Giorni",
+          "type": "string"
+        },
+        {
+          "property_name": "ZONA",
+          "display_name": "Zona",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Strutture ricettive turistiche",
+      "layer": "SITGEO:V_RIC_TURISTICHE",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#bf5132",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "strada"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "TIPOLOGIA",
+          "display_name": "Tipologia",
+          "type": "string"
+        },
+        {
+          "property_name": "INDIRIZZO",
+          "display_name": "Indirizzo",
+          "type": "string"
+        },
+        {
+          "property_name": "CIVICO",
+          "display_name": "n",
+          "type": "number"
+        },
+        {
+          "property_name": "CLAS",
+          "display_name": "Valutazione",
+          "type": "string"
+        },
+        {
+          "property_name": "CAMERE",
+          "display_name": "Camere",
+          "type": "number"
+        },
+        {
+          "property_name": "LETTI",
+          "display_name": "Letti",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Acqua potabile",
+      "layer": "GEOJSON_ACQUA_POTABILE",
+      "layer_url_wfs": "./GeoJson/drinking-water.geojson",
+      "style": {
+        "color": "#b89da7",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "acqua",
+        "potabile",
+        "fontane"
+      ],
+      "relevant_properties": [],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Camere di sorveglianza",
+      "layer": "GEOJSON_SURVEILLANCE_CAMERAS",
+      "layer_url_wfs": "./GeoJson/surveillance-cameras.geojson",
+      "style": {
+        "color": "#691a40",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "sicurezza"
+      ],
+      "relevant_properties": [],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "ATM",
+      "layer": "GEOJSON_ATM",
+      "layer_url_wfs": "./GeoJson/atm.geojson",
+      "style": {
+        "color": "#4bdd99",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "sicurezza"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "name",
+          "display_name": "Banca",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    }
+  ]
 }
