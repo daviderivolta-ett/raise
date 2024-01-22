@@ -64,6 +64,7 @@ export class MapPage extends HTMLElement {
             </div>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
+            <app-map-mode-btn></app-map-mode-btn>
             <app-center-position></app-center-position>
             <app-no-position-dialog></app-no-position-dialog>
             `
@@ -79,6 +80,7 @@ export class MapPage extends HTMLElement {
         this.benchToggle = this.shadow.querySelector('app-bench-toggle');
         this.carousel = this.shadow.querySelector('app-carousel');
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
+        this.changeMapMode = this.shadow.querySelector('app-map-mode-btn');
         this.centerPosition = this.shadow.querySelector('app-center-position');
         this.noPositionDialog = this.shadow.querySelector('app-no-position-dialog');
 
@@ -188,6 +190,11 @@ export class MapPage extends HTMLElement {
         // theme icon
         this.themeIcon.addEventListener('themechange', event => {
             this.map.changeTheme(event.detail.theme);
+        });
+
+        // map mode icon
+        this.changeMapMode.addEventListener('change-map-mode', () => {
+            this.map.changeMapMode();
         });
 
         // center position icon

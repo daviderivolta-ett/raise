@@ -22,6 +22,7 @@ import './src/components/bench.chip.component.js';
 import './src/components/play-info-btn.component.js';
 import './src/components/goto-btn.component.js';
 import './src/components/add-to-route-btn.component.js';
+import './src/components/map-mode-btn.component.js';
 import './src/components/center-position-btn.component.js';
 import './src/components/snackbar.component.js';
 

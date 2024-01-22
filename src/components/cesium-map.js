@@ -7,6 +7,7 @@ export default class CesiumViewer extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
+        this.transitioner = null;
     }
 
     connectedCallback() {
@@ -24,6 +25,8 @@ export default class CesiumViewer extends HTMLElement {
             sceneModePicker: false,
             fullscreenButton: false,
             infoBox: false,
+            sceneMode: Cesium.SceneMode.SCENE2D,
+            mapMode2D: Cesium.MapMode2D.ROTATE
         });
 
         // js
@@ -108,6 +111,15 @@ export default class CesiumViewer extends HTMLElement {
         }
     }
 
+    changeMapMode() {
+        let currentMode = this.viewer.scene.mode;
+        if (currentMode === Cesium.SceneMode.SCENE3D) {
+            this.viewer.scene.morphTo2D(0);
+        } else if (currentMode === Cesium.SceneMode.SCENE2D) {
+            this.viewer.scene.morphTo3D(0);
+        }
+        
+    }
 
     changeTheme(theme) {
         const themeLayerToRemove = this.viewer.imageryLayers._layers[1];
