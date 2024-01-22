@@ -62,7 +62,6 @@ export class MapPage extends HTMLElement {
                 </div>
                 <app-carousel></app-carousel>
             </div>
-            <app-path-drawer></app-path-drawer>
             <app-search-result></app-search-result>
             <app-bench></app-bench>
             <app-center-position></app-center-position>
@@ -80,7 +79,6 @@ export class MapPage extends HTMLElement {
         this.benchToggle = this.shadow.querySelector('app-bench-toggle');
         this.carousel = this.shadow.querySelector('app-carousel');
         this.themeIcon = this.shadow.querySelector('app-theme-icon');
-        this.path = this.shadow.querySelector('app-path-drawer');
         this.centerPosition = this.shadow.querySelector('app-center-position');
         this.noPositionDialog = this.shadow.querySelector('app-no-position-dialog');
 
@@ -97,7 +95,6 @@ export class MapPage extends HTMLElement {
             this.benchToggle.setAttribute('is-open', false);
             this.tabsToggle.setAttribute('is-open', false);
             this.centerPosition.setAttribute('is-open', false);
-            this.path.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
 
             const entity = this.map.getEntity(event.detail.movement);
@@ -152,7 +149,8 @@ export class MapPage extends HTMLElement {
         });
 
         this.searchbar.shadowRoot.querySelector('input').addEventListener('click', () => {
-            this.path.setAttribute('is-open', false);
+            this.tabsToggle.setAttribute('is-open', false);
+            this.benchToggle.setAttribute('is-open', false);
         });
 
         // carousel & bench

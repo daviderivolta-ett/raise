@@ -3,7 +3,7 @@
     top: 80px;
     left: -356px;
     width: 356px;
-    transition: .2s ease-in-out;
+    /* transition: .2s ease-in-out; */
     box-sizing: border-box;
     background-color: var(--blue-90);
     border-radius: 16px;
