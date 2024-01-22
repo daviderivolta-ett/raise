@@ -31,6 +31,8 @@ export class Searchbar extends HTMLElement {
             this.setAttribute('value', this.input.value);
         });
 
+        document.addEventListener('add-layer', () => this.input.value = '');
+
         // css
         const style = document.createElement('link');
         style.setAttribute('rel', 'stylesheet');
