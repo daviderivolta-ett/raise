@@ -1,172 +1,172 @@
 {
-    "name": "Trasporto pubblico",
-    "layers": [
+  "name": "Trasporto pubblico",
+  "layers": [
+    {
+      "name": "Fermate AMT",
+      "layer": "SITGEO:V_MOB_FERMATE_AMT",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#85499a",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "mezzi pubblici",
+        "amt",
+        "autobus"
+      ],
+      "relevant_properties": [
         {
-            "name": "Fermate AMT",
-            "layer": "SITGEO:V_MOB_FERMATE_AMT",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "mezzi pubblici",
-                "amt",
-                "autobus"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "LINEA",
-                    "display_name": "Linee",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DETTAGLI",
-                    "display_name": "Dettagli",
-                    "type": "string"
-                },
-                {
-                    "property_name": "NOME_FERMATA",
-                    "display_name": "Nome fermata",
-                    "type": "number"
-                },
-                {
-                    "property_name": "CODICE_FERMATA",
-                    "display_name": "Codice",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "LINEA",
+          "display_name": "Linee",
+          "type": "string"
         },
         {
-            "name": "Tracciato metropolitana",
-            "layer": "SITGEO:V_MOB_METROPOLITANA",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "mezzi pubblici",
-                "amt",
-                "metropolitana"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "DETTAGLI",
+          "display_name": "Dettagli",
+          "type": "string"
         },
         {
-            "name": "Stazioni metropolitana",
-            "layer": "SITGEO:V_MOB_METROPOLITANA_STAZIONI",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "mezzi pubblici",
-                "amt",
-                "metropolitana"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME_STAZ",
-                    "display_name": "Nome stazione",
-                    "type": "string"
-                },
-                {
-                    "property_name": "STATO",
-                    "display_name": "Stato",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
+          "property_name": "NOME_FERMATA",
+          "display_name": "Nome fermata",
+          "type": "number"
         },
         {
-            "name": "Funicolari",
-            "layer": "L8020",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "funicolare"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DEF_SEDE",
-                    "display_name": "Sede",
-                    "type": "number"
-                },
-                {
-                    "property_name": "DEF_LIVELLO",
-                    "display_name": "Livello",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_STATO",
-                    "display_name": "Stato",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Ferrovia regionale",
-            "layer": "L8019",
-            "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 0.5
-            },
-            "tags": [
-                "strada",
-                "regione",
-                "ferrovia"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DEF_COD_TRATTA",
-                    "display_name": "Tratta",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_ALTA_VEL",
-                    "display_name": "Tipo velocità",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_SEDE",
-                    "display_name": "Sede",
-                    "type": "number"
-                },
-                {
-                    "property_name": "DEF_LIVELLO",
-                    "display_name": "Livello",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DEF_FONDO",
-                    "display_name": "Fondo",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "CODICE_FERMATA",
+          "display_name": "Codice",
+          "type": "string"
         }
-    ]
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Tracciato metropolitana",
+      "layer": "SITGEO:V_MOB_METROPOLITANA",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#1b2eb7",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "mezzi pubblici",
+        "amt",
+        "metropolitana"
+      ],
+      "relevant_properties": [],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Stazioni metropolitana",
+      "layer": "SITGEO:V_MOB_METROPOLITANA_STAZIONI",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#58a293",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "mezzi pubblici",
+        "amt",
+        "metropolitana"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME_STAZ",
+          "display_name": "Nome stazione",
+          "type": "string"
+        },
+        {
+          "property_name": "STATO",
+          "display_name": "Stato",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
+      "name": "Funicolari",
+      "layer": "L8020",
+      "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
+      "style": {
+        "color": "#493e68",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "funicolare"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "DEF_SEDE",
+          "display_name": "Sede",
+          "type": "number"
+        },
+        {
+          "property_name": "DEF_LIVELLO",
+          "display_name": "Livello",
+          "type": "string"
+        },
+        {
+          "property_name": "DEF_STATO",
+          "display_name": "Stato",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Ferrovia regionale",
+      "layer": "L8019",
+      "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
+      "style": {
+        "color": "#e4fd76",
+        "opacity": 0.5
+      },
+      "tags": [
+        "strada",
+        "regione",
+        "ferrovia"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "DEF_COD_TRATTA",
+          "display_name": "Tratta",
+          "type": "string"
+        },
+        {
+          "property_name": "DEF_ALTA_VEL",
+          "display_name": "Tipo velocità",
+          "type": "string"
+        },
+        {
+          "property_name": "DEF_SEDE",
+          "display_name": "Sede",
+          "type": "number"
+        },
+        {
+          "property_name": "DEF_LIVELLO",
+          "display_name": "Livello",
+          "type": "string"
+        },
+        {
+          "property_name": "DEF_FONDO",
+          "display_name": "Fondo",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    }
+  ]
 }

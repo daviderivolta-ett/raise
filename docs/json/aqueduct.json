@@ -1,217 +1,217 @@
 {
-    "name": "Acquedotto di Genova",
-    "layers": [
+  "name": "Acquedotto di Genova",
+  "layers": [
+    {
+      "name": "Acquedotto storico",
+      "layer": "CULTURA:V_ACQ_STORICO",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#33e000",
+        "opacity": 1
+      },
+      "tags": [
+        "cultura",
+        "acquedotto",
+        "percorso",
+        "sentiero",
+        "cultura",
+        "storia"
+      ],
+      "relevant_properties": [
         {
-            "name": "Acquedotto storico",
-            "layer": "CULTURA:V_ACQ_STORICO",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "cultura",
-                "acquedotto",
-                "percorso",
-                "sentiero",
-                "cultura",
-                "storia"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "TIPO",
-                    "display_name": "Manufatto",
-                    "type": "string"
-                },
-                {
-                    "property_name": "TRACCIATO",
-                    "display_name": "Tracciato",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "TIPO",
+          "display_name": "Manufatto",
+          "type": "string"
         },
         {
-            "name": "Manufatti storici",
-            "layer": "CULTURA:V_ACQ_MANU_STORICI",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#008000",
-                "opacity": 1
-            },
-            "tags": [
-                "cultura",
-                "acquedotto",
-                "cultura",
-                "storia",
-                "manufatto"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DESCR1",
-                    "display_name": "Tipologia",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DESCR3",
-                    "display_name": "Descrizione",
-                    "type": "string"
-                },
-                {
-                    "property_name": "NOME",
-                    "display_name": "Nome",
-                    "type": "string"
-                },
-                {
-                    "property_name": "NUMERAZIONE",
-                    "display_name": "Numero progressivo",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
-        },
-        {
-            "name": "Area di sosta",
-            "layer": "CULTURA:V_ACQ_AREA_SOSTA",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#0000ff",
-                "opacity": 1
-            },
-            "tags": [
-                "cultura",
-                "acquedotto",
-                "percorso",
-                "sentiero",
-                "cultura",
-                "sosta",
-                "ristoro"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
-        },
-        {
-            "name": "Punti di accesso",
-            "layer": "V_ACQ_PTI_ACCESSO",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#800080",
-                "opacity": 1
-            },
-            "tags": [
-                "cultura",
-                "acquedotto",
-                "percorso",
-                "sentiero",
-                "cultura",
-                "accesso"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME",
-                    "display_name": "Indirizzo",
-                    "type": "string"
-                },
-                {
-                    "property_name": "ETICHETTA",
-                    "display_name": "Altezza civico",
-                    "type": "number"
-                }
-            ],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
-        },
-        {
-            "name": "Punti di interesse storico",
-            "layer": "CULTURA:V_ACQ_PTI_INT_STORICO",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "cultura",
-                "acquedotto",
-                "percorso",
-                "sentiero",
-                "cultura",
-                "sosta",
-                "interesse"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME",
-                    "display_name": "Nome",
-                    "type": "string"
-                },
-                {
-                    "property_name": "NOTE",
-                    "display_name": "Descrizione",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
-        },
-        {
-            "name": "Pannelli informativi",
-            "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "cultura",
-                "acquedotto",
-                "percorso",
-                "sentiero",
-                "cultura",
-                "sosta",
-                "pannello",
-                "informazione"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
-        },
-        {
-            "name": "Fonti acqua potabile",
-            "layer": "SITGEO:V_ACQUA_POTABILE",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "cultura",
-                "acquedotto",
-                "percorso",
-                "sentiero",
-                "cultura",
-                "sosta",
-                "ristoro",
-                "acqua"
-            ],
-            "relevant_properties": [],
-            "components": [
-                "app-opacity-slider",
-                "app-navigation-btn"
-            ]
+          "property_name": "TRACCIATO",
+          "display_name": "Tracciato",
+          "type": "string"
         }
-    ]
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Manufatti storici",
+      "layer": "CULTURA:V_ACQ_MANU_STORICI",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#5e0ca8",
+        "opacity": 1
+      },
+      "tags": [
+        "cultura",
+        "acquedotto",
+        "cultura",
+        "storia",
+        "manufatto"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "DESCR1",
+          "display_name": "Tipologia",
+          "type": "string"
+        },
+        {
+          "property_name": "DESCR3",
+          "display_name": "Descrizione",
+          "type": "string"
+        },
+        {
+          "property_name": "NOME",
+          "display_name": "Nome",
+          "type": "string"
+        },
+        {
+          "property_name": "NUMERAZIONE",
+          "display_name": "Numero progressivo",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
+      "name": "Area di sosta",
+      "layer": "CULTURA:V_ACQ_AREA_SOSTA",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#64896d",
+        "opacity": 1
+      },
+      "tags": [
+        "cultura",
+        "acquedotto",
+        "percorso",
+        "sentiero",
+        "cultura",
+        "sosta",
+        "ristoro"
+      ],
+      "relevant_properties": [],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
+      "name": "Punti di accesso",
+      "layer": "V_ACQ_PTI_ACCESSO",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#714fc7",
+        "opacity": 1
+      },
+      "tags": [
+        "cultura",
+        "acquedotto",
+        "percorso",
+        "sentiero",
+        "cultura",
+        "accesso"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME",
+          "display_name": "Indirizzo",
+          "type": "string"
+        },
+        {
+          "property_name": "ETICHETTA",
+          "display_name": "Altezza civico",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
+      "name": "Punti di interesse storico",
+      "layer": "CULTURA:V_ACQ_PTI_INT_STORICO",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#5d18f3",
+        "opacity": 1
+      },
+      "tags": [
+        "cultura",
+        "acquedotto",
+        "percorso",
+        "sentiero",
+        "cultura",
+        "sosta",
+        "interesse"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME",
+          "display_name": "Nome",
+          "type": "string"
+        },
+        {
+          "property_name": "NOTE",
+          "display_name": "Descrizione",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
+      "name": "Pannelli informativi",
+      "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#d356c4",
+        "opacity": 1
+      },
+      "tags": [
+        "cultura",
+        "acquedotto",
+        "percorso",
+        "sentiero",
+        "cultura",
+        "sosta",
+        "pannello",
+        "informazione"
+      ],
+      "relevant_properties": [],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
+      "name": "Fonti acqua potabile",
+      "layer": "SITGEO:V_ACQUA_POTABILE",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#d8acd1",
+        "opacity": 1
+      },
+      "tags": [
+        "cultura",
+        "acquedotto",
+        "percorso",
+        "sentiero",
+        "cultura",
+        "sosta",
+        "ristoro",
+        "acqua"
+      ],
+      "relevant_properties": [],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    }
+  ]
 }

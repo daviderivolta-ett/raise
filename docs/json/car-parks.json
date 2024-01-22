@@ -1,127 +1,127 @@
 {
-    "name": "Aree parcheggio",
-    "layers": [
+  "name": "Aree parcheggio",
+  "layers": [
+    {
+      "name": "Parcheggi Car Sharing",
+      "layer": "V_MOB_PARKS_CARSHARING",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#aaac98",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "parcheggi",
+        "car sharing"
+      ],
+      "relevant_properties": [
         {
-            "name": "Parcheggi Car Sharing",
-            "layer": "V_MOB_PARKS_CARSHARING",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "parcheggi",
-                "car sharing"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME",
-                    "display_name": "Nome",
-                    "type": "string"
-                },
-                {
-                    "property_name": "NUMERO_STALLI",
-                    "display_name": "Numero stalli",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "NOME",
+          "display_name": "Nome",
+          "type": "string"
         },
         {
-            "name": "Parcheggi di interscambio",
-            "layer": "V_MOB_PARKS_INTERSCAMBIO",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 1
-            },
-            "tags": [
-                "città",
-                "parcheggi",
-                "interscambio"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "NOME",
-                    "display_name": "Nome",
-                    "type": "string"
-                },
-                {
-                    "property_name": "NUMERO_STALLI",
-                    "display_name": "Numero stalli",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "Blu area",
-            "layer": "SITGEO:V_MOB_BLUAREA",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 0.5
-            },
-            "tags": [
-                "città",
-                "parcheggi",
-                "blu area"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "DENOMINAZIONE",
-                    "display_name": "Nome area",
-                    "type": "string"
-                },
-                {
-                    "property_name": "CODICE_ZONA",
-                    "display_name": "Codice area",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
-        },
-        {
-            "name": "ZTL ambiente",
-            "layer": "SITGEO:V_MOB_ZTL_AMBIENTE",
-            "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-            "style": {
-                "color": "#ff0000",
-                "opacity": 0.5
-            },
-            "tags": [
-                "città",
-                "parcheggi",
-                "ztl",
-                "ambiente"
-            ],
-            "relevant_properties": [
-                {
-                    "property_name": "ZONA",
-                    "display_name": "Zona",
-                    "type": "string"
-                },
-                {
-                    "property_name": "DESCRIZIONE",
-                    "display_name": "Descrizione",
-                    "type": "string"
-                },
-                {
-                    "property_name": "TIPOLOGIA",
-                    "display_name": "Tipologia",
-                    "type": "string"
-                }
-            ],
-            "components": [
-                "app-opacity-slider"
-            ]
+          "property_name": "NUMERO_STALLI",
+          "display_name": "Numero stalli",
+          "type": "string"
         }
-    ]
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Parcheggi di interscambio",
+      "layer": "V_MOB_PARKS_INTERSCAMBIO",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#12ca7f",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "parcheggi",
+        "interscambio"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME",
+          "display_name": "Nome",
+          "type": "string"
+        },
+        {
+          "property_name": "NUMERO_STALLI",
+          "display_name": "Numero stalli",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Blu area",
+      "layer": "SITGEO:V_MOB_BLUAREA",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#56f676",
+        "opacity": 0.5
+      },
+      "tags": [
+        "città",
+        "parcheggi",
+        "blu area"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "DENOMINAZIONE",
+          "display_name": "Nome area",
+          "type": "string"
+        },
+        {
+          "property_name": "CODICE_ZONA",
+          "display_name": "Codice area",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "ZTL ambiente",
+      "layer": "SITGEO:V_MOB_ZTL_AMBIENTE",
+      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "style": {
+        "color": "#c019c1",
+        "opacity": 0.5
+      },
+      "tags": [
+        "città",
+        "parcheggi",
+        "ztl",
+        "ambiente"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "ZONA",
+          "display_name": "Zona",
+          "type": "string"
+        },
+        {
+          "property_name": "DESCRIZIONE",
+          "display_name": "Descrizione",
+          "type": "string"
+        },
+        {
+          "property_name": "TIPOLOGIA",
+          "display_name": "Tipologia",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    }
+  ]
 }
