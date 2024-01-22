@@ -31,6 +31,7 @@ export class SearchResult extends HTMLElement {
                     document.dispatchEvent(new CustomEvent('add-layer', {
                         detail: { layers: [ e.detail.layer ] }
                     }));
+                    this.setAttribute('is-open', false);
                 });
                 this.div.scrollTop = 0;
             });
