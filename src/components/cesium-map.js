@@ -71,12 +71,18 @@ export default class CesiumViewer extends HTMLElement {
                 roll: 0
             },
             duration: 0.5
-        })
+        });
+    }
+
+    checkUserPin(position) {
+        const userPin = this.viewer.entities.getById('user-pin');
+        userPin ? this.updateUserPin(position) : this.createUserPin(position);
     }
 
     createUserPin(position) {
         this.viewer.entities.add({
             name: 'user_pin',
+            id: 'user-pin',
             position: Cesium.Cartesian3.fromDegrees(position.longitude, position.latitude, 0.0),
             point: {
                 pixelSize: 8,
@@ -85,6 +91,10 @@ export default class CesiumViewer extends HTMLElement {
                 outlineWidth: 1
             }
         });
+    }
+
+    updateUserPin(userPin, newPosition) {
+        userPin.position = newPosition;
     }
 
     mouseOver(movement) {

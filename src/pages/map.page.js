@@ -86,7 +86,7 @@ export class MapPage extends HTMLElement {
         // map
         if (this.position.latitude && this.position.longitude) {
             this.map.setCameraToPosition(this.position);
-            this.map.createUserPin(this.position);
+            this.map.checkUserPin(this.position);
         } else {
             this.map.setCameraToPosition({ latitude: 44.40753207658791, longitude: 8.934080815653985 });
         }
@@ -198,11 +198,10 @@ export class MapPage extends HTMLElement {
         this.centerPosition.addEventListener('center-position', async () => {
             try {
                 let p = await UserPositionService.instance.getPosition();
-                console.log(p);
                 this.position.latitude = p.coords.latitude;
                 this.position.longitude = p.coords.longitude;
                 this.map.setCameraToPosition(this.position); 
-                this.map.createUserPin(this.position);
+                this.map.checkUserPin(this.position);
             } catch (error) {
                 console.error('Impossibile recuperare la posizione', error);
                 EventObservable.instance.publish('no-position-found');
