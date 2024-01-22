@@ -64,6 +64,8 @@ export class ThemeIconComponent extends HTMLElement {
             } else {
                 this.theme = this.themes[this.themeIndex];
             }
+
+            localStorage.setItem('theme', JSON.stringify(this.themeIndex));
         });
 
         // css

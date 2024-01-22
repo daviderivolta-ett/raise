@@ -28,10 +28,15 @@ export class LocalStorageService {
             let defaultRoute = new Route('Default', [], 'default', true);
             routes.push(defaultRoute);
             localStorage.setItem('routes', JSON.stringify(routes));
-            this.data.routes = routes; 
+            this.data.routes = routes;
         } else {
             this.data.routes = routes.map(route => new Route(route.name, route.features, route.type, route.lastSelected));
         }
+
+        let theme = JSON.parse(localStorage.getItem('theme'));
+        if (!theme) theme = 1;
+        this.data.theme = theme;
+
         console.log("Local storage:", this.data);
         return this.data;
     }
