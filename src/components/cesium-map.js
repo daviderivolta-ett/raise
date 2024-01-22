@@ -60,10 +60,12 @@ export default class CesiumViewer extends HTMLElement {
     }
 
     setCameraToPosition(position) {
+        let currentCameraPosition = this.viewer.camera.positionCartographic;
+        currentCameraPosition.height > 2000000 ? currentCameraPosition.height = 2000 : currentCameraPosition.height;
         const initialPosition = Cesium.Cartesian3.fromDegrees(
             position.longitude,
             position.latitude,
-            2000
+            currentCameraPosition.height
         )
 
         this.viewer.camera.flyTo({
