@@ -222,11 +222,6 @@ export class MapPage extends HTMLElement {
             }
         });
 
-        // populate carousel
-        let layers = this.filterLayersByTags(this.data, LocalStorageService.instance.getData().selectedTags);
-        this.carousel.layers = layers;
-        layers.forEach(layer => this.carousel.createChip(layer));
-
         // themes
         this.themes = await ThemeService.instance.getThemes();
         this.map.loadImageryProviders(this.themes);
@@ -238,6 +233,25 @@ export class MapPage extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/map.page.css');
         this.shadow.append(style);
+
+        // INITIAL DATA POPULATION
+        // STARTING
+        let savedData = LocalStorageService.instance.getData();
+        let savedTags = savedData.selectedTags;
+        let savedLayers = savedData.layers;       
+
+        if (savedLayers.active.length === 0 && savedLayers.bench.length === 0) {
+            let layersByTags = this.filterLayersByTags(this.data, savedTags);
+            this.carousel.layers = layersByTags;
+            layersByTags.forEach(layer => this.carousel.createChip(layer));
+        } else {
+            this.carousel.layers = savedLayers.active;
+            savedLayers.active.forEach(layer => this.carousel.createChip(layer));
+
+            this.bench.layers = savedLayers.bench;
+            savedLayers.bench.forEach(layer => this.bench.createChip(layer));
+        }
+        // ENDING
 
         // splash removal
         splash = this.shadow.querySelector('app-splash');
