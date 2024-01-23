@@ -37,7 +37,7 @@ export class LocalStorageService {
         if (!theme) theme = 0;
         this.data.theme = theme;
 
-        // console.log("Local storage:", this.data);
+        console.log("Local storage:", this.data);
         return this.data;
     }
 }

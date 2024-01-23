@@ -4,7 +4,7 @@ export class ThemeIconComponent extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        this._themeIndex = 0;
+        this._themeIndex = 1;
     }
 
     get themeIndex() {
