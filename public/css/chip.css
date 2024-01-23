@@ -10,10 +10,6 @@ label {
     justify-content: center;
 }
 
-label:hover {
-    background-color: var(--light-blue-100);
-}
-
 input[type="checkbox"] {
     display: none;
 }
