@@ -34,7 +34,7 @@ export class LocalStorageService {
         }
 
         let theme = JSON.parse(localStorage.getItem('theme'));
-        if (!theme) theme = 0;
+        if (!theme) theme = 1;
         this.data.theme = theme;
 
         let layers = JSON.parse(localStorage.getItem('layers'));

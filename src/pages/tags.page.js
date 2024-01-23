@@ -99,14 +99,16 @@ export class TagsPage extends HTMLElement {
         this.submit.disabled = true;
 
         // js
+        let redirectUri = '/#/map';
+        
         this.submit.addEventListener('click', () => {
             localStorage.setItem('selectedTags', JSON.stringify(this.selected));
-            window.location.href = '/#/map';
+            window.location.href = redirectUri;
         });
 
         this.skip.addEventListener('click', () => {
             localStorage.setItem('selectedTags', JSON.stringify([]));
-            window.location.href = '/#/map';
+            window.location.href = redirectUri;
         });
 
         this.clear.addEventListener('click', () => localStorage.clear());
