@@ -64,4 +64,11 @@ export class LocalStorageService {
         localStorage.setItem('layers', JSON.stringify(currentLayers));
         // console.log("Local storage:", LocalStorageService.instance.getData());
     }
+
+    resetLayers() {
+        let currentLayers = LocalStorageService.instance.getData().layers;
+        currentLayers.bench.length = 0;
+        currentLayers.active.length = 0;
+        localStorage.setItem('layers', JSON.stringify(currentLayers));
+    }
 }

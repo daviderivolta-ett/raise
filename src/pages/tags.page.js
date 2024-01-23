@@ -65,6 +65,7 @@ export class TagsPage extends HTMLElement {
 
     async connectedCallback() {
         // services
+        LocalStorageService.instance.resetLayers();
         const data = await SettingService.instance.getData();
         this.tags = this.getTags(data);
         console.log('Tag attualmente salvati:', LocalStorageService.instance.getData().selectedTags);
