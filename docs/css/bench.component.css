@@ -9,6 +9,11 @@
     display: flex;
     align-items: center;
     transition: .2s ease-in-out;
+    overflow-y: auto;
+}
+
+:host::-webkit-scrollbar {
+    display: none;
 }
 
 :host(.visible) {
@@ -36,7 +41,7 @@ div::-webkit-scrollbar {
         left: 0;
         transform: none;
         max-width: 100%;
-        padding: 24px;
+        padding: 24px 72px 24px 24px;
     }
 
     :host(.visible) {
