@@ -102,15 +102,15 @@ export class MapPage extends HTMLElement {
 
             const entity = this.map.getEntity(event.detail.movement);
 
-            if (entity == undefined) {
+            if (entity == undefined || entity.id.id === 'user-pin') {
                 this.tabs.setAttribute('is-open', false);
                 return;
             }
-            
+
             const feature = FeatureService.instance.getFeature(entity, this.data);
             console.log('Feature cliccata:', feature);
             EventObservable.instance.publish('feature-selected', feature);
-            
+
             this.map.setCameraToPosition(feature.startingCoordinates);
             this.tabs.addFeature(feature);
             this.tabsToggle.setAttribute('is-open', true);
@@ -214,12 +214,12 @@ export class MapPage extends HTMLElement {
                 let p = await UserPositionService.instance.getPosition();
                 this.position.latitude = p.coords.latitude;
                 this.position.longitude = p.coords.longitude;
-                this.map.setCameraToPosition(this.position); 
+                this.map.setCameraToPosition(this.position);
                 this.map.checkUserPin(this.position);
             } catch (error) {
                 console.error('Impossibile recuperare la posizione', error);
                 EventObservable.instance.publish('no-position-found');
-            }          
+            }
         });
 
         // populate carousel
