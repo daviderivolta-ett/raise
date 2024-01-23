@@ -55,13 +55,13 @@ export class LocalStorageService {
         let currentLayers = LocalStorageService.instance.getData().layers;
         currentLayers.active = [...layers];
         localStorage.setItem('layers', JSON.stringify(currentLayers));
-        console.log("Local storage:", LocalStorageService.instance.getData());
+        // console.log("Local storage:", LocalStorageService.instance.getData());
     }
 
     updateBenchLayers(layers) {
         let currentLayers = LocalStorageService.instance.getData().layers;
         currentLayers.bench = [...layers];
         localStorage.setItem('layers', JSON.stringify(currentLayers));
-        console.log("Local storage:", LocalStorageService.instance.getData());
+        // console.log("Local storage:", LocalStorageService.instance.getData());
     }
 }

@@ -6,7 +6,7 @@ export class Router extends HTMLElement {
     }
 
     connectedCallback() {
-        console.log('Connected!');
+        // console.log('Connected!');
         // this.checkRoute();
         window.addEventListener('hashchange', () => {
             this.checkRoute();
@@ -19,7 +19,7 @@ export class Router extends HTMLElement {
     }
 
     changeRoute(hash) {
-        console.log('Route changed:', hash);
+        // console.log('Route changed:', hash);
         if (!hash) {
             const defaultRoute = Object.entries(this.routes).find(([key, value]) => value.type === 'default');
             if (defaultRoute) {
