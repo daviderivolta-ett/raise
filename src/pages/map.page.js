@@ -195,11 +195,6 @@ export class MapPage extends HTMLElement {
             this.map.loadLayers(event.detail.activeLayers);
         });
 
-        this.carousel.addEventListener('click', () => {
-            this.tabsToggle.setAttribute('is-open', false);
-            this.benchToggle.setAttribute('is-open', false);
-        });
-
         // theme icon
         this.themeIcon.addEventListener('themechange', event => {
             this.map.changeTheme(event.detail.themeIndex);

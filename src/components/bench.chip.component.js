@@ -15,6 +15,7 @@ export class BenchChipComponent extends HTMLElement {
     }
 
     connectedCallback() {
+        console.log(this.layer);
         // html
         this.shadow.innerHTML =
             `
@@ -52,6 +53,14 @@ export class BenchChipComponent extends HTMLElement {
             e.stopPropagation();
             this.dispatchEvent(new CustomEvent('delete-layer', { detail: { layer: this.layer } }));
             this.remove();
+        });
+
+        document.addEventListener('add-layer', e => {
+            let newLayer = e.detail.layers[0];
+            if (newLayer.layer === this.layer.layer) {
+                this.dispatchEvent(new CustomEvent('delete-layer', { detail: { layer: this.layer } }));
+                this.remove();
+            }
         });
 
         // css
