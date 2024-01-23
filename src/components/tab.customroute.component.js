@@ -320,7 +320,7 @@ export class TabCustomRoute extends HTMLElement {
         }
 
         this.resetOrder();
-        console.log('Percorso attuale:', this.route);
+        // console.log('Percorso attuale:', this.route);
         this.route.type === 'default' ? this.editBtn.disabled = true : this.editBtn.disabled = false;
     }
 }

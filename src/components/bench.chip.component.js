@@ -15,7 +15,6 @@ export class BenchChipComponent extends HTMLElement {
     }
 
     connectedCallback() {
-        console.log(this.layer);
         // html
         this.shadow.innerHTML =
             `

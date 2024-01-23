@@ -17,7 +17,7 @@ export class BenchComponent extends HTMLElement {
         this._layers = layers;
         if (this._layers.length == 0) this.dispatchEvent(new CustomEvent('bench-empty'));
         LocalStorageService.instance.updateBenchLayers(this._layers);
-        console.log('Bench', this.layers);
+        // console.log('Bench', this.layers);
     }
 
     connectedCallback() {

@@ -21,7 +21,7 @@ export class Carousel extends HTMLElement {
         this._layers = layers;
         this.dispatchEvent(new CustomEvent('load-layers', { detail: { activeLayers: this.layers } }));
         LocalStorageService.instance.updateActiveLayers(this._layers);
-        console.log('Active', this.layers);
+        // console.log('Active', this.layers);
     }
 
     get isGrabbed() {
