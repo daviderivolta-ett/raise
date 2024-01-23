@@ -86,7 +86,6 @@ export class TagsPage extends HTMLElement {
                         <button type="submit" class="submit">Continua</button>
                     </div>
                 </div>
-                <button type="button" class="clear">Clear local storage</button>
             </div>
             `
             ;
@@ -94,7 +93,6 @@ export class TagsPage extends HTMLElement {
         this.list = this.shadow.querySelector('.list');
         this.submit = this.shadow.querySelector('.submit');
         this.skip = this.shadow.querySelector('.skip');
-        this.clear = this.shadow.querySelector('.clear');
 
         this.submit.disabled = true;
 
@@ -108,8 +106,6 @@ export class TagsPage extends HTMLElement {
             localStorage.setItem('selectedTags', JSON.stringify([]));
             window.location.href = '/#/map';
         });
-
-        this.clear.addEventListener('click', () => localStorage.clear());
 
         // css
         const style = document.createElement('link');
