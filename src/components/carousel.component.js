@@ -1,3 +1,5 @@
+import { LocalStorageService } from "../services/local-storage.service";
+
 export class Carousel extends HTMLElement {
     _isGrabbed;
     _startX;
@@ -18,6 +20,7 @@ export class Carousel extends HTMLElement {
     set layers(layers) {
         this._layers = layers;
         this.dispatchEvent(new CustomEvent('load-layers', { detail: { activeLayers: this.layers } }));
+        LocalStorageService.instance.updateActiveLayers(this._layers);
     }
 
     get isGrabbed() {

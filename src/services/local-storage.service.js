@@ -37,7 +37,31 @@ export class LocalStorageService {
         if (!theme) theme = 0;
         this.data.theme = theme;
 
-        console.log("Local storage:", this.data);
+        let layers = JSON.parse(localStorage.getItem('layers'));
+        if (!layers) {
+            layers = {};
+            let active = [];
+            let bench = [];
+            layers.active = active;
+            layers.bench = bench;
+        }
+        this.data.layers = layers;
+
+        // console.log("Local storage:", this.data);
         return this.data;
+    }
+
+    updateActiveLayers(layers) {
+        let currentLayers = LocalStorageService.instance.getData().layers;
+        currentLayers.active = [...layers];
+        localStorage.setItem('layers', JSON.stringify(currentLayers));
+        // console.log("Local storage:", LocalStorageService.instance.getData());
+    }
+
+    updateBenchLayers(layers) {
+        let currentLayers = LocalStorageService.instance.getData().layers;
+        currentLayers.bench = [...layers];
+        localStorage.setItem('layers', JSON.stringify(currentLayers));
+        // console.log("Local storage:", LocalStorageService.instance.getData());
     }
 }

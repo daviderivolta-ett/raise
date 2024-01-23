@@ -1,3 +1,5 @@
+import { LocalStorageService } from "../services/local-storage.service";
+
 export class BenchComponent extends HTMLElement {
     _layers;
 
@@ -14,6 +16,7 @@ export class BenchComponent extends HTMLElement {
     set layers(layers) {
         this._layers = layers;
         if (this._layers.length == 0) this.dispatchEvent(new CustomEvent('bench-empty'));
+        LocalStorageService.instance.updateBenchLayers(this._layers);
     }
 
     connectedCallback() {
