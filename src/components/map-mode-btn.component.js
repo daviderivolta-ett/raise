@@ -21,9 +21,13 @@ export class MapModeBtnComponent extends HTMLElement {
         this.button = this.shadow.querySelector('button');
         if (!this.hasAttribute('is-open')) this.setAttribute('is-open', false);
         if (!this.hasAttribute('is-maximized')) this.setAttribute('is-maximized', false);
+        if (!this.hasAttribute('mode')) this.setAttribute('mode', '2d');
 
         // js
-        this.button.addEventListener('click', () => this.dispatchEvent(new CustomEvent('change-map-mode')));
+        this.button.addEventListener('click', () => {
+            this.dispatchEvent(new CustomEvent('change-map-mode'));
+            this.getAttribute('mode') === '2d' ? this.setAttribute('mode', '3d') : this.setAttribute('mode', '2d');
+        });
 
         // css
         const style = document.createElement('link');
@@ -32,7 +36,7 @@ export class MapModeBtnComponent extends HTMLElement {
         this.shadow.append(style);
     }
 
-    static observedAttributes = ['is-open', 'is-maximized'];
+    static observedAttributes = ['is-open', 'is-maximized', 'mode'];
     attributeChangedCallback(name, oldValue, newValue) {
         if (newValue != oldValue && oldValue != null) {
             if (name == 'is-open') {
@@ -41,6 +45,10 @@ export class MapModeBtnComponent extends HTMLElement {
 
             if (name == 'is-maximized') {
                 newValue === 'true' ? this.classList.add('maximized') : this.classList.remove('maximized');
+            }
+
+            if (name == 'mode') {
+                newValue === '3d' ? this.classList.add('highlight') : this.classList.remove('highlight');
             }
         }
     }
