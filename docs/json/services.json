@@ -502,6 +502,46 @@
         "app-opacity-slider",
         "app-navigation-btn"
       ]
+    },
+    {
+      "name": "Panchine pubbliche",
+      "layer": "GEOJSON_BENCH",
+      "layer_url_wfs": "./GeoJson/benches.geojson",
+      "style": {
+        "color": "#db2103",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "relax"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "backrest",
+          "display_name": "Schienale",
+          "type": "string"
+        },
+        {
+          "property_name": "material",
+          "display_name": "Materiale",
+          "type": "string"
+        },
+        {
+          "property_name": "seats",
+          "display_name": "N. sedute",
+          "type": "number"
+        },
+        {
+          "property_name": "description",
+          "display_name": "Descrizione",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
     }
   ]
 }
