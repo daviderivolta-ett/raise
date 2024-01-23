@@ -42,7 +42,7 @@ export class TagsPage extends HTMLElement {
             chip.addEventListener('chipChanged', e => {
                 if (e.detail.newValue == 'true') {
                     if (this.selected.includes(e.detail.tag)) return;
-                    this.selected.push(e.detail.tag);    
+                    this.selected.push(e.detail.tag);
                 } else {
                     this.selected = this.selected.filter(item => item !== e.detail.tag);
                 }
@@ -99,16 +99,14 @@ export class TagsPage extends HTMLElement {
         this.submit.disabled = true;
 
         // js
-        let redirectUri = '/#/map';
-        
         this.submit.addEventListener('click', () => {
             localStorage.setItem('selectedTags', JSON.stringify(this.selected));
-            window.location.href = redirectUri;
+            window.location.href = '/#/map';
         });
 
         this.skip.addEventListener('click', () => {
             localStorage.setItem('selectedTags', JSON.stringify([]));
-            window.location.href = redirectUri;
+            window.location.href = '/#/map';
         });
 
         this.clear.addEventListener('click', () => localStorage.clear());

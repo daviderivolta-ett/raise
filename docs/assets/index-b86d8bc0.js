@@ -21,7 +21,7 @@ var G=Object.defineProperty;var J=(r,s,e)=>s in r?G(r,s,{enumerable:!0,configura
             <div class="page">
                 <div class="box">
                     <div class="header">
-                        <img src="./RAISE_pictogram_nobg.svg" alt="Raise logo" class="logo">
+                        <img src="./images/RAISE_pictogram_nobg.svg" alt="Raise logo" class="logo">
                         <h1>Ecco alcuni dati che potrebbero interessarti:</h1>
                         <p class="info">Seleziona almeno una categoria di dati per iniziare. Non preoccuparti, potrai sceglierne altre successivamente.</p>
                     </div>
@@ -33,7 +33,7 @@ var G=Object.defineProperty;var J=(r,s,e)=>s in r?G(r,s,{enumerable:!0,configura
                 </div>
                 <button type="button" class="clear">Clear local storage</button>
             </div>
-            `,this.list=this.shadow.querySelector(".list"),this.submit=this.shadow.querySelector(".submit"),this.skip=this.shadow.querySelector(".skip"),this.clear=this.shadow.querySelector(".clear"),this.submit.disabled=!0;let t="/#/map";this.submit.addEventListener("click",()=>{localStorage.setItem("selectedTags",JSON.stringify(this.selected)),window.location.href=t}),this.skip.addEventListener("click",()=>{localStorage.setItem("selectedTags",JSON.stringify([])),window.location.href=t}),this.clear.addEventListener("click",()=>localStorage.clear());const i=document.createElement("link");i.setAttribute("rel","stylesheet"),i.setAttribute("href","./css/tags.page.css"),this.shadow.append(i),this.render()}getTags(e){let t=[];e.categories.forEach(n=>{n.groups.forEach(o=>{o.layers.forEach(l=>{l.tags&&l.tags.forEach(a=>{t.push(a)})})})});const i=[...new Set(t)];return i.sort(),i}}customElements.define("page-tags",Y);class L extends HTMLElement{constructor(){super(),this.shadow=this.attachShadow({mode:"closed"})}render(){}connectedCallback(){this.shadow.innerHTML=`
+            `,this.list=this.shadow.querySelector(".list"),this.submit=this.shadow.querySelector(".submit"),this.skip=this.shadow.querySelector(".skip"),this.clear=this.shadow.querySelector(".clear"),this.submit.disabled=!0,this.submit.addEventListener("click",()=>{localStorage.setItem("selectedTags",JSON.stringify(this.selected)),window.location.href="/raise/#/map"}),this.skip.addEventListener("click",()=>{localStorage.setItem("selectedTags",JSON.stringify([])),window.location.href="/raise/#/map"}),this.clear.addEventListener("click",()=>localStorage.clear());const t=document.createElement("link");t.setAttribute("rel","stylesheet"),t.setAttribute("href","./css/tags.page.css"),this.shadow.append(t),this.render()}getTags(e){let t=[];e.categories.forEach(n=>{n.groups.forEach(o=>{o.layers.forEach(l=>{l.tags&&l.tags.forEach(a=>{t.push(a)})})})});const i=[...new Set(t)];return i.sort(),i}}customElements.define("page-tags",Y);class L extends HTMLElement{constructor(){super(),this.shadow=this.attachShadow({mode:"closed"})}render(){}connectedCallback(){this.shadow.innerHTML=`
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             `,this.button=document.createElement("button"),this.button.innerHTML=`
             <span class="icon">
