@@ -27,7 +27,8 @@ export default class CesiumViewer extends HTMLElement {
             fullscreenButton: false,
             infoBox: false,
             sceneMode: Cesium.SceneMode.SCENE2D,
-            mapMode2D: Cesium.MapMode2D.ROTATE
+            mapMode2D: Cesium.MapMode2D.ROTATE,
+            mapProjection: new Cesium.WebMercatorProjection()
         });
 
         // js
