@@ -92,7 +92,7 @@ export default class CesiumViewer extends HTMLElement {
 
     checkUserPin(position) {
         const userPin = this.viewer.entities.getById('user-pin');
-        userPin ? this.updateUserPin(position) : this.createUserPin(position);
+        userPin ? this.updateUserPin(userPin, position) : this.createUserPin(position);
     }
 
     createUserPin(position) {
@@ -110,7 +110,7 @@ export default class CesiumViewer extends HTMLElement {
     }
 
     updateUserPin(userPin, newPosition) {
-        userPin.position = newPosition;
+        userPin.position = Cesium.Cartesian3.fromDegrees(newPosition.longitude, newPosition.latitude, 0.0);
     }
 
     mouseOver(movement) {
