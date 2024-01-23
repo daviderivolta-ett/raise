@@ -1,31 +1,10 @@
 export class ThemeIconComponent extends HTMLElement {
-    _themes;
-    _theme;
     _themeIndex;
 
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: 'closed' });
-        this.themeIndex = 0;
-    }
-
-    get themes() {
-        return this._themes;
-    }
-
-    set themes(themes) {
-        this._themes = themes;
-    }
-
-    get theme() {
-        return this._theme;
-    }
-
-    set theme(theme) {
-        this._theme = theme;
-        this.dispatchEvent(new CustomEvent('themechange', {
-            detail: { theme: this.theme }
-        }));
+        this._themeIndex = 0;
     }
 
     get themeIndex() {
@@ -34,6 +13,7 @@ export class ThemeIconComponent extends HTMLElement {
 
     set themeIndex(themeIndex) {
         this._themeIndex = themeIndex;
+        this.dispatchEvent(new CustomEvent('themechange', { detail: { themeIndex } }));
     }
 
     connectedCallback() {
@@ -57,15 +37,11 @@ export class ThemeIconComponent extends HTMLElement {
 
         // js
         this.button.addEventListener('click', () => {
-            this.themeIndex = (this.themeIndex + 1) % this.themes.length;
-
-            if (this.themeIndex == 0) {
-                this.theme = {};
-            } else {
-                this.theme = this.themes[this.themeIndex];
-            }
-
-            localStorage.setItem('theme', JSON.stringify(this.themeIndex));
+            let currentNum = this._themeIndex;
+            currentNum++;
+            if (currentNum > 2) currentNum = 0;
+            this.themeIndex = currentNum;
+            localStorage.setItem('theme', JSON.stringify(this._themeIndex));
         });
 
         // css
@@ -73,11 +49,6 @@ export class ThemeIconComponent extends HTMLElement {
         style.setAttribute('rel', 'stylesheet');
         style.setAttribute('href', './css/themeIcon.component.css');
         this.shadow.append(style);
-    }
-
-    setTheme(index) {
-        this.themeIndex = index;
-        this.theme = this.themes[this.themeIndex];
     }
 }
 

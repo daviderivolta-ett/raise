@@ -14,7 +14,7 @@ export default class CesiumViewer extends HTMLElement {
     connectedCallback() {
         // html
         Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5MjY2YmYxNy1mNTM2LTRlOWYtYTUyZC01ZmY0NjBhNzllMWEiLCJpZCI6MTY5MDU3LCJpYXQiOjE2OTU4ODQ4NzB9.bN66rOR5h37xuKVsuUSYRSLOGJy-34IhH9S1hr4NOOE';
-        
+
         this.viewer = new Cesium.Viewer(this.shadow, {
             baseLayerPicker: false,
             geocoder: false,
@@ -131,16 +131,16 @@ export default class CesiumViewer extends HTMLElement {
         } else if (currentMode === Cesium.SceneMode.SCENE2D) {
             this.viewer.scene.morphTo3D(0);
         }
-        
+
     }
 
-    changeTheme(theme) {
-        const themeLayerToRemove = this.viewer.imageryLayers._layers[1];
-        this.viewer.imageryLayers.remove(themeLayerToRemove);
-
-        if (Object.keys(theme).length != 0) {
-            const style = this.getImageryProvider(theme.url, theme.layer, theme.credit);
-            this.viewer.imageryLayers.addImageryProvider(style);
+    changeTheme(themeIndex) {
+        for (let i = 0; i <= 2; i++) {
+            if (i === themeIndex) {
+                this.viewer.imageryLayers.get(i).show = true
+            } else {
+                this.viewer.imageryLayers.get(i).show = false;
+            }
         }
     }
 
@@ -153,6 +153,13 @@ export default class CesiumViewer extends HTMLElement {
             maximumLevel: 19,
             tileMatrixSetID: 'default',
             credit: new Cesium.Credit(credit)
+        });
+    }
+
+    loadImageryProviders(layers) {
+        layers.forEach(layer => {
+            const style = this.getImageryProvider(layer.url, layer.layer, layer.credit);
+            this.viewer.imageryLayers.addImageryProvider(style);
         });
     }
 

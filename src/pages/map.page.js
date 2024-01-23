@@ -196,7 +196,7 @@ export class MapPage extends HTMLElement {
 
         // theme icon
         this.themeIcon.addEventListener('themechange', event => {
-            this.map.changeTheme(event.detail.theme);
+            this.map.changeTheme(event.detail.themeIndex);
         });
 
         // map mode icon
@@ -228,9 +228,10 @@ export class MapPage extends HTMLElement {
         layers.forEach(layer => this.carousel.createChip(layer));
 
         // themes
-        this.themeIcon.themes = await ThemeService.instance.getThemes();
-        console.log(LocalStorageService.instance.getData().theme);
-        this.themeIcon.setTheme(LocalStorageService.instance.getData().theme);
+        this.themes = await ThemeService.instance.getThemes();
+        this.map.loadImageryProviders(this.themes);
+        let savedThemeIndex = LocalStorageService.instance.getData().theme;
+        this.themeIcon.themeIndex = savedThemeIndex;
 
         // css
         const style = document.createElement('link');
