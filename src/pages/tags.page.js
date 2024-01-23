@@ -82,7 +82,8 @@ export class TagsPage extends HTMLElement {
                     </div>
                     <div class="list"></div>
                     <div class="buttons">
-                        <button type="submit" class="submit">Avanti</button>
+                        <button type="submit" class="skip">Continua senza preferenze</button>
+                        <button type="submit" class="submit">Continua</button>
                     </div>
                 </div>
                 <button type="button" class="clear">Clear local storage</button>
@@ -92,6 +93,7 @@ export class TagsPage extends HTMLElement {
 
         this.list = this.shadow.querySelector('.list');
         this.submit = this.shadow.querySelector('.submit');
+        this.skip = this.shadow.querySelector('.skip');
         this.clear = this.shadow.querySelector('.clear');
 
         this.submit.disabled = true;
@@ -99,6 +101,11 @@ export class TagsPage extends HTMLElement {
         // js
         this.submit.addEventListener('click', () => {
             localStorage.setItem('selectedTags', JSON.stringify(this.selected));
+            window.location.href = '/#/map';
+        });
+
+        this.skip.addEventListener('click', () => {
+            localStorage.setItem('selectedTags', JSON.stringify([]));
             window.location.href = '/#/map';
         });
 
