@@ -188,30 +188,6 @@
         "app-opacity-slider",
         "app-navigation-btn"
       ]
-    },
-    {
-      "name": "Fonti acqua potabile",
-      "layer": "SITGEO:V_ACQUA_POTABILE",
-      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-      "style": {
-        "color": "#d8acd1",
-        "opacity": 1
-      },
-      "tags": [
-        "cultura",
-        "acquedotto",
-        "percorso",
-        "sentiero",
-        "cultura",
-        "sosta",
-        "ristoro",
-        "acqua"
-      ],
-      "relevant_properties": [],
-      "components": [
-        "app-opacity-slider",
-        "app-navigation-btn"
-      ]
     }
   ]
 }

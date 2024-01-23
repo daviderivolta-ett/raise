@@ -3,8 +3,6 @@
         {
             "name": "Natura",
             "groups": [
-                "./json/geomorphology.json",
-                "./json/forestry-management.json",
                 "./json/parks-and-trees.json"
             ]
         },
@@ -13,15 +11,11 @@
             "groups": [
                 "./json/cycle-pedestrian.json",
                 "./json/acoustic-zoning.json",
-                "./json/borders.json",
                 "./json/public-transport.json",
-                "./json/architectural-barriers.json",
                 "./json/car-parks.json",
-                "./json/roads.json",
                 "./json/services.json",
                 "./json/sport.json",
-                "./json/telecommunications.json",
-                "./json/buildings.json"
+                "./json/telecommunications.json"
             ]
         },
         {

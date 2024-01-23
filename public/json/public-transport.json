@@ -123,50 +123,6 @@
       "components": [
         "app-opacity-slider"
       ]
-    },
-    {
-      "name": "Ferrovia regionale",
-      "layer": "L8019",
-      "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2201/wfs",
-      "style": {
-        "color": "#e4fd76",
-        "opacity": 0.5
-      },
-      "tags": [
-        "strada",
-        "regione",
-        "ferrovia"
-      ],
-      "relevant_properties": [
-        {
-          "property_name": "DEF_COD_TRATTA",
-          "display_name": "Tratta",
-          "type": "string"
-        },
-        {
-          "property_name": "DEF_ALTA_VEL",
-          "display_name": "Tipo velocità",
-          "type": "string"
-        },
-        {
-          "property_name": "DEF_SEDE",
-          "display_name": "Sede",
-          "type": "number"
-        },
-        {
-          "property_name": "DEF_LIVELLO",
-          "display_name": "Livello",
-          "type": "string"
-        },
-        {
-          "property_name": "DEF_FONDO",
-          "display_name": "Fondo",
-          "type": "string"
-        }
-      ],
-      "components": [
-        "app-opacity-slider"
-      ]
     }
   ]
 }

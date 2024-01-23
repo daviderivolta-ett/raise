@@ -33,42 +33,6 @@
       "components": [
         "app-opacity-slider"
       ]
-    },
-    {
-      "name": "Vicinanza autostrada",
-      "layer": "SITGEO:V_ZA_FR_AUTO",
-      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-      "style": {
-        "color": "#453e1d",
-        "opacity": 0.5
-      },
-      "tags": [
-        "città",
-        "acustica",
-        "strada"
-      ],
-      "relevant_properties": [],
-      "components": [
-        "app-opacity-slider"
-      ]
-    },
-    {
-      "name": "Vicinanza ferrovia",
-      "layer": "SITGEO:V_ZA_FR_FERR",
-      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-      "style": {
-        "color": "#531680",
-        "opacity": 0.5
-      },
-      "tags": [
-        "città",
-        "acustica",
-        "ferrovia"
-      ],
-      "relevant_properties": [],
-      "components": [
-        "app-opacity-slider"
-      ]
     }
   ]
 }
