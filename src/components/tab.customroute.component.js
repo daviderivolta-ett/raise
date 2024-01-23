@@ -216,6 +216,11 @@ export class TabCustomRoute extends HTMLElement {
             }
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
             console.log('Percorso salvato', LocalStorageService.instance.getData().routes);
+
+            let snackbar = document.createElement('app-snackbar');
+            snackbar.setAttribute('type', 'closable');
+            snackbar.setAttribute('text', 'Percorso salvato con successo');
+            document.body.append(snackbar);
         });
 
         this.manageBtn.addEventListener('click', () => {
