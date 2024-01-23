@@ -104,6 +104,7 @@ export class MapPage extends HTMLElement {
 
             if (entity == undefined || entity.id.id === 'user-pin') {
                 this.tabs.setAttribute('is-open', false);
+                this.map.viewer.dataSources.getByName('selected-feature').forEach(ds => this.map.viewer.dataSources.remove(ds));
                 return;
             }
 
