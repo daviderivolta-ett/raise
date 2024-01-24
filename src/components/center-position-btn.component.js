@@ -9,7 +9,6 @@ export class CenterPositionBtnComponent extends HTMLElement {
         this.button = document.createElement('button');
         this.button.innerHTML =
             `
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <span class="icon">
                 <span class="material-symbols-outlined">my_location</span>
             </span>

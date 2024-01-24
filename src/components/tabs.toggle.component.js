@@ -5,17 +5,11 @@ export class TabsToggleComponent extends HTMLElement {
     }
 
     render() {
-
+        this.getAttribute('is-open') == 'false'? this.gliph.innerHTML = 'menu' : this.gliph.innerHTML = 'close';
     }
 
     connectedCallback() {
         // html
-        this.shadow.innerHTML =
-            `
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            `
-        ;
-
         this.button = document.createElement('button');
         this.button.innerHTML =
             `
@@ -23,9 +17,10 @@ export class TabsToggleComponent extends HTMLElement {
                 <span class="material-symbols-outlined">menu</span>
             </span>
             `
-        ;
+            ;
 
         this.shadow.append(this.button);
+        this.gliph = this.shadow.querySelector('.material-symbols-outlined');
 
         this.setAttribute('is-open', 'false');
         let isOpen = this.getAttribute('is-open');
@@ -46,11 +41,12 @@ export class TabsToggleComponent extends HTMLElement {
 
     static observedAttributes = ['is-open'];
     attributeChangedCallback(name, oldValue, newValue) {
-        if (newValue != oldValue) {
+        if (newValue != oldValue && oldValue != null) {
 
             if (name == 'is-open') {
                 const event = new CustomEvent('drawer-toggle', { detail: { isOpen: newValue } });
                 this.dispatchEvent(event);
+                this.render();
             }
         }
     }

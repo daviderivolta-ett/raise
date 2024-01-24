@@ -35,15 +35,14 @@ export class TabCustomRouteCardComponent extends HTMLElement {
         // html
         this.shadow.innerHTML =
             `
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
             <div class="component">
                 <div class="change-order">
                     <div class="up-arrow icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/></svg>     
+                        <span class="material-symbols-outlined">keyboard_arrow_up</span>
                     </div>
                     <div class="number"></div>
                     <div class="down-arrow icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
                     </div>
                 </div>
                 <div class="info">
@@ -54,7 +53,7 @@ export class TabCustomRouteCardComponent extends HTMLElement {
                     <p class="category"></p>
                 </div>
                 <div class="remove icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+                    <span class="material-symbols-outlined">close</span>
                 </div>
             </div>
             `

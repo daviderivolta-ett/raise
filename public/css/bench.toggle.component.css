@@ -25,13 +25,14 @@ button:hover {
 }
 
 .material-symbols-outlined {
-    transition: .2s ease-in-out;
+    font-family: 'Material Symbols Outlined';
+    font-size: 20px;
     font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
-        font-size: 20px;
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    transition: .2s ease-in-out;
 }
 
 

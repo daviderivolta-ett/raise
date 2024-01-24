@@ -6,12 +6,6 @@ export class AddToRouteBtn extends HTMLElement {
 
     connectedCallback() {
         // html
-        this.shadow.innerHTML =
-            `
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-            `
-        ;
-
         this.button = document.createElement('button');
         this.button.innerHTML =
             `
