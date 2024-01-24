@@ -77,6 +77,16 @@ p {
     margin: 0 0 0 24px;
 }
 
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-size: 20px;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+}
+
 @media screen and (max-width: 768px) {
     :host {
         width: 100%;

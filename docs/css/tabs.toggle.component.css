@@ -25,15 +25,14 @@ button:hover {
 }
 
 .material-symbols-outlined {
-    transition: .2s ease-in-out;
+    font-family: 'Material Symbols Outlined';
+    font-size: 20px;
     font-variation-settings:
         'FILL' 0,
         'wght' 400,
         'GRAD' 0,
         'opsz' 24;
-        font-size: 20px;
 }
-
 
 :host(app-tabs-toggle[is-open="true"]) button {
     background-color: var(--blue-100);

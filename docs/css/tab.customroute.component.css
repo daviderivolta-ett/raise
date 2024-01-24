@@ -39,7 +39,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    fill: var(--white-100);
+    color: var(--white-100);
     margin: 0;
     display: flex;
     justify-content: center;
@@ -58,4 +58,15 @@
     background-color: var(--green-blue-25);
     border: 1px solid var(--green-blue-100);
     border-radius: 4px;
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-size: 20px;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    transition: .2s ease-in-out;
 }
