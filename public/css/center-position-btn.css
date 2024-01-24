@@ -6,12 +6,13 @@
 }
 
 :host(.open) {
-    bottom: calc(40% + 24px);
+    right: calc(360px + 24px);
+    bottom: 24px;
 }
 
-:host(.maximized) {
+/* :host(.maximized) {
     display: none;
-}
+} */
 
 button {
     display: flex;
@@ -46,4 +47,15 @@ button:hover {
         'GRAD' 0,
         'opsz' 24;
     font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    :host(.open) {
+        right: 24px;
+        bottom: calc(40% + 24px);
+    }
+
+    :host(.maximized) {
+        display: none;
+    }
 }

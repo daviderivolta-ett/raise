@@ -72,6 +72,7 @@ export class MapPage extends HTMLElement {
 
         this.map = this.shadow.querySelector('app-cesium');
         this.tabs = this.shadow.querySelector('app-tabs');
+        this.header = this.shadow.querySelector('.header');
         this.searchbar = this.shadow.querySelector('app-searchbar');
         this.searchResult = this.shadow.querySelector('app-search-result');
         this.autocomplete = this.shadow.querySelector('app-autocomplete');
@@ -96,6 +97,7 @@ export class MapPage extends HTMLElement {
         this.map.addEventListener('map-click', event => {
             this.benchToggle.setAttribute('is-open', false);
             this.tabsToggle.setAttribute('is-open', false);
+            this.header.classList.remove('minimize');
             this.changeMapMode.setAttribute('is-open', false);
             this.centerPosition.setAttribute('is-open', false);
             this.searchbar.setAttribute('value', '');
@@ -115,6 +117,7 @@ export class MapPage extends HTMLElement {
             this.map.setCameraToPosition(feature.startingCoordinates);
             this.tabs.addFeature(feature);
             this.tabsToggle.setAttribute('is-open', true);
+            this.header.classList.add('minimize');
             this.changeMapMode.setAttribute('is-open', true);
             this.centerPosition.setAttribute('is-open', true);
             this.tabs.setAttribute('active-tab', 'info-tab');
@@ -128,6 +131,7 @@ export class MapPage extends HTMLElement {
             } else {
                 this.map.classList.remove('minimize');
                 this.tabsToggle.setAttribute('is-open', false);
+                this.header.classList.remove('minimize');
             }
         });
 
@@ -160,6 +164,7 @@ export class MapPage extends HTMLElement {
 
         this.searchbar.shadowRoot.querySelector('input').addEventListener('click', () => {
             this.tabsToggle.setAttribute('is-open', false);
+            this.header.classList.remove('minimize');
             this.benchToggle.setAttribute('is-open', false);
         });
 
@@ -169,18 +174,27 @@ export class MapPage extends HTMLElement {
             this.tabs.setAttribute('is-open', isOpen);
             this.changeMapMode.setAttribute('is-open', isOpen);
             this.centerPosition.setAttribute('is-open', isOpen);
-            if (isOpen === true) this.benchToggle.setAttribute('is-open', false);
-            if (isOpen === false) this.tabs.setAttribute('is-maximized', false);
+            if (isOpen === true) {
+                this.benchToggle.setAttribute('is-open', false);
+                this.header.classList.add('minimize');
+            } else {
+                this.tabs.setAttribute('is-maximized', false);
+                this.header.classList.remove('minimize');
+            }
         });
 
         this.benchToggle.addEventListener('bench-toggle', event => {
             const isOpen = JSON.parse(event.detail.isOpen);
             this.bench.setAttribute('is-open', isOpen);
-            if (isOpen === true) this.tabsToggle.setAttribute('is-open', false);
+            if (isOpen === true) {
+                this.tabsToggle.setAttribute('is-open', false);
+                this.header.classList.remove('minimize');
+            }
         });
 
         this.bench.addEventListener('click', () => {
             this.tabsToggle.setAttribute('is-open', false);
+            this.header.classList.remove('minimize');
             this.benchToggle.setAttribute('is-open', false);
         });
 
@@ -240,7 +254,7 @@ export class MapPage extends HTMLElement {
         // STARTING
         let savedData = LocalStorageService.instance.getData();
         let savedTags = savedData.selectedTags;
-        let savedLayers = savedData.layers;       
+        let savedLayers = savedData.layers;
 
         if (savedLayers.active.length === 0 && savedLayers.bench.length === 0) {
             let layersByTags = this.filterLayersByTags(this.data, savedTags);

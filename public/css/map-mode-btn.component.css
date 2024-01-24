@@ -6,12 +6,13 @@
 }
 
 :host(.open) {
-    bottom: calc(40% + 72px);
+    right: calc(360px + 24px);
+    bottom: 72px;
 }
 
-:host(.maximized) {
+/* :host(.maximized) {
     display: none;
-}
+} */
 
 :host(.highlight) button {
     background-color: var(--green-blue-25);
@@ -41,4 +42,15 @@ button:hover {
     width: 100%;
     height: 100%;
     fill: var(--white-100);
+}
+
+@media screen and (max-width: 768px) {
+    :host(.open) {
+        right: 24px;
+        bottom: calc(40% + 72px);
+    }
+
+    :host(.maximized) {
+        display: none;
+    }
 }
