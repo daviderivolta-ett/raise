@@ -6,7 +6,7 @@
 }
 
 :host(.open) {
-    bottom: calc(32% + 72px);
+    bottom: calc(40% + 72px);
 }
 
 :host(.maximized) {

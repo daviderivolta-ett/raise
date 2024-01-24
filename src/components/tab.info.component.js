@@ -95,9 +95,15 @@ export class TabInfoComponent extends HTMLElement {
         this.info = this.shadow.querySelector('app-info-panel');
 
         // js
-        this.goToBtn.addEventListener('go-to', e => this.goTo(e.detail.coordinates));
+        this.header.addEventListener('click', () => {
+            EventObservable.instance.publish('tabinfocard-click', this.feature);
+        });
 
-        this.addToRouteBtn.addEventListener('add-route', () => {
+        this.goToBtn.addEventListener('go-to', e => {
+            this.goTo(e.detail.coordinates);
+        });
+
+        this.addToRouteBtn.addEventListener('add-route', e => {
             EventObservable.instance.publish('addtocustomroutebtn-click', this.feature)
         });
 

@@ -144,6 +144,7 @@ export class MapPage extends HTMLElement {
         });
 
         EventObservable.instance.subscribe('tabinfocard-click', feature => {
+            EventObservable.instance.publish('feature-selected', feature);
             this.map.setCameraToPosition(feature.startingCoordinates);
         });
 

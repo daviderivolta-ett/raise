@@ -33,6 +33,7 @@ app-add-to-route {
 }
 
 .header {
+    cursor: pointer;
     margin: 0 0 12px 0;
 }
 

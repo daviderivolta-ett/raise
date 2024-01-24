@@ -12,7 +12,7 @@
 
 :host(.visible) {
     visibility: visible;
-    height: 32%;
+    height: 40%;
 }
 
 :host(.maximized) {

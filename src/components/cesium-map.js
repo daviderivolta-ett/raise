@@ -41,17 +41,17 @@ export default class CesiumViewer extends HTMLElement {
         }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
         EventObservable.instance.subscribe('customroute-load', geoJson => {
-            this.loadCustomDataSource(geoJson, 'custom-route', '#be0f3a');
+            this.loadCustomDataSource(geoJson, 'custom-route', '#01fdc0');
         });
 
         EventObservable.instance.subscribe('feature-selected', feature => {
             const geoJson = FeatureService.instance.createGeoJson([feature]);
-            this.loadCustomDataSource(geoJson, 'selected-feature', '#01fdc0');
+            this.loadCustomDataSource(geoJson, 'selected-feature', '#185FD9');
         });
-
+        
         EventObservable.instance.subscribe('customroutecard-click', feature => {
             const geoJson = FeatureService.instance.createGeoJson([feature]);
-            this.loadCustomDataSource(geoJson, 'selected-feature', '#01fdc0');
+            this.loadCustomDataSource(geoJson, 'selected-feature', '#185FD9');
         });
 
         // css
