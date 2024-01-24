@@ -1,9 +1,23 @@
 :host {
     display: block;
     height: 100%;
+    width: 100%;
     transition: .2s ease-in-out;
 }
 
 :host(.minimize) {
-    height: 68%;
+    width: calc(100% - 360px);
+}
+
+@media screen and (max-width: 768px) {
+    :host {
+        width: 100%;
+        height: 100%;
+        transition: .2s ease-in-out;
+    }
+    
+    :host(.minimize) {
+        width: 100%;
+        height: 60%;
+    }
 }
