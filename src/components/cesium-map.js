@@ -206,10 +206,10 @@ export default class CesiumViewer extends HTMLElement {
                 layer: Cesium.GeoJsonDataSource.load(geoJson)
             }))
             .catch(err => {                
-                const snackbar = document.querySelector('#loading-layer');
-                if (snackbar) snackbar.remove();
+                const snackbars = document.querySelectorAll('#loading-layer');
+                if (snackbars.length !== 0) snackbars.forEach(snackbar => snackbar.remove());
                 SnackBarComponent.createErrorSnackbar(layer.name);
-                
+
                 console.error(err);
                 throw err;
             });
