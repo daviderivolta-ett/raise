@@ -172,7 +172,14 @@ export default class CesiumViewer extends HTMLElement {
     }
 
     async loadLayers(layers) {
-        const requests = layers.map(layer => this.createlayer(layer).then((data) => ({ layer, data })));
+        const requests = layers.map(layer => this.createlayer(layer).then((result) => {
+            let req = {
+                layer: layer,
+                success: result.success,
+                data: result.data
+            }
+            return req
+        }));
 
         await Promise.all(requests).then(async sources => {
 
@@ -187,32 +194,46 @@ export default class CesiumViewer extends HTMLElement {
             // this.viewer.dataSources.removeAll();
 
             await Promise.all(sources.map(async source => {
-                const dataSource = await source.data.layer;
-                dataSource.name = source.layer.layer;
-                this.viewer.dataSources.add(dataSource);
-                this.styleEntities(dataSource, source.layer.style);
+                if (source.success) {
+                    const dataSource = await source.data.layer;
+                    dataSource.name = source.layer.layer;
+                    this.viewer.dataSources.add(dataSource);
+                    this.styleEntities(dataSource, source.layer.style);
+                } else {
+                    const loaderSnackbars = document.querySelectorAll('#loading-layer');
+                    const errorSnackbars = document.querySelectorAll('#error-snackbar');
+                    if (loaderSnackbars.length !== 0) loaderSnackbars.forEach(loader => loader.remove());
+                    if (errorSnackbars.length !== 0) errorSnackbars.forEach(error => error.remove());
+                    SnackBarComponent.createErrorSnackbar(source.layer.name);
+                }
+
             }));
         });
     }
 
     async createlayer(layer) {
-        // console.log(layer);
         const url = `${layer.layer_url_wfs}?service=WFS&typeName=${layer.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;
-        return fetch(url)
-            .then(res => res.json())
-            .then(geoJson => this.createAdditionalProperties(geoJson, layer))
-            .then(geoJson => ({
-                features: geoJson.features,
-                layer: Cesium.GeoJsonDataSource.load(geoJson)
-            }))
-            .catch(err => {                
-                const snackbars = document.querySelectorAll('#loading-layer');
-                if (snackbars.length !== 0) snackbars.forEach(snackbar => snackbar.remove());
-                SnackBarComponent.createErrorSnackbar(layer.name);
 
-                console.error(err);
-                throw err;
-            });
+        try {
+            const response = await fetch(url);
+            const rawGeoJson = await response.json();
+            const geoJson = await this.createAdditionalProperties(rawGeoJson, layer);
+
+            return {
+                success: true,
+                data: {
+                    features: geoJson.features,
+                    layer: Cesium.GeoJsonDataSource.load(geoJson)
+                }
+            }
+        } catch (err) {
+            console.log('Problema nel recupero del layer');
+
+            return {
+                success: false,
+                error: err
+            }
+        }
     }
 
     createAdditionalProperties(geoJson, layer) {
