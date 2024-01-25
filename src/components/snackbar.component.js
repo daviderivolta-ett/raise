@@ -79,6 +79,9 @@ export class SnackBarComponent extends HTMLElement {
         // Loader
         if (this.getAttribute('type') == 'loader') {
             if (this.getAttribute('text') == '') this.setAttribute('text', 'Caricamento...');
+            let loaderIcon = document.createElement('div');
+            loaderIcon.classList.add('loader-icon');
+            this.content.prepend(loaderIcon);
         }
 
         // css
