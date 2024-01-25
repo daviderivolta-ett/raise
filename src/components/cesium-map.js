@@ -48,10 +48,15 @@ export default class CesiumViewer extends HTMLElement {
             const geoJson = FeatureService.instance.createGeoJson([feature]);
             this.loadCustomDataSource(geoJson, 'selected-feature', '#185FD9');
         });
-        
+
         EventObservable.instance.subscribe('customroutecard-click', feature => {
             const geoJson = FeatureService.instance.createGeoJson([feature]);
             this.loadCustomDataSource(geoJson, 'selected-feature', '#185FD9');
+        });
+
+        this.viewer.dataSources.dataSourceAdded.addEventListener(() => {
+            const snackbar = document.querySelector('#loading-layer');
+            if (snackbar) snackbar.remove();
         });
 
         // css

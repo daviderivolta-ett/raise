@@ -31,13 +31,15 @@ label {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    color: var(--white-100);
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24;
-  font-size: 20px;
+    font-family: 'Material Symbols Outlined';
+    font-size: 20px;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
 }

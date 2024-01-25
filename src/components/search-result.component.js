@@ -1,3 +1,5 @@
+import { SnackBarComponent } from "./snackbar.component";
+
 export class SearchResult extends HTMLElement {
     _layers;
 
@@ -29,9 +31,10 @@ export class SearchResult extends HTMLElement {
                 this.div.append(chip);
                 chip.addEventListener('add-layer', e => {
                     document.dispatchEvent(new CustomEvent('add-layer', {
-                        detail: { layers: [ e.detail.layer ] }
+                        detail: { layers: [e.detail.layer] }
                     }));
                     this.setAttribute('is-open', false);
+                    SnackBarComponent.createLoaderSnackbar();
                 });
                 this.div.scrollTop = 0;
             });

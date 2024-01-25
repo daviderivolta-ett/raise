@@ -1,4 +1,5 @@
 import { LocalStorageService } from "../services/local-storage.service";
+import { SnackBarComponent } from "./snackbar.component";
 
 export class BenchComponent extends HTMLElement {
     _layers;
@@ -72,6 +73,7 @@ export class BenchComponent extends HTMLElement {
         benchLayer.addEventListener('restore-layer', e => {
             this.removeLayer(e.detail.layer);
             document.dispatchEvent(new CustomEvent('add-layer', { detail: { layers: [e.detail.layer] } }));
+            SnackBarComponent.createLoaderSnackbar();
         });
 
         benchLayer.addEventListener('delete-layer', e => {

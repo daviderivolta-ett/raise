@@ -23,7 +23,7 @@ export class SnackBarComponent extends HTMLElement {
                 </div>
             </div>
             `
-        ;
+            ;
 
         this.setAttribute('is-active', 'true');
         if (!this.hasAttribute('text')) this.setAttribute('text', '');
@@ -46,7 +46,7 @@ export class SnackBarComponent extends HTMLElement {
                     <span class="material-symbols-outlined">close</span>
                 </div>
                 `
-            ;
+                ;
 
             this.content.append(this.button);
             this.button.addEventListener('click', () => this.setAttribute('is-active', 'false'));
@@ -120,6 +120,13 @@ export class SnackBarComponent extends HTMLElement {
         SnackBarComponent.snackbars.forEach((snackbar, index) => {
             snackbar.style.setProperty('bottom', `${56 + 64 * index}px`);
         });
+    }
+
+    static createLoaderSnackbar() {
+        let snackbar = document.createElement('app-snackbar');
+        snackbar.setAttribute('type', 'loader');
+        snackbar.setAttribute('id', 'loading-layer')
+        document.body.append(snackbar);
     }
 }
 
