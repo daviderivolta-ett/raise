@@ -11,7 +11,7 @@ export class ManageRoutesDialogComponent extends HTMLElement {
             <dialog>
                 <div class="content">                
                     <div class="message">
-                        <h3 class="title">Carica</h3>
+                        <h3 class="title">Percorsi salvati in memoria</h3>
                     </div>
                     <form>
                         <div class="list"></div>

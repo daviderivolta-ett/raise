@@ -14,7 +14,7 @@ export class BenchToggleComponent extends HTMLElement {
         this.button.innerHTML =
             `
             <span class="icon">
-                <span class="material-symbols-outlined">layers</span>
+                <span class="material-symbols-outlined">stacks</span>
             </span>
             `
         ;

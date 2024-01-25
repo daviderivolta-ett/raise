@@ -33,7 +33,7 @@ export class TabCustomRoute extends HTMLElement {
                     <span class="material-symbols-outlined">bookmark</span>
                 </button>
                 <button type="button" class="manage">
-                    <span class="material-symbols-outlined">folder</span>
+                    <span class="material-symbols-outlined">bookmarks</span>
                 </button>
             </div>
             <app-sort-route-dialog></app-sort-route-dialog>
