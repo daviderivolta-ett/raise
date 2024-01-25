@@ -48,6 +48,7 @@
 
 label {
     cursor: pointer;
+    white-space: nowrap;
     padding: 0 0 0 4px;
 }
 

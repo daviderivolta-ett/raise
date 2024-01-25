@@ -4,7 +4,6 @@
     right: -356px;
     top: 50%;
     transform: translateY(-50%);
-    max-width: 356px;
     max-height: calc(100vh - 200px);
     display: flex;
     align-items: center;
@@ -27,6 +26,8 @@ div {
     gap: 8px;
     max-height: 100%;
     overflow-y: auto;
+    max-width: 360px;
+    width: min-content;
 }
 
 div::-webkit-scrollbar {
