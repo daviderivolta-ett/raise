@@ -16,7 +16,6 @@ input {
     width: 100%;
     border: none;
     box-sizing: border-box;
-    margin: 0 0 24px 0;
     background-color: transparent;
     color: var(--white-100);
     border-bottom: 1px solid var(--white-100);
@@ -30,11 +29,22 @@ input:focus {
     outline: none;
 }
 
+.validation {
+    display: none;
+    font-weight: 600;
+    color: rgba(190, 15, 58, 1);
+}
+
+.not-available {
+    display: block;
+}
+
 .buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 8px;
+    margin: 24px 0 0 0;
 }
 
 button {

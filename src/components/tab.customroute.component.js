@@ -145,6 +145,8 @@ export class TabCustomRoute extends HTMLElement {
         });
 
         this.editBtn.addEventListener('click', () => {
+            let savedRoutes = LocalStorageService.instance.getData().routes;
+            this.editDialog.routes = savedRoutes;
             this.editDialog.route = this.route;
             this.editDialog.openDialog();
         });
