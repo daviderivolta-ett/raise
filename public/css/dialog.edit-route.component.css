@@ -19,6 +19,7 @@ input {
     background-color: transparent;
     color: var(--white-100);
     border-bottom: 1px solid var(--white-100);
+    margin: 0 0 4px 0;
 }
 
 input::placeholder {
