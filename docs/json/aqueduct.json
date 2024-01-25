@@ -34,7 +34,7 @@
       ]
     },
     {
-      "name": "Manufatti storici",
+      "name": "Manufatti storici acquedotto",
       "layer": "CULTURA:V_ACQ_MANU_STORICI",
       "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
       "style": {
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "name": "Area di sosta",
+      "name": "Area di sosta acquedotto",
       "layer": "CULTURA:V_ACQ_AREA_SOSTA",
       "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
       "style": {
@@ -99,7 +99,7 @@
       ]
     },
     {
-      "name": "Punti di accesso",
+      "name": "Punti di accesso acquedotto",
       "layer": "V_ACQ_PTI_ACCESSO",
       "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
       "style": {
@@ -132,7 +132,7 @@
       ]
     },
     {
-      "name": "Punti di interesse storico",
+      "name": "Punti di interesse storico acquedotto",
       "layer": "CULTURA:V_ACQ_PTI_INT_STORICO",
       "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
       "style": {
@@ -166,7 +166,7 @@
       ]
     },
     {
-      "name": "Pannelli informativi",
+      "name": "Pannelli informativi acquedotto",
       "layer": "SITGEO:V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI",
       "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
       "style": {

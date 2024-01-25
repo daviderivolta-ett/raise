@@ -10,7 +10,6 @@
             "name": "Città",
             "groups": [
                 "./json/cycle-pedestrian.json",
-                "./json/acoustic-zoning.json",
                 "./json/public-transport.json",
                 "./json/car-parks.json",
                 "./json/services.json",

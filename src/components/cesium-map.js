@@ -57,8 +57,8 @@ export default class CesiumViewer extends HTMLElement {
         });
 
         this.viewer.dataSources.dataSourceAdded.addEventListener(() => {
-            const snackbar = document.querySelector('#loading-layer');
-            if (snackbar) snackbar.remove();
+            const snackbars = document.querySelectorAll('#loading-layer');
+            if (snackbars.length !== 0) snackbars.forEach(snackbar => snackbar.remove());
         });
 
         // css
@@ -190,8 +190,6 @@ export default class CesiumViewer extends HTMLElement {
                     existingDataSource.forEach(dataSource => this.viewer.dataSources.remove(dataSource));
                 }
             });
-
-            // this.viewer.dataSources.removeAll();
 
             await Promise.all(sources.map(async source => {
                 if (source.success) {

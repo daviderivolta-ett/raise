@@ -80,8 +80,8 @@ export class FeatureService {
                 }
 
                 if (entity[property.property_name]._value) {
-                    typeof entity[property.property_name]._value == 'string' ? p.value = entity[property.property_name]._value : p.value = entity[property.property_name]._value.value;    
-                }                
+                    typeof entity[property.property_name]._value == 'string' ? p.value = entity[property.property_name]._value : p.value = entity[property.property_name]._value.value;
+                }
 
                 relevantProperties[property.property_name] = p;
             }
