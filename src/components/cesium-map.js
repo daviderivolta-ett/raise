@@ -4,6 +4,8 @@ import cesiumCss from 'cesium/Build/Cesium/Widgets/widgets.css?raw';
 import { EventObservable } from '../observables/EventObservable.js';
 import { FeatureService } from '../services/feature.service.js';
 
+import { SnackBarComponent } from './snackbar.component';
+
 export default class CesiumViewer extends HTMLElement {
     constructor() {
         super();
@@ -203,7 +205,11 @@ export default class CesiumViewer extends HTMLElement {
                 features: geoJson.features,
                 layer: Cesium.GeoJsonDataSource.load(geoJson)
             }))
-            .catch(err => {
+            .catch(err => {                
+                const snackbar = document.querySelector('#loading-layer');
+                if (snackbar) snackbar.remove();
+                SnackBarComponent.createErrorSnackbar(layer.name);
+                
                 console.error(err);
                 throw err;
             });

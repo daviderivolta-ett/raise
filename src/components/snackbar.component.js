@@ -131,6 +131,14 @@ export class SnackBarComponent extends HTMLElement {
         snackbar.setAttribute('id', 'loading-layer')
         document.body.append(snackbar);
     }
+
+    static createErrorSnackbar(name) {
+        let snackbar = document.createElement('app-snackbar');
+        snackbar.setAttribute('type', 'closable');
+        snackbar.setAttribute('text', `Si è verificato un errore durante il caricamento del layer ${name}`);
+        snackbar.setAttribute('id', 'error-snackbar')
+        document.body.append(snackbar);
+    }
 }
 
 customElements.define('app-snackbar', SnackBarComponent);

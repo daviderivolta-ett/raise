@@ -17,6 +17,15 @@
   padding: 0 0 0 16px;
 }
 
+:host(#error-snackbar) .snackbar {
+  background-color: rgba(190, 15, 58, 1);
+  border: none;
+}
+
+:host(#error-snackbar) button:hover {
+  background-color: rgb(161, 12, 50);
+}
+
 .snackbar {
   background-color: var(--green-blue-25);
   border: 1px solid var(--green-blue-100);
