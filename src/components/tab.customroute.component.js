@@ -4,6 +4,7 @@ import { UserPositionService } from '../services/user-position.service.js';
 import { TspService } from '../services/tsp.service.js';
 import { Route } from '../models/Route.js';
 import { FeatureService } from '../services/feature.service.js';
+import { SnackBarComponent } from './snackbar.component.js';
 
 export class TabCustomRoute extends HTMLElement {
     _route;
@@ -163,6 +164,7 @@ export class TabCustomRoute extends HTMLElement {
             this.route = route;
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
             console.log('Percorsi salvati', LocalStorageService.instance.getData().routes);
+            SnackBarComponent.createInfoSnackbar('Nome aggiornato con successo');
             this.render();
         });
 
@@ -179,6 +181,7 @@ export class TabCustomRoute extends HTMLElement {
             });
             localStorage.setItem('routes', JSON.stringify(updatedRoutes));
             console.log('Percorsi salvati', LocalStorageService.instance.getData().routes);
+            SnackBarComponent.createInfoSnackbar('Percorso cancellato con successo');
             this.route = defaultRoute;
             this.render();
         });
@@ -200,6 +203,7 @@ export class TabCustomRoute extends HTMLElement {
             this.route = route;
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
             console.log('Percorsi salvati', LocalStorageService.instance.getData().routes);
+            SnackBarComponent.createInfoSnackbar('Nuovo percorso creato con successo');
             this.render();
         });
 
@@ -218,11 +222,7 @@ export class TabCustomRoute extends HTMLElement {
             }
             localStorage.setItem('routes', JSON.stringify(savedRoutes));
             console.log('Percorso salvato', LocalStorageService.instance.getData().routes);
-
-            let snackbar = document.createElement('app-snackbar');
-            snackbar.setAttribute('type', 'closable');
-            snackbar.setAttribute('text', 'Percorso salvato con successo');
-            document.body.append(snackbar);
+            SnackBarComponent.createInfoSnackbar('Percorso salvato con successo');
         });
 
         this.manageBtn.addEventListener('click', () => {

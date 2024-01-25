@@ -125,6 +125,13 @@ export class SnackBarComponent extends HTMLElement {
         });
     }
 
+    static createInfoSnackbar(message) {
+        let snackbar = document.createElement('app-snackbar');
+        snackbar.setAttribute('type', 'closable');
+        snackbar.setAttribute('text', message);
+        document.body.append(snackbar);
+    }
+
     static createLoaderSnackbar() {
         let snackbar = document.createElement('app-snackbar');
         snackbar.setAttribute('type', 'loader');
