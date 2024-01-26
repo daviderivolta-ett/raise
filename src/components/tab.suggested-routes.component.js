@@ -22,7 +22,6 @@ export class TabSuggestedRoutesComponent extends HTMLElement {
         this.shadow.innerHTML =
             `
             <div>
-                <p>Percorso custom</p>
             </div>
             `
             ;

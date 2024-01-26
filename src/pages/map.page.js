@@ -105,7 +105,7 @@ export class MapPage extends HTMLElement {
             this.searchbar.setAttribute('value', '');
 
             const entity = this.map.getEntity(event.detail.movement);
-            console.log(entity);
+
             if (entity == undefined || entity.id.id === 'user-pin') {
                 this.tabs.setAttribute('is-open', false);
                 this.map.viewer.dataSources.getByName('selected-feature').forEach(ds => this.map.viewer.dataSources.remove(ds));
@@ -113,9 +113,9 @@ export class MapPage extends HTMLElement {
             }
 
             const feature = FeatureService.instance.getFeature(entity, this.data);
-            // console.log('Feature cliccata:', feature);
+            console.log('Feature cliccata:', feature);
             EventObservable.instance.publish('feature-selected', feature);
-            console.log(SuggestedRoutesService.instance.getRelatedRoute(feature));
+            // console.log(SuggestedRoutesService.instance.getRelatedRoute(feature));
 
             this.map.setCameraToPosition(feature.startingCoordinates);
             this.tabs.addFeature(feature);
