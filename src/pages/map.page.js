@@ -4,6 +4,7 @@ import { LocalStorageService } from '../services/local-storage.service.js';
 import { SettingService } from '../services/data.service.js';
 import { ThemeService } from '../services/theme.service.js';
 import { UserPositionService } from '../services/user-position.service.js';
+import { SuggestedRoutesService } from '../services/suggested-routes.service.js';
 
 export class MapPage extends HTMLElement {
     _data;
@@ -36,6 +37,7 @@ export class MapPage extends HTMLElement {
 
         // services
         this.data = await SettingService.instance.getData();
+        this.suggestedRoutes = await SuggestedRoutesService.instance.getData();
 
         this.position = {};
         try {
@@ -103,7 +105,7 @@ export class MapPage extends HTMLElement {
             this.searchbar.setAttribute('value', '');
 
             const entity = this.map.getEntity(event.detail.movement);
-
+            console.log(entity);
             if (entity == undefined || entity.id.id === 'user-pin') {
                 this.tabs.setAttribute('is-open', false);
                 this.map.viewer.dataSources.getByName('selected-feature').forEach(ds => this.map.viewer.dataSources.remove(ds));
@@ -113,6 +115,7 @@ export class MapPage extends HTMLElement {
             const feature = FeatureService.instance.getFeature(entity, this.data);
             // console.log('Feature cliccata:', feature);
             EventObservable.instance.publish('feature-selected', feature);
+            console.log(SuggestedRoutesService.instance.getRelatedRoute(feature));
 
             this.map.setCameraToPosition(feature.startingCoordinates);
             this.tabs.addFeature(feature);

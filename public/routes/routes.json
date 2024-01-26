@@ -1,0 +1,6 @@
+{
+    "routes": [
+        "./routes/acqueduct-route.json",
+        "./routes/test.json"
+    ]
+}

@@ -41,7 +41,6 @@ export class SettingService {
         this.fetchAppData(this.CATEGORIES_URL)
         .then(data => {
             this.data = data;
-            console.log(data);
             return data;
         });
     }

@@ -34,6 +34,7 @@ import './src/components/reset-tags-btn.js';
 import './src/components/cesium-map.js';
 import './src/components/tab.controller.component.js';
 import './src/components/tab.info.component.js';
+import './src/components/tab.suggested-routes.component.js';
 import './src/components/tab.customroute.component.js';
 import './src/components/tab.customroute.card.component.js';
 import './src/components/info.drawer.component.js';
