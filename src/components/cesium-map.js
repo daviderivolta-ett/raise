@@ -182,7 +182,6 @@ export default class CesiumViewer extends HTMLElement {
         }));
 
         await Promise.all(requests).then(async sources => {
-
             const existingDataSourceNames = this.viewer.dataSources._dataSources.map(dataSource => dataSource.name);
             existingDataSourceNames.forEach(existingDataSourceName => {
                 if (existingDataSourceName !== 'custom-route') {

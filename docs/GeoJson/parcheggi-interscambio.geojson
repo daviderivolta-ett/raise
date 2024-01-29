@@ -1,8 +1,5 @@
 {
     "type": "FeatureCollection",
-    "generator": "overpass-turbo",
-    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
-    "timestamp": "2024-01-23T16:19:09Z",
     "features": [
         {
             "type": "Feature",
@@ -10,8 +7,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    981887.35043311,
-                    5531290.92350206,
+                    8.82044414,
+                    44.4239845,
                     0
                 ]
             },
@@ -28,8 +25,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    996325.40186929,
-                    5530156.62313658,
+                    8.95014336,
+                    44.41670685,
                     0
                 ]
             },
@@ -46,8 +43,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    996114.50518901,
-                    5531621.82981507,
+                    8.94824885,
+                    44.42610742,
                     0
                 ]
             },
@@ -64,8 +61,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    992057.34490057,
-                    5529659.89819837,
+                    8.91180276,
+                    44.41351959,
                     0
                 ]
             },
@@ -82,8 +79,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    999830.31094316,
-                    5535959.44033755,
+                    8.9816285,
+                    44.4539281,
                     0
                 ]
             },
@@ -100,8 +97,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    978345.56723689,
-                    5531584.6160068,
+                    8.78862776,
+                    44.42586868,
                     0
                 ]
             },
@@ -118,8 +115,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    990023.57468747,
-                    5533202.02041908,
+                    8.89353309,
+                    44.43624402,
                     19.53
                 ]
             },
@@ -130,15 +127,5 @@
                 "NUMERO_STALLI": 82
             }
         }
-    ],
-    "totalFeatures": 7,
-    "numberMatched": 7,
-    "numberReturned": 7,
-    "timeStamp": "2024-01-29T09:14:07.046Z",
-    "crs": {
-        "type": "name",
-        "properties": {
-            "name": "urn:ogc:def:crs:EPSG::3857"
-        }
-    }
+    ]
 }

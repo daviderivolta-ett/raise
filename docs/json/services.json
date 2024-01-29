@@ -227,6 +227,60 @@
         "app-opacity-slider",
         "app-navigation-btn"
       ]
+    },
+    {
+      "name": "Parcheggi car sharing",
+      "layer": "V_MOB_PARKS_CARSHARING",
+      "layer_url_wfs": "./GeoJson/car-sharing.geojson",
+      "style": {
+        "color": "#687ff1",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "relax"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME",
+          "display_name": "Indirizzo",
+          "type": "string"
+        },
+        {
+          "property_name": "NUMERO_STALLI",
+          "display_name": "Posti auto",
+          "type": "number"
+        }
+      ],
+      "components": []
+    },
+    {
+      "name": "Parcheggi interscambio",
+      "layer": "V_MOB_PARKS_INTERSCAMBIO",
+      "layer_url_wfs": "./GeoJson/parcheggi-interscambio.geojson",
+      "style": {
+        "color": "#687fd1",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "relax"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "NOME",
+          "display_name": "Indirizzo",
+          "type": "string"
+        },
+        {
+          "property_name": "NUMERO_STALLI",
+          "display_name": "Posti auto",
+          "type": "number"
+        }
+      ],
+      "components": []
     }
   ]
 }
