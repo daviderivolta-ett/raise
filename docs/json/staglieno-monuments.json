@@ -2,9 +2,9 @@
   "name": "Monumenti cimitero Staglieno",
   "layers": [
     {
-      "name": "Monumenti",
+      "name": "Monumenti cimitero Staglieno",
       "layer": "CULTURA:V_STAG_SCULTURE",
-      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "layer_url_wfs": "./GeoJson/staglieno.geojson",
       "style": {
         "color": "#7ae8fe",
         "opacity": 1
