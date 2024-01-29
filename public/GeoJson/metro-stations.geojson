@@ -1,0 +1,167 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "V_MOB_METROPOLITANA_STAZIONI.1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.89562771,
+                    44.42802882,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 1,
+                "NOME_STAZ": "BRIN",
+                "STATO": "ESISTENTE"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_METROPOLITANA_STAZIONI.2",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.91157464,
+                    44.41366469,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 2,
+                "NOME_STAZ": "DI NEGRO",
+                "STATO": "ESISTENTE"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_METROPOLITANA_STAZIONI.3",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.91852982,
+                    44.41650292,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 3,
+                "NOME_STAZ": "PRINCIPE",
+                "STATO": "ESISTENTE"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_METROPOLITANA_STAZIONI.4",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.92658025,
+                    44.41314742,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 4,
+                "NOME_STAZ": "DARSENA",
+                "STATO": "ESISTENTE"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_METROPOLITANA_STAZIONI.5",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.92856354,
+                    44.40873168,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 5,
+                "NOME_STAZ": "SAN GIORGIO",
+                "STATO": "ESISTENTE"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_METROPOLITANA_STAZIONI.6",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.93183994,
+                    44.40440267,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 6,
+                "NOME_STAZ": "SARZANO",
+                "STATO": "ESISTENTE"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_METROPOLITANA_STAZIONI.7",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.93461888,
+                    44.40702678,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 7,
+                "NOME_STAZ": "DE FERRARI",
+                "STATO": "ESISTENTE"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_METROPOLITANA_STAZIONI.8",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9397746,
+                    44.40996621,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 8,
+                "NOME_STAZ": "CORVETTO",
+                "STATO": "PREVISIONE"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_METROPOLITANA_STAZIONI.9",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94842539,
+                    44.40728791,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 9,
+                "NOME_STAZ": "BRIGNOLE",
+                "STATO": "ESISTENTE"
+            }
+        }
+    ]
+}

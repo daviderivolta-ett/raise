@@ -2,6 +2,51 @@
   "name": "Servizi",
   "layers": [
     {
+      "name": "Bagni pubblici",
+      "layer": "SITGEO:V_BAGNI",
+      "layer_url_wfs": "./GeoJson/bagni-pubblici.geojson",
+      "style": {
+        "color": "#febfa4",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "bagno",
+        "pubblico"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "DATI",
+          "display_name": "Posizione",
+          "type": "string"
+        },
+        {
+          "property_name": "NOTE",
+          "display_name": "Tipologia",
+          "type": "string"
+        },
+        {
+          "property_name": "ACCESSIBILE",
+          "display_name": "Accessibile",
+          "type": "string"
+        },
+        {
+          "property_name": "AUTOPUL",
+          "display_name": "Autopulente",
+          "type": "string"
+        },
+        {
+          "property_name": "OPERATIVO",
+          "display_name": "Operatività",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
       "name": "Farmacie",
       "layer": "L807",
       "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M452/wfs",
