@@ -1,0 +1,181 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "V_PC_OSPEDALI.1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98774576,
+                    44.39298394
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 1,
+                "DENOMINAZIONE": "ISTITUTO GIANNINA GASLINI",
+                "INDIRIZZO": "LARGO GASLINI 5",
+                "TELEFONO": null,
+                "TIPO_STRUTTURA": "ISTIUTO SCIENTIFICO",
+                "DESCIRIZIONE_PRESIDIO": null,
+                "PRONTO_SOC": "DEA PEDIATRICO II LIVELLO",
+                "PUNTI_ELIC": "SI"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_PC_OSPEDALI.2",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94111956,
+                    44.40101949
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 2,
+                "DENOMINAZIONE": "ENTE OSPEDALIERO GALLIERA",
+                "INDIRIZZO": "VIA MURA DELLE CAPPUCCINE 14",
+                "TELEFONO": null,
+                "TIPO_STRUTTURA": "ENTE OSPEDALIERO",
+                "DESCIRIZIONE_PRESIDIO": null,
+                "PRONTO_SOC": "DEA I LIVELLO",
+                "PUNTI_ELIC": null
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_PC_OSPEDALI.3",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.74568909,
+                    44.43032434
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 3,
+                "DENOMINAZIONE": "OSPEDALE SAN CARLO DI VOLTRI",
+                "INDIRIZZO": "PIAZZALE CIANNASSO 4",
+                "TELEFONO": null,
+                "TIPO_STRUTTURA": "A GESTIONE DIRETTA",
+                "DESCIRIZIONE_PRESIDIO": "PRESIDIO OSPEDALIERO UNICO",
+                "PRONTO_SOC": "PRONTO SOCCORSO",
+                "PUNTI_ELIC": null
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_PC_OSPEDALI.5",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.89747973,
+                    44.41259291
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 5,
+                "DENOMINAZIONE": "AZIENDA OSPEDALIERA VILLA SCASSI",
+                "INDIRIZZO": "CORSO SCASSI 1",
+                "TELEFONO": null,
+                "TIPO_STRUTTURA": "AZIENDA OSPEDALIERA",
+                "DESCIRIZIONE_PRESIDIO": "PRESIDIO OSPEDALIERO UNICO",
+                "PRONTO_SOC": "DEA I LIVELLO",
+                "PUNTI_ELIC": "SI"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_PC_OSPEDALI.6",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.85096076,
+                    44.43122782
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 6,
+                "DENOMINAZIONE": "OSPEDALE MICONE",
+                "INDIRIZZO": "VIA D. OLIVA 22",
+                "TELEFONO": null,
+                "TIPO_STRUTTURA": "A GESTIONE DIRETTA",
+                "DESCIRIZIONE_PRESIDIO": "PRESIDIO OSPEDALIERO UNICO",
+                "PRONTO_SOC": "PRONTO SOCCORSO",
+                "PUNTI_ELIC": null
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_PC_OSPEDALI.7",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94305649,
+                    44.41392639
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 7,
+                "DENOMINAZIONE": "OSPEDALE EVANGELICO INTERNAZIONALE",
+                "INDIRIZZO": "SALITA SUPERIORE SAN ROCCHINO 31A",
+                "TELEFONO": null,
+                "TIPO_STRUTTURA": "OSPEDALE CLASSIFICATO",
+                "DESCIRIZIONE_PRESIDIO": null,
+                "PRONTO_SOC": null,
+                "PUNTI_ELIC": null
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_PC_OSPEDALI.8",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.89971103,
+                    44.49944711
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 8,
+                "DENOMINAZIONE": "OSPEDALE GALLINO PONTEDECIMO",
+                "INDIRIZZO": "VIA OSPEDALE GALLINO 5",
+                "TELEFONO": null,
+                "TIPO_STRUTTURA": "A GESTIONE DIRETTA",
+                "DESCIRIZIONE_PRESIDIO": "PRESIDIO OSPEDALIERO UNICO",
+                "PRONTO_SOC": "PUNTO DI PRIMO INTERVENTO",
+                "PUNTI_ELIC": null
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_PC_OSPEDALI.0",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97023924,
+                    44.40754556
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 0,
+                "DENOMINAZIONE": "AZIENDA OSPEDALIERA UNIVERSITARIA SAN MARTINO IST - ISTITUTO NAZIONALE PER LA RICERCA SUL CANCRO",
+                "INDIRIZZO": "LARGO ROSANNA BENZI 10",
+                "TELEFONO": null,
+                "TIPO_STRUTTURA": "AZIENDA OSPEDALIERA",
+                "DESCIRIZIONE_PRESIDIO": null,
+                "PRONTO_SOC": "DEA II LIVELLO",
+                "PUNTI_ELIC": null
+            }
+        }
+    ]
+}

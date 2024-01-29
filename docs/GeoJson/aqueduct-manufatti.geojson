@@ -1,0 +1,709 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79e6",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.98236619,
+                        44.46035504
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 15,
+                "ID": 16,
+                "NUMERAZIONE": 17,
+                "NOME": "Acquedotto seicentesco e Perorso botanico",
+                "DESCR1": "Acquedotto seicentesco",
+                "DESCR3": "L’acquedotto del 1600 si sviluppava lungo una linea di mezza costa che attraversa diversi nuclei abitati: S. Bernardo, Carpi, S. Giacomo, Molinetto, Pino Sottano. Il percorso, lungo circa 5 Km., è stato recuperato da alcuni anni da un gruppo di volontari che ne curano la manutenzione e fanno parte della Federazione per la valorizzazione e la tutela dell'acquedotto storico. Da Via alle Brughe di Molassana alta (incrocio con Via S. Felice) si segue il sentiero indicato con bolli azzurri che si inoltra sul versante sinistro della Via Geirato. In prossimità del guado sul rio Lagolungo si trovano ancora i resti del ponte Ronco. In località Trecoste inizia il sentiero che sale verso il paese di Cartagenova e raggiunge il Prato Casarile (in gergo locale denominato Prati Casalini), antico bacino lacustre colmato da una frana. Altre tracce dell'antico acquedotto riaffiorano in prossimità del fossato di Giancardo. Passato il piccolo borgo dei Carpi, l'acquedotto scavalca il rio Tassara su di un ponte-canale (resti) sventrato dalle frequenti piene del torrente. Sul fossato Molinetti troviamo un piccolo ponte ancora ben conservato nonostante la franosità della zona.\nLungo il percorso seicentesco, nel tratto compreso tra i giardini della casetta dei filtri e S. Giacomo, è stato realizzato un itinerario botanico con pannelli informativi che descrivono le caratteristiche delle varietà arboree presenti."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79e7",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.97438891,
+                        44.45682633
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 17,
+                "ID": 18,
+                "NUMERAZIONE": 20,
+                "NOME": "Il Rio Enegia",
+                "DESCR1": "Rio Enegia",
+                "DESCR3": "Il percorso  valica il Rio Enegia mediante un ponticello provvisorio in ferro.. In precedenza il canale attraversava il ruscello con un ponte costruito nel 1813 e franato verso la fine del '900 in occasione di una piena. Il ponte a 5 arcate, lungo 40 m., era stato costruito per sostituire quello seicentesco che, posto poco più a monte, è ancora conservato. Vicino ai due ponti canale ce n’è un terzo, forse risalente al Quattrocento. Poco più oltre si trova l’accesso occidentale al ponte sifone del Geirato e la cisterna per l’acqua."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79e8",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.95728684,
+                        44.44890903
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 19,
+                "ID": 20,
+                "NUMERAZIONE": 22,
+                "NOME": "L'acquedotto in Val Cicala",
+                "DESCR1": "Ponte",
+                "DESCR3": "Un piccolo ponte-canale, ad arcata unica, attraversa il fossato sul rio Cicala. Passato il ponte, sulla destra, troviamo una derivazione per la raccolta dell'acqua del rio, tramite  un braccio lungo circa 60 m.  Questo tratto di acquedotto si collegava alla presa, risalente al 1350. I tre ponti-canale che si susseguono, originari del 1600, avevano un solo parapetto in muratura verso il lato a valle. Il primo ponte, a due arcate e completo di scolmatori, è sul rio Costa Pelosa, il secondo sul rio Pezzola, il terzo ponte, sul rio Borneli, riporta le tracce degli interventi effettuati per l'adeguamento della cassa alla maggiore portata ottocentesca."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79e9",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.95924987,
+                        44.43779949
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 22,
+                "ID": 23,
+                "NUMERAZIONE": 24,
+                "NOME": "La garitta del dazio",
+                "DESCR1": "Dazio",
+                "DESCR3": "La Garitta del Dazio segnava il confine con la città."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79ea",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.95529584,
+                        44.43072677
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 23,
+                "ID": 24,
+                "NUMERAZIONE": 25,
+                "NOME": "Il lavatoio lungo Salita alla Chiesa di Staglieno",
+                "DESCR1": "Lavatoio",
+                "DESCR3": "Nella fascia sottostante la chiesa, in prossimità del muro di cinta del Cimitero Monumentale, vi è un lavatoio (treuggio) la cui costruzione fu appaltata all’impresa Tommaso Roncallo il 25 aprile 1877. Il lavatoio, alimentato dal bronzino (fontanella) numero 12 dell’acquedotto, ha una struttura a due vasche e conserva inalterate tutte le caratteristiche costruttive originarie previste nell’appalto: dalla struttura in pietra di cava al pavimento del fondo della vasca in lastre di Luserna, disposte a corsi regolari in senso longitudinale, con la dovuta pendenza e di un sol pezzo. Di particolare interesse la struttura dalla quale si erogava un tempo l’acqua, composta da un trogolo di marmo con calotta semisferica a base ottagona, conforme a quelle esistenti in altri lavatoi. "
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79eb",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.94520397,
+                        44.43229679
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 25,
+                "ID": 26,
+                "NUMERAZIONE": 28,
+                "NOME": "PonteSant'Antonino sul rio Briscata",
+                "DESCR1": "Ponte",
+                "DESCR3": "Percorrendo salita S.Antonino si raggiunge il ponte sul Rio Briscata sovrastante il casello autostradale di Genova Est. Il ponte è lungo 84 m. ed alto 37 m. Lato salita del Montino sono visibili altri resti dell’acquedotto.  Verso S.Pantaleo il canale prosegue sospeso su archi ."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79ec",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.94565996,
+                        44.42642026
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 26,
+                "ID": 27,
+                "NUMERAZIONE": 29,
+                "NOME": "Resti dell'Acquedotto Romano",
+                "DESCR1": "Acquedotto romano",
+                "DESCR3": "Da Via delle Ginestre, poco sopra la chiesa del SS. Sacramento, è possibile accedere al percorso dell’acquedotto,  Nella parte bassa della via stessa, nel tornante in prossimità di un supermercato, vi sono alcune arcate dell’acquedotto di epoca romana. Un’altra arcata si può vedere all’inizio di Via Montaldo, sotto Via Menini, e altri resti a metà della stessa Via Montaldo. Ulteriori reperti si trovano all’interno del Cimitero di Staglieno."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79ed",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.94266018,
+                        44.42994254
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 27,
+                "ID": 28,
+                "NUMERAZIONE": 31,
+                "NOME": "Ponte San Pantaleo",
+                "DESCR1": "Ponte",
+                "DESCR3": "Passato il ponte di S.Antonino (tatto ora non accessibile) si trova il ponte di S. Pantaleo, lungo 89 m e alto 25 m, edificato nel 1303 e poco più a monte il più antico ponte e presa sul rio Casamavari . Più in alto si trova l’abitato di S. Pantaleo e la fermata della Ferrovia Genova - Casella. Nel piccolo borgo sorge la chiesetta intitolata al Santo, edificata nel 1451, a cui si affianca la canonica, risalente al secolo XVII.Percorrendo  Salita S.Pantaleo  è possibile raggiungere la galleria di accesso al Ponte Sifone sul Veilino (loc.tà Ca’ de Riva), struttura che attraversa il Cimitero monumentale di Staglieno."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79ee",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.9465562,
+                        44.43505955
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 28,
+                "ID": 30,
+                "NUMERAZIONE": 27,
+                "NOME": "Antico tracciato nella valle del Veilino",
+                "DESCR1": "Rudere",
+                "DESCR3": "L’antico tracciato, lungo 3.400 m., aggira Ca' de Mussi e procede a mezza costa verso l’interno della valle. Il manufatto non è più percorribile, se non per piccoli tratti. La parte di tracciato che scavalca il Rio Poggetti è percorribile partendo dal Tiro a Segno (aperto saltuariamente), raggiungibile da Via Superiore del Veilino. Lungo il percorso si incontrano due ponti ottocenteschi denominati “ponti di bersaglio”."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79ef",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.01102819,
+                        44.4554185
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 30,
+                "ID": 32,
+                "NUMERAZIONE": 9,
+                "NOME": "Mulini del Rio Torbido",
+                "DESCR1": "Mulini",
+                "DESCR3": "I due mulini vennero costruiti per risarcire parzialmente i contadini della zona per il danno ricevuto con la costruzione della derivazione sul rio Torbido. La comunità di Struppa ottenne anche l'apertura di due bronzini pubblici (fontanelle). Sulla facciata del mulino più in basso, una lapide del 1825 ripercorre la vicenda. Ai piedi del ponte si trova ancora una fornace costruita nel 1878 per la cottura della calce idraulica e del cemento, acquistata e restaurata da privati."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79f0",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.01463789,
+                        44.46061966
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 31,
+                "ID": 33,
+                "NUMERAZIONE": 8,
+                "NOME": "Presa sul Rio Torbido",
+                "DESCR1": "Presa Rio Torbido",
+                "DESCR3": "Nel 1825 fu costruita la presa sul Rio Torbido, la cui acqua  arrivava 10 m. sopra il livello dell'acquedotto e prima di confluirvi veniva sfruttata per far funzionare i due mulini costruiti all'imboccatura del ponte."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79f1",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.97931908,
+                        44.45782865
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 14,
+                "ID": 15,
+                "NUMERAZIONE": 15,
+                "NOME": "Ponte Sifone sul Rio Geirato",
+                "DESCR1": "Ponte sifone",
+                "DESCR3": "L’acquedotto del 1600 si sviluppava nella valle del torrente Geirato. A causa dei numerosi crolli, dovuti alla franosità del terreno, nel 1660 il Comune di Genova decise di erigere un ponte a sifone che raccordasse le colline di Pino Sottano e di Molassana. I lavori, su progetto dell’architetto Claudio Storace, cominciarono il 22 luglio del 1772 e terminarono nel 1777. Il ponte, dotato di 22 arcate per una lunghezza di 600 m., è accessibile tramite un rinnovato locale di transito, dove è visibile il percorso dell'acquedotto. L'antico tracciato, attraverso un primo sistema di sbarramento a rami e fogliame costituito da griglie in ferro, raggiungeva la grande cisterna (visitabile) che funzionava da ulteriore filtro per decantazione e regolava l'ingresso dell'acqua nel sifone. "
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79f2",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.97290921,
+                        44.46280422
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 16,
+                "ID": 17,
+                "NUMERAZIONE": 19,
+                "NOME": "Le Bocchelle dei filtri",
+                "DESCR1": "Filtri",
+                "DESCR3": "Proseguendo sull’acquedotto si incontrano i filtri dell’acqua di Pino Sottano, costituiti da tre grandi nicchie equidistanti, costruite sui piedritti del canale. Ciascuna nicchia è alta di 2,95 m. e larga 1,80 m. L’apertura di accesso al canale ha la forma di volta semicircolare (altezza 2,45 m. , larghezza 1,18 m. e profondità 1,45 m.). Le bocchelle avevano la funzione di consentire l’accesso all’interno del canale per le manutenzioni periodiche."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79f3",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.95653582,
+                        44.4540289
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 18,
+                "ID": 19,
+                "NUMERAZIONE": 21,
+                "NOME": "La Presa di Trensasco",
+                "DESCR1": "Presa",
+                "DESCR3": "Poco dopo l’incrocio con Via Giulia De Vincenzi vi è il collegamento con il sentiero AQ1 che inizia da Via Crosa dei Morchi e, con percorso ad anello, sale verso il Monte Pinasco, arriva a Forte Diamante per poi scendere a S. Gottardo presso la chiesa. L’acquedotto prosegue entro un bosco di roverella sino all’interruzione del Fossato di Costa Fredda, dove il ponte del canale è crollato a causa di una piena. Superata con una scaletta l’interruzione, si arriva alla Presa di Trensasco, piccolo borgo dove passava l’acquedotto medievale, il cui canale alimentava alcuni mulini ed una fornace, della quale sono visibili le arcate. "
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79f4",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.95903061,
+                        44.45301007
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 20,
+                "ID": 21,
+                "NUMERAZIONE": 30,
+                "NOME": "Ponte Trensasco",
+                "DESCR1": "Ponte",
+                "DESCR3": "Il ponte, edificato alla fine dell’Ottocento, attraversa il Rio Trensasco conducendo sul versante opposto."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79f5",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.95778198,
+                        44.43990127
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 21,
+                "ID": 22,
+                "NUMERAZIONE": 23,
+                "NOME": "Preli",
+                "DESCR1": "Località",
+                "DESCR3": "Il ponte canale che scavalca la valle di Preli, venne realizzato nel 1784, allo scopo di abbandonare il vecchio tracciato che, passando più a monte, attraversava una zona particolarmente franosa. L'antico ponte sul rio Figallo, posto più a monte, presenta una delle sezioni più interessanti dell’intero acquedotto: il canale, largo 40 cm. ed alto 50 cm., risalente alla prima metà del 1600.  Il vecchio ponte, di datazione incerta, venne abbandonato dopo il 1784 ma è ancora discretamente conservato. La sezione del ponte presenta nella sua campata originaria  una tecnica costruttiva con mattoni a coltello che differisce da quella fatta con blocchi di pietra perfettamente squadrati che troviamo nei tratti tra S.Pantaleo e S.Antonino (Staglieno). Questo confermerebbe la tesi del Banchero secondo la quale l'acquedotto nel 1295 arrivava alla presa di Poggetti e solo nel 1350 a Trensasco, visto che i due ponti di uguale sezione sono costruiti con tecniche costruttive differenti."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79f6",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.94770102,
+                        44.42990393
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 24,
+                "ID": 25,
+                "NUMERAZIONE": 26,
+                "NOME": "Ponte sifone sul torrente Veilino",
+                "DESCR1": "Ponte sifone",
+                "DESCR3": "Superata la chiesa di S. Bartolomeo, imboccata la strada veicolare, l’acquedotto (in questo tratto demolito) costeggiava il muro di cinta del Cimitero fino ad arrivare a Ca' de Mussi ed al ponte sifone sul torrente Veilino, costruito nel 1840 su progetto dell'Architetto Carlo Barabino, con la direzione lavori di G. B. Resasco. In Via Cà de Mussi sorge la casa dei filtri con la vasca di compensazione che alimenta il ponte sifone. All’interno di due piloni del ponte che valica il Cimitero vi sono due scale a chiocciola: la prima, non percorribile, scende all’interno del Cimitero, la seconda porta a Via Superiore del Veilino.\nIl ponte-sifone, lungo 450 m., oltrepassa il casello autostradale e si raccorda al tracciato dell'acquedotto attraverso una galleria che arriva sino alla Costa di Caderiva. Il ponte sifone è accessibile soltanto il secondo sabato del mese dalle ore 10:00 alle ore 17:30 oppure su prenotazione contattando Aegua Fresca."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79f7",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.98988776,
+                        44.46882421
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 29,
+                "ID": 31,
+                "NUMERAZIONE": 18,
+                "NOME": "Ponte sul Geirato",
+                "DESCR1": "Ponte",
+                "DESCR3": "Tra tante rovine, il ponte-canale seicentesco sul torrente Geirato è una delle opere più solide di tutta la valle. Il ponte si conserva tuttora nella consistenza architettonica originale senza aver subito particolari interventi di consolidamento. La struttura è molto simile nella forma ai grandi ponti di Rio Torbido e Cavassolo, e le campate hanno pressappoco lo stesso diametro, ma il ponte di Geirato con i suoi 69 metri di lunghezza è circa la metà di quello di Rio Torbido (130 metri) e di Cavassolo (95 metri)."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79f8",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.03974405,
+                        44.44606451
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 32,
+                "ID": 34,
+                "NUMERAZIONE": 32,
+                "NOME": "Serie di Filtri",
+                "DESCR1": "filtri",
+                "DESCR3": "Particolarità di questo tratto sono i numerosi filtri che è possibile vedere lungo il percorso. Le “tine” o bocchette con cataratta (cestello metallico che veniva estratto), venivano utilizzate per ispezionare e pulire  l’acquedotto, molte hanno ancora l'apertura per l'ispezione intatta."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79f9",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.04000665,
+                        44.46027896
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 1,
+                "ID": 1,
+                "NUMERAZIONE": 4,
+                "NOME": "Presa sul Rio Concasca",
+                "DESCR1": "Presa sul Rio Concasca",
+                "DESCR3": "Il torrente Concasca, o Canate, nasce da varie sorgenti sul costone tra il monte Bastia e il monte Lago a quota 800/900 metri. Il torrente Arvigo nasce ai piedi del monte Bastia a quota 700 metri e confluisce a quota 160 metri nel Concasca che prosegue per altri due chilometri fino a sfociare nel Bisagno, nell'abitato di Cavassolo. La derivazione formata da numerosi ponti-canale è lunga circa 1200 m e ha una pavimentazione in lastre di pietra locale."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79fa",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.03413882,
+                        44.45185063
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 2,
+                "ID": 2,
+                "NUMERAZIONE": 3,
+                "NOME": "Mulini del Concasca",
+                "DESCR1": "Mulini",
+                "DESCR3": "La derivazione ottocentesca sul Concasca permise l'impianto di due nuovi mulini, detti i Piloni. Il mulino situato pi¿¿ in basso conserva ancora il vano dove era situata la ruota.\r\nAlle estremit¿¿ del ponte sono visibili 2 porte, un tempo dotate di cancelli, che testimoniano l'esclusività del transito sul ponte."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79fb",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.03420913,
+                        44.45132444
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 3,
+                "ID": 3,
+                "NUMERAZIONE": 2,
+                "NOME": "Ponte-canale sul rio Concasca a Cavassolo",
+                "DESCR1": "Ponte-canale sul rio Concasca a Cavassolo",
+                "DESCR3": "Il  Ponte-canale sul rio Concasca a Cavassolo , ultimato nel 1630, è alto circa 32 metri per una lunghezza complessiva di 95 metri, ed è composto da sei arcate  di 11 metri . I materiali utilizzati sono pietra e mattoni per la struttura portante e blocchi di pietra squadrata per gli ornamenti esterni."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79fc",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.04762392,
+                        44.44096119
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 4,
+                "ID": 4,
+                "NUMERAZIONE": 1,
+                "NOME": "Località La Presa (Schienadasino) - inizio Acquedotto",
+                "DESCR1": "Localita La Presa (Schienadasino) inizio Acquedotto",
+                "DESCR3": "La località La Presa è l'inizio del percorso seicentesco dell'acquedotto. Anticamente era detta Schienadasino, per via della conformazione del monte simile al dorso dell'animale. Qui avviene la confluenza tra i due corsi d’acqua, il Lentro e il Bargaglino, dai quali trae origine il Bisagno.  La presa sul Bisagno, contribuisce ancora oggi a circa il 12 % delle necessità idriche della città di Genova. In questa area si trovavano anche i resti di una privata fornace ottocentesca."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79fd",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.02364208,
+                        44.45152168
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 5,
+                "ID": 5,
+                "NUMERAZIONE": 5,
+                "NOME": "Filtri di Prato",
+                "DESCR1": "Filtri di Prato",
+                "DESCR3": "Ultimati nel 1957 per la potabilizzazione del civico acquedotto. Ancora oggi in uso, filtrano l’acqua proveniente dal Bisagno e dal rio Lavena e, dagli anni ‘60 del secolo scorso, anche l’acqua del Brugneto."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79fe",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.02082327,
+                        44.45181947
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 6,
+                "ID": 6,
+                "NUMERAZIONE": 6,
+                "NOME": "Portale del Barabino e Galleria Rovinata",
+                "DESCR1": "Portale del Barabino e Galleria Rovinata",
+                "DESCR3": "La Galleria della Rovinata, iniziata nel 1826 e terminata nel 1830 su disegni dell'architetto Barabino, ha permesso di evitare la zona franosa da cui deriva il toponimo. Dopo un percorso di 148 m. la Galleria termina con un portale in pietra con colonne in marmo sovrastate da un'iscrizione in latino: “AEDILIUM, CURA SUBSTRUCTIONES, ARCUATAE, PERFECTAE–MDCCCXXX” (Opera di sostegno ad arco condotta a termine sotto la direzione degli edili nel 1830). \nL'area è stata recuperata negli anni grazie agli interventi dei volontari dell’Associazione AMICI DELLA NATURA e dell’Associazione GAU, in accordo con l'allora Circoscrizione. "
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_79ff",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.01034064,
+                        44.45563021
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 7,
+                "ID": 7,
+                "NUMERAZIONE": 7,
+                "NOME": "Ponte-canale sul rio Torbido e  Mulini",
+                "DESCR1": "Rio Torbido",
+                "DESCR3": "Il ponte sul rio Torbido è stato realizzato nei primi anni del 1600. Misura 130 m. ed è alto 35,40 m. Conserva la prima pietra simbolica del nuovo acquedotto posta il 17 maggio del 1623 da G.B D'Oria Priore del Magistrato e materialmente collocata dall'architetto Aicardo.l"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_7a00",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.00692435,
+                        44.45472633
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 8,
+                "ID": 9,
+                "NUMERAZIONE": 10,
+                "NOME": "Ponte-Canale sul Rio Ciassetti o Piaggetti",
+                "DESCR1": "Ponte canale",
+                "DESCR3": "Sul rio Piaggetti, o Ciassetti, nel 1827 venne costruito su progetto di Carlo Barabino il ponte-canale in sostituzione di un tronco più a monte ormai inservibile. A metà ponte è possibile vedere un piccolo manufatto dove era alloggiata una chiusa dotata di meccanismi scolmatori in caso di piena improvvisa del canale."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_7a01",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.00487226,
+                        44.45221444
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 9,
+                "ID": 10,
+                "NUMERAZIONE": 11,
+                "NOME": "Lavatoio \"Treuggiu di Cadato\" Via di Creto",
+                "DESCR1": "Lavatoio",
+                "DESCR3": "In località Cadato, poco prima di incrociare la strada per Creto, sotto il canale, è collocato il lavatoio di San Siro, costruito nel 1934. La struttura è formata da sei vasche divise in due truogoli. I piani di lavoro sono in arenaria, l’approvvigionamento idrico era garantito dall’Acquedotto Storico."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_7a02",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.99989461,
+                        44.45328215
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 10,
+                "ID": 11,
+                "NUMERAZIONE": 12,
+                "NOME": "Lavatoio \"Treuggiu Campodenego\"Via alla Chiesa di S.Siro",
+                "DESCR1": "Lavatoio",
+                "DESCR3": "Prima di rientrare sull’Acquedotto vale la pena procedere per un breve tratto lungo Via alla Chiesa di San Siro, per vedere il “treuggiu Campodenego”. Il lavatoio si trova all’angolo con via Campodenego ed è formato da una grossa vasca divisa in due truogoli. A fianco della vasca minore è collocato il serbatoio in muratura."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_7a03",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.99989068,
+                        44.45158115
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 11,
+                "ID": 12,
+                "NUMERAZIONE": 16,
+                "NOME": "Ponte-canale sul rio Consiglieri",
+                "DESCR1": "Ponte canale",
+                "DESCR3": "Ponte canale lungo 116 metri e composto da 13 arcate, costruito nel 1817 su progetto del Cantoni in sostituzione del vecchio tratto franato e ancora riconoscibile sulla destra del ponte."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_7a04",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.99430649,
+                        44.45411013
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 12,
+                "ID": 13,
+                "NUMERAZIONE": 14,
+                "NOME": "Lavatoio \"Treuggiu Fundega\" Via alla Costa di S.Siro",
+                "DESCR1": "Lavatoio",
+                "DESCR3": "Risalendo brevemente il Ponte medioevale sul Rio Concasca, in Via alla Costa di San Siro, si trova un trogolo costruito nel 1916. Presenta due vasche di diverse dimensioni e un abbeveratoio. Il trogolo è alimentato da una sorgente sotteranea e sul lato monte c'è un'antica edicola dedicata a San Siro."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_MANU_STORICI.fid--3bed1699_18d55542587_7a05",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.98322985,
+                        44.45777578
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 13,
+                "ID": 14,
+                "NUMERAZIONE": 13,
+                "NOME": "Casetta dei Filtri e Giardino del Circolo Sertoli",
+                "DESCR1": "Circolo",
+                "DESCR3": "La Casetta dei Guardiani dei Filtri è stata restaurata ed è utilizzabile come supporto multimediale per i visitatori dell'Acquedotto. Dal 2009, accanto alla casetta e al ponte sifone, s'incontra il giardino della Casetta dei Filtri. Uno spazio verde di 3.000 mq., ottenuto in comodato d'uso gratuito dalla famiglia Marsano. L'area, recuperata dai volontari del Circolo Sertoli, può essere usufruita come punto di ristoro ed ospita, all'aperto o nell'aula coperta “Giordano Bruschi e Giusy Giani, attività ed iniziative in un cotesto piacevole, tra piante e colture locali. i"
+            }
+        }
+    ]
+}

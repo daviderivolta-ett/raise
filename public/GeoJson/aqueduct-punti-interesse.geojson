@@ -1,0 +1,545 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-405a",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.02432971,
+                    44.45102869
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 23,
+                "ID": 23,
+                "NUMERAZIONE": "c",
+                "NOME": "Oratorio di san Rocco, San Giovanni Battista e Beata Vergine Maria",
+                "DESCRIZIONE": "Ruderi",
+                "NOTE": "L' Oratorio di San Rocco a pianta rettangolare con copertura a botte rivestita esternamente con abbadini in ardesia. L'antica cappella, già intitolata a San Rocco, versava in cattive condizioni a causa della costruzione dell'acquedotto. Giannettino Maragliano ottenne dall’Arcidiocesi di Genova nel 1642 il permesso di riedificare la cappella, che verrà intitolata anche ai patroni di Genova. La cappella divenne così il simbolo della pace fra gli abitanti di Calvari e S. Cosimo e la fine delle controversie con il governo di Genova."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4059",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.03407974,
+                    44.45149318
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 24,
+                "ID": 24,
+                "NUMERAZIONE": "b",
+                "NOME": "Ponte medioevale Rio Concasca",
+                "DESCRIZIONE": "Ponte",
+                "NOTE": "Si consiglia di iniziare la passeggiata sull’acquedotto dal borgo inferiore di Cavassolo, salendo sul ponticello medioevale a semplice arcata  che permette di godere della vista del sovrastante ponte-canale, prima di risalire per l’antica mulattiera  Caminus Januae (strada di Genova) che  collegava Genova a Piacenza. Passando per Calvari e Capenardo si raggiunge l’Alta Via dei Monti Liguri. Tramite il ponticello, in direzione opposta, la mulattiera (interrotta per un tratto) portava a San Cosimo con diramazione per Prato."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4058",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.03440164,
+                    44.45100329
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 25,
+                "ID": 25,
+                "NUMERAZIONE": "a",
+                "NOME": "Cappelletta del Bambin di Praga",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "Dopo l’interruzione dell’acquedotto causata dalla costruzione della strada per Davagna, si incontra una cappelletta, costruita negli anni Sessanta, per interessamento di Don Luigi Merlo. Il sagrato è coperto da una struttura funziona da luogo di sosta  e di ricovero in caso di pioggia per gli escursionisti. Da qui si accede al maestoso ponte-canale di Cavassolo."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4057",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.04473806,
+                    44.441635
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 26,
+                "ID": 26,
+                "NUMERAZIONE": "a1",
+                "NOME": "Fornace",
+                "DESCRIZIONE": "Fornace",
+                "NOTE": "Tra La Presa e Cavassolo, al di sopra dell'acquedotto,  è ancora visibile una fornace ottocentesca restaurata; alcuni elementi della struttura originaria sono ancora conservati"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4056",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.04846359,
+                    44.44005559
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 27,
+                "ID": 27,
+                "NUMERAZIONE": "z",
+                "NOME": "Antico ponte sul Lentro",
+                "DESCRIZIONE": "Ponte con edicola",
+                "NOTE": "All'inizio della Val di Lentro è ancora visibile un piccolo ponte con edicola a ricordo dell'antica mulattiera per Bavari."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4055",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.01097313,
+                    44.45112828
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 22,
+                "ID": 22,
+                "NUMERAZIONE": "d",
+                "NOME": "Chiesa di San Giovanni Battista di Gambonia",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "Scendendo lungo Salita Gambonia, una mattonata che incontriamo sulla nostra sinistra, arriviamo  a questa piccola Chiesa. La cappella presenta una facciata con terminazione a capanna e ampia porta di ingresso in posizione centrale. All'interno l'impianto è composto da due ambienti con funzione di aula: uno raggiungibile appena varcata la soglia di ingresso e l'altro posto sul lato sinistro dell'altare."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4054",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.95088832,
+                    44.42924237
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 4,
+                "ID": 4,
+                "NUMERAZIONE": "v",
+                "NOME": "Cimitero di Staglieno",
+                "DESCRIZIONE": "Cimitero",
+                "NOTE": "Il progetto della necropoli monumentale è opera dell'architetto civico Carlo Barabino (1768-1835) il quale però non riesce a completare l'incarico per l'improvvisa morte nel 1835 durante la grande epidemia di colera. Il compito di sviluppare il progetto viene affidato al suo allievo e collaboratore Giovanni Battista Resasco (1798-1871), il cui piano verrà approvato nel 1840. I lavori iniziano nel 1844 nell'area di Villa Vaccarezza, sita nel territorio del Comune di Staglieno, area in gran parte poco abitata e non molto distante dal centro cittadino. L’apertura al pubblico avviene il 1° gennaio 1851.\nLa forte suggestione di questo impianto architettonico è tuttora percepibile e suscita grande ammirazione in coloro che, entrati dall'ingresso principale, si trovano immersi in questa ampia scenografia, costituita dal succedersi di porticati monumentali, stilisticamente omogenei, culminanti nell’imponente architettura del Pantheon. Staglieno è uno dei cimiteri monumentali più importanti d'Europa."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4053",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.95532244,
+                    44.43098844
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 5,
+                "ID": 5,
+                "NUMERAZIONE": "t",
+                "NOME": "Chiesa di San Bartolomeo di Staglieno",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "Dopo un lungo tratto in aderenza al muro di recinzione delle Officine del Gas (oggi IREN) si giunge nel centro di S. Bartolomeo di Staglieno presso la chiesa e l’oratorio, entrambi dedicati all’apostolo. Il nucleo costituiva il polo principale del Comune di Staglieno (accorpato a Genova nel 1873), che estendeva il proprio ambito amministrativo sino a S. Gottardo e a S. Antonino di Casamavari.\nLe prime fonti storiche sulla chiesa risalgono al 1080. Fu donata dal vescovo di Genova Corrado II (1080-1090) ai canonici della Metropolitana di S. Lorenzo. Dopo le ristrutturazioni del 1403 e del 1646-1650, nel 1877 fu allungata con l’aggiunta del presbiterio e del coro. Un pregevole risseu ottocentesco in piccoli ciottoli bianchi e neri, ombreggiato da lecci secolari, occupa i lati Sud e Ovest."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4052",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96216711,
+                    44.46699197
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 7,
+                "ID": 7,
+                "NUMERAZIONE": "s",
+                "NOME": "Chiesa di San Pietro Pino Soprano",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "La chiesa di S. Pietro, di cui si ha notizia dal 1183, subì gravissimi danni causati dall’occupazione austriaca del 1746-1747. Dotata di un teatrino, di un campo da calcetto e di altri spazi all’aperto, sorge in vicinanza del valico verso Torrazza (Val Polcevera) e di una stazione della Ferrovia di Genova-Casella. Sul valico vi è il crocevia dei percorsi pedonali AQ1 e AQ2, quest’ultimo percorso, seguendo la dorsale fra Bisagno e Polcevera, sale verso il Monte Alpe (Alta Via dei Monti Liguri) e Creto. Una diramazione dalla dorsale porta alle rovine della fornace che produceva la calce per la costruzione e la manutenzione dell’acquedotto."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4051",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97838717,
+                    44.46295468
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 10,
+                "ID": 10,
+                "NUMERAZIONE": "p",
+                "NOME": "Chiesa di San Giacomo di Molassana",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "La chiesa di S. Giacomo è in realtà un oratorio, sede della confraternita più antica della val Bisagno, intitolata appunto a S. Giacomo. Le prime notizie risalgono al 1347, anno in cui, grazie ai fratelli Oliva, viene edificato l’oratorio, ricadente sotto la giurisdizione della parrocchia di S. Pietro di Pino Soprano. Nel 1747 subisce un incendio ad opera delle truppe austriache e, poco dopo, viene ricostruito ed ampliato. Il 23 febbraio 1960 viene istituito in parrocchia. Sull’antistante sagrato vi è collocata la statua in marmo di Papa Giovanni XXIII, inaugurata il 25 aprile 1967 (ricavata da un monumento raffigurante Costanzo Ciano).\nIn prossimità della chiesa, ove ha sede il circolo ricreativo “S. Giacomo” con punto di ristoro, si imbocca Via Cà di Sciarretta (AQ2), percorso che sale verso il Castello di Pino e, seguendo la dorsale fra Bisagno e Polcevera, verso il Monte Alpe (Alta Via) e Creto. Una diramazione dalla dorsale conduce alle rovine della fornace che produceva la calce per la costruzione e la manutenzione dell’acquedotto."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4050",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98667461,
+                    44.45730916
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 13,
+                "ID": 13,
+                "NUMERAZIONE": "l",
+                "NOME": "Parrocchia Santa Maria Assunta",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "Della primitiva cappella di S. Maria si hanno notizie già nel secolo X. Nel secolo XII fa parte del patrimonio vescovile e nel Registro della Curia del 1143 figura come chiesa dipendente da S. Siro di Struppa. Risulta eretta in parrocchia almeno dal 1268. I lavori di restauro dei primi anni del Duemila hanno portato alla luce sul prospetto Nord i muri in pietra medievali. All’interno, sopra l'altare maggiore, era affisso fino al 1892 un bassorilievo in marmo di età romana, raffigurante la dea Minerva e il fauno Marsia; mentre nel campanile vi era murata una testa marmorea dell’imperatore Vitellio. Entrambe le opere sono conservate al Museo Archeologico di Pegli. All’esterno vi è un ampio sagrato in ciottoli del Bisagno (bianchi e grigi) e di Sestri P. (nero e verdi), realizzato nel 1882."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-404f",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98840226,
+                    44.45644393
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 15,
+                "ID": 15,
+                "NUMERAZIONE": "h",
+                "NOME": "Cimitero di Molassana",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "Il cimitero sorge in località Olivo ed è costituito da due lotti edificati in anni diversi. Il lotto più vecchio è situato a monte ed è stato inaugurato nel settembre del 1920; alla sua costruzione, iniziata nel luglio 1918, hanno contribuito i prigionieri austro-ungarici. Il lotto moderno è stato iniziato nel 1995 e terminato alcuni anni dopo. Nella cappella vi sono la vetrata e la pala d’altare opera di Raimondo Sirotti.\nIn adiacenza all’ingresso vi è Via alle Piane di Molassana, mulattiera che, dopo poche centinaia di metri, conduce al cimitero edificato verso il 1835, in occasione dell’epidemia di colera, ampliato nel 1886-87. Al di sopra del camposanto, vi è il rifugio antiaereo edificato nel 1942 da Angelo Dellepiane. "
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-404e",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.99164099,
+                    44.45770637
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 17,
+                "ID": 17,
+                "NUMERAZIONE": "i",
+                "NOME": "Castelluzzo",
+                "DESCRIZIONE": "Ruderi",
+                "NOTE": "Antichissimo avamposto difensivo, risalente al X secolo, già sede di un castellaro nell’Età del Ferro. Annesso nel 1339 dal doge Simone Boccanegra alla Repubblica, nel secolo XV viene potenziato con una nuova torre, posta al centro del recinto e abbandonato nel secolo successivo.  Era stato costruito per difendere dalle invasioni dei Saraceni la tenuta vescovile e le vie che percorrevano la val Bisagno. Rimangono pochi ruderi di una torre a pianta circolare e di una a pianta quadrata.\n"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-404d",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.00629665,
+                    44.45287232
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 19,
+                "ID": 19,
+                "NUMERAZIONE": "f",
+                "NOME": "Casa natale di San Siro",
+                "DESCRIZIONE": "Casa",
+                "NOTE": "San Siro è ricordato da una targa marmorea sull’angolo di una casa che si presume sia stata costruita nel luogo dove sorgeva la sua casa natale: “S.SIRO DI STRUPPA VESCOVO DI GENOVA NATO IN QUESTA CASA E.C  1879”. Poco si sa della nascita del Santo. Gli studi più attenti lo vogliono nato nel fondo vescovile di Moliciana (l'attuale Molassana) e precisamente nella zona di Struppa che da lui prende nome. Il suo ministero episcopale è collocabile tra il 349 d.c. e il 381 d.c.. Di certo si sa solo che morì in età avanzata e fu sepolto a Genova nella Basilica dei Dodici Apostoli che in seguito prese il suo nome (Basilica di S.Siro nel centro storico)."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-404c",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94299063,
+                    44.43138322
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 1,
+                "ID": 1,
+                "NUMERAZIONE": "w",
+                "NOME": "Chiesa di Sant'Antonino",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "La prima memoria della chiesa del borgo risale al 1131. Al principio del secolo XIV viene assegnata in Commenda. Nel 1538 è affidata ai monaci basiliani sino al 1650, anno in cui ritorna al clero secolare. Nel secolo XVII viene ampliata. Nel 1780 il campanile (di cui si può vedere la muratura medievale) viene sopraelevato di 8 m. Il 17 settembre 1917 la chiesa perde il titolo di parrocchia, trasferito alla nuova chiesa del SS. Sacramento. Sulla facciata è stata affissa nel 2002 una lapide con il testo di una poesia scritta da Edoardo Firpo (1889-1957) in ricordo dei partigiani caduti. "
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-404b",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9425368,
+                    44.42818052
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 2,
+                "ID": 2,
+                "NUMERAZIONE": "x",
+                "NOME": "Chiesa di San Pantaleo",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "Passata la valletta del rio Casamavari ed il  ponte  di S. Pantaleo, edificato nel 1303,  si arriva alle pendici dell'abitato di S. Pantaleo, poco al di sopra della fermata della Ferrovia di Genova-Casella. Nel piccolo borgo sorge la chiesetta intitolata al Santo, edioficata nel 1451, a cui si affianca la canonica, risalente al secolo XVII."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-404a",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94483091,
+                    44.42532282
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 3,
+                "ID": 3,
+                "NUMERAZIONE": "y",
+                "NOME": "Chiesa del SS. Sacramento",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "La chiesa del SS. Sacramento, in via delle Ginestre, fu edificata a partire dal 1913 per avere una parrocchia più grande rispetto a quella di Sant’ Antonino e soprattutto più vicina ai nuovi quartieri in via di costruzione. Fu inaugurata nel 1915 dall’ Arcivescovo Ludovico Gavotti. Costruita su progetto dell'ingegnere Maurizio Bruzzo, la struttura architettonica di questa chiesa è sviluppata sullo stile romano-antico con qualche tocco di bizantino. All'interno della chiesa si può ammirare una ricostruzione storica archeologica del Santo Sepolcro realizzata interamente con pietra proveniente dal monte Calvario."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4049",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9551317,
+                    44.43140047
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 6,
+                "ID": 6,
+                "NUMERAZIONE": "u",
+                "NOME": "Oratorio di San Bartolomeo di Staglieno",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "A monte della chiesa si erige l’oratorio, sede della Confraternita intitolata al Santo ed al SS. Sacramento. La compagnia, fondata nel Quattrocento come filiazione di S. Giacomo di Pino, conserva il libro dei capitoli datato 1564. All’interno sono visibili lungo le pareti laterali due cicli di affreschi: i dipinti (eseguiti da due scuole differenti) lungo la navata risalgono al Cinquecento mentre quelli del presbiterio sono datati 1608. Gli affreschi, che erano coperti da uno spesso strato di intonaco, sono stati individuati nel 1994 a causa di una tromba d’aria che aveva danneggiato il tetto e gli interni. Ogni anno la Confraternita allestisce il presepe settecentesco, costituito da 132 statuine in legno con vestiti in stoffa opera della scuola di Maragliano, di Pasquale Navone e di Gerolamo Pittaluga. Anche l’oratorio ha un prezioso risseu in piccoli ciottoli bianchi e neri, con un leccio secolare."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4048",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97318603,
+                    44.45816949
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 8,
+                "ID": 8,
+                "NUMERAZIONE": "r",
+                "NOME": "Villa Durazzo (Santa Caterina) a Pino Sottano",
+                "DESCRIZIONE": "ora Villa Santa Caterina",
+                "NOTE": "Nell’abitato di Pino Sottano vi è una villa eretta dalla famiglia Durazzo verso la metà del secolo XVII. Dotata di una cappella dedicata a S. Michele, presenta parti affrescate all’interno e nel giardino spicca la settecentesca scala di accesso, di forma a tenaglia. Acquistata nel 1938 da don Orione per farne una residenza per signore anziane, attualmente ospita un Centro Diurno per anziani di proprietà dell’Opera Don Orione.\nPino Sottano rientra nel territorio parrocchiale di S. Pietro, chiesa ubicata a Pino Soprano, un tempo ricadente nella pieve polceverasca di S. Olcese."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4047",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9724506,
+                    44.46382423
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 9,
+                "ID": 9,
+                "NUMERAZIONE": "q",
+                "NOME": "Il Mulino",
+                "DESCRIZIONE": "Mulino",
+                "NOTE": "Nella valle solcata dal Rio Maggiore, posta fra S. Giacomo e Pino Sottano, a breve distanza dall’acquedotto (Via Ubbia) si scende in località Molinetti dove si trova un frantoio ancora dotato della ruota in ferro a funzionamento idraulico con canale di adduzione dell’acqua."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4046",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98550045,
+                    44.46669307
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 11,
+                "ID": 11,
+                "NUMERAZIONE": "o",
+                "NOME": "Cappella Santi Rocco e Nicola",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "La cappella è documentata già dal 1729 (rilievo di Matteo Vinzoni), anno in cui figura fondata su una proprietà dei Padri Scolopi. All’interno vi è custodita una copia in ardesia del bassorilievo quattrocentesco raffigurante l’Adorazione dei Magi, posto sull’architrave di un portale in Via Orefici (Genova). Dopo anni di abbandono, la piccola cappella posta in vicinanza di un lavatoio nei pressi dell'antico percorso dell'acquedotto è stata restaurata."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4045",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98961989,
+                    44.46782149
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 12,
+                "ID": 12,
+                "NUMERAZIONE": "n",
+                "NOME": "Cappella San Bernardo",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "Nella piazzetta di S. Bernardo sorge l'omonima cappella seicentesca, forse fondata inizialmente come deposito di materiali edili durante la costruzione dell'acquedotto."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4044",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98639126,
+                    44.45755734
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 14,
+                "ID": 14,
+                "NUMERAZIONE": "m",
+                "NOME": "Oratorio di San Giovanni Battista",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "L’oratorio di S. Giovanni Battista venne costruito nel 1638 ad opera di alcuni abitanti di Molassana che decisero di distaccarsi dalla Confraternita di S. Giacomo di Pino e istituire la Confraternita intitolata al Santo. Nel 1676 l’oratorio è arricchito da un altare barocco, gemello di uno presente nella chiesa. Nel 1893 vengono rifatti il presbiterio e i pavimenti interni (data riportata sul sagrato antistante l'accesso). Dopo lo scioglimento della Confraternita, nel secondo dopoguerra, seguirono lunghi anni di abbandono fino al recupero ed alla rifondazione della Confraternita negli anni '90 del secolo scorso. Dalla salita Gio. Maria Cotella è possibile raggiungere la Società Operaia Cattolica N. S. Assunta, che funziona anche da punto di ristoro."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4043",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.99303763,
+                    44.4578354
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 16,
+                "ID": 16,
+                "NUMERAZIONE": "j",
+                "NOME": "Terre Rosse",
+                "DESCRIZIONE": "Panorama",
+                "NOTE": "Da  Via del Perdono, mulattiera acciottolata, si arriva all’incrocio delle Terre Rosse (fenomeni calanchivi scavati in “argilliti di Montoggio”) dove si trovano i ruderi di una vecchia osteria ancora attiva negli scorsi anni Sessanta. Da lì si può salire oltregiogo verso il valico di Creto ed i Feudi Imperiali (percorso indicato dalla FIE con un quadrato rosso vuoto e dal CAI ULE come AQ2). Poco più sopra il bivio vi sono due trunee, sorta di ripari in pietra per i viandanti ed i contadini. Sempre dal bivio delle Terre Rosse si può scendere verso S. Siro di Struppa oppure risalire al Castelluzzo."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4042",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.99212305,
+                    44.4656362
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 18,
+                "ID": 18,
+                "NUMERAZIONE": "k",
+                "NOME": "Cartagenova",
+                "DESCRIZIONE": "Ruderi",
+                "NOTE": "Proseguendo per Via alle Piane, superati i borghi di Giacardo e di Valle, nella cui piazza sorge un lavatoio, si arriva alla località Fontana. Da qui, proseguendo verso Cadeia e Cartagenova, si può raggiungere il Prato Casarile (Prati Casalini in gergo locale), esteso pianoro generato da una paleofrana, posto alle pendici dell’Alta Via passante per il Monte Alpe (m. 809) e il valico di Creto."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4041",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.0061738,
+                    44.45249666
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 20,
+                "ID": 20,
+                "NUMERAZIONE": "g",
+                "NOME": "Cappelletta",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "Curiosa cappella che riproduce in scala ridotta la storica Abbazia. Costruita da un fedele del luogo nel 1913."
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_INT_STORICO.fid--3bed1699_18d555c66a3_-4040",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.00401741,
+                    44.45381092
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 21,
+                "ID": 21,
+                "NUMERAZIONE": "e",
+                "NOME": "Abbazia di San Siro di Struppa",
+                "DESCRIZIONE": "Chiesa",
+                "NOTE": "Al termine del Ponte canale sul rio Piaggetti una mulattiera sulla destra, Salita Ca’ Bianca, conduce in breve all’Abbazia di San Siro, consacrata nel 1025. Il documento più antico riguardante l'Abbazia è del 955 d.C. L'edificio conservò l'originaria struttura romanica fino alla fine del XVI secolo, quando per adeguarlo alle disposizioni del Concilio di Trento ed al gusto dell'epoca barocca subì varie modifiche: rifatte le volte, imbiancate e stuccate le pareti, modificato l'abside, aggiunta la sacrestia. I più recenti restauri degli anni '30 e '50 hanno riportato alla luce la struttura originaria della chiesa che si è dimostrata ancora ben conservata sotto le varie stratificazioni. "
+            }
+        }
+    ]
+}

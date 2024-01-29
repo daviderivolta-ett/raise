@@ -1,0 +1,1983 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.87154",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.76579997,
+                    44.43561726
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DELLA BENEDICTA 14",
+                "SEDE_LEG_CONC": "VIA DELLA BENEDICTA",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 87154,
+                "ATTIVITA": "PATTINAGGIO",
+                "CONCESSIONARIO": "Consorzio Sportivo Pianacci",
+                "LINK_SITO_GESTORE": "http://www.pianacci.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Complesso sportivo \"Area Pianacci\" - Palacep"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.132495",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.88669134,
+                    44.41575896
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA  D.G. STORACE 2R",
+                "SEDE_LEG_CONC": "Via  D.G. Storace",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 132495,
+                "ATTIVITA": null,
+                "CONCESSIONARIO": "Società Ginnastica Comunale Sampierdarenese",
+                "LINK_SITO_GESTORE": "http://sgcsampierdarenese.wixsite.com/sampierdarenese",
+                "CLASSIFICAZIONE": "ASSOCIATIVO",
+                "IMPIANTO": "Palestra Storace"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.132245",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.88237805,
+                    44.41495579
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA ERIDANIA 3",
+                "SEDE_LEG_CONC": "VIA ERIDANIA",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 132245,
+                "ATTIVITA": "NUOTO",
+                "CONCESSIONARIO": "Impianto Polisportivo Crocera",
+                "LINK_SITO_GESTORE": "http://crocerastadium.it",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Impianto Polisportivo Crocera"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.119178",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.95528445,
+                    44.39763536
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA ALBERTO LIRI 8",
+                "SEDE_LEG_CONC": "VIA ALBERTO LIRI",
+                "MUNICIPIO": "8-Medio Levante",
+                "ID": 119178,
+                "ATTIVITA": "TENNIS",
+                "CONCESSIONARIO": "Circolo Tennis Dipendenti Italimpianti",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Tennis Via Liri"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.130482",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.78300616,
+                    44.42667822
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA PRA 118R",
+                "SEDE_LEG_CONC": "VIA PRA",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 130482,
+                "ATTIVITA": "NUOTO",
+                "CONCESSIONARIO": "A.S.D.  G.S. Aragno",
+                "LINK_SITO_GESTORE": "https://www.gsaragno.net",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Piscina \"I Delfini\", Fascia di rispetto - Prà"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.379",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.91189849,
+                    44.41979351
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA LUGO 18",
+                "SEDE_LEG_CONC": "VIA VESUVIO",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 379,
+                "ATTIVITA": "CALCIO 7",
+                "CONCESSIONARIO": "A.S.D. Musica e magia",
+                "LINK_SITO_GESTORE": "https://www.facebook.com/dancemagia",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Campo Via Lugo"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.115673",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94309686,
+                    44.41649856
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DI SAN PANTALEO 2",
+                "SEDE_LEG_CONC": "VIA DI SAN PANTALEO",
+                "MUNICIPIO": "4-Media Val Bisagno",
+                "ID": 115673,
+                "ATTIVITA": "CALCIO 7",
+                "CONCESSIONARIO": "A.S. San Bernardino",
+                "LINK_SITO_GESTORE": "https://www.facebook.com/asdsanbernardino",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Campo San Bernardino"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.661",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9145402,
+                    44.41836651
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "SALITA SAN F. DA PAOLA 51C",
+                "SEDE_LEG_CONC": "SALITA SAN F. DA PAOLA",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 661,
+                "ATTIVITA": "BOCCE",
+                "CONCESSIONARIO": "A.S.D. Bocciofila San Rocco",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Bocciofila San Rocco"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.168",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.91068875,
+                    44.42435899
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA CADUTI SENZA CROCE 10",
+                "SEDE_LEG_CONC": "VIA CADUTI SENZA CROCE",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 168,
+                "ATTIVITA": "CALCIO 7",
+                "CONCESSIONARIO": "A.S.D. Gestione Sociale Granarolo",
+                "LINK_SITO_GESTORE": "http://www.granarolocalcio.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Impianto Polisportivo Granarolo"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.111934",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.92927217,
+                    44.42789221
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "PASSO  COSTANZI 4",
+                "SEDE_LEG_CONC": "PASSO  COSTANZI",
+                "MUNICIPIO": "1-Centro est",
+                "ID": 111934,
+                "ATTIVITA": "VOLLEY",
+                "CONCESSIONARIO": "Ass. di Scopo Oregina in Movimento",
+                "LINK_SITO_GESTORE": "http://www.nuovaoregina.net/palaoregina",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Palestra ex ISEF"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.7821",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94007368,
+                    44.3995458
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIALE ASPROMONTE 2",
+                "SEDE_LEG_CONC": "VIALE ASPROMONTE",
+                "MUNICIPIO": "1-Centro est",
+                "ID": 7821,
+                "ATTIVITA": "NUOTO",
+                "CONCESSIONARIO": "A.S.D. S.G. ANDREA DORIA",
+                "LINK_SITO_GESTORE": "http://www.sgandreadoria.it/",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Impianto Polisportivo \"Viale Aspromonte\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.36109",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.8147592,
+                    44.42833494
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA MARCELLO PRESTINARI 1",
+                "SEDE_LEG_CONC": "VIA MARCELLO PRESTINARI",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 36109,
+                "ATTIVITA": "BOCCE",
+                "CONCESSIONARIO": "Circolo Bocciofilo Il Lanternino",
+                "LINK_SITO_GESTORE": "http://www.campobocce.it/campi/scheda/Genova-GENOVA-PEGLI/LANTERNINO-PEGLIESE-PET/24",
+                "CLASSIFICAZIONE": "ASSOCIATIVO",
+                "IMPIANTO": "Circolo Bocciofilo Il Lanternino"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.36470",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97288159,
+                    44.42374466
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "SALITA COSTA DEI  RATTI 6A",
+                "SEDE_LEG_CONC": "via Donghi",
+                "MUNICIPIO": "3-Bassa Val Bisagno",
+                "ID": 36470,
+                "ATTIVITA": "BASKET,VOLLEY",
+                "CONCESSIONARIO": "U.S. Acli S. Sabina",
+                "LINK_SITO_GESTORE": "http://www.santasabinavolley.com/",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Palestra Ball"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.34360",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.87062827,
+                    44.4171616
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA NINO CERVETTO 8",
+                "SEDE_LEG_CONC": "VIA NINO CERVETTO",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 34360,
+                "ATTIVITA": "CALCETTO",
+                "CONCESSIONARIO": "A.S.D.Consorzio Nuova Cornigliano",
+                "LINK_SITO_GESTORE": "http://www.gsdcornigliano.it/",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Impianto polisportivo \"ex Area Doufur\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.48853",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.95349262,
+                    44.41677262
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "CORSO DE STEFANIS 74CR",
+                "SEDE_LEG_CONC": "via casata centuriona",
+                "MUNICIPIO": "3-Bassa Val Bisagno",
+                "ID": 48853,
+                "ATTIVITA": "CALCIO 11",
+                "CONCESSIONARIO": "LUIGI FERRARIS S.R.L.",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Stadio \"Luigi Ferraris\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.49441",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.7953914,
+                    44.43067538
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA GIUSEPPE UNGARETTI 24",
+                "SEDE_LEG_CONC": "VIA GIUSEPPE UNGARETTI",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 49441,
+                "ATTIVITA": "CALCIO A 7",
+                "CONCESSIONARIO": "SOC.SPORTIVO CULT. SAN PIETRO - TENNIS CLUB SAN PIETRO",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Impianto Valletta San Pietro - Via Ungaretti"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.50110",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.8602887,
+                    44.41895694
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DELL ACCIAIO 80",
+                "SEDE_LEG_CONC": "VIA DELL' ACCIAIO",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 50110,
+                "ATTIVITA": "CALCIO A 7",
+                "CONCESSIONARIO": "A.S.D. Via dell'Acciaio Football Club",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Campo via dell'Acciaio"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.53422",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9017623,
+                    44.45270033
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA F MARITANO 20",
+                "SEDE_LEG_CONC": "Via F Maritano",
+                "MUNICIPIO": "5-Val Polcevera",
+                "ID": 53422,
+                "ATTIVITA": "CALCIO 11",
+                "CONCESSIONARIO": "U.S.D. Bolzanetese Virtus",
+                "LINK_SITO_GESTORE": "http://www.campomoronesantolcese.it",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo calcio Begato 9 - Begato"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.49746",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.80013258,
+                    44.43046485
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA GIUSEPPE UNGARETTI 108",
+                "SEDE_LEG_CONC": "VIA GIUSEPPE UNGARETTI",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 49746,
+                "ATTIVITA": "CALCIO A 7",
+                "CONCESSIONARIO": "Associazione Polisportiva Dilettantistica Culturale Pegli 2000",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Complesso polisportivo Via Ungaretti n. 108"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.53768",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.89512917,
+                    44.41072385
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "LARGO PIETRO GOZZANO 5",
+                "SEDE_LEG_CONC": "VIA NICOLO DASTE",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 53768,
+                "ATTIVITA": null,
+                "CONCESSIONARIO": "Società Ginnastica Comunale Sampierdarenese Sezione Bocce",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "ASSOCIATIVO",
+                "IMPIANTO": "Società Ginnastica Comunale Sampierdarenese Sezione Bocce"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.56695",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97556486,
+                    44.43843437
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA MOGADISCIO 40",
+                "SEDE_LEG_CONC": "VIA MOGADISCIO",
+                "MUNICIPIO": "4-Media Val Bisagno",
+                "ID": 56695,
+                "ATTIVITA": "CALCIO 11",
+                "CONCESSIONARIO": "U.S.D. Angelo Baiardo",
+                "LINK_SITO_GESTORE": "http://www.angelobaiardo.it",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Impianto poliportivo Baiardo \"Guerrino Strinati\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.60087",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96711663,
+                    44.39239386
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DON MINZONI 4",
+                "SEDE_LEG_CONC": "VIA DON MINZONI",
+                "MUNICIPIO": "8-Medio Levante",
+                "ID": 60087,
+                "ATTIVITA": "PATTINAGGIO",
+                "CONCESSIONARIO": "A.S.D. STURLA PATTINAGGIO GENOVA",
+                "LINK_SITO_GESTORE": "http://www.sturlapattinaggio.webnode.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Stadietto del pattinaggio - Albaro"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.58888",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.95909249,
+                    44.43393504
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DELLE GAVETTE 25",
+                "SEDE_LEG_CONC": null,
+                "MUNICIPIO": "4-Media Val Bisagno",
+                "ID": 58888,
+                "ATTIVITA": "CALCIO 5",
+                "CONCESSIONARIO": "Terrarossa srl",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Centro Sportivo Gavette"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.68478",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98493887,
+                    44.44334704
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA SUP ROCCHE DI BAVARI 44",
+                "SEDE_LEG_CONC": "VIA SUP ROCCHE DI BAVARI",
+                "MUNICIPIO": "4-Media Val Bisagno",
+                "ID": 68478,
+                "ATTIVITA": "CALCIO 11",
+                "CONCESSIONARIO": "SSD Centro Sportivo Polivalente Campo di calcio Sant' Eusebio",
+                "LINK_SITO_GESTORE": "https://ww.facebook.com/SSD-Centro-Sportivo-Polivalente-SantEusebio",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo Sant' Eusebio"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.67774",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98518835,
+                    44.39492313
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA BRIGATA SALERNO 6",
+                "SEDE_LEG_CONC": "Via Serra",
+                "MUNICIPIO": "9-Levante",
+                "ID": 67774,
+                "ATTIVITA": "ATLETICA",
+                "CONCESSIONARIO": "Consorzio Obiettivo Sport e Salute 4.0",
+                "LINK_SITO_GESTORE": "http://obiettivosportesalute.it/",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo Atletica \"Villa Gentile\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.67467",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94904655,
+                    44.41161047
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "CORSO MONTE GRAPPA 130CR",
+                "SEDE_LEG_CONC": "CORSO MONTE GRAPPA",
+                "MUNICIPIO": "3-Bassa Val Bisagno",
+                "ID": 67467,
+                "ATTIVITA": "BOCCE",
+                "CONCESSIONARIO": "Associazione Bocciofila Genovese",
+                "LINK_SITO_GESTORE": "http://www.abgenovese.it/",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Bocciodromo corso Montegrappa"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.69060",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.90283459,
+                    44.44435969
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA TOMMASO ALBINONI 9",
+                "SEDE_LEG_CONC": "Largo Pietro Gozzano",
+                "MUNICIPIO": "5-Val Polcevera",
+                "ID": 69060,
+                "ATTIVITA": "CALCIO 11",
+                "CONCESSIONARIO": "A.S.D. Genova Calcio",
+                "LINK_SITO_GESTORE": "http://www.genovacalcio.com",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo calcio Begato 1 - Cige \"Dario De Martini\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.84024",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98863918,
+                    44.40620807
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA GIULIO TANINI 11C",
+                "SEDE_LEG_CONC": "VIA GIULIO TANINI",
+                "MUNICIPIO": "9-Levante",
+                "ID": 84024,
+                "ATTIVITA": "CALCIO 11",
+                "CONCESSIONARIO": "San Rocco di Vernazza Meeting Club",
+                "LINK_SITO_GESTORE": "http://www.meetingclub.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Campo calcio \"Fabrizio Pitto\" - Borgoratti"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.80619",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.95484146,
+                    44.41248321
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA CAGLIARI 1",
+                "SEDE_LEG_CONC": "VIA CAGLIARI",
+                "MUNICIPIO": "3-Bassa Val Bisagno",
+                "ID": 80619,
+                "ATTIVITA": "BASKET",
+                "CONCESSIONARIO": "A.S.D.  P.G.S.  Auxilium",
+                "LINK_SITO_GESTORE": "http://www.auxiliumgenova.it",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Palestra via Cagliari"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.89345",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.89440569,
+                    44.41415816
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "CORSO L. A. MARTINETTI 53R",
+                "SEDE_LEG_CONC": "via carzino",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 89345,
+                "ATTIVITA": "ATLETICA",
+                "CONCESSIONARIO": "Società Atletica Don Bosco Universale",
+                "LINK_SITO_GESTORE": "http://www.atleticaquadrifoglio.it/DBU",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Impianto Polisportivo Corso Martinetti"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.85992",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.88865336,
+                    44.42337394
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA CAPELLO 10",
+                "SEDE_LEG_CONC": "Via del Campasso",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 85992,
+                "ATTIVITA": "FITNESS",
+                "CONCESSIONARIO": "A.S.D. The game",
+                "LINK_SITO_GESTORE": "https://www.facebook.com/ASD-The-Game",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Palestra Ex area Feltrinelli"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.86456",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9760721,
+                    44.45643173
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DI PINO 35",
+                "SEDE_LEG_CONC": "VIA DI PINO",
+                "MUNICIPIO": "4-Media Val Bisagno",
+                "ID": 86456,
+                "ATTIVITA": "CALCIO 11",
+                "CONCESSIONARIO": "A.S.D.  S.C. Molassana Boero",
+                "LINK_SITO_GESTORE": "http://www.molassanaboero.it",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo calcio Cà de Rissi - Molassana"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.90350",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.02379811,
+                    44.4356125
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA PIANI DI FERRETTO 9",
+                "SEDE_LEG_CONC": "VIA PIANI DI FERRETTO",
+                "MUNICIPIO": "9-Levante",
+                "ID": 90350,
+                "ATTIVITA": "CALCIO A 11",
+                "CONCESSIONARIO": "SCIS Genova Est",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo calcio \"Piani di Ferretto - Vallebona\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.87814",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.78386392,
+                    44.42652911
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA PRÀ 43B",
+                "SEDE_LEG_CONC": "Via prà",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 87814,
+                "ATTIVITA": "CALCIO A 11",
+                "CONCESSIONARIO": "ASS.SPORTIVA PRAESE 1945",
+                "LINK_SITO_GESTORE": "http://www.asdpraese1945.it",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo calcio, Fascia di rispetto - Prà"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.87814",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.78386392,
+                    44.42652911
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA PRÀ 43B",
+                "SEDE_LEG_CONC": "Via prà",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 87814,
+                "ATTIVITA": null,
+                "CONCESSIONARIO": "Ass. Prà Viva",
+                "LINK_SITO_GESTORE": "http://www.praviva.it",
+                "CLASSIFICAZIONE": null,
+                "IMPIANTO": "Palestra Palamare"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.87814",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.78386392,
+                    44.42652911
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA PRÀ 43B",
+                "SEDE_LEG_CONC": null,
+                "MUNICIPIO": "7-Ponente",
+                "ID": 87814,
+                "ATTIVITA": "CANOTTAGGIO",
+                "CONCESSIONARIO": "A.S.D  GRUPPO SPORTIVO SPERANZA",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Centro Remiero - HANGAR NORD, Fascia di rispetto - Prà"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.95428",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.84099774,
+                    44.43116637
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA BRISCATA 29",
+                "SEDE_LEG_CONC": "VIA BRISCATA",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 95428,
+                "ATTIVITA": "TENNIS",
+                "CONCESSIONARIO": "A.S.D. Tennis Club Cà Bianca",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Tennis Cà Bianca"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.93564",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97936843,
+                    44.40509563
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VERNAZZA 31",
+                "SEDE_LEG_CONC": "VIA MONTE ZOVETTO",
+                "MUNICIPIO": "8-Medio Levante",
+                "ID": 93564,
+                "ATTIVITA": "RUGBY",
+                "CONCESSIONARIO": "ASS.SPORT.DILETT. CENTRO UNIVERS.SPORT.GENOVA - C.U.S.",
+                "LINK_SITO_GESTORE": "http://www.cusgenova.it",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Stadio \"Carlini\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.99651",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96807197,
+                    44.39425662
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "P.  H. DUNANT 4",
+                "SEDE_LEG_CONC": "P.  H. DUNANT",
+                "MUNICIPIO": "8-Medio Levante",
+                "ID": 99651,
+                "ATTIVITA": "NUOTO",
+                "CONCESSIONARIO": "Arena Albaro srl",
+                "LINK_SITO_GESTORE": "http://www.arenaalbarovillage.it",
+                "CLASSIFICAZIONE": "Cittadino",
+                "IMPIANTO": "Stadio del nuoto - Albaro"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.95424",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.8561384,
+                    44.42765736
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA BORZOLI, 21",
+                "SEDE_LEG_CONC": "Via Borzoli",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 95424,
+                "ATTIVITA": "NUOTO",
+                "CONCESSIONARIO": "SESTRI PONENTE PROJECT S.RL.",
+                "LINK_SITO_GESTORE": "http://www.centronuotosestri.net",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Impianto polisportivo \"Tea Benedetti\" - Sestri Ponente"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.99388",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.7479698,
+                    44.42824336
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VICO LIMISSO 8",
+                "SEDE_LEG_CONC": "PIAZZA ODICINI",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 99388,
+                "ATTIVITA": "TENNIS",
+                "CONCESSIONARIO": "Tennis Club Voltri",
+                "LINK_SITO_GESTORE": "https://www.tennisclubvoltri.com",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Tennis, Capannoni Ex Ansaldo Cerusa - Voltri"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.99388",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.7479698,
+                    44.42824336
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VICO LIMISSO 8",
+                "SEDE_LEG_CONC": "VICO LIMISSO",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 99388,
+                "ATTIVITA": "BOCCE",
+                "CONCESSIONARIO": "Asd Bocciofila Voltrese",
+                "LINK_SITO_GESTORE": "http://www.campobocce.it/campi/scheda/Genova-GENOVA/ASD-BOCCIOF-VOLTRESE/1793",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Bocciofila, Capannoni Ex Ansaldo Cerusa - Voltri"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.99388",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.7479698,
+                    44.42824336
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VICO LIMISSO 8",
+                "SEDE_LEG_CONC": null,
+                "MUNICIPIO": "7-Ponente",
+                "ID": 99388,
+                "ATTIVITA": "VOLLEY",
+                "CONCESSIONARIO": "DA ASSEGNARE",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Volley, Capannoni Ex Ansaldo Cerusa - Voltri"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.97827",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.75077731,
+                    44.42792381
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "P.ZZA VILLA GIUSTI 8R",
+                "SEDE_LEG_CONC": "DA ASSEGNARE",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 97827,
+                "ATTIVITA": null,
+                "CONCESSIONARIO": null,
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": null,
+                "IMPIANTO": "Piscina Comunale Voltri \"Nicola Mameli\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.95688",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.03087524,
+                    44.3828709
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA GIOVANNI CABOTO 23R",
+                "SEDE_LEG_CONC": null,
+                "MUNICIPIO": "9-Levante",
+                "ID": 95688,
+                "ATTIVITA": null,
+                "CONCESSIONARIO": "Impianto Chiuso",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": null,
+                "IMPIANTO": "Piscina Nervi Mario Massa"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.103624",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.825901,
+                    44.42817173
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DEI REGGIO 10",
+                "SEDE_LEG_CONC": "DA ASSEGNARE",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 103624,
+                "ATTIVITA": null,
+                "CONCESSIONARIO": null,
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": null,
+                "IMPIANTO": "Piscina Multedo - Nico Sapio"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.103624",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.825901,
+                    44.42817173
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DEI REGGIO 10",
+                "SEDE_LEG_CONC": "In uso al Municipio",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 103624,
+                "ATTIVITA": null,
+                "CONCESSIONARIO": "Municipio 7 Ponente - area tecnica",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Campi polivalenti Multedo"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.104801",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.89178711,
+                    44.41816415
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "SALITA G .B. MILLELIRE 4",
+                "SEDE_LEG_CONC": "SALITA G .B. MILLELIRE",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 104801,
+                "ATTIVITA": "CALCIO 11",
+                "CONCESSIONARIO": "U.S. Unione Sampierdarenese 1946",
+                "LINK_SITO_GESTORE": "http://www.sampierdarenese.it",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo calcio \"Mauro Morgavi\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.107234",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.95815225,
+                    44.40952746
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA CONTUBERNIO G.B. D' ALBERTIS 7",
+                "SEDE_LEG_CONC": "VIA CONTUBERNIO G.B. D' ALBERTIS",
+                "MUNICIPIO": "3-Bassa Val Bisagno",
+                "ID": 107234,
+                "ATTIVITA": "NUOTO",
+                "CONCESSIONARIO": "Associazione Sportiva Dilettantistica Idea Sport",
+                "LINK_SITO_GESTORE": "http://www.ssdideasport.com/",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Piscina via D'Albertis - San Fruttuoso"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.100465",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96785708,
+                    44.39300185
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA TOMASO CAMPANELLA 4",
+                "SEDE_LEG_CONC": "piazza H.Dunant",
+                "MUNICIPIO": "8-Medio Levante",
+                "ID": 100465,
+                "ATTIVITA": "TENNIS",
+                "CONCESSIONARIO": "Arena Albaro srl",
+                "LINK_SITO_GESTORE": "http://www.arenaalbarovillage.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Tennis Campanella"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.41619",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.85749245,
+                    44.42606388
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "PASSO RUSCAROLO 60",
+                "SEDE_LEG_CONC": "Via Borzoli",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 41619,
+                "ATTIVITA": "CALCIO 5",
+                "CONCESSIONARIO": "F.S. Sestrese 1919",
+                "LINK_SITO_GESTORE": "http://sestresecalcio.com/",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Campo calcio \"Ex Corderia\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.34920",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.95736719,
+                    44.41945605
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA AURELIO ROBINO 19R",
+                "SEDE_LEG_CONC": "via cagliari",
+                "MUNICIPIO": "3-Bassa Val Bisagno",
+                "ID": 34920,
+                "ATTIVITA": "VOLLEY",
+                "CONCESSIONARIO": "A.S.D.  P.G.S.  Auxilium",
+                "LINK_SITO_GESTORE": "http://www.auxiliumgenova.it/",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Palestra Robino ex Idrocarburi"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.17873",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.91972687,
+                    44.42771804
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA BARTOLOMEO BIANCO 2B",
+                "SEDE_LEG_CONC": "via padre santo",
+                "MUNICIPIO": "1-Centro est",
+                "ID": 17873,
+                "ATTIVITA": "HOCKEY SU PRATO",
+                "CONCESSIONARIO": "Federazione Italiana  Hockey",
+                "LINK_SITO_GESTORE": "https://www.facebook.com/Campo-Hockey-Prato-Giorgio-Arnaldi-Genova",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo Hockey Arnaldi"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.17492",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.92457546,
+                    44.42417162
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "S.TA OREGINA 50",
+                "SEDE_LEG_CONC": null,
+                "MUNICIPIO": "1-Centro est",
+                "ID": 17492,
+                "ATTIVITA": "CALCIO 7",
+                "CONCESSIONARIO": null,
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Campo Gastaldi"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.87544",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.99034088,
+                    44.40395719
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DEI GERANI 1",
+                "SEDE_LEG_CONC": "VIA DEI GERANI",
+                "MUNICIPIO": "9-Levante",
+                "ID": 87544,
+                "ATTIVITA": "BOCCE",
+                "CONCESSIONARIO": "Polisportiva Giulio Tanini",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "ASSOCIATIVO",
+                "IMPIANTO": "Bocciofila Giulio Tanini"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.109458",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.84961859,
+                    44.43264686
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA MARCO REDOANO 19",
+                "SEDE_LEG_CONC": "VIA MARCO REDOANO",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 109458,
+                "ATTIVITA": "CALCIO A 5",
+                "CONCESSIONARIO": "CIRCOLO AICS LORENZO REPOSO",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Tennis e Calcetto via Redoano - Sestri Ponente"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.109458",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.84961859,
+                    44.43264686
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA MARCO REDOANO 19",
+                "SEDE_LEG_CONC": "VIA MARCO REDOANO",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 109458,
+                "ATTIVITA": "FITNESS",
+                "CONCESSIONARIO": "Gym Club Wellness Center",
+                "LINK_SITO_GESTORE": "http://www.gymclub.net",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Palestra via Redoano - Sestri Ponente"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.114093",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.91786399,
+                    44.42730708
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA BARTOLOMEO BIANCO 6",
+                "SEDE_LEG_CONC": "VIA BARTOLOMEO BIANCO",
+                "MUNICIPIO": "1-Centro est",
+                "ID": 114093,
+                "ATTIVITA": "CALCIO 11",
+                "CONCESSIONARIO": "Consorzio Gestione Impianto Sportivo “Valletta Lagaccio\"",
+                "LINK_SITO_GESTORE": "http://www.amicizialagaccio.com",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo calcio \"Felice Ceravolo\" - Lagaccio"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.113353",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.82148559,
+                    44.42682846
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA CIALLI 6D",
+                "SEDE_LEG_CONC": "Via Pegli",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 113353,
+                "ATTIVITA": "BASKET",
+                "CONCESSIONARIO": "A.D. Basket Pegli",
+                "LINK_SITO_GESTORE": "http://www.basketpegli.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Palestra \"Torre Elah\" - Pegli"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.127893",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.83365485,
+                    44.42877153
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIALE VILLA GAVOTTI 10",
+                "SEDE_LEG_CONC": "Largo Pietro Gozzano",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 127893,
+                "ATTIVITA": "CALCIO A 7",
+                "CONCESSIONARIO": "A.S.D. Genova Calcio",
+                "LINK_SITO_GESTORE": "http://www.genovacalcio.com/villa-gavotti/",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Campo calcio \"Villa Gavotti\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.128364",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.89903093,
+                    44.46869431
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA LUIGI M. LEVATI 5",
+                "SEDE_LEG_CONC": "VIA LUIGI M. LEVATI",
+                "MUNICIPIO": "5-Val Polcevera",
+                "ID": 128364,
+                "ATTIVITA": "BOCCE",
+                "CONCESSIONARIO": "Associazione Bocciofila Bolzanetese",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Bocciofila - Bolzaneto"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.134447",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.89169891,
+                    44.43440892
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "PASSO TORBELLA 1F",
+                "SEDE_LEG_CONC": "PIAZZALE E. GUERRA",
+                "MUNICIPIO": "5-Val Polcevera",
+                "ID": 134447,
+                "ATTIVITA": "NUOTO",
+                "CONCESSIONARIO": "A.S.D. Elisa S.S, Dilett.r.l.",
+                "LINK_SITO_GESTORE": "http://www.foltzer.it",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Piscina e Palestra - Rivarolo"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.129218",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.01774173,
+                    44.44982876
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "PIAZZA G. SUPPINI 2",
+                "SEDE_LEG_CONC": "PIAZZA G. SUPPINI",
+                "MUNICIPIO": "4-Media Val Bisagno",
+                "ID": 129218,
+                "ATTIVITA": "VOLLEY",
+                "CONCESSIONARIO": "Polisportiva Alta Valbisagno",
+                "LINK_SITO_GESTORE": "http://www.normacavb.com/",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Palestra \"Pala Maragliano\" - Prato"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.125122",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9438224,
+                    44.40017395
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "SCALINATA MILITE IGNOTO 1",
+                "SEDE_LEG_CONC": "SCALINATA MILITE IGNOTO",
+                "MUNICIPIO": "8-Medio Levante",
+                "ID": 125122,
+                "ATTIVITA": "PADDLE",
+                "CONCESSIONARIO": "Società Ginnastica Ligure Cristoforo Colombo",
+                "LINK_SITO_GESTORE": "http://www.cristoforocolomboclub.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Società Ginnastica Ligure Cristoforo Colombo"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.142599",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98177635,
+                    44.39860929
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA SAGRADO 5",
+                "SEDE_LEG_CONC": "VIA GORIZIA",
+                "MUNICIPIO": "9-Levante",
+                "ID": 142599,
+                "ATTIVITA": "ARTI MARZIALI",
+                "CONCESSIONARIO": "Società Sportiva Ogawa Karate",
+                "LINK_SITO_GESTORE": "https://www.facebook.com/OGAWA-Karate-ASD",
+                "CLASSIFICAZIONE": "ASSOCIATIVO",
+                "IMPIANTO": "Palestra Karate"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.137470",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96796266,
+                    44.40937784
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DONGHI 68LR",
+                "SEDE_LEG_CONC": "via ricca",
+                "MUNICIPIO": "3-Bassa Val Bisagno",
+                "ID": 137470,
+                "ATTIVITA": "TIRO ARCO",
+                "CONCESSIONARIO": "A.S.D. Arcieri della Superba",
+                "LINK_SITO_GESTORE": "https://www.facebook.com/arcieridellasuperba",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Palestra Via Donghi"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.125330",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.93283786,
+                    44.40540143
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VICO CHIUSO DEGLI EROI 2",
+                "SEDE_LEG_CONC": "via san fruttuoso",
+                "MUNICIPIO": "1-Centro est",
+                "ID": 125330,
+                "ATTIVITA": "VOLLEY",
+                "CONCESSIONARIO": "SISPORT S.S.D. a R.L.",
+                "LINK_SITO_GESTORE": "info@sgandreadoria.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Impianto polisportivo \"Palaerbe\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.158518",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.81421599,
+                    44.42537629
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA SABOTINO 60R",
+                "SEDE_LEG_CONC": "VIA SABOTINO",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 158518,
+                "ATTIVITA": "TENNIS",
+                "CONCESSIONARIO": "Tennis Club Pegli",
+                "LINK_SITO_GESTORE": "http://tennisclubpegli.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Tennis - Pegli"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.155655",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.7877562,
+                    44.42616972
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA PRA' 63AR",
+                "SEDE_LEG_CONC": null,
+                "MUNICIPIO": "7-Ponente",
+                "ID": 155655,
+                "ATTIVITA": "CANOTTAGGIO",
+                "CONCESSIONARIO": "Federazione Italiana Cannotaggio",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Centro Remiero - HANGAR SUD, Fascia di rispetto - Prà"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.158036",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97314225,
+                    44.39586718
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA GIORDANO BRUNO 70R",
+                "SEDE_LEG_CONC": "Siena",
+                "MUNICIPIO": "8-Medio Levante",
+                "ID": 158036,
+                "ATTIVITA": "PATTINAGGIO",
+                "CONCESSIONARIO": "SKATE Genova ASD",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Pista pattinaggio via G. Bruno"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.158550",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.00496428,
+                    44.40100621
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DEGLI ANEMONI 11",
+                "SEDE_LEG_CONC": "VIA MONTE ZOVETTO",
+                "MUNICIPIO": "9-Levante",
+                "ID": 158550,
+                "ATTIVITA": "GOLF",
+                "CONCESSIONARIO": "Cus Genova",
+                "LINK_SITO_GESTORE": "http://www.cusgenovagolf.it",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo pratica Golf - Quarto"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.158556",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.83467175,
+                    44.42865799
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIALE VILLA GAVOTTI 7",
+                "SEDE_LEG_CONC": "VIALE VILLA GAVOTTI",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 158556,
+                "ATTIVITA": "PATTINAGGIO",
+                "CONCESSIONARIO": "Asd Moonlight Skating",
+                "LINK_SITO_GESTORE": "https://www.facebook.com/Asd-Moonlight-Skating-Pattinaggio-Artistico-Inline",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Pattinaggio Villa Gavotti"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.164769",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.89823528,
+                    44.47664012
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA ROMAIRONE 40HR",
+                "SEDE_LEG_CONC": "VIA ROMAIRONE",
+                "MUNICIPIO": "5-Val Polcevera",
+                "ID": 164769,
+                "ATTIVITA": "TENNIS",
+                "CONCESSIONARIO": "A.S.D. San Biagio",
+                "LINK_SITO_GESTORE": "http://www.centrosportivosanbiagio.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Complesso polisportivo \"San Biagio\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.143015",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9514146,
+                    44.39240885
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA MARIO CAPPELLO 12",
+                "SEDE_LEG_CONC": "Mascherpa",
+                "MUNICIPIO": "8-Medio Levante",
+                "ID": 143015,
+                "ATTIVITA": "SKATEBOARD",
+                "CONCESSIONARIO": "Municipio 8 Medio Levante",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Impianto skate Giardini Govi di Punta Vagno"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.101601",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.8766493,
+                    44.43953187
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA LAGO FIGOI 15",
+                "SEDE_LEG_CONC": "GIARDINI U.N.I.C.E.F.",
+                "MUNICIPIO": "5-Val Polcevera",
+                "ID": 101601,
+                "ATTIVITA": "NUOTO",
+                "CONCESSIONARIO": "S.S.D. Consortile a.r.l. My Sport 2",
+                "LINK_SITO_GESTORE": "http://www.lagofigoi.com",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Complesso Polisportivo Lago Figoi"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.96135",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.84748186,
+                    44.42972527
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA ANTONIO NEGRO 2",
+                "SEDE_LEG_CONC": "GIARDINI RODARI",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 96135,
+                "ATTIVITA": "CALCIO A 7",
+                "CONCESSIONARIO": "Filippo Merlino  8 Marzo",
+                "LINK_SITO_GESTORE": "https://www.facebook.com/Merlino8Marzo/",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Campo calcio \"G. Rodari\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.101711",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96270467,
+                    44.39772579
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA FEDERICO RICCI 3",
+                "SEDE_LEG_CONC": null,
+                "MUNICIPIO": "8-Medio Levante",
+                "ID": 101711,
+                "ATTIVITA": "TENNIS",
+                "CONCESSIONARIO": "SSD Cristoforo Colombo a R.L.",
+                "LINK_SITO_GESTORE": null,
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Tennis \"Valletta Cambiaso - Ex Eni\" (nord)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.158536",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.77760693,
+                    44.43034189
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA BRANEGA 20",
+                "SEDE_LEG_CONC": "Via Branega",
+                "MUNICIPIO": "7-Ponente",
+                "ID": 158536,
+                "ATTIVITA": "CALCIO A 7",
+                "CONCESSIONARIO": "Consorzio Campo Sportivo Branega",
+                "LINK_SITO_GESTORE": "http://www.olimpicpra.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Impianto polisportivo \"Branega\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.158538",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.99676868,
+                    44.44809379
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA SILVIO SOLIMANO 4",
+                "SEDE_LEG_CONC": "VIA STRUPPA",
+                "MUNICIPIO": "4-Media Val Bisagno",
+                "ID": 158538,
+                "ATTIVITA": "CALCIO 5/11",
+                "CONCESSIONARIO": "A.S.D Anpi Sport Casassa",
+                "LINK_SITO_GESTORE": "http://www.anpicasassa.com",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo XXV Aprile"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.158542",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.01494687,
+                    44.4483552
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA LUIGI CANEPA 40R",
+                "SEDE_LEG_CONC": "PIAZZA G. SUPPINI",
+                "MUNICIPIO": "4-Media Val Bisagno",
+                "ID": 158542,
+                "ATTIVITA": "CALCIO 7",
+                "CONCESSIONARIO": "Polisportiva Alta Valbisagno",
+                "LINK_SITO_GESTORE": "http://www.normacavb.com/",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Campo Canova"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.158544",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.87927978,
+                    44.41909903
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA RENATA BIANCHI 1D",
+                "SEDE_LEG_CONC": "Largo  Pietro Gozzano",
+                "MUNICIPIO": "6-Medio Ponente",
+                "ID": 158544,
+                "ATTIVITA": "CALCIO A 11",
+                "CONCESSIONARIO": "A.S.D. Genova Calcio",
+                "LINK_SITO_GESTORE": "http://www.genovacalcio.com",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Campo calcio \"Italo Ferrando\" - Cornigliano"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.158546",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.90843724,
+                    44.41677694
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA DIGIONE 48R",
+                "SEDE_LEG_CONC": "CALATA ANDALO' DI NEGRO",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 158546,
+                "ATTIVITA": "VOLLEY",
+                "CONCESSIONARIO": "S.S.D.A.R.L. Serteco volley school Genova",
+                "LINK_SITO_GESTORE": "http://www.sertecovolleyschool.it",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Palestra via Digione"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.92374",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96981032,
+                    44.44549897
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA ADAMOLI 57",
+                "SEDE_LEG_CONC": "VIA ADAMOLI",
+                "MUNICIPIO": "4-Media Val Bisagno",
+                "ID": 92374,
+                "ATTIVITA": "NUOTO",
+                "CONCESSIONARIO": "S.S.D. CONSORTILE A.R.L. MY SPORT",
+                "LINK_SITO_GESTORE": "http://www.piscinesciorba.com",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Impianto natatorio \"Sciorba\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.142625",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94818954,
+                    44.39436071
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "CORSO MARCONI 3PR",
+                "SEDE_LEG_CONC": "CORSO MARCONI",
+                "MUNICIPIO": "8-Medio Levante",
+                "ID": 142625,
+                "ATTIVITA": "CALCIO A 5",
+                "CONCESSIONARIO": "U.S.D. Polis Genova 1993",
+                "LINK_SITO_GESTORE": "https://www.facebook.com/USDPolisGenova1993/",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Impianto Sportivo Martin Luther King"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.122073",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.8799995,
+                    44.41205991
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA LUNGOMARE CANEPA 155R",
+                "SEDE_LEG_CONC": "via lungomare canepa",
+                "MUNICIPIO": "2-Centro Ovest",
+                "ID": 122073,
+                "ATTIVITA": "BASKET",
+                "CONCESSIONARIO": "General Production s.r.l.",
+                "LINK_SITO_GESTORE": "http://www.stadiumgenova.net",
+                "CLASSIFICAZIONE": "CITTADINO",
+                "IMPIANTO": "Palazzetto dello sport \"Stadium\""
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_IMPIANTI_SPORTIVI.96187",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.04466495,
+                    44.38227112
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "INDIRIZZO": "VIA SERRA GROPALLO 6",
+                "SEDE_LEG_CONC": "VIA SERRA GROPALLO",
+                "MUNICIPIO": "9-Levante",
+                "ID": 96187,
+                "ATTIVITA": "BASKET",
+                "CONCESSIONARIO": "A.S.D. ARDITA JUVENTUS 1906",
+                "LINK_SITO_GESTORE": "http://www.arditajuventus.org",
+                "CLASSIFICAZIONE": "MUNICIPALE",
+                "IMPIANTO": "Impianto polisportivo \"Ardita Juventus 1906\""
+            }
+        }
+    ]
+}

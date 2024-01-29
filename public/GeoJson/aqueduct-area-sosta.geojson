@@ -1,0 +1,155 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "V_ACQ_AREA_SOSTA.fid--3604d026_18d5559d4fc_-7e02",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.0113846,
+                    44.45458707
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 1
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_AREA_SOSTA.fid--3604d026_18d5559d4fc_-7d73",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9828396,
+                    44.45789587
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_AREA_SOSTA.fid--3604d026_18d5559d4fc_-7d72",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98867471,
+                    44.46398557
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 3
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_AREA_SOSTA.fid--3604d026_18d5559d4fc_-7d71",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9826203,
+                    44.46661537
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 4
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_AREA_SOSTA.fid--3604d026_18d5559d4fc_-7d70",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97273503,
+                    44.46299043
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 5
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_AREA_SOSTA.fid--3604d026_18d5559d4fc_-7d6f",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97251133,
+                    44.46310407
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 6
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_AREA_SOSTA.fid--3604d026_18d5559d4fc_-7d6e",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97238334,
+                    44.46294039
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 7
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_AREA_SOSTA.fid--3604d026_18d5559d4fc_-7d6d",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9752229,
+                    44.45561126
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 8
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_AREA_SOSTA.fid--3604d026_18d5559d4fc_-7d6c",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96936249,
+                    44.45080876
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 9
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_AREA_SOSTA.fid--3604d026_18d5559d4fc_-7d6b",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96062586,
+                    44.44670149
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 10
+            }
+        }
+    ]
+}

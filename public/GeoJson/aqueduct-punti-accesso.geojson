@@ -1,0 +1,725 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73ff",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.04751314,
+                    44.44075658
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 1,
+                "NOME": "Via Bavari",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 20,
+                "ETICHETTA": "a",
+                "ACCESSI": "a) Via Bavari"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73fe",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.03320681,
+                    44.45055882
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 2,
+                "NOME": "Via Bavari (Cavassolo)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 70,
+                "ETICHETTA": "b",
+                "ACCESSI": "b) Via Bavari (Cavassolo)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73fd",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.00868576,
+                    44.45411278
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 3,
+                "NOME": "Via Rio Torbido Salita Massiglione",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 110,
+                "ETICHETTA": "6",
+                "ACCESSI": "6) Via Rio Torbido Salita Massiglione"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73fc",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.01942188,
+                    44.44962246
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 4,
+                "NOME": "Via Raitano",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 5,
+                "ETICHETTA": "1 - 2",
+                "ACCESSI": "1 - 2) Via Raitano"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73fb",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.02073456,
+                    44.45079073
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 5,
+                "NOME": "Via Raitano - Via B. Da Porto -Via Castello di Struppa -filtri",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 350,
+                "ETICHETTA": "2",
+                "ACCESSI": "2) Via Raitano - Via B. Da Porto -Via Castello di"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73fa",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.02146753,
+                    44.45028641
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 6,
+                "NOME": "Via G.Raitano - Via B. Da Porto - Salita Ruin¿¿ -portale Barabino",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 50,
+                "ETICHETTA": "1",
+                "ACCESSI": "1) Via G.Raitano - Via B. Da Porto - Salita Ruin¿¿"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73f9",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.01842672,
+                    44.44972632
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 7,
+                "NOME": "Via B. Da Porto",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 30,
+                "ETICHETTA": "4",
+                "ACCESSI": "4) Via B. Da Porto"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73f8",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.01520424,
+                    44.44982395
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 8,
+                "NOME": "Via Ritale - Salita Scaglie -via Trossarelli",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 0,
+                "ETICHETTA": "3",
+                "ACCESSI": "3) Via Ritale - Salita Scaglie -via Trossarelli"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73f7",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.01112189,
+                    44.45003621
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 9,
+                "NOME": "Via Trossarelli -via B. Fazio- sal. Calanca- via Gambonia",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 350,
+                "ETICHETTA": "5",
+                "ACCESSI": "5) Via Trossarelli -via B. Fazio- sal. Calanca- vi"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73f6",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.01151234,
+                    44.44919872
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 10,
+                "NOME": "Via Trossarelli (da Via Struppa)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 350,
+                "ETICHETTA": "c",
+                "ACCESSI": "c) Via Trossarelli (da Via Struppa)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73f5",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.0064588,
+                    44.44816153
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 11,
+                "NOME": "Via di Creto (da Via Struppa)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 20,
+                "ETICHETTA": "d",
+                "ACCESSI": "d) Via di Creto (da Via Struppa)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73f4",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98120338,
+                    44.45443461
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 12,
+                "NOME": "Via San Felice (da Via Molassana)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": -10,
+                "ETICHETTA": "e",
+                "ACCESSI": "e) Via San Felice (da Via Molassana)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73f3",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98447558,
+                    44.46428894
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 13,
+                "NOME": "Via dei Carpi (da Via Geirato)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 340,
+                "ETICHETTA": "f",
+                "ACCESSI": "f) Via dei Carpi (da Via Geirato)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73f2",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97947142,
+                    44.46026459
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 14,
+                "NOME": "Via Rio Maggiore(da Via Geirato)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 315,
+                "ETICHETTA": "g",
+                "ACCESSI": "g) Via Rio Maggiore(da Via Geirato)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73f1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97970628,
+                    44.45437225
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 15,
+                "NOME": "Via Geirato",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 330,
+                "ETICHETTA": "h",
+                "ACCESSI": "h) Via Geirato"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73f0",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9724272,
+                    44.45063245
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 16,
+                "NOME": "Via di Pino (da Via S.Allende/Via Molassana)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 30,
+                "ETICHETTA": "i",
+                "ACCESSI": "i) Via di Pino (da Via S.Allende/Via Molassana)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73ef",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.97129199,
+                    44.44930602
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 17,
+                "NOME": "Via Giulia de Vincenzi (da Via Piacenza)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 0,
+                "ETICHETTA": "j",
+                "ACCESSI": "j) Via Giulia de Vincenzi (da Via Piacenza)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73ee",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96788103,
+                    44.44729857
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 18,
+                "NOME": "Via Trensasco (da Via Piacenza)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 330,
+                "ETICHETTA": "k",
+                "ACCESSI": "k) Via Trensasco (da Via Piacenza)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73ed",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96200784,
+                    44.43768858
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 19,
+                "NOME": "Via Lodi (da Via Piacenza)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 310,
+                "ETICHETTA": "l",
+                "ACCESSI": "l) Via Lodi (da Via Piacenza)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73ec",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9595892,
+                    44.4330378
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 20,
+                "NOME": "Via delle Gavette (da Via Piacenza)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 310,
+                "ETICHETTA": "m",
+                "ACCESSI": "m) Via delle Gavette (da Via Piacenza)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73eb",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94732157,
+                    44.42552937
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 21,
+                "NOME": "Via delle Ginestre (da Via Bobbio)",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 310,
+                "ETICHETTA": "n",
+                "ACCESSI": "n) Via delle Ginestre (da Via Bobbio)"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73ea",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.99259091,
+                    44.45243611
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 22,
+                "NOME": "Via Giro del Fullo Via costa di San Siro",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 10,
+                "ETICHETTA": "9",
+                "ACCESSI": "9) Via Giro del Fullo Via costa di San Siro"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73e9",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.99279001,
+                    44.45110918
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 23,
+                "NOME": "Via Giro del Fullo - Salita San Baz¿¿",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 170,
+                "ETICHETTA": "8",
+                "ACCESSI": "8) Via Giro del Fullo - Salita San Baz¿¿"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73e8",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98544448,
+                    44.45467838
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 24,
+                "NOME": "Salita al bosco di Molassana",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 10,
+                "ETICHETTA": "10",
+                "ACCESSI": "10) Salita al bosco di Molassana"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73e7",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.98114279,
+                    44.45486951
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 25,
+                "NOME": "Salita Gio Maria Cotella",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 60,
+                "ETICHETTA": "11",
+                "ACCESSI": "11) Salita Gio Maria Cotella"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73e6",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96860468,
+                    44.44791545
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 26,
+                "NOME": "Crosa dei Morchi",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 10,
+                "ETICHETTA": "12",
+                "ACCESSI": "12) Crosa dei Morchi"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73e5",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96721497,
+                    44.44679525
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 27,
+                "NOME": "Salita alla chiesa di S.Gottardo",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 260,
+                "ETICHETTA": "13",
+                "ACCESSI": "13) Salita alla chiesa di S.Gottardo"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73e4",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96368946,
+                    44.4439986
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 28,
+                "NOME": "Salita della Liggia",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 25,
+                "ETICHETTA": "14",
+                "ACCESSI": "14) Salita della Liggia"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73e3",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9632544,
+                    44.44109226
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 29,
+                "NOME": "Salita ai Molini di Cicala",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 10,
+                "ETICHETTA": "15",
+                "ACCESSI": "15) Salita ai Molini di Cicala"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73e2",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96209136,
+                    44.43813699
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 30,
+                "NOME": "Salita Preli",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 310,
+                "ETICHETTA": "16",
+                "ACCESSI": "16) Salita Preli"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73e1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.96048268,
+                    44.43815433
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 31,
+                "NOME": "Salita della Chiappa",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 310,
+                "ETICHETTA": "17",
+                "ACCESSI": "17) Salita della Chiappa"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73e0",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.95428285,
+                    44.42953645
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 32,
+                "NOME": "Salita alla Chiesa di Staglieno",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 20,
+                "ETICHETTA": "18",
+                "ACCESSI": "18) Salita alla Chiesa di Staglieno"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73df",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    9.00088417,
+                    44.44873986
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 33,
+                "NOME": "Via Lucarno Salita dei Muli",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 0,
+                "ETICHETTA": "7",
+                "ACCESSI": "7) Via Lucarno Salita dei Muli"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73de",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94889971,
+                    44.42850037
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 34,
+                "NOME": "Salita Sant'Antonino da Via Superiore del Veilino",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 260,
+                "ETICHETTA": "o",
+                "ACCESSI": "o) Salita Sant'Antonino da Via Superiore del Veili"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73dd",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.9460494,
+                    44.42982421
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 35,
+                "NOME": "Salita Sant'Antonino da Via Superiore del Veilino",
+                "DESCR": "Ordinaria",
+                "DIREZIONE": 240,
+                "ETICHETTA": "p",
+                "ACCESSI": "p) Salita Sant'Antonino da Via Superiore del Veili"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_ACQ_PTI_ACCESSO.fid--3bed1699_18d555c66a3_-73dc",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    8.94750016,
+                    44.4282771
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "OGR_FID": 36,
+                "NOME": "Salita San Pantaleo",
+                "DESCR": "Pedonale",
+                "DIREZIONE": 200,
+                "ETICHETTA": "19",
+                "ACCESSI": "19) Salita San Pantaleo"
+            }
+        }
+    ]
+}

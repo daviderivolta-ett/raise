@@ -47,6 +47,46 @@
       ]
     },
     {
+      "name": "Ospedali",
+      "layer": "SITGEO:V_PC_OSPEDALI",
+      "layer_url_wfs": "./GeoJson/hospitals.geojson",
+      "style": {
+        "color": "#6ab58d",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "ospedali"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "DENOMINAZIONE",
+          "display_name": "Nome",
+          "type": "string"
+        },
+        {
+          "property_name": "INDIRIZZO",
+          "display_name": "Indirizzo",
+          "type": "number"
+        },
+        {
+          "property_name": "PRONTO_SOC",
+          "display_name": "Pronto soccorso",
+          "type": "string"
+        },
+        {
+          "property_name": "TIPO_STRUTTURA",
+          "display_name": "Tipologia",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider",
+        "app-navigation-btn"
+      ]
+    },
+    {
       "name": "Farmacie",
       "layer": "L807",
       "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M452/wfs",
@@ -171,6 +211,187 @@
       ]
     },
     {
+      "name": "Scuole",
+      "layer": "SITGEO:SCUOLE_AGG_GEO",
+      "layer_url_wfs": "./GeoJson/schools.geojson",
+      "style": {
+        "color": "#97424c",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "ospedali"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "CATEGORIA",
+          "display_name": "Categoria",
+          "type": "number"
+        },
+        {
+          "property_name": "NOME",
+          "display_name": "Nome",
+          "type": "number"
+        },
+        {
+          "property_name": "TIPO_DIREZ_TERRITORIALE",
+          "display_name": "Tipo direzione territoriale",
+          "type": "number"
+        },
+        {
+          "property_name": "DIREZ_TERRITORIALE",
+          "display_name": "Direzione territoriale",
+          "type": "number"
+        },
+        {
+          "property_name": "MUNICIPIO",
+          "display_name": "Municipio",
+          "type": "number"
+        },
+        {
+          "property_name": "INDIRIZZO",
+          "display_name": "Indirizzo",
+          "type": "number"
+        },
+        {
+          "property_name": "UNITA_URBANISTICA",
+          "display_name": "Unità urbanistica",
+          "type": "number"
+        },
+        {
+          "property_name": "CAP",
+          "display_name": "CAP",
+          "type": "string"
+        },
+        {
+          "property_name": "EMAIL",
+          "display_name": "Email",
+          "type": "string"
+        },
+        {
+          "property_name": "TELEFONO",
+          "display_name": "Telefono",
+          "type": "string"
+        },
+        {
+          "property_name": "FAX",
+          "display_name": "Fax",
+          "type": "string"
+        },
+        {
+          "property_name": "PERICOLOS_FRANE",
+          "display_name": "Pericolo frane",
+          "type": "string"
+        },
+        {
+          "property_name": "PERICOLOS_IDRO",
+          "display_name": "Pericolo idrologico",
+          "type": "string"
+        },
+        {
+          "property_name": "PERICOLOS_INC",
+          "display_name": "Pericolo incendio",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Mercati rionali",
+      "layer": "SITGEO:V_COM_MERCATI",
+      "layer_url_wfs": "./GeoJson/mercati-rionali.geojson",
+      "style": {
+        "color": "#37f58e",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "servizi",
+        "ospedali"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "INDIRIZZO",
+          "display_name": "Indirizzo",
+          "type": "number"
+        },
+        {
+          "property_name": "TIPO",
+          "display_name": "Tipo",
+          "type": "string"
+        },
+        {
+          "property_name": "APERTURA",
+          "display_name": "Apertura",
+          "type": "string"
+        },
+        {
+          "property_name": "GIORNI",
+          "display_name": "Giorni",
+          "type": "string"
+        },
+        {
+          "property_name": "ZONA",
+          "display_name": "Zona",
+          "type": "string"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
+      "name": "Strutture ricettive turistiche",
+      "layer": "SITGEO:V_RIC_TURISTICHE",
+      "layer_url_wfs": "./GeoJson/strutture-ricettive-turistiche.geojson",
+      "style": {
+        "color": "#bf5132",
+        "opacity": 1
+      },
+      "tags": [
+        "città",
+        "strada"
+      ],
+      "relevant_properties": [
+        {
+          "property_name": "TIPOLOGIA",
+          "display_name": "Tipologia",
+          "type": "string"
+        },
+        {
+          "property_name": "INDIRIZZO",
+          "display_name": "Indirizzo",
+          "type": "string"
+        },
+        {
+          "property_name": "CIVICO",
+          "display_name": "n",
+          "type": "number"
+        },
+        {
+          "property_name": "CLAS",
+          "display_name": "Valutazione",
+          "type": "string"
+        },
+        {
+          "property_name": "CAMERE",
+          "display_name": "Camere",
+          "type": "number"
+        },
+        {
+          "property_name": "LETTI",
+          "display_name": "Letti",
+          "type": "number"
+        }
+      ],
+      "components": [
+        "app-opacity-slider"
+      ]
+    },
+    {
       "name": "Acqua potabile",
       "layer": "GEOJSON_ACQUA_POTABILE",
       "layer_url_wfs": "./GeoJson/drinking-water.geojson",
@@ -272,60 +493,6 @@
         "app-opacity-slider",
         "app-navigation-btn"
       ]
-    },
-    {
-      "name": "Parcheggi car sharing",
-      "layer": "V_MOB_PARKS_CARSHARING",
-      "layer_url_wfs": "./GeoJson/car-sharing.geojson",
-      "style": {
-        "color": "#687ff1",
-        "opacity": 1
-      },
-      "tags": [
-        "città",
-        "servizi",
-        "relax"
-      ],
-      "relevant_properties": [
-        {
-          "property_name": "NOME",
-          "display_name": "Indirizzo",
-          "type": "string"
-        },
-        {
-          "property_name": "NUMERO_STALLI",
-          "display_name": "Posti auto",
-          "type": "number"
-        }
-      ],
-      "components": []
-    },
-    {
-      "name": "Parcheggi interscambio",
-      "layer": "V_MOB_PARKS_INTERSCAMBIO",
-      "layer_url_wfs": "./GeoJson/parcheggi-interscambio.geojson",
-      "style": {
-        "color": "#687fd1",
-        "opacity": 1
-      },
-      "tags": [
-        "città",
-        "servizi",
-        "relax"
-      ],
-      "relevant_properties": [
-        {
-          "property_name": "NOME",
-          "display_name": "Indirizzo",
-          "type": "string"
-        },
-        {
-          "property_name": "NUMERO_STALLI",
-          "display_name": "Posti auto",
-          "type": "number"
-        }
-      ],
-      "components": []
     }
   ]
 }

@@ -1,0 +1,95 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI.fid--3bed1699_18d555c66a3_-33d9",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.0359067,
+                        44.44989682
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "NUMERO": 1,
+                "ID": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI.fid--3bed1699_18d555c66a3_-33d8",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.98778312,
+                        44.45611075
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "NUMERO": 3,
+                "ID": 3
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI.fid--3bed1699_18d555c66a3_-33d7",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        9.0161567,
+                        44.45183548
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "NUMERO": 2,
+                "ID": 4
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI.fid--3bed1699_18d555c66a3_-33d6",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.97354097,
+                        44.45496939
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "NUMERO": 4,
+                "ID": 5
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_LOCALIZZAZIONE_PANNELLI_INFORMATIVI.fid--3bed1699_18d555c66a3_-33d5",
+            "geometry": {
+                "type": "MultiPoint",
+                "coordinates": [
+                    [
+                        8.95500052,
+                        44.43111233
+                    ]
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "NUMERO": 5,
+                "ID": 6
+            }
+        }
+    ]
+}
