@@ -2,50 +2,6 @@
   "name": "Telecomunicazioni",
   "layers": [
     {
-      "name": "Router FreeWiFiGenova",
-      "layer": "SITGEO:WI-FI_URBANO",
-      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
-      "style": {
-        "color": "#f7cb90",
-        "opacity": 1
-      },
-      "tags": [
-        "città",
-        "servizi",
-        "ospedali"
-      ],
-      "relevant_properties": [
-        {
-          "property_name": "NOME",
-          "display_name": "Nome",
-          "type": "string"
-        },
-        {
-          "property_name": "SITO",
-          "display_name": "Sito",
-          "type": "string"
-        },
-        {
-          "property_name": "TIPO",
-          "display_name": "Tipo",
-          "type": "string"
-        },
-        {
-          "property_name": "MUNICIPIO",
-          "display_name": "Municipio",
-          "type": "number"
-        },
-        {
-          "property_name": "ANNO",
-          "display_name": "Anno installazione",
-          "type": "string"
-        }
-      ],
-      "components": [
-        "app-opacity-slider"
-      ]
-    },
-    {
       "name": "Impianti telecomunicazione",
       "layer": "L7991",
       "layer_url_wfs": "https://geoservizi.regione.liguria.it/geoserver/M2196/wms",

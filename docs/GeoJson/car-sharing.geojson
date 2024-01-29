@@ -1,0 +1,864 @@
+{
+    "type": "FeatureCollection",
+    "generator": "overpass-turbo",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+    "timestamp": "2024-01-23T16:19:09Z",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    994613.95876799,
+                    5529194.09507079,
+                    -31.77
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 1,
+                "NOME": "Piazza Fontane Marose",
+                "NUMERO_STALLI": 1
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.2",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    995075.60519695,
+                    5529268.48936982,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 2,
+                "NOME": "Piazza Marsala",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.3",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    991628.22578117,
+                    5529276.38673391,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 3,
+                "NOME": "Via di Francia",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.4",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    993948.23152998,
+                    5529805.11018693,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 4,
+                "NOME": "Piazza Bandiera",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.5",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    996726.41435769,
+                    5526423.67281004,
+                    -29.64
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 5,
+                "NOME": "Via Piave",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.6",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    993308.86818982,
+                    5530165.12241643,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 6,
+                "NOME": "Via Arsenale di Terra (Stazione Principe)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.7",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    993843.14322196,
+                    5528596.21693744,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 7,
+                "NOME": "Via Turati",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.8",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    994488.90078413,
+                    5529782.0347607,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 8,
+                "NOME": "Piazza Villa",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.9",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    994667.68544048,
+                    5530031.14177951,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 9,
+                "NOME": "Corso Paganini",
+                "NUMERO_STALLI": 1
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.10",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    995873.88749759,
+                    5529727.32433902,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 10,
+                "NOME": "Corso Armellini",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.11",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    994367.95348737,
+                    5528616.23707092,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 11,
+                "NOME": "Piazza Matteotti",
+                "NUMERO_STALLI": 4
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.12",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    994978.66667411,
+                    5527845.56268202,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 12,
+                "NOME": "Via Corsica",
+                "NUMERO_STALLI": 3
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.13",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    995244.84093654,
+                    5529079.1214078,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 13,
+                "NOME": "Via S.S. Giacomo e Filippo",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.14",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    985551.39610709,
+                    5531234.47485463,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 14,
+                "NOME": "Via Hermada",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.15",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    995880.22028683,
+                    5528648.15492975,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 15,
+                "NOME": "Piazza Verdi (Stazione Brignole)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.16",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    1001218.26825451,
+                    5526862.04137549,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 16,
+                "NOME": "Via Carrara (Cavalcavia Don Bosco)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.17",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    999270.18647267,
+                    5528872.33504875,
+                    9999.99
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 17,
+                "NOME": "Via Mosso (Pronto Soccorso San Martino)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.18",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    988650.63230409,
+                    5529608.34362342,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 18,
+                "NOME": "Via Paolo Mantovani (Fiumara)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.19",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    996903.6840812,
+                    5529333.80092754,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 19,
+                "NOME": "Corso Sardegna",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.20",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    997541.97248571,
+                    5528674.35597125,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 20,
+                "NOME": "Piazza Terralba",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.21",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    997269.05271262,
+                    5529510.34294657,
+                    1310.81
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 21,
+                "NOME": "Piazza Solari",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.22",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    996772.8060262,
+                    5529706.48490183,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 22,
+                "NOME": "Piazza Carloforte",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.23",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    995976.69127487,
+                    5531040.83099423,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 23,
+                "NOME": "Via Bobbio",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.24",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    994788.45183075,
+                    5528526.13664611,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 24,
+                "NOME": "Via Ceccardi",
+                "NUMERO_STALLI": 4
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.25",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    992881.19123323,
+                    5530043.43857643,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 25,
+                "NOME": "Via Bersaglieri D'Italia (Metro - Principe)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.26",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    996138.99047842,
+                    5526824.65344131,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 26,
+                "NOME": "Corso Marconi (fronte parcheggio Piazzale Kennedy)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.27",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    996276.379355,
+                    5527974.58983053,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 27,
+                "NOME": "Piazza Paolo Da Novi",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.28",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    994104.33446482,
+                    5530762.89198982,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 28,
+                "NOME": "Corso Firenze (Chiesa di San Nicola)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.29",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    995406.20237329,
+                    5527918.75967024,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 29,
+                "NOME": "Via Macaggi",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.30",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    992403.19542519,
+                    5530574.03447839,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 30,
+                "NOME": "Largo San Francesco da Paola",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.31",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    999851.4188303,
+                    5527560.5078462,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 31,
+                "NOME": "Piazza Ragazzi del 99",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.32",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    989281.74711025,
+                    5529497.32208542,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 32,
+                "NOME": "Via Molteni",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.33",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    995774.15468646,
+                    5527366.91027947,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 33,
+                "NOME": "Viale Brigate Partigiane",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.34",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    997952.76543707,
+                    5527180.02216302,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 34,
+                "NOME": "Piazza Leonardo Da Vinci",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.35",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    985097.81737785,
+                    5531343.26661819,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 35,
+                "NOME": "Largo Coppi",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.36",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    1001235.61672702,
+                    5525698.28861224,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 36,
+                "NOME": "Via V Maggio (Monumento)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.37",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    1004074.98893846,
+                    5525103.59716081,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 37,
+                "NOME": "Via Giannelli",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.38",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    1005387.17224276,
+                    5525107.93180593,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 38,
+                "NOME": "Via Palach (Rampa Corso Europa)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.39",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    980965.78640821,
+                    5531394.59770134,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 39,
+                "NOME": "Piazzale Porticciolo",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.40",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    990003.70017057,
+                    5532008.65630167,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 40,
+                "NOME": "Via Fillak (altezza Via Brin)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.41",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    990227.9321005,
+                    5529324.38768284,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 41,
+                "NOME": "Via Cantore",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.42",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    996659.65402039,
+                    5527109.41891036,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 42,
+                "NOME": "Piazza Merani",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.43",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    994511.04303392,
+                    5529183.76316107,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 43,
+                "NOME": "Piazza del Ferro",
+                "NUMERO_STALLI": 3
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.44",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    994326.75271794,
+                    5530517.65649105,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 44,
+                "NOME": "Corso Dogali (Castello D'Albertis)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.45",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    993927.64711235,
+                    5529056.00757332,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 45,
+                "NOME": "Caricamento - Sottoripa",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.46",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    992049.0247753,
+                    5529691.94007792,
+                    16.05
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 46,
+                "NOME": "Via Buozzi (Interscambio - Metro Dinegro)",
+                "NUMERO_STALLI": 2
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_CARSHARING.47",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    996121.90959527,
+                    5531464.88545106,
+                    2.72
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 47,
+                "NOME": "Piastra Genova Est - Interscambio (area fronte Piazza G. Garassini)",
+                "NUMERO_STALLI": 2
+            }
+        }
+    ],
+    "totalFeatures": 47,
+    "numberMatched": 47,
+    "numberReturned": 47,
+    "timeStamp": "2024-01-29T09:02:54.538Z",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:EPSG::3857"
+        }
+    }
+}

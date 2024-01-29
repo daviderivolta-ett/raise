@@ -9,19 +9,9 @@
         {
             "name": "Città",
             "groups": [
-                "./json/cycle-pedestrian.json",
                 "./json/public-transport.json",
-                "./json/car-parks.json",
                 "./json/services.json",
-                "./json/sport.json",
                 "./json/telecommunications.json"
-            ]
-        },
-        {
-            "name": "Cultura",
-            "groups": [
-                "./json/aqueduct.json",
-                "./json/staglieno-monuments.json"
             ]
         }
     ]

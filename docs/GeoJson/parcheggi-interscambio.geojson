@@ -1,0 +1,144 @@
+{
+    "type": "FeatureCollection",
+    "generator": "overpass-turbo",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+    "timestamp": "2024-01-23T16:19:09Z",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_INTERSCAMBIO.1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    981887.35043311,
+                    5531290.92350206,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 1,
+                "NOME": "MOLO ARCHETTI",
+                "NUMERO_STALLI": 128
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_INTERSCAMBIO.2",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    996325.40186929,
+                    5530156.62313658,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 2,
+                "NOME": "PIAZZALE MARASSI",
+                "NUMERO_STALLI": 140
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_INTERSCAMBIO.3",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    996114.50518901,
+                    5531621.82981507,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 3,
+                "NOME": "PIASTRA DI GENOVA EST",
+                "NUMERO_STALLI": 104
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_INTERSCAMBIO.4",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    992057.34490057,
+                    5529659.89819837,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 4,
+                "NOME": "DI NEGRO",
+                "NUMERO_STALLI": 175
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_INTERSCAMBIO.5",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    999830.31094316,
+                    5535959.44033755,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 5,
+                "NOME": "PONTE FLEMING",
+                "NUMERO_STALLI": 150
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_INTERSCAMBIO.6",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    978345.56723689,
+                    5531584.6160068,
+                    0
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 6,
+                "NOME": "PRA",
+                "NUMERO_STALLI": null
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "V_MOB_PARKS_INTERSCAMBIO.7",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    990023.57468747,
+                    5533202.02041908,
+                    19.53
+                ]
+            },
+            "geometry_name": "GEOMETRY",
+            "properties": {
+                "ID": 7,
+                "NOME": "VIA GASPARE PISONI",
+                "NUMERO_STALLI": 82
+            }
+        }
+    ],
+    "totalFeatures": 7,
+    "numberMatched": 7,
+    "numberReturned": 7,
+    "timeStamp": "2024-01-29T09:14:07.046Z",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "urn:ogc:def:crs:EPSG::3857"
+        }
+    }
+}
