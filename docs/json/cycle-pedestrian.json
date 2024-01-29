@@ -4,7 +4,7 @@
     {
       "name": "Parcheggi Bike Sharing",
       "layer": "SITGEO:V_MOB_PARKS_BIKESHARING",
-      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "layer_url_wfs": "./GeoJson/bike-sharing-parks.geojson",
       "style": {
         "color": "#51fa67",
         "opacity": 1
@@ -33,7 +33,7 @@
     {
       "name": "Piste ciclabili",
       "layer": "SITGEO:V_MOB_PISTE_CICLABILI",
-      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "layer_url_wfs": "./GeoJson/piste-ciclabili.geojson",
       "style": {
         "color": "#51b6b0",
         "opacity": 1
@@ -72,7 +72,7 @@
     {
       "name": "Aree pedonali",
       "layer": "SITGEO:V_MOB_AREE_PEDONALI",
-      "layer_url_wfs": "https://mappe.comune.genova.it/geoserver/wfs",
+      "layer_url_wfs": "./GeoJson/aree-pedonali.geojson",
       "style": {
         "color": "#b3e27d",
         "opacity": 0.5
