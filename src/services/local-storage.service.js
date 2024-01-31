@@ -71,4 +71,17 @@ export class LocalStorageService {
         currentLayers.active.length = 0;
         localStorage.setItem('layers', JSON.stringify(currentLayers));
     }
+
+    getLayers() {
+        let allLayers = [];
+        LocalStorageService.instance.getData().layers.active.forEach(layer => {
+            allLayers.push(layer);
+        });
+
+        LocalStorageService.instance.getData().layers.bench.forEach(layer => {
+            allLayers.push(layer);
+        });
+        
+        return allLayers;
+    }
 }

@@ -5,6 +5,7 @@ import { SettingService } from '../services/data.service.js';
 import { ThemeService } from '../services/theme.service.js';
 import { UserPositionService } from '../services/user-position.service.js';
 import { SuggestedRoutesService } from '../services/suggested-routes.service.js';
+import { Feature } from '../models/Feature.js';
 
 export class MapPage extends HTMLElement {
     _data;
@@ -96,7 +97,7 @@ export class MapPage extends HTMLElement {
             this.map.setCameraToPosition({ latitude: 44.40753207658791, longitude: 8.934080815653985 });
         }
 
-        this.map.addEventListener('map-click', event => {
+        this.map.addEventListener('map-click', async event => {
             this.benchToggle.setAttribute('is-open', false);
             this.tabsToggle.setAttribute('is-open', false);
             this.header.classList.remove('minimize');
@@ -115,7 +116,26 @@ export class MapPage extends HTMLElement {
             const feature = FeatureService.instance.getFeature(entity, this.data);
             console.log('Feature cliccata:', feature);
             EventObservable.instance.publish('feature-selected', feature);
-            // console.log(SuggestedRoutesService.instance.getRelatedRoute(feature));
+
+
+            // STARTING TEST
+            let relatedRoutes = SuggestedRoutesService.instance.getRelatedRoutes(feature);
+            let allLayers = SettingService.instance.getAllLayers();
+            let interestedLayers = SuggestedRoutesService.instance.getLayersInRelatedRoutes(allLayers, relatedRoutes);
+            const allFeaturesPromises = interestedLayers.map(layer => this.map.getAllLayerFeatures(layer));
+            let allFeatures = await Promise.all(allFeaturesPromises);
+            allFeatures = allFeatures.flat();
+            const interestedFeatures = SuggestedRoutesService.instance.getRelatedFeatures(allFeatures, relatedRoutes);
+            const a = interestedFeatures.map(feature => {
+                let layer = FeatureService.instance.getLayerByName(this.data, feature.properties.layerName);
+                let coordinates = {};
+                if (feature.geometry.type == 'Point') coordinates = { longitude: feature.geometry.coordinates[0], latitude: feature.geometry.coordinates[1] }
+                if (feature.geometry.type == 'MultiPoint') coordinates = { longitude: feature.geometry.coordinates[0][0], latitude: feature.geometry.coordinates[0][1] }
+                return Feature.fromPoint(feature.properties, layer, coordinates);
+            });
+            console.log('Feature interessanti: ', a);
+            // ENDING
+
 
             this.map.setCameraToPosition(feature.startingCoordinates);
             this.tabs.addFeature(feature);

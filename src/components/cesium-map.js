@@ -237,9 +237,29 @@ export default class CesiumViewer extends HTMLElement {
         geoJson.features = geoJson.features.map((f, i) => {
             f.properties.raiseName = layer.name + ' ' + i;
             f.properties.layerName = layer.layer;
+
+            if (f.geometry.type === 'Point') {
+                f.properties.raiseId = layer.layer + f.geometry.coordinates[1] + f.geometry.coordinates[0];
+            } else if (f.geometry.type === 'MultiPoint') {
+                f.properties.raiseId = layer.layer + f.geometry.coordinates[0][1] + f.geometry.coordinates[0][0];
+            }
+
             return f;
         });
         return geoJson;
+    }
+
+    async getAllLayerFeatures(layer) {
+        const url = `${layer.layer_url_wfs}?service=WFS&typeName=${layer.layer}&outputFormat=application/json&request=GetFeature&srsname=EPSG:4326`;
+
+        try {
+            const response = await fetch(url);
+            const rawGeoJson = await response.json();
+            const geoJson = await this.createAdditionalProperties(rawGeoJson, layer);
+            return geoJson.features;
+        } catch (error) {
+            console.log('Problema nel recupero del layer');
+        }
     }
 
     async loadCustomDataSource(geoJson, dataSourceName, color) {

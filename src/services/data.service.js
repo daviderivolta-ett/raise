@@ -74,4 +74,16 @@ export class SettingService {
             throw error;
         }
     }
+
+    getAllLayers() {
+        let allLayers = [];
+        this.data.categories.map(category => {
+            category.groups.map(group => {
+                group.layers.map(layer => {
+                    allLayers.push(layer);
+                });
+            });
+        });           
+        return allLayers;
+    }
 }

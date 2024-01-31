@@ -50,9 +50,29 @@ export class SuggestedRoutesService {
         }
     }
 
-    getRelatedRoute(feature) {
+    getRelatedRoutes(feature) {
         return this.data.filter(route => {
             return route.features.some(f => f.id == feature.id);
+        });
+    }
+
+    getLayersInRelatedRoutes(layers, routes) {
+        return layers.filter(layer => {
+            return routes.some(route => {
+                return route.features.some(feature => {
+                    return feature.layer == layer.layer;
+                });
+            });
+        });
+    }
+
+    getRelatedFeatures(features, routes) {
+        return features.filter(feature => {
+            return routes.some(route => {
+                return route.features.some(f => {
+                    return f.id == feature.properties.raiseId;
+                });
+            });
         });
     }
 }
