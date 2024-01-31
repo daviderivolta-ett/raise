@@ -117,25 +117,29 @@ export class MapPage extends HTMLElement {
             console.log('Feature cliccata:', feature);
             EventObservable.instance.publish('feature-selected', feature);
 
-
             // STARTING TEST
-            let relatedRoutes = SuggestedRoutesService.instance.getRelatedRoutes(feature);
+            let relatedRoutesRaw = SuggestedRoutesService.instance.getRelatedRoutes(feature);
             let allLayers = SettingService.instance.getAllLayers();
-            let interestedLayers = SuggestedRoutesService.instance.getLayersInRelatedRoutes(allLayers, relatedRoutes);
-            const allFeaturesPromises = interestedLayers.map(layer => this.map.getAllLayerFeatures(layer));
-            let allFeatures = await Promise.all(allFeaturesPromises);
-            allFeatures = allFeatures.flat();
-            const interestedFeatures = SuggestedRoutesService.instance.getRelatedFeatures(allFeatures, relatedRoutes);
-            const a = interestedFeatures.map(feature => {
-                let layer = FeatureService.instance.getLayerByName(this.data, feature.properties.layerName);
-                let coordinates = {};
-                if (feature.geometry.type == 'Point') coordinates = { longitude: feature.geometry.coordinates[0], latitude: feature.geometry.coordinates[1] }
-                if (feature.geometry.type == 'MultiPoint') coordinates = { longitude: feature.geometry.coordinates[0][0], latitude: feature.geometry.coordinates[0][1] }
-                return Feature.fromPoint(feature.properties, layer, coordinates);
+            let relatedRoutesPromises = relatedRoutesRaw.map(async route => {
+                const interestedLayers = SuggestedRoutesService.instance.getLayersInRelatedRoutes(allLayers, route);
+                const promises = interestedLayers.map(layer => this.map.getAllLayerFeatures(layer));
+                let features = await Promise.all(promises);
+                features = features.flat();
+                let interestedFeatures = SuggestedRoutesService.instance.getRelatedFeatures(features, route);
+                interestedFeatures = interestedFeatures.map(feature => {
+                    let layer = FeatureService.instance.getLayerByName(this.data, feature.properties.layerName);
+                    let coordinates = {};
+                    if (feature.geometry.type == 'Point') coordinates = { longitude: feature.geometry.coordinates[0], latitude: feature.geometry.coordinates[1] }
+                    if (feature.geometry.type == 'MultiPoint') coordinates = { longitude: feature.geometry.coordinates[0][0], latitude: feature.geometry.coordinates[0][1] }
+                    return Feature.fromPoint(feature.properties, layer, coordinates);
+                });
+                route.features = interestedFeatures;
+                return route;
             });
-            console.log('Feature interessanti: ', a);
-            // ENDING
 
+            let relatedRoutes = await Promise.all(relatedRoutesPromises);
+            console.log(relatedRoutes);
+            // ENDING
 
             this.map.setCameraToPosition(feature.startingCoordinates);
             this.tabs.addFeature(feature);

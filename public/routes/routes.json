@@ -1,6 +1,7 @@
 {
     "routes": [
         "./routes/acqueduct-route.json",
-        "./routes/relax.json"
+        "./routes/relax.json",
+        "./routes/testing.json"
     ]
 }

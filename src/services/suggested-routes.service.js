@@ -56,23 +56,23 @@ export class SuggestedRoutesService {
         });
     }
 
-    getLayersInRelatedRoutes(layers, routes) {
+    getLayersInRelatedRoutes(layers, route) {
         return layers.filter(layer => {
-            return routes.some(route => {
-                return route.features.some(feature => {
-                    return feature.layer == layer.layer;
-                });
+            return route.features.some(feature => {
+                return feature.layer == layer.layer;
             });
         });
     }
 
-    getRelatedFeatures(features, routes) {
+    getRelatedFeatures(features, route) {
         return features.filter(feature => {
-            return routes.some(route => {
-                return route.features.some(f => {
-                    return f.id == feature.properties.raiseId;
-                });
+            return route.features.some(f => {
+                return f.id == feature.properties.raiseId;
             });
         });
+    }
+
+    parseRelatedRoutes() {
+        
     }
 }
