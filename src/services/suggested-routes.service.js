@@ -50,8 +50,9 @@ export class SuggestedRoutesService {
         }
     }
 
-    getRelatedRoutes(feature) {
-        return this.data.filter(route => {
+    getRelatedRoutes(routes, feature) {
+        return routes.filter(route => {
+            console.log(route);
             return route.features.some(f => f.id == feature.id);
         });
     }
@@ -70,9 +71,5 @@ export class SuggestedRoutesService {
                 return f.id == feature.properties.raiseId;
             });
         });
-    }
-
-    parseRelatedRoutes() {
-        
     }
 }

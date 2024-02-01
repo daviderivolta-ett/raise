@@ -117,10 +117,19 @@ export class MapPage extends HTMLElement {
             console.log('Feature cliccata:', feature);
             EventObservable.instance.publish('feature-selected', feature);
 
+            this.map.setCameraToPosition(feature.startingCoordinates);
+            this.tabs.addFeature(feature);
+            this.tabsToggle.setAttribute('is-open', true);
+            this.header.classList.add('minimize');
+            this.changeMapMode.setAttribute('is-open', true);
+            this.centerPosition.setAttribute('is-open', true);
+            this.tabs.setAttribute('active-tab', 'info-tab');
+
             // STARTING TEST
-            let relatedRoutesRaw = SuggestedRoutesService.instance.getRelatedRoutes(feature);
-            let allLayers = SettingService.instance.getAllLayers();
-            let relatedRoutesPromises = relatedRoutesRaw.map(async route => {
+            const allLayers = SettingService.instance.getAllLayers();
+            const allSuggestedRoutes = await SuggestedRoutesService.instance.getData();
+            const relatedRoutesRaw = SuggestedRoutesService.instance.getRelatedRoutes(allSuggestedRoutes, feature);
+            const relatedRoutesPromises = relatedRoutesRaw.map(async route => {
                 const interestedLayers = SuggestedRoutesService.instance.getLayersInRelatedRoutes(allLayers, route);
                 const promises = interestedLayers.map(layer => this.map.getAllLayerFeatures(layer));
                 let features = await Promise.all(promises);
@@ -137,17 +146,10 @@ export class MapPage extends HTMLElement {
                 return route;
             });
 
-            let relatedRoutes = await Promise.all(relatedRoutesPromises);
+            const relatedRoutes = await Promise.all(relatedRoutesPromises);
+            EventObservable.instance.publish('find-related-routes', relatedRoutes);
             console.log(relatedRoutes);
-            // ENDING
-
-            this.map.setCameraToPosition(feature.startingCoordinates);
-            this.tabs.addFeature(feature);
-            this.tabsToggle.setAttribute('is-open', true);
-            this.header.classList.add('minimize');
-            this.changeMapMode.setAttribute('is-open', true);
-            this.centerPosition.setAttribute('is-open', true);
-            this.tabs.setAttribute('active-tab', 'info-tab');
+            // ENDING TEST
         });
 
         // tabs
